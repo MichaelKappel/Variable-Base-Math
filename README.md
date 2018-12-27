@@ -1,6 +1,6 @@
 ## Welcome to the C# Variable Base Math project
 
-You can use the [editor on GitHub](https://github.com/MichaelKappel/Variable-Base-Math/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+You can use this math program to multiply very large numbers with any base you would like. [editor on GitHub](https://github.com/MichaelKappel/Variable-Base-Math/edit/master/README.md)  Variable Base Math in a very strong basis for Encryption and an improtent part of Cryptography.
 
 Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
 
