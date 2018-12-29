@@ -1,6 +1,7 @@
 using Math;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Collections.Generic;
 
 namespace Marth.Tests
 {
@@ -50,8 +51,8 @@ namespace Marth.Tests
             Int32 expected = 0.CompareTo(1);
             
             var environment = new MathEnvironmentInfo("0123456789");
-            var zero = new Number(environment, new Char[] { '0' });
-            var one = new Number(environment, new Char[] { '1' });
+            var zero = new Number(environment, new List<Char>  { '0' });
+            var one = new Number(environment, new List<Char>  { '1' });
 
             Int32 actual = zero.CompareTo(one);
 
@@ -102,6 +103,34 @@ namespace Marth.Tests
 
             Assert.AreEqual(expected, actual);
         }
- 
+
+        [TestMethod]
+        public void Base10_0123456789_10_Divide_3()
+        {
+            var env = new Math.MathEnvironmentInfo("0123456789");
+
+            var expected = new Number(env, "2", "2", "3");
+
+
+            Number actual = Number.Divide(env, '8', '3');
+
+            Assert.AreEqual(expected, actual);
+        }
+
+
+        [TestMethod]
+        public void Base10_0123456789_1000_Divide_20()
+        {
+            var env = new Math.MathEnvironmentInfo("0123456789");
+
+            var expected = new Number(env, "50");
+            
+            var number1 = new Number(env, "1000");
+            var number2 = new Number(env, "20");
+
+            Number actual = number1 / number2;
+
+            Assert.AreEqual(expected, actual);
+        }
     }
 }

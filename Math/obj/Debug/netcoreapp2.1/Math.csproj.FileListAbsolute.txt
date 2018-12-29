@@ -19,3 +19,12 @@ D:\vs\Math\MathConsole\Math\obj\Debug\netcoreapp2.1\Math.pdb
 D:\vs\Math\MathConsole\Math\bin\Debug\netcoreapp2.1\Math.deps.json
 D:\vs\Math\MathConsole\Math\bin\Debug\netcoreapp2.1\Math.dll
 D:\vs\Math\MathConsole\Math\bin\Debug\netcoreapp2.1\Math.pdb
+D:\git\Math\Math\bin\Debug\netcoreapp2.1\Math.deps.json
+D:\git\Math\Math\bin\Debug\netcoreapp2.1\Math.dll
+D:\git\Math\Math\bin\Debug\netcoreapp2.1\Math.pdb
+D:\git\Math\Math\obj\Debug\netcoreapp2.1\Math.csprojAssemblyReference.cache
+D:\git\Math\Math\obj\Debug\netcoreapp2.1\Math.csproj.CoreCompileInputs.cache
+D:\git\Math\Math\obj\Debug\netcoreapp2.1\Math.AssemblyInfoInputs.cache
+D:\git\Math\Math\obj\Debug\netcoreapp2.1\Math.AssemblyInfo.cs
+D:\git\Math\Math\obj\Debug\netcoreapp2.1\Math.dll
+D:\git\Math\Math\obj\Debug\netcoreapp2.1\Math.pdb

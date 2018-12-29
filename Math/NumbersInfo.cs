@@ -16,7 +16,7 @@ namespace Math
         public Numbers(MathEnvironmentInfo environment)
         {
             this.Environment = environment;
-            this.NumbersSegments = new List<char[]>();
+            this.NumbersSegments = new List<List<Char>>();
         }
 
         public Numbers(params Number[] numberInfoArray)
@@ -49,17 +49,17 @@ namespace Math
             }
         }
 
-        public Number GetNumberAtIndex(Int64 index)
+        public Number GetNumberAtIndex(UInt64 index)
         {
             return new Number(this.Environment, this.NumbersSegments[(Int32)index]);
         }
         
-        public List<Char[]> NumbersSegments { get; set; }
+        public List<List<Char>> NumbersSegments { get; set; }
 
         public override string ToString()
         {
             String result = null;
-            foreach (Char[] segment in this.NumbersSegments)
+            foreach (List<Char> segment in this.NumbersSegments)
             {
                 result += segment.ToString();
             }

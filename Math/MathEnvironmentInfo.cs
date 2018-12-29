@@ -11,9 +11,9 @@ namespace Math
             this.SetKey(rawKey);
         }
 
-        public Int64 GetIndex(Char arg)
+        public UInt64 GetIndex(Char arg)
         {
-            return this.Key.IndexOf(arg);
+            return (UInt64)this.Key.IndexOf(arg);
         }
 
         public void SetKey(String rawKey)
@@ -28,7 +28,7 @@ namespace Math
             }
             this.Bottom = this.Key[0];
             this.Top = this.Key[this.Key.Count - 1];
-            this.Base = this.Key.Count;
+            this.Base = (UInt64)this.Key.Count;
         }
 
         public Char Bottom
@@ -38,7 +38,7 @@ namespace Math
         }
         public Number BottomNumber
         {
-            get { return new Number(this, new Char[] { this.Bottom }); }
+            get { return new Number(this, new List<Char> { this.Bottom }); }
         }
 
         public Char Top
@@ -49,10 +49,10 @@ namespace Math
 
         public Number TopNumber
         {
-            get { return new Number(this, new Char[] { this.Top }); }
+            get { return new Number(this, new List<Char> { this.Top }); }
         }
 
-        public Int64 Base {
+        public UInt64 Base {
             get;
             protected set;
         }

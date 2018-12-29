@@ -16,23 +16,52 @@ namespace Math
         public Number(MathEnvironmentInfo environment)
         {
             this.Environment = environment;
-            this.Segments = new Char[] { this.Environment.Bottom };
+            this.Segments = new List<Char>() { this.Environment.Bottom };
+            this.Fragments = new Tuple<List<Char>, List<Char>>(new List<Char> { this.Environment.Bottom } , new List<Char> { this.Environment.Bottom });
 
         }
 
-        public Number(MathEnvironmentInfo environment, Char[] number)
+        public Number(MathEnvironmentInfo environment, List<Char> number)
         {
             this.Environment = environment;
-            this.Segments = number.ToArray();
+            this.Segments = number.ToList();
+            this.Fragments = new Tuple<List<Char>, List<Char>>(new List<Char> { this.Environment.Bottom }, new List<Char> { this.Environment.Bottom });
 
         }
+
+        public Number(MathEnvironmentInfo environment, List<Char> number, Tuple<List<Char>, List<Char>> fragments)
+        {
+            this.Environment = environment;
+            this.Segments = number.ToList();
+            this.Fragments = fragments;
+
+        }
+
+        public Number(MathEnvironmentInfo environment, UInt64 number)
+        {
+            this.Environment = environment;
+            this.Segments = new List<Char>() { environment.Key[(Int32)number] };
+            this.Fragments = new Tuple<List<Char>, List<Char>>(new List<Char> { this.Environment.Bottom }, new List<Char> { this.Environment.Bottom });
+        }
+
+
+        public Number(MathEnvironmentInfo environment, String rawNumber, String rawTopNumber, String rawBottomNumber)
+        {
+            this.Environment = environment;
+            List<Char> numberArray = rawNumber.ToCharArray().Reverse().ToList();
+            this.Validate(numberArray);
+            this.Segments = numberArray;
+            this.Fragments = new Tuple<List<Char>, List<Char>>(rawTopNumber.ToCharArray().Reverse().ToList(), rawBottomNumber.ToCharArray().Reverse().ToList());
+        }
+
 
         public Number(MathEnvironmentInfo environment, String rawNumber)
         {
             this.Environment = environment;
-            Char[] numberArray = rawNumber.ToCharArray().Reverse().ToArray();
+            List<Char> numberArray = rawNumber.ToCharArray().Reverse().ToList();
             this.Validate(numberArray);
             this.Segments = numberArray;
+            this.Fragments = new Tuple<List<Char>, List<Char>>(new List<Char> { this.Environment.Bottom }, new List<Char> { this.Environment.Bottom });
         }
 
         public Boolean IsBottom()
@@ -47,7 +76,7 @@ namespace Math
             return true;
         }
 
-        public void Validate(Char[] numberArray)
+        public void Validate(List<Char> numberArray)
         {
             foreach (Char segment in numberArray)
             {
@@ -57,16 +86,34 @@ namespace Math
                 }
             }
         }
-        public Char[] Segments { get; set; }
+        public Tuple<List<Char>, List<Char>> Fragments { get; set; }
+
+        public List<Char> Segments { get; set; }
 
         public override String ToString()
         {
             String result = null;
-            foreach (Char segment in this.Segments.Reverse())
+            foreach (Char segment in this.Segments.ToArray().Reverse())
             {
                 result += segment;
             }
-            return (String.IsNullOrWhiteSpace(result))?"0": result;
+            result = (String.IsNullOrWhiteSpace(result))?"0": result;
+            if (this.Fragments.Item1.Count > 0 && !(this.Fragments.Item1.Count == 1 && this.Fragments.Item1[0] == Environment.Bottom))
+            {
+                String resultTop = null;
+                foreach (Char segment in this.Fragments.Item1.ToArray().Reverse())
+                {
+                    resultTop += segment;
+                }
+
+                String resultBottom = null;
+                foreach (Char segment in this.Fragments.Item2.ToArray().Reverse())
+                {
+                    resultBottom += segment;
+                }
+                result = String.Format("{0} {1}/{2} ", result, resultTop, resultBottom);
+            }
+            return result;
         }
 
         public override int GetHashCode()
@@ -90,12 +137,12 @@ namespace Math
                 return false; 
             }
             
-            if (this.Segments.Length != other.Segments.Length)
+            if (this.Segments.Count != other.Segments.Count)
             {
                 return false;
             }
 
-            for (var i = 0; i < this.Segments.Length; i++)
+            for (var i = 0; i < this.Segments.Count; i++)
             {
                 if (this.Segments[i] != other.Segments[i])
                 {
@@ -107,16 +154,16 @@ namespace Math
 
         public int CompareTo(Number other)
         {
-            if (this.Segments.Length > other.Segments.Length)
+            if (this.Segments.Count > other.Segments.Count)
             {
                 return 1;
             }
-            else if (this.Segments.Length < other.Segments.Length)
+            else if (this.Segments.Count < other.Segments.Count)
             {
                 return -1;
             }
 
-            for (var i = this.Segments.Length - 1; i >= 0; i--)
+            for (var i = this.Segments.Count - 1; i >= 0; i--)
             {
                 if (this.Segments[i] != other.Segments[i])
                 {
@@ -130,7 +177,26 @@ namespace Math
                     }
                 }
             }
-            return 0;
+
+            if (this.Fragments.Item1 == other.Fragments.Item1 && this.Fragments.Item2 == other.Fragments.Item2)
+            {
+                return 0;
+            }
+            else
+            {
+                //FIX: temp solution
+                var thisFragments = this.Fragments.Item1.Count;
+                var othefFragments = other.Fragments.Item1.Count;
+
+                if (thisFragments > othefFragments)
+                {
+                    return 1;
+                }
+                else 
+                {
+                    return -1;
+                }
+            }
         }
 
         public int Compare(Number x, Number y)
@@ -192,11 +258,9 @@ namespace Math
         
         public static Number operator %(Number a, Number b)
         {
-            return Number.Divide(a, b);
+            throw new Exception("% not supported yet");
         }
-
-
-
+        
         #endregion
 
         #region Add
@@ -209,39 +273,45 @@ namespace Math
 
         public static Number Add(Number a, Char b)
         {
-            return Number.Add(a, new Char[] { b });
+            return Number.Add(a, new List<Char> { b });
         }
 
-        public static Number Add(Number a, Char[] b)
+        public static Number Add(Number a, List<Char> b)
         {
             return Number.Add(a, new Number(a.Environment, b));
         }
 
         public static Number Add(Number a, Number b)
         {
+            if (a.Environment != b.Environment)
+            {
+                throw new Exception("Adding different math environments not supported yet");
+            }
+
             return Number.Add(new Numbers(a, b));
         }
         
         public static Number Add(Numbers arg)
         {
+
             Int64 maxPosition = 0;
             foreach (var number in arg.NumbersSegments)
             {
-                if (number.Length > maxPosition)
+                if (number.Count > maxPosition)
                 {
-                    maxPosition = number.Length;
+                    maxPosition = number.Count;
                 }
             }
 
             var resultNumber = new List<Char>();
-            Int64 carryOver = 0;
+            UInt64 carryOver = 0;
             Int64 position = 0;
             while (position < maxPosition)
             {
-                Int64 columnValue = carryOver;
+                UInt64 columnValue = carryOver;
                 foreach (var number in arg.NumbersSegments)
                 {
-                    if (position < number.Length)
+                    if (position < number.Count)
                     {
                         columnValue += arg.Environment.GetIndex(number[(Int32)position]);
                     }
@@ -250,10 +320,10 @@ namespace Math
                 Char columnResult;
                 if (columnValue >= arg.Environment.Base)
                 {
-                    Int64 columnResultRaw = (columnValue % arg.Environment.Base);
+                    UInt64 columnResultRaw = (columnValue % arg.Environment.Base);
                     columnResult = arg.Environment.Key[(Int32)columnResultRaw];
 
-                    carryOver = (Int64)(((Decimal)columnValue - (Decimal)columnResultRaw) / (Decimal)arg.Environment.Base);
+                    carryOver = (UInt64)(((Decimal)columnValue - (Decimal)columnResultRaw) / (Decimal)arg.Environment.Base);
                 }
                 else
                 {
@@ -270,12 +340,13 @@ namespace Math
                 Char columnResult;
                 while (carryOver >= arg.Environment.Base)
                 {
-                    Int64 columnResultRaw = (carryOver % arg.Environment.Base);
+                    UInt64 columnResultRaw = (carryOver % arg.Environment.Base);
                     columnResult = arg.Environment.Key[(Int32)columnResultRaw];
                     resultNumber.Add(columnResult);
 
-                    carryOver = (Int64)((Decimal)columnResultRaw / (Decimal)arg.Environment.Base);
+                    carryOver = (UInt64)((Decimal)columnResultRaw / (Decimal)arg.Environment.Base);
                 }
+
                 if (carryOver > 0)
                 {
                     columnResult = arg.Environment.Key[(Int32)carryOver];
@@ -283,7 +354,7 @@ namespace Math
                 }
             }
 
-            var result = new Number(arg.Environment, resultNumber.ToArray());
+            var result = new Number(arg.Environment, resultNumber);
 
             return result;
         }
@@ -300,6 +371,11 @@ namespace Math
         
         public static Number Subtract(Number a, Number b)
         {
+            if (a.Environment != b.Environment)
+            {
+                throw new Exception("Subtracting different math environments not supported yet");
+            }
+
             return Number.Subtract(new Numbers(a, b));
         }
 
@@ -308,21 +384,21 @@ namespace Math
             Int64 maxPosition = 0;
             foreach (var number in arg.NumbersSegments)
             {
-                if (number.Length > maxPosition)
+                if (number.Count > maxPosition)
                 {
-                    maxPosition = number.Length;
+                    maxPosition = number.Count;
                 }
             }
 
             var resultNumber = new List<Char>();
-            Int64 carryOver = 0;
+            UInt64 carryOver = 0;
             Int64 position = 0;
             while (position < maxPosition)
             {
-                Int64 columnValue = carryOver;
+                UInt64 columnValue = carryOver;
                 foreach (var number in arg.NumbersSegments)
                 {
-                    if (position < number.Length)
+                    if (position < number.Count)
                     {
                         columnValue += arg.Environment.GetIndex(number[(Int32)position]);
                     }
@@ -331,10 +407,10 @@ namespace Math
                 Char columnResult;
                 if (columnValue >= arg.Environment.Base)
                 {
-                    Int64 columnResultRaw = (columnValue % arg.Environment.Base);
+                    UInt64 columnResultRaw = (columnValue % arg.Environment.Base);
                     columnResult = arg.Environment.Key[(Int32)columnResultRaw];
 
-                    carryOver = (Int64)(((Decimal)columnValue - (Decimal)columnResultRaw) / (Decimal)arg.Environment.Base);
+                    carryOver = (UInt64)(((Decimal)columnValue - (Decimal)columnResultRaw) / (Decimal)arg.Environment.Base);
                 }
                 else
                 {
@@ -351,11 +427,11 @@ namespace Math
                 Char columnResult;
                 while (carryOver >= arg.Environment.Base)
                 {
-                    Int64 columnResultRaw = (carryOver % arg.Environment.Base);
+                    UInt64 columnResultRaw = (carryOver % arg.Environment.Base);
                     columnResult = arg.Environment.Key[(Int32)columnResultRaw];
                     resultNumber.Add(columnResult);
 
-                    carryOver = (Int64)((Decimal)columnResultRaw / (Decimal)arg.Environment.Base);
+                    carryOver = (UInt64)((Decimal)columnResultRaw / (Decimal)arg.Environment.Base);
                 }
                 if (carryOver > 0)
                 {
@@ -364,7 +440,7 @@ namespace Math
                 }
             }
 
-            var result = new Number(arg.Environment, resultNumber.ToArray());
+            var result = new Number(arg.Environment, resultNumber);
 
             return result;
         }
@@ -381,26 +457,31 @@ namespace Math
 
         public static Number Multiply(Number a, Number b)
         {
+            if (a.Environment != b.Environment)
+            {
+                throw new Exception("Multipling different math environments not supported yet");
+            }
+
             return Number.Multiply(new Numbers(a, b));
         }
 
-        public static Number Multiply(MathEnvironmentInfo environment, Char[] number1, Char number2)
+        public static Number Multiply(MathEnvironmentInfo environment, List<Char> number1, Char number2)
         {
             var resultRaw = new List<Char>();
 
-            Int64 numberIndex = environment.GetIndex(number2);
+            UInt64 numberIndex = environment.GetIndex(number2);
 
-            Int64 carryOver = 0;
-            for (var i = 0; i < number1.Length; i++)
+            UInt64 carryOver = 0;
+            for (var i = 0; i < number1.Count; i++)
             {
-                Int64 segmentIndex = environment.GetIndex(number1[i]);
+                UInt64 segmentIndex = environment.GetIndex(number1[i]);
 
-                Int64 columnTotal = (numberIndex * segmentIndex) + carryOver;
+                UInt64 columnTotal = (numberIndex * segmentIndex) + carryOver;
 
                 Char columnPositionResult;
                 if (columnTotal >= environment.Base)
                 {
-                    Int64 remainder = (columnTotal % environment.Base);
+                    UInt64 remainder = (columnTotal % environment.Base);
                     columnPositionResult = environment.Key[(Int32)remainder];
                     carryOver = (columnTotal - remainder) / environment.Base;
                 }
@@ -418,7 +499,7 @@ namespace Math
                 Char carryOverResult;
                 if (carryOver > environment.Base)
                 {
-                    Int64 remainder = (carryOver % environment.Base);
+                    UInt64 remainder = (carryOver % environment.Base);
                     carryOverResult = environment.Key[(Int32)remainder];
                     carryOver = (carryOver - remainder) / environment.Base;
                 }
@@ -430,21 +511,21 @@ namespace Math
                 resultRaw.Add(carryOverResult);
             }
 
-            return new Number(environment, resultRaw.ToArray());
+            return new Number(environment, resultRaw);
         }
-        public static Number Multiply(MathEnvironmentInfo environment, Char[] number1, Char[] number2)
+        public static Number Multiply(MathEnvironmentInfo environment, List<Char> number1, List<Char> number2)
         {
             var result = new Number(environment);
 
-            for (var i = 0; i < number1.Length; i++)
+            for (var i = 0; i < number1.Count; i++)
             {
                 Char numberSegment = number1[i];
                 Number currentResult = Number.Multiply(environment, number2, numberSegment);
                 for (var i2 = 0; i2 < i; i2++)
                 {
-                    IList<Char> currentResultList = currentResult.Segments.ToList();
+                    List<Char> currentResultList = currentResult.Segments.ToList();
                     currentResultList.Insert(0, environment.Bottom);
-                    currentResult = new Number(environment, currentResultList.ToArray());
+                    currentResult = new Number(environment, currentResultList);
                 }
                 result += currentResult;
             }
@@ -460,21 +541,21 @@ namespace Math
 
         public static Number Multiply(MathEnvironmentInfo environment, Char number1, Char number2)
         {
-            Int64 number1Index = environment.GetIndex(number1);
-            Int64 number2Index = environment.GetIndex(number2);
+            UInt64 number1Index = environment.GetIndex(number1);
+            UInt64 number2Index = environment.GetIndex(number2);
 
-            Int64 resultIndex = number1Index * number2Index;
+            UInt64 resultIndex = number1Index * number2Index;
 
             if (resultIndex >= environment.Base)
             {
-                Int64 remainderIndex = (resultIndex % environment.Base);
-                Int64 carryOver = (resultIndex - remainderIndex) / environment.Base;
+                UInt64 remainderIndex = (resultIndex % environment.Base);
+                UInt64 carryOver = (resultIndex - remainderIndex) / environment.Base;
 
-                return new Number(environment, new Char[] { environment.Key[(Int32)carryOver], environment.Key[(Int32)remainderIndex] });
+                return new Number(environment, new List<Char> { environment.Key[(Int32)carryOver], environment.Key[(Int32)remainderIndex] });
             }
             else
             {
-                return new Number(environment, new Char[] { environment.Key[(Int32)resultIndex] });
+                return new Number(environment, new List<Char> { environment.Key[(Int32)resultIndex] });
             }
         }
 
@@ -489,10 +570,10 @@ namespace Math
                 return new Number(arg.Environment, arg.NumbersSegments[0]);
             }
 
-            Char[] runningTotal = new Char[] { arg.Environment.Bottom  };
+            List<Char> runningTotal = new List<Char> { arg.Environment.Bottom  };
             for (var i = 1; i < arg.NumbersSegments.Count; i ++)
             {
-                Char[] numbersSegment1 = runningTotal;
+                List<Char> numbersSegment1 = runningTotal;
                 if (i == 1) {
                     numbersSegment1 = arg.NumbersSegments[i - 1];
                 }
@@ -500,13 +581,13 @@ namespace Math
                 {
                     numbersSegment1 = runningTotal;
                 }
-                Char[] numbersSegment2 = arg.NumbersSegments[i];
+                List<Char> numbersSegment2 = arg.NumbersSegments[i];
 
                 Number numbersSegment1And2Result = Number.Multiply(arg.Environment, numbersSegment1, numbersSegment2);
                 runningTotal = numbersSegment1And2Result.Segments;
             }
 
-            var result = new Number(arg.Environment, runningTotal.ToArray());
+            var result = new Number(arg.Environment, runningTotal);
 
             return result;
         }
@@ -514,63 +595,105 @@ namespace Math
 
         #region Divide
 
-        public static String Divide(String key, String arg1, String arg2)
+        public static String Divide(String key, String a, String b)
         {
             var environment = new MathEnvironmentInfo(key);
-            return (new Number(environment, arg1) / new Number(environment, arg2)).ToString();
+            return (new Number(environment, a) / new Number(environment, b)).ToString();
         }
         
         public static Number Divide(Number a, Number b)
         {
-            return Number.Divide(new Numbers(a, b));
-        }
+            if (a.Environment != b.Environment)
+            {
+                throw new Exception("Dividing different math environments not supported yet");
+            }
 
-        public static Number Divide(Numbers arg)
-        {
-            var result = new Number(arg.Environment);
+            var result = new Number(a.Environment);
+            if (a < b)
+            {
+                result.Fragments = new Tuple<List<Char>, List<Char>>(a.Segments, b.Segments);
+                return result;
+            }
 
-            //Number numberToDivideBy = arg.GetNumberAtIndex(0);
-            //Number numberToDivide = arg.GetNumberAtIndex(1);
+            UInt64 aSize = (UInt64)a.Segments.Count;
+            UInt64 bSize = (UInt64)b.Segments.Count;
 
-            //Number countDown = new Number(arg.Environment);
-            //while (numberToDivide > arg.Environment.BottomNumber)
+            //UInt64 placesMoved = 0;
+
+            //while (a > b)
             //{
-            //    Number numbersToSubtract = result - numberToDivide;
-            //    result = Number.Subtract(numbersToSubtract);
-
-            //    var subtractOne = new Numbers(countDown, new Number(arg.Environment, new Char[] { arg.Environment.Key[1] }));
-            //    countDown = Number.Subtract(subtractOne);
+            //    placesMoved += 1;
+            //    b.Segments.Insert(0, environment.Bottom);
             //}
 
             return result;
         }
 
+        public static Number Divide(MathEnvironmentInfo environment, Char numberToDivide, Char numberToDivideBy)
+        {
+            Number result = null;
+            UInt64 indexToDivide = environment.GetIndex(numberToDivide);
+            UInt64 indexToDivideBy = environment.GetIndex(numberToDivideBy);
+
+            UInt64 remainder;
+
+            if (indexToDivide > indexToDivideBy)
+            {
+                remainder = indexToDivide % indexToDivideBy;
+
+                UInt64 resultRaw = (UInt64)System.Math.Floor((decimal)indexToDivide / (decimal)indexToDivideBy);
+
+                result = Number.Convert(environment, resultRaw, remainder, indexToDivideBy);
+            }
+            else
+            {
+                result = Number.Convert(environment, 0, numberToDivide, numberToDivideBy);
+            }
+            
+            return result;
+        }
+
         #endregion
 
-        public static Number Convert(MathEnvironmentInfo environment, Int64 arg)
+
+
+        public static Number Convert(MathEnvironmentInfo environment, UInt64 number)
+        {
+            return Number.Convert(environment, number, 0, 0);
+        }
+        public static Number Convert(MathEnvironmentInfo environment, UInt64 number, UInt64 fractionTopNumber, UInt64 fractionBottomNumber)
+        {
+            List<Char> resultRaw = Number.Convert(environment.Base, environment.Key, number);
+            List<Char> fractionTop =  Number.Convert(environment.Base, environment.Key, fractionTopNumber);
+            List<Char> fractionBottom = Number.Convert(environment.Base, environment.Key, fractionBottomNumber);
+            var fragments = new Tuple<List<Char>, List<Char>>(fractionTop, fractionBottom);
+
+
+            var result = new Number(environment, resultRaw, fragments);
+            return result;
+        }
+
+        public static List<Char> Convert(UInt64 mathBase, IList<Char> key, UInt64 number)
         {
             var resultRaw = new List<Char>();
 
-            Int64 carryOver = 0;
-
-            while (arg > 0)
+            UInt64 carryOver = number;
+            while (carryOver > 0)
             {
-                Int64 columnResultRaw = 0;
-                if (arg >= environment.Base)
+                if (carryOver >= mathBase)
                 {
-                    columnResultRaw = (arg % environment.Base);
-                    carryOver = (Int64)(((Decimal)columnResultRaw - (Decimal)columnResultRaw) / (Decimal)environment.Base);
+                    UInt64 columnResultRaw = 0;
+                    columnResultRaw = (carryOver % mathBase);
+                    resultRaw.Add(key[(Int32)columnResultRaw]);
+                    carryOver = (UInt64)(((Decimal)carryOver - (Decimal)columnResultRaw) / (Decimal)mathBase);
                 }
                 else
                 {
-                    columnResultRaw = arg;
+                    resultRaw.Add(key[(Int32)carryOver]);
                     carryOver = 0;
                 }
-                resultRaw.Add(environment.Key[(Int32)columnResultRaw]);
             }
-
-            var result = new Number(environment, resultRaw.ToArray());
-            return result;
+            return resultRaw;
         }
 
     }
