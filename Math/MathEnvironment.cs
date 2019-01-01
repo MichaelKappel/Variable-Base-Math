@@ -4,9 +4,9 @@ using System.Text;
 
 namespace Math
 {
-    public class MathEnvironmentInfo: IEquatable<MathEnvironmentInfo>
+    public class MathEnvironment: IEquatable<MathEnvironment>
     {
-        public MathEnvironmentInfo(String rawKey)
+        public MathEnvironment(String rawKey)
         {
             this.SetKey(rawKey);
         }
@@ -27,8 +27,10 @@ namespace Math
                 }
             }
             this.Bottom = this.Key[0];
+            this.First = this.Key[1];
             this.Top = this.Key[this.Key.Count - 1];
             this.Base = (UInt64)this.Key.Count;
+
         }
 
         public Char Bottom
@@ -38,7 +40,24 @@ namespace Math
         }
         public Number BottomNumber
         {
-            get { return new Number(this, new List<Char> { this.Bottom }); }
+            get { return new Number(this, new Char[] { this.Bottom }); }
+        }
+
+
+        public Number PowerOfFirstNumber
+        {
+            get { return new Number(this, new Char[] { this.First, this.Bottom }); }
+        }
+
+        public Char First
+        {
+            get;
+            protected set;
+        }
+
+        public Number FirstNumber
+        {
+            get { return new Number(this, new Char[] { this.First }); }
         }
 
         public Char Top
@@ -49,7 +68,7 @@ namespace Math
 
         public Number TopNumber
         {
-            get { return new Number(this, new List<Char> { this.Top }); }
+            get { return new Number(this, new Char[] { this.Top }); }
         }
 
         public UInt64 Base {
@@ -77,7 +96,7 @@ namespace Math
             return String.Format("[BASE:\"{0}\"|Bottom:\"{1}\"|Top:\"{2}]\"", this.Base, this.Bottom, this.Top) + result;
         }
 
-        public Boolean Equals(MathEnvironmentInfo other)
+        public Boolean Equals(MathEnvironment other)
         {
             if (this.Base != other.Base)
             {
