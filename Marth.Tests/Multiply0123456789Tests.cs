@@ -33,7 +33,7 @@ namespace Marth.Tests
         {
             var env = new MathEnvironment("0123456789");
 
-            var expected = new Number(env, "147.25", new Fraction(env, '1', '2'));
+            var expected = new Number(env, "147", new Fraction(env, '1', '4'));
 
             var a = new Number(env, "15", new Fraction(env, '1', '2'));
 

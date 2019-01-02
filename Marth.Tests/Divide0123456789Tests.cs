@@ -60,5 +60,22 @@ namespace Marth.Tests
             Assert.AreEqual(expected, actual);
         }
 
+        [TestMethod]
+        [TestCategory("Divide")]
+        [TestCategory("0123456789")]
+        public void Divide_15789_2_3_D_9_7_8()
+        {
+            var env = new MathEnvironment("0123456789");
+
+            var expected = new Number(env, "135");
+
+            var a = new Number(env, "15789", new Fraction(new Number(env, "2"), new Number(env, "3")));
+            var b = new Number(env, "9", new Fraction(new Number(env, "7"), new Number(env, "8")));
+
+            Number actual = a / b;
+
+            Assert.AreEqual(expected, actual);
+        }
+
     }
 } 

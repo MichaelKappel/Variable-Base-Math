@@ -211,29 +211,28 @@ namespace Math
             return (new Number(environment, arg1) * new Number(environment, arg2)).ToString();
         }
 
-        public Number Multiply(MathEnvironment evironment, Fraction a, Fraction b)
+        public Number Multiply(MathEnvironment environment, Fraction a, Fraction b)
         {
-            Number numerator = this.Multiply(a.Numerator, a.Denominator);
-            Number denominator = this.Multiply(b.Numerator, b.Denominator);
+            Number denominator = this.Multiply(a.Denominator, b.Denominator);
+            Number numerator = (a.Numerator * b.Denominator) * (b.Numerator * a.Denominator); 
 
-            Number resultWholeNumber = evironment.BottomNumber;
-            while (numerator > denominator)
+            Number resultWholeNumber = environment.BottomNumber;
+            while (numerator >= denominator)
             {
-                resultWholeNumber += evironment.FirstNumber;
-                numerator -= evironment.FirstNumber;
+                //Fix: change to binary search
+                resultWholeNumber += environment.FirstNumber;
+                numerator -= denominator;
             }
 
             Number result;
-            if (numerator > evironment.BottomNumber)
+            if (numerator > environment.BottomNumber)
             {
-                var resultWholeNumberSegments = new Char[resultWholeNumber.Segments.Count];
-                result = new Number(evironment, resultWholeNumberSegments, new Fraction(numerator, denominator));
+                result = resultWholeNumber + new Number(environment, new Fraction(numerator, denominator));
             }
             else
             {
                 result = resultWholeNumber;
             }
-
             return result;
         }
 
@@ -266,8 +265,11 @@ namespace Math
                     fragmentA = new Fraction(a, environment.FirstNumber);
                 }
                 else
-                { 
-                    fragmentA = a.Fragment;
+                {
+                    Number aX1 = a.Floor().AsNumber() * a.Fragment.Denominator;
+                    Number aX2 = aX1 - a.Fragment.Numerator;
+
+                    fragmentA = new Fraction(aX2, a.Fragment.Denominator);
                 }
 
                 Fraction fragmentB; 
@@ -277,7 +279,10 @@ namespace Math
                 }
                 else
                 {
-                    fragmentB = b.Fragment;
+                    Number bX1 = b.Floor().AsNumber() * b.Fragment.Denominator;
+                    Number bX2 = bX1 - b.Fragment.Numerator;
+
+                    fragmentB = new Fraction(bX2, b.Fragment.Denominator);
                 }
                 
                 return this.Multiply(environment, fragmentA, fragmentB);
