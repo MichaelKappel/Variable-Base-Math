@@ -4,30 +4,37 @@ using System.Text;
 
 namespace Math
 {
-    public class Fraction
+    public class Fraction: IEquatable<Fraction>, IComparable<Fraction>, IComparer<Fraction>
     {
         public Fraction(MathEnvironment environment, Char numerator, Char denominator)
+            : this(new Number(environment, new Char[]{ numerator }), new Number(environment, new Char[]{ denominator }))
         {
-            if (numerator == environment.Bottom)
-            {
-                throw new DivideByZeroException();
-            }
-
-            this.Numerator = new Number(environment, new Char[] { numerator });
-            this.Denominator = new Number(environment, new Char[] { denominator });
+            
         }
 
         public Fraction(MathEnvironment environment, Char[] numerator, Char[] denominator)
+            : this(new Number(environment, numerator), new Number(environment, denominator))
         {
-            this.Numerator = new Number(environment, numerator);
-            this.Denominator = new Number(environment, denominator);
+            
         }
-
 
         public Fraction(Number numerator, Number denominator)
         {
             this.Numerator =  numerator;
             this.Denominator = denominator;
+
+            if (this.Numerator == numerator.Environment.BottomNumber)
+            {
+                throw new Exception("Numerator larger then denominator not currently supported");
+            }
+            if (this.Numerator == numerator.Environment.BottomNumber)
+            {
+                throw new DivideByZeroException("Numerator of nothing not currently supported");
+            }
+            if (this.Denominator == numerator.Environment.BottomNumber)
+            {
+                throw new DivideByZeroException("Denominator of nothing not currently supported");
+            }
         }
 
         public Number Numerator { get; set; }
@@ -88,7 +95,6 @@ namespace Math
 
             if (!this.Numerator.Equals(other.Numerator))
             {
-
                 return false;
             }
 
@@ -210,47 +216,5 @@ namespace Math
         }
 
         #endregion
-
-        public static Fraction operator +(Fraction a, Fraction b)
-        {
-            return Fraction.Add(a, b);
-        }
-
-        public static Fraction operator -(Fraction a, Fraction b)
-        {
-            return Fraction.Subtract(a, b);
-        }
-
-        public static Fraction operator *(Fraction a, Fraction b)
-        {
-            return Fraction.Multiply(a, b);
-        }
-
-        public static Fraction operator /(Fraction a, Fraction b)
-        {
-            return Fraction.Divide(a, b);
-        }
-
-        private static Fraction Subtract(Fraction a, Fraction b)
-        {
-            throw new NotImplementedException();
-        }
-        
-        private static Fraction Add(Fraction a, Fraction b)
-        {
-            throw new NotImplementedException();
-        }
-
-        private static Fraction Multiply(Fraction a, Fraction b)
-        {
-            throw new NotImplementedException();
-        }
-
-        private static Fraction Divide(Fraction a, Fraction b)
-        {
-            throw new NotImplementedException();
-        }
-
-
     }
 }

@@ -5,126 +5,111 @@ using System.Text;
 
 namespace Math
 {
-    public class Number: NumberBase, IEquatable<Number>, IComparable<Number>, IComparer<Number>,ICloneable
+    public class WholeNumber : NumberBase, IEquatable<WholeNumber>, IComparable<WholeNumber>, IComparer<WholeNumber>,ICloneable
     {
         internal static IOperator Operator = new Operator();
 
-        public Number(MathEnvironment environment, Fraction fragment, Boolean isNegative = false)
-          : base(environment, environment.Bottom,  isNegative)
-        {
-            this.Fragment = fragment;
-        }
-
-        public Number(MathEnvironment environment, Char number, Fraction fragment, Boolean isNegative = false)
-             : base(environment, number,  isNegative)
-        {
-            this.Fragment = fragment;
-        }
-
-        public Number(MathEnvironment environment, Char[] number, Fraction fragment = null, Boolean isNegative = false)
-             : base(environment, number,  isNegative)
-        {
-            this.Fragment = fragment;
-        }
-
-        public Number(MathEnvironment environment, String rawNumber, Fraction fragment = null, Boolean isNegative = false)
-            : base(environment, rawNumber,  isNegative)
-        {
-            this.Fragment = fragment;
-        }
-
-        public Number(WholeNumber number, Fraction fragment)
-            : this(number.Environment, number.Segments.ToArray(), fragment, number.IsNegative)
+        public WholeNumber(MathEnvironment environment, Char number, Boolean isNegative = false)
+             : base(environment, number, isNegative)
         {
 
         }
 
+        public WholeNumber(MathEnvironment environment, Char[] number, Boolean isNegative = false)
+             : base(environment, number, isNegative)
+        {
 
-        public Fraction Fragment { get; protected set; }
+        }
+
+        public WholeNumber(MathEnvironment environment, String rawNumber, Boolean isNegative = false)
+            : base(environment, rawNumber, isNegative)
+        {
+
+        }
 
         #region operator overrides
-        public static bool operator <(Number e1, Number e2)
+        public static bool operator <(WholeNumber e1, WholeNumber e2)
         {
             return e1.CompareTo(e2) < 0;
         }
 
-        public static bool operator <=(Number e1, Number e2)
+        public static bool operator <=(WholeNumber e1, WholeNumber e2)
         {
             return e1.CompareTo(e2) <= 0;
         }
-        public static bool operator >(Number e1, Number e2)
+        public static bool operator >(WholeNumber e1, WholeNumber e2)
         {
             return e1.CompareTo(e2) > 0;
         }
 
-        public static bool operator >=(Number e1, Number e2)
+        public static bool operator >=(WholeNumber e1, WholeNumber e2)
         {
             return e1.CompareTo(e2) >= 0;
         }
         
-        public static bool operator ==(Number e1, Number e2)
+        public static bool operator ==(WholeNumber e1, WholeNumber e2)
         {
             return e1.Equals(e2);
         }
 
-        public static bool operator !=(Number e1, Number e2)
+        public static bool operator !=(WholeNumber e1, WholeNumber e2)
         {
             return !e1.Equals(e2);
         }
         
-        public static Number operator +(Number a, Number b)
+        public static WholeNumber operator +(WholeNumber a, WholeNumber b)
         {
             return Operator.Add(a, b);
         }
         
-        public static Number operator -(Number a, Number b)
+        public static WholeNumber operator -(WholeNumber a, WholeNumber b)
         {
             return Operator.Subtract(a, b);
         }
 
-        public static Number operator *(Number a, Number b)
+        public static WholeNumber operator *(WholeNumber a, WholeNumber b)
         {
             return Operator.Multiply(a, b);
         }
 
 
-        public static Number operator /(Number a, Number b)
+        public static Number operator /(WholeNumber a, WholeNumber b)
         {
             return Operator.Divide(a, b);
         }
 
         
-        public static Number operator %(Number a, Number b)
+        public static WholeNumber operator %(WholeNumber a, WholeNumber b)
         {
             throw new Exception("% not supported yet");
         }
 
         #endregion
 
-        public Number Copy()
+        public WholeNumber Copy()
         {
-            var copy = new Number(this.Environment, this.Segments.ToArray(), this.Fragment, this.IsNegative);
+            var copy = new WholeNumber(this.Environment, this.Segments.ToArray(), this.IsNegative);
 
             return copy;
         }
 
-        public Number AsNegative()
+        public WholeNumber AsNegative()
         {
-            var copy = new Number(this.Environment, this.Segments.ToArray(), this.Fragment, true);
+            var copy = new WholeNumber(this.Environment, this.Segments.ToArray(), true);
 
             return copy;
         }
 
-        public Number AsPositive()
+        public WholeNumber AsPositive()
         {
-            var copy = new Number(this.Environment, this.Segments.ToArray(), this.Fragment, false);
+            var copy = new WholeNumber(this.Environment, this.Segments.ToArray(), false);
 
             return copy;
         }
         
         Object ICloneable.Clone()
         {
-            var copy = new Number(this.Environment, this.Segments.ToArray(), this.Fragment, this.IsNegative);
+            var copy = new WholeNumber(this.Environment, this.Segments.ToArray(), this.IsNegative);
 
 
             return copy;
@@ -142,10 +127,10 @@ namespace Math
 
         public override Boolean Equals(Object other)
         {
-            return this.Equals((Number)other);
+            return this.Equals((WholeNumber)other);
         }
 
-        public Boolean Equals(Number other)
+        public Boolean Equals(WholeNumber other)
         {
             if (!this.Environment.Equals(other.Environment))
             {
@@ -165,18 +150,11 @@ namespace Math
                     return false;
                 }
             }
-
-            if (this.Fragment == default(Fraction))
-            {
-                return true;
-            }
-            else
-            {
-                return this.Fragment.Equals(other.Fragment);
-            }
+            
+            return true;
         }
 
-        public int CompareTo(Number other)
+        public int CompareTo(WholeNumber other)
         {
             if (!this.Environment.Equals(other.Environment))
             {
@@ -227,15 +205,7 @@ namespace Math
                     }
                 }
             }
-
-            if (result == 0)
-            {
-                if (this.Fragment != default(Fraction))
-                {
-                    result = this.Fragment.CompareTo(other.Fragment);
-                }
-            }
-
+            
             if (reverse && result == 1)
             {
                 return -1;
@@ -251,26 +221,14 @@ namespace Math
 
         }
 
-        public int Compare(Number x, Number y)
+        public int Compare(WholeNumber x, WholeNumber y)
         {
             return x.CompareTo(y);
         }
 
-        public override String ToString()
+        public Number AsNumber()
         {
-            String result = base.ToString();
-
-            if (this.Fragment != default(Fraction))
-            {
-                result = String.Format("{0} {1}", result, this.Fragment);
-            }
-
-            return result;
-        }
-
-        public WholeNumber Floor()
-        {
-            return new WholeNumber(this.Environment, this.Segments.ToArray(), this.IsNegative);
+            return new Number(this.Environment, this.Segments.ToArray(), null, this.IsNegative);
         }
     }
 }

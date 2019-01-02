@@ -10,9 +10,10 @@ namespace Marth.Tests
     {
         [TestMethod]
         [TestCategory("LessThan")]
+        [TestCategory("0123456789")]
         public void GreaterThan_5_15()
         {
-            var env = new Math.MathEnvironment("0123456789");
+            var env = new MathEnvironment("0123456789");
 
             var expected = true;
 

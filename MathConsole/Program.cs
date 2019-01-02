@@ -10,21 +10,25 @@ namespace MathConsole
         {
             Console.WriteLine("Set Base");
             String rawKey = Console.ReadLine();
-            
+
+            var environment = new MathEnvironment(rawKey);
+
             Console.WriteLine("First Number");
-            String firstNumberRaw = Console.ReadLine();
+            Number firstNumberRaw = new Number(environment, Console.ReadLine());
 
             Console.WriteLine("Second Number");
-            String secondNumberRaw = Console.ReadLine();
-
-            String addedNumbers = Number.Add(rawKey, firstNumberRaw, secondNumberRaw);
+            Number secondNumberRaw = new Number(environment, Console.ReadLine());
 
             Console.WriteLine("Addition Result");
+
+            String addedNumbers = (firstNumberRaw + secondNumberRaw).ToString();
+
             Console.WriteLine(addedNumbers);
 
-            String multipliedNumbers = Number.Multiply(rawKey, firstNumberRaw, secondNumberRaw);
-
             Console.WriteLine("Multiplication Result");
+
+            String multipliedNumbers = (firstNumberRaw * secondNumberRaw).ToString(); ;
+
             Console.WriteLine(multipliedNumbers);
 
             Main(args);

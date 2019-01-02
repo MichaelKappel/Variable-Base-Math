@@ -8,15 +8,31 @@ namespace Math
 {
     public abstract class  NumberBase
     {
-        public Boolean IsNegative { get; private set; }
+        public Boolean IsNegative
+        {
+            get;
+            protected set;
+        }
 
         public MathEnvironment Environment
         {
             get;
-            set;
+            protected set;
         }
 
-        public NumberBase(MathEnvironment environment, Char[] number, Boolean isNegative = false)
+        public ReadOnlyCollection<Char> Segments
+        {
+            get;
+            protected set;
+        }
+
+        public NumberBase(MathEnvironment environment, Char number, Boolean isNegative)
+            : this(environment, new Char[] { number }, isNegative)
+        {
+
+        }
+
+        public NumberBase(MathEnvironment environment, Char[] number, Boolean isNegative)
         {
             this.Environment = environment;
             List<Char> numberSegments = number.ToList();
@@ -25,18 +41,8 @@ namespace Math
             this.IsNegative = isNegative;
 
         }
-
-        public NumberBase(MathEnvironment environment, Char[] number, Fraction fragments, Boolean isNegative = false)
-        {
-            this.Environment = environment;
-            List<Char> numberSegments = number.ToList();
-            this.Validate(numberSegments);
-            this.Segments = new ReadOnlyCollection<Char>(numberSegments);
-            this.Fragment = fragments;
-            this.IsNegative = isNegative;
-        }
-        
-        public NumberBase(MathEnvironment environment, String rawNumber, Boolean isNegative = false)
+       
+        public NumberBase(MathEnvironment environment, String rawNumber, Boolean isNegative)
         {
             this.Environment = environment;
             List<Char> numberSegments = rawNumber.ToCharArray().Reverse().ToList();
@@ -74,9 +80,7 @@ namespace Math
                 }
             }
         }
-        public Fraction Fragment { get; set; }
 
-        public ReadOnlyCollection<Char> Segments { get; set; }
 
         public override String ToString()
         {
@@ -85,10 +89,9 @@ namespace Math
             {
                 result += segment;
             }
-            result = (String.IsNullOrWhiteSpace(result))?"0": result;
-            if (this.Fragment != default(Fraction))
+            if (this.IsNegative)
             {
-                result = String.Format("{0} {1}", result, this.Fragment);
+                result = "-" + result;
             }
             return result;
         }

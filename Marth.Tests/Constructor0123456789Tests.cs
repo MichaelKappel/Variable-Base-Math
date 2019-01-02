@@ -12,9 +12,10 @@ namespace Marth.Tests
        
         [TestMethod]
         [TestCategory("Constructor")]
+        [TestCategory("0123456789")]
         public void Constructor_String_00000()
         {
-            var env = new Math.MathEnvironment("0123456789");
+            var env = new MathEnvironment("0123456789");
            
 
             var actual = new Number(env, "00000");
@@ -25,9 +26,10 @@ namespace Marth.Tests
 
         [TestMethod]
         [TestCategory("Constructor")]
+        [TestCategory("0123456789")]
         public void Constructor_Array_00000()
         {
-            var env = new Math.MathEnvironment("0123456789");
+            var env = new MathEnvironment("0123456789");
 
 
             var actual = new Number(env, new Char[] { '0', '0', '0', '0', '0', '0', '0' });

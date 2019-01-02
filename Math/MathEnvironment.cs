@@ -38,15 +38,26 @@ namespace Math
             get;
             protected set;
         }
+
         public Number BottomNumber
         {
             get { return new Number(this, new Char[] { this.Bottom }); }
+        }
+
+        public WholeNumber BottomWholeNumber
+        {
+            get { return new WholeNumber(this, new Char[] { this.Bottom }); }
         }
 
 
         public Number PowerOfFirstNumber
         {
             get { return new Number(this, new Char[] { this.First, this.Bottom }); }
+        }
+
+        public WholeNumber PowerOfFirstWholeNumber
+        {
+            get { return new WholeNumber(this, new Char[] { this.First, this.Bottom }); }
         }
 
         public Char First
@@ -60,6 +71,11 @@ namespace Math
             get { return new Number(this, new Char[] { this.First }); }
         }
 
+        public WholeNumber FirstWholeNumber
+        {
+            get { return new WholeNumber(this, new Char[] { this.First }); }
+        }
+        
         public Char Top
         {
             get;
@@ -69,6 +85,11 @@ namespace Math
         public Number TopNumber
         {
             get { return new Number(this, new Char[] { this.Top }); }
+        }
+
+        public WholeNumber ToptWholeNumber
+        {
+            get { return new WholeNumber(this, new Char[] { this.Top }); }
         }
 
         public UInt64 Base {

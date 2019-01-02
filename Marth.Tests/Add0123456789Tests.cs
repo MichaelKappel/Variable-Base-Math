@@ -10,9 +10,10 @@ namespace Marth.Tests
     {
         [TestMethod]
         [TestCategory("Add")]
+        [TestCategory("0123456789")]
         public void Add_999_88()
         {
-            var env = new Math.MathEnvironment("0123456789");
+            var env = new MathEnvironment("0123456789");
 
             var expected = new Number(env, "1087");
 
