@@ -142,7 +142,7 @@ namespace Math
             Number resultWholeNumber = environment.BottomNumber;
             while (numerator >= denominator)
             {
-                //Fix: change to binary search
+                //Fix: Change to Binary Tree
                 resultWholeNumber += environment.FirstNumber;
                 numerator -= denominator;
             }
@@ -277,7 +277,7 @@ namespace Math
             Number resultWholeNumber = environment.BottomNumber;
             while (numerator >= denominator)
             {
-                //Fix: change to binary search
+                //Fix: Change to Binary Tree
                 resultWholeNumber += environment.FirstNumber;
                 numerator -= denominator;
             }
@@ -455,6 +455,32 @@ namespace Math
             return (new Number(environment, dividend) / new Number(environment, divisor)).ToString();
         }
 
+
+        public Number Divide(MathEnvironment environment, Fraction dividend, Fraction divisor)
+        {
+            Number denominator = dividend.Denominator / divisor.Denominator;
+            Number numerator = dividend.Numerator / divisor.Numerator;
+
+            Number resultWholeNumber = environment.BottomNumber;
+            while (numerator >= denominator)
+            {
+                //Fix: Change to Binary Tree
+                resultWholeNumber += environment.FirstNumber;
+                numerator -= denominator;
+            }
+
+            Number result;
+            if (numerator > environment.BottomNumber)
+            {
+                result = resultWholeNumber + new Number(environment, new Fraction(numerator, denominator));
+            }
+            else
+            {
+                result = resultWholeNumber;
+            }
+            return result;
+        }
+
         public  Number Divide(Number dividend, Number divisor)
         {
             if (dividend.Environment != divisor.Environment)
@@ -520,6 +546,7 @@ namespace Math
                     var tempNumber = new WholeNumber(environment, tempSegments.ToArray());
                     while (tempNumber - divisor >= environment.BottomWholeNumber)
                     {
+                        //Fix: Change to Binary Tree
                         tempNumber = tempNumber - divisor;
                         tempResult += environment.FirstWholeNumber; // 3
                     }
