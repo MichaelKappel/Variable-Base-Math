@@ -78,6 +78,16 @@ namespace Math
 
         public Boolean Equals(Fraction other)
         {
+
+            if (object.ReferenceEquals(this, default(Fraction)) && object.ReferenceEquals(other, default(Fraction)))
+            {
+                return true;
+            }
+            else if (object.ReferenceEquals(this, default(Fraction)) || object.ReferenceEquals(other, default(Fraction)))
+            {
+                return false;
+            }
+
             if (!this.Denominator.Equals(other.Denominator))
             {
                 Number commonDenominator = this.Denominator * other.Denominator;

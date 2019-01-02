@@ -4,23 +4,23 @@ using System.Linq;
 
 namespace Math
 {
-    public class Operator: IOperator
+    public class Operator : IOperator
     {
 
         #region Add
 
-        public  String Add(String key, String arg1, String arg2)
+        public String Add(String key, String arg1, String arg2)
         {
             var environment = new MathEnvironment(key);
             return (new Number(environment, arg1) + new Number(environment, arg2)).ToString();
         }
 
-        public  Number Add(Number a, Char b)
+        public Number Add(Number a, Char b)
         {
             return this.Add(a, new Char[] { b });
         }
 
-        public  Number Add(Number a, Char[] b)
+        public Number Add(Number a, Char[] b)
         {
             return this.Add(a, new Number(a.Environment, b));
         }
@@ -97,9 +97,67 @@ namespace Math
             return new WholeNumber(environment, resultNumber.ToArray()); ;
         }
 
-        public  Number Add(Number a, Number b)
+        public Number Add(Number a, Number b)
         {
-            return this.Add(a.Floor(), b.Floor()).AsNumber();
+            if (a.Environment != b.Environment)
+            {
+                throw new Exception("Adding different math environments not supported yet");
+            }
+
+            MathEnvironment environment = a.Environment;
+            
+            if (a.Fragment != default(Fraction) && b.Fragment == default(Fraction))
+            {
+                var resultWhole = this.Add(a.Floor(), b.Floor());
+
+                return new Number(resultWhole, a.Fragment);
+            }
+            else if (a.Fragment == default(Fraction) && b.Fragment != default(Fraction))
+            {
+                var resultWhole = this.Add(a.Floor(), b.Floor());
+
+                return new Number(resultWhole, b.Fragment);
+            }
+            else if (a.Fragment != default(Fraction) && b.Fragment != default(Fraction))
+            {
+                Number aFloor = a.Floor().AsNumber();
+                Number bFloor = b.Floor().AsNumber();
+                
+                var fragmentA = new Fraction(((aFloor * a.Fragment.Denominator) + a.Fragment.Numerator), a.Fragment.Denominator);
+                var fragmentB = new Fraction(((bFloor * b.Fragment.Denominator) + b.Fragment.Numerator), b.Fragment.Denominator);
+
+                return this.Add(environment, fragmentA, fragmentB);
+            }
+            else
+            {
+                return this.Add(a.Floor(), b.Floor()).AsNumber();
+            }
+        }
+
+        public Number Add(MathEnvironment environment, Fraction a, Fraction b)
+        {
+            Number denominator = a.Denominator * b.Denominator;
+            Number numerator = (a.Numerator * b.Denominator) + (b.Numerator * a.Denominator);
+
+            Number resultWholeNumber = environment.BottomNumber;
+            while (numerator >= denominator)
+            {
+                //Fix: change to binary search
+                resultWholeNumber += environment.FirstNumber;
+                numerator -= denominator;
+            }
+
+            Number result;
+            if (numerator > environment.BottomNumber)
+            {
+                result = resultWholeNumber + new Number(environment, new Fraction(numerator, denominator));
+            }
+            else
+            {
+                result = resultWholeNumber;
+            }
+            return result;
+
         }
 
         #endregion
@@ -213,8 +271,8 @@ namespace Math
 
         public Number Multiply(MathEnvironment environment, Fraction a, Fraction b)
         {
-            Number denominator = this.Multiply(a.Denominator, b.Denominator);
-            Number numerator = (a.Numerator * b.Denominator) * (b.Numerator * a.Denominator); 
+            Number denominator = a.Denominator * b.Denominator;
+            Number numerator = a.Numerator * b.Numerator; 
 
             Number resultWholeNumber = environment.BottomNumber;
             while (numerator >= denominator)
@@ -267,7 +325,7 @@ namespace Math
                 else
                 {
                     Number aX1 = a.Floor().AsNumber() * a.Fragment.Denominator;
-                    Number aX2 = aX1 - a.Fragment.Numerator;
+                    Number aX2 = aX1 + a.Fragment.Numerator;
 
                     fragmentA = new Fraction(aX2, a.Fragment.Denominator);
                 }
@@ -280,7 +338,7 @@ namespace Math
                 else
                 {
                     Number bX1 = b.Floor().AsNumber() * b.Fragment.Denominator;
-                    Number bX2 = bX1 - b.Fragment.Numerator;
+                    Number bX2 = bX1 + b.Fragment.Numerator;
 
                     fragmentB = new Fraction(bX2, b.Fragment.Denominator);
                 }
