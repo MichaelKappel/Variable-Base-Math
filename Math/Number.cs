@@ -1,46 +1,51 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 
 namespace Math
 {
-    public class Number: NumberBase, IEquatable<Number>, IComparable<Number>, IComparer<Number>,ICloneable
+    public class Number: NumberBase, IEquatable<Number>, IComparable<Number>, IComparer<Number>
     {
         internal static IOperator Operator = new Operator();
-
-        public Number(MathEnvironment environment, Fraction fragment, Boolean isNegative = false)
-          : base(environment, environment.Bottom,  isNegative)
+        internal Number(WholeNumber number, Fraction fragment = null)
+         : base(number.Environment, number.Segments, number.IsNegative)
         {
             this.Fragment = fragment;
         }
 
-        public Number(MathEnvironment environment, Char number, Fraction fragment, Boolean isNegative = false)
+        internal Number(WholeNumber number, Number numerator, Number denominator)
+            : base(number.Environment, number.Segments, number.IsNegative)
+        {
+            this.Fragment = new Fraction(numerator, denominator);
+        }
+
+        internal Number(MathEnvironment environment, Char number, Boolean isNegative, Fraction fragment = null)
              : base(environment, number,  isNegative)
         {
             this.Fragment = fragment;
         }
 
-        public Number(MathEnvironment environment, Char[] number, Fraction fragment = null, Boolean isNegative = false)
+        internal Number(MathEnvironment environment, Char[] number, Boolean isNegative, Fraction fragment = null)
              : base(environment, number,  isNegative)
         {
             this.Fragment = fragment;
         }
 
-        public Number(MathEnvironment environment, String rawNumber, Fraction fragment = null, Boolean isNegative = false)
-            : base(environment, rawNumber,  isNegative)
+        internal Number(MathEnvironment environment, List<Char> number, Boolean isNegative, Fraction fragment = null)
+             : base(environment, number, isNegative)
         {
             this.Fragment = fragment;
         }
-
-        public Number(WholeNumber number, Fraction fragment)
-            : this(number.Environment, number.Segments.ToArray(), fragment, number.IsNegative)
+        internal Number(MathEnvironment environment, ReadOnlyCollection<Char> number, Boolean isNegative, Fraction fragment = null)
+             : base(environment, number, isNegative)
         {
-
+            this.Fragment = fragment;
         }
-
 
         public Fraction Fragment { get; protected set; }
+
 
         #region operator overrides
         public static bool operator <(Number e1, Number e2)
@@ -101,35 +106,26 @@ namespace Math
 
         #endregion
 
-        public Number Copy()
+        internal Number Copy()
         {
-            var copy = new Number(this.Environment, this.Segments.ToArray(), this.Fragment, this.IsNegative);
+            var copy = new Number(this.Environment, this.Segments, this.IsNegative, this.Fragment);
 
             return copy;
         }
 
-        public Number AsNegative()
+        internal Number AsNegative()
         {
-            var copy = new Number(this.Environment, this.Segments.ToArray(), this.Fragment, true);
+            var copy = new Number(this.Environment, this.Segments, true, this.Fragment);
 
             return copy;
         }
 
-        public Number AsPositive()
+        internal Number AsPositive()
         {
-            var copy = new Number(this.Environment, this.Segments.ToArray(), this.Fragment, false);
+            var copy = new Number(this.Environment, this.Segments, false, this.Fragment);
 
             return copy;
         }
-        
-        Object ICloneable.Clone()
-        {
-            var copy = new Number(this.Environment, this.Segments.ToArray(), this.Fragment, this.IsNegative);
-
-
-            return copy;
-        }
-
 
         public override int GetHashCode()
         {
@@ -270,7 +266,9 @@ namespace Math
 
         public WholeNumber Floor()
         {
-            return new WholeNumber(this.Environment, this.Segments.ToArray(), this.IsNegative);
+            return new WholeNumber(this.Environment, this.Segments, this.IsNegative);
         }
+
+        
     }
 }

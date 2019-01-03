@@ -15,7 +15,7 @@ namespace Math
 
         Number Divide(Number a, Number b);
 
-        Number PowerOf(Number a, Int64 power);
+        Number PowerOf(Number a, UInt64 power);
 
 
         WholeNumber Add(WholeNumber a, WholeNumber b);

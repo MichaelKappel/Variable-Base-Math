@@ -1,31 +1,39 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 
 namespace Math
 {
-    public class WholeNumber : NumberBase, IEquatable<WholeNumber>, IComparable<WholeNumber>, IComparer<WholeNumber>,ICloneable
+    public class WholeNumber : NumberBase, IEquatable<WholeNumber>, IComparable<WholeNumber>, IComparer<WholeNumber>
     {
         internal static IOperator Operator = new Operator();
 
-        public WholeNumber(MathEnvironment environment, Char number, Boolean isNegative = false)
+        public WholeNumber(MathEnvironment environment, Char number, Boolean isNegative)
              : base(environment, number, isNegative)
         {
 
         }
 
-        public WholeNumber(MathEnvironment environment, Char[] number, Boolean isNegative = false)
+        public WholeNumber(MathEnvironment environment, Char[] number, Boolean isNegative)
              : base(environment, number, isNegative)
         {
 
         }
 
-        public WholeNumber(MathEnvironment environment, String rawNumber, Boolean isNegative = false)
-            : base(environment, rawNumber, isNegative)
+        public WholeNumber(MathEnvironment environment, List<Char> number, Boolean isNegative)
+             : base(environment, number, isNegative)
         {
 
         }
+
+        public WholeNumber(MathEnvironment environment, ReadOnlyCollection<Char> number, Boolean isNegative)
+             : base(environment, number, isNegative)
+        {
+
+        }
+
 
         #region operator overrides
         public static bool operator <(WholeNumber e1, WholeNumber e2)
@@ -86,35 +94,19 @@ namespace Math
 
         #endregion
 
-        public WholeNumber Copy()
-        {
-            var copy = new WholeNumber(this.Environment, this.Segments.ToArray(), this.IsNegative);
-
-            return copy;
-        }
-
         public WholeNumber AsNegative()
         {
-            var copy = new WholeNumber(this.Environment, this.Segments.ToArray(), true);
+            var copy = new WholeNumber(this.Environment, this.Segments, true);
 
             return copy;
         }
 
         public WholeNumber AsPositive()
         {
-            var copy = new WholeNumber(this.Environment, this.Segments.ToArray(), false);
+            var copy = new WholeNumber(this.Environment, this.Segments, false);
 
             return copy;
         }
-        
-        Object ICloneable.Clone()
-        {
-            var copy = new WholeNumber(this.Environment, this.Segments.ToArray(), this.IsNegative);
-
-
-            return copy;
-        }
-
 
         public override int GetHashCode()
         {
@@ -228,7 +220,7 @@ namespace Math
 
         public Number AsNumber()
         {
-            return new Number(this.Environment, this.Segments.ToArray(), null, this.IsNegative);
+            return new Number(this.Environment, this.Segments, this.IsNegative);
         }
     }
 }

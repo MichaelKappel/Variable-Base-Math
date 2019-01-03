@@ -26,32 +26,42 @@ namespace Math
             protected set;
         }
 
-        public NumberBase(MathEnvironment environment, Char number, Boolean isNegative)
+        protected NumberBase(MathEnvironment environment, Char number, Boolean isNegative)
             : this(environment, new Char[] { number }, isNegative)
         {
 
         }
 
-        public NumberBase(MathEnvironment environment, Char[] number, Boolean isNegative)
+        protected NumberBase(MathEnvironment environment, Char[] number, Boolean isNegative)
         {
             this.Environment = environment;
-            List<Char> numberSegments = number.ToList();
-            this.Validate(numberSegments);
-            this.Segments = new ReadOnlyCollection<Char>(numberSegments);
+            this.Segments = new ReadOnlyCollection<Char>(number);
             this.IsNegative = isNegative;
-
+            this.FirstChar = Segments[Segments.Count - 1];
         }
-       
-        public NumberBase(MathEnvironment environment, String rawNumber, Boolean isNegative)
+
+        protected NumberBase(MathEnvironment environment, List<Char> number, Boolean isNegative)
         {
             this.Environment = environment;
-            List<Char> numberSegments = rawNumber.ToCharArray().Reverse().ToList();
-
-            this.Validate(numberSegments);
-            this.Segments = new ReadOnlyCollection<Char>(numberSegments);
+            this.Segments = new ReadOnlyCollection<Char>(number);
             this.IsNegative = isNegative;
+            this.FirstChar = Segments[Segments.Count - 1];
         }
+
+        protected NumberBase(MathEnvironment environment, ReadOnlyCollection<Char> number, Boolean isNegative)
+        {
+            this.Environment = environment;
+            this.Segments = number;
+            this.IsNegative = isNegative;
+            this.FirstChar = Segments[Segments.Count - 1];
+        }
+
         
+        public Char FirstChar
+        {
+            get;
+            protected set;
+        }
 
         public Boolean IsBottom()
         {
@@ -65,27 +75,10 @@ namespace Math
             return true;
         }
 
-        public void Validate(List<Char> numberSegments)
-        {
-            while (numberSegments.Count > 1 && numberSegments[numberSegments.Count - 1] == Environment.Bottom)
-            {
-                numberSegments.RemoveAt(numberSegments.Count - 1);
-            }
-
-            foreach (Char segment in numberSegments)
-            {
-                if (!this.Environment.Key.Contains(segment))
-                {
-                    throw new Exception(String.Format("Invalid Number {0} not found in {1}", segment, this.Environment));
-                }
-            }
-        }
-
-
         public override String ToString()
         {
             String result = null;
-            foreach (Char segment in this.Segments.ToArray().Reverse())
+            foreach (Char segment in this.Segments.Reverse())
             {
                 result += segment;
             }

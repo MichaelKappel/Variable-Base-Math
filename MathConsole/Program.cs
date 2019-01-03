@@ -14,10 +14,10 @@ namespace MathConsole
             var environment = new MathEnvironment(rawKey);
 
             Console.WriteLine("First Number");
-            Number firstNumberRaw = new Number(environment, Console.ReadLine());
+            Number firstNumberRaw = environment.GetNumber(Console.ReadLine());
 
             Console.WriteLine("Second Number");
-            Number secondNumberRaw = new Number(environment, Console.ReadLine());
+            Number secondNumberRaw = environment.GetNumber(Console.ReadLine());
 
             Console.WriteLine("Addition Result");
 

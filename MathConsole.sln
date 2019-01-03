@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MathConsole", "MathConsole\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Math", "Math\Math.csproj", "{298FF6A7-BD26-4291-AFFB-428ED25755AF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Marth.Tests", "Marth.Tests\Marth.Tests.csproj", "{83A78F70-8B8B-4F8B-A905-557645F411E4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Math.Tests", "Math.Tests\Math.Tests.csproj", "{7B00BEF6-3042-4389-B374-7892F34E9136}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,30 +23,15 @@ Global
 		{298FF6A7-BD26-4291-AFFB-428ED25755AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{298FF6A7-BD26-4291-AFFB-428ED25755AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{298FF6A7-BD26-4291-AFFB-428ED25755AF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{83A78F70-8B8B-4F8B-A905-557645F411E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{83A78F70-8B8B-4F8B-A905-557645F411E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{83A78F70-8B8B-4F8B-A905-557645F411E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{83A78F70-8B8B-4F8B-A905-557645F411E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B00BEF6-3042-4389-B374-7892F34E9136}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B00BEF6-3042-4389-B374-7892F34E9136}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B00BEF6-3042-4389-B374-7892F34E9136}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B00BEF6-3042-4389-B374-7892F34E9136}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E8ECF4C5-1995-48CF-878F-CCE984618680}
-	EndGlobalSection
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 4
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://anarchyshelters.visualstudio.com/
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = Marth.Tests\\Marth.Tests.csproj
-		SccProjectName1 = Marth.Tests
-		SccLocalPath1 = Marth.Tests
-		SccProjectUniqueName2 = Math\\Math.csproj
-		SccProjectName2 = Math
-		SccLocalPath2 = Math
-		SccProjectUniqueName3 = MathConsole\\MathConsole.csproj
-		SccProjectName3 = MathConsole
-		SccLocalPath3 = MathConsole
 	EndGlobalSection
 EndGlobal

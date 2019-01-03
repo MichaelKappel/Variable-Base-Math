@@ -1,56 +1,49 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 
 namespace Math
 {
     public class Fraction: IEquatable<Fraction>, IComparable<Fraction>, IComparer<Fraction>
     {
-        public Fraction(MathEnvironment environment, Char numerator, Char denominator)
-            : this(new Number(environment, new Char[]{ numerator }), new Number(environment, new Char[]{ denominator }))
+        internal Fraction(MathEnvironment environment, Char numerator, Char denominator)
+            : this(new Number(environment, numerator, false), new Number(environment, denominator, false))
         {
             
         }
 
-        public Fraction(MathEnvironment environment, Char[] numerator, Char[] denominator)
-            : this(new Number(environment, numerator), new Number(environment, denominator))
+        internal Fraction(MathEnvironment environment, Char[] numerator, Char[] denominator)
+            : this(new Number(environment, numerator, false), new Number(environment, denominator, false))
         {
             
         }
 
-        public Fraction(Number numerator, Number denominator)
+        internal Fraction(MathEnvironment environment, List<Char> numerator, List<Char> denominator)
+            : this(new Number(environment, numerator, false), new Number(environment, denominator, false))
+        {
+
+        }
+
+        internal Fraction(MathEnvironment environment, ReadOnlyCollection<Char> numerator, ReadOnlyCollection<Char> denominator)
+            : this(new Number(environment, numerator, false), new Number(environment, denominator, false))
+        {
+
+        }
+
+        internal Fraction(Number numerator, Number denominator)
         {
             this.Numerator =  numerator;
             this.Denominator = denominator;
-
-            if (this.Numerator == numerator.Environment.BottomNumber)
-            {
-                throw new Exception("Numerator larger then denominator not currently supported");
-            }
-            if (this.Numerator == numerator.Environment.BottomNumber)
-            {
-                throw new DivideByZeroException("Numerator of nothing not currently supported");
-            }
-            if (this.Denominator == numerator.Environment.BottomNumber)
-            {
-                throw new DivideByZeroException("Denominator of nothing not currently supported");
-            }
         }
 
-        public Number Numerator { get; set; }
-        public Number Denominator { get; set; }
+        public Number Numerator { get; protected set; }
+        public Number Denominator { get; protected set; }
 
         #region overrides
         public override String ToString()
         {
             return String.Format("{0}/{1}", this.Numerator, this.Denominator);
-        }
-
-        public Fraction Copy()
-        {
-            var copy = new Fraction(this.Numerator.Copy(), this.Denominator.Copy());
-
-            return copy;
         }
 
         public override int GetHashCode()

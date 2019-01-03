@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace Math
@@ -9,12 +10,6 @@ namespace Math
 
         #region Add
 
-        public String Add(String key, String arg1, String arg2)
-        {
-            var environment = new MathEnvironment(key);
-            return (new Number(environment, arg1) + new Number(environment, arg2)).ToString();
-        }
-
         public Number Add(Number a, Char b)
         {
             return this.Add(a, new Char[] { b });
@@ -22,7 +17,7 @@ namespace Math
 
         public Number Add(Number a, Char[] b)
         {
-            return this.Add(a, new Number(a.Environment, b));
+            return this.Add(a, new Number(a.Environment, b, false));
         }
 
         public WholeNumber Add(WholeNumber a, WholeNumber b)
@@ -94,7 +89,7 @@ namespace Math
                 }
             }
 
-            return new WholeNumber(environment, resultNumber.ToArray()); ;
+            return new WholeNumber(environment, resultNumber, false); ;
         }
 
         public Number Add(Number a, Number b)
@@ -139,37 +134,13 @@ namespace Math
             Number denominator = a.Denominator * b.Denominator;
             Number numerator = (a.Numerator * b.Denominator) + (b.Numerator * a.Denominator);
 
-            Number resultWholeNumber = environment.BottomNumber;
-            while (numerator >= denominator)
-            {
-                //Fix: Change to Binary Tree
-                resultWholeNumber += environment.FirstNumber;
-                numerator -= denominator;
-            }
-
-            Number result;
-            if (numerator > environment.BottomNumber)
-            {
-                result = resultWholeNumber + new Number(environment, new Fraction(numerator, denominator));
-            }
-            else
-            {
-                result = resultWholeNumber;
-            }
-            return result;
-
+            return this.Convert(new Fraction(numerator, denominator));
         }
 
         #endregion
 
         #region Subtract
 
-        public  String Subtract(String key, String arg1, String arg2)
-        {
-            var environment = new MathEnvironment(key);
-            return (new Number(environment, arg1) - new Number(environment, arg2)).ToString();
-        }
-        
         public WholeNumber Subtract(WholeNumber a, WholeNumber b)
         {
 
@@ -263,35 +234,12 @@ namespace Math
 
         #region Multiply
 
-        public  String Multiply(String key, String arg1, String arg2)
-        {
-            var environment = new MathEnvironment(key);
-            return (new Number(environment, arg1) * new Number(environment, arg2)).ToString();
-        }
-
         public Number Multiply(MathEnvironment environment, Fraction a, Fraction b)
         {
             Number denominator = a.Denominator * b.Denominator;
-            Number numerator = a.Numerator * b.Numerator; 
+            Number numerator = a.Numerator * b.Numerator;
 
-            Number resultWholeNumber = environment.BottomNumber;
-            while (numerator >= denominator)
-            {
-                //Fix: Change to Binary Tree
-                resultWholeNumber += environment.FirstNumber;
-                numerator -= denominator;
-            }
-
-            Number result;
-            if (numerator > environment.BottomNumber)
-            {
-                result = resultWholeNumber + new Number(environment, new Fraction(numerator, denominator));
-            }
-            else
-            {
-                result = resultWholeNumber;
-            }
-            return result;
+            return this.Convert(new Fraction(numerator, denominator));
         }
 
         public WholeNumber Multiply(WholeNumber a, WholeNumber b)
@@ -303,7 +251,7 @@ namespace Math
 
             MathEnvironment environment = a.Environment;
 
-            return this.Multiply(environment, a.Segments.ToArray(), b.Segments.ToArray());
+            return this.Multiply(environment, a.Segments, b.Segments);
         }
 
         public  Number Multiply(Number a, Number b)
@@ -351,14 +299,14 @@ namespace Math
             }
         }
 
-        public WholeNumber Multiply(MathEnvironment environment, Char[] a, Char b)
+        public WholeNumber Multiply(MathEnvironment environment, ReadOnlyCollection<Char> a, Char b)
         {
             var resultRaw = new List<Char>();
 
             UInt64 numberIndex = environment.GetIndex(b);
 
             UInt64 carryOver = 0;
-            for (var i = 0; i < a.Length; i++)
+            for (var i = 0; i < a.Count; i++)
             {
                 UInt64 segmentIndex = environment.GetIndex(a[i]);
 
@@ -397,16 +345,16 @@ namespace Math
                 resultRaw.Add(carryOverResult);
             }
 
-            return new WholeNumber(environment, resultRaw.ToArray());
+            return new WholeNumber(environment, resultRaw, false);
         }
 
-        public WholeNumber Multiply(MathEnvironment environment, Char[] a, Char[] b)
+        public WholeNumber Multiply(MathEnvironment environment, ReadOnlyCollection<Char> a, ReadOnlyCollection<Char> b)
         {
             WholeNumber result = environment.BottomWholeNumber;
 
-            for (UInt64 i = 0; i < (UInt64)a.Length; i++)
+            for (UInt64 i = 0; i < (UInt64)a.Count; i++)
             {
-                Char numberSegment = a[i];
+                Char numberSegment = a[(Int32)i];
                 WholeNumber currentResult = this.Multiply(environment, b, numberSegment);
 
                 if (i > 0)
@@ -422,7 +370,7 @@ namespace Math
 
         public WholeNumber Multiply(WholeNumber a, Char number)
         {
-            return Multiply(a.Environment, a.Segments.ToArray(), number);
+            return Multiply(a.Environment, a.Segments, number);
         }
 
         public  Number Multiply(MathEnvironment environment, Char number1, Char number2)
@@ -437,11 +385,11 @@ namespace Math
                 UInt64 remainderIndex = (resultIndex % environment.Base);
                 UInt64 carryOver = (resultIndex - remainderIndex) / environment.Base;
 
-                return new Number(environment, new Char[] { environment.Key[(Int32)carryOver], environment.Key[(Int32)remainderIndex] });
+                return new Number(environment.BottomWholeNumber, environment.KeyNumber[(Int32)carryOver], environment.KeyNumber[(Int32)remainderIndex]);
             }
             else
             {
-                return new Number(environment, new Char[] { environment.Key[(Int32)resultIndex] });
+                return  environment.KeyNumber[(Int32)resultIndex];
             }
         }
 
@@ -449,36 +397,12 @@ namespace Math
 
         #region Divide
 
-        public  String Divide(String key, String dividend, String divisor)
-        {
-            var environment = new MathEnvironment(key);
-            return (new Number(environment, dividend) / new Number(environment, divisor)).ToString();
-        }
-
-
         public Number Divide(MathEnvironment environment, Fraction dividend, Fraction divisor)
         {
             Number denominator = dividend.Denominator / divisor.Denominator;
             Number numerator = dividend.Numerator / divisor.Numerator;
 
-            Number resultWholeNumber = environment.BottomNumber;
-            while (numerator >= denominator)
-            {
-                //Fix: Change to Binary Tree
-                resultWholeNumber += environment.FirstNumber;
-                numerator -= denominator;
-            }
-
-            Number result;
-            if (numerator > environment.BottomNumber)
-            {
-                result = resultWholeNumber + new Number(environment, new Fraction(numerator, denominator));
-            }
-            else
-            {
-                result = resultWholeNumber;
-            }
-            return result;
+            return this.Convert(new Fraction(numerator, denominator));
         }
 
         public  Number Divide(Number dividend, Number divisor)
@@ -492,7 +416,7 @@ namespace Math
 
             if (divisor > dividend)
             {
-                return new Number(environment, new Fraction(dividend, divisor));
+                return new Number(environment.BottomWholeNumber, dividend, divisor);
             }
             else
             {
@@ -510,7 +434,7 @@ namespace Math
             
             if (divisor > dividend)
             {
-                return new Number(environment, new Fraction(dividend.AsNumber(), divisor.AsNumber()));
+                return new Number(environment.BottomWholeNumber, dividend.AsNumber(), divisor.AsNumber());
             }
 
             UInt64 divisorSize = (UInt64)divisor.Segments.Count;
@@ -536,14 +460,14 @@ namespace Math
 
                     var tempSegments = new List<Char>() { dividend.Segments[(Int32)currentPlace] };
 
-                    while (new WholeNumber(environment, tempSegments.ToArray()) < divisor)
+                    while (new WholeNumber(environment, tempSegments, false) < divisor)
                     {
                         currentPlace--;
                         tempSegments.Insert(0, dividend.Segments[(Int32)currentPlace]); // 90
                     }
 
 
-                    var tempNumber = new WholeNumber(environment, tempSegments.ToArray());
+                    var tempNumber = new WholeNumber(environment, tempSegments, false);
                     while (tempNumber - divisor >= environment.BottomWholeNumber)
                     {
                         //Fix: Change to Binary Tree
@@ -551,7 +475,7 @@ namespace Math
                         tempResult += environment.FirstWholeNumber; // 3
                     }
 
-                    var remainder = new WholeNumber(environment, tempSegments.ToArray()) - tempNumber;
+                    var remainder = new WholeNumber(environment, tempSegments, false) - tempNumber;
                     if (currentPlace > 0) {
                         dividend -= this.PowerOf(remainder, currentPlace);
                         resultWhole += this.PowerOf(tempResult, currentPlace);
@@ -568,7 +492,7 @@ namespace Math
             Number result;
             if (dividend > environment.BottomWholeNumber)
             {
-                result = new Number(resultWhole, new Fraction(environment, dividend.Segments.ToArray(), divisor.Segments.ToArray()));
+                result = new Number(resultWhole, dividend.AsNumber(), divisor.AsNumber());
             }
             else
             {
@@ -623,8 +547,72 @@ namespace Math
             List<Char> numerator = this.Convert(environment.Base, environment.Key, numeratorNumber);
             List<Char> denominator = this.Convert(environment.Base, environment.Key, denominatorRaw);
 
-            var result = new Number(environment, number.ToArray(), new Fraction(environment, numerator.ToArray(), denominator.ToArray()));
+            var result = new Number(environment, number, false, new Fraction(environment, numerator, denominator));
 
+            return result;
+        }
+
+        public WholeNumber GetAboutSoMuch(Number number, UInt64 power)
+        {
+            UInt64 firstCharIndex = number.Environment.GetIndex(number.FirstChar);
+            UInt64 aboutSoMuch = firstCharIndex / power;
+
+            if (aboutSoMuch > 0 && power > 0)
+            {
+                return this.PowerOf(number.Environment.KeyWholeNumber[(Int32)aboutSoMuch], power);
+            }
+            else if (power > 1)
+            {
+                return this.PowerOf(number.Environment.KeyWholeNumber[(Int32)aboutSoMuch], power - 1);
+            }
+            else
+            {
+                return number.Environment.BottomWholeNumber;
+            }
+        }
+
+        public Number Convert(Fraction fraction)
+        {
+
+            if (fraction.Numerator.Environment != fraction.Denominator.Environment)
+            {
+                throw new Exception("Convert a Fraction to number of different math environments is not supported yet");
+            }
+
+            MathEnvironment environment = fraction.Numerator.Environment;
+            if (fraction.Numerator < fraction.Denominator)
+            {
+                return new Number(environment.BottomWholeNumber, fraction);
+            }
+
+
+            WholeNumber resultWholeNumber = environment.BottomWholeNumber;
+
+            Number resultNumerator = fraction.Numerator;
+            Number resultDenominator = fraction.Denominator;
+
+            UInt64 resultNumeratorLength = (UInt64)resultNumerator.Segments.Count;
+            UInt64 resultDenominatorLength = (UInt64)resultDenominator.Segments.Count;
+
+            UInt64 lengthDiffernce = resultNumeratorLength - resultDenominatorLength;
+            
+            WholeNumber lastNumberTried = this.GetAboutSoMuch(resultNumerator, lengthDiffernce);
+
+            
+            while (lastNumberTried > resultDenominator)
+            {
+
+            }
+
+            Number result;
+            if (resultNumerator > environment.BottomNumber)
+            {
+                result = new Number(resultWholeNumber, new Fraction(resultNumerator, resultDenominator));
+            }
+            else
+            {
+                result = resultWholeNumber.AsNumber();
+            }
             return result;
         }
 
@@ -659,18 +647,18 @@ namespace Math
                 segments[i] = a.Environment.Bottom;
             }
             a.Segments.CopyTo(segments, (Int32)power);
-            return new WholeNumber(a.Environment, segments);
+            return new WholeNumber(a.Environment, segments, false);
         }
 
-        public Number PowerOf(Number a, Int64 power)
+        public Number PowerOf(Number a, UInt64 power)
         {
-            var segments = new Char[a.Segments.Count + power];
-            for (var i = 0; i < power; i++)
+            var segments = new Char[(UInt64)a.Segments.Count + power];
+            for (UInt64 i = 0; i < power; i++)
             {
                 segments[i] = a.Environment.Bottom;
             }
             a.Segments.CopyTo(segments, (Int32)power);
-            return new Number(a.Environment, segments);
+            return new Number(a.Environment, segments, false);
         }
     }
 

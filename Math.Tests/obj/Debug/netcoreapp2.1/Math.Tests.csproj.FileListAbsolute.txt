@@ -1,0 +1,17 @@
+D:\git\Math\Math.Tests\bin\Debug\netcoreapp2.1\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+D:\git\Math\Math.Tests\bin\Debug\netcoreapp2.1\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+D:\git\Math\Math.Tests\bin\Debug\netcoreapp2.1\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+D:\git\Math\Math.Tests\bin\Debug\netcoreapp2.1\Math.Tests.deps.json
+D:\git\Math\Math.Tests\bin\Debug\netcoreapp2.1\Math.Tests.runtimeconfig.json
+D:\git\Math\Math.Tests\bin\Debug\netcoreapp2.1\Math.Tests.runtimeconfig.dev.json
+D:\git\Math\Math.Tests\bin\Debug\netcoreapp2.1\Math.Tests.dll
+D:\git\Math\Math.Tests\bin\Debug\netcoreapp2.1\Math.Tests.pdb
+D:\git\Math\Math.Tests\bin\Debug\netcoreapp2.1\Math.dll
+D:\git\Math\Math.Tests\bin\Debug\netcoreapp2.1\Math.pdb
+D:\git\Math\Math.Tests\obj\Debug\netcoreapp2.1\Math.Tests.csprojAssemblyReference.cache
+D:\git\Math\Math.Tests\obj\Debug\netcoreapp2.1\Math.Tests.csproj.CoreCompileInputs.cache
+D:\git\Math\Math.Tests\obj\Debug\netcoreapp2.1\Math.Tests.AssemblyInfoInputs.cache
+D:\git\Math\Math.Tests\obj\Debug\netcoreapp2.1\Math.Tests.AssemblyInfo.cs
+D:\git\Math\Math.Tests\obj\Debug\netcoreapp2.1\Math.Tests.csproj.CopyComplete
+D:\git\Math\Math.Tests\obj\Debug\netcoreapp2.1\Math.Tests.dll
+D:\git\Math\Math.Tests\obj\Debug\netcoreapp2.1\Math.Tests.pdb
