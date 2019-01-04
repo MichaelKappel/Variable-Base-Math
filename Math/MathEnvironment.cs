@@ -123,14 +123,12 @@ namespace Math
             this.BottomNumber = new Number(this, this.Key[0], false);
             this.FirstNumber = new Number(this, this.Key[1], false); 
             this.TopNumber = new Number(this, this.Top, false);
-            this.PowerOfFirstNumber =  new Number(this, new Char[] { this.First, this.Bottom }, false); 
+            this.PowerOfFirstNumber =  new Number(this, new Char[] { this.Bottom, this.First }, false); 
 
             this.BottomWholeNumber = new WholeNumber(this, this.Key[0], false);
             this.FirstWholeNumber = new WholeNumber(this, this.Key[1], false);
             this.TopWholeNumber = new WholeNumber(this, this.Top, false);
-            this.PowerOfFirstWholeNumber = new WholeNumber(this, new Char[] { this.First, this.Bottom }, false);
-
-
+            this.PowerOfFirstWholeNumber = new WholeNumber(this, new Char[] { this.Bottom, this.First  }, false);
         }
 
         public Char Bottom

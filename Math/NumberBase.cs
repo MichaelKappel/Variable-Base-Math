@@ -33,30 +33,51 @@ namespace Math
         }
 
         protected NumberBase(MathEnvironment environment, Char[] number, Boolean isNegative)
+            : this(environment, isNegative)
         {
-            this.Environment = environment;
             this.Segments = new ReadOnlyCollection<Char>(number);
-            this.IsNegative = isNegative;
-            this.FirstChar = Segments[Segments.Count - 1];
+            this.OnInit();
         }
 
         protected NumberBase(MathEnvironment environment, List<Char> number, Boolean isNegative)
+            : this(environment, isNegative)
         {
-            this.Environment = environment;
             this.Segments = new ReadOnlyCollection<Char>(number);
-            this.IsNegative = isNegative;
-            this.FirstChar = Segments[Segments.Count - 1];
+            this.OnInit();
         }
 
         protected NumberBase(MathEnvironment environment, ReadOnlyCollection<Char> number, Boolean isNegative)
+            : this(environment, isNegative)
         {
-            this.Environment = environment;
             this.Segments = number;
-            this.IsNegative = isNegative;
-            this.FirstChar = Segments[Segments.Count - 1];
+            this.OnInit();
         }
 
-        
+        private NumberBase(MathEnvironment environment, Boolean isNegative)
+        {
+            this.Environment = environment;
+            this.IsNegative = isNegative;
+        }
+
+        public void OnInit()
+        {
+            this.FirstChar = this.Segments[this.Segments.Count - 1];
+            if (this.FirstChar != this.Environment.Bottom)
+            {
+                this.DecimalPlaces = (UInt64)this.Segments.Count;
+            }
+            else if (this.Segments.Count > 1)
+            {
+                throw new Exception("Numbers longer then a power can not start with bottom number char");
+            }
+        }
+
+        public UInt64 DecimalPlaces
+        {
+            get;
+            set;
+        }
+
         public Char FirstChar
         {
             get;
@@ -65,14 +86,11 @@ namespace Math
 
         public Boolean IsBottom()
         {
-            foreach (Char segment in Segments)
+            if (this.DecimalPlaces <= 1 && this.Segments[0] == this.Environment.Bottom)
             {
-                if (segment != this.Environment.Bottom)
-                {
-                    return false;
-                }
+                return true;
             }
-            return true;
+            return false;
         }
 
         public override String ToString()
