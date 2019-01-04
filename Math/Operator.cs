@@ -363,9 +363,10 @@ namespace Math
                 Char numberSegment = a[(Int32)i];
                 WholeNumber currentResult = this.Multiply(environment, b, numberSegment);
 
-                if (i > 0)
+                UInt32 power = (UInt32)(a.Count - (Int32)i);
+                if (power > 0)
                 {
-                    currentResult = this.PowerOf(currentResult, i);
+                    currentResult = this.PowerOf(currentResult, power);
                 }
 
                 result += currentResult;
@@ -505,8 +506,13 @@ namespace Math
                 Decimal smallerNumberDecimalPlaces = smallerNumber.DecimalPlaces;
                 Decimal largerNumberDecimalPlaces = largerNumber.DecimalPlaces;
 
+                Decimal firstIndex  = environment.GetIndex(largerNumber.FirstChar);
+                Decimal halfBase = ((Decimal)environment.Base) / 2;
+
+
                 Decimal wholeNumberSomewhereBetweenDecimalPlaces = largerNumberDecimalPlaces - smallerNumberDecimalPlaces;
-                if (wholeNumberSomewhereBetweenDecimalPlaces < 2)
+                if ((wholeNumberSomewhereBetweenDecimalPlaces <= 1)
+                    || (wholeNumberSomewhereBetweenDecimalPlaces == 2 && firstIndex < halfBase))
                 {
                     result = this.GetAboutHalf(largerNumber + smallerNumber, variance);
                 }
@@ -614,14 +620,18 @@ namespace Math
 
         public Number Convert(Fraction fraction)
         {
-
             if (fraction.Numerator.Environment != fraction.Denominator.Environment)
             {
                 throw new Exception("Convert a Fraction to number of different math environments is not supported yet");
             }
 
             MathEnvironment environment = fraction.Numerator.Environment;
-            if (fraction.Numerator < fraction.Denominator)
+            
+            if (fraction.Denominator == environment.BottomNumber)
+            {
+                return fraction.Numerator;
+            }
+            else if (fraction.Numerator < fraction.Denominator)
             {
                 return new Number(environment.BottomWholeNumber, fraction);
             }
@@ -634,20 +644,13 @@ namespace Math
             UInt64 denominatorLength = (UInt64)denominator.Segments.Count;
 
             WholeNumber ceiling = numerator;
-            WholeNumber floor = denominator;
+            WholeNumber floor = environment.FirstWholeNumber;
 
-            WholeNumber ceilingLast = environment.BottomWholeNumber;
-            WholeNumber floorLast = environment.BottomWholeNumber;
-
-
-            WholeNumber lastNumberTried = numerator;
+            WholeNumber lastNumberTried = this.GetWholeNumberSomewhereBetween(ceiling, floor, -1);
             WholeNumber numeratorTestResult = lastNumberTried * denominator;
 
-            while (ceiling != floor && (floorLast != floor || ceilingLast != ceiling))
+            while (ceiling != floor)
             {
-                ceilingLast = ceiling;
-                floorLast = floor;
-
                 numeratorTestResult = lastNumberTried * denominator;
                 if (numeratorTestResult < numerator)
                 {
@@ -659,7 +662,6 @@ namespace Math
                     ceiling = lastNumberTried;
                     lastNumberTried = this.GetWholeNumberSomewhereBetween(ceiling, floor, -1);
                 }
-               
             }
 
             Number result;
