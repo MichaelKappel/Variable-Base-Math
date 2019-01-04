@@ -508,11 +508,7 @@ namespace Math
                 Decimal wholeNumberSomewhereBetweenDecimalPlaces = largerNumberDecimalPlaces - smallerNumberDecimalPlaces;
                 if (wholeNumberSomewhereBetweenDecimalPlaces < 2)
                 {
-                    result = this.GetAboutHalf(largerNumber, variance);
-                    if (result <= smallerNumber)
-                    {
-                        result = this.GetAboutHalf(largerNumber - result, variance);
-                    }
+                    result = this.GetAboutHalf(largerNumber + smallerNumber, variance);
                 }
                 else
                 {
@@ -555,8 +551,7 @@ namespace Math
 
             Decimal remainder = 0M;
 
-            Int32 startingPoint = 1;
-
+            
             if (firstCharIndex > 1)
             {
                 resultSegments = new Char[number.Segments.Count];
@@ -564,48 +559,53 @@ namespace Math
             else
             {
                 resultSegments = new Char[number.Segments.Count - 1];
-                startingPoint = 2;
-
-                Decimal chrIndex = halfBase;
-                if (variance > 0)
-                {
-                    Int32 x = (Int32)System.Math.Ceiling(chrIndex);
-                    resultSegments[resultSegments.Length - 1] = number.Environment.Key[x];
-                    remainder = chrIndex - ((Decimal)x);
-                }
-                else
-                {
-                    Int32 x = (Int32)System.Math.Floor(chrIndex);
-                    resultSegments[resultSegments.Length - 1] = number.Environment.Key[x];
-                    remainder = chrIndex - ((Decimal)x);
-                }
-            }
-
-           
-
-            for (var i = resultSegments.Length - startingPoint; i >= 0; i--)
-            {
-                Decimal charIndex = number.Environment.GetIndex(number.Segments[i]);
-                Decimal charIndexWithRemainder = (charIndex + remainder);
-                Int32 halfCharIndexWithRemainderIndex;
-                if (variance > 0) {
-                    halfCharIndexWithRemainderIndex = (Int32)System.Math.Ceiling(charIndexWithRemainder / 2M);
-                }
-                else
-                {
-                    halfCharIndexWithRemainderIndex = (Int32)System.Math.Floor(charIndexWithRemainder / 2M);
-                }
-
-                if (charIndexWithRemainder == 1)
+                Decimal halfCharIndex = (Int32)System.Math.Floor(halfBase);
+                Decimal charIndex;
+                if (halfCharIndex == 1)
                 {
                     charIndex = 0M;
                     remainder = halfBase;
-                    resultSegments[i] = number.Environment.Key[0];
                 }
                 else
                 {
-                    resultSegments[i] = number.Environment.Key[(Int32)System.Math.Floor(charIndexWithRemainder / 2M)];
-                    remainder = ((charIndexWithRemainder/2M) - System.Math.Floor(charIndexWithRemainder / 2M)) * 10;
+                    charIndex = halfCharIndex;
+                    remainder = charIndex - halfCharIndex;
+                }
+                resultSegments[resultSegments.Length - 1] = number.Environment.Key[(Int32)charIndex];
+            }
+            
+            for (var i = resultSegments.Length - ((firstCharIndex > 1) ? 1 : 2); i >= 0; i--)
+            {
+                Decimal charIndex = number.Environment.GetIndex(number.Segments[i]);
+        
+                if (charIndex == 1)
+                {
+                    if (i == 0 && variance > 0)
+                    {
+                        charIndex = 1M;
+                    }
+                    else
+                    {
+                        charIndex = 0M;
+                    }
+                    remainder = halfBase;
+                    resultSegments[i] = number.Environment.Key[(Int32)charIndex];
+                }
+                else
+                {
+                    Decimal halfCharIndexWithRemainder = (charIndex / 2M) + remainder;
+                    Int32 halfCharIndexWithRemainderIndex;
+                    if (i == 0 && variance > 0)
+                    {
+                        halfCharIndexWithRemainderIndex = (Int32)System.Math.Ceiling(halfCharIndexWithRemainder);
+                    }
+                    else
+                    {
+                        halfCharIndexWithRemainderIndex = (Int32)System.Math.Floor(halfCharIndexWithRemainder);
+                    }
+
+                    resultSegments[i] = number.Environment.Key[(Int32)System.Math.Floor(halfCharIndexWithRemainder)];
+                    remainder = (halfCharIndexWithRemainder - System.Math.Floor(halfCharIndexWithRemainder)) * 10;
                 }
             }
 
@@ -636,37 +636,44 @@ namespace Math
             WholeNumber ceiling = numerator;
             WholeNumber floor = denominator;
 
-            WholeNumber lastNumberTried = this.GetWholeNumberSomewhereBetween(ceiling, floor);
-            WholeNumber resultWholeNumber = lastNumberTried * denominator;
+            WholeNumber ceilingLast = environment.BottomWholeNumber;
+            WholeNumber floorLast = environment.BottomWholeNumber;
 
-            while (ceiling != floor)
+
+            WholeNumber lastNumberTried = numerator;
+            WholeNumber numeratorTestResult = lastNumberTried * denominator;
+
+            while (ceiling != floor && (floorLast != floor || ceilingLast != ceiling))
             {
-                if (resultWholeNumber < numerator)
-                {
-                    lastNumberTried = this.GetWholeNumberSomewhereBetween(ceiling, floor, 1);
-                    floor = lastNumberTried;
-                }
-                else if (resultWholeNumber > numerator)
-                {
-                    lastNumberTried = this.GetWholeNumberSomewhereBetween(ceiling, floor, -1);
-                    ceiling = lastNumberTried;
-                }
+                ceilingLast = ceiling;
+                floorLast = floor;
 
-                resultWholeNumber = lastNumberTried * denominator;
+                numeratorTestResult = lastNumberTried * denominator;
+                if (numeratorTestResult < numerator)
+                {
+                    floor = lastNumberTried;
+                    lastNumberTried = this.GetWholeNumberSomewhereBetween(ceiling, floor, 1);
+                }
+                else if (numeratorTestResult > numerator)
+                {
+                    ceiling = lastNumberTried;
+                    lastNumberTried = this.GetWholeNumberSomewhereBetween(ceiling, floor, -1);
+                }
+               
             }
 
-            //Number result;
-            //if (resultNumerator > environment.BottomNumber)
-            //{
-            //    result = new Number(resultWholeNumber, new Fraction(resultNumerator, resultDenominator));
-            //}
-            //else
-            //{
-            //    result = resultWholeNumber.AsNumber();
-            //}
-            //return result;
+            Number result;
+            Number leftOver = fraction.Numerator - numeratorTestResult.AsNumber();
+            if (leftOver > environment.BottomNumber)
+            {
+                result = new Number(lastNumberTried, new Fraction(leftOver, fraction.Denominator));
+            }
+            else
+            {
+                result = lastNumberTried.AsNumber();
+            }
 
-            return environment.BottomNumber;
+            return result;
         }
 
         public  List<Char> Convert(UInt64 mathBase, IList<Char> key, UInt64 number)
