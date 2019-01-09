@@ -3,26 +3,27 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 
-namespace Math.Tests.B0123456789
+namespace Math.Tests.WholeNumberTests.B0123456789
 {
     [TestClass]
-    public class LerssThan0123456789Tests
+    public class GreaterThan0123456789Tests
     {
         [TestMethod]
-        [TestCategory("LessThan")]
+        [TestCategory("WholeNumber")]
+        [TestCategory("GreaterThan")]
         [TestCategory("0123456789")]
-        public void GreaterThan_5_15()
+        public void GreaterThan_15_5()
         {
             var env = new MathEnvironment("0123456789");
 
             var expected = true;
 
-            var a = env.GetNumber("5");
-            var b = env.GetNumber("15");
+            var a = env.GetWholeNumber("15");
+            var b = env.GetWholeNumber("5");
 
-            Boolean actual = a < b;
+            Boolean actual = a > b;
 
             Assert.AreEqual(expected, actual);
         }
     }
-} 
+}

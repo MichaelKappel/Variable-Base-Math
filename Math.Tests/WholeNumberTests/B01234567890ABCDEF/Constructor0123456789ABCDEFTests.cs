@@ -4,13 +4,14 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Math.Tests.B0123456789ABCDEF
+namespace Math.Tests.WholeNumberTests.B0123456789ABCDEF
 {
     [TestClass]
     public class Constructor0123456789ABCDEFTests
     {
        
         [TestMethod]
+        [TestCategory("WholeNumber")]
         [TestCategory("Constructor")]
         [TestCategory("0123456789ABCDEF")]
         public void Constructor_String_00000()

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Math.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -6,13 +7,16 @@ using System.Text;
 
 namespace Math
 {
-    public class MathEnvironment: IEquatable<MathEnvironment>
+    public class MathEnvironment: IEquatable<MathEnvironment>, IMathEnvironment
     {
+        public MathAlgorithm Algorithm;
+
         public MathEnvironment(String rawKey)
         {
+            Algorithm = new MathAlgorithm(this);
             this.SetKey(rawKey);
         }
-        
+
         public Number GetNumber(String wholeNumber, String fractionNumerator = null, String fractionDenominator = null, Boolean isNegative = false)
         {
             List<Char> wholeNumberSegments = wholeNumber.ToCharArray().Reverse().ToList();
@@ -34,7 +38,7 @@ namespace Math
 
         }
 
-        public WholeNumber GetWholeNumber(String wholeNumber, Boolean isNegative)
+        public WholeNumber GetWholeNumber(String wholeNumber, Boolean isNegative = false)
         {
 
             List<Char> wholeNumberSegments = wholeNumber.ToCharArray().Reverse().ToList();
@@ -129,6 +133,40 @@ namespace Math
             this.FirstWholeNumber = new WholeNumber(this, this.Key[1], false);
             this.TopWholeNumber = new WholeNumber(this, this.Top, false);
             this.PowerOfFirstWholeNumber = new WholeNumber(this, new Char[] { this.Bottom, this.First  }, false);
+        }
+
+        public Number ConvertToFraction(UInt64 numberRaw, UInt64 numeratorNumber, UInt64 denominatorRaw)
+        {
+            List<Char> number = this.ConvertToChars(numberRaw);
+            List<Char> numerator = this.ConvertToChars(numeratorNumber);
+            List<Char> denominator = this.ConvertToChars(denominatorRaw);
+
+            var result = new Number(this, number, false, new Fraction(this, numerator, denominator));
+
+            return result;
+        }
+
+        public List<Char> ConvertToChars(UInt64 number)
+        {
+            var resultRaw = new List<Char>();
+
+            UInt64 carryOver = number;
+            while (carryOver > 0)
+            {
+                if (carryOver >= this.Base)
+                {
+                    UInt64 columnResultRaw = 0;
+                    columnResultRaw = (carryOver % this.Base);
+                    resultRaw.Add(this.Key[(Int32)columnResultRaw]);
+                    carryOver = (UInt64)(((Decimal)carryOver - (Decimal)columnResultRaw) / (Decimal)this.Base);
+                }
+                else
+                {
+                    resultRaw.Add(this.Key[(Int32)carryOver]);
+                    carryOver = 0;
+                }
+            }
+            return resultRaw;
         }
 
         public Char Bottom

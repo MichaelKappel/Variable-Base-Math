@@ -2,20 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Math
+namespace Math.Interfaces
 {
-    public interface IOperator
+    public interface IWholeNumberOperator
     {
-
-        Number Add(Number a, Number b);
-
-        Number Subtract(Number a, Number b);
-
-        Number Multiply(Number a, Number b);
-
-        Number Divide(Number a, Number b);
-
-
         WholeNumber Add(WholeNumber a, WholeNumber b);
 
         WholeNumber Subtract(WholeNumber a, WholeNumber b);
@@ -23,8 +13,5 @@ namespace Math
         WholeNumber Multiply(WholeNumber a, WholeNumber b);
 
         Number Divide(WholeNumber a, WholeNumber b);
-
-        WholeNumber PowerOf(WholeNumber a, UInt64 power);
-
     }
 }

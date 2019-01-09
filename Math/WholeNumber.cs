@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using Math.Base;
+using Math.Interfaces;
 
 namespace Math
 {
     public class WholeNumber : NumberBase, IEquatable<WholeNumber>, IComparable<WholeNumber>, IComparer<WholeNumber>
     {
-        internal static IOperator Operator = new Operator();
+        internal static IWholeNumberOperator Operator = new WholeNumberOperator();
 
         public WholeNumber(MathEnvironment environment, Char number, Boolean isNegative)
              : base(environment, number, isNegative)
@@ -57,12 +59,27 @@ namespace Math
         
         public static bool operator ==(WholeNumber e1, WholeNumber e2)
         {
+            if (e1 is null && e2 is null)
+            {
+                return true;
+            }
             return e1.Equals(e2);
         }
 
         public static bool operator !=(WholeNumber e1, WholeNumber e2)
         {
-            return !e1.Equals(e2);
+            if (e1 is null && e2 is null)
+            {
+                return false;
+            }
+            else if (e1 is null)
+            {
+                return !e2.Equals(e1); ;
+            }
+            else
+            {
+                return !e1.Equals(e2);
+            }
         }
         
         public static WholeNumber operator +(WholeNumber a, WholeNumber b)
@@ -94,14 +111,14 @@ namespace Math
 
         #endregion
 
-        public WholeNumber AsNegative()
+        public WholeNumber AsNegativeWholeNumber()
         {
             var copy = new WholeNumber(this.Environment, this.Segments, true);
 
             return copy;
         }
 
-        public WholeNumber AsPositive()
+        public WholeNumber AsPositiveWholeNumber()
         {
             var copy = new WholeNumber(this.Environment, this.Segments, false);
 
@@ -119,11 +136,31 @@ namespace Math
 
         public override Boolean Equals(Object other)
         {
-            return this.Equals((WholeNumber)other);
+            if (other is Number)
+            {
+                    return other.Equals(this);
+            }
+            else
+            {
+                //Fix: Try to determine real equlity for equivalent numbers types like Int32, Decimal, ect… 
+                return false;
+            }
         }
 
         public Boolean Equals(WholeNumber other)
         {
+            if (other == null)
+            {
+                if (this.Environment.Algorithm.IsBottom(this.Segments))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+
             if (!this.Environment.Equals(other.Environment))
             {
                 //FIX: should able to tell if number values match in seperate Environments

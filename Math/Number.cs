@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Math.Base;
+using Math.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -6,9 +8,10 @@ using System.Text;
 
 namespace Math
 {
-    public class Number: NumberBase, IEquatable<Number>, IComparable<Number>, IComparer<Number>
+    public class Number: WholeNumber, IEquatable<Number>, IComparable<Number>, IComparer<Number>
     {
-        internal static IOperator Operator = new Operator();
+        internal INumberOperator Operator = new NumberOperator();
+
         internal Number(WholeNumber number, Fraction fragment = null)
          : base(number.Environment, number.Segments, number.IsNegative)
         {
@@ -44,58 +47,80 @@ namespace Math
             this.Fragment = fragment;
         }
 
+        internal Number(MathEnvironment environment, ReadOnlyCollection<Char> number, ReadOnlyCollection<Char> numerator, ReadOnlyCollection<Char> denominator, Boolean isNegative)
+            : base(environment, number, isNegative)
+        {
+            this.Fragment = new Fraction(environment, numerator, denominator);
+        }
+
         public Fraction Fragment { get; protected set; }
 
 
         #region operator overrides
-        public static bool operator <(Number e1, Number e2)
+        public static bool operator <(Number a, Number b)
         {
-            return e1.CompareTo(e2) < 0;
+            return a.CompareTo(b) < 0;
         }
 
-        public static bool operator <=(Number e1, Number e2)
+        public static bool operator <=(Number a, Number b)
         {
-            return e1.CompareTo(e2) <= 0;
+            return a.CompareTo(b) <= 0;
         }
-        public static bool operator >(Number e1, Number e2)
+        public static bool operator >(Number a, Number b)
         {
-            return e1.CompareTo(e2) > 0;
+            return a.CompareTo(b) > 0;
         }
 
-        public static bool operator >=(Number e1, Number e2)
+        public static bool operator >=(Number a, Number b)
         {
-            return e1.CompareTo(e2) >= 0;
+            return a.CompareTo(b) >= 0;
         }
-        
+
         public static bool operator ==(Number e1, Number e2)
         {
+            if (e1 is null && e2 is null)
+            {
+                return true;
+            }
             return e1.Equals(e2);
         }
 
         public static bool operator !=(Number e1, Number e2)
         {
-            return !e1.Equals(e2);
+            if (e1 is null && e2 is null)
+            {
+                return false;
+            }
+            else if (e1 is null)
+            {
+                return !e2.Equals(e1); ;
+            }
+            else
+            {
+                return !e1.Equals(e2);
+            }
         }
-        
+
+
         public static Number operator +(Number a, Number b)
         {
-            return Operator.Add(a, b);
+            return a.Operator.Add(a, b);
         }
         
         public static Number operator -(Number a, Number b)
         {
-            return Operator.Subtract(a, b);
+            return a.Operator.Subtract(a, b);
         }
 
         public static Number operator *(Number a, Number b)
         {
-            return Operator.Multiply(a, b);
+            return a.Operator.Multiply(a, b);
         }
 
 
         public static Number operator /(Number a, Number b)
         {
-            return Operator.Divide(a, b);
+            return a.Operator.Divide(a, b);
         }
 
         
@@ -113,14 +138,14 @@ namespace Math
             return copy;
         }
 
-        internal Number AsNegative()
+        internal Number AsNegativeNumber()
         {
             var copy = new Number(this.Environment, this.Segments, true, this.Fragment);
 
             return copy;
         }
 
-        internal Number AsPositive()
+        internal Number AsPositiveNumber()
         {
             var copy = new Number(this.Environment, this.Segments, false, this.Fragment);
 
@@ -138,7 +163,39 @@ namespace Math
 
         public override Boolean Equals(Object other)
         {
-            return this.Equals((Number)other);
+            if (other == null)
+            {
+                if (this.Environment.Algorithm.IsBottom(this.Segments))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+
+            var otherWholeNumber = (other as WholeNumber);
+            if (otherWholeNumber != default(WholeNumber))
+            {
+                if(this.Fragment != default(Fraction))
+                {
+                    return false;
+                }
+                else if(this.IsNegative != otherWholeNumber.IsNegative)
+                {
+                    return false;
+                }
+                else
+                {
+                    return this.Environment.Algorithm.IsEqual(this.Segments, otherWholeNumber.Segments);
+                }
+            }
+            else
+            {
+                //Fix: Try to determine real equlity for equivalent numbers types like Int32, Decimal, ect… 
+                return false;
+            }
         }
 
         public Boolean Equals(Number other)

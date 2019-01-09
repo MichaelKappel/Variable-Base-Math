@@ -3,12 +3,13 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 
-namespace Math.Tests.B0123456789ABCDEF
+namespace Math.Tests.WholeNumberTests.B0123456789ABCDEF
 {
     [TestClass]
     public class GreaterThan0123456789ABCDEFTests
     {
         [TestMethod]
+        [TestCategory("WholeNumber")]
         [TestCategory("GreaterThan")]
         [TestCategory("0123456789ABCDEF")]
         public void GreaterThan_15_5()

@@ -3,12 +3,13 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 
-namespace Math.Tests.B0123456789ABCDEF
+namespace Math.Tests.WholeNumberTests.B0123456789ABCDEF
 {
     [TestClass]
     public class Divide0123456789ABCDEFTests
     {
         [TestMethod]
+        [TestCategory("WholeNumber")]
         [TestCategory("Divide")]
         [TestCategory("0123456789ABCDEF")]
         public void Divide_160_40()

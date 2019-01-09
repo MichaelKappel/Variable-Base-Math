@@ -3,22 +3,23 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 
-namespace Math.Tests.B0123456789
+namespace Math.Tests.NumberTests.B0123456789
 {
     [TestClass]
     public class Divide0123456789Tests
     {
         [TestMethod]
+        [TestCategory("Number")]
         [TestCategory("Divide")]
         [TestCategory("0123456789")]
         public void Divide_160_40()
         {
             var env = new MathEnvironment("0123456789");
 
-            var expected = env.GetNumber("4");
+            Number expected = env.GetNumber("4");
 
-            var a = env.GetNumber("160");
-            var b = env.GetNumber("40");
+            Number a = env.GetNumber("160");
+            Number b = env.GetNumber("40");
 
             Number actual = a / b;
 

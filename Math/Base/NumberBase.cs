@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 
-namespace Math
+namespace Math.Base
 {
     public abstract class  NumberBase
     {
@@ -82,15 +82,6 @@ namespace Math
         {
             get;
             protected set;
-        }
-
-        public Boolean IsBottom()
-        {
-            if (this.DecimalPlaces <= 1 && this.Segments[0] == this.Environment.Bottom)
-            {
-                return true;
-            }
-            return false;
         }
 
         public override String ToString()
