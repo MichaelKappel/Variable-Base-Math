@@ -38,18 +38,6 @@ namespace Math
 
         }
 
-        public WholeNumber GetWholeNumber(String wholeNumber, Boolean isNegative = false)
-        {
-
-            List<Char> wholeNumberSegments = wholeNumber.ToCharArray().Reverse().ToList();
-
-            this.ValidateWholeNumber(wholeNumberSegments);
-
-            return new WholeNumber(this, wholeNumberSegments, isNegative);
-
-
-        }
-
         public void ValidateWholeNumber(List<Char> numberSegments)
         {
             while (numberSegments.Count > 1 && numberSegments[numberSegments.Count - 1] == this.Bottom)
@@ -103,7 +91,6 @@ namespace Math
         {
            var tempKey = new List<Char>();
             var tempKeyNumber = new List<Number>();
-            var tempKeyWholeNumber = new List<WholeNumber>();
 
             foreach (Char segment in rawKey.ToCharArray())
             {
@@ -111,13 +98,11 @@ namespace Math
                 {
                     tempKey.Add(segment);
                     tempKeyNumber.Add(new Number(this, segment, false));
-                    tempKeyWholeNumber.Add(new WholeNumber(this, segment, false));
                 }
             }
 
             this.Key = new ReadOnlyCollection<Char>(tempKey);
             this.KeyNumber = new ReadOnlyCollection<Number>(tempKeyNumber);
-            this.KeyWholeNumber = new ReadOnlyCollection<WholeNumber>(tempKeyWholeNumber);
 
             this.Bottom = this.Key[0];
             this.First = this.Key[1];
@@ -128,11 +113,6 @@ namespace Math
             this.FirstNumber = new Number(this, this.Key[1], false); 
             this.TopNumber = new Number(this, this.Top, false);
             this.PowerOfFirstNumber =  new Number(this, new Char[] { this.Bottom, this.First }, false); 
-
-            this.BottomWholeNumber = new WholeNumber(this, this.Key[0], false);
-            this.FirstWholeNumber = new WholeNumber(this, this.Key[1], false);
-            this.TopWholeNumber = new WholeNumber(this, this.Top, false);
-            this.PowerOfFirstWholeNumber = new WholeNumber(this, new Char[] { this.Bottom, this.First  }, false);
         }
 
         public Number ConvertToFraction(UInt64 numberRaw, UInt64 numeratorNumber, UInt64 denominatorRaw)
@@ -180,21 +160,8 @@ namespace Math
             get;
             protected set;
         }
-
-        public WholeNumber BottomWholeNumber
-        {
-            get;
-            protected set;
-        }
-
-
+        
         public Number PowerOfFirstNumber
-        {
-            get;
-            protected set;
-        }
-
-        public WholeNumber PowerOfFirstWholeNumber
         {
             get;
             protected set;
@@ -207,12 +174,6 @@ namespace Math
         }
 
         public Number FirstNumber
-        {
-            get;
-            protected set;
-        }
-
-        public WholeNumber FirstWholeNumber
         {
             get;
             protected set;
@@ -230,12 +191,6 @@ namespace Math
             protected set;
         }
 
-        public WholeNumber TopWholeNumber
-        {
-            get;
-            protected set;
-        }
-
         public UInt64 Base {
             get;
             protected set;
@@ -248,12 +203,6 @@ namespace Math
         }
         
         public ReadOnlyCollection<Number> KeyNumber
-        {
-            get;
-            protected set;
-        }
-
-        public ReadOnlyCollection<WholeNumber> KeyWholeNumber
         {
             get;
             protected set;

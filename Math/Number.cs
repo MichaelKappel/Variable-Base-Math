@@ -8,21 +8,9 @@ using System.Text;
 
 namespace Math
 {
-    public class Number: WholeNumber, IEquatable<Number>, IComparable<Number>, IComparer<Number>
+    public class Number: NumberBase, IEquatable<Number>, IComparable<Number>
     {
-        internal INumberOperator Operator = new NumberOperator();
-
-        internal Number(WholeNumber number, Fraction fragment = null)
-         : base(number.Environment, number.Segments, number.IsNegative)
-        {
-            this.Fragment = fragment;
-        }
-
-        internal Number(WholeNumber number, Number numerator, Number denominator)
-            : base(number.Environment, number.Segments, number.IsNegative)
-        {
-            this.Fragment = new Fraction(numerator, denominator);
-        }
+        internal IOperator Operator = new Operator();
 
         internal Number(MathEnvironment environment, Char number, Boolean isNegative, Fraction fragment = null)
              : base(environment, number,  isNegative)
@@ -163,150 +151,17 @@ namespace Math
 
         public override Boolean Equals(Object other)
         {
-            if (other == null)
-            {
-                if (this.Environment.Algorithm.IsBottom(this.Segments))
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-
-            var otherWholeNumber = (other as WholeNumber);
-            if (otherWholeNumber != default(WholeNumber))
-            {
-                if(this.Fragment != default(Fraction))
-                {
-                    return false;
-                }
-                else if(this.IsNegative != otherWholeNumber.IsNegative)
-                {
-                    return false;
-                }
-                else
-                {
-                    return this.Environment.Algorithm.IsEqual(this.Segments, otherWholeNumber.Segments);
-                }
-            }
-            else
-            {
-                //Fix: Try to determine real equlity for equivalent numbers types like Int32, Decimal, ect… 
-                return false;
-            }
+            return this.Operator.Equals(this, (Number)other);
         }
 
         public Boolean Equals(Number other)
         {
-            if (!this.Environment.Equals(other.Environment))
-            {
-                //FIX: should able to tell if number values match in seperate Environments
-                return false;
-            }
-
-            if (this.Segments.Count != other.Segments.Count)
-            {
-                return false;
-            }
-
-            for (var i = 0; i < this.Segments.Count; i++)
-            {
-                if (this.Segments[i] != other.Segments[i])
-                {
-                    return false;
-                }
-            }
-
-            if (this.Fragment == default(Fraction))
-            {
-                return true;
-            }
-            else
-            {
-                return this.Fragment.Equals(other.Fragment);
-            }
+            return this.Operator.Equals(this, other);
         }
 
         public int CompareTo(Number other)
         {
-            if (!this.Environment.Equals(other.Environment))
-            {
-                //FIX: should able to tell if number values match in seperate Environments
-                throw new Exception("Currently unable to compare seperate Environments");
-            }
-            Boolean reverse = false;
-            if (!this.IsNegative && other.IsNegative)
-            {
-                return 1;
-            }
-            else if (this.IsNegative && !other.IsNegative)
-            {
-                return -1;
-            }
-            else if (this.IsNegative && other.IsNegative)
-            {
-                reverse = true;
-            }
-
-
-            Int32 result = 0;
-            if (this.Segments.Count > other.Segments.Count)
-            {
-                result = 1;
-            }
-            else if (this.Segments.Count < other.Segments.Count)
-            {
-                result = -1;
-            }
-
-            if (result == 0)
-            {
-                for (var i = this.Segments.Count - 1; i >= 0; i--)
-                {
-                    if (this.Segments[i] != other.Segments[i])
-                    {
-                        if (this.Segments[i] > other.Segments[i])
-                        {
-                            result = 1;
-                            break;
-                        }
-                        else if (this.Segments[i] < other.Segments[i])
-                        {
-                            result = -1;
-                            break;
-                        }
-                    }
-                }
-            }
-
-            if (result == 0)
-            {
-                if (this.Fragment != default(Fraction))
-                {
-                    result = this.Fragment.CompareTo(other.Fragment);
-                }
-            }
-
-            if (reverse && result == 1)
-            {
-                return -1;
-            }
-            else if (reverse && result == -1)
-            {
-                return 1;
-            }
-            else
-            {
-                return result;
-            }
-
-        }
-
-        public int Compare(Number x, Number y)
-        {
-            return x.CompareTo(y);
+            return this.Operator.Compare(this, other);
         }
 
         public override String ToString()
@@ -320,12 +175,5 @@ namespace Math
 
             return result;
         }
-
-        public WholeNumber Floor()
-        {
-            return new WholeNumber(this.Environment, this.Segments, this.IsNegative);
-        }
-
-        
     }
 }

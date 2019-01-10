@@ -16,12 +16,12 @@ namespace Math.Tests.WholeNumberTests.B0123456789
         {
             var env = new MathEnvironment("0123456789");
 
-            var expected = env.GetNumber("4");
+            var expected = env.GetWholeNumber("4");
 
             WholeNumber a = env.GetWholeNumber("160");
             WholeNumber b = env.GetWholeNumber("40");
 
-            Number actual = a / b;
+            WholeNumber actual = a / b;
 
             Assert.AreEqual(expected, actual);
         }
@@ -35,62 +35,65 @@ namespace Math.Tests.WholeNumberTests.B0123456789
         {
             var env = new MathEnvironment("0123456789");
 
-            var expected = env.GetNumber("4");
+            var expected = env.GetWholeNumber("4");
 
             WholeNumber a = env.GetWholeNumber("161");
             WholeNumber b = env.GetWholeNumber("40");
 
-            Number actual = a / b;
+            WholeNumber actual = a / b;
 
             Assert.AreEqual(expected, actual);
         }
 
 
         [TestMethod]
+        [TestCategory("WholeNumber")]
         [TestCategory("Divide")]
         [TestCategory("0123456789")]
         public void Divide_9876_99()
         {
             var env = new MathEnvironment("0123456789");
 
-            var expected = env.GetNumber("99","75", "99");
+            var expected = env.GetWholeNumber("99");
 
-            var a = env.GetNumber("9876");
-            var b = env.GetNumber("99");
+            WholeNumber a = env.GetWholeNumber("9876");
+            WholeNumber b = env.GetWholeNumber("99");
 
-            Number actual = a / b;
+            WholeNumber actual = a / b;
 
             Assert.AreEqual(expected, actual);
         }
 
         [TestMethod]
+        [TestCategory("WholeNumber")]
         [TestCategory("Divide")]
         [TestCategory("0123456789")]
         public void Divide_34798249_40()
         {
             var env = new MathEnvironment("0123456789");
 
-            var expected = env.GetNumber("869956","9", "40");
+            var expected = env.GetWholeNumber("869956");
 
-            var a = env.GetNumber("34798249");
-            var b = env.GetNumber("40");
+            WholeNumber a = env.GetWholeNumber("34798249");
+            WholeNumber b = env.GetWholeNumber("40");
 
-            Number actual = a / b;
+            WholeNumber actual = a / b;
 
             Assert.AreEqual(expected, actual);
         }
 
         [TestMethod]
+        [TestCategory("WholeNumber")]
         [TestCategory("Divide")]
         [TestCategory("0123456789")]
-        public void Divide_15789_2_3_D_9_7_8()
+        public void Divide_15789_D_9()
         {
             var env = new MathEnvironment("0123456789");
 
-            var expected = env.GetNumber("1754","1", "3");
+            var expected = env.GetNumber("1754", "1", "3");
 
-            var a = env.GetNumber("15789","2", "3");
-            var b = env.GetNumber("9","7", "8");
+            WholeNumber a = env.GetWholeNumber("15789");
+            WholeNumber b = env.GetWholeNumber("9");
 
             Number actual = a / b;
 

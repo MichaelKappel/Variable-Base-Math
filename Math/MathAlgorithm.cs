@@ -256,10 +256,9 @@ namespace Math
             ReadOnlyCollection<Char> numeratorTestResult = this.Multiply(lastNumberTried, denominator);
 
             ReadOnlyCollection<Char> maxDifference = this.Subtract(denominator, new ReadOnlyCollection<Char>(new Char[] { this.Environment.First }));
-            ReadOnlyCollection<Char> maximumTestResult = this.Add(numerator, maxDifference);
             ReadOnlyCollection<Char> minimumTestResult = this.Subtract(numerator, maxDifference);
 
-            while (this.IsLessThan(numeratorTestResult, minimumTestResult) || this.IsGreaterThan(numeratorTestResult, maximumTestResult))
+            while (this.IsLessThan(numeratorTestResult, minimumTestResult) || this.IsGreaterThan(numeratorTestResult, numerator))
             {
                 if (this.IsLessThan(numeratorTestResult, numerator))
                 {

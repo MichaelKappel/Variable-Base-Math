@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Math
 {
-    public class Fraction: IEquatable<Fraction>, IComparable<Fraction>, IComparer<Fraction>
+    public class Fraction: IEquatable<Fraction>, IComparable<Fraction>
     {
         internal Fraction(MathEnvironment environment, Char numerator, Char denominator)
             : this(new Number(environment, numerator, false), new Number(environment, denominator, false))
@@ -71,42 +71,24 @@ namespace Math
 
         public Boolean Equals(Fraction other)
         {
-
-            if (object.ReferenceEquals(this, default(Fraction)) && object.ReferenceEquals(other, default(Fraction)))
-            {
-                return true;
-            }
-            else if (object.ReferenceEquals(this, default(Fraction)) || object.ReferenceEquals(other, default(Fraction)))
-            {
-                return false;
-            }
-
-            if (!this.Denominator.Equals(other.Denominator))
-            {
-                Number commonDenominator = this.Denominator * other.Denominator;
-
-                Number otherNumerator = other.Numerator * this.Denominator;
-                Number thisNumerator = this.Numerator * other.Denominator;
-
-                if (thisNumerator == otherNumerator)
-                {
-                    return true;
-                }
-
-                return false;
-            }
-
-            if (!this.Numerator.Equals(other.Numerator))
-            {
-                return false;
-            }
-
-
-            return true;
+            return this.Compare(other) == 0;
         }
 
-        public int CompareTo(Fraction other)
+        public int Compare(Fraction other)
         {
+            if (object.ReferenceEquals(this, default(Fraction)) && object.ReferenceEquals(other, default(Fraction)))
+            {
+                return 0;
+            }
+            else if (object.ReferenceEquals(this, default(Fraction)))
+            {
+                return -1;
+            }
+            else if (object.ReferenceEquals(other, default(Fraction)))
+            {
+                return 1;
+            }
+
             if (!this.Denominator.Equals(other.Denominator))
             {
                 Number commonDenominator = this.Denominator * other.Denominator;
@@ -142,10 +124,11 @@ namespace Math
             }
         }
 
-        public int Compare(Fraction x, Fraction y)
+        public Int32 CompareTo(Fraction other)
         {
-            return x.CompareTo(y);
+            return this.Compare(other);
         }
+
         #endregion
 
         #region operator overrides
@@ -155,7 +138,7 @@ namespace Math
             {
                 return false;
             }
-            return e1.CompareTo(e2) < 0;
+            return e1.Compare(e2) < 0;
         }
 
         public static bool operator <=(Fraction e1, Fraction e2)
@@ -168,7 +151,7 @@ namespace Math
             {
                 return false;
             }
-            return e1.CompareTo(e2) <= 0;
+            return e1.Compare(e2) <= 0;
         }
         public static bool operator >(Fraction e1, Fraction e2)
         {
@@ -176,7 +159,7 @@ namespace Math
             {
                 return false;
             }
-            return e1.CompareTo(e2) > 0;
+            return e1.Compare(e2) > 0;
         }
 
         public static bool operator >=(Fraction e1, Fraction e2)
@@ -189,7 +172,7 @@ namespace Math
             {
                 return false;
             }
-            return e1.CompareTo(e2) >= 0;
+            return e1.Compare(e2) >= 0;
         }
 
         public static bool operator ==(Fraction a, Fraction b)
@@ -202,7 +185,7 @@ namespace Math
             {
                 return false;
             }
-            return !a.Equals(b);
+            return a.Equals(b);
         }
 
         public static bool operator !=(Fraction a, Fraction b)

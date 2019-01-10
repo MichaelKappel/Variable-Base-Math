@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Math.Interfaces
 {
-    public interface INumberOperator
+    public interface IOperator: IComparer<Number>
     {
         Number Add(Number a, Number b);
 
@@ -13,5 +13,7 @@ namespace Math.Interfaces
         Number Multiply(Number a, Number b);
 
         Number Divide(Number a, Number b);
+
+        Boolean Equals(Number a, Number b);
     }
 }
