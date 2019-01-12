@@ -505,7 +505,8 @@ namespace Math
 
         public Number Divide(Char dividend, Char divisor)
         {
-            Number result = null;
+            Number result;
+
             UInt64 indexToDivide = this.Environment.GetIndex(dividend);
             UInt64 indexToDivideBy = this.Environment.GetIndex(divisor);
 
@@ -584,7 +585,7 @@ namespace Math
 
         public Boolean IsBottom(ReadOnlyCollection<Char> number)
         {
-            if (number.Count == 1 && number[0] == this.Environment.Bottom)
+            if (number == default(ReadOnlyCollection<Char>) || number.Count == 0 || (number.Count == 1 && number[0] == this.Environment.Bottom))
             {
                 return true;
             }

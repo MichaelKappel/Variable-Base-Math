@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Math.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
@@ -7,28 +8,13 @@ namespace Math
 {
     public class Fraction: IEquatable<Fraction>, IComparable<Fraction>
     {
-        internal Fraction(MathEnvironment environment, Char numerator, Char denominator)
-            : this(new Number(environment, numerator, false), new Number(environment, denominator, false))
-        {
-            
-        }
 
-        internal Fraction(MathEnvironment environment, Char[] numerator, Char[] denominator)
-            : this(new Number(environment, numerator, false), new Number(environment, denominator, false))
-        {
-            
-        }
-
-        internal Fraction(MathEnvironment environment, List<Char> numerator, List<Char> denominator)
-            : this(new Number(environment, numerator, false), new Number(environment, denominator, false))
-        {
-
-        }
+        internal static IFractionOperator Operator = new FractionOperator();
 
         internal Fraction(MathEnvironment environment, ReadOnlyCollection<Char> numerator, ReadOnlyCollection<Char> denominator)
-            : this(new Number(environment, numerator, false), new Number(environment, denominator, false))
         {
-
+            this.Numerator = new Number(environment, numerator, null, null, false);
+            this.Denominator = new Number(environment, denominator, null, null, false);
         }
 
         internal Fraction(Number numerator, Number denominator)
@@ -63,144 +49,86 @@ namespace Math
                 }
             }
         }
-
         public override Boolean Equals(Object other)
         {
-            return this.Equals((Fraction)other);
+            return Operator.Equals(this, (Fraction)other);
         }
 
         public Boolean Equals(Fraction other)
         {
-            return this.Compare(other) == 0;
+            return Operator.Equals(this, other);
         }
 
-        public int Compare(Fraction other)
+        public int CompareTo(Fraction other)
         {
-            if (object.ReferenceEquals(this, default(Fraction)) && object.ReferenceEquals(other, default(Fraction)))
-            {
-                return 0;
-            }
-            else if (object.ReferenceEquals(this, default(Fraction)))
-            {
-                return -1;
-            }
-            else if (object.ReferenceEquals(other, default(Fraction)))
-            {
-                return 1;
-            }
-
-            if (!this.Denominator.Equals(other.Denominator))
-            {
-                Number commonDenominator = this.Denominator * other.Denominator;
-
-                Number otherNumerator = other.Numerator * this.Denominator;
-                Number thisNumerator = this.Numerator * other.Denominator;
-
-                if (thisNumerator > otherNumerator)
-                {
-                    return 1;
-                }
-                else if (thisNumerator < otherNumerator)
-                {
-                    return -1;
-                }
-                else
-                {
-                    return 0;
-                }
-            }
-
-            if (this.Numerator > other.Numerator)
-            {
-                return 1;
-            }
-            else if (this.Numerator < other.Numerator)
-            {
-                return -1;
-            }
-            else
-            {
-                return 0;
-            }
+            return Operator.Compare(this, other);
         }
 
-        public Int32 CompareTo(Fraction other)
+
+        #endregion
+
+        #region operator overrides
+        public static bool operator <(Fraction a, Fraction b)
         {
-            return this.Compare(other);
+            return Operator.IsLessThan(a, b);
+        }
+
+        public static bool operator <=(Fraction a, Fraction b)
+        {
+            return Operator.IsLessThanOrEqualTo(a, b);
+        }
+        public static bool operator >(Fraction a, Fraction b)
+        {
+            return Operator.IsGreaterThan(a, b);
+        }
+
+        public static bool operator >=(Fraction a, Fraction b)
+        {
+            return Operator.IsGreaterThanOrEqualTo(a, b);
+        }
+
+        public static bool operator ==(Fraction a, Fraction b)
+        {
+            return Operator.Equals(a, b);
+        }
+
+        public static bool operator !=(Fraction a, Fraction b)
+        {
+            return !Operator.Equals(a, b);
         }
 
         #endregion
 
         #region operator overrides
-        public static bool operator <(Fraction e1, Fraction e2)
+        
+        public static Fraction operator +(Fraction a, Fraction b)
         {
-            if (e1 == default(Fraction) || e2 == default(Fraction))
-            {
-                return false;
-            }
-            return e1.Compare(e2) < 0;
+            return Operator.Add(a, b);
         }
 
-        public static bool operator <=(Fraction e1, Fraction e2)
+        public static Fraction operator -(Fraction a, Fraction b)
         {
-            if (e1 == default(Fraction) && e2 == default(Fraction))
-            {
-                return true;
-            }
-            else if (e1 == default(Fraction) || e2 == default(Fraction))
-            {
-                return false;
-            }
-            return e1.Compare(e2) <= 0;
-        }
-        public static bool operator >(Fraction e1, Fraction e2)
-        {
-            if (e1 == default(Fraction) || e2 == default(Fraction))
-            {
-                return false;
-            }
-            return e1.Compare(e2) > 0;
+            return Operator.Subtract(a, b);
         }
 
-        public static bool operator >=(Fraction e1, Fraction e2)
+        public static Fraction operator *(Fraction a, Fraction b)
         {
-            if (e1 == default(Fraction) && e2 == default(Fraction))
-            {
-                return true;
-            }
-            else if (e1 == default(Fraction) || e2 == default(Fraction))
-            {
-                return false;
-            }
-            return e1.Compare(e2) >= 0;
+            return Operator.Multiply(a, b);
         }
 
-        public static bool operator ==(Fraction a, Fraction b)
+
+        public static Fraction operator /(Fraction a, Fraction b)
         {
-            if (object.ReferenceEquals(a, default(Fraction)) && object.ReferenceEquals(b, default(Fraction)))
-            {
-                return true;
-            }
-            else if (object.ReferenceEquals(a, default(Fraction)) || object.ReferenceEquals(b, default(Fraction)))
-            {
-                return false;
-            }
-            return a.Equals(b);
+            return Operator.Divide(a, b);
         }
 
-        public static bool operator !=(Fraction a, Fraction b)
+
+        public static Fraction operator %(Fraction a, Fraction b)
         {
-            if (object.ReferenceEquals(a, default(Fraction)) && object.ReferenceEquals(b, default(Fraction)))
-            {
-                return false;
-            }
-            else if (object.ReferenceEquals(a, default(Fraction)) || object.ReferenceEquals(b, default(Fraction)))
-            {
-                return true;
-            }
-            return !a.Equals(b);
+            throw new Exception("% not supported yet");
         }
 
         #endregion
+
     }
 }

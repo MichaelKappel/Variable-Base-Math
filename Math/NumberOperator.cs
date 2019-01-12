@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Math
 {
-    public class Operator: IOperator
+    public class NumberOperator : INumberOperator
     {
         public Number Add(Number a, Number b)
         {
@@ -18,7 +18,7 @@ namespace Math
 
             ReadOnlyCollection<Char> resultSegments = environment.Algorithm.Add(a.Segments, b.Segments);
 
-            return new Number(environment, resultSegments, false);
+            return new Number(environment, resultSegments, null, false);
         }
 
         public Number Subtract(Number a, Number b)
@@ -32,7 +32,7 @@ namespace Math
 
             ReadOnlyCollection<Char> resultSegments = environment.Algorithm.Subtract(a.Segments, b.Segments);
 
-            return new Number(environment, resultSegments, false);
+            return new Number(environment, resultSegments, null, false);
         }
 
         public Number Multiply(Number a, Number b)
@@ -45,7 +45,7 @@ namespace Math
 
             ReadOnlyCollection<Char> resultSegments = environment.Algorithm.Multiply(a.Segments, b.Segments);
 
-            return new Number(environment, resultSegments, false);
+            return new Number(environment, resultSegments, null, false);
         }
 
         public Number Divide(Number a, Number b)
@@ -63,14 +63,25 @@ namespace Math
             }
             else
             {
-                return new Number(environment, resultSegments.Item1, false);
+                return new Number(environment, resultSegments.Item1, null, false);
             }
         }
         public int Compare(Number a, Number b)
         {
-            if (this.Equals(a, b))
+            if (a.Environment == default(MathEnvironment) || (a.Environment.Algorithm.IsBottom(a.Segments)) && Object.ReferenceEquals(a.Fragment, default(Fraction)))
             {
-                return 0;
+                if (b.Environment == default(MathEnvironment) || (b.Environment.Algorithm.IsBottom(a.Segments) && Object.ReferenceEquals(b.Fragment, default(Fraction))))
+                {
+                    return 0;
+                }
+                else
+                {
+                    return 1;
+                }
+            }
+            else if (b.Environment == default(MathEnvironment) || (b.Environment.Algorithm.IsBottom(a.Segments) && Object.ReferenceEquals(b.Fragment, default(Fraction))))
+            {
+                return -1;
             }
 
             Boolean reverse = false;
@@ -86,8 +97,22 @@ namespace Math
             {
                 reverse = true;
             }
-
-
+            
+            MathEnvironment environment = a.Environment;
+            //Check if Environments all match
+            if (b.Environment != environment)
+            {
+                throw new Exception("Compare differnt enviorments is not currently supported");
+            }
+            else if (!Object.ReferenceEquals(a.Fragment, default(Fraction)) && a.Fragment.Numerator.Environment != environment)
+            {
+                throw new Exception("Compare differnt enviorments is not currently supported");
+            }
+            else if (!Object.ReferenceEquals(b.Fragment, default(Fraction)) && b.Fragment.Numerator.Environment != environment)
+            {
+                throw new Exception("Compare differnt enviorments is not currently supported");
+            }
+            
             Int32 result = 0;
             if (a.Segments.Count >  b.Segments.Count)
             {
@@ -141,63 +166,74 @@ namespace Math
         }
 
         public Boolean Equals(Number a, Number b)
+        {   
+            if (this.Compare(a, b) == 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public Boolean IsGreaterThan(Number a, Number b)
         {
-            //Check if "a" is 0 check to see if b is also
-            if (a.Environment.Algorithm.IsBottom(a.Segments) && a.Fragment == default(Fraction))
+            if (this.Compare(a, b) > 0)
             {
-                if (Object.ReferenceEquals(b, null))
-                {
-                    return true;
-                }
-                else if (b.Environment.Algorithm.IsBottom(b.Segments) && b.Fragment == default(Fraction))
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                return true;
             }
-
-            //Check if one is negative and the other is positive
-            if (a.IsNegative != b.IsNegative)
+            else
             {
                 return false;
             }
+        }
 
-            //Check if one has a fraction but the other does not
-            if (a.Fragment == default(Fraction) && b.Fragment != default(Fraction) 
-                || b.Fragment == default(Fraction) && a.Fragment != default(Fraction))
+        public Boolean IsLessThan(Number a, Number b)
+        {
+            if (this.Compare(a, b) < 0)
+            {
+                return true;
+            }
+            else
             {
                 return false;
             }
+        }
 
-            //"a" and "b" are not 0 
-            MathEnvironment environment = a.Environment;
-            //Check if Environments all match
-            if (b.Environment != environment)
+        public Boolean IsGreaterThanOrEqualTo(Number a, Number b)
+        {
+            if (this.Compare(a, b) >= 0)
             {
-                throw new Exception("Adding differnt enviorments is not currently supported");
+                return true;
             }
-            else if (a.Fragment != default(Fraction) && a.Fragment.Numerator.Environment != environment)
+            else
             {
-                throw new Exception("Adding differnt enviorments is not currently supported");
+                return false;
             }
-            else if (b.Fragment != default(Fraction) && b.Fragment.Numerator.Environment != environment)
-            {
-                throw new Exception("Adding differnt enviorments is not currently supported");
-            }
+        }
 
-            if (environment.Algorithm.IsEqual(a.Segments, b.Segments))
+        public Boolean IsLessThanOrEqualTo(Number a, Number b)
+        {
+            if (this.Compare(a, b) <= 0)
             {
-                if (a.Fragment == b.Fragment)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public Boolean IsBottom(Number number)
+        {
+            if (number.Environment == default(MathEnvironment) || number.Segments == default(ReadOnlyCollection<Char>) || number.Segments.Count == 0)
+            {
+                return true;
+            }
+            else if (number.Segments.Count == 1 && number.Segments[0] == number.Environment.Bottom)
+            {
+                return true;
             }
             else
             {

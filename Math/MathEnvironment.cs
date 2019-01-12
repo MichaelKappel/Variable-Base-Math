@@ -29,11 +29,11 @@ namespace Math
                 List<Char> fractionDenominatorSegments = fractionDenominator.ToCharArray().Reverse().ToList();
 
                 this.ValidateFraction(fractionNumeratorSegments, fractionDenominatorSegments);
-                return new Number(this, wholeNumberSegments, isNegative, new Fraction(this, fractionNumeratorSegments, fractionDenominatorSegments));
+                return new Number(this, new ReadOnlyCollection<Char>(wholeNumberSegments), new ReadOnlyCollection<Char>(fractionNumeratorSegments), new ReadOnlyCollection<Char>(fractionDenominatorSegments), isNegative);
             }
             else
             {
-                return new Number(this, wholeNumberSegments, isNegative);
+                return new Number(this, new ReadOnlyCollection<Char>(wholeNumberSegments), null, isNegative);
             }
 
         }
@@ -97,7 +97,7 @@ namespace Math
                 if (!tempKey.Contains(segment))
                 {
                     tempKey.Add(segment);
-                    tempKeyNumber.Add(new Number(this, segment, false));
+                    tempKeyNumber.Add(new Number(this, new ReadOnlyCollection<Char>(new Char[] { segment }), null, false));
                 }
             }
 
@@ -109,10 +109,10 @@ namespace Math
             this.Top = this.Key[this.Key.Count - 1];
             this.Base = (UInt64)this.Key.Count;
 
-            this.BottomNumber = new Number(this, this.Key[0], false);
-            this.FirstNumber = new Number(this, this.Key[1], false); 
-            this.TopNumber = new Number(this, this.Top, false);
-            this.PowerOfFirstNumber =  new Number(this, new Char[] { this.Bottom, this.First }, false); 
+            this.BottomNumber = new Number(this, new ReadOnlyCollection<Char>(new Char[] { this.Key[0] }), null, false);
+            this.FirstNumber = new Number(this, new ReadOnlyCollection<Char>(new Char[] { this.Key[1] }), null, false); 
+            this.TopNumber = new Number(this, new ReadOnlyCollection<Char>(new Char[] { this.Top }), null, false);
+            this.PowerOfFirstNumber =  new Number(this, new ReadOnlyCollection<Char>(new Char[] { this.Bottom, this.First }), null, false); 
         }
 
         public Number ConvertToFraction(UInt64 numberRaw, UInt64 numeratorNumber, UInt64 denominatorRaw)
@@ -121,7 +121,7 @@ namespace Math
             List<Char> numerator = this.ConvertToChars(numeratorNumber);
             List<Char> denominator = this.ConvertToChars(denominatorRaw);
 
-            var result = new Number(this, number, false, new Fraction(this, numerator, denominator));
+            var result = new Number(this, new ReadOnlyCollection<Char>(number), new ReadOnlyCollection<Char>(numerator), new ReadOnlyCollection<Char>(denominator), false);
 
             return result;
         }

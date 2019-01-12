@@ -1,62 +1,85 @@
-﻿using Math.Base;
-using Math.Interfaces;
+﻿using Math.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
+
+[assembly: InternalsVisibleToAttribute("Math.Tests")]
 
 namespace Math
 {
-    public class Number: NumberBase, IEquatable<Number>, IComparable<Number>
+    public struct Number:IEquatable<Number>, IComparable<Number>
     {
-        internal IOperator Operator = new Operator();
+        internal static INumberOperator Operator = new NumberOperator();
 
-        internal Number(MathEnvironment environment, Char number, Boolean isNegative, Fraction fragment = null)
-             : base(environment, number,  isNegative)
+        public Fraction Fragment { get; set; }
+
+        public Char FirstChar { get; set; }
+
+
+        public Boolean IsNegative { get; set; }
+
+        public MathEnvironment Environment { get; set; }
+
+        public ReadOnlyCollection<Char> Segments { get; set; }
+
+
+
+        internal Number(MathEnvironment environment, ReadOnlyCollection<Char> segments, ReadOnlyCollection<Char> numerator, ReadOnlyCollection<Char> denominator, Boolean isNegative)
         {
+            this.Environment = environment;
+
+            this.IsNegative = isNegative;
+
+            this.Segments = segments;
+
+            if (numerator != default(ReadOnlyCollection<Char>) && denominator != default(ReadOnlyCollection<Char>))
+            { 
+                this.Fragment = new Fraction(environment, numerator, denominator);
+            }else{
+                this.Fragment = default(Fraction);
+            }
+
+            this.FirstChar = this.Segments[this.Segments.Count - 1];
+            if (this.FirstChar == this.Environment.Bottom && this.Segments.Count > 1)
+            {
+                throw new Exception("Numbers longer then a power can not start with bottom number char");
+            }
+        }
+
+        internal Number(MathEnvironment environment, ReadOnlyCollection<Char> segments, Fraction fragment, Boolean isNegative)
+        {
+            this.Environment = environment;
+
+            this.IsNegative = isNegative;
+
+            this.Segments = segments;
+
             this.Fragment = fragment;
-        }
 
-        internal Number(MathEnvironment environment, Char[] number, Boolean isNegative, Fraction fragment = null)
-             : base(environment, number,  isNegative)
-        {
-            this.Fragment = fragment;
+            this.FirstChar = this.Segments[this.Segments.Count - 1];
+            if (this.FirstChar == this.Environment.Bottom && this.Segments.Count > 1)
+            {
+                throw new Exception("Numbers longer then a power can not start with bottom number char");
+            }
         }
-
-        internal Number(MathEnvironment environment, List<Char> number, Boolean isNegative, Fraction fragment = null)
-             : base(environment, number, isNegative)
-        {
-            this.Fragment = fragment;
-        }
-        internal Number(MathEnvironment environment, ReadOnlyCollection<Char> number, Boolean isNegative, Fraction fragment = null)
-             : base(environment, number, isNegative)
-        {
-            this.Fragment = fragment;
-        }
-
-        internal Number(MathEnvironment environment, ReadOnlyCollection<Char> number, ReadOnlyCollection<Char> numerator, ReadOnlyCollection<Char> denominator, Boolean isNegative)
-            : base(environment, number, isNegative)
-        {
-            this.Fragment = new Fraction(environment, numerator, denominator);
-        }
-
-        public Fraction Fragment { get; protected set; }
 
 
         #region operator overrides
         public static bool operator <(Number a, Number b)
         {
-            return a.CompareTo(b) < 0;
+            return Operator.Compare(a, b) < 0;
         }
 
         public static bool operator <=(Number a, Number b)
         {
-            return a.CompareTo(b) <= 0;
+            return Operator.Compare(a, b) <= 0;
         }
         public static bool operator >(Number a, Number b)
         {
-            return a.CompareTo(b) > 0;
+            return Operator.Compare(a, b) > 0;
         }
 
         public static bool operator >=(Number a, Number b)
@@ -64,51 +87,36 @@ namespace Math
             return a.CompareTo(b) >= 0;
         }
 
-        public static bool operator ==(Number e1, Number e2)
+        public static bool operator ==(Number a, Number b)
         {
-            if (e1 is null && e2 is null)
-            {
-                return true;
-            }
-            return e1.Equals(e2);
+            return Operator.Equals(a, b);
         }
 
-        public static bool operator !=(Number e1, Number e2)
+        public static bool operator !=(Number a, Number b)
         {
-            if (e1 is null && e2 is null)
-            {
-                return false;
-            }
-            else if (e1 is null)
-            {
-                return !e2.Equals(e1); ;
-            }
-            else
-            {
-                return !e1.Equals(e2);
-            }
+            return !Operator.Equals(a, b);
         }
 
 
         public static Number operator +(Number a, Number b)
         {
-            return a.Operator.Add(a, b);
+            return Operator.Add(a, b);
         }
         
         public static Number operator -(Number a, Number b)
         {
-            return a.Operator.Subtract(a, b);
+            return Operator.Subtract(a, b);
         }
 
         public static Number operator *(Number a, Number b)
         {
-            return a.Operator.Multiply(a, b);
+            return Operator.Multiply(a, b);
         }
 
 
         public static Number operator /(Number a, Number b)
         {
-            return a.Operator.Divide(a, b);
+            return Operator.Divide(a, b);
         }
 
         
@@ -121,23 +129,17 @@ namespace Math
 
         internal Number Copy()
         {
-            var copy = new Number(this.Environment, this.Segments, this.IsNegative, this.Fragment);
-
-            return copy;
+            return new Number(this.Environment, this.Segments, this.Fragment, this.IsNegative);
         }
 
         internal Number AsNegativeNumber()
         {
-            var copy = new Number(this.Environment, this.Segments, true, this.Fragment);
-
-            return copy;
+            return new Number(this.Environment, this.Segments, this.Fragment, true);
         }
 
         internal Number AsPositiveNumber()
         {
-            var copy = new Number(this.Environment, this.Segments, false, this.Fragment);
-
-            return copy;
+            return new Number(this.Environment, this.Segments, this.Fragment, false);
         }
 
         public override int GetHashCode()
@@ -151,23 +153,32 @@ namespace Math
 
         public override Boolean Equals(Object other)
         {
-            return this.Operator.Equals(this, (Number)other);
+            return Operator.Equals(this, (Number)other);
         }
 
         public Boolean Equals(Number other)
         {
-            return this.Operator.Equals(this, other);
+            return Operator.Equals(this, other);
         }
 
         public int CompareTo(Number other)
         {
-            return this.Operator.Compare(this, other);
+            return Operator.Compare(this, other);
         }
+
+
 
         public override String ToString()
         {
-            String result = base.ToString();
-
+            String result = null;
+            foreach (Char segment in this.Segments.Reverse())
+            {
+                result += segment;
+            }
+            if (this.IsNegative)
+            {
+                result = "-" + result;
+            }
             if (this.Fragment != default(Fraction))
             {
                 result = String.Format("{0} {1}", result, this.Fragment);
