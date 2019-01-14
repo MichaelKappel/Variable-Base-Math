@@ -100,7 +100,7 @@ namespace Math
         #endregion
 
         #region operator overrides
-        
+
         public static Fraction operator +(Fraction a, Fraction b)
         {
             return Operator.Add(a, b);
@@ -129,6 +129,21 @@ namespace Math
         }
 
         #endregion
-
+       
+        public Number AsNumber()
+        {
+            if (Number.Operator.Equals(this.Denominator, this.Denominator.Environment.BottomNumber))
+            {
+                return Numerator;
+            }
+            else if (Number.Operator.IsGreaterThan(this.Denominator, this.Numerator))
+            {
+                return Numerator;
+            }
+            else
+            {
+                return Number.Operator.Divide(this.Numerator, this.Denominator);
+            }
+        }
     }
 }

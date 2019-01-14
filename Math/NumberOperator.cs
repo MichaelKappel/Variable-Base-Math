@@ -41,11 +41,20 @@ namespace Math
             {
                 throw new Exception("Multipling differnt enviorments is not currently supported");
             }
+
             MathEnvironment environment = a.Environment;
 
-            ReadOnlyCollection<Char> resultSegments = environment.Algorithm.Multiply(a.Segments, b.Segments);
+            if (a.Fragment == default(Fraction) && b.Fragment == default(Fraction))
+            {
+                ReadOnlyCollection<Char> resultSegments = environment.Algorithm.Multiply(a.Segments, b.Segments);
+                return new Number(environment, resultSegments, null, false);
+            }
+            else
+            {
+                Fraction aResult = a.AsFraction() * b.AsFraction();
+                return aResult.AsNumber();
+            }
 
-            return new Number(environment, resultSegments, null, false);
         }
 
         public Number Divide(Number a, Number b)

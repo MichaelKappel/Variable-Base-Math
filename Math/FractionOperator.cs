@@ -57,13 +57,11 @@ namespace Math
             }
             MathEnvironment environment = a.Denominator.Environment;
 
-            ReadOnlyCollection<Char> commonDenominator = environment.Algorithm.Multiply(a.Denominator.Segments, b.Denominator.Segments);
-            ReadOnlyCollection<Char> numeratorA = environment.Algorithm.Multiply(a.Numerator.Segments, b.Denominator.Segments);
-            ReadOnlyCollection<Char> numeratorB = environment.Algorithm.Multiply(b.Numerator.Segments, a.Denominator.Segments);
+            ReadOnlyCollection<Char> numerator = environment.Algorithm.Multiply(a.Numerator.Segments, b.Numerator.Segments);
+            ReadOnlyCollection<Char> denominator = environment.Algorithm.Multiply(a.Denominator.Segments, b.Denominator.Segments);
 
-            ReadOnlyCollection<Char> rawResult = environment.Algorithm.Multiply(numeratorA, numeratorB);
 
-            var result = new Fraction(environment, rawResult, commonDenominator);
+            var result = new Fraction(environment, numerator, denominator);
 
             return result;
         }

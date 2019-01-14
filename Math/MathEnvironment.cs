@@ -45,12 +45,12 @@ namespace Math
                 numberSegments.RemoveAt(numberSegments.Count - 1);
             }
 
-            if (numberSegments[0] == ('\u202c'))
+            if (numberSegments[0] == '\u202c' || numberSegments[0] == 8237)
             {
                 numberSegments.RemoveAt(0);
             }
 
-            if (numberSegments[numberSegments.Count - 1] == ('\u202c'))
+            if (numberSegments[numberSegments.Count - 1] == '\u202c' || numberSegments[numberSegments.Count - 1] == 8237)
             {
                 numberSegments.RemoveAt(numberSegments.Count - 1);
             }

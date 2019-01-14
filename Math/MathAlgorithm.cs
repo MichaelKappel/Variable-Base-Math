@@ -188,29 +188,38 @@ namespace Math
             {
                 Decimal charIndex = this.Environment.GetIndex(number[i]);
                 Decimal halfCharIndexWithRemainder = (charIndex / 2M) + remainder;
-
-                Int32 halfCharIndexWithRemainderIndex = (Int32)System.Math.Floor(halfCharIndexWithRemainder);
-
+                
                 if (i == 0)
                 {
-                    if (variance < 0)
-                    {
-                        resultSegments[0] = this.Environment.Key[(Int32)System.Math.Floor(halfCharIndexWithRemainder)];
-                    }
-                    else if (variance > 0)
+                    if (variance > 0 && (UInt64)System.Math.Ceiling(halfCharIndexWithRemainder) < this.Environment.Base)
                     {
                         resultSegments[0] = this.Environment.Key[(Int32)System.Math.Ceiling(halfCharIndexWithRemainder)];
                     }
                     else
                     {
-                        resultSegments[0] = this.Environment.Key[(Int32)System.Math.Ceiling(halfCharIndexWithRemainder)];
+                        resultSegments[0] = this.Environment.Key[(Int32)System.Math.Floor(halfCharIndexWithRemainder)];
                     }
                 }
                 else
                 {
-                    resultSegments[i] = this.Environment.Key[(Int32)System.Math.Floor(halfCharIndexWithRemainder)];
-                    remainder = (halfCharIndexWithRemainder - ((Decimal)halfCharIndexWithRemainderIndex)) * 10;
+                    UInt64 halfCharIndexWithRemainderIndex = (UInt64)System.Math.Floor(halfCharIndexWithRemainder);
+                    if (halfCharIndexWithRemainderIndex >= this.Environment.Base)
+                    {
+                        Int32 currentSegmentIndex = (Int32)System.Math.Floor(halfBaseIndexDetailed);
+                        resultSegments[i] = this.Environment.Key[currentSegmentIndex];
+                        remainder = 0M;
+                    }
+                    else
+                    {
+                        resultSegments[i] = this.Environment.Key[(Int32)halfCharIndexWithRemainderIndex];
+                        remainder = (halfCharIndexWithRemainder - ((Decimal)halfCharIndexWithRemainderIndex)) * this.Environment.Base;
+                    }
                 }
+            }
+
+            while (resultSegments[resultSegments.Length-1] == this.Environment.Bottom)
+            {
+                resultSegments = resultSegments.Take(resultSegments.Length - 1).ToArray();
             }
 
             return new ReadOnlyCollection<Char>(resultSegments);

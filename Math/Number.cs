@@ -132,6 +132,20 @@ namespace Math
             return new Number(this.Environment, this.Segments, this.Fragment, this.IsNegative);
         }
 
+        internal Fraction AsFraction()
+        {
+            if (this.Fragment == default(Fraction))
+            {
+                return new Fraction(this, this.Environment.FirstNumber);
+            }
+            else
+            {
+                Number denominator = this.Fragment.Denominator;
+                Number numerator = Operator.Add(Operator.Multiply(this.Floor(), denominator), this.Fragment.Numerator);
+                return new Fraction(numerator, denominator);
+            }
+        }
+
         internal Number AsNegativeNumber()
         {
             return new Number(this.Environment, this.Segments, this.Fragment, true);
@@ -140,6 +154,11 @@ namespace Math
         internal Number AsPositiveNumber()
         {
             return new Number(this.Environment, this.Segments, this.Fragment, false);
+        }
+
+        internal Number Floor()
+        {
+            return new Number(this.Environment, this.Segments, null, this.IsNegative);
         }
 
         public override int GetHashCode()
