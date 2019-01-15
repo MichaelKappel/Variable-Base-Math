@@ -185,8 +185,6 @@ namespace Math
             return Operator.Compare(this, other);
         }
 
-
-
         public override String ToString()
         {
             String result = null;

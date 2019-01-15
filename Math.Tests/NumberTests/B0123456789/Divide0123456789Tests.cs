@@ -78,5 +78,57 @@ namespace Math.Tests.NumberTests.B0123456789
             Assert.AreEqual(expected, actual);
         }
 
+
+        [TestMethod]
+        [TestCategory("Divide")]
+        [TestCategory("0123456789")]
+        public void AB_DE_15789_78485789435878690790970952072_89573297589472827()
+        {
+            var env = new MathEnvironment("0123456789");
+
+            var cNumber = env.GetNumber("7030230973684664604284953097930534576763347544");
+
+            var a = env.GetNumber("78485789435878690790970952072");
+            var b = env.GetNumber("89573297589472827");
+
+            Number actual = a / b;
+
+
+            Number c = a * b;
+
+            Assert.IsTrue(c == cNumber);
+
+            Number d = c / b;
+            Assert.IsTrue(a == d);
+
+            Number e = c / a;
+            Assert.IsTrue(b == e);
+        }
+
+             [TestMethod]
+        [TestCategory("Divide")]
+        [TestCategory("0123456789")]
+        public void AB_DE_Test_1()
+        {
+            var env = new MathEnvironment("0123456789");
+
+            var cNumber = env.GetNumber("7030230973684664674587262834847483632372822538517685854708233754041860488982766035728404973516310376696023789142517103192839438521360237891425170328905297016747134920187968225570920706569882172020557046279817435252472461961287852330534576763347544");
+
+            var a = env.GetNumber("7848578943587869079097095207278485789435878690790970952072784857894358786907909709520727848578943587869079097095207278485789435878690790970952072");
+            var b = env.GetNumber("895732975894728278957329758947282789573297589472827895732975894728278957329758947282789573297589472827");
+
+            Number actual = a / b;
+
+
+            Number c = a * b;
+
+            Assert.IsTrue(c == cNumber);
+
+            Number d = c / b;
+            Assert.IsTrue(a == d);
+
+            Number e = c / a;
+            Assert.IsTrue(b == e);
+        }
     }
 } 
