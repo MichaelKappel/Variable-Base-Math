@@ -1,0 +1,17 @@
+D:\git\Math\VariableBase.Mathematics.Tests\obj\Debug\netcoreapp2.1\VariableBase.Mathematics.Tests.csprojAssemblyReference.cache
+D:\git\Math\VariableBase.Mathematics.Tests\obj\Debug\netcoreapp2.1\VariableBase.Mathematics.Tests.csproj.CoreCompileInputs.cache
+D:\git\Math\VariableBase.Mathematics.Tests\obj\Debug\netcoreapp2.1\VariableBase.Mathematics.Tests.AssemblyInfoInputs.cache
+D:\git\Math\VariableBase.Mathematics.Tests\obj\Debug\netcoreapp2.1\VariableBase.Mathematics.Tests.AssemblyInfo.cs
+D:\git\Math\VariableBase.Mathematics.Tests\bin\Debug\netcoreapp2.1\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+D:\git\Math\VariableBase.Mathematics.Tests\bin\Debug\netcoreapp2.1\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+D:\git\Math\VariableBase.Mathematics.Tests\bin\Debug\netcoreapp2.1\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+D:\git\Math\VariableBase.Mathematics.Tests\bin\Debug\netcoreapp2.1\VariableBase.Mathematics.Tests.deps.json
+D:\git\Math\VariableBase.Mathematics.Tests\bin\Debug\netcoreapp2.1\VariableBase.Mathematics.Tests.runtimeconfig.json
+D:\git\Math\VariableBase.Mathematics.Tests\bin\Debug\netcoreapp2.1\VariableBase.Mathematics.Tests.runtimeconfig.dev.json
+D:\git\Math\VariableBase.Mathematics.Tests\bin\Debug\netcoreapp2.1\VariableBase.Mathematics.Tests.dll
+D:\git\Math\VariableBase.Mathematics.Tests\bin\Debug\netcoreapp2.1\VariableBase.Mathematics.Tests.pdb
+D:\git\Math\VariableBase.Mathematics.Tests\bin\Debug\netcoreapp2.1\VariableBase.Mathematics.dll
+D:\git\Math\VariableBase.Mathematics.Tests\bin\Debug\netcoreapp2.1\VariableBase.Mathematics.pdb
+D:\git\Math\VariableBase.Mathematics.Tests\obj\Debug\netcoreapp2.1\VariableBase.Mathematics.Tests.csproj.CopyComplete
+D:\git\Math\VariableBase.Mathematics.Tests\obj\Debug\netcoreapp2.1\VariableBase.Mathematics.Tests.dll
+D:\git\Math\VariableBase.Mathematics.Tests\obj\Debug\netcoreapp2.1\VariableBase.Mathematics.Tests.pdb

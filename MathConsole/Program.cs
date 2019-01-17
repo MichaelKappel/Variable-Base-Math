@@ -1,7 +1,7 @@
-﻿using Math;
+﻿using VariableBase.Mathematics;
 using System;
 
-namespace MathConsole
+namespace VariableBase.MathematicsConsole
 {
     class Program
     {

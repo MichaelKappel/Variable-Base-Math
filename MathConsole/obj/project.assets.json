@@ -208,14 +208,14 @@
           "build/netstandard2.0/NETStandard.Library.targets": {}
         }
       },
-      "Math/1.0.0": {
+      "VariableBase.Mathematics/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.1",
         "compile": {
-          "bin/placeholder/Math.dll": {}
+          "bin/placeholder/VariableBase.Mathematics.dll": {}
         },
         "runtime": {
-          "bin/placeholder/Math.dll": {}
+          "bin/placeholder/VariableBase.Mathematics.dll": {}
         }
       }
     }
@@ -684,16 +684,16 @@
         "netstandard.library.nuspec"
       ]
     },
-    "Math/1.0.0": {
+    "VariableBase.Mathematics/1.0.0": {
       "type": "project",
-      "path": "../Math/Math.csproj",
-      "msbuildProject": "../Math/Math.csproj"
+      "path": "../VariableBase.Mathematics/VariableBase.Mathematics/VariableBase.Mathematics.csproj",
+      "msbuildProject": "../VariableBase.Mathematics/VariableBase.Mathematics/VariableBase.Mathematics.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.1": [
-      "Math >= 1.0.0",
-      "Microsoft.NETCore.App >= 2.1.0"
+      "Microsoft.NETCore.App >= 2.1.0",
+      "VariableBase.Mathematics >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -703,9 +703,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\git\\Math\\MathConsole\\MathConsole.csproj",
-      "projectName": "MathConsole",
-      "projectPath": "D:\\git\\Math\\MathConsole\\MathConsole.csproj",
+      "projectUniqueName": "D:\\git\\Math\\MathConsole\\VariableBase.MathConsole.csproj",
+      "projectName": "VariableBase.MathConsole",
+      "projectPath": "D:\\git\\Math\\MathConsole\\VariableBase.MathConsole.csproj",
       "packagesPath": "C:\\Users\\Micha\\.nuget\\packages\\",
       "outputPath": "D:\\git\\Math\\MathConsole\\obj\\",
       "projectStyle": "PackageReference",
@@ -726,8 +726,8 @@
       "frameworks": {
         "netcoreapp2.1": {
           "projectReferences": {
-            "D:\\git\\Math\\Math\\Math.csproj": {
-              "projectPath": "D:\\git\\Math\\Math\\Math.csproj"
+            "D:\\git\\Math\\VariableBase.Mathematics\\VariableBase.Mathematics\\VariableBase.Mathematics.csproj": {
+              "projectPath": "D:\\git\\Math\\VariableBase.Mathematics\\VariableBase.Mathematics\\VariableBase.Mathematics.csproj"
             }
           }
         }

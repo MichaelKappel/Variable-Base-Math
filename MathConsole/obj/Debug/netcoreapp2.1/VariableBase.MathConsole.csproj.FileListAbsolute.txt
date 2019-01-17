@@ -1,0 +1,14 @@
+D:\git\Math\MathConsole\obj\Debug\netcoreapp2.1\VariableBase.MathConsole.csprojAssemblyReference.cache
+D:\git\Math\MathConsole\obj\Debug\netcoreapp2.1\VariableBase.MathConsole.csproj.CoreCompileInputs.cache
+D:\git\Math\MathConsole\obj\Debug\netcoreapp2.1\VariableBase.MathConsole.AssemblyInfoInputs.cache
+D:\git\Math\MathConsole\obj\Debug\netcoreapp2.1\VariableBase.MathConsole.AssemblyInfo.cs
+D:\git\Math\MathConsole\bin\Debug\netcoreapp2.1\VariableBase.MathConsole.deps.json
+D:\git\Math\MathConsole\bin\Debug\netcoreapp2.1\VariableBase.MathConsole.runtimeconfig.json
+D:\git\Math\MathConsole\bin\Debug\netcoreapp2.1\VariableBase.MathConsole.runtimeconfig.dev.json
+D:\git\Math\MathConsole\bin\Debug\netcoreapp2.1\VariableBase.MathConsole.dll
+D:\git\Math\MathConsole\bin\Debug\netcoreapp2.1\VariableBase.MathConsole.pdb
+D:\git\Math\MathConsole\bin\Debug\netcoreapp2.1\VariableBase.Mathematics.dll
+D:\git\Math\MathConsole\bin\Debug\netcoreapp2.1\VariableBase.Mathematics.pdb
+D:\git\Math\MathConsole\obj\Debug\netcoreapp2.1\VariableBase.MathConsole.csproj.CopyComplete
+D:\git\Math\MathConsole\obj\Debug\netcoreapp2.1\VariableBase.MathConsole.dll
+D:\git\Math\MathConsole\obj\Debug\netcoreapp2.1\VariableBase.MathConsole.pdb

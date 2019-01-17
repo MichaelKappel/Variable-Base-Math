@@ -1,0 +1,9 @@
+D:\git\Math\VariableBase.Mathematics\VariableBase.Mathematics\bin\Debug\netcoreapp2.1\VariableBase.Mathematics.deps.json
+D:\git\Math\VariableBase.Mathematics\VariableBase.Mathematics\bin\Debug\netcoreapp2.1\VariableBase.Mathematics.dll
+D:\git\Math\VariableBase.Mathematics\VariableBase.Mathematics\bin\Debug\netcoreapp2.1\VariableBase.Mathematics.pdb
+D:\git\Math\VariableBase.Mathematics\VariableBase.Mathematics\obj\Debug\netcoreapp2.1\VariableBase.Mathematics.csprojAssemblyReference.cache
+D:\git\Math\VariableBase.Mathematics\VariableBase.Mathematics\obj\Debug\netcoreapp2.1\VariableBase.Mathematics.csproj.CoreCompileInputs.cache
+D:\git\Math\VariableBase.Mathematics\VariableBase.Mathematics\obj\Debug\netcoreapp2.1\VariableBase.Mathematics.AssemblyInfoInputs.cache
+D:\git\Math\VariableBase.Mathematics\VariableBase.Mathematics\obj\Debug\netcoreapp2.1\VariableBase.Mathematics.AssemblyInfo.cs
+D:\git\Math\VariableBase.Mathematics\VariableBase.Mathematics\obj\Debug\netcoreapp2.1\VariableBase.Mathematics.dll
+D:\git\Math\VariableBase.Mathematics\VariableBase.Mathematics\obj\Debug\netcoreapp2.1\VariableBase.Mathematics.pdb
