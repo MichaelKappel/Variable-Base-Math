@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 
 namespace VariableBase.Mathematics.Interfaces
@@ -18,5 +19,7 @@ namespace VariableBase.Mathematics.Interfaces
         Boolean IsBottom(Number number);
         bool IsEven(Number number);
         bool IsPrime(Number number);
+        Number Convert(MathEnvironment environment, Number number);
+        Number AsBinary(Number number);
     }
 }

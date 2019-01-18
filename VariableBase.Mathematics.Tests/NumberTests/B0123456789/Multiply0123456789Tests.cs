@@ -26,6 +26,24 @@ namespace VariableBase.Mathematics.Tests.NumberTests.B0123456789
             Assert.AreEqual(expected, actual);
         }
 
+        [TestMethod]
+        [TestCategory("Number")]
+        [TestCategory("Multiply")]
+        [TestCategory("0123456789")]
+        public void Multiply_98234567890876_3456789001234()
+        {
+            var env = new MathEnvironment("0123456789");
+
+            Number expected = env.GetNumber("3395752623168");
+
+            Number a = env.GetNumber("9823456");
+            Number b = env.GetNumber("345678");
+
+            Number actual = a * b;
+
+            Assert.AreEqual(expected, actual);
+        }
+
 
         [TestMethod]
         [TestCategory("Multiply")]

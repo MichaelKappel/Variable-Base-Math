@@ -10,6 +10,26 @@ namespace VariableBase.Mathematics
     public class MathEnvironment: IEquatable<MathEnvironment>, IMathEnvironment
     {
         public MathAlgorithm Algorithm;
+        
+        public MathEnvironment() 
+        {
+            Algorithm = new MathAlgorithm(this);
+
+            var tempKey = new List<Char>();
+            var tempKeyNumber = new List<Number>();
+
+            for (var i = 0; i < Char.MaxValue; i++)
+            {
+                Char currentChar = Convert.ToChar(i);
+                tempKey.Add(currentChar);
+                tempKeyNumber.Add(new Number(this, new ReadOnlyCollection<Char>(new Char[] { currentChar }), null, false));
+            }
+
+            this.Key = new ReadOnlyCollection<Char>(tempKey);
+            this.KeyNumber = new ReadOnlyCollection<Number>(tempKeyNumber);
+
+            this.SetupMathEnvironment();
+        }
 
         public MathEnvironment(String rawKey)
         {
@@ -86,9 +106,9 @@ namespace VariableBase.Mathematics
 
         }
 
-        public UInt64 GetIndex(Char arg)
+        public UInt16 GetIndex(Char arg)
         {
-            return (UInt64)this.Key.IndexOf(arg);
+            return (UInt16)this.Key.IndexOf(arg);
         }
 
         public void SetKey(String rawKey)
@@ -108,15 +128,21 @@ namespace VariableBase.Mathematics
             this.Key = new ReadOnlyCollection<Char>(tempKey);
             this.KeyNumber = new ReadOnlyCollection<Number>(tempKeyNumber);
 
+            this.SetupMathEnvironment();
+        }
+
+
+        public void SetupMathEnvironment()
+        {
             this.Bottom = this.Key[0];
             this.First = this.Key[1];
             this.Top = this.Key[this.Key.Count - 1];
-            this.Base = (UInt64)this.Key.Count;
+            this.Base = (UInt16)this.Key.Count;
 
             this.BottomNumber = new Number(this, new ReadOnlyCollection<Char>(new Char[] { this.Key[0] }), null, false);
-            this.FirstNumber = new Number(this, new ReadOnlyCollection<Char>(new Char[] { this.Key[1] }), null, false); 
+            this.FirstNumber = new Number(this, new ReadOnlyCollection<Char>(new Char[] { this.Key[1] }), null, false);
             this.TopNumber = new Number(this, new ReadOnlyCollection<Char>(new Char[] { this.Top }), null, false);
-            this.PowerOfFirstNumber =  new Number(this, new ReadOnlyCollection<Char>(new Char[] { this.Bottom, this.First }), null, false);
+            this.PowerOfFirstNumber = new Number(this, new ReadOnlyCollection<Char>(new Char[] { this.Bottom, this.First }), null, false);
 
 
             if (this.Base > 2)
@@ -129,7 +155,7 @@ namespace VariableBase.Mathematics
             }
         }
 
-        public Number ConvertToFraction(UInt64 numberRaw, UInt64 numeratorNumber, UInt64 denominatorRaw)
+        public Number ConvertToFraction(UInt16 numberRaw, UInt16 numeratorNumber, UInt16 denominatorRaw)
         {
             List<Char> number = this.ConvertToChars(numberRaw);
             List<Char> numerator = this.ConvertToChars(numeratorNumber);
@@ -140,23 +166,23 @@ namespace VariableBase.Mathematics
             return result;
         }
 
-        public List<Char> ConvertToChars(UInt64 number)
+        public List<Char> ConvertToChars(UInt16 number)
         {
             var resultRaw = new List<Char>();
 
-            UInt64 carryOver = number;
+            Int32 carryOver = number;
             while (carryOver > 0)
             {
                 if (carryOver >= this.Base)
                 {
-                    UInt64 columnResultRaw = 0;
+                    Int32 columnResultRaw = 0;
                     columnResultRaw = (carryOver % this.Base);
-                    resultRaw.Add(this.Key[(Int32)columnResultRaw]);
-                    carryOver = (UInt64)(((Decimal)carryOver - (Decimal)columnResultRaw) / (Decimal)this.Base);
+                    resultRaw.Add(this.Key[columnResultRaw]);
+                    carryOver = (Int32)(((Decimal)carryOver - (Decimal)columnResultRaw) / (Decimal)this.Base);
                 }
                 else
                 {
-                    resultRaw.Add(this.Key[(Int32)carryOver]);
+                    resultRaw.Add(this.Key[carryOver]);
                     carryOver = 0;
                 }
             }
@@ -212,7 +238,7 @@ namespace VariableBase.Mathematics
             protected set;
         }
 
-        public UInt64 Base {
+        public UInt16 Base {
             get;
             protected set;
         }
@@ -242,10 +268,34 @@ namespace VariableBase.Mathematics
             }
             return String.Format("[BASE:\"{0}\"|Bottom:\"{1}\"|Top:\"{2}]\"", this.Base, this.Bottom, this.Top) + result;
         }
+        
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                int hashCode = this.Key.GetHashCode();
+                return hashCode;
+            }
+        }
 
+        public override Boolean Equals(Object other)
+        {
+            return this.Equals((MathEnvironment)other);
+        }
+
+        public static bool operator ==(MathEnvironment a, MathEnvironment b)
+        {
+            return a.Equals(b);
+        }
+
+        public static bool operator !=(MathEnvironment a, MathEnvironment b)
+        {
+            return !a.Equals(b);
+        }
+        
         public Boolean Equals(MathEnvironment other)
         {
-            if (this.Base != other.Base)
+            if (object.ReferenceEquals(other, default(MathEnvironment)) || this.Base != other.Base)
             {
                 return false;
             }

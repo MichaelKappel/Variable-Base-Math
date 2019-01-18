@@ -15,7 +15,7 @@ namespace VariableBase.Math.Tests.NumberTests.B0123456789_ABCDEFGHIJKLMNPQRSTUVW
         [TestCategory("B0123456789_ABCDEFGHIJKLMNPQRSTUVWXYZ")]
         public void AB_DE_Test_1()
         {
-            var env = new MathEnvironment("B0123456789_ABCDEFGHIJKLMNPQRSTUVWXYZ");
+            var env = new MathEnvironment("0123456789_ABCDEFGHIJKLMNPQRSTUVWXYZ");
 
             Number cNumber = env.GetNumber("00YICXCDSHI3_MJ9FAZ0NU1EPWIZX8HVHR938F35ZQ973UTRLPZL7I61V3A2J3V26GJF61W815A");
 

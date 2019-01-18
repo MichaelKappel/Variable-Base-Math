@@ -192,6 +192,18 @@ namespace VariableBase.Mathematics
             return Operator.Compare(this, other);
         }
 
+        public Number Convert(MathEnvironment environment)
+        {
+            return Operator.Convert(environment, this);
+        }
+
+        public Number AsBinary()
+        {
+            return Operator.AsBinary(this);
+        }
+
+        
+
         public override String ToString()
         {
             String result = null;

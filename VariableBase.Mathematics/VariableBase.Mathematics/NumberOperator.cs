@@ -92,9 +92,9 @@ namespace VariableBase.Mathematics
         }
         public int Compare(Number a, Number b)
         {
-            if (a.Environment == default(MathEnvironment) || (a.Environment.Algorithm.IsBottom(a.Segments)) && Object.ReferenceEquals(a.Fragment, default(Fraction)))
+            if (Object.ReferenceEquals(a.Environment, default(MathEnvironment)) || (a.Environment.Algorithm.IsBottom(a.Segments)) && Object.ReferenceEquals(a.Fragment, default(Fraction)))
             {
-                if (b.Environment == default(MathEnvironment) || (b.Environment.Algorithm.IsBottom(a.Segments) && Object.ReferenceEquals(b.Fragment, default(Fraction))))
+                if (Object.ReferenceEquals(b.Environment, default(MathEnvironment)) || (b.Environment.Algorithm.IsBottom(a.Segments) && Object.ReferenceEquals(b.Fragment, default(Fraction))))
                 {
                     return 0;
                 }
@@ -103,7 +103,7 @@ namespace VariableBase.Mathematics
                     return 1;
                 }
             }
-            else if (b.Environment == default(MathEnvironment) || (b.Environment.Algorithm.IsBottom(a.Segments) && Object.ReferenceEquals(b.Fragment, default(Fraction))))
+            else if (Object.ReferenceEquals(b.Environment, default(MathEnvironment)) || (b.Environment.Algorithm.IsBottom(a.Segments) && Object.ReferenceEquals(b.Fragment, default(Fraction))))
             {
                 return -1;
             }
@@ -279,7 +279,7 @@ namespace VariableBase.Mathematics
                 return false;
             }
 
-            UInt64 charIndex = number.Environment.GetIndex(number.Segments[0]);
+            UInt16 charIndex = number.Environment.GetIndex(number.Segments[0]);
             if (charIndex % 2 == 0)
             {
                 return true;
@@ -304,6 +304,41 @@ namespace VariableBase.Mathematics
         {
 
             return new Number(number.Environment, number.Environment.Algorithm.GetSmallestDivisor(number.Segments), null, false);
+        }
+
+        public Number Convert(MathEnvironment environment, Number number)
+        {
+            //UInt16 4294967295
+            //Int32 2147483647
+
+            //Tuple<ReadOnlyCollection<Char>, ReadOnlyCollection<Char>, ReadOnlyCollection<Char>> a = number.Environment.Algorithm.Divide(number.Segments);
+
+            return new Number(environment,null, null, number.IsNegative);
+        }
+
+        public Number AsBinary(Number number)
+        {
+            //var binaryEnvironment = new MathEnvironment("01");
+
+            //ReadOnlyCollection<Char> runningTotal = new ReadOnlyCollection<Char>(new Char[] { binaryEnvironment.Bottom });
+            //for (var i = 0; i < number.Segments.Count; i++)
+            //{
+            //    UInt16 currentCharIndex = number.Environment.GetIndex(;
+            //    ReadOnlyCollection<Char> currentPositionValue = , 2).Reverse().ToArray();
+            //    ReadOnlyCollection<Char> currentBinary = binaryEnvironment.Algorithm.PowerOfBase(new ReadOnlyCollection<Char>(System.Convert.ToString(, (UInt16)i);
+            //    if (!binaryEnvironment)
+            //    runningTotal = binaryEnvironment.Algorithm.Add(runningTotal, currentBinary);
+            //}
+
+            //Fraction f = default(Fraction);
+            //if (number.Fragment != default(Fraction))
+            //{
+            //    f = new Fraction(number.Fragment.Numerator.AsBinary(), number.Fragment.Denominator.AsBinary());
+            //}
+
+            //return new Number(binaryEnvironment, runningTotal, null, number.IsNegative);
+
+            throw new NotImplementedException();
         }
     }
 }

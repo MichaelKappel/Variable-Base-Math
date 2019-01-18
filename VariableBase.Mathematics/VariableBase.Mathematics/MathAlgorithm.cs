@@ -19,7 +19,7 @@ namespace VariableBase.Mathematics
         public ReadOnlyCollection<Char> Add(ReadOnlyCollection<Char> a, ReadOnlyCollection<Char> b)
         {
 
-            Int64 maxPosition = a.Count;
+            Int32 maxPosition = a.Count;
             if (b.Count > maxPosition)
             {
                 maxPosition = b.Count;
@@ -27,32 +27,32 @@ namespace VariableBase.Mathematics
 
             var resultNumber = new List<Char>();
             UInt64 carryOver = 0;
-            Int64 position = 0;
+            Int32 position = 0;
             while (position < maxPosition)
             {
                 UInt64 columnValue = carryOver;
 
                 if (position < a.Count)
                 {
-                    columnValue += this.Environment.GetIndex(a[(Int32)position]);
+                    columnValue += this.Environment.GetIndex(a[position]);
                 }
 
                 if (position < b.Count)
                 {
-                    columnValue += this.Environment.GetIndex(b[(Int32)position]);
+                    columnValue += this.Environment.GetIndex(b[position]);
                 }
 
                 Char columnResult;
                 if (columnValue >= this.Environment.Base)
                 {
-                    UInt64 columnResultRaw = (columnValue % this.Environment.Base);
-                    columnResult = this.Environment.Key[(Int32)columnResultRaw];
+                    UInt16 columnResultRaw = (UInt16)(columnValue % this.Environment.Base);
+                    columnResult = this.Environment.Key[columnResultRaw];
 
                     carryOver = (UInt64)(((Decimal)columnValue - (Decimal)columnResultRaw) / (Decimal)this.Environment.Base);
                 }
                 else
                 {
-                    columnResult = this.Environment.Key[(Int32)columnValue];
+                    columnResult = this.Environment.Key[(UInt16)columnValue];
                     carryOver = 0;
                 }
 
@@ -60,21 +60,21 @@ namespace VariableBase.Mathematics
                 position++;
             }
 
-            if (carryOver != this.Environment.Bottom)
+            if (carryOver != 0)
             {
                 Char columnResult;
                 while (carryOver >= this.Environment.Base)
                 {
-                    UInt64 columnResultRaw = (carryOver % this.Environment.Base);
-                    columnResult = this.Environment.Key[(Int32)columnResultRaw];
+                    UInt16 columnResultRaw = (UInt16)(carryOver % this.Environment.Base);
+                    columnResult = this.Environment.Key[columnResultRaw];
                     resultNumber.Add(columnResult);
 
-                    carryOver = (UInt64)((Decimal)columnResultRaw / (Decimal)this.Environment.Base);
+                    carryOver = (UInt16)((Decimal)columnResultRaw / (Decimal)this.Environment.Base);
                 }
 
                 if (carryOver > 0)
                 {
-                    columnResult = this.Environment.Key[(Int32)carryOver];
+                    columnResult = this.Environment.Key[(UInt16)carryOver];
                     resultNumber.Add(columnResult);
                 }
             }
@@ -120,18 +120,18 @@ namespace VariableBase.Mathematics
 
                 Decimal firstIndexOfResultRaw = (firstIndexOfLargerNumber + firstIndexOfSmallerNumber) / 2M;
 
-                UInt64 firstIndexOfResult;
+                UInt16 firstIndexOfResult;
                 Decimal halfBase;
 
                 if (variance > 0)
                 {
                     halfBase = ((Decimal)this.Environment.Base) / 2;
-                    firstIndexOfResult = (UInt64)System.Math.Ceiling(firstIndexOfResultRaw);
+                    firstIndexOfResult = (UInt16)System.Math.Ceiling(firstIndexOfResultRaw);
                 }
                 else
                 {
                     halfBase = ((Decimal)this.Environment.Base) / 2;
-                    firstIndexOfResult = (UInt64)System.Math.Floor(firstIndexOfResultRaw);
+                    firstIndexOfResult = (UInt16)System.Math.Floor(firstIndexOfResultRaw);
                 }
 
 
@@ -160,11 +160,11 @@ namespace VariableBase.Mathematics
 
                     if ((Decimal)power + variance > 1 && (Decimal)power + variance > 0)
                     {
-                        result = this.PowerOfBase(this.Environment.Key[(Int32)firstIndexOfResult], (UInt64)(power + variance));
+                        result = this.PowerOfBase(this.Environment.Key[firstIndexOfResult], (UInt16)(power + variance));
                     }
                     else
                     {
-                        result = this.PowerOfBase(this.Environment.Key[(Int32)firstIndexOfResult], (UInt64)(power));
+                        result = this.PowerOfBase(this.Environment.Key[firstIndexOfResult], (UInt16)(power));
                     }
 
                 }
@@ -200,7 +200,7 @@ namespace VariableBase.Mathematics
                 
                 if (i == 0)
                 {
-                    if (variance > 0 && (UInt64)System.Math.Ceiling(halfCharIndexWithRemainder) < this.Environment.Base)
+                    if (variance > 0 && (UInt16)System.Math.Ceiling(halfCharIndexWithRemainder) < this.Environment.Base)
                     {
                         resultSegments[0] = this.Environment.Key[(Int32)System.Math.Ceiling(halfCharIndexWithRemainder)];
                     }
@@ -211,7 +211,7 @@ namespace VariableBase.Mathematics
                 }
                 else
                 {
-                    UInt64 halfCharIndexWithRemainderIndex = (UInt64)System.Math.Floor(halfCharIndexWithRemainder);
+                    UInt16 halfCharIndexWithRemainderIndex = (UInt16)System.Math.Floor(halfCharIndexWithRemainder);
                     if (halfCharIndexWithRemainderIndex >= this.Environment.Base)
                     {
                         Int32 currentSegmentIndex = (Int32)System.Math.Floor(halfBaseIndexDetailed);
@@ -220,7 +220,7 @@ namespace VariableBase.Mathematics
                     }
                     else
                     {
-                        resultSegments[i] = this.Environment.Key[(Int32)halfCharIndexWithRemainderIndex];
+                        resultSegments[i] = this.Environment.Key[halfCharIndexWithRemainderIndex];
                         remainder = (halfCharIndexWithRemainder - ((Decimal)halfCharIndexWithRemainderIndex)) * this.Environment.Base;
                     }
                 }
@@ -234,24 +234,24 @@ namespace VariableBase.Mathematics
             return new ReadOnlyCollection<Char>(resultSegments);
         }
 
-        public ReadOnlyCollection<Char> PowerOfBase(Char a, UInt64 times)
+        public ReadOnlyCollection<Char> PowerOfBase(Char a, UInt16 times)
         {
             return this.PowerOfBase(new ReadOnlyCollection<Char>(new Char[] { a }), times);
         }
 
-        public ReadOnlyCollection<Char> PowerOfBase(ReadOnlyCollection<Char> a, UInt64 times)
+        public ReadOnlyCollection<Char> PowerOfBase(ReadOnlyCollection<Char> a, UInt16 times)
         {
             if (a.Count == 1 && a[0] == this.Environment.Bottom)
             {
                 return a;
             }
 
-            var segments = new Char[(a.Count + (Int32)times)];
+            var segments = new Char[(a.Count + times)];
             for (Int32 i = segments.Length - 1; i >= 0; i--)
             {
                 segments[i] = this.Environment.Bottom;
             }
-            a.CopyTo(segments, (Int32)times);
+            a.CopyTo(segments, times);
             return new ReadOnlyCollection<Char>(segments);
         }
 
@@ -322,7 +322,7 @@ namespace VariableBase.Mathematics
                 return false;
             }
 
-            UInt64 charIndex = this.Environment.GetIndex(a[0]);
+            UInt16 charIndex = this.Environment.GetIndex(a[0]);
             if (charIndex % 2 == 0)
             {
                 return true;
@@ -516,12 +516,12 @@ namespace VariableBase.Mathematics
                 if (columnTotal >= this.Environment.Base)
                 {
                     UInt64 remainder = (columnTotal % this.Environment.Base);
-                    columnPositionResult = this.Environment.Key[(Int32)remainder];
+                    columnPositionResult = this.Environment.Key[(UInt16)remainder];
                     carryOver = (columnTotal - remainder) / this.Environment.Base;
                 }
                 else
                 {
-                    columnPositionResult = this.Environment.Key[(Int32)columnTotal];
+                    columnPositionResult = this.Environment.Key[(UInt16)columnTotal];
                     carryOver = 0;
                 }
 
@@ -533,13 +533,13 @@ namespace VariableBase.Mathematics
                 Char carryOverResult;
                 if (carryOver > this.Environment.Base)
                 {
-                    UInt64 remainder = (carryOver % this.Environment.Base);
-                    carryOverResult = this.Environment.Key[(Int32)remainder];
+                    UInt16 remainder = (UInt16)(carryOver % (UInt64)this.Environment.Base);
+                    carryOverResult = this.Environment.Key[remainder];
                     carryOver = (carryOver - remainder) / this.Environment.Base;
                 }
                 else
                 {
-                    carryOverResult = this.Environment.Key[(Int32)carryOver];
+                    carryOverResult = this.Environment.Key[(UInt16)carryOver];
                     carryOver = 0;
                 }
                 resultRaw.Add(carryOverResult);
@@ -551,14 +551,14 @@ namespace VariableBase.Mathematics
         {
             ReadOnlyCollection<Char> result = new ReadOnlyCollection<Char>(new Char[] { this.Environment.Bottom });
 
-            for (UInt64 i = 0; i < (UInt64)a.Count; i++)
+            for (UInt16 i = 0; i < (UInt16)a.Count; i++)
             {
-                Char numberSegment = a[(Int32)i];
+                Char numberSegment = a[i];
                 ReadOnlyCollection<Char> currentResult = this.Multiply(b, numberSegment);
 
                 if (i > 0)
                 {
-                    currentResult = this.PowerOfBase(currentResult, (UInt32)i);
+                    currentResult = this.PowerOfBase(currentResult, i);
                 }
 
                 result = this.Add(currentResult, result);
@@ -569,21 +569,21 @@ namespace VariableBase.Mathematics
 
         public Char[] Multiply(Char number1, Char number2)
         {
-            UInt64 number1Index = this.Environment.GetIndex(number1);
-            UInt64 number2Index = this.Environment.GetIndex(number2);
+            UInt16 number1Index = this.Environment.GetIndex(number1);
+            UInt16 number2Index = this.Environment.GetIndex(number2);
 
-            UInt64 resultIndex = number1Index * number2Index;
+            Int32 resultIndex = number1Index * number2Index;
 
             if (resultIndex >= this.Environment.Base)
             {
-                UInt64 firstNumber = (resultIndex % this.Environment.Base);
-                UInt64 secondNumber = (resultIndex - firstNumber) / this.Environment.Base;
+                Int32 firstNumber = (resultIndex % this.Environment.Base);
+                Int32 secondNumber = (resultIndex - firstNumber) / this.Environment.Base;
 
-                return new Char[] { this.Environment.Key[(Int32)secondNumber], this.Environment.Key[(Int32)firstNumber] };
+                return new Char[] { this.Environment.Key[secondNumber], this.Environment.Key[firstNumber] };
             }
             else
             {
-                return new Char[] { this.Environment.Key[(Int32)resultIndex] };
+                return new Char[] { this.Environment.Key[resultIndex] };
             }
         }
 
@@ -595,16 +595,16 @@ namespace VariableBase.Mathematics
         {
             Number result;
 
-            UInt64 indexToDivide = this.Environment.GetIndex(dividend);
-            UInt64 indexToDivideBy = this.Environment.GetIndex(divisor);
+            UInt16 indexToDivide = this.Environment.GetIndex(dividend);
+            UInt16 indexToDivideBy = this.Environment.GetIndex(divisor);
 
-            UInt64 remainder;
+            UInt16 remainder;
 
             if (indexToDivide > indexToDivideBy)
             {
-                remainder = indexToDivide % indexToDivideBy;
+                remainder = (UInt16)(indexToDivide % indexToDivideBy);
 
-                UInt64 resultRaw = (UInt64)System.Math.Floor((decimal)indexToDivide / (decimal)indexToDivideBy);
+                UInt16 resultRaw = (UInt16)System.Math.Floor((decimal)indexToDivide / (decimal)indexToDivideBy);
 
                 result = this.Environment.ConvertToFraction(resultRaw, remainder, indexToDivideBy);
             }
@@ -635,31 +635,31 @@ namespace VariableBase.Mathematics
 
             // 60 - 90
             var resultSegments = new List<Char>();
-            Int64 borrow = 0;
+            Int32 borrow = 0;
             Int32 position = 0;
             while (position < maxPosition)
             {
-                Int64 columnValue = borrow;
+                Int32 columnValue = borrow;
                 borrow = 0;
 
 
                 if (position < a.Count)
                 {
-                    columnValue += (Int64)this.Environment.GetIndex(a[position]);
+                    columnValue += this.Environment.GetIndex(a[position]);
                 }
 
                 if (position < b.Count)
                 {
-                    columnValue -= (Int64)this.Environment.GetIndex(b[position]);
+                    columnValue -= this.Environment.GetIndex(b[position]);
                 }
 
                 if (columnValue < 0)
                 {
                     borrow -= 1;
-                    columnValue += (Int64)this.Environment.Base;
+                    columnValue += this.Environment.Base;
                 }
 
-                resultSegments.Add(this.Environment.Key[(Int32)columnValue]);
+                resultSegments.Add(this.Environment.Key[columnValue]);
                 position++;
             }
 
