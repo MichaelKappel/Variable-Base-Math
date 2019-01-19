@@ -16,7 +16,11 @@ namespace VariableBase.Mathematics
             this.Environment = environment;
 
         }
-        public ReadOnlyCollection<Char> Add(ReadOnlyCollection<Char> a, ReadOnlyCollection<Char> b)
+
+
+        #region Add
+
+        public ReadOnlyCollection<UInt16> Add(ReadOnlyCollection<UInt16> a, ReadOnlyCollection<UInt16> b)
         {
 
             Int32 maxPosition = a.Count;
@@ -25,7 +29,7 @@ namespace VariableBase.Mathematics
                 maxPosition = b.Count;
             }
 
-            var resultNumber = new List<Char>();
+            var resultNumber = new List<UInt16>();
             UInt64 carryOver = 0;
             Int32 position = 0;
             while (position < maxPosition)
@@ -34,25 +38,25 @@ namespace VariableBase.Mathematics
 
                 if (position < a.Count)
                 {
-                    columnValue += this.Environment.GetIndex(a[position]);
+                    columnValue += a[position];
                 }
 
                 if (position < b.Count)
                 {
-                    columnValue += this.Environment.GetIndex(b[position]);
+                    columnValue += b[position];
                 }
 
-                Char columnResult;
-                if (columnValue >= this.Environment.Base)
+                UInt16 columnResult;
+                if (columnValue >= (UInt64)this.Environment.Key.Count)
                 {
-                    UInt16 columnResultRaw = (UInt16)(columnValue % this.Environment.Base);
-                    columnResult = this.Environment.Key[columnResultRaw];
+                    UInt16 columnResultRaw = (UInt16)(columnValue % (UInt64)this.Environment.Key.Count);
+                    columnResult = columnResultRaw;
 
-                    carryOver = (UInt64)(((Decimal)columnValue - (Decimal)columnResultRaw) / (Decimal)this.Environment.Base);
+                    carryOver = (UInt64)(((Decimal)columnValue - (Decimal)columnResultRaw) / (Decimal)this.Environment.Key.Count);
                 }
                 else
                 {
-                    columnResult = this.Environment.Key[(UInt16)columnValue];
+                    columnResult = (UInt16)columnValue;
                     carryOver = 0;
                 }
 
@@ -62,24 +66,24 @@ namespace VariableBase.Mathematics
 
             if (carryOver != 0)
             {
-                Char columnResult;
-                while (carryOver >= this.Environment.Base)
+                UInt16 columnResult;
+                while (carryOver >= (UInt64)this.Environment.Key.Count)
                 {
-                    UInt16 columnResultRaw = (UInt16)(carryOver % this.Environment.Base);
-                    columnResult = this.Environment.Key[columnResultRaw];
+                    UInt16 columnResultRaw = (UInt16)(carryOver % (UInt64)this.Environment.Key.Count);
+                    columnResult = columnResultRaw;
                     resultNumber.Add(columnResult);
 
-                    carryOver = (UInt16)((Decimal)columnResultRaw / (Decimal)this.Environment.Base);
+                    carryOver = (UInt16)((Decimal)columnResultRaw / (Decimal)this.Environment.Key.Count);
                 }
 
                 if (carryOver > 0)
                 {
-                    columnResult = this.Environment.Key[(UInt16)carryOver];
+                    columnResult = (UInt16)carryOver;
                     resultNumber.Add(columnResult);
                 }
             }
 
-            var result = new ReadOnlyCollection<Char>(resultNumber);
+            var result = new ReadOnlyCollection<UInt16>(resultNumber);
 
 #if DEBUG
             if (this.IsLessThan(result, a) || this.IsLessThan(result, b))
@@ -90,9 +94,11 @@ namespace VariableBase.Mathematics
             return result;
         }
 
-        public ReadOnlyCollection<Char> GetWholeNumberSomewhereBetween(ReadOnlyCollection<Char> a, ReadOnlyCollection<Char> b, Int64 variance = 0)
+        #endregion
+
+        public ReadOnlyCollection<UInt16> GetWholeNumberSomewhereBetween(ReadOnlyCollection<UInt16> a, ReadOnlyCollection<UInt16> b, Int64 variance = 0)
         {
-            ReadOnlyCollection<Char> result;
+            ReadOnlyCollection<UInt16> result;
 
             if (a == b)
             {
@@ -101,8 +107,8 @@ namespace VariableBase.Mathematics
             else
             {
 
-                ReadOnlyCollection<Char> largerNumber;
-                ReadOnlyCollection<Char> smallerNumber;
+                ReadOnlyCollection<UInt16> largerNumber;
+                ReadOnlyCollection<UInt16> smallerNumber;
 
                 if (this.IsGreaterThan(a, b))
                 {
@@ -115,8 +121,8 @@ namespace VariableBase.Mathematics
                     smallerNumber = a;
                 }
 
-                Decimal firstIndexOfLargerNumber = this.Environment.GetIndex(largerNumber[largerNumber.Count - 1]);
-                Decimal firstIndexOfSmallerNumber = this.Environment.GetIndex(smallerNumber[smallerNumber.Count - 1]);
+                Decimal firstIndexOfLargerNumber = largerNumber[largerNumber.Count - 1];
+                Decimal firstIndexOfSmallerNumber = smallerNumber[smallerNumber.Count - 1];
 
                 Decimal firstIndexOfResultRaw = (firstIndexOfLargerNumber + firstIndexOfSmallerNumber) / 2M;
 
@@ -125,12 +131,12 @@ namespace VariableBase.Mathematics
 
                 if (variance > 0)
                 {
-                    halfBase = ((Decimal)this.Environment.Base) / 2;
+                    halfBase = ((Decimal)this.Environment.Key.Count) / 2;
                     firstIndexOfResult = (UInt16)System.Math.Ceiling(firstIndexOfResultRaw);
                 }
                 else
                 {
-                    halfBase = ((Decimal)this.Environment.Base) / 2;
+                    halfBase = ((Decimal)this.Environment.Key.Count) / 2;
                     firstIndexOfResult = (UInt16)System.Math.Floor(firstIndexOfResultRaw);
                 }
 
@@ -139,7 +145,7 @@ namespace VariableBase.Mathematics
                 if ((largerNumber.Count - smallerNumber.Count <= 1)
                     || (largerNumber.Count - smallerNumber.Count == 2 && firstIndexOfResult <= 1))
                 {
-                    ReadOnlyCollection<Char> combinedValue = this.Add(largerNumber, smallerNumber);
+                    ReadOnlyCollection<UInt16> combinedValue = this.Add(largerNumber, smallerNumber);
                     result = this.GetAboutHalf(combinedValue, variance);
                 }
                 else
@@ -160,11 +166,11 @@ namespace VariableBase.Mathematics
 
                     if ((Decimal)power + variance > 1 && (Decimal)power + variance > 0)
                     {
-                        result = this.PowerOfBase(this.Environment.Key[firstIndexOfResult], (UInt16)(power + variance));
+                        result = this.PowerOfBase(firstIndexOfResult, (UInt16)(power + variance));
                     }
                     else
                     {
-                        result = this.PowerOfBase(this.Environment.Key[firstIndexOfResult], (UInt16)(power));
+                        result = this.PowerOfBase(firstIndexOfResult, (UInt16)(power));
                     }
 
                 }
@@ -172,109 +178,109 @@ namespace VariableBase.Mathematics
             return result;
         }
 
-        public ReadOnlyCollection<Char> GetAboutHalf(ReadOnlyCollection<Char> number, Int64 variance)
+        public ReadOnlyCollection<UInt16> GetAboutHalf(ReadOnlyCollection<UInt16> number, Int64 variance)
         {
-            Decimal halfFirstCharIndexDetail = ((Decimal)this.Environment.GetIndex(number[number.Count - 1])) / 2M;
+            Decimal halfFirstCharIndexDetail = ((Decimal)number[number.Count - 1]) / 2M;
 
-            Decimal halfBaseIndexDetailed = ((Decimal)this.Environment.Base) / 2M;
+            Decimal halfBaseIndexDetailed = ((Decimal)this.Environment.Key.Count) / 2M;
 
-            Char[] resultSegments;
+            UInt16[] resultSegments;
 
             Decimal remainder = 0M;
 
 
             if (halfFirstCharIndexDetail >= 1M)
             {
-                resultSegments = new Char[number.Count];
+                resultSegments = new UInt16[number.Count];
             }
             else
             {
-                resultSegments = new Char[number.Count - 1];
+                resultSegments = new UInt16[number.Count - 1];
                 remainder = halfBaseIndexDetailed;
             }
 
             for (var i = resultSegments.Length - 1; i >= 0; i--)
             {
-                Decimal charIndex = this.Environment.GetIndex(number[i]);
+                Decimal charIndex = number[i];
                 Decimal halfCharIndexWithRemainder = (charIndex / 2M) + remainder;
                 
                 if (i == 0)
                 {
-                    if (variance > 0 && (UInt16)System.Math.Ceiling(halfCharIndexWithRemainder) < this.Environment.Base)
+                    if (variance > 0 && (UInt16)System.Math.Ceiling(halfCharIndexWithRemainder) < this.Environment.Key.Count)
                     {
-                        resultSegments[0] = this.Environment.Key[(Int32)System.Math.Ceiling(halfCharIndexWithRemainder)];
+                        resultSegments[0] = (UInt16)System.Math.Ceiling(halfCharIndexWithRemainder);
                     }
                     else
                     {
-                        resultSegments[0] = this.Environment.Key[(Int32)System.Math.Floor(halfCharIndexWithRemainder)];
+                        resultSegments[0] = (UInt16)(Int32)System.Math.Floor(halfCharIndexWithRemainder);
                     }
                 }
                 else
                 {
                     UInt16 halfCharIndexWithRemainderIndex = (UInt16)System.Math.Floor(halfCharIndexWithRemainder);
-                    if (halfCharIndexWithRemainderIndex >= this.Environment.Base)
+                    if (halfCharIndexWithRemainderIndex >= this.Environment.Key.Count)
                     {
                         Int32 currentSegmentIndex = (Int32)System.Math.Floor(halfBaseIndexDetailed);
-                        resultSegments[i] = this.Environment.Key[currentSegmentIndex];
+                        resultSegments[i] = (UInt16)currentSegmentIndex;
                         remainder = 0M;
                     }
                     else
                     {
-                        resultSegments[i] = this.Environment.Key[halfCharIndexWithRemainderIndex];
-                        remainder = (halfCharIndexWithRemainder - ((Decimal)halfCharIndexWithRemainderIndex)) * this.Environment.Base;
+                        resultSegments[i] = halfCharIndexWithRemainderIndex;
+                        remainder = (halfCharIndexWithRemainder - ((Decimal)halfCharIndexWithRemainderIndex)) * this.Environment.Key.Count;
                     }
                 }
             }
 
-            while (resultSegments[resultSegments.Length-1] == this.Environment.Bottom)
+            while (resultSegments[resultSegments.Length-1] == 0)
             {
                 resultSegments = resultSegments.Take(resultSegments.Length - 1).ToArray();
             }
 
-            return new ReadOnlyCollection<Char>(resultSegments);
+            return new ReadOnlyCollection<UInt16>(resultSegments);
         }
 
-        public ReadOnlyCollection<Char> PowerOfBase(Char a, UInt16 times)
+        public ReadOnlyCollection<UInt16> PowerOfBase(UInt16 a, UInt16 times)
         {
-            return this.PowerOfBase(new ReadOnlyCollection<Char>(new Char[] { a }), times);
+            return this.PowerOfBase(new ReadOnlyCollection<UInt16>(new UInt16[] { a }), times);
         }
 
-        public ReadOnlyCollection<Char> PowerOfBase(ReadOnlyCollection<Char> a, UInt16 times)
+        public ReadOnlyCollection<UInt16> PowerOfBase(ReadOnlyCollection<UInt16> a, UInt16 times)
         {
-            if (a.Count == 1 && a[0] == this.Environment.Bottom)
+            if (a.Count == 1 && a[0] == 0)
             {
                 return a;
             }
 
-            var segments = new Char[(a.Count + times)];
+            var segments = new UInt16[(a.Count + times)];
             for (Int32 i = segments.Length - 1; i >= 0; i--)
             {
-                segments[i] = this.Environment.Bottom;
+                segments[i] = 0;
             }
             a.CopyTo(segments, times);
-            return new ReadOnlyCollection<Char>(segments);
+            return new ReadOnlyCollection<UInt16>(segments);
         }
 
-        public Tuple<ReadOnlyCollection<Char>, ReadOnlyCollection<Char>, ReadOnlyCollection<Char>> Divide(ReadOnlyCollection<Char> numerator, ReadOnlyCollection<Char> denominator)
+        public Tuple<ReadOnlyCollection<UInt16>, ReadOnlyCollection<UInt16>, ReadOnlyCollection<UInt16>> Divide(ReadOnlyCollection<UInt16> numerator, ReadOnlyCollection<UInt16> denominator)
         {
             if (this.IsBottom(denominator))
             {
-                return new Tuple<ReadOnlyCollection<Char>, ReadOnlyCollection<Char>, ReadOnlyCollection<Char>>(numerator, null, null);
+                return new Tuple<ReadOnlyCollection<UInt16>, ReadOnlyCollection<UInt16>, ReadOnlyCollection<UInt16>>(numerator, null, null);
             }
             else if (this.IsLessThan(numerator, denominator))
             {
-                return new Tuple<ReadOnlyCollection<Char>, ReadOnlyCollection<Char>, ReadOnlyCollection<Char>>(new ReadOnlyCollection<char>(new Char[] { this.Environment.Bottom }), numerator, denominator);
+                return new Tuple<ReadOnlyCollection<UInt16>, ReadOnlyCollection<UInt16>, ReadOnlyCollection<UInt16>>(new ReadOnlyCollection<UInt16>(new UInt16[]{ 0 }), numerator, denominator);
             }
 
 
-            var floor = new ReadOnlyCollection<Char>(new Char[] { this.Environment.First });
-            ReadOnlyCollection<Char> ceiling = numerator;
+            ReadOnlyCollection<UInt16> floor = this.Environment.KeyNumber[1].Segments;
+            ReadOnlyCollection<UInt16> ceiling = numerator;
 
-            ReadOnlyCollection<Char> lastNumberTried = this.GetWholeNumberSomewhereBetween(ceiling, floor);
-            ReadOnlyCollection<Char> numeratorTestResult = this.Multiply(lastNumberTried, denominator);
+            ReadOnlyCollection<UInt16> lastNumberTried = this.GetWholeNumberSomewhereBetween(ceiling, floor);
+            ReadOnlyCollection<UInt16> numeratorTestResult = this.Multiply(lastNumberTried, denominator);
 
-            ReadOnlyCollection<Char> maxDifference = this.Subtract(denominator, new ReadOnlyCollection<Char>(new Char[] { this.Environment.First }));
-            ReadOnlyCollection<Char> minimumTestResult = this.Subtract(numerator, maxDifference);
+            ReadOnlyCollection<UInt16> maxDifference = this.Subtract(denominator, new ReadOnlyCollection<UInt16>(new UInt16[] { 1 }));
+            ReadOnlyCollection<UInt16> minimumTestResult = this.Subtract(numerator, maxDifference);
 
             while (this.IsLessThan(numeratorTestResult, minimumTestResult) || this.IsGreaterThan(numeratorTestResult, numerator))
             {
@@ -291,38 +297,58 @@ namespace VariableBase.Mathematics
                 numeratorTestResult = this.Multiply(lastNumberTried, denominator);
             }
 
-            Tuple<ReadOnlyCollection<Char>, ReadOnlyCollection<Char>, ReadOnlyCollection<Char>> result;
+            Tuple<ReadOnlyCollection<UInt16>, ReadOnlyCollection<UInt16>, ReadOnlyCollection<UInt16>> result;
 
             if (this.IsEqual(numeratorTestResult, numerator))
             {
-                result = new Tuple<ReadOnlyCollection<Char>, ReadOnlyCollection<Char>, ReadOnlyCollection<Char>>(lastNumberTried, null, null);
+                result = new Tuple<ReadOnlyCollection<UInt16>, ReadOnlyCollection<UInt16>, ReadOnlyCollection<UInt16>>(lastNumberTried, null, null);
             }
             else
             {
                 var leftOver = this.Subtract(numerator, numeratorTestResult);
-                result = new Tuple<ReadOnlyCollection<Char>, ReadOnlyCollection<Char>, ReadOnlyCollection<Char>>(lastNumberTried, leftOver, denominator);
+                result = new Tuple<ReadOnlyCollection<UInt16>, ReadOnlyCollection<UInt16>, ReadOnlyCollection<UInt16>>(lastNumberTried, leftOver, denominator);
             }
+
+#if DEBUG
+            if (this.IsGreaterThan(result.Item1, numerator) && this.IsGreaterThan(result.Item1, denominator))
+            {
+                throw new Exception("MathAlgorithm Division error");
+            }
+            else if (result.Item1 != default(ReadOnlyCollection<UInt16>) && result.Item1.Count > 1 && result.Item1[result.Item1.Count - 1] == 0)
+            {
+                throw new Exception("MathAlgorithm Division leading zero error whole number");
+            }
+            else if (result.Item2 != default(ReadOnlyCollection<UInt16>) && result.Item2.Count > 1 && result.Item2[result.Item2.Count - 1] == 0)
+            {
+                throw new Exception("MathAlgorithm Division leading zero error numerator");
+            }
+            else if (result.Item3 != default(ReadOnlyCollection<UInt16>) && result.Item3.Count > 1 && result.Item3[result.Item3.Count - 1] == 0)
+            {
+                throw new Exception("MathAlgorithm Division leading zero error denominator");
+            }
+#endif
+
 
             return result;
         }
 
-        public bool IsOdd(ReadOnlyCollection<Char> a)
+        public bool IsOdd(ReadOnlyCollection<UInt16> a)
         {
             return !this.IsEven(a);
         }
 
-        public bool IsEven(ReadOnlyCollection<Char> a)
+        public bool IsEven(ReadOnlyCollection<UInt16> a)
         {
-            if (a[0] == this.Environment.Bottom)
+            if (a[0] == 0)
             {
                 return true;
             }
-            else if (this.Environment.Base == 2)
+            else if (this.Environment.Key.Count == 2)
             {
                 return false;
             }
 
-            UInt16 charIndex = this.Environment.GetIndex(a[0]);
+            UInt16 charIndex = a[0];
             if (charIndex % 2 == 0)
             {
                 return true;
@@ -333,13 +359,13 @@ namespace VariableBase.Mathematics
             }
         }
 
-        internal bool IsPrime(ReadOnlyCollection<Char> a)
+        internal bool IsPrime(ReadOnlyCollection<UInt16> a)
         {
-            return this.GetSmallestDivisor(a) == default(ReadOnlyCollection<Char>);
+            return this.GetSmallestDivisor(a) == default(ReadOnlyCollection<UInt16>);
         }
 
 
-        internal ReadOnlyCollection<Char> GetSmallestDivisor(ReadOnlyCollection<Char> a)
+        internal ReadOnlyCollection<UInt16> GetSmallestDivisor(ReadOnlyCollection<UInt16> a)
         {
 
             if (this.IsBottom(a))
@@ -352,32 +378,32 @@ namespace VariableBase.Mathematics
                 return this.Environment.SecondNumber.Segments;
             }
 
-            ReadOnlyCollection<Char> four = this.Square(this.Environment.SecondNumber.Segments);
+            ReadOnlyCollection<UInt16> four = this.Square(this.Environment.SecondNumber.Segments);
 
-            Tuple<ReadOnlyCollection<Char>, ReadOnlyCollection<Char>, ReadOnlyCollection<Char>> maxNumber = this.Divide(a, four);
+            Tuple<ReadOnlyCollection<UInt16>, ReadOnlyCollection<UInt16>, ReadOnlyCollection<UInt16>> maxNumber = this.Divide(a, four);
 
-            ReadOnlyCollection<Char> testNumber = this.Environment.SecondNumber.Segments;
+            ReadOnlyCollection<UInt16> testNumber = this.Environment.SecondNumber.Segments;
             while (this.IsLessThanOrEqualTo(testNumber, maxNumber.Item1))
             {
-                Tuple<ReadOnlyCollection<Char>, ReadOnlyCollection<Char>, ReadOnlyCollection<Char>> currentNumber = this.Divide(a, testNumber);
-                if (currentNumber.Item2 == default(ReadOnlyCollection<Char>))
+                Tuple<ReadOnlyCollection<UInt16>, ReadOnlyCollection<UInt16>, ReadOnlyCollection<UInt16>> currentNumber = this.Divide(a, testNumber);
+                if (currentNumber.Item2 == default(ReadOnlyCollection<UInt16>))
                 {
                     return testNumber;
                 }
 
-                testNumber = this.Add(testNumber, new ReadOnlyCollection<Char>(new Char[] { this.Environment.First }));
+                testNumber = this.Add(testNumber, new ReadOnlyCollection<UInt16>(new UInt16[] { 1 }));
                 Debug.WriteLine(String.Format("testNumber length {0} in GetSmallestDivisor ", testNumber.Count));
             }
 
-            return default(ReadOnlyCollection<Char>);
+            return default(ReadOnlyCollection<UInt16>);
         }
 
-        public ReadOnlyCollection<Char> Square(ReadOnlyCollection<Char> a)
+        public ReadOnlyCollection<UInt16> Square(ReadOnlyCollection<UInt16> a)
         {
             return this.Multiply(a, a);
         }
 
-        public Boolean IsEqual(ReadOnlyCollection<Char> a, ReadOnlyCollection<Char> b)
+        public Boolean IsEqual(ReadOnlyCollection<UInt16> a, ReadOnlyCollection<UInt16> b)
         {
             if (this.CompareTo(a, b) == 0)
             {
@@ -389,7 +415,7 @@ namespace VariableBase.Mathematics
             }
         }
 
-        public Boolean IsGreaterThan(ReadOnlyCollection<Char> a, ReadOnlyCollection<Char> b)
+        public Boolean IsGreaterThan(ReadOnlyCollection<UInt16> a, ReadOnlyCollection<UInt16> b)
         {
             if (this.CompareTo(a, b) > 0)
             {
@@ -401,7 +427,7 @@ namespace VariableBase.Mathematics
             }
         }
 
-        public Boolean IsLessThan(ReadOnlyCollection<Char> a, ReadOnlyCollection<Char> b)
+        public Boolean IsLessThan(ReadOnlyCollection<UInt16> a, ReadOnlyCollection<UInt16> b)
         {
             if (this.CompareTo(a, b) < 0)
             {
@@ -413,7 +439,7 @@ namespace VariableBase.Mathematics
             }
         }
 
-        public Boolean IsGreaterThanOrEqualTo(ReadOnlyCollection<Char> a, ReadOnlyCollection<Char> b)
+        public Boolean IsGreaterThanOrEqualTo(ReadOnlyCollection<UInt16> a, ReadOnlyCollection<UInt16> b)
         {
             if (this.CompareTo(a, b) >= 0)
             {
@@ -425,7 +451,7 @@ namespace VariableBase.Mathematics
             }
         }
 
-        public Boolean IsLessThanOrEqualTo(ReadOnlyCollection<Char> a, ReadOnlyCollection<Char> b)
+        public Boolean IsLessThanOrEqualTo(ReadOnlyCollection<UInt16> a, ReadOnlyCollection<UInt16> b)
         {
             if (this.CompareTo(a, b) <= 0)
             {
@@ -437,7 +463,7 @@ namespace VariableBase.Mathematics
             }
         }
 
-        public int CompareTo(ReadOnlyCollection<Char> a, ReadOnlyCollection<Char> b)
+        public int CompareTo(ReadOnlyCollection<UInt16> a, ReadOnlyCollection<UInt16> b)
         {
             Int32 result = 0;
             if (a.Count > b.Count)
@@ -474,54 +500,35 @@ namespace VariableBase.Mathematics
 
 
 
-        #region Add
-        //public Number Add(MathEnvironment environment, Fraction a, Fraction b)
-        //{
-        //    Number denominator = a.Denominator * b.Denominator;
-        //    Number numerator = (a.Numerator * b.Denominator) + (b.Numerator * a.Denominator);
-
-        //    return environment.ConvertToFraction(numerator.Segments, denominator.Segments);
-        //}
-
-        #endregion
-
         #region Multiply
 
-        //public Number Multiply(MathEnvironment environment, Fraction a, Fraction b)
-        //{
-        //    Number denominator = a.Denominator * b.Denominator;
-        //    Number numerator = a.Numerator * b.Numerator;
-
-        //    return environment.ConvertToFraction(numerator.Segments, denominator.Segments);
-        //}
-
-        public ReadOnlyCollection<Char> Multiply(ReadOnlyCollection<Char> a, Char b)
+        public ReadOnlyCollection<UInt16> Multiply(ReadOnlyCollection<UInt16> a, UInt16 b)
         {
-            if (b == 0 || b == this.Environment.Bottom)
+            if (b == 0)
             {
-                return new ReadOnlyCollection<char>(new Char[] { this.Environment.Bottom });
+                return new ReadOnlyCollection<UInt16>(new UInt16[] { 0 });
             }
-            var resultRaw = new List<Char>();
+            var resultRaw = new List<UInt16>();
 
-            UInt64 numberIndex = this.Environment.GetIndex(b);
+            UInt64 numberIndex = b;
 
             UInt64 carryOver = 0;
             for (var i = 0; i < a.Count; i++)
             {
-                UInt64 segmentIndex = this.Environment.GetIndex(a[i]);
+                UInt64 segmentIndex = a[i];
 
                 UInt64 columnTotal = (numberIndex * segmentIndex) + carryOver;
 
-                Char columnPositionResult;
-                if (columnTotal >= this.Environment.Base)
+                UInt16 columnPositionResult;
+                if (columnTotal >= (UInt64)this.Environment.Key.Count)
                 {
-                    UInt64 remainder = (columnTotal % this.Environment.Base);
-                    columnPositionResult = this.Environment.Key[(UInt16)remainder];
-                    carryOver = (columnTotal - remainder) / this.Environment.Base;
+                    UInt64 remainder = (columnTotal % (UInt64)this.Environment.Key.Count);
+                    columnPositionResult = (UInt16)remainder;
+                    carryOver = (columnTotal - remainder) / (UInt64)this.Environment.Key.Count;
                 }
                 else
                 {
-                    columnPositionResult = this.Environment.Key[(UInt16)columnTotal];
+                    columnPositionResult = (UInt16)columnTotal;
                     carryOver = 0;
                 }
 
@@ -530,31 +537,31 @@ namespace VariableBase.Mathematics
 
             while (carryOver > 0)
             {
-                Char carryOverResult;
-                if (carryOver > this.Environment.Base)
+                UInt16 carryOverResult;
+                if (carryOver > (UInt64)this.Environment.Key.Count)
                 {
-                    UInt16 remainder = (UInt16)(carryOver % (UInt64)this.Environment.Base);
-                    carryOverResult = this.Environment.Key[remainder];
-                    carryOver = (carryOver - remainder) / this.Environment.Base;
+                    UInt16 remainder = (UInt16)(carryOver % (UInt64)this.Environment.Key.Count);
+                    carryOverResult = remainder;
+                    carryOver = (carryOver - remainder) / (UInt64)this.Environment.Key.Count;
                 }
                 else
                 {
-                    carryOverResult = this.Environment.Key[(UInt16)carryOver];
+                    carryOverResult = (UInt16)carryOver;
                     carryOver = 0;
                 }
                 resultRaw.Add(carryOverResult);
             }
-            return new ReadOnlyCollection<Char>(resultRaw);
+            return new ReadOnlyCollection<UInt16>(resultRaw);
         }
 
-        public ReadOnlyCollection<Char> Multiply(ReadOnlyCollection<Char> a, ReadOnlyCollection<Char> b)
+        public ReadOnlyCollection<UInt16> Multiply(ReadOnlyCollection<UInt16> a, ReadOnlyCollection<UInt16> b)
         {
-            ReadOnlyCollection<Char> result = new ReadOnlyCollection<Char>(new Char[] { this.Environment.Bottom });
+            ReadOnlyCollection<UInt16> result = new ReadOnlyCollection<UInt16>(new UInt16[] { 0 });
 
             for (UInt16 i = 0; i < (UInt16)a.Count; i++)
             {
-                Char numberSegment = a[i];
-                ReadOnlyCollection<Char> currentResult = this.Multiply(b, numberSegment);
+                UInt16 numberSegment = a[i];
+                ReadOnlyCollection<UInt16> currentResult = this.Multiply(b, numberSegment);
 
                 if (i > 0)
                 {
@@ -564,26 +571,35 @@ namespace VariableBase.Mathematics
                 result = this.Add(currentResult, result);
             }
 
+#if DEBUG
+            if (this.IsLessThan(result, a) || this.IsLessThan(result, b))
+            {
+                throw new Exception("MathAlgorithm Multiplication error");
+            }
+            else if (result.Count > 1 && result[result.Count - 1] == 0)
+            {
+                throw new Exception("MathAlgorithm Multiplication leading zero error");
+            }
+#endif
+
             return result;
         }
 
-        public Char[] Multiply(Char number1, Char number2)
+        public UInt16[] Multiply(UInt16 a, UInt16 b)
         {
-            UInt16 number1Index = this.Environment.GetIndex(number1);
-            UInt16 number2Index = this.Environment.GetIndex(number2);
 
-            Int32 resultIndex = number1Index * number2Index;
+            UInt32 resultIndex = (UInt32)a * (UInt32)b;
 
-            if (resultIndex >= this.Environment.Base)
+            if (resultIndex >= this.Environment.Key.Count)
             {
-                Int32 firstNumber = (resultIndex % this.Environment.Base);
-                Int32 secondNumber = (resultIndex - firstNumber) / this.Environment.Base;
+                UInt32 firstNumber = (resultIndex % (UInt32)this.Environment.Key.Count);
+                UInt32 secondNumber = (resultIndex - firstNumber) / (UInt32)this.Environment.Key.Count;
 
-                return new Char[] { this.Environment.Key[secondNumber], this.Environment.Key[firstNumber] };
+                return new UInt16[] { (UInt16)secondNumber, (UInt16)firstNumber };
             }
             else
             {
-                return new Char[] { this.Environment.Key[resultIndex] };
+                return new UInt16[] { (UInt16)resultIndex };
             }
         }
 
@@ -591,22 +607,19 @@ namespace VariableBase.Mathematics
 
         #region Divide
 
-        public Number Divide(Char dividend, Char divisor)
+        public Number Divide(UInt16 dividend, UInt16 divisor)
         {
             Number result;
-
-            UInt16 indexToDivide = this.Environment.GetIndex(dividend);
-            UInt16 indexToDivideBy = this.Environment.GetIndex(divisor);
-
+            
             UInt16 remainder;
 
-            if (indexToDivide > indexToDivideBy)
+            if (dividend > divisor)
             {
-                remainder = (UInt16)(indexToDivide % indexToDivideBy);
+                remainder = (UInt16)(dividend % divisor);
 
-                UInt16 resultRaw = (UInt16)System.Math.Floor((decimal)indexToDivide / (decimal)indexToDivideBy);
+                UInt16 resultRaw = (UInt16)System.Math.Floor((decimal)dividend / (decimal)divisor);
 
-                result = this.Environment.ConvertToFraction(resultRaw, remainder, indexToDivideBy);
+                result = this.Environment.ConvertToFraction(resultRaw, remainder, divisor);
             }
             else
             {
@@ -620,7 +633,7 @@ namespace VariableBase.Mathematics
 
         #region Subtract
 
-        public ReadOnlyCollection<Char> Subtract(ReadOnlyCollection<Char> a, ReadOnlyCollection<Char> b)
+        public ReadOnlyCollection<UInt16> Subtract(ReadOnlyCollection<UInt16> a, ReadOnlyCollection<UInt16> b)
         {
             if (this.IsLessThan(a, b))
             {
@@ -634,7 +647,7 @@ namespace VariableBase.Mathematics
             }
 
             // 60 - 90
-            var resultSegments = new List<Char>();
+            var resultSegments = new List<UInt16>();
             Int32 borrow = 0;
             Int32 position = 0;
             while (position < maxPosition)
@@ -645,35 +658,50 @@ namespace VariableBase.Mathematics
 
                 if (position < a.Count)
                 {
-                    columnValue += this.Environment.GetIndex(a[position]);
+                    columnValue += a[position];
                 }
 
                 if (position < b.Count)
                 {
-                    columnValue -= this.Environment.GetIndex(b[position]);
+                    columnValue -= b[position];
                 }
 
                 if (columnValue < 0)
                 {
                     borrow -= 1;
-                    columnValue += this.Environment.Base;
+                    columnValue += this.Environment.Key.Count;
                 }
 
-                resultSegments.Add(this.Environment.Key[columnValue]);
+                resultSegments.Add((UInt16)columnValue);
                 position++;
             }
 
-            this.Environment.ValidateWholeNumber(resultSegments);
+            while (resultSegments.Count > 1 && resultSegments[resultSegments.Count - 1] == 0)
+            {
+                resultSegments.RemoveAt(resultSegments.Count - 1);
+            }
+            
+            var result = new ReadOnlyCollection<UInt16>(resultSegments);
 
-            return new ReadOnlyCollection<Char>(resultSegments);
+#if DEBUG
+            if (this.IsGreaterThan(result, a) && this.IsGreaterThan(result, b))
+            {
+                throw new Exception("MathAlgorithm Subtraction error");
+            }
+            else if (result.Count > 1 && result[result.Count - 1] == 0)
+            {
+                throw new Exception("MathAlgorithm Subtraction leading zero error");
+            }
+#endif
+            return result;
 
         }
 
         #endregion
-
-        public Boolean IsBottom(ReadOnlyCollection<Char> number)
+        
+        public Boolean IsBottom(ReadOnlyCollection<UInt16> number)
         {
-            if (number == default(ReadOnlyCollection<Char>) || number.Count == 0 || (number.Count == 1 && number[0] == this.Environment.Bottom))
+            if (number == default(ReadOnlyCollection<UInt16>) || number.Count == 0 || (number.Count == 1 && number[0] == 0))
             {
                 return true;
             }

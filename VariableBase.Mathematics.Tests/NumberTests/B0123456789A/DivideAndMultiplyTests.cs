@@ -32,5 +32,26 @@ namespace VariableBase.Math.Tests.NumberTests.B0123456789A
             Number e = c / a;
             Assert.IsTrue(b == e);
         }
+
+
+        [TestMethod]
+        [TestCategory("Number")]
+        [TestCategory("Add")]
+        [TestCategory("B0123456789A")]
+        public void AB_DE_Test_2()
+        {
+            var env = new MathEnvironment("0123456789A");
+
+            Number a = env.GetNumber("89A275732341324");
+            Number b = env.GetNumber("5845474677645A");
+
+            Number c = a * b;
+
+            Number d = c / b;
+            Assert.IsTrue(a == d);
+
+            Number e = c / a;
+            Assert.IsTrue(b == e);
+        }
     }
 }

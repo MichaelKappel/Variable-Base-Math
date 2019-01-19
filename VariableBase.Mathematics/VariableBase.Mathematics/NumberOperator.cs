@@ -9,6 +9,12 @@ namespace VariableBase.Mathematics
 {
     public class NumberOperator : INumberOperator
     {
+
+        public NumberOperator()
+        {
+
+        }
+
         public Number Add(Number a, Number b)
         {
             if (a.Environment != b.Environment)
@@ -19,7 +25,7 @@ namespace VariableBase.Mathematics
 
             if (a.Fragment == default(Fraction) && b.Fragment == default(Fraction))
             {
-                ReadOnlyCollection<Char> resultSegments = environment.Algorithm.Add(a.Segments, b.Segments);
+                ReadOnlyCollection<UInt16> resultSegments = environment.Algorithm.Add(a.Segments, b.Segments);
                 return new Number(environment, resultSegments, null, false);
             }
             else
@@ -40,7 +46,7 @@ namespace VariableBase.Mathematics
 
             if (a.Fragment == default(Fraction) && b.Fragment == default(Fraction))
             {
-                ReadOnlyCollection<Char> resultSegments = environment.Algorithm.Subtract(a.Segments, b.Segments);
+                ReadOnlyCollection<UInt16> resultSegments = environment.Algorithm.Subtract(a.Segments, b.Segments);
                 return new Number(environment, resultSegments, null, false);
             }
             else
@@ -61,7 +67,7 @@ namespace VariableBase.Mathematics
 
             if (a.Fragment == default(Fraction) && b.Fragment == default(Fraction))
             {
-                ReadOnlyCollection<Char> resultSegments = environment.Algorithm.Multiply(a.Segments, b.Segments);
+                ReadOnlyCollection<UInt16> resultSegments = environment.Algorithm.Multiply(a.Segments, b.Segments);
                 return new Number(environment, resultSegments, null, false);
             }
             else
@@ -80,8 +86,8 @@ namespace VariableBase.Mathematics
             }
             MathEnvironment environment = a.Environment;
 
-            Tuple<ReadOnlyCollection<Char>,ReadOnlyCollection<Char>,ReadOnlyCollection<Char>> resultSegments = environment.Algorithm.Divide(a.Segments, b.Segments);
-            if (resultSegments.Item2 != default(ReadOnlyCollection<Char>) && resultSegments.Item3 != default(ReadOnlyCollection<Char>))
+            Tuple<ReadOnlyCollection<UInt16>,ReadOnlyCollection<UInt16>,ReadOnlyCollection<UInt16>> resultSegments = environment.Algorithm.Divide(a.Segments, b.Segments);
+            if (resultSegments.Item2 != default(ReadOnlyCollection<UInt16>) && resultSegments.Item3 != default(ReadOnlyCollection<UInt16>))
             {
                 return new Number(environment, resultSegments.Item1, resultSegments.Item2, resultSegments.Item3, false);
             }
@@ -251,11 +257,11 @@ namespace VariableBase.Mathematics
 
         public Boolean IsBottom(Number number)
         {
-            if (number.Environment == default(MathEnvironment) || number.Segments == default(ReadOnlyCollection<Char>) || number.Segments.Count == 0)
+            if (number.Environment == default(MathEnvironment) || number.Segments == default(ReadOnlyCollection<UInt16>) || number.Segments.Count == 0)
             {
                 return true;
             }
-            else if (number.Segments.Count == 1 && number.Segments[0] == number.Environment.Bottom)
+            else if (number.Segments.Count == 1 && number.Segments[0] == 0)
             {
                 return true;
             }
@@ -270,16 +276,16 @@ namespace VariableBase.Mathematics
         }
         public bool IsEven(Number number)
         {
-            if (number.Segments[0] == number.Environment.Bottom)
+            if (number.Segments[0] == 0)
             {
                 return true;
             }
-            else if (number.Environment.Base == 2)
+            else if (number.Environment.Key.Count == 2)
             {
                 return false;
             }
 
-            UInt16 charIndex = number.Environment.GetIndex(number.Segments[0]);
+            UInt16 charIndex = number.Segments[0];
             if (charIndex % 2 == 0)
             {
                 return true;
@@ -311,34 +317,42 @@ namespace VariableBase.Mathematics
             //UInt16 4294967295
             //Int32 2147483647
 
-            //Tuple<ReadOnlyCollection<Char>, ReadOnlyCollection<Char>, ReadOnlyCollection<Char>> a = number.Environment.Algorithm.Divide(number.Segments);
+            //Tuple<ReadOnlyCollection<UInt16>, ReadOnlyCollection<UInt16>, ReadOnlyCollection<UInt16>> a = number.Environment.Algorithm.Divide(number.Segments);
 
             return new Number(environment,null, null, number.IsNegative);
         }
 
-        public Number AsBinary(Number number)
+        public Boolean[] AsBinary(Number number)
         {
-            //var binaryEnvironment = new MathEnvironment("01");
+            var resultSegments = new List<Boolean>();
+            while (number > number.Environment.KeyNumber[1])
+            {
+                if (this.IsOdd(number))
+                {
+                    resultSegments.Add(true);
+                }
+                else
+                {
+                    resultSegments.Add(false);
+                }
+                number = (number / number.Environment.SecondNumber).Floor();
+            }
+            resultSegments.Add(true);
 
-            //ReadOnlyCollection<Char> runningTotal = new ReadOnlyCollection<Char>(new Char[] { binaryEnvironment.Bottom });
-            //for (var i = 0; i < number.Segments.Count; i++)
-            //{
-            //    UInt16 currentCharIndex = number.Environment.GetIndex(;
-            //    ReadOnlyCollection<Char> currentPositionValue = , 2).Reverse().ToArray();
-            //    ReadOnlyCollection<Char> currentBinary = binaryEnvironment.Algorithm.PowerOfBase(new ReadOnlyCollection<Char>(System.Convert.ToString(, (UInt16)i);
-            //    if (!binaryEnvironment)
-            //    runningTotal = binaryEnvironment.Algorithm.Add(runningTotal, currentBinary);
-            //}
+            return resultSegments.ToArray();
+        }
 
-            //Fraction f = default(Fraction);
-            //if (number.Fragment != default(Fraction))
-            //{
-            //    f = new Fraction(number.Fragment.Numerator.AsBinary(), number.Fragment.Denominator.AsBinary());
-            //}
+        public Number AsBinaryNumber(Number number)
+        {
+            var binaryEnvironment = new MathEnvironment("01");
+            if (number.Environment == binaryEnvironment)
+            {
+                return number;
+            }
 
-            //return new Number(binaryEnvironment, runningTotal, null, number.IsNegative);
-
-            throw new NotImplementedException();
+            Boolean[] binary = this.AsBinary(number);
+            
+            return new Number(binaryEnvironment, new ReadOnlyCollection<UInt16>(binary.Select((x)=> (UInt16)(x ? 1 : 0)).ToArray()), null, number.IsNegative);
         }
     }
 }

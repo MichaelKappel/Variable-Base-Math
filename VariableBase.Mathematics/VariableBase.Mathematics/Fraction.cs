@@ -11,7 +11,7 @@ namespace VariableBase.Mathematics
 
         internal static IFractionOperator Operator = new FractionOperator();
 
-        internal Fraction(MathEnvironment environment, ReadOnlyCollection<Char> numerator, ReadOnlyCollection<Char> denominator)
+        internal Fraction(MathEnvironment environment, ReadOnlyCollection<UInt16> numerator, ReadOnlyCollection<UInt16> denominator)
         {
             this.Numerator = new Number(environment, numerator, null, null, false);
             this.Denominator = new Number(environment, denominator, null, null, false);
@@ -132,13 +132,13 @@ namespace VariableBase.Mathematics
        
         public Number AsNumber()
         {
-            if (Number.Operator.Equals(this.Denominator, this.Denominator.Environment.BottomNumber))
+            if (Number.Operator.Equals(this.Denominator, this.Denominator.Environment.KeyNumber[0]))
             {
                 return this.Numerator;
             }
             else if (Number.Operator.IsGreaterThan(this.Denominator, this.Numerator))
             {
-                return new Number(this.Denominator.Environment, new ReadOnlyCollection<Char>(new Char[] { this.Denominator.Environment.Bottom }),  this, false);
+                return new Number(this.Denominator.Environment, new ReadOnlyCollection<UInt16>(new UInt16[] { 0 }),  this, false);
             }
             else
             {

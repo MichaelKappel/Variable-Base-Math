@@ -20,6 +20,6 @@ namespace VariableBase.Mathematics.Interfaces
         bool IsEven(Number number);
         bool IsPrime(Number number);
         Number Convert(MathEnvironment environment, Number number);
-        Number AsBinary(Number number);
+        Number AsBinaryNumber(Number number);
     }
 }

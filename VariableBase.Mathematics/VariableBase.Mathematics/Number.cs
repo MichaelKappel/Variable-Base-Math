@@ -16,18 +16,18 @@ namespace VariableBase.Mathematics
 
         public Fraction Fragment { get; set; }
 
-        public Char FirstChar { get; set; }
+        public UInt16 First { get; set; }
 
 
         public Boolean IsNegative { get; set; }
 
         public MathEnvironment Environment { get; set; }
 
-        public ReadOnlyCollection<Char> Segments { get; set; }
+        public ReadOnlyCollection<UInt16> Segments { get; set; }
 
 
 
-        internal Number(MathEnvironment environment, ReadOnlyCollection<Char> segments, ReadOnlyCollection<Char> numerator, ReadOnlyCollection<Char> denominator, Boolean isNegative)
+        internal Number(MathEnvironment environment, ReadOnlyCollection<UInt16> segments, ReadOnlyCollection<UInt16> numerator, ReadOnlyCollection<UInt16> denominator, Boolean isNegative)
         {
             this.Environment = environment;
 
@@ -35,21 +35,21 @@ namespace VariableBase.Mathematics
 
             this.Segments = segments;
 
-            if (numerator != default(ReadOnlyCollection<Char>) && denominator != default(ReadOnlyCollection<Char>))
+            if (numerator != default(ReadOnlyCollection<UInt16>) && denominator != default(ReadOnlyCollection<UInt16>))
             { 
                 this.Fragment = new Fraction(environment, numerator, denominator);
             }else{
                 this.Fragment = default(Fraction);
             }
 
-            this.FirstChar = this.Segments[this.Segments.Count - 1];
-            if (this.FirstChar == this.Environment.Bottom && this.Segments.Count > 1)
+            this.First = this.Segments[this.Segments.Count - 1];
+            if (this.First == 0 && this.Segments.Count > 1)
             {
                 throw new Exception("Numbers longer then a power can not start with bottom number char");
             }
         }
 
-        internal Number(MathEnvironment environment, ReadOnlyCollection<Char> segments, Fraction fragment, Boolean isNegative)
+        internal Number(MathEnvironment environment, ReadOnlyCollection<UInt16> segments, Fraction fragment, Boolean isNegative)
         {
             this.Environment = environment;
 
@@ -59,8 +59,8 @@ namespace VariableBase.Mathematics
 
             this.Fragment = fragment;
 
-            this.FirstChar = this.Segments[this.Segments.Count - 1];
-            if (this.FirstChar == this.Environment.Bottom && this.Segments.Count > 1)
+            this.First = this.Segments[this.Segments.Count - 1];
+            if (this.First == 0 && this.Segments.Count > 1)
             {
                 throw new Exception("Numbers longer then a power can not start with bottom number char");
             }
@@ -123,7 +123,7 @@ namespace VariableBase.Mathematics
         public static Number operator %(Number a, Number b)
         { 
             Number totalResult = Operator.Divide(a, b);
-            return new Number(a.Environment, new ReadOnlyCollection<Char>(new Char[] { a.Environment.Bottom }), totalResult.Fragment, totalResult.IsNegative);
+            return new Number(a.Environment, new ReadOnlyCollection<UInt16>(new UInt16[] { 0 }), totalResult.Fragment, totalResult.IsNegative);
         }
 
         #endregion
@@ -137,7 +137,7 @@ namespace VariableBase.Mathematics
         {
             if (this.Fragment == default(Fraction))
             {
-                return new Fraction(this, this.Environment.FirstNumber);
+                return new Fraction(this, this.Environment.KeyNumber[1]);
             }
             else
             {
@@ -199,28 +199,42 @@ namespace VariableBase.Mathematics
 
         public Number AsBinary()
         {
-            return Operator.AsBinary(this);
+            return Operator.AsBinaryNumber(this);
         }
 
-        
-
-        public override String ToString()
+        public String GetDisplayValue()
         {
-            String result = null;
-            foreach (Char segment in this.Segments.Reverse())
-            {
-                result += segment;
-            }
+            String result = String.Empty;
             if (this.IsNegative)
             {
                 result = "-" + result;
             }
-            if (this.Fragment != default(Fraction))
+            if (this.Segments.Count > 200)
             {
-                result = String.Format("{0} {1}", result, this.Fragment);
+                result += String.Format("{0}e{1}", this.Environment.Key[this.First], this.Segments.Count);
+                if (this.Fragment != default(Fraction))
+                {
+                    result += String.Format("{0} {1}", result, this.Fragment);
+                }
             }
-
+            else
+            {
+                for (UInt16 i = (UInt16)this.Segments.Count; i > 0; i--)
+                {
+                    result += this.Environment.Key[this.Segments[i-1]];
+                }
+                if (this.Fragment != default(Fraction))
+                {
+                    result = String.Format("{0} {1}", result, this.Fragment);
+                }
+            }
             return result;
+        }
+        
+
+        public override String ToString()
+        {
+            return this.GetDisplayValue();
         }
     }
 }

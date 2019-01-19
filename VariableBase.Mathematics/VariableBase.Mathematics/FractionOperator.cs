@@ -22,11 +22,11 @@ namespace VariableBase.Mathematics
             MathEnvironment environment = aWhole.Denominator.Environment;
 
 
-            ReadOnlyCollection<Char> commonDenominator = environment.Algorithm.Multiply(aWhole.Denominator.Segments, bWhole.Denominator.Segments);
-            ReadOnlyCollection<Char> numeratorA = environment.Algorithm.Multiply(aWhole.Numerator.Segments, bWhole.Denominator.Segments);
-            ReadOnlyCollection<Char> numeratorB = environment.Algorithm.Multiply(bWhole.Numerator.Segments, aWhole.Denominator.Segments);
+            ReadOnlyCollection<UInt16> commonDenominator = environment.Algorithm.Multiply(aWhole.Denominator.Segments, bWhole.Denominator.Segments);
+            ReadOnlyCollection<UInt16> numeratorA = environment.Algorithm.Multiply(aWhole.Numerator.Segments, bWhole.Denominator.Segments);
+            ReadOnlyCollection<UInt16> numeratorB = environment.Algorithm.Multiply(bWhole.Numerator.Segments, aWhole.Denominator.Segments);
 
-            ReadOnlyCollection<Char> resultRaw = environment.Algorithm.Add(numeratorA, numeratorB);
+            ReadOnlyCollection<UInt16> resultRaw = environment.Algorithm.Add(numeratorA, numeratorB);
 
             return new Fraction(environment, resultRaw, commonDenominator);
 
@@ -44,11 +44,11 @@ namespace VariableBase.Mathematics
             }
             MathEnvironment environment = aWhole.Denominator.Environment;
 
-            ReadOnlyCollection<Char> commonDenominator = environment.Algorithm.Multiply(aWhole.Denominator.Segments, bWhole.Denominator.Segments);
-            ReadOnlyCollection<Char> numeratorA = environment.Algorithm.Multiply(aWhole.Numerator.Segments, bWhole.Denominator.Segments);
-            ReadOnlyCollection<Char> numeratorB = environment.Algorithm.Multiply(bWhole.Numerator.Segments, aWhole.Denominator.Segments);
+            ReadOnlyCollection<UInt16> commonDenominator = environment.Algorithm.Multiply(aWhole.Denominator.Segments, bWhole.Denominator.Segments);
+            ReadOnlyCollection<UInt16> numeratorA = environment.Algorithm.Multiply(aWhole.Numerator.Segments, bWhole.Denominator.Segments);
+            ReadOnlyCollection<UInt16> numeratorB = environment.Algorithm.Multiply(bWhole.Numerator.Segments, aWhole.Denominator.Segments);
 
-            ReadOnlyCollection<Char> resultnumerator = environment.Algorithm.Subtract(numeratorA, numeratorB);
+            ReadOnlyCollection<UInt16> resultnumerator = environment.Algorithm.Subtract(numeratorA, numeratorB);
             
             var result = new Fraction(environment, resultnumerator, commonDenominator);
 
@@ -66,8 +66,8 @@ namespace VariableBase.Mathematics
             }
             MathEnvironment environment = aWhole.Denominator.Environment;
 
-            ReadOnlyCollection<Char> numerator = environment.Algorithm.Multiply(aWhole.Numerator.Segments, bWhole.Numerator.Segments);
-            ReadOnlyCollection<Char> denominator = environment.Algorithm.Multiply(aWhole.Denominator.Segments, bWhole.Denominator.Segments);
+            ReadOnlyCollection<UInt16> numerator = environment.Algorithm.Multiply(aWhole.Numerator.Segments, bWhole.Numerator.Segments);
+            ReadOnlyCollection<UInt16> denominator = environment.Algorithm.Multiply(aWhole.Denominator.Segments, bWhole.Denominator.Segments);
 
 
             var result = new Fraction(environment, numerator, denominator);
@@ -86,11 +86,11 @@ namespace VariableBase.Mathematics
             }
             MathEnvironment environment = aWhole.Denominator.Environment;
 
-            ReadOnlyCollection<Char> commonDenominator = environment.Algorithm.Multiply(aWhole.Denominator.Segments, bWhole.Denominator.Segments);
-            ReadOnlyCollection<Char> numeratorA = environment.Algorithm.Multiply(aWhole.Numerator.Segments, bWhole.Denominator.Segments);
-            ReadOnlyCollection<Char> numeratorB = environment.Algorithm.Multiply(bWhole.Numerator.Segments, aWhole.Denominator.Segments);
+            ReadOnlyCollection<UInt16> commonDenominator = environment.Algorithm.Multiply(aWhole.Denominator.Segments, bWhole.Denominator.Segments);
+            ReadOnlyCollection<UInt16> numeratorA = environment.Algorithm.Multiply(aWhole.Numerator.Segments, bWhole.Denominator.Segments);
+            ReadOnlyCollection<UInt16> numeratorB = environment.Algorithm.Multiply(bWhole.Numerator.Segments, aWhole.Denominator.Segments);
 
-            Tuple<ReadOnlyCollection<Char>, ReadOnlyCollection<Char>,ReadOnlyCollection<Char>> rawResult = environment.Algorithm.Divide(numeratorA, numeratorB);
+            Tuple<ReadOnlyCollection<UInt16>, ReadOnlyCollection<UInt16>,ReadOnlyCollection<UInt16>> rawResult = environment.Algorithm.Divide(numeratorA, numeratorB);
 
             var result = new Fraction(environment, rawResult.Item1, commonDenominator);
 

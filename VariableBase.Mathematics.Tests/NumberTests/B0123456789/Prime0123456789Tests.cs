@@ -6,7 +6,7 @@ using System.Text;
 namespace VariableBase.Mathematics.Tests.NumberTests.B0123456789
 {
     [TestClass]
-    public class Pime0123456789Tests
+    public class Prime0123456789Tests
     {
         [TestMethod]
         [TestCategory("Number")]

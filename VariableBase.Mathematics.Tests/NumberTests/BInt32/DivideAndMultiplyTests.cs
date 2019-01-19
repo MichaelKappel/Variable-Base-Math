@@ -17,14 +17,31 @@ namespace VariableBase.Math.Tests.NumberTests.BInt32
         {
             var env = new MathEnvironment();
 
-            Number cNumber = env.GetNumber("੖ᕓṉ⢸Ẉᎀ઀");
-
             Number a = env.GetNumber("1500");
             Number b = env.GetNumber("6508");
 
             Number c = a * b;
+            
+            Number d = c / b;
+            Assert.IsTrue(a == d);
 
-            Assert.IsTrue(c == cNumber);
+            Number e = c / a;
+            Assert.IsTrue(b == e);
+        }
+
+
+        [TestMethod]
+        [TestCategory("Number")]
+        [TestCategory("Add")]
+        [TestCategory("BInt32")]
+        public void BInt32_Test_2()
+        {
+            var env = new MathEnvironment();
+
+            Number a = env.GetNumber("150hglyfjhlflhlfg0");
+            Number b = env.GetNumber("65ghdfiy;f;fyifyiyfpflyiifyfyl08");
+
+            Number c = a * b;
 
             Number d = c / b;
             Assert.IsTrue(a == d);
