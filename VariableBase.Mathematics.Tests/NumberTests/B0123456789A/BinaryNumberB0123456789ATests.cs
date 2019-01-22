@@ -13,14 +13,29 @@ namespace VariableBase.Mathematics.Tests.NumberTests.B0123456789A
         [TestCategory("Number")]
         [TestCategory("ToAndFromBinary")]
         [TestCategory("0123456789A")]
-        public void ToAndFromBinary_1()
+        public void ToAndFromBinary_B11_38()
         {
             var env = new MathEnvironment("0123456789A");
-            
+
+            var a = env.GetNumber("A6780123450123456789A6012345601234567A");
+            var b = a.AsBinary();
+            var c = env.AsNumber(b.Segments.Select((x) => x == 1).ToArray());
+
+            Assert.AreEqual(a, c);
+        }
+
+        [TestMethod]
+        [TestCategory("Number")]
+        [TestCategory("ToAndFromBinary")]
+        [TestCategory("0123456789A")]
+        public void ToAndFromBinary_B11_2()
+        {
+            var env = new MathEnvironment("0123456789A");
+
             var a = env.GetNumber("A6780123450123456789A601234560123456789A789A789A01234567890123456789AA012345601234560123456789A789A789A");
             var b = a.AsBinary();
             var c = env.AsNumber(b.Segments.Select((x) => x == 1).ToArray());
-            
+
             Assert.AreEqual(a, c);
         }
     }

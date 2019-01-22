@@ -17,7 +17,7 @@ namespace VariableBase.Mathematics
 
             var tempKey = new List<Char>();
 
-            for (UInt16 i = 0; i < UInt16.MaxValue; i++)
+            for (UInt16 i = 0; i < UInt16.MaxValue - 1; i++)
             {
                 Char currentChar = Convert.ToChar(i);
                 tempKey.Add(currentChar);
@@ -46,13 +46,20 @@ namespace VariableBase.Mathematics
 
             this.SetupMathEnvironment();
         }
-        public Number GetNumber(List<Char> wholeNumberSegments)
+
+        public Number GetNumber(Int64 zeros, Boolean isNegative = false)
         {
-            this.ValidateWholeNumber(wholeNumberSegments);
-            return new Number(this, new ReadOnlyCollection<UInt16>(wholeNumberSegments.Select((x) => this.GetIndex(x)).ToArray()), null, false);
+            var numberSegments = new UInt16[zeros];
+            for (var i = 0; i < zeros - 1; i++)
+            {
+                numberSegments[i] = 0;
+            }
+            numberSegments[numberSegments.Length - 1] = 1;
+
+            return new Number(this, new ReadOnlyCollection<UInt16>(numberSegments), null, isNegative);
         }
 
-        public Number GetNumber(String wholeNumber, String fractionNumerator = null, String fractionDenominator = null, Boolean isNegative = false)
+         public Number GetNumber(String wholeNumber, String fractionNumerator = null, String fractionDenominator = null, Boolean isNegative = false)
         {
             List<Char> wholeNumberSegments = wholeNumber.ToCharArray().Reverse().ToList();
 
@@ -147,36 +154,25 @@ namespace VariableBase.Mathematics
 
         public Number ConvertToFraction(UInt16 numberRaw, UInt16 numeratorNumber, UInt16 denominatorRaw)
         {
-            List<UInt16> number = this.ConvertToChars(numberRaw);
-            List<UInt16> numerator = this.ConvertToChars(numeratorNumber);
-            List<UInt16> denominator = this.ConvertToChars(denominatorRaw);
+            Number result;
+            List <UInt16> number = this.AsSegments(numberRaw);
+            if (numeratorNumber > 0)
+            {
+                List<UInt16> numerator = this.AsSegments(numeratorNumber);
+                List<UInt16> denominator = this.AsSegments(denominatorRaw);
 
-            var result = new Number(this, new ReadOnlyCollection<UInt16>(number), new ReadOnlyCollection<UInt16>(numerator), new ReadOnlyCollection<UInt16>(denominator), false);
-
+                result = new Number(this, new ReadOnlyCollection<UInt16>(number), new ReadOnlyCollection<UInt16>(numerator), new ReadOnlyCollection<UInt16>(denominator), false);
+            }
+            else
+            {
+                result = new Number(this, new ReadOnlyCollection<UInt16>(number), default(Fraction), false);
+            }
             return result;
         }
 
-        public List<UInt16> ConvertToChars(UInt64 number)
+        public List<UInt16> AsSegments(UInt64 rawUInt64)
         {
-            var resultRaw = new List<UInt16>();
-
-            UInt64 carryOver = number;
-            while (carryOver > 0)
-            {
-                if (carryOver >= (UInt64)this.Key.Count)
-                {
-                    UInt64 columnResultRaw = 0;
-                    columnResultRaw = (carryOver % (UInt64)this.Key.Count);
-                    resultRaw.Add((UInt16)columnResultRaw);
-                    carryOver = (UInt64)(((Decimal)carryOver - (Decimal)columnResultRaw) / (Decimal)this.Key.Count);
-                }
-                else
-                {
-                    resultRaw.Add((UInt16)carryOver);
-                    carryOver = 0;
-                }
-            }
-            return resultRaw;
+            return this.Algorithm.AsSegments(rawUInt64);
         }
         
         public Number PowerOfFirstNumber

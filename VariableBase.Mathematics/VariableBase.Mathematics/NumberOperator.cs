@@ -276,24 +276,7 @@ namespace VariableBase.Mathematics
         }
         public bool IsEven(Number number)
         {
-            if (number.Segments[0] == 0)
-            {
-                return true;
-            }
-            else if (number.Environment.Key.Count == 2)
-            {
-                return false;
-            }
-
-            UInt16 charIndex = number.Segments[0];
-            if (charIndex % 2 == 0)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return number.Environment.Algorithm.IsEven(number.Segments);
         }
 
         public bool IsPrime(Number number)
@@ -306,39 +289,50 @@ namespace VariableBase.Mathematics
         }
 
 
-        public Number GetSmallestDivisor(Number number)
+        public Tuple<Number, Number> GetComposite(Number number)
         {
+            Tuple<ReadOnlyCollection<UInt16>, ReadOnlyCollection<UInt16>> tuple = number.Environment.Algorithm.GetComposite(number.Segments);
 
-            return new Number(number.Environment, number.Environment.Algorithm.GetSmallestDivisor(number.Segments), null, false);
+            if (tuple == default(Tuple<ReadOnlyCollection<UInt16>, ReadOnlyCollection<UInt16>>))
+            {
+                return default(Tuple<Number, Number>);
+            }
+
+            return new Tuple<Number, Number>(new Number(number.Environment, tuple.Item1, null, false),
+                new Number(number.Environment, tuple.Item2, null, false));
         }
 
         public Number Convert(MathEnvironment environment, Number number)
         {
-            //UInt16 4294967295
-            //Int32 2147483647
-
-            //Tuple<ReadOnlyCollection<UInt16>, ReadOnlyCollection<UInt16>, ReadOnlyCollection<UInt16>> a = number.Environment.Algorithm.Divide(number.Segments);
-
-            return new Number(environment,null, null, number.IsNegative);
+            Boolean[] binary = this.AsBinary(number);
+            return environment.AsNumber(binary);
         }
 
         public Boolean[] AsBinary(Number number)
         {
-            var resultSegments = new List<Boolean>();
-            while (number > number.Environment.KeyNumber[1])
-            {
-                if (this.IsOdd(number))
-                {
-                    resultSegments.Add(true);
-                }
-                else
-                {
-                    resultSegments.Add(false);
-                }
-                number = (number / number.Environment.SecondNumber).Floor();
-            }
-            resultSegments.Add(true);
 
+            var resultSegments = new List<Boolean>();
+            if (this.IsBottom(number))
+            {
+                resultSegments.Add(false);
+            }
+            else
+            {
+                Number tempNumber = number;
+                while (tempNumber > number.Environment.KeyNumber[1])
+                {
+                    if (this.IsOdd(tempNumber))
+                    {
+                        resultSegments.Add(true);
+                    }
+                    else
+                    {
+                        resultSegments.Add(false);
+                    }
+                    tempNumber = (tempNumber / tempNumber.Environment.SecondNumber).Floor();
+                }
+                resultSegments.Add(true);
+            }
             return resultSegments.ToArray();
         }
 

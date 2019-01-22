@@ -13,7 +13,7 @@ namespace VariableBase.Math.Tests.NumberTests.B0123456789A
         [TestCategory("Number")]
         [TestCategory("GetDisplayValue")]
         [TestCategory("B0123456789A")]
-        public void Test_1()
+        public void GetDisplayValue_B11()
         {
             var env = new MathEnvironment("0123456789A");
 

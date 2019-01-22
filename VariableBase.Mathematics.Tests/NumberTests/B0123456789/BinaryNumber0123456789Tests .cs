@@ -104,7 +104,7 @@ namespace VariableBase.Mathematics.Tests.NumberTests.B0123456789
         [TestCategory("Number")]
         [TestCategory("ToAndFromBinary")]
         [TestCategory("0123456789")]
-        public void ToAndFromBinary_586265258702468479623456789009876542134567890987654234567890987654321234567890987654234567()
+        public void ToAndFromBinary_B10()
         {
             var env = new MathEnvironment("0123456789");
             
@@ -112,6 +112,21 @@ namespace VariableBase.Mathematics.Tests.NumberTests.B0123456789
             var b = a.AsBinary();
             var c = env.AsNumber(b.Segments.Select((x) => x == 1).ToArray());
             
+            Assert.AreEqual(a, c);
+        }
+
+        [TestMethod]
+        [TestCategory("Number")]
+        [TestCategory("ToAndFromBinary")]
+        [TestCategory("0123456789")]
+        public void ToAndFromBinary_B10_182()
+        {
+            var env = new MathEnvironment("0123456789");
+
+            var a = env.GetNumber("95862652587024684796234567890098765421345678909876542345678909876543212345678909876542345675862652587024684796234567890098765421345678909876542345678909876543212345678909876542345679");
+            var b = a.AsBinary();
+            var c = env.AsNumber(b.Segments.Select((x) => x == 1).ToArray());
+
             Assert.AreEqual(a, c);
         }
     }

@@ -240,6 +240,65 @@ namespace VariableBase.Mathematics
             return new ReadOnlyCollection<UInt16>(resultSegments);
         }
 
+        public ReadOnlyCollection<UInt16> GetAboutHalf(ReadOnlyCollection<UInt16> a, ReadOnlyCollection<UInt16> b, Int64 variance)
+        {
+            ReadOnlyCollection<UInt16> x = this.Add(a, b);
+            Tuple<ReadOnlyCollection<UInt16>,ReadOnlyCollection<UInt16>,ReadOnlyCollection<UInt16>> rawResult = this.Divide(x, this.Environment.SecondNumber.Segments);
+
+            ReadOnlyCollection<UInt16> result;
+            if (variance == 1 && rawResult.Item2 != default(ReadOnlyCollection<UInt16>))
+            {
+                result = this.Add(rawResult.Item1, this.Environment.KeyNumber[1].Segments);
+            }
+            else if (variance == -1 || rawResult.Item2 == default(ReadOnlyCollection<UInt16>))
+            {
+                result = rawResult.Item1;
+            }
+            else
+            {
+                ReadOnlyCollection<UInt16> doubleNumerator = this.Multiply(rawResult.Item2, 2);
+                if (this.IsGreaterThanOrEqualTo(doubleNumerator, rawResult.Item2))
+                {
+                    result = this.Add(rawResult.Item1, this.Environment.KeyNumber[1].Segments);
+                }
+                else
+                {
+                    result = rawResult.Item1;
+                }
+            }
+            return result;
+        }
+
+        internal List<ushort> AsSegments(ulong rawUInt64)
+        {
+            var resultRaw = new List<UInt16>();
+            if (rawUInt64 == 0)
+            {
+                resultRaw.Add(0);
+            }
+            else
+            {
+
+                UInt64 carryOver = rawUInt64;
+                while (carryOver > 0)
+                {
+                    if (carryOver >= (UInt64)this.Environment.Key.Count)
+                    {
+                        UInt64 columnResultRaw = 0;
+                        columnResultRaw = (carryOver % (UInt64)this.Environment.Key.Count);
+                        resultRaw.Add((UInt16)columnResultRaw);
+                        carryOver = (UInt64)(((Decimal)carryOver - (Decimal)columnResultRaw) / (Decimal)this.Environment.Key.Count);
+                    }
+                    else
+                    {
+                        resultRaw.Add((UInt16)carryOver);
+                        carryOver = 0;
+                    }
+                }
+            }
+            return resultRaw;
+        }
+
         public ReadOnlyCollection<UInt16> PowerOfBase(UInt16 a, UInt16 times)
         {
             return this.PowerOfBase(new ReadOnlyCollection<UInt16>(new UInt16[] { a }), times);
@@ -261,77 +320,6 @@ namespace VariableBase.Mathematics
             return new ReadOnlyCollection<UInt16>(segments);
         }
 
-        public Tuple<ReadOnlyCollection<UInt16>, ReadOnlyCollection<UInt16>, ReadOnlyCollection<UInt16>> Divide(ReadOnlyCollection<UInt16> numerator, ReadOnlyCollection<UInt16> denominator)
-        {
-            if (this.IsBottom(denominator))
-            {
-                return new Tuple<ReadOnlyCollection<UInt16>, ReadOnlyCollection<UInt16>, ReadOnlyCollection<UInt16>>(numerator, null, null);
-            }
-            else if (this.IsLessThan(numerator, denominator))
-            {
-                return new Tuple<ReadOnlyCollection<UInt16>, ReadOnlyCollection<UInt16>, ReadOnlyCollection<UInt16>>(new ReadOnlyCollection<UInt16>(new UInt16[]{ 0 }), numerator, denominator);
-            }
-
-
-            ReadOnlyCollection<UInt16> floor = this.Environment.KeyNumber[1].Segments;
-            ReadOnlyCollection<UInt16> ceiling = numerator;
-
-            ReadOnlyCollection<UInt16> lastNumberTried = this.GetWholeNumberSomewhereBetween(ceiling, floor);
-            ReadOnlyCollection<UInt16> numeratorTestResult = this.Multiply(lastNumberTried, denominator);
-
-            ReadOnlyCollection<UInt16> maxDifference = this.Subtract(denominator, new ReadOnlyCollection<UInt16>(new UInt16[] { 1 }));
-            ReadOnlyCollection<UInt16> minimumTestResult = this.Subtract(numerator, maxDifference);
-
-            while (this.IsLessThan(numeratorTestResult, minimumTestResult) || this.IsGreaterThan(numeratorTestResult, numerator))
-            {
-                if (this.IsLessThan(numeratorTestResult, numerator))
-                {
-                    floor = lastNumberTried;
-                    lastNumberTried = this.GetWholeNumberSomewhereBetween(ceiling, floor, 1);
-                }
-                else if (this.IsGreaterThan(numeratorTestResult, numerator))
-                {
-                    ceiling = lastNumberTried;
-                    lastNumberTried = this.GetWholeNumberSomewhereBetween(ceiling, floor, -1);
-                }
-                numeratorTestResult = this.Multiply(lastNumberTried, denominator);
-            }
-
-            Tuple<ReadOnlyCollection<UInt16>, ReadOnlyCollection<UInt16>, ReadOnlyCollection<UInt16>> result;
-
-            if (this.IsEqual(numeratorTestResult, numerator))
-            {
-                result = new Tuple<ReadOnlyCollection<UInt16>, ReadOnlyCollection<UInt16>, ReadOnlyCollection<UInt16>>(lastNumberTried, null, null);
-            }
-            else
-            {
-                var leftOver = this.Subtract(numerator, numeratorTestResult);
-                result = new Tuple<ReadOnlyCollection<UInt16>, ReadOnlyCollection<UInt16>, ReadOnlyCollection<UInt16>>(lastNumberTried, leftOver, denominator);
-            }
-
-#if DEBUG
-            if (this.IsGreaterThan(result.Item1, numerator) && this.IsGreaterThan(result.Item1, denominator))
-            {
-                throw new Exception("MathAlgorithm Division error");
-            }
-            else if (result.Item1 != default(ReadOnlyCollection<UInt16>) && result.Item1.Count > 1 && result.Item1[result.Item1.Count - 1] == 0)
-            {
-                throw new Exception("MathAlgorithm Division leading zero error whole number");
-            }
-            else if (result.Item2 != default(ReadOnlyCollection<UInt16>) && result.Item2.Count > 1 && result.Item2[result.Item2.Count - 1] == 0)
-            {
-                throw new Exception("MathAlgorithm Division leading zero error numerator");
-            }
-            else if (result.Item3 != default(ReadOnlyCollection<UInt16>) && result.Item3.Count > 1 && result.Item3[result.Item3.Count - 1] == 0)
-            {
-                throw new Exception("MathAlgorithm Division leading zero error denominator");
-            }
-#endif
-
-
-            return result;
-        }
-
         public bool IsOdd(ReadOnlyCollection<UInt16> a)
         {
             return !this.IsEven(a);
@@ -339,17 +327,238 @@ namespace VariableBase.Mathematics
 
         public bool IsEven(ReadOnlyCollection<UInt16> a)
         {
-            if (a[0] == 0)
+            Boolean isEven = false;
+            if (this.Environment.Key.Count % 2 == 0 || a.Count == 1)
+            {
+                if (a[0] % 2 == 0)
+                {
+                    isEven = true;
+                }
+                else
+                {
+                    isEven = false;
+                }
+            }
+            else
+            {
+                Tuple<ReadOnlyCollection<UInt16>, ReadOnlyCollection<UInt16>, ReadOnlyCollection<UInt16>> half = this.Divide(a, this.Environment.SecondNumber.Segments);
+                if (half.Item2 == default(ReadOnlyCollection<UInt16>))
+                {
+                    isEven = true;
+                }
+                else
+                {
+                    isEven = false;
+                }
+
+                //Int64 x = 0;
+                //for (var i = 0; i < a.Count; i++)
+                //{
+                //    if (a[i] % 2 != 0)
+                //    {
+                //        x++;
+                //    }
+                //}
+                //if (x % 2 == 0 && a.Count % 2 != 0)
+                //{
+                //    isEven = false;
+                //}
+                //else if (x % 2 != 0 && a.Count % 2 == 0)
+                //{
+                //    isEven = false;
+                //}
+                //else
+                //{
+                //    isEven = true;
+                //}
+
+                    //if (a[0] % 2 == 0 && a[1] % 2 == 0)
+                    //{
+                    //    return true;
+                    //}
+                    //else if(a[0] % 2 != 0 && a[1] % 2 != 0)
+                    //{
+                    //    return true;
+                    //}
+                    //else
+                    //{
+                    //    return false;
+                    //}
+            }
+//#if DEBUG
+//            Tuple<ReadOnlyCollection<UInt16>, ReadOnlyCollection<UInt16>, ReadOnlyCollection<UInt16>> half = this.Divide(a, this.Environment.SecondNumber.Segments);
+//            if (half.Item2 == default(ReadOnlyCollection<UInt16>) && !isEven)
+//            {
+//                throw new Exception("IsEven should be even but is not");
+//            }
+//            else if(half.Item2 != default(ReadOnlyCollection<UInt16>) && isEven)
+//            {
+//                throw new Exception("IsEven should NOT be even but is");
+//            }
+//#endif
+            return isEven;
+        }
+
+        internal bool IsPrime(ReadOnlyCollection<UInt16> a)
+        {
+            Tuple<ReadOnlyCollection<UInt16>, ReadOnlyCollection<UInt16>> divisor = this.GetComposite(a);
+            if (divisor != default(Tuple<ReadOnlyCollection<UInt16>, ReadOnlyCollection<UInt16>>))
+            {
+                if (this.IsBottom(divisor.Item1) || this.IsBottom(divisor.Item2) || this.IsFirst(divisor.Item1) || this.IsFirst(divisor.Item2))
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+            else
             {
                 return true;
             }
-            else if (this.Environment.Key.Count == 2)
+        }
+
+
+    internal Tuple<ReadOnlyCollection<UInt16>,ReadOnlyCollection<UInt16>> GetComposite(ReadOnlyCollection<UInt16> a)
+    {
+            Tuple<ReadOnlyCollection<UInt16>, ReadOnlyCollection<UInt16>> result = default(Tuple<ReadOnlyCollection<UInt16>, ReadOnlyCollection<UInt16>>);
+            if (this.IsBottom(a) || this.IsFirst(a) || this.IsEqual(a, this.Environment.SecondNumber.Segments))
             {
-                return false;
+
+            }
+            else if (this.IsEven(a))
+            {
+                Tuple<ReadOnlyCollection<UInt16>, ReadOnlyCollection<UInt16>, ReadOnlyCollection<UInt16>> half = this.Divide(a, this.Environment.SecondNumber.Segments);
+                if (half.Item2 != default(ReadOnlyCollection<UInt16>) || half.Item2 != default(ReadOnlyCollection<UInt16>))
+                {
+                    throw new Exception("Math error in GetDivisor IsEven half");
+                }
+                result = new Tuple<ReadOnlyCollection<UInt16>, ReadOnlyCollection<UInt16>>(half.Item1, this.Environment.SecondNumber.Segments);
+            }
+            else
+            {
+
+                ReadOnlyCollection<UInt16> maxNumber;
+                Tuple<ReadOnlyCollection<UInt16>, ReadOnlyCollection<UInt16>, ReadOnlyCollection<UInt16>> maxNumberRaw = this.SquareRoot(a);
+                if (maxNumberRaw.Item2 == default(ReadOnlyCollection<UInt16>))
+                {
+                    maxNumber = maxNumberRaw.Item1;
+                }
+                else
+                {
+                    maxNumber = this.Add(maxNumberRaw.Item1, this.Environment.KeyNumber[1].Segments);
+                }
+                ReadOnlyCollection<UInt16> lastResultWholeNumber = default(ReadOnlyCollection<UInt16>);
+                ReadOnlyCollection<UInt16> testNumber = new ReadOnlyCollection<UInt16>(this.Environment.AsSegments(3));
+                while (this.IsLessThanOrEqualTo(testNumber, maxNumber))
+                {
+                    Debug.WriteLine(String.Format("testNumber Divide {0} by {1}", String.Join(',', a.Select(x => x.ToString()).Reverse().ToArray()), String.Join(',', testNumber.Select(x=>x.ToString()).Reverse().ToArray())));
+                    
+                    Tuple<ReadOnlyCollection<UInt16>, ReadOnlyCollection<UInt16>, ReadOnlyCollection<UInt16>> currentNumber = this.Divide(a, testNumber, lastResultWholeNumber);
+                    if (currentNumber.Item2 == default(ReadOnlyCollection<UInt16>))
+                    {
+                        result = new Tuple<ReadOnlyCollection<ushort>, ReadOnlyCollection<ushort>>(currentNumber.Item1, testNumber);
+                        break;
+                    }
+
+                    lastResultWholeNumber = currentNumber.Item1;
+                    testNumber = this.Add(testNumber, Environment.SecondNumber.Segments);
+                }
+            }
+#if DEBUG
+            if (a.Count == 1)
+            {
+                int i = 2;
+                Boolean isPrime = true;
+                for (; i < a[0]-1; i++)
+                {
+                    if (a[0] % i == 0)
+                    {
+                        isPrime = false;
+                        break;
+                    }
+                }
+
+                if (isPrime == false && result == default(Tuple<ReadOnlyCollection<UInt16>, ReadOnlyCollection<UInt16>>))
+                {
+                    throw new Exception(String.Format("Math Error in GetComposite {0} should have had a Composite of {1}", a[0], i));
+                }
+                else if (isPrime == true && result != default(Tuple<ReadOnlyCollection<UInt16>, ReadOnlyCollection<UInt16>>))
+                {
+                    throw new Exception(String.Format("Math Error in GetComposite {0} should NOT have a Composite of {1} x {2}", a[0], result.Item1[0], result.Item2[0]));
+                }
+            }
+#endif
+            return result;
+        }
+
+        public ReadOnlyCollection<UInt16> Square(ReadOnlyCollection<UInt16> a)
+        {
+            return this.Multiply(a, a);
+        }
+
+        public Tuple<ReadOnlyCollection<UInt16>, ReadOnlyCollection<UInt16>, ReadOnlyCollection<UInt16>> SquareRoot(ReadOnlyCollection<UInt16> number)
+        {
+
+            if (this.IsBottom(number))
+            {
+                return default(Tuple<ReadOnlyCollection<UInt16>, ReadOnlyCollection<UInt16>, ReadOnlyCollection<UInt16>>);
+            }
+            
+            ReadOnlyCollection<UInt16> floor = this.Environment.SecondNumber.Segments;
+            ReadOnlyCollection<UInt16> ceiling = this.Divide(number, this.Environment.SecondNumber.Segments).Item1;
+
+            ReadOnlyCollection<UInt16> lastNumberTried = this.GetWholeNumberSomewhereBetween(ceiling, floor);
+            ReadOnlyCollection<UInt16> squareTestResult = this.Square(lastNumberTried);
+
+            ReadOnlyCollection<UInt16> maxDifference = this.Subtract(lastNumberTried, new ReadOnlyCollection<UInt16>(new UInt16[] { 1 }));
+            ReadOnlyCollection<UInt16> minimumTestResult = this.Subtract(number, maxDifference);
+            ReadOnlyCollection<UInt16> maximumTestResult = this.Add(number, maxDifference);
+
+            while (this.IsNotEqual(floor, ceiling) && (this.IsLessThan(squareTestResult, minimumTestResult) || this.IsGreaterThan(squareTestResult, maximumTestResult)))
+            {
+                if (this.IsLessThan(squareTestResult, minimumTestResult))
+                {
+                    floor = lastNumberTried;
+                    lastNumberTried = this.GetWholeNumberSomewhereBetween(ceiling, floor, 1);
+                }
+                else if (this.IsGreaterThan(squareTestResult, maximumTestResult))
+                {
+                    ceiling = lastNumberTried;
+                    lastNumberTried = this.GetWholeNumberSomewhereBetween(ceiling, floor, -1);
+                }
+                squareTestResult = this.Square(lastNumberTried);
+
+                maxDifference = this.Subtract(lastNumberTried, new ReadOnlyCollection<UInt16>(new UInt16[] { 1 }));
+                minimumTestResult = this.Subtract(number, maxDifference);
+                maximumTestResult = this.Add(number, maxDifference);
             }
 
-            UInt16 charIndex = a[0];
-            if (charIndex % 2 == 0)
+            Tuple<ReadOnlyCollection<UInt16>, ReadOnlyCollection<UInt16>, ReadOnlyCollection<UInt16>> result;
+
+            if (this.IsGreaterThan(number, squareTestResult))
+            {
+                var leftOver = this.Subtract(number, squareTestResult);
+                result = new Tuple<ReadOnlyCollection<UInt16>, ReadOnlyCollection<UInt16>, ReadOnlyCollection<UInt16>>(lastNumberTried, leftOver, number);
+
+            }
+            else if (this.IsGreaterThan(squareTestResult, number))
+            {
+                var wholeNumber = this.Subtract(lastNumberTried, this.Environment.KeyNumber[0].Segments);
+                var leftOver = this.Subtract(squareTestResult, number);
+                result = new Tuple<ReadOnlyCollection<UInt16>, ReadOnlyCollection<UInt16>, ReadOnlyCollection<UInt16>>(wholeNumber, leftOver, number);
+            }
+            else
+            {
+                result = new Tuple<ReadOnlyCollection<UInt16>, ReadOnlyCollection<UInt16>, ReadOnlyCollection<UInt16>>(lastNumberTried, null, null);
+            }
+            return result;
+        }
+
+        public Boolean IsEqual(ReadOnlyCollection<UInt16> a, ReadOnlyCollection<UInt16> b)
+        {
+            if (this.CompareTo(a, b) == 0)
             {
                 return true;
             }
@@ -359,53 +568,9 @@ namespace VariableBase.Mathematics
             }
         }
 
-        internal bool IsPrime(ReadOnlyCollection<UInt16> a)
+        public Boolean IsNotEqual(ReadOnlyCollection<UInt16> a, ReadOnlyCollection<UInt16> b)
         {
-            return this.GetSmallestDivisor(a) == default(ReadOnlyCollection<UInt16>);
-        }
-
-
-        internal ReadOnlyCollection<UInt16> GetSmallestDivisor(ReadOnlyCollection<UInt16> a)
-        {
-
-            if (this.IsBottom(a))
-            {
-                return a;
-            }
-
-            if (this.IsEven(a))
-            {
-                return this.Environment.SecondNumber.Segments;
-            }
-
-            ReadOnlyCollection<UInt16> four = this.Square(this.Environment.SecondNumber.Segments);
-
-            Tuple<ReadOnlyCollection<UInt16>, ReadOnlyCollection<UInt16>, ReadOnlyCollection<UInt16>> maxNumber = this.Divide(a, four);
-
-            ReadOnlyCollection<UInt16> testNumber = this.Environment.SecondNumber.Segments;
-            while (this.IsLessThanOrEqualTo(testNumber, maxNumber.Item1))
-            {
-                Tuple<ReadOnlyCollection<UInt16>, ReadOnlyCollection<UInt16>, ReadOnlyCollection<UInt16>> currentNumber = this.Divide(a, testNumber);
-                if (currentNumber.Item2 == default(ReadOnlyCollection<UInt16>))
-                {
-                    return testNumber;
-                }
-
-                testNumber = this.Add(testNumber, new ReadOnlyCollection<UInt16>(new UInt16[] { 1 }));
-                Debug.WriteLine(String.Format("testNumber length {0} in GetSmallestDivisor ", testNumber.Count));
-            }
-
-            return default(ReadOnlyCollection<UInt16>);
-        }
-
-        public ReadOnlyCollection<UInt16> Square(ReadOnlyCollection<UInt16> a)
-        {
-            return this.Multiply(a, a);
-        }
-
-        public Boolean IsEqual(ReadOnlyCollection<UInt16> a, ReadOnlyCollection<UInt16> b)
-        {
-            if (this.CompareTo(a, b) == 0)
+            if (this.CompareTo(a, b) != 0)
             {
                 return true;
             }
@@ -466,6 +631,16 @@ namespace VariableBase.Mathematics
         public int CompareTo(ReadOnlyCollection<UInt16> a, ReadOnlyCollection<UInt16> b)
         {
             Int32 result = 0;
+            if (Object.ReferenceEquals(a, default(ReadOnlyCollection<UInt16>)) || a.Count == 0)
+            {
+                a = new ReadOnlyCollection<UInt16>(new UInt16[] { 0 });
+            }
+
+            if (Object.ReferenceEquals(b, default(ReadOnlyCollection<UInt16>)) || b.Count == 0)
+            {
+                b = new ReadOnlyCollection<UInt16>(new UInt16[] { 0 });
+            }
+
             if (a.Count > b.Count)
             {
                 result = 1;
@@ -557,6 +732,18 @@ namespace VariableBase.Mathematics
         public ReadOnlyCollection<UInt16> Multiply(ReadOnlyCollection<UInt16> a, ReadOnlyCollection<UInt16> b)
         {
             ReadOnlyCollection<UInt16> result = new ReadOnlyCollection<UInt16>(new UInt16[] { 0 });
+            if (this.IsBottom(a) || this.IsBottom(b))
+            {
+                return a;
+            }
+            else if (this.IsFirst(a))
+            {
+                return b;
+            }
+            else if (this.IsFirst(b))
+            {
+                return a;
+            }
 
             for (UInt16 i = 0; i < (UInt16)a.Count; i++)
             {
@@ -606,6 +793,87 @@ namespace VariableBase.Mathematics
         #endregion
 
         #region Divide
+
+        public Tuple<ReadOnlyCollection<UInt16>, ReadOnlyCollection<UInt16>, ReadOnlyCollection<UInt16>> Divide(ReadOnlyCollection<UInt16> numerator, ReadOnlyCollection<UInt16> denominator, ReadOnlyCollection<UInt16> hint = default(ReadOnlyCollection<UInt16>))
+        {
+            if (this.IsBottom(denominator))
+            {
+                return new Tuple<ReadOnlyCollection<UInt16>, ReadOnlyCollection<UInt16>, ReadOnlyCollection<UInt16>>(numerator, null, null);
+            }
+            else if (this.IsLessThan(numerator, denominator))
+            {
+                return new Tuple<ReadOnlyCollection<UInt16>, ReadOnlyCollection<UInt16>, ReadOnlyCollection<UInt16>>(new ReadOnlyCollection<UInt16>(new UInt16[] { 0 }), numerator, denominator);
+            }
+            
+            ReadOnlyCollection<UInt16> floor = (hint == default(ReadOnlyCollection<UInt16>) || this.IsGreaterThan(denominator, hint)) ? this.Environment.KeyNumber[1].Segments : this.GetAboutHalf(hint, this.Environment.KeyNumber[1].Segments, -1);
+            ReadOnlyCollection<UInt16> ceiling = (hint == default(ReadOnlyCollection<UInt16>) || this.IsGreaterThan(denominator, hint)) ? numerator : this.GetAboutHalf(hint, numerator, 1);
+
+            ReadOnlyCollection<UInt16> lastNumberTried = this.GetWholeNumberSomewhereBetween(ceiling, floor);
+            ReadOnlyCollection<UInt16> numeratorTestResult = this.Multiply(lastNumberTried, denominator);
+
+            ReadOnlyCollection<UInt16> maxDifference = this.Subtract(denominator, new ReadOnlyCollection<UInt16>(new UInt16[] { 1 }));
+            ReadOnlyCollection<UInt16> minimumTestResult = this.Subtract(numerator, maxDifference);
+
+            while (this.IsLessThan(numeratorTestResult, minimumTestResult) || this.IsGreaterThan(numeratorTestResult, numerator))
+            {
+                if (this.IsLessThan(numeratorTestResult, numerator))
+                {
+                    floor = lastNumberTried;
+                    lastNumberTried = this.GetWholeNumberSomewhereBetween(ceiling, floor, 1);
+                }
+                else if (this.IsGreaterThan(numeratorTestResult, numerator))
+                {
+                    ceiling = lastNumberTried;
+                    lastNumberTried = this.GetWholeNumberSomewhereBetween(ceiling, floor, -1);
+                }
+
+                if (this.IsGreaterThanOrEqualTo(floor, ceiling))
+                {
+                    floor = this.GetWholeNumberSomewhereBetween(ceiling, this.Environment.KeyNumber[1].Segments);
+                }
+                else if (this.IsLessThanOrEqualTo(ceiling, floor))
+                {
+                    ceiling = this.GetWholeNumberSomewhereBetween(floor, numerator);
+                }
+
+                numeratorTestResult = this.Multiply(lastNumberTried, denominator);
+            }
+
+            Tuple<ReadOnlyCollection<UInt16>, ReadOnlyCollection<UInt16>, ReadOnlyCollection<UInt16>> result;
+
+            if (this.IsEqual(numeratorTestResult, numerator))
+            {
+                result = new Tuple<ReadOnlyCollection<UInt16>, ReadOnlyCollection<UInt16>, ReadOnlyCollection<UInt16>>(lastNumberTried, null, null);
+            }
+            else
+            {
+                var leftOver = this.Subtract(numerator, numeratorTestResult);
+                result = new Tuple<ReadOnlyCollection<UInt16>, ReadOnlyCollection<UInt16>, ReadOnlyCollection<UInt16>>(lastNumberTried, leftOver, denominator);
+            }
+
+#if DEBUG
+            if (this.IsGreaterThan(result.Item1, numerator) && this.IsGreaterThan(result.Item1, denominator))
+            {
+                throw new Exception("MathAlgorithm Division error");
+            }
+            else if (result.Item1 != default(ReadOnlyCollection<UInt16>) && result.Item1.Count > 1 && result.Item1[result.Item1.Count - 1] == 0)
+            {
+                throw new Exception("MathAlgorithm Division leading zero error whole number");
+            }
+            else if (result.Item2 != default(ReadOnlyCollection<UInt16>) && result.Item2.Count > 1 && result.Item2[result.Item2.Count - 1] == 0)
+            {
+                throw new Exception("MathAlgorithm Division leading zero error numerator");
+            }
+            else if (result.Item3 != default(ReadOnlyCollection<UInt16>) && result.Item3.Count > 1 && result.Item3[result.Item3.Count - 1] == 0)
+            {
+                throw new Exception("MathAlgorithm Division leading zero error denominator");
+            }
+#endif
+
+
+            return result;
+        }
+
 
         public Number Divide(UInt16 dividend, UInt16 divisor)
         {
@@ -698,7 +966,19 @@ namespace VariableBase.Mathematics
         }
 
         #endregion
-        
+
+        public Boolean IsFirst(ReadOnlyCollection<UInt16> number)
+        {
+            if (number != default(ReadOnlyCollection<UInt16>) && number.Count == 1 && number[0] == 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public Boolean IsBottom(ReadOnlyCollection<UInt16> number)
         {
             if (number == default(ReadOnlyCollection<UInt16>) || number.Count == 0 || (number.Count == 1 && number[0] == 0))

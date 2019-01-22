@@ -10,7 +10,7 @@ using System.Text;
 
 namespace VariableBase.Mathematics
 {
-    public struct Number:IEquatable<Number>, IComparable<Number>
+    public struct Number:IEquatable<Number>, IComparable<Number>, IDisposable
     {
         internal static INumberOperator Operator = new NumberOperator();
 
@@ -38,7 +38,9 @@ namespace VariableBase.Mathematics
             if (numerator != default(ReadOnlyCollection<UInt16>) && denominator != default(ReadOnlyCollection<UInt16>))
             { 
                 this.Fragment = new Fraction(environment, numerator, denominator);
-            }else{
+            }
+            else
+            {
                 this.Fragment = default(Fraction);
             }
 
@@ -162,6 +164,12 @@ namespace VariableBase.Mathematics
             return new Number(this.Environment, this.Segments, null, this.IsNegative);
         }
 
+
+        public Tuple<Number, Number> GetComposite()
+        {
+            return Operator.GetComposite(this);
+        }
+
         public Boolean IsPrime()
         {
             return Operator.IsPrime(this);
@@ -202,6 +210,36 @@ namespace VariableBase.Mathematics
             return Operator.AsBinaryNumber(this);
         }
 
+        public String GetActualValue(MathEnvironment environment)
+        {
+            String result = String.Empty;
+            if (this.IsNegative)
+            {
+                result = "-" + result;
+            }
+
+            ReadOnlyCollection<UInt16> resultSegments;
+            if (environment != this.Environment)
+            {
+                resultSegments = this.Convert(environment).Segments;
+            }
+            else
+            {
+                resultSegments = this.Segments;
+            }
+
+            for (UInt16 i = (UInt16)resultSegments.Count; i > 0; i--)
+            {
+                result += environment.Key[resultSegments[i - 1]];
+            }
+
+            if (this.Fragment != default(Fraction))
+            {
+                result = String.Format("{0} {1}", result, this.Fragment);
+            }
+
+            return result;
+        }
         public String GetDisplayValue()
         {
             String result = String.Empty;
@@ -230,11 +268,28 @@ namespace VariableBase.Mathematics
             }
             return result;
         }
-        
+
+        public String ToString(MathEnvironment environment)
+        {
+            return this.GetActualValue(environment);
+        }
 
         public override String ToString()
         {
             return this.GetDisplayValue();
+        }
+
+        public void Dispose()
+        {
+            this.Fragment = default(Fraction);
+
+            this.First = 0;
+            
+            this.IsNegative = false;
+
+            this.Environment = default(MathEnvironment);
+
+            this.Segments = default(ReadOnlyCollection<UInt16>);
         }
     }
 }

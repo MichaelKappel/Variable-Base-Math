@@ -13,7 +13,7 @@ namespace VariableBase.Mathematics.Tests.NumberTests.B0123456789_ABCDEFGHIJKLMNP
         [TestCategory("Number")]
         [TestCategory("ToAndFromBinary")]
         [TestCategory("01234567890ABCDEF")]
-        public void ToAndFromBinary_1()
+        public void ToAndFromBinary_B16()
         {
             var env = new MathEnvironment("01234567890ABCDEF");
             

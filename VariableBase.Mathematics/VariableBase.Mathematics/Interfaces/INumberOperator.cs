@@ -21,5 +21,6 @@ namespace VariableBase.Mathematics.Interfaces
         bool IsPrime(Number number);
         Number Convert(MathEnvironment environment, Number number);
         Number AsBinaryNumber(Number number);
+        Tuple<Number, Number> GetComposite(Number number);
     }
 }
