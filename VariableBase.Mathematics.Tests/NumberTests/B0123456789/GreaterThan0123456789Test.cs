@@ -14,7 +14,7 @@ namespace VariableBase.Mathematics.Tests.NumberTests.B0123456789
         [TestCategory("0123456789")]
         public void GreaterThan_15_5()
         {
-            var env = new MathEnvironment("0123456789");
+            var env = new DecimalMathEnvironment("0123456789");
 
             var expected = true;
 

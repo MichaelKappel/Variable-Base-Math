@@ -15,9 +15,9 @@ namespace VariableBase.Mathematics.Tests.NumberTests.B0123456789
         [TestCategory("0123456789")]
         public void AsBinary_9840()
         {
-            var env = new MathEnvironment("0123456789");
+            var env = new DecimalMathEnvironment("0123456789");
 
-            var expectedEnvironment = new MathEnvironment("01");
+            var expectedEnvironment = new DecimalMathEnvironment("01");
             var expected = expectedEnvironment.GetNumber("10011001110000");
 
             var a = env.GetNumber("9840");
@@ -35,9 +35,9 @@ namespace VariableBase.Mathematics.Tests.NumberTests.B0123456789
         [TestCategory("0123456789")]
         public void AsBinary_5862652587024684796()
         {
-            var env = new MathEnvironment("0123456789");
+            var env = new DecimalMathEnvironment("0123456789");
 
-            var expectedEnvironment = new MathEnvironment("01");
+            var expectedEnvironment = new DecimalMathEnvironment("01");
             var expected = expectedEnvironment.GetNumber("‭101000101011100010100110111011101011011001000011001011011111100‬");
 
             var a = env.GetNumber("5862652587024684796");
@@ -54,7 +54,7 @@ namespace VariableBase.Mathematics.Tests.NumberTests.B0123456789
         [TestCategory("0123456789")]
         public void AsEnvironmentNumber_9840()
         {
-            var env = new MathEnvironment("0123456789");
+            var env = new DecimalMathEnvironment("0123456789");
 
             var expected = env.GetNumber("9840");
 
@@ -71,7 +71,7 @@ namespace VariableBase.Mathematics.Tests.NumberTests.B0123456789
         [TestCategory("0123456789")]
         public void AsEnvironmentNumber_‭9223372036854775807‬()
         {
-            var env = new MathEnvironment("0123456789");
+            var env = new DecimalMathEnvironment("0123456789");
 
             var expected = env.GetNumber("‭9223372036854775807‬");
 
@@ -88,9 +88,9 @@ namespace VariableBase.Mathematics.Tests.NumberTests.B0123456789
         [TestCategory("0123456789")]
         public void AsEnvironmentNumber_5862652587024684796()
         {
-            var env = new MathEnvironment("0123456789");
+            var env = new DecimalMathEnvironment("0123456789");
 
-            var expectedEnvironment = new MathEnvironment("01");
+            var expectedEnvironment = new DecimalMathEnvironment("01");
             var expected = expectedEnvironment.GetNumber("‭101000101011100010100110111011101011011001000011001011011111100‬");
 
             var a = env.GetNumber("5862652587024684796");
@@ -106,7 +106,7 @@ namespace VariableBase.Mathematics.Tests.NumberTests.B0123456789
         [TestCategory("0123456789")]
         public void ToAndFromBinary_B10()
         {
-            var env = new MathEnvironment("0123456789");
+            var env = new DecimalMathEnvironment("0123456789");
             
             var a = env.GetNumber("586265258702468479623456789009876542134567890987654234567890987654321234567890987654234567");
             var b = a.AsBinary();
@@ -121,7 +121,7 @@ namespace VariableBase.Mathematics.Tests.NumberTests.B0123456789
         [TestCategory("0123456789")]
         public void ToAndFromBinary_B10_182()
         {
-            var env = new MathEnvironment("0123456789");
+            var env = new DecimalMathEnvironment("0123456789");
 
             var a = env.GetNumber("95862652587024684796234567890098765421345678909876542345678909876543212345678909876542345675862652587024684796234567890098765421345678909876542345678909876543212345678909876542345679");
             var b = a.AsBinary();

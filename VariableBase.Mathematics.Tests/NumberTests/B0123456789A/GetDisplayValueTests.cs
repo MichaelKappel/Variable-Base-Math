@@ -15,7 +15,7 @@ namespace VariableBase.Math.Tests.NumberTests.B0123456789A
         [TestCategory("B0123456789A")]
         public void GetDisplayValue_B11()
         {
-            var env = new MathEnvironment("0123456789A");
+            var env = new DecimalMathEnvironment("0123456789A");
 
             String expected = "89A2757323413245474677645A93273240218983245474677645A2109A980";
             Number a = env.GetNumber(expected);

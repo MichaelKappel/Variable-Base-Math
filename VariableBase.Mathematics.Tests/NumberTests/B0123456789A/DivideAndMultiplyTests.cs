@@ -15,7 +15,7 @@ namespace VariableBase.Math.Tests.NumberTests.B0123456789A
         [TestCategory("B0123456789A")]
         public void AB_DE_Test_1()
         {
-            var env = new MathEnvironment("0123456789A");
+            var env = new DecimalMathEnvironment("0123456789A");
 
             Number cNumber = env.GetNumber("267266182275726727A518564458464A597284017657A2011477837285953209496727A2530");
 
@@ -40,7 +40,7 @@ namespace VariableBase.Math.Tests.NumberTests.B0123456789A
         [TestCategory("B0123456789A")]
         public void AB_DE_Test_2()
         {
-            var env = new MathEnvironment("0123456789A");
+            var env = new DecimalMathEnvironment("0123456789A");
 
             Number a = env.GetNumber("89A275732341324");
             Number b = env.GetNumber("5845474677645A");

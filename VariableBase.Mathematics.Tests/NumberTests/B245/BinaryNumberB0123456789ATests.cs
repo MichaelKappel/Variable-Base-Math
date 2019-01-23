@@ -15,7 +15,7 @@ namespace VariableBase.Mathematics.Tests.NumberTests.B0123456789A
         [TestCategory("B245")]
         public void ToAndFromBinary_B245()
         {
-            var env = new MathEnvironment(UInt16.MaxValue);
+            var env = new DecimalMathEnvironment(UInt16.MaxValue);
             
             var a = env.GetNumber("A6780123450123456789A601234560123456789A789A789A01234567890123456789AA012345601234560123456789A789A789A");
             var b = a.AsBinary();

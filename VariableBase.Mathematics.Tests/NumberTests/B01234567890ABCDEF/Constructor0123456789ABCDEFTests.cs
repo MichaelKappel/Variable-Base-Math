@@ -16,7 +16,7 @@ namespace VariableBase.Mathematics.Tests.NumberTests.B0123456789ABCDEF
         [TestCategory("0123456789ABCDEF")]
         public void Constructor_String_00000()
         {
-            var env = new MathEnvironment("0123456789ABCDEF");
+            var env = new DecimalMathEnvironment("0123456789ABCDEF");
 
 
             Number actual = env.GetNumber("00000");

@@ -11,7 +11,7 @@ namespace VariableBase.MathematicsConsole
             Console.WriteLine("Set Base");
             String rawKey = Console.ReadLine();
 
-            var environment = new MathEnvironment(rawKey);
+            var environment = new DecimalMathEnvironment(rawKey);
 
             Console.WriteLine("First Number");
             Number firstNumberRaw = environment.GetNumber(Console.ReadLine());

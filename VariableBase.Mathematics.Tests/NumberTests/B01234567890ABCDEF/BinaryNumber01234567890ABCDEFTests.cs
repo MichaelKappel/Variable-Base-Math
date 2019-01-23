@@ -15,7 +15,7 @@ namespace VariableBase.Mathematics.Tests.NumberTests.B0123456789_ABCDEFGHIJKLMNP
         [TestCategory("01234567890ABCDEF")]
         public void ToAndFromBinary_B16()
         {
-            var env = new MathEnvironment("01234567890ABCDEF");
+            var env = new DecimalMathEnvironment("01234567890ABCDEF");
             
             var a = env.GetNumber("58012345801234590ABCDEF67890A5801234590ABCDEF67890ABCDEFBCDEF590ABCDE5801234590ABCDEF678905801234590ABCDEF67890ABCDEFABCDEFF67890ABC5801234590ABCDEF67890ABCDEFDEF");
             var b = a.AsBinary();
