@@ -295,7 +295,7 @@ namespace VariableBase.Mathematics
             return result;
         }
 
-        public String ToString(MathEnvironment environment)
+        public String ToString(IMathEnvironment environment)
         {
             return this.GetActualValue(environment);
         }
@@ -313,7 +313,7 @@ namespace VariableBase.Mathematics
             
             this.IsNegative = false;
 
-            this.Environment = default(MathEnvironment);
+            this.Environment = default(IMathEnvironment);
 
             this.Segments = default(ReadOnlyCollection<Decimal>);
         }

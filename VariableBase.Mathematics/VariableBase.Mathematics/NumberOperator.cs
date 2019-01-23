@@ -98,9 +98,9 @@ namespace VariableBase.Mathematics
         }
         public int Compare(Number a, Number b)
         {
-            if (Object.ReferenceEquals(a.Environment, default(MathEnvironment)) || (a.Environment.BasicMath.IsBottom(a.Segments)) && Object.ReferenceEquals(a.Fragment, default(Fraction)))
+            if (Object.ReferenceEquals(a.Environment, default(DecimalMathEnvironment)) || (a.Environment.BasicMath.IsBottom(a.Segments)) && Object.ReferenceEquals(a.Fragment, default(Fraction)))
             {
-                if (Object.ReferenceEquals(b.Environment, default(MathEnvironment)) || (b.Environment.BasicMath.IsBottom(a.Segments) && Object.ReferenceEquals(b.Fragment, default(Fraction))))
+                if (Object.ReferenceEquals(b.Environment, default(DecimalMathEnvironment)) || (b.Environment.BasicMath.IsBottom(a.Segments) && Object.ReferenceEquals(b.Fragment, default(Fraction))))
                 {
                     return 0;
                 }
@@ -109,7 +109,7 @@ namespace VariableBase.Mathematics
                     return 1;
                 }
             }
-            else if (Object.ReferenceEquals(b.Environment, default(MathEnvironment)) || (b.Environment.BasicMath.IsBottom(a.Segments) && Object.ReferenceEquals(b.Fragment, default(Fraction))))
+            else if (Object.ReferenceEquals(b.Environment, default(DecimalMathEnvironment)) || (b.Environment.BasicMath.IsBottom(a.Segments) && Object.ReferenceEquals(b.Fragment, default(Fraction))))
             {
                 return -1;
             }
@@ -338,7 +338,7 @@ namespace VariableBase.Mathematics
 
         public Number AsBinaryNumber(Number number)
         {
-            IMathEnvironment binaryEnvironment = new MathEnvironment("01");
+            IMathEnvironment binaryEnvironment = new DecimalMathEnvironment("01");
             if (number.Environment == binaryEnvironment)
             {
                 return number;
