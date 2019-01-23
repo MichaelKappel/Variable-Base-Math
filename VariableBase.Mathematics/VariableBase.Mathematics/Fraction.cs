@@ -11,7 +11,7 @@ namespace VariableBase.Mathematics
 
         internal static IFractionOperator Operator = new FractionOperator();
 
-        internal Fraction(MathEnvironment environment, ReadOnlyCollection<UInt16> numerator, ReadOnlyCollection<UInt16> denominator)
+        internal Fraction(IMathEnvironment environment, ReadOnlyCollection<Decimal> numerator, ReadOnlyCollection<Decimal> denominator)
         {
             this.Numerator = new Number(environment, numerator, null, null, false);
             this.Denominator = new Number(environment, denominator, null, null, false);
@@ -36,9 +36,9 @@ namespace VariableBase.Mathematics
         {
             unchecked
             {
-                Int64 hashCode1 = this.Numerator.GetHashCode();
-                Int64 hashCode2 = this.Denominator.GetHashCode();
-                Int64 hashCode = hashCode1 + hashCode2;
+                Double hashCode1 = this.Numerator.GetHashCode();
+                Double hashCode2 = this.Denominator.GetHashCode();
+                Double hashCode = hashCode1 + hashCode2;
                 if (hashCode <= Int32.MaxValue)
                 {
                     return (Int32)hashCode;
@@ -138,7 +138,7 @@ namespace VariableBase.Mathematics
             }
             else if (Number.Operator.IsGreaterThan(this.Denominator, this.Numerator))
             {
-                return new Number(this.Denominator.Environment, new ReadOnlyCollection<UInt16>(new UInt16[] { 0 }),  this, false);
+                return new Number(this.Denominator.Environment, new ReadOnlyCollection<Decimal>(new Decimal[] { 0 }),  this, false);
             }
             else
             {

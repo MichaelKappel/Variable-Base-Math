@@ -4,12 +4,12 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
 using System.Linq;
+using static VariableBase.Mathematics.BasicMathAlgorithm;
 
 namespace VariableBase.Mathematics
 {
     public class NumberOperator : INumberOperator
     {
-
         public NumberOperator()
         {
 
@@ -21,11 +21,11 @@ namespace VariableBase.Mathematics
             {
                 throw new Exception("Adding differnt enviorments is not currently supported");
             }
-            MathEnvironment environment = a.Environment;
+            IMathEnvironment environment = a.Environment;
 
             if (a.Fragment == default(Fraction) && b.Fragment == default(Fraction))
             {
-                ReadOnlyCollection<UInt16> resultSegments = environment.Algorithm.Add(a.Segments, b.Segments);
+                ReadOnlyCollection<Decimal> resultSegments = environment.BasicMath.Add(a.Segments, b.Segments);
                 return new Number(environment, resultSegments, null, false);
             }
             else
@@ -42,11 +42,11 @@ namespace VariableBase.Mathematics
             {
                 throw new Exception("Subtracting differnt enviorments is not currently supported");
             }
-            MathEnvironment environment = a.Environment;
+            IMathEnvironment environment = a.Environment;
 
             if (a.Fragment == default(Fraction) && b.Fragment == default(Fraction))
             {
-                ReadOnlyCollection<UInt16> resultSegments = environment.Algorithm.Subtract(a.Segments, b.Segments);
+                ReadOnlyCollection<Decimal> resultSegments = environment.BasicMath.Subtract(a.Segments, b.Segments);
                 return new Number(environment, resultSegments, null, false);
             }
             else
@@ -63,11 +63,11 @@ namespace VariableBase.Mathematics
                 throw new Exception("Multipling differnt enviorments is not currently supported");
             }
 
-            MathEnvironment environment = a.Environment;
+            IMathEnvironment environment = a.Environment;
 
             if (a.Fragment == default(Fraction) && b.Fragment == default(Fraction))
             {
-                ReadOnlyCollection<UInt16> resultSegments = environment.Algorithm.Multiply(a.Segments, b.Segments);
+                ReadOnlyCollection<Decimal> resultSegments = environment.BasicMath.Multiply(a.Segments, b.Segments);
                 return new Number(environment, resultSegments, null, false);
             }
             else
@@ -84,10 +84,10 @@ namespace VariableBase.Mathematics
             {
                 throw new Exception("Dividing differnt enviorments is not currently supported");
             }
-            MathEnvironment environment = a.Environment;
+            IMathEnvironment environment = a.Environment;
 
-            Tuple<ReadOnlyCollection<UInt16>,ReadOnlyCollection<UInt16>,ReadOnlyCollection<UInt16>> resultSegments = environment.Algorithm.Divide(a.Segments, b.Segments);
-            if (resultSegments.Item2 != default(ReadOnlyCollection<UInt16>) && resultSegments.Item3 != default(ReadOnlyCollection<UInt16>))
+            Tuple<ReadOnlyCollection<Decimal>,ReadOnlyCollection<Decimal>,ReadOnlyCollection<Decimal>> resultSegments = environment.BasicMath.Divide(a.Segments, b.Segments);
+            if (resultSegments.Item2 != default(ReadOnlyCollection<Decimal>) && resultSegments.Item3 != default(ReadOnlyCollection<Decimal>))
             {
                 return new Number(environment, resultSegments.Item1, resultSegments.Item2, resultSegments.Item3, false);
             }
@@ -98,9 +98,9 @@ namespace VariableBase.Mathematics
         }
         public int Compare(Number a, Number b)
         {
-            if (Object.ReferenceEquals(a.Environment, default(MathEnvironment)) || (a.Environment.Algorithm.IsBottom(a.Segments)) && Object.ReferenceEquals(a.Fragment, default(Fraction)))
+            if (Object.ReferenceEquals(a.Environment, default(MathEnvironment)) || (a.Environment.BasicMath.IsBottom(a.Segments)) && Object.ReferenceEquals(a.Fragment, default(Fraction)))
             {
-                if (Object.ReferenceEquals(b.Environment, default(MathEnvironment)) || (b.Environment.Algorithm.IsBottom(a.Segments) && Object.ReferenceEquals(b.Fragment, default(Fraction))))
+                if (Object.ReferenceEquals(b.Environment, default(MathEnvironment)) || (b.Environment.BasicMath.IsBottom(a.Segments) && Object.ReferenceEquals(b.Fragment, default(Fraction))))
                 {
                     return 0;
                 }
@@ -109,7 +109,7 @@ namespace VariableBase.Mathematics
                     return 1;
                 }
             }
-            else if (Object.ReferenceEquals(b.Environment, default(MathEnvironment)) || (b.Environment.Algorithm.IsBottom(a.Segments) && Object.ReferenceEquals(b.Fragment, default(Fraction))))
+            else if (Object.ReferenceEquals(b.Environment, default(MathEnvironment)) || (b.Environment.BasicMath.IsBottom(a.Segments) && Object.ReferenceEquals(b.Fragment, default(Fraction))))
             {
                 return -1;
             }
@@ -128,7 +128,7 @@ namespace VariableBase.Mathematics
                 reverse = true;
             }
             
-            MathEnvironment environment = a.Environment;
+            IMathEnvironment environment = a.Environment;
             //Check if Environments all match
             if (b.Environment != environment)
             {
@@ -257,7 +257,7 @@ namespace VariableBase.Mathematics
 
         public Boolean IsBottom(Number number)
         {
-            if (number.Environment == default(MathEnvironment) || number.Segments == default(ReadOnlyCollection<UInt16>) || number.Segments.Count == 0)
+            if (number.Environment == default(IMathEnvironment) || number.Segments == default(ReadOnlyCollection<Decimal>) || number.Segments.Count == 0)
             {
                 return true;
             }
@@ -270,30 +270,30 @@ namespace VariableBase.Mathematics
                 return false;
             }
         }
-        public bool IsOdd(Number number)
+        public Boolean IsOdd(Number number)
         {
             return !this.IsEven(number);
         }
-        public bool IsEven(Number number)
+        public Boolean IsEven(Number number)
         {
-            return number.Environment.Algorithm.IsEven(number.Segments);
+            return number.Environment.BasicMath.IsEven(number.Segments);
         }
 
-        public bool IsPrime(Number number)
+        public Boolean IsPrime(Number number)
         {
             if (number.Fragment != default(Fraction))
             {
                 return false;
             }
-            return number.Environment.Algorithm.IsPrime(number.Segments);
+            return number.Environment.PrimeAlgorithm.IsPrime(number.Segments);
         }
 
 
         public Tuple<Number, Number> GetComposite(Number number)
         {
-            Tuple<ReadOnlyCollection<UInt16>, ReadOnlyCollection<UInt16>> tuple = number.Environment.Algorithm.GetComposite(number.Segments);
+            Tuple<ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>> tuple = number.Environment.PrimeAlgorithm.GetComposite(number.Segments);
 
-            if (tuple == default(Tuple<ReadOnlyCollection<UInt16>, ReadOnlyCollection<UInt16>>))
+            if (tuple == default(Tuple<ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>>))
             {
                 return default(Tuple<Number, Number>);
             }
@@ -302,7 +302,7 @@ namespace VariableBase.Mathematics
                 new Number(number.Environment, tuple.Item2, null, false));
         }
 
-        public Number Convert(MathEnvironment environment, Number number)
+        public Number Convert(IMathEnvironment environment, Number number)
         {
             Boolean[] binary = this.AsBinary(number);
             return environment.AsNumber(binary);
@@ -338,7 +338,7 @@ namespace VariableBase.Mathematics
 
         public Number AsBinaryNumber(Number number)
         {
-            var binaryEnvironment = new MathEnvironment("01");
+            IMathEnvironment binaryEnvironment = new MathEnvironment("01");
             if (number.Environment == binaryEnvironment)
             {
                 return number;
@@ -346,7 +346,7 @@ namespace VariableBase.Mathematics
 
             Boolean[] binary = this.AsBinary(number);
             
-            return new Number(binaryEnvironment, new ReadOnlyCollection<UInt16>(binary.Select((x)=> (UInt16)(x ? 1 : 0)).ToArray()), null, number.IsNegative);
+            return new Number(binaryEnvironment, new ReadOnlyCollection<Decimal>(binary.Select((x)=> (Decimal)(x ? 1 : 0)).ToArray()), null, number.IsNegative);
         }
     }
 }

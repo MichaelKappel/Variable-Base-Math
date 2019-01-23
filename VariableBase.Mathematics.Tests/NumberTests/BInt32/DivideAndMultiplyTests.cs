@@ -4,18 +4,18 @@ using System.Collections.Generic;
 using System.Text;
 using VariableBase.Mathematics;
 
-namespace VariableBase.Math.Tests.NumberTests.BInt32
+namespace VariableBase.Math.Tests.NumberTests.BUInt16
 {
     [TestClass]
-    public class BInt32DivideAndMultiplyTests
+    public class BUInt16DivideAndMultiplyTests
     {        
         [TestMethod]
         [TestCategory("Number")]
         [TestCategory("Add")]
-        [TestCategory("BInt32")]
-        public void BInt32_Test_1()
+        [TestCategory("BUInt16")]
+        public void BUInt16_Test_1()
         {
-            var env = new MathEnvironment();
+            var env = new MathEnvironment(UInt16.MaxValue);
 
             Number a = env.GetNumber("1500");
             Number b = env.GetNumber("6508");
@@ -33,10 +33,10 @@ namespace VariableBase.Math.Tests.NumberTests.BInt32
         [TestMethod]
         [TestCategory("Number")]
         [TestCategory("Add")]
-        [TestCategory("BInt32")]
-        public void BInt32_Test_2()
+        [TestCategory("BUInt16")]
+        public void BUInt16_Test_2()
         {
-            var env = new MathEnvironment();
+            var env = new MathEnvironment(UInt16.MaxValue);
 
             Number a = env.GetNumber("150hglyfjhlflhlfg0");
             Number b = env.GetNumber("65ghdfiy;f;fyifyiyfpflyiifyfyl08");

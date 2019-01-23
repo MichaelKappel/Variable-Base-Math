@@ -21,5 +21,20 @@ namespace VariableBase.Mathematics.Tests.NumberTests.B0123456789
             
             Assert.IsTrue(a.IsPrime());
         }
+
+
+        [TestMethod]
+        [TestCategory("Number")]
+        [TestCategory("Subtract")]
+        [TestCategory("0123456789")]
+        public void IsPrime_9()
+        {
+            var env = new MathEnvironment("0123456789");
+
+
+            Number a = env.GetNumber("9");
+
+            Assert.IsFalse(a.IsPrime());
+        }
     }
 }

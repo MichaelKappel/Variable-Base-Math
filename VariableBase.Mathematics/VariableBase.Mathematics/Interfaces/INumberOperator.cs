@@ -19,7 +19,7 @@ namespace VariableBase.Mathematics.Interfaces
         Boolean IsBottom(Number number);
         bool IsEven(Number number);
         bool IsPrime(Number number);
-        Number Convert(MathEnvironment environment, Number number);
+        Number Convert(IMathEnvironment environment, Number number);
         Number AsBinaryNumber(Number number);
         Tuple<Number, Number> GetComposite(Number number);
     }

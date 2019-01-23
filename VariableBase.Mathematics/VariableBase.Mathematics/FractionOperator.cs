@@ -19,14 +19,14 @@ namespace VariableBase.Mathematics
             {
                 throw new Exception("Adding differnt enviorments is not currently supported");
             }
-            MathEnvironment environment = aWhole.Denominator.Environment;
+            IMathEnvironment environment = aWhole.Denominator.Environment;
 
 
-            ReadOnlyCollection<UInt16> commonDenominator = environment.Algorithm.Multiply(aWhole.Denominator.Segments, bWhole.Denominator.Segments);
-            ReadOnlyCollection<UInt16> numeratorA = environment.Algorithm.Multiply(aWhole.Numerator.Segments, bWhole.Denominator.Segments);
-            ReadOnlyCollection<UInt16> numeratorB = environment.Algorithm.Multiply(bWhole.Numerator.Segments, aWhole.Denominator.Segments);
+            ReadOnlyCollection<Decimal> commonDenominator = environment.BasicMath.Multiply(aWhole.Denominator.Segments, bWhole.Denominator.Segments);
+            ReadOnlyCollection<Decimal> numeratorA = environment.BasicMath.Multiply(aWhole.Numerator.Segments, bWhole.Denominator.Segments);
+            ReadOnlyCollection<Decimal> numeratorB = environment.BasicMath.Multiply(bWhole.Numerator.Segments, aWhole.Denominator.Segments);
 
-            ReadOnlyCollection<UInt16> resultRaw = environment.Algorithm.Add(numeratorA, numeratorB);
+            ReadOnlyCollection<Decimal> resultRaw = environment.BasicMath.Add(numeratorA, numeratorB);
 
             return new Fraction(environment, resultRaw, commonDenominator);
 
@@ -42,13 +42,13 @@ namespace VariableBase.Mathematics
             {
                 throw new Exception("Subtracting differnt enviorments is not currently supported");
             }
-            MathEnvironment environment = aWhole.Denominator.Environment;
+            IMathEnvironment environment = aWhole.Denominator.Environment;
 
-            ReadOnlyCollection<UInt16> commonDenominator = environment.Algorithm.Multiply(aWhole.Denominator.Segments, bWhole.Denominator.Segments);
-            ReadOnlyCollection<UInt16> numeratorA = environment.Algorithm.Multiply(aWhole.Numerator.Segments, bWhole.Denominator.Segments);
-            ReadOnlyCollection<UInt16> numeratorB = environment.Algorithm.Multiply(bWhole.Numerator.Segments, aWhole.Denominator.Segments);
+            ReadOnlyCollection<Decimal> commonDenominator = environment.BasicMath.Multiply(aWhole.Denominator.Segments, bWhole.Denominator.Segments);
+            ReadOnlyCollection<Decimal> numeratorA = environment.BasicMath.Multiply(aWhole.Numerator.Segments, bWhole.Denominator.Segments);
+            ReadOnlyCollection<Decimal> numeratorB = environment.BasicMath.Multiply(bWhole.Numerator.Segments, aWhole.Denominator.Segments);
 
-            ReadOnlyCollection<UInt16> resultnumerator = environment.Algorithm.Subtract(numeratorA, numeratorB);
+            ReadOnlyCollection<Decimal> resultnumerator = environment.BasicMath.Subtract(numeratorA, numeratorB);
             
             var result = new Fraction(environment, resultnumerator, commonDenominator);
 
@@ -64,10 +64,10 @@ namespace VariableBase.Mathematics
             {
                 throw new Exception("Multipling differnt enviorments is not currently supported");
             }
-            MathEnvironment environment = aWhole.Denominator.Environment;
+            IMathEnvironment environment = aWhole.Denominator.Environment;
 
-            ReadOnlyCollection<UInt16> numerator = environment.Algorithm.Multiply(aWhole.Numerator.Segments, bWhole.Numerator.Segments);
-            ReadOnlyCollection<UInt16> denominator = environment.Algorithm.Multiply(aWhole.Denominator.Segments, bWhole.Denominator.Segments);
+            ReadOnlyCollection<Decimal> numerator = environment.BasicMath.Multiply(aWhole.Numerator.Segments, bWhole.Numerator.Segments);
+            ReadOnlyCollection<Decimal> denominator = environment.BasicMath.Multiply(aWhole.Denominator.Segments, bWhole.Denominator.Segments);
 
 
             var result = new Fraction(environment, numerator, denominator);
@@ -84,13 +84,13 @@ namespace VariableBase.Mathematics
             {
                 throw new Exception("Dividing differnt enviorments is not currently supported");
             }
-            MathEnvironment environment = aWhole.Denominator.Environment;
+            IMathEnvironment environment = aWhole.Denominator.Environment;
 
-            ReadOnlyCollection<UInt16> commonDenominator = environment.Algorithm.Multiply(aWhole.Denominator.Segments, bWhole.Denominator.Segments);
-            ReadOnlyCollection<UInt16> numeratorA = environment.Algorithm.Multiply(aWhole.Numerator.Segments, bWhole.Denominator.Segments);
-            ReadOnlyCollection<UInt16> numeratorB = environment.Algorithm.Multiply(bWhole.Numerator.Segments, aWhole.Denominator.Segments);
+            ReadOnlyCollection<Decimal> commonDenominator = environment.BasicMath.Multiply(aWhole.Denominator.Segments, bWhole.Denominator.Segments);
+            ReadOnlyCollection<Decimal> numeratorA = environment.BasicMath.Multiply(aWhole.Numerator.Segments, bWhole.Denominator.Segments);
+            ReadOnlyCollection<Decimal> numeratorB = environment.BasicMath.Multiply(bWhole.Numerator.Segments, aWhole.Denominator.Segments);
 
-            Tuple<ReadOnlyCollection<UInt16>, ReadOnlyCollection<UInt16>,ReadOnlyCollection<UInt16>> rawResult = environment.Algorithm.Divide(numeratorA, numeratorB);
+            Tuple<ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>,ReadOnlyCollection<Decimal>> rawResult = environment.BasicMath.Divide(numeratorA, numeratorB);
 
             var result = new Fraction(environment, rawResult.Item1, commonDenominator);
 
