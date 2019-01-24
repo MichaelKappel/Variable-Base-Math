@@ -21,16 +21,16 @@ namespace VariableBase.Mathematics
 
 
         #region Add
-        public IList<Double> Add(Double a, Double b)
+        public IList<Decimal> Add(Decimal a, Decimal b)
         {
-            Double resultRaw = a + b;
+            Decimal resultRaw = a + b;
 
             return this.AsSegments(resultRaw);
         }
 
-        public ReadOnlyCollection<Double> Add(ReadOnlyCollection<Double> a, ReadOnlyCollection<Double> b)
+        public ReadOnlyCollection<Decimal> Add(ReadOnlyCollection<Decimal> a, ReadOnlyCollection<Decimal> b)
         {
-            ReadOnlyCollection<Double> result = default(ReadOnlyCollection<Double>);
+            ReadOnlyCollection<Decimal> result = default(ReadOnlyCollection<Decimal>);
             if (this.IsLessThan(a, b))
             {
                 result = this.Add(b, a);
@@ -38,17 +38,17 @@ namespace VariableBase.Mathematics
 
             if (a.Count == 1 && b.Count == 1)
             {
-                result = new ReadOnlyCollection<Double>(this.Add(a[0], b[0]));
+                result = new ReadOnlyCollection<Decimal>(this.Add(a[0], b[0]));
             }
 
-            if (result == default(ReadOnlyCollection<Double>))
+            if (result == default(ReadOnlyCollection<Decimal>))
             {
-                var resultNumber = new List<Double>();
-                Double carryOver = 0;
+                var resultNumber = new List<Decimal>();
+                Decimal carryOver = 0;
                 Int32 position = 0;
                 while (position < a.Count)
                 {
-                    Double columnValue = carryOver;
+                    Decimal columnValue = carryOver;
 
                     if (position < a.Count)
                     {
@@ -60,10 +60,10 @@ namespace VariableBase.Mathematics
                         columnValue += b[position];
                     }
 
-                    Double columnResult;
+                    Decimal columnResult;
                     if (columnValue >= this.Environment.Base)
                     {
-                        Double columnResultRaw = columnValue % this.Environment.Base;
+                        Decimal columnResultRaw = columnValue % this.Environment.Base;
                         columnResult = columnResultRaw;
 
                         carryOver = ((columnValue - columnResultRaw) / this.Environment.Base);
@@ -80,10 +80,10 @@ namespace VariableBase.Mathematics
 
                 if (carryOver != 0)
                 {
-                    Double columnResult;
+                    Decimal columnResult;
                     while (carryOver >= this.Environment.Base)
                     {
-                        Double columnResultRaw = carryOver % this.Environment.Base;
+                        Decimal columnResultRaw = carryOver % this.Environment.Base;
                         columnResult = columnResultRaw;
                         resultNumber.Add(columnResult);
 
@@ -97,7 +97,7 @@ namespace VariableBase.Mathematics
                     }
                 }
 
-                result = new ReadOnlyCollection<Double>(resultNumber);
+                result = new ReadOnlyCollection<Decimal>(resultNumber);
             }
 
 #if DEBUG
@@ -106,7 +106,7 @@ namespace VariableBase.Mathematics
                 throw new Exception("MathAlgorithm addtion error");
             }
 
-            foreach (Double segment in result)
+            foreach (Decimal segment in result)
             {
                 if (segment > this.Environment.Base)
                 {
@@ -118,7 +118,7 @@ namespace VariableBase.Mathematics
                 }
             }
 
-            ReadOnlyCollection<Double> reversResult = this.Subtract(result, a);
+            ReadOnlyCollection<Decimal> reversResult = this.Subtract(result, a);
             if (this.IsNotEqual(reversResult, b))
             {
                 throw new Exception("Bad addition result could not reverse");
@@ -129,9 +129,9 @@ namespace VariableBase.Mathematics
 
         #endregion
 
-        public ReadOnlyCollection<Double> GetWholeNumberSomewhereBetween(ReadOnlyCollection<Double> a, ReadOnlyCollection<Double> b, Double variance = 0)
+        public ReadOnlyCollection<Decimal> GetWholeNumberSomewhereBetween(ReadOnlyCollection<Decimal> a, ReadOnlyCollection<Decimal> b, Decimal variance = 0)
         {
-            ReadOnlyCollection<Double> result;
+            ReadOnlyCollection<Decimal> result;
 
             if (a == b)
             {
@@ -140,8 +140,8 @@ namespace VariableBase.Mathematics
             else
             {
 
-                ReadOnlyCollection<Double> largerNumber;
-                ReadOnlyCollection<Double> smallerNumber;
+                ReadOnlyCollection<Decimal> largerNumber;
+                ReadOnlyCollection<Decimal> smallerNumber;
 
                 if (this.IsGreaterThan(a, b))
                 {
@@ -154,13 +154,13 @@ namespace VariableBase.Mathematics
                     smallerNumber = a;
                 }
 
-                Double firstIndexOfLargerNumber = largerNumber[largerNumber.Count - 1];
-                Double firstIndexOfSmallerNumber = smallerNumber[smallerNumber.Count - 1];
+                Decimal firstIndexOfLargerNumber = largerNumber[largerNumber.Count - 1];
+                Decimal firstIndexOfSmallerNumber = smallerNumber[smallerNumber.Count - 1];
 
-                Double firstIndexOfResultRaw = (firstIndexOfLargerNumber + firstIndexOfSmallerNumber) / 2D;
+                Decimal firstIndexOfResultRaw = (firstIndexOfLargerNumber + firstIndexOfSmallerNumber) / 2M;
 
-                Double firstIndexOfResult;
-                Double halfBase;
+                Decimal firstIndexOfResult;
+                Decimal halfBase;
 
                 if (variance > 0)
                 {
@@ -178,12 +178,12 @@ namespace VariableBase.Mathematics
                 if ((largerNumber.Count - smallerNumber.Count <= 1)
                     || (largerNumber.Count - smallerNumber.Count == 2 && firstIndexOfResult <= 1))
                 {
-                    ReadOnlyCollection<Double> combinedValue = this.Add(largerNumber, smallerNumber);
+                    ReadOnlyCollection<Decimal> combinedValue = this.Add(largerNumber, smallerNumber);
                     result = this.GetAboutHalf(combinedValue, variance);
                 }
                 else
                 {
-                    Double somewhereBetweenPower = ((largerNumber.Count - smallerNumber.Count) / 2D) + smallerNumber.Count;
+                    Decimal somewhereBetweenPower = ((largerNumber.Count - smallerNumber.Count) / 2M) + smallerNumber.Count;
                    
                     Int32 power;
                     if (variance > 0)
@@ -213,7 +213,7 @@ namespace VariableBase.Mathematics
                 throw new Exception("MathAlgorithm GetWholeNumberSomewhereBetween Error 2");
             }
 
-            foreach (Double segment in result)
+            foreach (Decimal segment in result)
             {
                 if (segment > this.Environment.Base)
                 {
@@ -229,31 +229,31 @@ namespace VariableBase.Mathematics
             return result;
         }
 
-        public ReadOnlyCollection<Double> GetAboutHalf(ReadOnlyCollection<Double> number, Double variance)
+        public ReadOnlyCollection<Decimal> GetAboutHalf(ReadOnlyCollection<Decimal> number, Decimal variance)
         {
-            Double halfFirstCharIndexDetail = (number[number.Count - 1]) / 2D;
+            Decimal halfFirstCharIndexDetail = (number[number.Count - 1]) / 2M;
 
-            Double halfBaseIndexDetailed = (this.Environment.Base) / 2D;
+            Decimal halfBaseIndexDetailed = (this.Environment.Base) / 2M;
 
-            Double[] resultSegments;
+            Decimal[] resultSegments;
 
-            Double remainder = 0D;
+            Decimal remainder = 0M;
 
 
-            if (halfFirstCharIndexDetail >= 1D)
+            if (halfFirstCharIndexDetail >= 1M)
             {
-                resultSegments = new Double[number.Count];
+                resultSegments = new Decimal[number.Count];
             }
             else
             {
-                resultSegments = new Double[number.Count - 1];
+                resultSegments = new Decimal[number.Count - 1];
                 remainder = halfBaseIndexDetailed;
             }
 
             for (var i = resultSegments.Length - 1; i >= 0; i--)
             {
-                Double charIndex = number[i];
-                Double halfCharIndexWithRemainder = (charIndex / 2D) + remainder;
+                Decimal charIndex = number[i];
+                Decimal halfCharIndexWithRemainder = (charIndex / 2M) + remainder;
                 
                 if (i == 0)
                 {
@@ -268,12 +268,12 @@ namespace VariableBase.Mathematics
                 }
                 else
                 {
-                    Double halfCharIndexWithRemainderIndex = System.Math.Floor(halfCharIndexWithRemainder);
+                    Decimal halfCharIndexWithRemainderIndex = System.Math.Floor(halfCharIndexWithRemainder);
                     if (halfCharIndexWithRemainderIndex >= this.Environment.Base)
                     {
                         Int32 currentSegmentIndex = (Int32)System.Math.Floor(halfBaseIndexDetailed);
                         resultSegments[i] = currentSegmentIndex;
-                        remainder = 0D;
+                        remainder = 0M;
                     }
                     else
                     {
@@ -287,14 +287,14 @@ namespace VariableBase.Mathematics
             {
                 resultSegments = resultSegments.Take(resultSegments.Length - 1).ToArray();
             }
-            var result = new ReadOnlyCollection<Double>(resultSegments);
+            var result = new ReadOnlyCollection<Decimal>(resultSegments);
 
 #if DEBUG
             if (this.IsGreaterThan(result, number))
             {
                 throw new Exception("MathAlgorithm GetAboutHalf error");
             }
-            foreach (Double segment in result)
+            foreach (Decimal segment in result)
             {
                 if (segment > this.Environment.Base)
                 {
@@ -310,23 +310,23 @@ namespace VariableBase.Mathematics
             return result;
         }
 
-        public ReadOnlyCollection<Double> GetAboutHalf(ReadOnlyCollection<Double> a, ReadOnlyCollection<Double> b, Double variance)
+        public ReadOnlyCollection<Decimal> GetAboutHalf(ReadOnlyCollection<Decimal> a, ReadOnlyCollection<Decimal> b, Decimal variance)
         {
-            ReadOnlyCollection<Double> x = this.Add(a, b);
-            Tuple<ReadOnlyCollection<Double>,ReadOnlyCollection<Double>,ReadOnlyCollection<Double>> rawResult = this.Divide(x, this.Environment.SecondNumber.Segments);
+            ReadOnlyCollection<Decimal> x = this.Add(a, b);
+            Tuple<ReadOnlyCollection<Decimal>,ReadOnlyCollection<Decimal>,ReadOnlyCollection<Decimal>> rawResult = this.Divide(x, this.Environment.SecondNumber.Segments);
 
-            ReadOnlyCollection<Double> result;
-            if (variance == 1 && rawResult.Item2 != default(ReadOnlyCollection<Double>))
+            ReadOnlyCollection<Decimal> result;
+            if (variance == 1 && rawResult.Item2 != default(ReadOnlyCollection<Decimal>))
             {
                 result = this.Add(rawResult.Item1, this.Environment.KeyNumber[1].Segments);
             }
-            else if (variance == -1 || rawResult.Item2 == default(ReadOnlyCollection<Double>))
+            else if (variance == -1 || rawResult.Item2 == default(ReadOnlyCollection<Decimal>))
             {
                 result = rawResult.Item1;
             }
             else
             {
-                ReadOnlyCollection<Double> doubleNumerator = this.Multiply(rawResult.Item2, 2);
+                ReadOnlyCollection<Decimal> doubleNumerator = this.Multiply(rawResult.Item2, 2);
                 if (this.IsGreaterThanOrEqualTo(doubleNumerator, rawResult.Item2))
                 {
                     result = this.Add(rawResult.Item1, this.Environment.KeyNumber[1].Segments);
@@ -347,7 +347,7 @@ namespace VariableBase.Mathematics
                 throw new Exception("MathAlgorithm GetWholeNumberSomewhereBetween Error 2");
             }
 
-            foreach (Double segment in result)
+            foreach (Decimal segment in result)
             {
                 if (segment > this.Environment.Base)
                 {
@@ -363,9 +363,9 @@ namespace VariableBase.Mathematics
             return result;
         }
 
-        public IList<Double> AsSegments(Double rawDouble)
+        public IList<Decimal> AsSegments(Decimal rawDouble)
         {
-            var resultRaw = new List<Double>();
+            var resultRaw = new List<Decimal>();
             if (rawDouble == 0)
             {
                 resultRaw.Add(0);
@@ -373,12 +373,12 @@ namespace VariableBase.Mathematics
             else
             {
 
-                Double carryOver = rawDouble;
+                Decimal carryOver = rawDouble;
                 while (carryOver > 0)
                 {
                     if (carryOver >= this.Environment.Base)
                     {
-                        Double columnResultRaw = 0;
+                        Decimal columnResultRaw = 0;
                         columnResultRaw = carryOver % this.Environment.Base;
                         resultRaw.Add(columnResultRaw);
                         carryOver = ((carryOver - columnResultRaw) / this.Environment.Base);
@@ -393,26 +393,26 @@ namespace VariableBase.Mathematics
             return resultRaw;
         }
 
-        public ReadOnlyCollection<Double> PowerOfBase(Double a, Int32 times)
+        public ReadOnlyCollection<Decimal> PowerOfBase(Decimal a, Int32 times)
         {
-            return this.PowerOfBase(new ReadOnlyCollection<Double>(new Double[] { a }), times);
+            return this.PowerOfBase(new ReadOnlyCollection<Decimal>(new Decimal[] { a }), times);
         }
 
-        public ReadOnlyCollection<Double> PowerOfBase(ReadOnlyCollection<Double> a, Int32 times)
+        public ReadOnlyCollection<Decimal> PowerOfBase(ReadOnlyCollection<Decimal> a, Int32 times)
         {
             if (a.Count == 1 && a[0] == 0)
             {
                 return a;
             }
 
-            var segments = new Double[(a.Count + times)];
+            var segments = new Decimal[(a.Count + times)];
             for (Int32 i = segments.Length - 1; i >= 0; i--)
             {
                 segments[i] = 0;
             }
             a.CopyTo(segments, times);
 #if DEBUG
-            foreach (Double segment in segments)
+            foreach (Decimal segment in segments)
             {
                 if (segment > this.Environment.Base)
                 {
@@ -424,15 +424,15 @@ namespace VariableBase.Mathematics
                 }
             }
 #endif
-            return new ReadOnlyCollection<Double>(segments);
+            return new ReadOnlyCollection<Decimal>(segments);
         }
 
-        public bool IsOdd(ReadOnlyCollection<Double> a)
+        public bool IsOdd(ReadOnlyCollection<Decimal> a)
         {
             return !this.IsEven(a);
         }
 
-        public bool IsEven(ReadOnlyCollection<Double> a)
+        public bool IsEven(ReadOnlyCollection<Decimal> a)
         {
             Boolean isEven = false;
             if (this.Environment.Base % 2 == 0 || a.Count == 1)
@@ -448,8 +448,8 @@ namespace VariableBase.Mathematics
             }
             else
             {
-                Tuple<ReadOnlyCollection<Double>, ReadOnlyCollection<Double>, ReadOnlyCollection<Double>> half = this.Divide(a, this.Environment.SecondNumber.Segments);
-                if (half.Item2 == default(ReadOnlyCollection<Double>))
+                Tuple<ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>> half = this.Divide(a, this.Environment.SecondNumber.Segments);
+                if (half.Item2 == default(ReadOnlyCollection<Decimal>))
                 {
                     isEven = true;
                 }
@@ -458,7 +458,7 @@ namespace VariableBase.Mathematics
                     isEven = false;
                 }
 
-                //Double x = 0;
+                //Decimal x = 0;
                 //for (var i = 0; i < a.Count; i++)
                 //{
                 //    if (a[i] % 2 != 0)
@@ -493,12 +493,12 @@ namespace VariableBase.Mathematics
                     //}
             }
 //#if DEBUG
-//            Tuple<ReadOnlyCollection<Double>, ReadOnlyCollection<Double>, ReadOnlyCollection<Double>> half = this.Divide(a, this.Environment.SecondNumber.Segments);
-//            if (half.Item2 == default(ReadOnlyCollection<Double>) && !isEven)
+//            Tuple<ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>> half = this.Divide(a, this.Environment.SecondNumber.Segments);
+//            if (half.Item2 == default(ReadOnlyCollection<Decimal>) && !isEven)
 //            {
 //                throw new Exception("IsEven should be even but is not");
 //            }
-//            else if(half.Item2 != default(ReadOnlyCollection<Double>) && isEven)
+//            else if(half.Item2 != default(ReadOnlyCollection<Decimal>) && isEven)
 //            {
 //                throw new Exception("IsEven should NOT be even but is");
 //            }
@@ -506,52 +506,52 @@ namespace VariableBase.Mathematics
             return isEven;
         }
         
-        public ReadOnlyCollection<Double> Square(ReadOnlyCollection<Double> a)
+        public ReadOnlyCollection<Decimal> Square(ReadOnlyCollection<Decimal> a)
         {
             return this.Multiply(a, a);
         }
 
-        public Tuple<ReadOnlyCollection<Double>, ReadOnlyCollection<Double>, ReadOnlyCollection<Double>> SquareRoot(Double number)
+        public Tuple<ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>> SquareRoot(Decimal number)
         {
-            Double x = System.Math.Sqrt(number);
+            Decimal x = (Decimal)System.Math.Sqrt((Double)number);
             if (x % 1 == 0)
             {
-                return new Tuple<ReadOnlyCollection<Double>, ReadOnlyCollection<Double>, ReadOnlyCollection<Double>>(new ReadOnlyCollection<Double>(new Double[] { x }), null, null);
+                return new Tuple<ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>>(new ReadOnlyCollection<Decimal>(new Decimal[] { x }), null, null);
             }
             else
             {
-                Double remainder = (number - (x * x));
-                return new Tuple<ReadOnlyCollection<Double>, ReadOnlyCollection<Double>, ReadOnlyCollection<Double>>(new ReadOnlyCollection<Double>(new Double[] { x }), new ReadOnlyCollection<Double>(new Double[] { remainder }), new ReadOnlyCollection<Double>(new Double[] { number }));
+                Decimal remainder = (number - (x * x));
+                return new Tuple<ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>>(new ReadOnlyCollection<Decimal>(new Decimal[] { x }), new ReadOnlyCollection<Decimal>(new Decimal[] { remainder }), new ReadOnlyCollection<Decimal>(new Decimal[] { number }));
             }
         }
 
-        public Tuple<ReadOnlyCollection<Double>, ReadOnlyCollection<Double>, ReadOnlyCollection<Double>> SquareRoot(ReadOnlyCollection<Double> number)
+        public Tuple<ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>> SquareRoot(ReadOnlyCollection<Decimal> number)
         {
 
             if (this.IsBottom(number))
             {
-                return default(Tuple<ReadOnlyCollection<Double>, ReadOnlyCollection<Double>, ReadOnlyCollection<Double>>);
+                return default(Tuple<ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>>);
             }
             else if (number.Count == 1)
             {
                 return this.SquareRoot(number[0]);
             }
-            else if (this.IsLessThanOrEqualTo(number, new ReadOnlyCollection<Double>(this.AsSegments(3))))
+            else if (this.IsLessThanOrEqualTo(number, new ReadOnlyCollection<Decimal>(this.AsSegments(3))))
             {
-                return new Tuple<ReadOnlyCollection<Double>, ReadOnlyCollection<Double>, ReadOnlyCollection<Double>>(this.Environment.KeyNumber[1].Segments, null, null);
+                return new Tuple<ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>>(this.Environment.KeyNumber[1].Segments, null, null);
             }
             
-            ReadOnlyCollection<Double> floor = this.Environment.SecondNumber.Segments;
-            ReadOnlyCollection<Double> ceiling = this.Divide(number, this.Environment.SecondNumber.Segments).Item1;
+            ReadOnlyCollection<Decimal> floor = this.Environment.SecondNumber.Segments;
+            ReadOnlyCollection<Decimal> ceiling = this.Divide(number, this.Environment.SecondNumber.Segments).Item1;
 
-            ReadOnlyCollection<Double> lastNumberTried = this.GetWholeNumberSomewhereBetween(ceiling, floor);
-            ReadOnlyCollection<Double> squareTestResult = this.Square(lastNumberTried);
+            ReadOnlyCollection<Decimal> lastNumberTried = this.GetWholeNumberSomewhereBetween(ceiling, floor);
+            ReadOnlyCollection<Decimal> squareTestResult = this.Square(lastNumberTried);
 
-            ReadOnlyCollection<Double> maxDifference = this.Subtract(lastNumberTried, new ReadOnlyCollection<Double>(new Double[] { 1 }));
+            ReadOnlyCollection<Decimal> maxDifference = this.Subtract(lastNumberTried, new ReadOnlyCollection<Decimal>(new Decimal[] { 1 }));
 
             while (this.IsNotEqual(squareTestResult, number) && this.IsGreaterThan(this.Subtract(ceiling, floor), this.Environment.KeyNumber[1].Segments))
             {
-                ReadOnlyCollection<Double> numberBeforLast = lastNumberTried;
+                ReadOnlyCollection<Decimal> numberBeforLast = lastNumberTried;
                 if (this.IsLessThan(squareTestResult, number))
                 {
                     floor = lastNumberTried;
@@ -574,26 +574,26 @@ namespace VariableBase.Mathematics
                 
             }
 
-            Tuple<ReadOnlyCollection<Double>, ReadOnlyCollection<Double>, ReadOnlyCollection<Double>> result;
+            Tuple<ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>> result;
 
             if (this.IsGreaterThan(number, squareTestResult))
             {
                 var leftOver = this.Subtract(number, squareTestResult);
-                result = new Tuple<ReadOnlyCollection<Double>, ReadOnlyCollection<Double>, ReadOnlyCollection<Double>>(lastNumberTried, leftOver, number);
+                result = new Tuple<ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>>(lastNumberTried, leftOver, number);
 
             }
             else if (this.IsGreaterThan(squareTestResult, number))
             {
                 var wholeNumber = this.Subtract(lastNumberTried, this.Environment.KeyNumber[0].Segments);
                 var leftOver = this.Subtract(squareTestResult, number);
-                result = new Tuple<ReadOnlyCollection<Double>, ReadOnlyCollection<Double>, ReadOnlyCollection<Double>>(wholeNumber, leftOver, number);
+                result = new Tuple<ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>>(wholeNumber, leftOver, number);
             }
             else
             {
-                result = new Tuple<ReadOnlyCollection<Double>, ReadOnlyCollection<Double>, ReadOnlyCollection<Double>>(lastNumberTried, null, null);
+                result = new Tuple<ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>>(lastNumberTried, null, null);
             }
 #if DEBUG
-            foreach (Double segment in result.Item1)
+            foreach (Decimal segment in result.Item1)
             {
                 if (segment > this.Environment.Base)
                 {
@@ -605,9 +605,9 @@ namespace VariableBase.Mathematics
                 }
             }
 
-            if (result.Item2 != default(ReadOnlyCollection<Double>))
+            if (result.Item2 != default(ReadOnlyCollection<Decimal>))
             {
-                foreach (Double segment in result.Item2)
+                foreach (Decimal segment in result.Item2)
                 {
                     if (segment > this.Environment.Base)
                     {
@@ -619,7 +619,7 @@ namespace VariableBase.Mathematics
                     }
                 }
 
-                foreach (Double segment in result.Item3)
+                foreach (Decimal segment in result.Item3)
                 {
                     if (segment > this.Environment.Base)
                     {
@@ -635,7 +635,7 @@ namespace VariableBase.Mathematics
             return result;
         }
 
-        public Boolean IsEqual(ReadOnlyCollection<Double> a, ReadOnlyCollection<Double> b)
+        public Boolean IsEqual(ReadOnlyCollection<Decimal> a, ReadOnlyCollection<Decimal> b)
         {
             if (this.CompareTo(a, b) == 0)
             {
@@ -647,7 +647,7 @@ namespace VariableBase.Mathematics
             }
         }
 
-        public Boolean IsNotEqual(ReadOnlyCollection<Double> a, ReadOnlyCollection<Double> b)
+        public Boolean IsNotEqual(ReadOnlyCollection<Decimal> a, ReadOnlyCollection<Decimal> b)
         {
             if (this.CompareTo(a, b) != 0)
             {
@@ -659,7 +659,7 @@ namespace VariableBase.Mathematics
             }
         }
 
-        public Boolean IsGreaterThan(ReadOnlyCollection<Double> a, ReadOnlyCollection<Double> b)
+        public Boolean IsGreaterThan(ReadOnlyCollection<Decimal> a, ReadOnlyCollection<Decimal> b)
         {
             if (this.CompareTo(a, b) > 0)
             {
@@ -671,7 +671,7 @@ namespace VariableBase.Mathematics
             }
         }
 
-        public Boolean IsLessThan(ReadOnlyCollection<Double> a, ReadOnlyCollection<Double> b)
+        public Boolean IsLessThan(ReadOnlyCollection<Decimal> a, ReadOnlyCollection<Decimal> b)
         {
             if (this.CompareTo(a, b) < 0)
             {
@@ -683,7 +683,7 @@ namespace VariableBase.Mathematics
             }
         }
 
-        public Boolean IsGreaterThanOrEqualTo(ReadOnlyCollection<Double> a, ReadOnlyCollection<Double> b)
+        public Boolean IsGreaterThanOrEqualTo(ReadOnlyCollection<Decimal> a, ReadOnlyCollection<Decimal> b)
         {
             if (this.CompareTo(a, b) >= 0)
             {
@@ -695,7 +695,7 @@ namespace VariableBase.Mathematics
             }
         }
 
-        public Boolean IsLessThanOrEqualTo(ReadOnlyCollection<Double> a, ReadOnlyCollection<Double> b)
+        public Boolean IsLessThanOrEqualTo(ReadOnlyCollection<Decimal> a, ReadOnlyCollection<Decimal> b)
         {
             if (this.CompareTo(a, b) <= 0)
             {
@@ -707,17 +707,17 @@ namespace VariableBase.Mathematics
             }
         }
 
-        public int CompareTo(ReadOnlyCollection<Double> a, ReadOnlyCollection<Double> b)
+        public int CompareTo(ReadOnlyCollection<Decimal> a, ReadOnlyCollection<Decimal> b)
         {
             Int32 result = 0;
-            if (Object.ReferenceEquals(a, default(ReadOnlyCollection<Double>)) || a.Count == 0)
+            if (Object.ReferenceEquals(a, default(ReadOnlyCollection<Decimal>)) || a.Count == 0)
             {
-                a = new ReadOnlyCollection<Double>(new Double[] { 0 });
+                a = new ReadOnlyCollection<Decimal>(new Decimal[] { 0 });
             }
 
-            if (Object.ReferenceEquals(b, default(ReadOnlyCollection<Double>)) || b.Count == 0)
+            if (Object.ReferenceEquals(b, default(ReadOnlyCollection<Decimal>)) || b.Count == 0)
             {
-                b = new ReadOnlyCollection<Double>(new Double[] { 0 });
+                b = new ReadOnlyCollection<Decimal>(new Decimal[] { 0 });
             }
 
             if (a.Count > b.Count)
@@ -756,27 +756,27 @@ namespace VariableBase.Mathematics
 
         #region Multiply
 
-        public ReadOnlyCollection<Double> Multiply(ReadOnlyCollection<Double> a, Double b)
+        public ReadOnlyCollection<Decimal> Multiply(ReadOnlyCollection<Decimal> a, Decimal b)
         {
             if (b == 0)
             {
-                return new ReadOnlyCollection<Double>(new Double[] { 0 });
+                return new ReadOnlyCollection<Decimal>(new Decimal[] { 0 });
             }
-            var resultRaw = new List<Double>();
+            var resultRaw = new List<Decimal>();
 
-            Double numberIndex = b;
+            Decimal numberIndex = b;
 
-            Double carryOver = 0;
+            Decimal carryOver = 0;
             for (var i = 0; i < a.Count; i++)
             {
-                Double segmentIndex = a[i];
+                Decimal segmentIndex = a[i];
 
-                Double columnTotal = (numberIndex * segmentIndex) + carryOver;
+                Decimal columnTotal = (numberIndex * segmentIndex) + carryOver;
 
-                Double columnPositionResult;
+                Decimal columnPositionResult;
                 if (columnTotal >= this.Environment.Base)
                 {
-                    Double remainder = columnTotal % this.Environment.Base;
+                    Decimal remainder = columnTotal % this.Environment.Base;
                     columnPositionResult = remainder;
                     carryOver = (columnTotal - remainder) / this.Environment.Base;
                 }
@@ -791,10 +791,10 @@ namespace VariableBase.Mathematics
 
             while (carryOver > 0)
             {
-                Double carryOverResult;
+                Decimal carryOverResult;
                 if (carryOver > this.Environment.Base)
                 {
-                    Double remainder = carryOver % this.Environment.Base;
+                    Decimal remainder = carryOver % this.Environment.Base;
                     carryOverResult = remainder;
                     carryOver = (carryOver - remainder) / this.Environment.Base;
                 }
@@ -806,7 +806,7 @@ namespace VariableBase.Mathematics
                 resultRaw.Add(carryOverResult);
             }
 #if DEBUG
-            foreach (Double segment in resultRaw)
+            foreach (Decimal segment in resultRaw)
             {
                 if (segment > this.Environment.Base)
                 {
@@ -818,12 +818,12 @@ namespace VariableBase.Mathematics
                 }
             }
 #endif
-            return new ReadOnlyCollection<Double>(resultRaw);
+            return new ReadOnlyCollection<Decimal>(resultRaw);
         }
 
-        public ReadOnlyCollection<Double> Multiply(ReadOnlyCollection<Double> a, ReadOnlyCollection<Double> b)
+        public ReadOnlyCollection<Decimal> Multiply(ReadOnlyCollection<Decimal> a, ReadOnlyCollection<Decimal> b)
         {
-            ReadOnlyCollection<Double> result = new ReadOnlyCollection<Double>(new Double[] { 0 });
+            ReadOnlyCollection<Decimal> result = new ReadOnlyCollection<Decimal>(new Decimal[] { 0 });
             if (this.IsBottom(a) || this.IsBottom(b))
             {
                 return a;
@@ -838,13 +838,13 @@ namespace VariableBase.Mathematics
             }
             else if (a.Count == 1 && b.Count == 1)
             {
-                return new ReadOnlyCollection<Double>(this.Multiply(a[0], b[0]));
+                return new ReadOnlyCollection<Decimal>(this.Multiply(a[0], b[0]));
             }
 
             for (Int32 i = 0; i < a.Count; i++)
             {
-                Double numberSegment = a[i];
-                ReadOnlyCollection<Double> currentResult = this.Multiply(b, numberSegment);
+                Decimal numberSegment = a[i];
+                ReadOnlyCollection<Decimal> currentResult = this.Multiply(b, numberSegment);
 
                 if (i > 0)
                 {
@@ -864,7 +864,7 @@ namespace VariableBase.Mathematics
                 throw new Exception("MathAlgorithm Multiplication leading zero error");
             }
 
-            foreach (Double segment in result)
+            foreach (Decimal segment in result)
             {
                 if (segment > this.Environment.Base)
                 {
@@ -880,26 +880,26 @@ namespace VariableBase.Mathematics
             return result;
         }
 
-        public Double[] Multiply(Double a, Double b)
+        public Decimal[] Multiply(Decimal a, Decimal b)
         {
-            Double[] result;
+            Decimal[] result;
 
-            Double resultIndex = a * b;
+            Decimal resultIndex = a * b;
 
             if (resultIndex >= this.Environment.Base)
             {
-                Double firstNumber =   resultIndex % this.Environment.Base;
-                Double secondNumber = (resultIndex - firstNumber) / this.Environment.Base;
+                Decimal firstNumber =   resultIndex % this.Environment.Base;
+                Decimal secondNumber = (resultIndex - firstNumber) / this.Environment.Base;
 
-                result = new Double[] { firstNumber, secondNumber};
+                result = new Decimal[] { firstNumber, secondNumber};
             }
             else
             {
-                result = new Double[] { resultIndex };
+                result = new Decimal[] { resultIndex };
             }
 
 #if DEBUG
-            foreach (Double segment in result)
+            foreach (Decimal segment in result)
             {
                 if (segment > this.Environment.Base)
                 {
@@ -918,12 +918,12 @@ namespace VariableBase.Mathematics
 
         #region Divide
 
-        public Tuple<ReadOnlyCollection<Double>, ReadOnlyCollection<Double>, ReadOnlyCollection<Double>> Divide(ReadOnlyCollection<Double> numerator, ReadOnlyCollection<Double> denominator, ReadOnlyCollection<Double> hint = default(ReadOnlyCollection<Double>))
+        public Tuple<ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>> Divide(ReadOnlyCollection<Decimal> numerator, ReadOnlyCollection<Decimal> denominator, ReadOnlyCollection<Decimal> hint = default(ReadOnlyCollection<Decimal>))
         {
 
 #if DEBUG
             Debug.WriteLine("Division start {0} / {1}", String.Join(',', numerator.Reverse()), String.Join(',', denominator.Reverse()));
-            foreach (Double segment in numerator)
+            foreach (Decimal segment in numerator)
             {
                 if (segment > this.Environment.Base)
                 {
@@ -935,7 +935,7 @@ namespace VariableBase.Mathematics
                 }
             }
 
-            foreach (Double segment in denominator)
+            foreach (Decimal segment in denominator)
             {
                 if (segment > this.Environment.Base)
                 {
@@ -949,15 +949,15 @@ namespace VariableBase.Mathematics
 #endif
             if (this.IsBottom(denominator))
             {
-                return new Tuple<ReadOnlyCollection<Double>, ReadOnlyCollection<Double>, ReadOnlyCollection<Double>>(numerator, null, null);
+                return new Tuple<ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>>(numerator, null, null);
             }
             else if (this.IsEqual(numerator, denominator))
             {
-                return new Tuple<ReadOnlyCollection<Double>, ReadOnlyCollection<Double>, ReadOnlyCollection<Double>>(new ReadOnlyCollection<Double>(new Double[] { 1 }), null, null);
+                return new Tuple<ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>>(new ReadOnlyCollection<Decimal>(new Decimal[] { 1 }), null, null);
             }
             else if (this.IsLessThan(numerator, denominator))
             {
-                return new Tuple<ReadOnlyCollection<Double>, ReadOnlyCollection<Double>, ReadOnlyCollection<Double>>(new ReadOnlyCollection<Double>(new Double[] { 0 }), numerator, denominator);
+                return new Tuple<ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>>(new ReadOnlyCollection<Decimal>(new Decimal[] { 0 }), numerator, denominator);
             }
             else if (numerator.Count == 1 && denominator.Count == 1)
             {
@@ -968,16 +968,16 @@ namespace VariableBase.Mathematics
                 return this.Divide(numerator, denominator[0]);
             }
 
-            ReadOnlyCollection<Double> floor = (hint == default(ReadOnlyCollection<Double>) || this.IsGreaterThan(denominator, hint)) ? this.Environment.KeyNumber[1].Segments : this.GetAboutHalf(hint, this.Environment.KeyNumber[1].Segments, -1);
-            ReadOnlyCollection<Double> ceiling = (hint == default(ReadOnlyCollection<Double>) || this.IsGreaterThan(denominator, hint)) ? numerator : this.GetAboutHalf(hint, numerator, 1);
+            ReadOnlyCollection<Decimal> floor = (hint == default(ReadOnlyCollection<Decimal>) || this.IsGreaterThan(denominator, hint)) ? this.Environment.KeyNumber[1].Segments : this.GetAboutHalf(hint, this.Environment.KeyNumber[1].Segments, -1);
+            ReadOnlyCollection<Decimal> ceiling = (hint == default(ReadOnlyCollection<Decimal>) || this.IsGreaterThan(denominator, hint)) ? numerator : this.GetAboutHalf(hint, numerator, 1);
 
-            ReadOnlyCollection<Double> lastNumberTried = this.GetWholeNumberSomewhereBetween(ceiling, floor);
-            ReadOnlyCollection<Double> numeratorTestResult = this.Multiply(lastNumberTried, denominator);
+            ReadOnlyCollection<Decimal> lastNumberTried = this.GetWholeNumberSomewhereBetween(ceiling, floor);
+            ReadOnlyCollection<Decimal> numeratorTestResult = this.Multiply(lastNumberTried, denominator);
 
-            ReadOnlyCollection<Double> maxDifference = this.Subtract(denominator, new ReadOnlyCollection<Double>(new Double[] { 1 }));
-            ReadOnlyCollection<Double> minimumTestResult = this.Subtract(numerator, maxDifference);
+            ReadOnlyCollection<Decimal> maxDifference = this.Subtract(denominator, new ReadOnlyCollection<Decimal>(new Decimal[] { 1 }));
+            ReadOnlyCollection<Decimal> minimumTestResult = this.Subtract(numerator, maxDifference);
 
-            ReadOnlyCollection<Double> lastNumeratorTestResult = this.Environment.KeyNumber[0].Segments;
+            ReadOnlyCollection<Decimal> lastNumeratorTestResult = this.Environment.KeyNumber[0].Segments;
 
             while (this.IsLessThan(numeratorTestResult, minimumTestResult) || this.IsGreaterThan(numeratorTestResult, numerator))
             { 
@@ -1005,16 +1005,16 @@ namespace VariableBase.Mathematics
                 numeratorTestResult = this.Multiply(lastNumberTried, denominator);
             }
 
-            Tuple<ReadOnlyCollection<Double>, ReadOnlyCollection<Double>, ReadOnlyCollection<Double>> result;
+            Tuple<ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>> result;
 
             if (this.IsEqual(numeratorTestResult, numerator))
             {
-                result = new Tuple<ReadOnlyCollection<Double>, ReadOnlyCollection<Double>, ReadOnlyCollection<Double>>(lastNumberTried, null, null);
+                result = new Tuple<ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>>(lastNumberTried, null, null);
             }
             else
             {
                 var leftOver = this.Subtract(numerator, numeratorTestResult);
-                result = new Tuple<ReadOnlyCollection<Double>, ReadOnlyCollection<Double>, ReadOnlyCollection<Double>>(lastNumberTried, leftOver, denominator);
+                result = new Tuple<ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>>(lastNumberTried, leftOver, denominator);
             }
 
 #if DEBUG
@@ -1022,20 +1022,20 @@ namespace VariableBase.Mathematics
             {
                 throw new Exception("MathAlgorithm Division error");
             }
-            else if (result.Item1 != default(ReadOnlyCollection<Double>) && result.Item1.Count > 1 && result.Item1[result.Item1.Count - 1] == 0)
+            else if (result.Item1 != default(ReadOnlyCollection<Decimal>) && result.Item1.Count > 1 && result.Item1[result.Item1.Count - 1] == 0)
             {
                 throw new Exception("MathAlgorithm Division leading zero error whole number");
             }
-            else if (result.Item2 != default(ReadOnlyCollection<Double>) && result.Item2.Count > 1 && result.Item2[result.Item2.Count - 1] == 0)
+            else if (result.Item2 != default(ReadOnlyCollection<Decimal>) && result.Item2.Count > 1 && result.Item2[result.Item2.Count - 1] == 0)
             {
                 throw new Exception("MathAlgorithm Division leading zero error numerator");
             }
-            else if (result.Item3 != default(ReadOnlyCollection<Double>) && result.Item3.Count > 1 && result.Item3[result.Item3.Count - 1] == 0)
+            else if (result.Item3 != default(ReadOnlyCollection<Decimal>) && result.Item3.Count > 1 && result.Item3[result.Item3.Count - 1] == 0)
             {
                 throw new Exception("MathAlgorithm Division leading zero error denominator");
             }
 
-            foreach (Double segment in result.Item1)
+            foreach (Decimal segment in result.Item1)
             {
                 if (segment > this.Environment.Base)
                 {
@@ -1047,9 +1047,9 @@ namespace VariableBase.Mathematics
                 }
             }
 
-            if (result.Item2 != default(ReadOnlyCollection<Double>))
+            if (result.Item2 != default(ReadOnlyCollection<Decimal>))
             {
-                foreach (Double segment in result.Item2)
+                foreach (Decimal segment in result.Item2)
                 {
                     if (segment > this.Environment.Base)
                     {
@@ -1061,7 +1061,7 @@ namespace VariableBase.Mathematics
                     }
                 }
 
-                foreach (Double segment in result.Item3)
+                foreach (Decimal segment in result.Item3)
                 {
                     if (segment > this.Environment.Base)
                     {
@@ -1076,7 +1076,7 @@ namespace VariableBase.Mathematics
 
             Debug.WriteLine("Division result {0}", String.Join(',', result.Item1.Reverse()));
 
-            if (result.Item1 != default(ReadOnlyCollection<Double>))
+            if (result.Item1 != default(ReadOnlyCollection<Decimal>))
             {
                 Debug.WriteLine("Division remainder {0} / {1}", String.Join(',', result.Item1.Reverse()), String.Join(',', result.Item2.Reverse()));
             }
@@ -1085,35 +1085,35 @@ namespace VariableBase.Mathematics
         }
 
 
-        public Tuple<ReadOnlyCollection<Double>, ReadOnlyCollection<Double>, ReadOnlyCollection<Double>> Divide(Double dividend, Double divisor)
+        public Tuple<ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>> Divide(Decimal dividend, Decimal divisor)
         {
-            Tuple<ReadOnlyCollection<Double>, ReadOnlyCollection<Double>, ReadOnlyCollection<Double>> result;
+            Tuple<ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>> result;
 
-            Double remainder;
+            Decimal remainder;
 
             if (dividend > divisor)
             {
                 remainder = (dividend % divisor);
 
-                Double resultRaw = System.Math.Floor(dividend / divisor);
+                Decimal resultRaw = System.Math.Floor(dividend / divisor);
 
                 if (remainder == 0)
                 {
-                    result = new Tuple<ReadOnlyCollection<Double>, ReadOnlyCollection<Double>, ReadOnlyCollection<Double>>(new ReadOnlyCollection<Double>(new Double[] { resultRaw }), null, null);
+                    result = new Tuple<ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>>(new ReadOnlyCollection<Decimal>(new Decimal[] { resultRaw }), null, null);
                 }
                 else
                 {
-                    result = new Tuple<ReadOnlyCollection<Double>, ReadOnlyCollection<Double>, ReadOnlyCollection<Double>>(new ReadOnlyCollection<Double>(new Double[] { resultRaw }), new ReadOnlyCollection<Double>(new Double[] { remainder }), new ReadOnlyCollection<Double>(new Double[] { divisor }));
+                    result = new Tuple<ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>>(new ReadOnlyCollection<Decimal>(new Decimal[] { resultRaw }), new ReadOnlyCollection<Decimal>(new Decimal[] { remainder }), new ReadOnlyCollection<Decimal>(new Decimal[] { divisor }));
                 }
 
            }
             else
             {
-                result = new Tuple<ReadOnlyCollection<Double>, ReadOnlyCollection<Double>, ReadOnlyCollection<Double>>(new ReadOnlyCollection<Double>(new Double[] { 0 }), new ReadOnlyCollection<Double>(new Double[] { dividend }), new ReadOnlyCollection<Double>(new Double[] { divisor }));
+                result = new Tuple<ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>>(new ReadOnlyCollection<Decimal>(new Decimal[] { 0 }), new ReadOnlyCollection<Decimal>(new Decimal[] { dividend }), new ReadOnlyCollection<Decimal>(new Decimal[] { divisor }));
             }
 
 #if DEBUG
-            foreach (Double segment in result.Item1)
+            foreach (Decimal segment in result.Item1)
             {
                 if (segment > this.Environment.Base)
                 {
@@ -1125,9 +1125,9 @@ namespace VariableBase.Mathematics
                 }
             }
 
-            if (result.Item2 != default(ReadOnlyCollection<Double>))
+            if (result.Item2 != default(ReadOnlyCollection<Decimal>))
             {
-                foreach (Double segment in result.Item2)
+                foreach (Decimal segment in result.Item2)
                 {
                     if (segment > this.Environment.Base)
                     {
@@ -1139,7 +1139,7 @@ namespace VariableBase.Mathematics
                     }
                 }
 
-                foreach (Double segment in result.Item3)
+                foreach (Decimal segment in result.Item3)
                 {
                     if (segment > this.Environment.Base)
                     {
@@ -1157,28 +1157,28 @@ namespace VariableBase.Mathematics
             return result;
         }
 
-        public Tuple<ReadOnlyCollection<Double>, ReadOnlyCollection<Double>, ReadOnlyCollection<Double>> Divide(ReadOnlyCollection<Double> dividend, Double divisor)
+        public Tuple<ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>> Divide(ReadOnlyCollection<Decimal> dividend, Decimal divisor)
         {
             if (dividend.Count == 1)
             {
                 return this.Divide(dividend[0], divisor);
             }
 
-            Tuple<ReadOnlyCollection<Double>, ReadOnlyCollection<Double>, ReadOnlyCollection<Double>> result;
+            Tuple<ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>> result;
 
-            Double remainder = 0D;
+            Decimal remainder = 0M;
 
-            Double[] workingTotal = new Double[dividend.Count];
+            Decimal[] workingTotal = new Decimal[dividend.Count];
 
             for (Int32 i = dividend.Count - 1; i >= 0; i--)
             {
-                Double currentTotal = (dividend[i] / divisor) + (remainder * this.Environment.Base);
+                Decimal currentTotal = (dividend[i] / divisor) + (remainder * this.Environment.Base);
 
                 workingTotal[i] = System.Math.Floor(currentTotal);
 
                 remainder = currentTotal - workingTotal[i];
             }
-            var resultRaw = new List<Double>();
+            var resultRaw = new List<Decimal>();
 
             Boolean skip = true;
             for (Int32 i = workingTotal.Count() - 1; i >= 0; i--)
@@ -1195,15 +1195,15 @@ namespace VariableBase.Mathematics
 
             if (remainder == 0)
             {
-                result = new Tuple<ReadOnlyCollection<Double>, ReadOnlyCollection<Double>, ReadOnlyCollection<Double>>(new ReadOnlyCollection<Double>(resultRaw), null, null);
+                result = new Tuple<ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>>(new ReadOnlyCollection<Decimal>(resultRaw), null, null);
             }
             else
             {
-                result = new Tuple<ReadOnlyCollection<Double>, ReadOnlyCollection<Double>, ReadOnlyCollection<Double>>(new ReadOnlyCollection<Double>(resultRaw), new ReadOnlyCollection<Double>(new Double[] { remainder }), new ReadOnlyCollection<Double>(new Double[] { divisor }));
+                result = new Tuple<ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>>(new ReadOnlyCollection<Decimal>(resultRaw), new ReadOnlyCollection<Decimal>(new Decimal[] { remainder }), new ReadOnlyCollection<Decimal>(new Decimal[] { divisor }));
             }
 
 #if DEBUG
-            foreach (Double segment in result.Item1)
+            foreach (Decimal segment in result.Item1)
             {
                 if (segment > this.Environment.Base)
                 {
@@ -1215,9 +1215,9 @@ namespace VariableBase.Mathematics
                 }
             }
 
-            if (result.Item2 == default(ReadOnlyCollection<Double>))
+            if (result.Item2 == default(ReadOnlyCollection<Decimal>))
             {
-                ReadOnlyCollection<Double> reverseCheck = this.Multiply(result.Item1, divisor);
+                ReadOnlyCollection<Decimal> reverseCheck = this.Multiply(result.Item1, divisor);
                 if (!this.IsEqual(reverseCheck, dividend))
                 {
                     throw new Exception(String.Format("Division Error {0} != {1} ", String.Join(',', reverseCheck.Reverse()), String.Join(',', dividend.Reverse())));
@@ -1225,7 +1225,7 @@ namespace VariableBase.Mathematics
             }
             else
             { 
-                foreach (Double segment in result.Item2)
+                foreach (Decimal segment in result.Item2)
                 {
                     if (segment > this.Environment.Base)
                     {
@@ -1237,7 +1237,7 @@ namespace VariableBase.Mathematics
                     }
                 }
 
-                foreach (Double segment in result.Item3)
+                foreach (Decimal segment in result.Item3)
                 {
                     if (segment > this.Environment.Base)
                     {
@@ -1249,9 +1249,9 @@ namespace VariableBase.Mathematics
                     }
                 }
 
-                Double reverseFraction = remainder * divisor;
+                Decimal reverseFraction = remainder * divisor;
 
-                ReadOnlyCollection<Double> reverseCheck = this.Add(this.Multiply(result.Item1, divisor), new ReadOnlyCollection<Double>(new Double[] { reverseFraction }));
+                ReadOnlyCollection<Decimal> reverseCheck = this.Add(this.Multiply(result.Item1, divisor), new ReadOnlyCollection<Decimal>(new Decimal[] { reverseFraction }));
                 if (this.IsNotEqual(reverseCheck, dividend))
                 {
                     throw new Exception(String.Format("Division Error {0} != {1} ", String.Join(',', reverseCheck.Reverse()), String.Join(',', dividend.Reverse())));
@@ -1267,14 +1267,14 @@ namespace VariableBase.Mathematics
 
 
         #region Subtract
-        public Double Subtract(Double a, Double b)
+        public Decimal Subtract(Decimal a, Decimal b)
         {
-            Double resultRaw = a - b;
+            Decimal resultRaw = a - b;
 
             return resultRaw;
         }
 
-        public ReadOnlyCollection<Double> Subtract(ReadOnlyCollection<Double> a, ReadOnlyCollection<Double> b)
+        public ReadOnlyCollection<Decimal> Subtract(ReadOnlyCollection<Decimal> a, ReadOnlyCollection<Decimal> b)
         {
             if (this.IsLessThan(a, b))
             {
@@ -1282,22 +1282,22 @@ namespace VariableBase.Mathematics
             }
             else if (a.Count == 1 && b.Count == 1)
             {
-                return new ReadOnlyCollection<Double>(new Double[] { this.Subtract(a[0], b[0]) });
+                return new ReadOnlyCollection<Decimal>(new Decimal[] { this.Subtract(a[0], b[0]) });
             }
 
-            Double maxPosition = a.Count;
+            Decimal maxPosition = a.Count;
             if (b.Count > maxPosition)
             {
                 maxPosition = b.Count;
             }
 
             // 60 - 90
-            var resultSegments = new List<Double>();
-            Double borrow = 0;
-            Double position = 0;
+            var resultSegments = new List<Decimal>();
+            Decimal borrow = 0;
+            Decimal position = 0;
             while (position < maxPosition)
             {
-                Double columnValue = borrow;
+                Decimal columnValue = borrow;
                 borrow = 0;
 
 
@@ -1326,7 +1326,7 @@ namespace VariableBase.Mathematics
                 resultSegments.RemoveAt(resultSegments.Count - 1);
             }
             
-            var result = new ReadOnlyCollection<Double>(resultSegments);
+            var result = new ReadOnlyCollection<Decimal>(resultSegments);
 
 #if DEBUG
             if (this.IsGreaterThan(result, a) && this.IsGreaterThan(result, b))
@@ -1338,7 +1338,7 @@ namespace VariableBase.Mathematics
                 throw new Exception("MathAlgorithm Subtraction leading zero error");
             }
 
-            foreach (Double segment in result)
+            foreach (Decimal segment in result)
             {
                 if (segment > this.Environment.Base)
                 {
@@ -1356,9 +1356,9 @@ namespace VariableBase.Mathematics
 
         #endregion
 
-        public Boolean IsFirst(ReadOnlyCollection<Double> number)
+        public Boolean IsFirst(ReadOnlyCollection<Decimal> number)
         {
-            if (number != default(ReadOnlyCollection<Double>) && number.Count == 1 && number[0] == 1)
+            if (number != default(ReadOnlyCollection<Decimal>) && number.Count == 1 && number[0] == 1)
             {
                 return true;
             }
@@ -1368,9 +1368,9 @@ namespace VariableBase.Mathematics
             }
         }
 
-        public Boolean IsBottom(ReadOnlyCollection<Double> number)
+        public Boolean IsBottom(ReadOnlyCollection<Decimal> number)
         {
-            if (number == default(ReadOnlyCollection<Double>) || number.Count == 0 || (number.Count == 1 && number[0] == 0))
+            if (number == default(ReadOnlyCollection<Decimal>) || number.Count == 0 || (number.Count == 1 && number[0] == 0))
             {
                 return true;
             }

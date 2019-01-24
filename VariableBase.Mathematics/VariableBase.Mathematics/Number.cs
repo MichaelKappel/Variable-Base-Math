@@ -16,19 +16,19 @@ namespace VariableBase.Mathematics
 
         public Fraction Fragment { get; set; }
 
-        public Double First { get; set; }
+        public Decimal First { get; set; }
         
         public Boolean IsNegative { get; set; }
 
         public IMathEnvironment Environment { get; set; }
 
-        public ReadOnlyCollection<Double> Segments { get; set; }
+        public ReadOnlyCollection<Decimal> Segments { get; set; }
         
-        internal Number(IMathEnvironment environment, ReadOnlyCollection<Double> segments, ReadOnlyCollection<Double> numerator, ReadOnlyCollection<Double> denominator, Boolean isNegative)
+        internal Number(IMathEnvironment environment, ReadOnlyCollection<Decimal> segments, ReadOnlyCollection<Decimal> numerator, ReadOnlyCollection<Decimal> denominator, Boolean isNegative)
         {
-            if (segments == default(ReadOnlyCollection<Double>) || segments.Count == 0)
+            if (segments == default(ReadOnlyCollection<Decimal>) || segments.Count == 0)
             {
-                segments = new ReadOnlyCollection<Double>(new Double[]{ 0 });
+                segments = new ReadOnlyCollection<Decimal>(new Decimal[]{ 0 });
             }
 
             this.Environment = environment;
@@ -37,7 +37,7 @@ namespace VariableBase.Mathematics
 
             this.Segments = segments;
 
-            if (numerator != default(ReadOnlyCollection<Double>) && denominator != default(ReadOnlyCollection<Double>))
+            if (numerator != default(ReadOnlyCollection<Decimal>) && denominator != default(ReadOnlyCollection<Decimal>))
             { 
                 this.Fragment = new Fraction(environment, numerator, denominator);
             }
@@ -53,12 +53,12 @@ namespace VariableBase.Mathematics
             }
         }
 
-        internal Number(IMathEnvironment environment, ReadOnlyCollection<Double> segments, Fraction fragment, Boolean isNegative)
+        internal Number(IMathEnvironment environment, ReadOnlyCollection<Decimal> segments, Fraction fragment, Boolean isNegative)
         {
             this.Environment = environment;
 
 #if DEBUG
-            foreach (Double segment in segments)
+            foreach (Decimal segment in segments)
             {
                 if (segment > this.Environment.Base) {
                     throw new Exception("Bad number segment larger than base");
@@ -141,7 +141,7 @@ namespace VariableBase.Mathematics
         public static Number operator %(Number a, Number b)
         { 
             Number totalResult = Operator.Divide(a, b);
-            return new Number(a.Environment, new ReadOnlyCollection<Double>(new Double[] { 0 }), totalResult.Fragment, totalResult.IsNegative);
+            return new Number(a.Environment, new ReadOnlyCollection<Decimal>(new Decimal[] { 0 }), totalResult.Fragment, totalResult.IsNegative);
         }
 
         #endregion
@@ -233,10 +233,10 @@ namespace VariableBase.Mathematics
             else 
             {
 
-                ReadOnlyCollection<Double> numeratorRaw =  this.Environment.BasicMath.Add(this.Environment.BasicMath.Multiply(this.Segments, this.Fragment.Denominator.Segments), this.Fragment.Numerator.Segments);
+                ReadOnlyCollection<Decimal> numeratorRaw =  this.Environment.BasicMath.Add(this.Environment.BasicMath.Multiply(this.Segments, this.Fragment.Denominator.Segments), this.Fragment.Numerator.Segments);
                 numerator = new Number(this.Environment, numeratorRaw, null, false);
 
-                ReadOnlyCollection<Double> denominatorRaw =  this.Environment.BasicMath.Add(this.Environment.BasicMath.Multiply(this.Segments, this.Fragment.Denominator.Segments), this.Fragment.Numerator.Segments);
+                ReadOnlyCollection<Decimal> denominatorRaw =  this.Environment.BasicMath.Add(this.Environment.BasicMath.Multiply(this.Segments, this.Fragment.Denominator.Segments), this.Fragment.Numerator.Segments);
                 denominator = new Number(this.Environment, denominatorRaw, null, false);
 
                 if (this.Fragment.Numerator.Fragment != default(Fraction) || this.Fragment.Denominator.Fragment != default(Fraction))
@@ -270,7 +270,7 @@ namespace VariableBase.Mathematics
                 result = "-" + result;
             }
 
-            ReadOnlyCollection<Double> resultSegments;
+            ReadOnlyCollection<Decimal> resultSegments;
             if (environment != this.Environment)
             {
                 resultSegments = this.Convert(environment).Segments;
@@ -281,7 +281,7 @@ namespace VariableBase.Mathematics
             }
             if (environment.Base < UInt16.MaxValue)
             {
-                for (Double i = resultSegments.Count; i > 0; i--)
+                for (Decimal i = resultSegments.Count; i > 0; i--)
                 {
                     result += environment.Key[(Int32)resultSegments[(Int32)i - 1]];
                 }
@@ -315,7 +315,7 @@ namespace VariableBase.Mathematics
             }
             else
             {
-                result += String.Concat(this.Segments.Select(x => x.ToString("G17")).Reverse());
+                result += String.Concat(this.Segments.Select(x => x.ToString()).Reverse());
                 if (this.Environment.Base == 10)
                 {
                     result = result.Replace(" ", "");
@@ -348,7 +348,7 @@ namespace VariableBase.Mathematics
 
             this.Environment = default(IMathEnvironment);
 
-            this.Segments = default(ReadOnlyCollection<Double>);
+            this.Segments = default(ReadOnlyCollection<Decimal>);
         }
     }
 }

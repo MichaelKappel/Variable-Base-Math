@@ -11,7 +11,7 @@ namespace VariableBase.Mathematics
 
         internal static IFractionOperator Operator = new FractionOperator();
 
-        internal Fraction(IMathEnvironment environment, ReadOnlyCollection<Double> numerator, ReadOnlyCollection<Double> denominator)
+        internal Fraction(IMathEnvironment environment, ReadOnlyCollection<Decimal> numerator, ReadOnlyCollection<Decimal> denominator)
         {
             this.Numerator = new Number(environment, numerator, null, null, false);
             this.Denominator = new Number(environment, denominator, null, null, false);
@@ -36,9 +36,9 @@ namespace VariableBase.Mathematics
         {
             unchecked
             {
-                Double hashCode1 = this.Numerator.GetHashCode();
-                Double hashCode2 = this.Denominator.GetHashCode();
-                Double hashCode = hashCode1 + hashCode2;
+                Decimal hashCode1 = this.Numerator.GetHashCode();
+                Decimal hashCode2 = this.Denominator.GetHashCode();
+                Decimal hashCode = hashCode1 + hashCode2;
                 if (hashCode <= Int32.MaxValue)
                 {
                     return (Int32)hashCode;
@@ -138,7 +138,7 @@ namespace VariableBase.Mathematics
             }
             else if (Number.Operator.IsGreaterThan(this.Denominator, this.Numerator))
             {
-                return new Number(this.Denominator.Environment, new ReadOnlyCollection<Double>(new Double[] { 0 }),  this, false);
+                return new Number(this.Denominator.Environment, new ReadOnlyCollection<Decimal>(new Decimal[] { 0 }),  this, false);
             }
             else
             {
@@ -158,7 +158,7 @@ namespace VariableBase.Mathematics
                     var aFraction = default(Fraction);
                     if (numerator.Fragment != default(Fraction))
                     {
-                        ReadOnlyCollection<Double> aDividend = numerator.Environment.BasicMath.Add(numerator.Environment.BasicMath.Multiply(numerator.Segments, numerator.Fragment.Denominator.Segments), numerator.Fragment.Numerator.Segments);
+                        ReadOnlyCollection<Decimal> aDividend = numerator.Environment.BasicMath.Add(numerator.Environment.BasicMath.Multiply(numerator.Segments, numerator.Fragment.Denominator.Segments), numerator.Fragment.Numerator.Segments);
                         aFraction = new Fraction(numerator.Environment, aDividend, environment.KeyNumber[1].Segments);
                     }
                     else
@@ -169,7 +169,7 @@ namespace VariableBase.Mathematics
                     var bFraction = default(Fraction);
                     if (denominator.Fragment != default(Fraction))
                     {
-                        ReadOnlyCollection<Double> bDividend = denominator.Environment.BasicMath.Add(denominator.Environment.BasicMath.Multiply(denominator.Segments, denominator.Fragment.Denominator.Segments), denominator.Fragment.Numerator.Segments);
+                        ReadOnlyCollection<Decimal> bDividend = denominator.Environment.BasicMath.Add(denominator.Environment.BasicMath.Multiply(denominator.Segments, denominator.Fragment.Denominator.Segments), denominator.Fragment.Numerator.Segments);
                         bFraction = new Fraction(numerator.Environment, bDividend, environment.KeyNumber[1].Segments);
 
                     }
@@ -183,8 +183,8 @@ namespace VariableBase.Mathematics
                     denominator = fractionResult.Denominator;
                 }
 
-                Tuple<ReadOnlyCollection<Double>, ReadOnlyCollection<Double>, ReadOnlyCollection<Double>> resultSegments = environment.BasicMath.Divide(numerator.Segments, denominator.Segments);
-                if (resultSegments.Item2 != default(ReadOnlyCollection<Double>) && resultSegments.Item3 != default(ReadOnlyCollection<Double>))
+                Tuple<ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>> resultSegments = environment.BasicMath.Divide(numerator.Segments, denominator.Segments);
+                if (resultSegments.Item2 != default(ReadOnlyCollection<Decimal>) && resultSegments.Item3 != default(ReadOnlyCollection<Decimal>))
                 {
                     return new Number(environment, resultSegments.Item1, resultSegments.Item2, resultSegments.Item3, false);
                 }

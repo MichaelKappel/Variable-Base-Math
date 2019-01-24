@@ -22,11 +22,11 @@ namespace VariableBase.Mathematics
             IMathEnvironment environment = aWhole.Denominator.Environment;
 
 
-            ReadOnlyCollection<Double> commonDenominator = environment.BasicMath.Multiply(aWhole.Denominator.Segments, bWhole.Denominator.Segments);
-            ReadOnlyCollection<Double> numeratorA = environment.BasicMath.Multiply(aWhole.Numerator.Segments, bWhole.Denominator.Segments);
-            ReadOnlyCollection<Double> numeratorB = environment.BasicMath.Multiply(bWhole.Numerator.Segments, aWhole.Denominator.Segments);
+            ReadOnlyCollection<Decimal> commonDenominator = environment.BasicMath.Multiply(aWhole.Denominator.Segments, bWhole.Denominator.Segments);
+            ReadOnlyCollection<Decimal> numeratorA = environment.BasicMath.Multiply(aWhole.Numerator.Segments, bWhole.Denominator.Segments);
+            ReadOnlyCollection<Decimal> numeratorB = environment.BasicMath.Multiply(bWhole.Numerator.Segments, aWhole.Denominator.Segments);
 
-            ReadOnlyCollection<Double> resultRaw = environment.BasicMath.Add(numeratorA, numeratorB);
+            ReadOnlyCollection<Decimal> resultRaw = environment.BasicMath.Add(numeratorA, numeratorB);
 
             return new Fraction(environment, resultRaw, commonDenominator);
 
@@ -44,11 +44,11 @@ namespace VariableBase.Mathematics
             }
             IMathEnvironment environment = aWhole.Denominator.Environment;
 
-            ReadOnlyCollection<Double> commonDenominator = environment.BasicMath.Multiply(aWhole.Denominator.Segments, bWhole.Denominator.Segments);
-            ReadOnlyCollection<Double> numeratorA = environment.BasicMath.Multiply(aWhole.Numerator.Segments, bWhole.Denominator.Segments);
-            ReadOnlyCollection<Double> numeratorB = environment.BasicMath.Multiply(bWhole.Numerator.Segments, aWhole.Denominator.Segments);
+            ReadOnlyCollection<Decimal> commonDenominator = environment.BasicMath.Multiply(aWhole.Denominator.Segments, bWhole.Denominator.Segments);
+            ReadOnlyCollection<Decimal> numeratorA = environment.BasicMath.Multiply(aWhole.Numerator.Segments, bWhole.Denominator.Segments);
+            ReadOnlyCollection<Decimal> numeratorB = environment.BasicMath.Multiply(bWhole.Numerator.Segments, aWhole.Denominator.Segments);
 
-            ReadOnlyCollection<Double> resultnumerator = environment.BasicMath.Subtract(numeratorA, numeratorB);
+            ReadOnlyCollection<Decimal> resultnumerator = environment.BasicMath.Subtract(numeratorA, numeratorB);
             
             var result = new Fraction(environment, resultnumerator, commonDenominator);
 
@@ -66,8 +66,8 @@ namespace VariableBase.Mathematics
             }
             IMathEnvironment environment = aWhole.Denominator.Environment;
 
-            ReadOnlyCollection<Double> numerator = environment.BasicMath.Multiply(aWhole.Numerator.Segments, bWhole.Numerator.Segments);
-            ReadOnlyCollection<Double> denominator = environment.BasicMath.Multiply(aWhole.Denominator.Segments, bWhole.Denominator.Segments);
+            ReadOnlyCollection<Decimal> numerator = environment.BasicMath.Multiply(aWhole.Numerator.Segments, bWhole.Numerator.Segments);
+            ReadOnlyCollection<Decimal> denominator = environment.BasicMath.Multiply(aWhole.Denominator.Segments, bWhole.Denominator.Segments);
 
 
             var result = new Fraction(environment, numerator, denominator);
@@ -86,11 +86,11 @@ namespace VariableBase.Mathematics
             }
             IMathEnvironment environment = aWhole.Denominator.Environment;
 
-            ReadOnlyCollection<Double> commonDenominator = environment.BasicMath.Multiply(aWhole.Denominator.Segments, bWhole.Denominator.Segments);
-            ReadOnlyCollection<Double> numeratorA = environment.BasicMath.Multiply(aWhole.Numerator.Segments, bWhole.Denominator.Segments);
-            ReadOnlyCollection<Double> numeratorB = environment.BasicMath.Multiply(bWhole.Numerator.Segments, aWhole.Denominator.Segments);
+            ReadOnlyCollection<Decimal> commonDenominator = environment.BasicMath.Multiply(aWhole.Denominator.Segments, bWhole.Denominator.Segments);
+            ReadOnlyCollection<Decimal> numeratorA = environment.BasicMath.Multiply(aWhole.Numerator.Segments, bWhole.Denominator.Segments);
+            ReadOnlyCollection<Decimal> numeratorB = environment.BasicMath.Multiply(bWhole.Numerator.Segments, aWhole.Denominator.Segments);
 
-            Tuple<ReadOnlyCollection<Double>, ReadOnlyCollection<Double>,ReadOnlyCollection<Double>> rawResult = environment.BasicMath.Divide(numeratorA, numeratorB);
+            Tuple<ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>,ReadOnlyCollection<Decimal>> rawResult = environment.BasicMath.Divide(numeratorA, numeratorB);
 
             var result = new Fraction(environment, rawResult.Item1, commonDenominator);
 

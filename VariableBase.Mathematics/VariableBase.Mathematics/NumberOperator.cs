@@ -26,7 +26,7 @@ namespace VariableBase.Mathematics
 
             if (a.Fragment == default(Fraction) && b.Fragment == default(Fraction))
             {
-                ReadOnlyCollection<Double> resultSegments = environment.BasicMath.Add(a.Segments, b.Segments);
+                ReadOnlyCollection<Decimal> resultSegments = environment.BasicMath.Add(a.Segments, b.Segments);
                 return new Number(environment, resultSegments, null, false);
             }
             else
@@ -58,7 +58,7 @@ namespace VariableBase.Mathematics
 
             if (a.Fragment == default(Fraction) && b.Fragment == default(Fraction))
             {
-                ReadOnlyCollection<Double> resultSegments = environment.BasicMath.Subtract(a.Segments, b.Segments);
+                ReadOnlyCollection<Decimal> resultSegments = environment.BasicMath.Subtract(a.Segments, b.Segments);
                 return new Number(environment, resultSegments, null, false);
             }
             else
@@ -79,7 +79,7 @@ namespace VariableBase.Mathematics
 
             if (a.Fragment == default(Fraction) && b.Fragment == default(Fraction))
             {
-                ReadOnlyCollection<Double> resultSegments = environment.BasicMath.Multiply(a.Segments, b.Segments);
+                ReadOnlyCollection<Decimal> resultSegments = environment.BasicMath.Multiply(a.Segments, b.Segments);
                 return new Number(environment, resultSegments, null, false);
             }
             else
@@ -106,7 +106,7 @@ namespace VariableBase.Mathematics
                 var aFraction = default(Fraction);
                 if (numerator.Fragment != default(Fraction))
                 {
-                    ReadOnlyCollection<Double> aDividend = numerator.Environment.BasicMath.Add(numerator.Environment.BasicMath.Multiply(numerator.Segments, numerator.Fragment.Denominator.Segments), numerator.Fragment.Numerator.Segments);
+                    ReadOnlyCollection<Decimal> aDividend = numerator.Environment.BasicMath.Add(numerator.Environment.BasicMath.Multiply(numerator.Segments, numerator.Fragment.Denominator.Segments), numerator.Fragment.Numerator.Segments);
                     aFraction = new Fraction(numerator.Environment, aDividend, environment.KeyNumber[1].Segments);
                 }
                 else
@@ -117,7 +117,7 @@ namespace VariableBase.Mathematics
                 var bFraction = default(Fraction);
                 if (denominator.Fragment != default(Fraction))
                 {
-                    ReadOnlyCollection<Double> bDividend = denominator.Environment.BasicMath.Add(denominator.Environment.BasicMath.Multiply(denominator.Segments, denominator.Fragment.Denominator.Segments), denominator.Fragment.Numerator.Segments);
+                    ReadOnlyCollection<Decimal> bDividend = denominator.Environment.BasicMath.Add(denominator.Environment.BasicMath.Multiply(denominator.Segments, denominator.Fragment.Denominator.Segments), denominator.Fragment.Numerator.Segments);
                     bFraction = new Fraction(numerator.Environment, bDividend, environment.KeyNumber[1].Segments);
 
                 }
@@ -131,8 +131,8 @@ namespace VariableBase.Mathematics
                 denominator = fractionResult.Denominator;
             }
 
-            Tuple<ReadOnlyCollection<Double>, ReadOnlyCollection<Double>, ReadOnlyCollection<Double>> resultSegments = environment.BasicMath.Divide(numerator.Segments, denominator.Segments);
-            if (resultSegments.Item2 != default(ReadOnlyCollection<Double>) && resultSegments.Item3 != default(ReadOnlyCollection<Double>))
+            Tuple<ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>> resultSegments = environment.BasicMath.Divide(numerator.Segments, denominator.Segments);
+            if (resultSegments.Item2 != default(ReadOnlyCollection<Decimal>) && resultSegments.Item3 != default(ReadOnlyCollection<Decimal>))
             {
                 return new Number(environment, resultSegments.Item1, resultSegments.Item2, resultSegments.Item3, false);
             }
@@ -303,7 +303,7 @@ namespace VariableBase.Mathematics
 
         public Boolean IsBottom(Number number)
         {
-            if (number.Environment == default(IMathEnvironment) || number.Segments == default(ReadOnlyCollection<Double>) || number.Segments.Count == 0)
+            if (number.Environment == default(IMathEnvironment) || number.Segments == default(ReadOnlyCollection<Decimal>) || number.Segments.Count == 0)
             {
                 return true;
             }
@@ -337,9 +337,9 @@ namespace VariableBase.Mathematics
 
         public Tuple<Number, Number> GetComposite(Number number)
         {
-            Tuple<ReadOnlyCollection<Double>, ReadOnlyCollection<Double>> tuple = number.Environment.PrimeAlgorithm.GetComposite(number.Segments);
+            Tuple<ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>> tuple = number.Environment.PrimeAlgorithm.GetComposite(number.Segments);
 
-            if (tuple == default(Tuple<ReadOnlyCollection<Double>, ReadOnlyCollection<Double>>))
+            if (tuple == default(Tuple<ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>>))
             {
                 return default(Tuple<Number, Number>);
             }
@@ -361,19 +361,19 @@ namespace VariableBase.Mathematics
             }
             else if(!this.IsBottom(number))
             {
-                Double currentNumber = 100000000000000D;
+                Decimal currentNumber = 100000000000000M;
                 Number tempNumber = number;
       
                 while (currentNumber > 0)
                 {
-                    ReadOnlyCollection<Double> numberDivider = new ReadOnlyCollection<Double>(tempNumber.Environment.BasicMath.AsSegments(currentNumber));
-                    ReadOnlyCollection<Double> resultMultiplier = new ReadOnlyCollection<Double>(result.Environment.BasicMath.AsSegments(currentNumber));
+                    ReadOnlyCollection<Decimal> numberDivider = new ReadOnlyCollection<Decimal>(tempNumber.Environment.BasicMath.AsSegments(currentNumber));
+                    ReadOnlyCollection<Decimal> resultMultiplier = new ReadOnlyCollection<Decimal>(result.Environment.BasicMath.AsSegments(currentNumber));
                     while (tempNumber.Environment.BasicMath.IsGreaterThan(tempNumber.Segments, numberDivider))
                     {
                         tempNumber -= new Number(tempNumber.Environment, numberDivider, null, false);
                         result += new Number(result.Environment, resultMultiplier, null, false);
                     }
-                    currentNumber = Math.Floor(currentNumber / 2D);
+                    currentNumber = Math.Floor(currentNumber / 2M);
                 }
                 while (tempNumber >= tempNumber.Environment.KeyNumber[1])
                 {
@@ -388,21 +388,21 @@ namespace VariableBase.Mathematics
                 String originalNumber;
                 if (number.Segments.Count == 1)
                 {
-                    originalNumber = number.Segments[0].ToString("G17");
+                    originalNumber = number.Segments[0].ToString();
                 }
                 else
                 {
-                    originalNumber = String.Concat(number.Segments.Reverse().Select(x => x.ToString("G17")));
+                    originalNumber = String.Concat(number.Segments.Reverse().Select(x => x.ToString()));
                 }
 
                 String resultNumber;
                 if (result.Segments.Count == 1)
                 {
-                    resultNumber = result.Segments[0].ToString("G17");
+                    resultNumber = result.Segments[0].ToString();
                 }
                 else
                 {
-                    resultNumber = String.Concat(result.Segments.Reverse().Select(x=>x.ToString("G17")));
+                    resultNumber = String.Concat(result.Segments.Reverse().Select(x=>x.ToString()));
                 }
 
                 if (originalNumber != resultNumber)
