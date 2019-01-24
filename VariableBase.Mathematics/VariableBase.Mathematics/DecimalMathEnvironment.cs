@@ -28,20 +28,19 @@ namespace VariableBase.Mathematics
 
             this.Key = new ReadOnlyCollection<Char>(tempKey);
 
-            this.Base = Decimal.MaxValue - 1;
+            this.Base = 79228162514264337593543950334D;
 
             this.SetupMathEnvironment();
         }
-
-
-        public DecimalMathEnvironment(UInt16 size)
+        
+        public DecimalMathEnvironment(Char size)
         {
             this.BasicMath = new BasicMathAlgorithm(this);
             this.PrimeAlgorithm = new SieveOfEratosthenePrimeAlgorithm(this);
 
             var tempKey = new List<Char>();
 
-            for (Decimal i = 0; i < size; i++)
+            for (Double i = 0; i < size; i++)
             {
                 Char currentChar = Convert.ToChar(i);
                 tempKey.Add(currentChar);
@@ -71,26 +70,26 @@ namespace VariableBase.Mathematics
 
             this.Key = new ReadOnlyCollection<Char>(tempKey);
 
-            this.Base = (Decimal)this.Key.Count;
+            this.Base = this.Key.Count;
 
             this.SetupMathEnvironment();
         }
 
         public Number GetNumber(Int32 zeros, Boolean isNegative = false)
         {
-            var numberSegments = new Decimal[zeros];
+            var numberSegments = new Double[zeros];
             for (var i = 0; i < zeros - 1; i++)
             {
                 numberSegments[i] = 0;
             }
             numberSegments[numberSegments.Length - 1] = 1;
 
-            return new Number(this, new ReadOnlyCollection<Decimal>(numberSegments), null, isNegative);
+            return new Number(this, new ReadOnlyCollection<Double>(numberSegments), null, isNegative);
         }
 
         public Number GetNumber(String[] wholeNumberSegments, Boolean isNegative = false)
         {
-            return new Number(this, new ReadOnlyCollection<Decimal>(wholeNumberSegments.Select((x) => Decimal.Parse(x)).ToArray()),
+            return new Number(this, new ReadOnlyCollection<Double>(wholeNumberSegments.Select((x) => Double.Parse(x)).ToArray()),
                                null, isNegative);
         }
 
@@ -107,14 +106,14 @@ namespace VariableBase.Mathematics
 
                 this.ValidateFraction(fractionNumeratorSegments, fractionDenominatorSegments);
                 return new Number(this, 
-                    new ReadOnlyCollection<Decimal>(wholeNumberSegments.Select((x) => this.GetIndex(x)).ToArray()),
-                    new ReadOnlyCollection<Decimal>(fractionNumeratorSegments.Select((x) => this.GetIndex(x)).ToArray()),
-                    new ReadOnlyCollection<Decimal>(fractionDenominatorSegments.Select((x) => this.GetIndex(x)).ToArray()),
+                    new ReadOnlyCollection<Double>(wholeNumberSegments.Select((x) => this.GetIndex(x)).ToArray()),
+                    new ReadOnlyCollection<Double>(fractionNumeratorSegments.Select((x) => this.GetIndex(x)).ToArray()),
+                    new ReadOnlyCollection<Double>(fractionDenominatorSegments.Select((x) => this.GetIndex(x)).ToArray()),
                     isNegative);
             }
             else
             {
-                return new Number(this, new ReadOnlyCollection<Decimal>(wholeNumberSegments.Select((x) => this.GetIndex(x)).ToArray()), 
+                return new Number(this, new ReadOnlyCollection<Double>(wholeNumberSegments.Select((x) => this.GetIndex(x)).ToArray()), 
                     null, isNegative);
             }
         }
@@ -139,7 +138,7 @@ namespace VariableBase.Mathematics
 
             foreach (Char segment in numberSegments)
             {
-                if (this.Base < Decimal.MaxValue- 1 && !this.Key.Contains(segment))
+                if (this.Base < Double.MaxValue- 1 && !this.Key.Contains(segment))
                 {
                     throw new Exception(String.Format("Invalid Number {0} not found in {1}", segment, this));
                 }
@@ -162,17 +161,17 @@ namespace VariableBase.Mathematics
             }
         }
 
-        public Decimal GetIndex(Char arg)
+        public Double GetIndex(Char arg)
         {
-            return (Decimal)this.Key.IndexOf(arg);
+            return this.Key.IndexOf(arg);
         }
         
         public void SetupMathEnvironment()
         {
             var tempKeyNumber = new List<Number>();
-            for (Decimal i = 0; i < this.Key.Count; i++)
+            for (Double i = 0; i < this.Key.Count; i++)
             {
-                tempKeyNumber.Add(new Number(this, new ReadOnlyCollection<Decimal>(new Decimal[] { i }), null, false));
+                tempKeyNumber.Add(new Number(this, new ReadOnlyCollection<Double>(new Double[] { i }), null, false));
             }
 
             this.KeyNumber = new ReadOnlyCollection<Number>(tempKeyNumber);
@@ -190,17 +189,17 @@ namespace VariableBase.Mathematics
         public Number ConvertToFraction(Double numberRaw, Double numeratorNumber, Double denominatorRaw)
         {
             Number result;
-            IList<Decimal> number = this.BasicMath.AsSegments(numberRaw);
+            IList<Double> number = this.BasicMath.AsSegments(numberRaw);
             if (numeratorNumber > 0)
             {
-                IList<Decimal> numerator = this.BasicMath.AsSegments(numeratorNumber);
-                IList<Decimal> denominator = this.BasicMath.AsSegments(denominatorRaw);
+                IList<Double> numerator = this.BasicMath.AsSegments(numeratorNumber);
+                IList<Double> denominator = this.BasicMath.AsSegments(denominatorRaw);
 
-                result = new Number(this, new ReadOnlyCollection<Decimal>(number), new ReadOnlyCollection<Decimal>(numerator), new ReadOnlyCollection<Decimal>(denominator), false);
+                result = new Number(this, new ReadOnlyCollection<Double>(number), new ReadOnlyCollection<Double>(numerator), new ReadOnlyCollection<Double>(denominator), false);
             }
             else
             {
-                result = new Number(this, new ReadOnlyCollection<Decimal>(number), default(Fraction), false);
+                result = new Number(this, new ReadOnlyCollection<Double>(number), default(Fraction), false);
             }
             return result;
         }
@@ -223,7 +222,7 @@ namespace VariableBase.Mathematics
             protected set;
         }
 
-        public Decimal Base
+        public Double Base
         {
             get;
             private set;
@@ -245,7 +244,7 @@ namespace VariableBase.Mathematics
             }
             else
             {
-                foreach (Decimal segment in this.Key)
+                foreach (Double segment in this.Key)
                 {
                     if (result != null)
                     {
@@ -283,12 +282,12 @@ namespace VariableBase.Mathematics
 
         public Number AsNumber(Boolean[] binary, Boolean isNegative = false)
         {
-            ReadOnlyCollection<Decimal> result = this.KeyNumber[0].Segments;
-            for (Double i = 0; i < (Double)binary.Length; i++)
+            ReadOnlyCollection<Double> result = this.KeyNumber[0].Segments;
+            for (Double i = 0; i < binary.Length; i++)
             {
                 if (binary[(Int32)i])
                 {
-                    ReadOnlyCollection<Decimal> currentResult = new ReadOnlyCollection<Decimal>(new Decimal[] { 1 });
+                    ReadOnlyCollection<Double> currentResult = new ReadOnlyCollection<Double>(new Double[] { 1 });
                     for (Double iSq = 0; iSq < i; iSq++)
                     {
                         currentResult = this.BasicMath.Multiply(currentResult,

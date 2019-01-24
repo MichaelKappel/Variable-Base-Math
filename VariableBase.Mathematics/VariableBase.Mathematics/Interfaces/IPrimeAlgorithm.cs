@@ -7,7 +7,7 @@ namespace VariableBase.Mathematics.Interfaces
 {
     public interface IPrimeAlgorithm
     {
-        Boolean IsPrime(ReadOnlyCollection<Decimal> number);
-        Tuple<ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>> GetComposite(ReadOnlyCollection<Decimal> number);
+        Boolean IsPrime(ReadOnlyCollection<Double> number);
+        Tuple<ReadOnlyCollection<Double>, ReadOnlyCollection<Double>> GetComposite(ReadOnlyCollection<Double> number);
     }
 }

@@ -20,8 +20,8 @@ namespace VariableBase.Mathematics
         internal IBasicMathAlgorithm BasicMath;
 
         public readonly DateTime Started;
-        public ReadOnlyCollection<Decimal> MaxPrimeTested = new ReadOnlyCollection<Decimal>(new Decimal[] { 1 });
-        public Decimal[][] PrimeNumbers = default(Decimal[][]);
+        public ReadOnlyCollection<Double> MaxPrimeTested = new ReadOnlyCollection<Double>(new Double[] { 1 });
+        public Double[][] PrimeNumbers = default(Double[][]);
 
         public IterativePrimeAlgorithm(DecimalMathEnvironment environment)
         {
@@ -32,7 +32,7 @@ namespace VariableBase.Mathematics
 
         public Boolean SavePrimes { get; set; }
 
-        public Boolean IsPrime(ReadOnlyCollection<Decimal> number)
+        public Boolean IsPrime(ReadOnlyCollection<Double> number)
         {
             if (number.Count > 1)
             {
@@ -40,7 +40,7 @@ namespace VariableBase.Mathematics
             }
             else
             {
-                Decimal halfPrime = number[0] / 2;
+                Double halfPrime = number[0] / 2;
                 for (Int32 i = 2; i < halfPrime; i++)
                 {
                     if (number[0] % i == 0)
@@ -53,32 +53,32 @@ namespace VariableBase.Mathematics
             return true;
         }
         
-        public Tuple<ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>> GetComposite(ReadOnlyCollection<Decimal> a)
+        public Tuple<ReadOnlyCollection<Double>, ReadOnlyCollection<Double>> GetComposite(ReadOnlyCollection<Double> a)
         {
-            Tuple<ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>> result = default(Tuple<ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>>);
+            Tuple<ReadOnlyCollection<Double>, ReadOnlyCollection<Double>> result = default(Tuple<ReadOnlyCollection<Double>, ReadOnlyCollection<Double>>);
             if (this.BasicMath.IsBottom(a) || this.BasicMath.IsFirst(a) || this.BasicMath.IsEqual(a, this.Environment.SecondNumber.Segments))
             {
 
             }
             else if (this.BasicMath.IsEven(a))
             {
-                Tuple<ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>> half = this.BasicMath.Divide(a, this.Environment.SecondNumber.Segments);
-                if (half.Item2 != default(ReadOnlyCollection<Decimal>) || half.Item2 != default(ReadOnlyCollection<Decimal>))
+                Tuple<ReadOnlyCollection<Double>, ReadOnlyCollection<Double>, ReadOnlyCollection<Double>> half = this.BasicMath.Divide(a, this.Environment.SecondNumber.Segments);
+                if (half.Item2 != default(ReadOnlyCollection<Double>) || half.Item2 != default(ReadOnlyCollection<Double>))
                 {
                     throw new Exception("Math error in GetDivisor IsEven half");
                 }
-                result = new Tuple<ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>>(half.Item1, this.Environment.SecondNumber.Segments);
+                result = new Tuple<ReadOnlyCollection<Double>, ReadOnlyCollection<Double>>(half.Item1, this.Environment.SecondNumber.Segments);
             }
             else
             {
-                var halfPrime = new ReadOnlyCollection<Decimal>(new Decimal[]{ System.Math.Ceiling(a[0] / 2) });
-                var testNumber = new ReadOnlyCollection<Decimal>(new Decimal[]{ 1 });
+                var halfPrime = new ReadOnlyCollection<Double>(new Double[]{ System.Math.Ceiling(a[0] / 2) });
+                var testNumber = new ReadOnlyCollection<Double>(new Double[]{ 1 });
                 while (this.BasicMath.IsLessThanOrEqualTo(testNumber, halfPrime))
                 {
-                    Tuple<ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>> currentNumber = this.BasicMath.Divide(a, testNumber);
-                    if (currentNumber.Item2 == default(ReadOnlyCollection<Decimal>))
+                    Tuple<ReadOnlyCollection<Double>, ReadOnlyCollection<Double>, ReadOnlyCollection<Double>> currentNumber = this.BasicMath.Divide(a, testNumber);
+                    if (currentNumber.Item2 == default(ReadOnlyCollection<Double>))
                     {
-                        result = new Tuple<ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>>(currentNumber.Item1, testNumber);
+                        result = new Tuple<ReadOnlyCollection<Double>, ReadOnlyCollection<Double>>(currentNumber.Item1, testNumber);
                         break;
                     }
                     testNumber = this.BasicMath.Add(testNumber, Environment.SecondNumber.Segments);
@@ -88,7 +88,7 @@ namespace VariableBase.Mathematics
             if (a.Count == 1)
             {
                 Boolean isPrime = true;
-                Decimal halfPrime = a[0] / 2;
+                Double halfPrime = a[0] / 2;
                 Int32 i = 2;
                 for (; i <= halfPrime; i++)
                 {
@@ -99,18 +99,18 @@ namespace VariableBase.Mathematics
                     }
                 }
 
-                if (isPrime == false && result == default(Tuple<ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>>))
+                if (isPrime == false && result == default(Tuple<ReadOnlyCollection<Double>, ReadOnlyCollection<Double>>))
                 {
                     throw new Exception(String.Format("Math Error in GetComposite {0} should have had a Composite of {1}", a[0], i));
                 }
-                else if (isPrime == true && result != default(Tuple<ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>>))
+                else if (isPrime == true && result != default(Tuple<ReadOnlyCollection<Double>, ReadOnlyCollection<Double>>))
                 {
                     throw new Exception(String.Format("Math Error in GetComposite {0} should NOT have a Composite of {1} x {2}", a[0], result.Item1[0], result.Item2[0]));
                 }
             }
-            if (result != default(Tuple<ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>>))
+            if (result != default(Tuple<ReadOnlyCollection<Double>, ReadOnlyCollection<Double>>))
             {
-                foreach (Decimal segment in result.Item1)
+                foreach (Double segment in result.Item1)
                 {
                     if (segment > this.Environment.Base)
                     {
@@ -122,7 +122,7 @@ namespace VariableBase.Mathematics
                     }
                 }
 
-                foreach (Decimal segment in result.Item2)
+                foreach (Double segment in result.Item2)
                 {
                     if (segment > this.Environment.Base)
                     {

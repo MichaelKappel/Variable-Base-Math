@@ -9,16 +9,15 @@ namespace VariableBase.Mathematics
     {
         IBasicMathAlgorithm BasicMath { get; set; }
         IPrimeAlgorithm PrimeAlgorithm { get; set; }
-        Decimal Base { get; }
+        Double Base { get; }
         ReadOnlyCollection<Char> Key { get; }
         ReadOnlyCollection<Number> KeyNumber { get; }
         Number PowerOfFirstNumber { get; }
         Number SecondNumber { get; }
-        Number AsNumber(Boolean[] binary, Boolean isNegative = false);
         Number ConvertToFraction(Double numberRaw, Double numeratorNumber, Double denominatorRaw);
         Boolean Equals(Object other);
         Int32 GetHashCode();
-        Decimal GetIndex(Char arg);
+        Double GetIndex(Char arg);
         Number GetNumber(Int32 zeros, Boolean isNegative = false);
         Number GetNumber(String wholeNumber, String fractionNumerator = null, String fractionDenominator = null, Boolean isNegative = false);
         Number GetNumber(String[] wholeNumberSegments, Boolean isNegative = false);
