@@ -539,7 +539,7 @@ namespace VariableBase.Mathematics
             else
             {
                 Decimal remainder = (x % 1);
-                return new Tuple<NumberSegments, NumberSegments, NumberSegments>(new NumberSegments(new Decimal[] { Math.Floor(x) }), new NumberSegments(new Decimal[] { Math.Floor(remainder) }), new NumberSegments(new Decimal[] { number } ));
+                return new Tuple<NumberSegments, NumberSegments, NumberSegments>(new NumberSegments(new Decimal[] { Math.Floor(x) }), new NumberSegments(new Decimal[] { Math.Floor(remainder * 100000) }), new NumberSegments(new Decimal[] { number * 100000 } ));
 
             }
         }
