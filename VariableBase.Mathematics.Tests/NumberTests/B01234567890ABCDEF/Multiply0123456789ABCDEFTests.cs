@@ -14,7 +14,7 @@ namespace VariableBase.Mathematics.Tests.NumberTests.B0123456789ABCDEF
         [TestCategory("0123456789ABCDEF")]
         public void Multiply_15_9()
         {
-            var env = new DecimalMathEnvironment("0123456789ABCDEF");
+            var env = new CharMathEnvironment("0123456789ABCDEF");
 
             var expected = env.GetNumber("BD");
 
@@ -33,7 +33,7 @@ namespace VariableBase.Mathematics.Tests.NumberTests.B0123456789ABCDEF
         [TestCategory("0123456789ABCDEF")]
         public void Multiply_15_1_2_X_9_1_2()
         {
-            var env = new DecimalMathEnvironment("0123456789ABCDEF");
+            var env = new CharMathEnvironment("0123456789ABCDEF");
 
             Number expected = env.GetNumber("CC","1", "4");
 

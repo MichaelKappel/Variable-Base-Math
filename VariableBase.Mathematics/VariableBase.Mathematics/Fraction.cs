@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using VariableBase.Mathematics.Models;
 
 namespace VariableBase.Mathematics
 {
@@ -11,7 +12,7 @@ namespace VariableBase.Mathematics
 
         internal static IFractionOperator Operator = new FractionOperator();
 
-        internal Fraction(IMathEnvironment environment, ReadOnlyCollection<Decimal> numerator, ReadOnlyCollection<Decimal> denominator)
+        internal Fraction(IMathEnvironment environment, NumberSegments numerator, NumberSegments denominator)
         {
             this.Numerator = new Number(environment, numerator, null, null, false);
             this.Denominator = new Number(environment, denominator, null, null, false);
@@ -130,71 +131,6 @@ namespace VariableBase.Mathematics
 
         #endregion
        
-        public Number AsNumber()
-        {
-            if (Number.Operator.IsEqual(this.Denominator, this.Denominator.Environment.KeyNumber[0]))
-            {
-                return this.Numerator;
-            }
-            else if (Number.Operator.IsGreaterThan(this.Denominator, this.Numerator))
-            {
-                return new Number(this.Denominator.Environment, new ReadOnlyCollection<Decimal>(new Decimal[] { 0 }),  this, false);
-            }
-            else
-            {
-
-                Number numerator = this.Numerator;
-                Number denominator = this.Denominator;
-
-                if (numerator.Environment != denominator.Environment)
-                {
-                    throw new Exception("Fractions in differnt enviorments is not currently supported");
-                }
-
-                IMathEnvironment environment = numerator.Environment;
-
-                if (denominator.Fragment != default(Fraction) || denominator.Fragment != default(Fraction))
-                {
-                    var aFraction = default(Fraction);
-                    if (numerator.Fragment != default(Fraction))
-                    {
-                        ReadOnlyCollection<Decimal> aDividend = numerator.Environment.BasicMath.Add(numerator.Environment.BasicMath.Multiply(numerator.Segments, numerator.Fragment.Denominator.Segments), numerator.Fragment.Numerator.Segments);
-                        aFraction = new Fraction(numerator.Environment, aDividend, environment.KeyNumber[1].Segments);
-                    }
-                    else
-                    {
-                        aFraction = new Fraction(numerator.Environment, numerator.Segments, environment.KeyNumber[1].Segments);
-                    }
-
-                    var bFraction = default(Fraction);
-                    if (denominator.Fragment != default(Fraction))
-                    {
-                        ReadOnlyCollection<Decimal> bDividend = denominator.Environment.BasicMath.Add(denominator.Environment.BasicMath.Multiply(denominator.Segments, denominator.Fragment.Denominator.Segments), denominator.Fragment.Numerator.Segments);
-                        bFraction = new Fraction(numerator.Environment, bDividend, environment.KeyNumber[1].Segments);
-
-                    }
-                    else if (aFraction != default(Fraction))
-                    {
-                        bFraction = new Fraction(denominator.Environment, denominator.Segments, environment.KeyNumber[1].Segments);
-                    }
-
-                    Fraction fractionResult = aFraction / bFraction;
-                    numerator = fractionResult.Numerator;
-                    denominator = fractionResult.Denominator;
-                }
-
-                Tuple<ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>> resultSegments = environment.BasicMath.Divide(numerator.Segments, denominator.Segments);
-                if (resultSegments.Item2 != default(ReadOnlyCollection<Decimal>) && resultSegments.Item3 != default(ReadOnlyCollection<Decimal>))
-                {
-                    return new Number(environment, resultSegments.Item1, resultSegments.Item2, resultSegments.Item3, false);
-                }
-                else
-                {
-                    return new Number(environment, resultSegments.Item1, null, false);
-                }
-            }
-        }
-
         public Fraction IncreaseDenominator(Number multiplier)
         {
             Number biggerNumerator = this.Numerator.Fragment.Denominator * multiplier;

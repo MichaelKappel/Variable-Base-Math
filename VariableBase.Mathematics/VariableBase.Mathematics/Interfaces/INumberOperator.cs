@@ -5,13 +5,12 @@ using System.Text;
 
 namespace VariableBase.Mathematics.Interfaces
 {
-    public interface INumberOperator: IComparer<Number>
+    public interface INumberOperator: IComparer<Number>, IComparable<Number>, IEquatable<Number>, IComparer<Decimal>, IComparable<Decimal>, IEquatable<Decimal>
     {
         Number Add(Number a, Number b);
         Number Subtract(Number a, Number b);
         Number Multiply(Number a, Number b);
         Number Divide(Number a, Number b);
-        Boolean IsEqual(Number a, Number b);
         Boolean IsGreaterThan(Number a, Number b);
         Boolean IsLessThan(Number a, Number b);
         Boolean IsGreaterThanOrEqualTo(Number a, Number b);

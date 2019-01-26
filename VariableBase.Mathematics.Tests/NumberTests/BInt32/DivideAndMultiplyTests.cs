@@ -15,7 +15,7 @@ namespace VariableBase.Math.Tests.NumberTests.BUInt16
         [TestCategory("BUInt16")]
         public void BUInt16_Test_1()
         {
-            var env = new DecimalMathEnvironment(UInt16.MaxValue);
+            var env = new CharMathEnvironment(Char.MaxValue);
 
             Number a = env.GetNumber("1500");
             Number b = env.GetNumber("6508");
@@ -36,7 +36,7 @@ namespace VariableBase.Math.Tests.NumberTests.BUInt16
         [TestCategory("BUInt16")]
         public void BUInt16_Test_2()
         {
-            var env = new DecimalMathEnvironment(UInt16.MaxValue);
+            var env = new CharMathEnvironment(Char.MaxValue);
 
             Number a = env.GetNumber("150hglyfjhlflhlfg0");
             Number b = env.GetNumber("65ghdfiy;f;fyifyiyfpflyiifyfyl08");

@@ -2,29 +2,28 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using VariableBase.Mathematics.Models;
 
 namespace VariableBase.Mathematics.Interfaces
 {
     public interface IBasicMathAlgorithm
     {
-        IList<Decimal> AsSegments(Decimal rawDouble);
-        ReadOnlyCollection<Decimal> Add(ReadOnlyCollection<Decimal> a, ReadOnlyCollection<Decimal> b);
-        Tuple<ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>> Divide(ReadOnlyCollection<Decimal> numerator, ReadOnlyCollection<Decimal> denominator, ReadOnlyCollection<Decimal> hint = null);
-        ReadOnlyCollection<Decimal> GetWholeNumberSomewhereBetween(ReadOnlyCollection<Decimal> a, ReadOnlyCollection<Decimal> b, Decimal variance = 0);
-        Boolean IsBottom(ReadOnlyCollection<Decimal> number);
-        Boolean IsEqual(ReadOnlyCollection<Decimal> a, ReadOnlyCollection<Decimal> b);
-        Boolean IsEven(ReadOnlyCollection<Decimal> a);
-        Boolean IsFirst(ReadOnlyCollection<Decimal> number);
-        Boolean IsGreaterThan(ReadOnlyCollection<Decimal> a, ReadOnlyCollection<Decimal> b);
-        Boolean IsGreaterThanOrEqualTo(ReadOnlyCollection<Decimal> a, ReadOnlyCollection<Decimal> b);
-        Boolean IsLessThan(ReadOnlyCollection<Decimal> a, ReadOnlyCollection<Decimal> b);
-        Boolean IsLessThanOrEqualTo(ReadOnlyCollection<Decimal> a, ReadOnlyCollection<Decimal> b);
-        Boolean IsNotEqual(ReadOnlyCollection<Decimal> a, ReadOnlyCollection<Decimal> b);
-        Boolean IsOdd(ReadOnlyCollection<Decimal> a);
-        ReadOnlyCollection<Decimal> Multiply(ReadOnlyCollection<Decimal> a, ReadOnlyCollection<Decimal> b);
-        ReadOnlyCollection<Decimal> PowerOfBase(ReadOnlyCollection<Decimal> a, Int32 times);
-        ReadOnlyCollection<Decimal> Square(ReadOnlyCollection<Decimal> a);
-        Tuple<ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>> SquareRoot(ReadOnlyCollection<Decimal> number);
-        ReadOnlyCollection<Decimal> Subtract(ReadOnlyCollection<Decimal> a, ReadOnlyCollection<Decimal> b);
+        NumberSegments AsSegments(IMathEnvironment environment, Decimal rawDouble);
+        NumberSegments Add(IMathEnvironment environment,NumberSegments a, NumberSegments b);
+        Tuple<NumberSegments, NumberSegments, NumberSegments> Divide(IMathEnvironment environment,NumberSegments numerator, NumberSegments denominator, NumberSegments hint = null);
+        NumberSegments GetWholeNumberSomewhereBetween(IMathEnvironment environment,NumberSegments a, NumberSegments b, Decimal variance = 0);
+        Boolean IsEqual(IMathEnvironment environment,NumberSegments a, NumberSegments b);
+        Boolean IsEven(IMathEnvironment environment,NumberSegments a);
+        Boolean IsGreaterThan(IMathEnvironment environment,NumberSegments a, NumberSegments b);
+        Boolean IsGreaterThanOrEqualTo(IMathEnvironment environment,NumberSegments a, NumberSegments b);
+        Boolean IsLessThan(IMathEnvironment environment,NumberSegments a, NumberSegments b);
+        Boolean IsLessThanOrEqualTo(IMathEnvironment environment,NumberSegments a, NumberSegments b);
+        Boolean IsNotEqual(IMathEnvironment environment,NumberSegments a, NumberSegments b);
+        Boolean IsOdd(IMathEnvironment environment,NumberSegments a);
+        NumberSegments Multiply(IMathEnvironment environment,NumberSegments a, NumberSegments b);
+        NumberSegments PowerOfBase(IMathEnvironment environment,NumberSegments a, Decimal times);
+        NumberSegments Square(IMathEnvironment environment,NumberSegments a);
+        Tuple<NumberSegments, NumberSegments, NumberSegments> SquareRoot(IMathEnvironment environment, NumberSegments number);
+        NumberSegments Subtract(IMathEnvironment environment,NumberSegments a, NumberSegments b);
     }
 }

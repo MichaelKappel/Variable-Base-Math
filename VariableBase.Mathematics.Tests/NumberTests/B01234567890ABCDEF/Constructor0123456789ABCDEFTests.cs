@@ -16,12 +16,12 @@ namespace VariableBase.Mathematics.Tests.NumberTests.B0123456789ABCDEF
         [TestCategory("0123456789ABCDEF")]
         public void Constructor_String_00000()
         {
-            var env = new DecimalMathEnvironment("0123456789ABCDEF");
+            var env = new CharMathEnvironment("0123456789ABCDEF");
 
 
             Number actual = env.GetNumber("00000");
 
-            Assert.AreEqual(1, actual.Segments.Count);
+            Assert.AreEqual(1, actual.Segments.Length);
         }
     }
 }

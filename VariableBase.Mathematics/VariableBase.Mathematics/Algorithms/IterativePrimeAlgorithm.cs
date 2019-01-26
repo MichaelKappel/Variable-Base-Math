@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using VariableBase.Mathematics.Interfaces;
+using VariableBase.Mathematics.Models;
 
 namespace VariableBase.Mathematics
 {
@@ -16,25 +17,20 @@ namespace VariableBase.Mathematics
     /// </summary>
     public class IterativePrimeAlgorithm : IPrimeAlgorithm
     {
-        internal IMathEnvironment Environment;
-        internal IBasicMathAlgorithm BasicMath;
-
         public readonly DateTime Started;
-        public ReadOnlyCollection<Decimal> MaxPrimeTested = new ReadOnlyCollection<Decimal>(new Decimal[] { 1 });
+        public NumberSegments MaxPrimeTested = new NumberSegments(new Decimal[] { 1 });
         public Decimal[][] PrimeNumbers = default(Decimal[][]);
 
-        public IterativePrimeAlgorithm(DecimalMathEnvironment environment)
+        public IterativePrimeAlgorithm(IMathEnvironment environment)
         {
             this.Started = DateTime.Now;
-            this.Environment = environment;
-            this.BasicMath = environment.BasicMath;
         }
 
         public Boolean SavePrimes { get; set; }
 
-        public Boolean IsPrime(ReadOnlyCollection<Decimal> number)
+        public Boolean IsPrime(IMathEnvironment environment, IBasicMathAlgorithm basicMath, NumberSegments number)
         {
-            if (number.Count > 1)
+            if (number.Size > 1)
             {
                 throw new NotImplementedException();
             }
@@ -53,39 +49,39 @@ namespace VariableBase.Mathematics
             return true;
         }
         
-        public Tuple<ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>> GetComposite(ReadOnlyCollection<Decimal> a)
+        public Tuple<NumberSegments, NumberSegments> GetComposite(IMathEnvironment environment, IBasicMathAlgorithm basicMath, NumberSegments a)
         {
-            Tuple<ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>> result = default(Tuple<ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>>);
-            if (this.BasicMath.IsBottom(a) || this.BasicMath.IsFirst(a) || this.BasicMath.IsEqual(a, this.Environment.SecondNumber.Segments))
+            Tuple<NumberSegments, NumberSegments> result = default(Tuple<NumberSegments, NumberSegments>);
+            if (Number.IsBottom(a) || Number.IsFirst(a) || basicMath.IsEqual(environment, a, environment.SecondNumber.Segments))
             {
 
             }
-            else if (this.BasicMath.IsEven(a))
+            else if (basicMath.IsEven(environment, a))
             {
-                Tuple<ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>> half = this.BasicMath.Divide(a, this.Environment.SecondNumber.Segments);
-                if (half.Item2 != default(ReadOnlyCollection<Decimal>) || half.Item2 != default(ReadOnlyCollection<Decimal>))
+                Tuple<NumberSegments, NumberSegments, NumberSegments> half = basicMath.Divide(environment, a, environment.SecondNumber.Segments);
+                if (half.Item2 != default(NumberSegments) || half.Item2 != default(NumberSegments))
                 {
                     throw new Exception("Math error in GetDivisor IsEven half");
                 }
-                result = new Tuple<ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>>(half.Item1, this.Environment.SecondNumber.Segments);
+                result = new Tuple<NumberSegments, NumberSegments>(half.Item1, environment.SecondNumber.Segments);
             }
             else
             {
-                var halfPrime = new ReadOnlyCollection<Decimal>(new Decimal[]{ System.Math.Ceiling(a[0] / 2) });
-                var testNumber = new ReadOnlyCollection<Decimal>(new Decimal[]{ 1 });
-                while (this.BasicMath.IsLessThanOrEqualTo(testNumber, halfPrime))
+                var halfPrime = new NumberSegments(new Decimal[]{ System.Math.Ceiling(a[0] / 2) });
+                var testNumber = new NumberSegments(new Decimal[]{ 1 });
+                while (basicMath.IsLessThanOrEqualTo(environment, testNumber, halfPrime))
                 {
-                    Tuple<ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>> currentNumber = this.BasicMath.Divide(a, testNumber);
-                    if (currentNumber.Item2 == default(ReadOnlyCollection<Decimal>))
+                    Tuple<NumberSegments, NumberSegments, NumberSegments> currentNumber = basicMath.Divide(environment, a, testNumber);
+                    if (currentNumber.Item2 == default(NumberSegments))
                     {
-                        result = new Tuple<ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>>(currentNumber.Item1, testNumber);
+                        result = new Tuple<NumberSegments, NumberSegments>(currentNumber.Item1, testNumber);
                         break;
                     }
-                    testNumber = this.BasicMath.Add(testNumber, Environment.SecondNumber.Segments);
+                    testNumber = basicMath.Add(environment, testNumber, environment.SecondNumber.Segments);
                 }
             }
 #if DEBUG
-            if (a.Count == 1)
+            if (a.Size == 1)
             {
                 Boolean isPrime = true;
                 Decimal halfPrime = a[0] / 2;
@@ -99,20 +95,20 @@ namespace VariableBase.Mathematics
                     }
                 }
 
-                if (isPrime == false && result == default(Tuple<ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>>))
+                if (isPrime == false && result == default(Tuple<NumberSegments, NumberSegments>))
                 {
                     throw new Exception(String.Format("Math Error in GetComposite {0} should have had a Composite of {1}", a[0], i));
                 }
-                else if (isPrime == true && result != default(Tuple<ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>>))
+                else if (isPrime == true && result != default(Tuple<NumberSegments, NumberSegments>))
                 {
                     throw new Exception(String.Format("Math Error in GetComposite {0} should NOT have a Composite of {1} x {2}", a[0], result.Item1[0], result.Item2[0]));
                 }
             }
-            if (result != default(Tuple<ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>>))
+            if (result != default(Tuple<NumberSegments, NumberSegments>))
             {
                 foreach (Decimal segment in result.Item1)
                 {
-                    if (segment > this.Environment.Base)
+                    if (segment > environment.Base)
                     {
                         throw new Exception("Bad GetComposite segment larger than base Item 1");
                     }
@@ -124,7 +120,7 @@ namespace VariableBase.Mathematics
 
                 foreach (Decimal segment in result.Item2)
                 {
-                    if (segment > this.Environment.Base)
+                    if (segment > environment.Base)
                     {
                         throw new Exception("Bad GetComposite segment larger than base Item 2");
                     }

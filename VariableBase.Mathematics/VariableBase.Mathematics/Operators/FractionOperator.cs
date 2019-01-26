@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
-
+using VariableBase.Mathematics.Models;
 
 namespace VariableBase.Mathematics
 {
@@ -22,13 +22,13 @@ namespace VariableBase.Mathematics
             IMathEnvironment environment = aWhole.Denominator.Environment;
 
 
-            ReadOnlyCollection<Decimal> commonDenominator = environment.BasicMath.Multiply(aWhole.Denominator.Segments, bWhole.Denominator.Segments);
-            ReadOnlyCollection<Decimal> numeratorA = environment.BasicMath.Multiply(aWhole.Numerator.Segments, bWhole.Denominator.Segments);
-            ReadOnlyCollection<Decimal> numeratorB = environment.BasicMath.Multiply(bWhole.Numerator.Segments, aWhole.Denominator.Segments);
+            Number commonDenominator = aWhole.Denominator - bWhole.Denominator;
+            Number numeratorA = aWhole.Numerator * bWhole.Denominator;
+            Number numeratorB = bWhole.Numerator * aWhole.Denominator;
 
-            ReadOnlyCollection<Decimal> resultRaw = environment.BasicMath.Add(numeratorA, numeratorB);
+            Number resultRaw = numeratorA + numeratorB;
 
-            return new Fraction(environment, resultRaw, commonDenominator);
+            return new Fraction(resultRaw, commonDenominator);
 
 
         }
@@ -44,13 +44,13 @@ namespace VariableBase.Mathematics
             }
             IMathEnvironment environment = aWhole.Denominator.Environment;
 
-            ReadOnlyCollection<Decimal> commonDenominator = environment.BasicMath.Multiply(aWhole.Denominator.Segments, bWhole.Denominator.Segments);
-            ReadOnlyCollection<Decimal> numeratorA = environment.BasicMath.Multiply(aWhole.Numerator.Segments, bWhole.Denominator.Segments);
-            ReadOnlyCollection<Decimal> numeratorB = environment.BasicMath.Multiply(bWhole.Numerator.Segments, aWhole.Denominator.Segments);
+            Number commonDenominator = aWhole.Denominator * bWhole.Denominator;
+            Number numeratorA = aWhole.Numerator - bWhole.Denominator;
+            Number numeratorB = bWhole.Numerator - aWhole.Denominator;
 
-            ReadOnlyCollection<Decimal> resultnumerator = environment.BasicMath.Subtract(numeratorA, numeratorB);
+            Number resultnumerator = numeratorA - numeratorB;
             
-            var result = new Fraction(environment, resultnumerator, commonDenominator);
+            var result = new Fraction(resultnumerator, commonDenominator);
 
             return result;
         }
@@ -66,11 +66,11 @@ namespace VariableBase.Mathematics
             }
             IMathEnvironment environment = aWhole.Denominator.Environment;
 
-            ReadOnlyCollection<Decimal> numerator = environment.BasicMath.Multiply(aWhole.Numerator.Segments, bWhole.Numerator.Segments);
-            ReadOnlyCollection<Decimal> denominator = environment.BasicMath.Multiply(aWhole.Denominator.Segments, bWhole.Denominator.Segments);
+            Number numerator = aWhole.Numerator * bWhole.Numerator;
+            Number denominator = aWhole.Denominator * bWhole.Denominator;
 
 
-            var result = new Fraction(environment, numerator, denominator);
+            var result = new Fraction(numerator, denominator);
 
             return result;
         }
@@ -86,15 +86,11 @@ namespace VariableBase.Mathematics
             }
             IMathEnvironment environment = aWhole.Denominator.Environment;
 
-            ReadOnlyCollection<Decimal> commonDenominator = environment.BasicMath.Multiply(aWhole.Denominator.Segments, bWhole.Denominator.Segments);
-            ReadOnlyCollection<Decimal> numeratorA = environment.BasicMath.Multiply(aWhole.Numerator.Segments, bWhole.Denominator.Segments);
-            ReadOnlyCollection<Decimal> numeratorB = environment.BasicMath.Multiply(bWhole.Numerator.Segments, aWhole.Denominator.Segments);
+            Number commonDenominator = aWhole.Denominator * bWhole.Denominator;
+            Number numeratorA = aWhole.Numerator * bWhole.Denominator;
+            Number numeratorB = bWhole.Numerator * aWhole.Denominator;
 
-            Tuple<ReadOnlyCollection<Decimal>, ReadOnlyCollection<Decimal>,ReadOnlyCollection<Decimal>> rawResult = environment.BasicMath.Divide(numeratorA, numeratorB);
-
-            var result = new Fraction(environment, rawResult.Item1, commonDenominator);
-
-            return result;
+            return new Fraction(numeratorA, numeratorB);
         }
 
         public int Compare(Fraction a, Fraction b)

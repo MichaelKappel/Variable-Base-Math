@@ -14,7 +14,7 @@ namespace VariableBase.Mathematics.Tests.NumberTests.B0123456789
         [TestCategory("0123456789")]
         public void Subtract_999_88()
         {
-            var env = new DecimalMathEnvironment("0123456789");
+            var env = new CharMathEnvironment("0123456789");
 
             Number expected = env.GetNumber("9688");
 

@@ -15,7 +15,7 @@ namespace VariableBase.Mathematics.Tests.NumberTests.B0123456789
         [TestCategory("0123456789")]
         public void Equal_0_default()
         {
-            var env = new DecimalMathEnvironment("0123456789");
+            var env = new CharMathEnvironment("0123456789");
 
             var expected = true;
 
@@ -34,7 +34,7 @@ namespace VariableBase.Mathematics.Tests.NumberTests.B0123456789
         [TestCategory("0123456789")]
         public void Equal_default_0()
         {
-            var env = new DecimalMathEnvironment("0123456789");
+            var env = new CharMathEnvironment("0123456789");
 
             var expected = true;
 
@@ -53,7 +53,7 @@ namespace VariableBase.Mathematics.Tests.NumberTests.B0123456789
         [TestCategory("0123456789")]
         public void Equal_ENV1_1()
         {
-            var env = new DecimalMathEnvironment("0123456789");
+            var env = new CharMathEnvironment("0123456789");
 
             var expected = true;
 
@@ -71,7 +71,7 @@ namespace VariableBase.Mathematics.Tests.NumberTests.B0123456789
         [TestCategory("0123456789")]
         public void Equal_1_ENV1()
         {
-            var env = new DecimalMathEnvironment("0123456789");
+            var env = new CharMathEnvironment("0123456789");
 
             var expected = true;
 

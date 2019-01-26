@@ -14,7 +14,7 @@ namespace VariableBase.Mathematics.Tests.NumberTests.B0123456789ABCDEF
         [TestCategory("0123456789ABCDEF")]
         public void Divide_160_40()
         {
-            var env = new DecimalMathEnvironment("0123456789ABCDEF");
+            var env = new CharMathEnvironment("0123456789ABCDEF");
 
             Number expected = env.GetNumber("5");
 
@@ -33,7 +33,7 @@ namespace VariableBase.Mathematics.Tests.NumberTests.B0123456789ABCDEF
         [TestCategory("0123456789ABCDEF")]
         public void Divide_9876_99()
         {
-            var env = new DecimalMathEnvironment("0123456789ABCDEF");
+            var env = new CharMathEnvironment("0123456789ABCDEF");
 
             var expected = env.GetNumber("FF", "F", "99");
 
@@ -51,7 +51,7 @@ namespace VariableBase.Mathematics.Tests.NumberTests.B0123456789ABCDEF
         [TestCategory("0123456789ABCDEF")]
         public void Divide_34798249_40()
         {
-            var env = new DecimalMathEnvironment("0123456789ABCDEF");
+            var env = new CharMathEnvironment("0123456789ABCDEF");
 
             var expected = env.GetNumber("20D","B", "1F");
 
@@ -69,7 +69,7 @@ namespace VariableBase.Mathematics.Tests.NumberTests.B0123456789ABCDEF
         [TestCategory("0123456789ABCDEF")]
         public void Divide_15789_2_3_D_9_7_8()
         {
-            var env = new DecimalMathEnvironment("0123456789ABCDEF");
+            var env = new CharMathEnvironment("0123456789ABCDEF");
 
             var expected = env.GetNumber("6DA","1", "3");
 

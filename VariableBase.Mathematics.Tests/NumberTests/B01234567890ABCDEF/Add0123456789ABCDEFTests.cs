@@ -14,7 +14,7 @@ namespace VariableBase.Mathematics.Tests.NumberTests.B0123456789ABCDEF
         [TestCategory("0123456789ABCDEF")]
         public void Add_999_88()
         {
-            var env = new DecimalMathEnvironment("0123456789ABCDEF");
+            var env = new CharMathEnvironment("0123456789ABCDEF");
 
             Number expected = env.GetNumber("A21");
 
