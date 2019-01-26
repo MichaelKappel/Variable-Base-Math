@@ -324,9 +324,66 @@ namespace VariableBase.Mathematics.Models
             GC.Collect();
         }
 
-        internal void CopyTo(decimal[] segments, decimal times)
+        internal void CopyTo(decimal[] segments)
         {
-            throw new NotImplementedException();
+            if (this.NumberSegmentType == NumberSegmentTypes.Boolean)
+            {
+                Int32 i1 = this.BooleanSegments.Length - 1;
+                for (var i = segments.Length - 1; i >= 0; i--)
+                {
+                    if (i1 == 0)
+                    {
+                        break;
+                    }
+                    segments[i] = (this.BooleanSegments[i1])?1:0;
+                    i1--;
+                }
+            }
+            else if (this.NumberSegmentType == NumberSegmentTypes.UInt16)
+            {
+                Int32 i1 = this.UInt16Segments.Length - 1;
+                for (var i = segments.Length - 1; i >= 0; i--)
+                {
+                    if (i1 == 0)
+                    {
+                        break;
+                    }
+                    segments[i] = this.UInt16Segments[i1];
+                    i1--;
+                }
+            }
+            else if (this.NumberSegmentType == NumberSegmentTypes.UInt32)
+            {
+                Int32 i1 = this.UInt32Segments.Length - 1;
+                for (var i = segments.Length - 1; i >= 0; i--)
+                {
+                    if (i1 == 0)
+                    {
+                        break;
+                    }
+                    segments[i] = this.UInt32Segments[i1];
+                    i1--;
+                }
+            }
+            else if (this.NumberSegmentType == NumberSegmentTypes.UInt64)
+            {
+                Int32 i1 = this.UInt64Segments.Length - 1;
+                for (var i = segments.Length - 1; i >= 0; i--)
+                {
+                    segments[i] = this.UInt64Segments[i1];
+
+                    if (i1 == 0)
+                    {
+                        break;
+                    }
+
+                    i1--;
+                }
+            }
+            else
+            {
+                throw new Exception("NumberSegmentType Unknown");
+            }
         }
     }
 }

@@ -213,11 +213,11 @@ namespace VariableBase.Mathematics
                         power = System.Math.Floor(somewhereBetweenPower);
                     }
                     Decimal powerWithVariance = (power + variance);
-                    result = this.PowerOfBase(environment, firstIndexOfResult, powerWithVariance);
+                    result = this.PowerOfBase(environment, this.AsSegments(environment, firstIndexOfResult), powerWithVariance);
                     while (this.IsGreaterThan(environment,result, a))
                     {
                         powerWithVariance -= 1;
-                        result = this.PowerOfBase(environment, firstIndexOfResult, powerWithVariance);
+                        result = this.PowerOfBase(environment, this.AsSegments(environment, firstIndexOfResult), powerWithVariance);
                     }
                 }
             }
@@ -411,10 +411,10 @@ namespace VariableBase.Mathematics
             return new NumberSegments(resultRaw);
         }
 
-        public NumberSegments PowerOfBase(IMathEnvironment environment, Decimal a, Decimal times)
-        {
-            return this.PowerOfBase(environment,  a , times);
-        }
+        //public NumberSegments PowerOfBase(IMathEnvironment environment, Decimal a, Decimal times)
+        //{
+        //    return this.PowerOfBase(environment,  a , times);
+        //}
 
         public NumberSegments PowerOfBase(IMathEnvironment environment, NumberSegments a, Decimal times)
         {
@@ -428,7 +428,7 @@ namespace VariableBase.Mathematics
             {
                 segments[i] = 0;
             }
-            a.CopyTo(segments, times);
+            a.CopyTo(segments);
 #if DEBUG
             foreach (Decimal segment in segments)
             {
@@ -441,6 +441,12 @@ namespace VariableBase.Mathematics
                     throw new Exception("Bad PowerOfBase segment less than zero");
                 }
             }
+
+            if (segments.Length > 0 && segments[segments.Length-1] == 0)
+            {
+                throw new Exception("Bad PowerOfBase leading zero");
+            }
+
 #endif
             return new NumberSegments(segments);
         }
@@ -1119,9 +1125,9 @@ namespace VariableBase.Mathematics
 
             Debug.WriteLine("Division result {0}", String.Join(',', result.Item1.Reverse()));
 
-            if (result.Item1 != default(NumberSegments))
+            if (result.Item2 != default(NumberSegments))
             {
-                Debug.WriteLine("Division remainder {0} / {1}", String.Join(',', result.Item1.Reverse()), String.Join(',', result.Item2.Reverse()));
+                Debug.WriteLine("Division remainder {0} / {1}", String.Join(',', result.Item2.Reverse()), String.Join(',', result.Item3.Reverse()));
             }
 #endif
             return result;
@@ -1227,12 +1233,15 @@ namespace VariableBase.Mathematics
 
             for (Int32 i = dividend.Length - 1; i >= 0; i--)
             {
-                Decimal currentTotal = (dividend[i] / divisor) + (remainder * environment.Base);
-
-                workingTotal[i] = System.Math.Floor(currentTotal);
-
-                remainder = currentTotal - workingTotal[i];
+                Decimal currentDividend = dividend[i] + (remainder * environment.Base);
+                Decimal currentRawTotalWhole = (System.Math.Floor(currentDividend / divisor));
+                Decimal currentRemaninder = currentDividend - (currentRawTotalWhole * divisor);
+            
+                workingTotal[i] = currentRawTotalWhole;
+                
+                remainder = currentRemaninder;
             }
+
             var resultRaw = new List<Decimal>();
 
             Boolean skip = true;
@@ -1311,10 +1320,8 @@ namespace VariableBase.Mathematics
                         throw new Exception("Bad Divide segment has remainder Item 2");
                     }
                 }
-
-                Decimal reverseFraction = remainder * divisor;
-
-                NumberSegments reverseCheck = this.Add(environment,this.Multiply(environment,result.Item1, divisor), new NumberSegments(new Decimal[] { reverseFraction }));
+            
+                NumberSegments reverseCheck = this.Add(environment,this.Multiply(environment,result.Item1, divisor), result.Item2);
                 if (this.IsNotEqual(environment, reverseCheck, dividend))
                 {
                     throw new Exception(String.Format("Division Error {0} != {1} ", String.Join(',', reverseCheck.Reverse()), String.Join(',', dividend.Reverse())));

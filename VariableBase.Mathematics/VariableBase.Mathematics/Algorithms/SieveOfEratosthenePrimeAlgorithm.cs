@@ -141,7 +141,7 @@ namespace VariableBase.Mathematics
                         {
                             using (StreamWriter sw = new StreamWriter(fs))
                             {
-                                String primeRaw = String.Join(',', this.MaxPrimeTested);
+                                String primeRaw = String.Join(',', this.MaxPrimeTested.Reverse());
                                 Debug.WriteLine(String.Format("Prime Found:{0}", primeRaw));
                                 sw.WriteLine(primeRaw);
                             }
