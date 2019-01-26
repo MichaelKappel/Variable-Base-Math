@@ -297,7 +297,31 @@ namespace VariableBase.Mathematics.Models
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            if (this.NumberSegmentType == NumberSegmentTypes.Boolean)
+            {
+                this.BooleanSegments = default(Boolean[]);
+            }
+            else if (this.NumberSegmentType == NumberSegmentTypes.UInt16)
+            {
+                this.UInt16Segments = default(UInt16[]);
+            }
+            else if (this.NumberSegmentType == NumberSegmentTypes.UInt32)
+            {
+                this.UInt32Segments = default(UInt32[]);
+            }
+            else if (this.NumberSegmentType == NumberSegmentTypes.UInt64)
+            {
+                this.UInt64Segments = default(UInt64[]);
+            }
+            else
+            {
+                throw new Exception("NumberSegmentType Unknown");
+            }
+
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+            GC.WaitForFullGCComplete();
+            GC.Collect();
         }
 
         internal void CopyTo(decimal[] segments, decimal times)

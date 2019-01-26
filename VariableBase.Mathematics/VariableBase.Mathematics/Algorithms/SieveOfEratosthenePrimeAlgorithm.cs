@@ -125,8 +125,6 @@ namespace VariableBase.Mathematics
             {
                 while (basicMath.IsGreaterThan(environment, number, this.MaxPrimeTested))
                 {
-                    this.MaxPrimeTested = basicMath.Add(environment, this.MaxPrimeTested, environment.KeyNumber[1].Segments);
-
                     Tuple<NumberSegments, NumberSegments> numberComposite = this.GetComposite(environment, basicMath, this.MaxPrimeTested);
                     if (numberComposite == default(Tuple<NumberSegments, NumberSegments>))
                     {
@@ -149,6 +147,9 @@ namespace VariableBase.Mathematics
                             }
                         }
                     }
+
+                    this.MaxPrimeTested = basicMath.Add(environment, this.MaxPrimeTested, environment.KeyNumber[1].Segments);
+
                 }
             }
 
@@ -229,7 +230,7 @@ namespace VariableBase.Mathematics
         public Tuple<NumberSegments, NumberSegments> GetComposite(IMathEnvironment environment, IBasicMathAlgorithm basicMath, NumberSegments a)
         {
             Tuple<NumberSegments, NumberSegments> result = default(Tuple<NumberSegments, NumberSegments>);
-            if (Number.IsBottom(a) || Number.IsFirst(a) || basicMath.IsEqual(environment, a, environment.SecondNumber.Segments))
+            if (Number.IsBottom(a) || Number.IsFirst(a) || basicMath.IsEqual(environment, basicMath.AsSegments(environment, 3), a) || basicMath.IsEqual(environment, a, environment.SecondNumber.Segments))
             {
 
             }
@@ -247,11 +248,11 @@ namespace VariableBase.Mathematics
                 var maxNumberRaw = basicMath.SquareRoot(environment, a);
                 if (maxNumberRaw.Item2 == default(NumberSegments))
                 {
-                    result = new Tuple<NumberSegments, NumberSegments>(maxNumberRaw.Item1, maxNumberRaw.Item1);
+                    result = new Tuple<NumberSegments, NumberSegments>(maxNumberRaw.Item1, environment.KeyNumber[1].Segments);
                 }
                 else
                 {
-                    var maxNumber = basicMath.Add(environment, maxNumberRaw.Item1, environment.SecondNumber.Segments);
+                    NumberSegments maxNumber = basicMath.Add(environment, maxNumberRaw.Item1, environment.SecondNumber.Segments);
 
                     NumberSegments lastResultWholeNumber = default(NumberSegments);
                     NumberSegments testNumber = basicMath.AsSegments(environment, 3);
@@ -259,16 +260,16 @@ namespace VariableBase.Mathematics
                     while (basicMath.IsLessThanOrEqualTo(environment, testNumber, maxNumber))
                     {
                         NumberTypes testNumberumberType = this.GetNumberType(environment, basicMath, testNumber);
-                        if (testNumberumberType == NumberTypes.Prime || testNumberumberType == NumberTypes.Unknown)
+
+                        Tuple<NumberSegments, NumberSegments, NumberSegments> currentNumber = basicMath.Divide(environment, a, testNumber, lastResultWholeNumber);
+                        if (currentNumber.Item2 == default(NumberSegments))
                         {
-                            Tuple<NumberSegments, NumberSegments, NumberSegments> currentNumber = basicMath.Divide(environment, a, testNumber, lastResultWholeNumber);
-                            if (currentNumber.Item2 == default(NumberSegments))
-                            {
-                                result = new Tuple<NumberSegments, NumberSegments>(currentNumber.Item1, testNumber);
-                                break;
-                            }
-                            lastResultWholeNumber = currentNumber.Item1;
+                            result = new Tuple<NumberSegments, NumberSegments>(currentNumber.Item1, testNumber);
+                            break;
                         }
+
+                        lastResultWholeNumber = currentNumber.Item1;
+
                         testNumber = basicMath.Add(environment, testNumber, environment.SecondNumber.Segments);
                     }
                 }
