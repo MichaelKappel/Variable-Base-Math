@@ -8,12 +8,13 @@ using System.Text;
 using VariableBase.Mathematics.Models;
 
 [assembly: InternalsVisibleToAttribute("Math.Tests")]
+[assembly: InternalsVisibleToAttribute("Prime_Number_Generator_Console")]
 
 namespace VariableBase.Mathematics
 {
     public struct Number:IEquatable<Number>, IComparable<Number>, IEquatable<Decimal>, IComparable<Decimal>, IDisposable
     {
-        internal static INumberOperator Operator = new NumberOperator(new BasicMathAlgorithm(), new SieveOfEratosthenePrimeAlgorithm(true));
+        public static INumberOperator Operator = new NumberOperator(new BasicMathAlgorithm(), new SieveOfEratosthenePrimeAlgorithm(true));
 
         public static Boolean IsBottom(Number number)
         {

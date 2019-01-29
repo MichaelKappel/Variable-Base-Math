@@ -10,7 +10,7 @@ namespace VariableBase.Mathematics
     public class Fraction: IEquatable<Fraction>, IComparable<Fraction>
     {
 
-        internal static IFractionOperator Operator = new FractionOperator();
+        public static IFractionOperator Operator = new FractionOperator();
 
         internal Fraction(IMathEnvironment environment, NumberSegments numerator, NumberSegments denominator)
         {

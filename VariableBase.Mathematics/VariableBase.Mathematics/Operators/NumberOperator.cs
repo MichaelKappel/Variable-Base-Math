@@ -12,14 +12,24 @@ namespace VariableBase.Mathematics
 {
     public class NumberOperator : INumberOperator
     {
-        internal IBasicMathAlgorithm BasicMath { get; set; }
-        internal IPrimeAlgorithm PrimeAlgorithm { get; set; }
+        public IBasicMathAlgorithm BasicMath { get; set; }
+        public IPrimeAlgorithm PrimeAlgorithm { get; set; }
 
         internal NumberOperator(IBasicMathAlgorithm basicMath, IPrimeAlgorithm primeAlgorithm)
         {
             this.BasicMath = basicMath;
             this.PrimeAlgorithm = primeAlgorithm;
         }
+        public Number Square(Number number)
+        {
+            return new Number(number.Environment, this.BasicMath.Square(number.Environment, number.Segments), null, number.IsNegative);
+        }
+
+        public Number SquareRoot(Number number)
+        {
+            return new Number(number.Environment, this.BasicMath.SquareRoot(number.Environment, number.Segments).Item1, null, number.IsNegative);
+        }
+
 
         public Number AsFraction(Number number, Number numerator, Number denominator)
         {
@@ -406,19 +416,26 @@ namespace VariableBase.Mathematics
             }
             else if(!this.IsBottom(number))
             {
-                Decimal currentNumber = Decimal.MaxValue;
                 Number tempNumber = number;
+
+                Number numberDivider = new Number(number.Environment, this.BasicMath.AsSegments(number.Environment, Decimal.MaxValue), null, false);
+                Number resultMultiplier = new Number(environment, this.BasicMath.AsSegments(environment, Decimal.MaxValue), null, false);
                 
-                while (currentNumber > 1)
+                while(numberDivider < number)
                 {
-                    NumberSegments numberDivider = this.BasicMath.AsSegments(number.Environment, currentNumber);
-                    NumberSegments resultMultiplier = this.BasicMath.AsSegments(environment, currentNumber);
-                    while (this.BasicMath.IsGreaterThan(number.Environment, tempNumber.Segments, numberDivider))
+                    numberDivider = this.Square(numberDivider);
+                    resultMultiplier = this.Square(resultMultiplier);
+                }
+
+                while (this.IsGreaterThan(numberDivider, number.Environment.KeyNumber[1]))
+                {
+                    while (tempNumber > numberDivider)
                     {
-                        tempNumber -= new Number(tempNumber.Environment, numberDivider, null, false);
-                        result += new Number(result.Environment, resultMultiplier, null, false);
+                        tempNumber -= numberDivider;
+                        result += resultMultiplier;
                     }
-                    currentNumber = (Decimal)Math.Floor(Math.Sqrt((Double)currentNumber));
+                    numberDivider = this.SquareRoot(numberDivider);
+                    resultMultiplier = this.SquareRoot(resultMultiplier);
                 }
                 
                 while (tempNumber >= tempNumber.Environment.KeyNumber[1])

@@ -425,7 +425,7 @@ namespace VariableBase.Mathematics.Models
             String result = String.Empty;
             if (this.Length > 100)
             {
-                result = String.Format("{0}e{1}", this[this.Length], this.Length);
+                result = String.Format("{0}e{1}", this[this.Length - 1], this.Length);
             }
             else
             {
