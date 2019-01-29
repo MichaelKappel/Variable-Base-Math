@@ -273,6 +273,30 @@ namespace VariableBase.Mathematics.Models
             }
         }
 
+        public Decimal[] GetSegments()
+        {
+            if (this.NumberSegmentType == NumberSegmentTypes.Boolean)
+            {
+                return this.BooleanSegments.Select(x => x ? (Decimal)0 : (Decimal)1).ToArray();
+            }
+            else if (this.NumberSegmentType == NumberSegmentTypes.UInt16)
+            {
+                return this.UInt16Segments.Select(x => (Decimal)x).ToArray();
+            }
+            else if (this.NumberSegmentType == NumberSegmentTypes.UInt32)
+            {
+                return this.UInt32Segments.Select(x => (Decimal)x).ToArray();
+            }
+            else if (this.NumberSegmentType == NumberSegmentTypes.UInt64)
+            {
+                return this.UInt64Segments.Select(x => (Decimal)x).ToArray();
+            }
+            else
+            {
+                throw new Exception("NumberSegmentType Unknown");
+            }
+        }
+
         protected Boolean[] BooleanSegments { get; set; }
 
         protected UInt16[] UInt16Segments { get; set; }
@@ -384,6 +408,30 @@ namespace VariableBase.Mathematics.Models
             {
                 throw new Exception("NumberSegmentType Unknown");
             }
+        }
+
+        public String GetActualValue(IMathEnvironment environment = default(IMathEnvironment))
+        {
+            return String.Join(',', this.Reverse());
+        }
+
+        public override String ToString()
+        {
+            return this.GetDisplayValue();
+        }
+
+        public String GetDisplayValue()
+        {
+            String result = String.Empty;
+            if (this.Length > 100)
+            {
+                result = String.Format("{0}e{1}", this[this.Length], this.Length);
+            }
+            else
+            {
+                result = String.Join(" ", this.Select(x => x.ToString()).Reverse());
+            }
+            return result;
         }
     }
 }

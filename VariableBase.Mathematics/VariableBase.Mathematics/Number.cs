@@ -345,36 +345,13 @@ namespace VariableBase.Mathematics
             if (environment != default(IMathEnvironment) && environment != this.Environment)
             {
                 resultSegments = this.Convert(environment).Segments;
-
-                if (environment.Base < UInt16.MaxValue)
-                {
-                    for (Decimal i = resultSegments.Size; i > 0; i--)
-                    {
-                        result += environment.Key[(Int32)resultSegments[(Int32)i - 1]];
-                    }
-                }
-                else
-                {
-                    result += String.Join(',', resultSegments);
-                }
             }
             else
             {
                 resultSegments = this.Segments;
-
-                if (this.Environment.Base < UInt16.MaxValue)
-                {
-                    for (Decimal i = resultSegments.Size; i > 0; i--)
-                    {
-                        result += this.Environment.Key[(Int32)resultSegments[(Int32)i - 1]];
-                    }
-                }
-                else
-                {
-                    result += String.Join(',', resultSegments);
-                }
             }
-           
+
+             result += String.Join(',', resultSegments.Reverse());
 
             if (this.Fragment != default(Fraction))
             {
@@ -386,30 +363,19 @@ namespace VariableBase.Mathematics
         public String GetDisplayValue()
         {
             String result = String.Empty;
+
             if (this.IsNegative)
             {
                 result = "-" + result;
             }
-            if (this.Segments.Size > 200)
+
+            result += this.Segments.ToString();
+         
+            if (this.Fragment != default(Fraction))
             {
-                result += String.Format("{0}e{1}", this.Environment.Key[(Int32)this.First], this.Segments.Size);
-                if (this.Fragment != default(Fraction))
-                {
-                    result += String.Format("{0} {1}", result, this.Fragment);
-                }
+                result += String.Format("{0} {1}", result, this.Fragment);
             }
-            else
-            {
-                result += String.Join(" ", this.Segments.Select(x => x.ToString()).Reverse());
-                if (this.Environment.Base == 10)
-                {
-                    result = result.Replace(" ", "");
-                }
-                if (this.Fragment != default(Fraction))
-                {
-                    result = String.Format("{0} {1}", result, this.Fragment);
-                }
-            }
+
             return result;
         }
 

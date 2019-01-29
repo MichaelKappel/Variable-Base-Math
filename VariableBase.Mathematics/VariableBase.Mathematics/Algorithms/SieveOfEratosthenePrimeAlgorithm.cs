@@ -7,9 +7,13 @@ using System.Linq;
 using System.Text;
 using VariableBase.Mathematics.Interfaces;
 using VariableBase.Mathematics.Models;
+using static VariableBase.Mathematics.Models.NumberSegmentDictionary;
 
 namespace VariableBase.Mathematics
 {
+  
+   
+
     /// <summary>
     ///  Prime Algorithm
     ///  Based on the Sieve Of Eratosthene
@@ -21,21 +25,13 @@ namespace VariableBase.Mathematics
         public readonly DateTime Started;
         public Boolean SavePrimes { get; set; }
         public NumberSegments MaxPrimeTested = new NumberSegments(new Decimal[] { 1 });
-        public Decimal[][] PrimeNumbers = default(Decimal[][]);
+        public NumberSegmentDictionary PrimeNumbers = default(NumberSegmentDictionary);
 
         public SieveOfEratosthenePrimeAlgorithm(Boolean savePrimes)
         {
             this.Started = DateTime.Now;
             this.SavePrimes = savePrimes;
         }
-
-        public enum NumberTypes
-        {
-            Unknown,
-            Composite,
-            Prime
-        }
-
 
         public Boolean IsPrime(IMathEnvironment environment, IBasicMathAlgorithm basicMath, NumberSegments number)
         {
@@ -67,10 +63,8 @@ namespace VariableBase.Mathematics
         public NumberTypes GetNumberType(IMathEnvironment environment, IBasicMathAlgorithm basicMath, NumberSegments number)
         {
             String primeCacheFolder = String.Format("../../../../Primes/{0}/", environment.Base);
-            if (this.PrimeNumbers == default(Decimal[][]))
+            if (this.PrimeNumbers == default(NumberSegmentDictionary))
             {
-                var primeNumbers = new List<Decimal[]>();
-                primeNumbers.Add(basicMath.AsSegments(environment, 2).ToArray());
                 if (!Directory.Exists(primeCacheFolder))
                 {
                     Directory.CreateDirectory(primeCacheFolder);
@@ -83,72 +77,78 @@ namespace VariableBase.Mathematics
                 {
                     File.Copy(String.Format("{0}Primes.txt", primeCacheFolder), String.Format("{0}{1}.txt", primeCacheFolder, this.Started.Ticks));
                 }
-
+                this.PrimeNumbers = new NumberSegmentDictionary(null);
                 using (FileStream fs = File.Open(String.Format("{0}{1}.txt", primeCacheFolder, this.Started.Ticks), FileMode.OpenOrCreate))
                 {
                     using (StreamReader sr = new StreamReader(fs))
                     {
+                        NumberSegments lastprime = default(NumberSegments);
                         while (sr.Peek() >= 0)
                         {
                             String csv = sr.ReadLine();
-                            Decimal[] prime = csv.Split(',').Select(x => Decimal.Parse(x)).ToArray();
-                            if (!this.PrimesContain(primeNumbers, prime))
-                            {
-#if DEBUG
-                                Boolean isPrime = true;
-                                Decimal halfPrime = prime[0] / 2;
-                                for (Int32 i = 2; i < halfPrime; i++)
-                                {
-                                    if (prime[0] % i == 0)
-                                    {
-                                        isPrime = false;
-                                        break;
-                                    }
-                                }
+                            lastprime = new NumberSegments(csv.Split(',').Reverse().Select(x => Decimal.Parse(x)).ToArray());
 
-                                if (!isPrime)
-                                {
-                                    throw new Exception(String.Format("Bad data in prime file: {0}", prime[0]));
-                                }
-                                Debug.WriteLine(String.Format("Verified prime: {0}", prime[0]));
-#endif
-                                primeNumbers.Add(prime);
-                            }
+                            //#if DEBUG
+                            //                                Boolean isPrime = true;
+                            //                                Decimal halfPrime = prime[0] / 2;
+                            //                                for (Int32 i = 2; i < halfPrime; i++)
+                            //                                {
+                            //                                    if (prime[0] % i == 0)
+                            //                                    {
+                            //                                        isPrime = false;
+                            //                                        break;
+                            //                                    }
+                            //                                }
+
+                            //                                if (!isPrime)
+                            //                                {
+                            //                                    throw new Exception(String.Format("Bad data in prime file: {0}", prime[0]));
+                            //                                }
+                            //                                Debug.WriteLine(String.Format("Verified prime: {0}", prime[0]));
+                            //#endif
+
+                            this.PrimeNumbers.Add(lastprime, NumberTypes.Prime);
+                        }
+                        if (lastprime == default(NumberSegments))
+                        {
+                            lastprime = new NumberSegments(new Decimal[]{ 2M });
+                            this.PrimeNumbers.Add(lastprime, NumberTypes.Prime);
+                        }
+                        else
+                        {
+                            this.MaxPrimeTested = lastprime;
                         }
                     }
                 }
-                this.PrimeNumbers = primeNumbers.ToArray();
-                this.MaxPrimeTested = this.GetTopPrime();
             }
 
             if (this.SavePrimes)
             {
                 while (basicMath.IsGreaterThan(environment, number, this.MaxPrimeTested))
                 {
-                    Tuple<NumberSegments, NumberSegments> numberComposite = this.GetComposite(environment, basicMath, this.MaxPrimeTested);
+                    Tuple<NumberSegments, NumberSegments> numberComposite = this.GetComposite(environment, basicMath, number);
                     if (numberComposite == default(Tuple<NumberSegments, NumberSegments>))
                     {
-                        if (basicMath.IsGreaterThan(environment, this.MaxPrimeTested, environment.SecondNumber.Segments) && basicMath.IsEven(environment, this.MaxPrimeTested))
+#if DEBUG
+                        if (basicMath.IsGreaterThan(environment, number, environment.SecondNumber.Segments) && basicMath.IsEven(environment, number))
                         {
-                            throw new Exception(String.Format("Math Error in IsPrime {0} even number over 2 should never be prime", String.Join(',', this.MaxPrimeTested)));
+                            throw new Exception(String.Format("Math Error in IsPrime {0} even number over 2 should never be prime", number.ToString()));
                         }
-
-                        IList<Decimal[]> tempList = this.PrimeNumbers.ToList();
-                        tempList.Add(this.MaxPrimeTested.ToArray());
-                        this.PrimeNumbers = tempList.ToArray();
+#endif
+                        this.PrimeNumbers.Add(number, NumberTypes.Prime);
 
                         using (FileStream fs = File.Open(String.Format("../../../../Primes/{0}/{1}.txt", environment.Base, this.Started.Ticks), FileMode.Append))
                         {
                             using (StreamWriter sw = new StreamWriter(fs))
                             {
-                                String primeRaw = String.Join(',', this.MaxPrimeTested.Reverse());
+                                String primeRaw = number.GetActualValue();
                                 Debug.WriteLine(String.Format("Prime Found:{0}", primeRaw));
                                 sw.WriteLine(primeRaw);
                             }
                         }
                     }
 
-                    this.MaxPrimeTested = basicMath.Add(environment, this.MaxPrimeTested, environment.KeyNumber[1].Segments);
+                    this.MaxPrimeTested = number;
 
                 }
             }
@@ -171,60 +171,13 @@ namespace VariableBase.Mathematics
             }
         }
 
-        public Boolean PrimesContain(IList<Decimal[]> primes, Decimal[] number)
-        {
-            for (Int32 i = 0; i < primes.Count; i++)
-            {
-                if (primes[i].Length == number.Length)
-                {
-                    for (Int32 i2 = 0; i2 < primes[i].Length; i2++)
-                    {
-                        if (primes[i][i2] != number[i2])
-                        {
-                            break;
-                        }
-                        if (i2 == primes[i2].Length)
-                        {
-                            return true;
-                        }
-                    }
-                }
-            }
-            return false;
-        }
-
         public Boolean PrimeCacheContains(NumberSegments number)
         {
-            for (Int32 i = 0; i < this.PrimeNumbers.Length; i++)
+            if (this.PrimeNumbers.GetNumberType(number) == NumberTypes.Prime)
             {
-                if (this.PrimeNumbers[i].Length == number.Size)
-                {
-                    for (Int32 i2 = 0; i2 < this.PrimeNumbers[i].Length; i2++)
-                    {
-                        if (this.PrimeNumbers[i][i2] != number[i2])
-                        {
-                            break;
-                        }
-                        if (i2 == this.PrimeNumbers[i2].Length)
-                        {
-                            return true;
-                        }
-                    }
-                }
+                return true;
             }
             return false;
-        }
-
-        public NumberSegments GetTopPrime()
-        {
-            Decimal[] result = this.PrimeNumbers[0];
-
-            foreach (Decimal[] prime in this.PrimeNumbers)
-            {
-                result = prime;
-            }
-
-            return new NumberSegments(result);
         }
 
         public Tuple<NumberSegments, NumberSegments> GetComposite(IMathEnvironment environment, IBasicMathAlgorithm basicMath, NumberSegments a)

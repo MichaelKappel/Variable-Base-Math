@@ -22,7 +22,7 @@ namespace VariableBase.Mathematics
 
             this.Key = new ReadOnlyCollection<Char>(tempKey);
 
-            //Largest even number supported by Char 281474976710654
+            //Largest even number supported by Char is 65534
             this.Base = 65534;
 
             this.SetupMathEnvironment();
