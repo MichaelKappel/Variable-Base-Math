@@ -14,9 +14,6 @@ using static VariableBase.Mathematics.Models.NumberSegmentDictionary;
 
 namespace VariableBase.Mathematics
 {
-  
-   
-
     /// <summary>
     ///  Prime Algorithm
     ///  Based on the Sieve Of Eratosthene
