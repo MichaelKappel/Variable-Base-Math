@@ -12,9 +12,7 @@ namespace VariableBase.Mathematics.Models
         {
             Unknown,
             Composite,
-            Prime,
-            Fibonacci,
-            FibonacciPrime
+            Prime
         }
 
 
@@ -31,26 +29,34 @@ namespace VariableBase.Mathematics.Models
             NumberSegmentDictionary lastItem;
             if (this.Parent == default(NumberSegmentDictionary))
             {
-                if (!this.ContainsKey(segments.Length))
+                NumberSegmentDictionary topLevelNumberSegment;
+                if (this.TryGetValue(segments.Length, out topLevelNumberSegment))
                 {
-                    this[segments.Length] = new NumberSegmentDictionary(this);
+                    lastItem = topLevelNumberSegment;
                 }
-                lastItem = this[segments.Length];
+                else
+                {
+                    lastItem = new NumberSegmentDictionary(this);
+                    this.Add(segments.Length, lastItem);
+                }
             }
             else
             {
                 lastItem = this.Parent;
             }
-
-
+            
             for (var i = segments.Length - 1; i >= 0; i--)
             {
-                if (!lastItem.ContainsKey(segments[i]))
+                NumberSegmentDictionary childSegment;
+                if (lastItem.TryGetValue(segments[i], out childSegment))
                 {
-                    lastItem.Add(segments[i], new NumberSegmentDictionary(lastItem));
+                    lastItem = childSegment;
                 }
-
-                lastItem = lastItem[segments[i]];
+                else
+                {
+                    childSegment = new NumberSegmentDictionary(lastItem);
+                    lastItem.Add(segments[i], childSegment);
+                }
             }
 
             lastItem.NumberType = numberType;
@@ -63,26 +69,32 @@ namespace VariableBase.Mathematics.Models
             NumberSegmentDictionary lastItem;
             if (this.Parent == default(NumberSegmentDictionary))
             {
-                if (!this.ContainsKey(segments.Length))
+                NumberSegmentDictionary topLevelNumberSegment;
+                if (this.TryGetValue(segments.Length, out topLevelNumberSegment))
+                {
+                    lastItem = topLevelNumberSegment;
+                }
+                else
                 {
                     return NumberTypes.Unknown;
                 }
-                lastItem = this[segments.Length];
             }
             else
             {
                 lastItem = this.Parent;
             }
-
-
+            
             for (var i = segments.Length - 1; i >= 0; i--)
             {
-                if (!lastItem.ContainsKey(segments[i]))
+                NumberSegmentDictionary childSegment;
+                if (lastItem.TryGetValue(segments[i], out childSegment))
                 {
+                    lastItem = childSegment;
+                }
+                else
+                { 
                     return NumberTypes.Unknown;
                 }
-
-                lastItem = lastItem[segments[i]];
             }
 
             return lastItem.NumberType;

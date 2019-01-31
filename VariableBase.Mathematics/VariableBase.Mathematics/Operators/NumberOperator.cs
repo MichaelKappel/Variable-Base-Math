@@ -15,7 +15,7 @@ namespace VariableBase.Mathematics
         public IBasicMathAlgorithm BasicMath { get; set; }
         public IPrimeAlgorithm PrimeAlgorithm { get; set; }
 
-        internal NumberOperator(IBasicMathAlgorithm basicMath, IPrimeAlgorithm primeAlgorithm)
+        public NumberOperator(IBasicMathAlgorithm basicMath, IPrimeAlgorithm primeAlgorithm)
         {
             this.BasicMath = basicMath;
             this.PrimeAlgorithm = primeAlgorithm;
@@ -181,12 +181,7 @@ namespace VariableBase.Mathematics
 
         public int Compare(Number a, Object b)
         {
-        //    if (typeof(b).IsPrimitive)
-        //    {
-
-        //    }
-
-            return 0;
+            throw new NotImplementedException();
         }
 
         public int Compare(Number a, Number b)

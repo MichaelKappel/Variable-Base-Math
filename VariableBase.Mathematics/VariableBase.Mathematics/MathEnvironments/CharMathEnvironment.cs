@@ -11,21 +11,9 @@ namespace VariableBase.Mathematics
     public class CharMathEnvironment : IMathEnvironment
     {
         public CharMathEnvironment()
+            : this((Char)65534)
         {
-            var tempKey = new List<Char>();
 
-            for (Int32 i = 0; i < 3; i++)
-            {
-                Char currentChar = Convert.ToChar(i);
-                tempKey.Add(currentChar);
-            }
-
-            this.Key = new ReadOnlyCollection<Char>(tempKey);
-
-            //Largest even number supported by Char is 65534
-            this.Base = 65534;
-
-            this.SetupMathEnvironment();
         }
 
         public CharMathEnvironment(Char size)

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using VariableBase.Mathematics.Interfaces;
 using VariableBase.Mathematics.Models;
+using static VariableBase.Mathematics.Models.NumberSegmentDictionary;
 
 namespace VariableBase.Mathematics
 {
@@ -30,23 +31,49 @@ namespace VariableBase.Mathematics
 
         public Boolean IsPrime(IMathEnvironment environment, IBasicMathAlgorithm basicMath, NumberSegments number)
         {
-            if (number.Size > 1)
+            Boolean isPrime = true;
+            if (number.Size > 3)
             {
                 throw new NotImplementedException();
             }
             else
             {
-                Decimal halfPrime = number[0] / 2;
-                for (Int32 i = 2; i < halfPrime; i++)
+                Decimal savedNumberNumber = number[0];
+
+                if (number.Length <= 3)
                 {
-                    if (number[0] % i == 0)
+                    if (number.Length > 1)
                     {
-                        return false;
+                        savedNumberNumber = savedNumberNumber + (number[1] * environment.Base);
+                    }
+
+                    if (number.Length > 2)
+                    {
+                        savedNumberNumber = savedNumberNumber + (number[2] * (environment.Base * environment.Base));
+                    }
+
+                    Decimal squareRootOfPrime = (Decimal)Math.Sqrt((Double)savedNumberNumber);
+                    for (Int32 i = 2; i < squareRootOfPrime; i++)
+                    {
+                        if (savedNumberNumber % i == 0)
+                        {
+                            isPrime = false;
+                            break;
+                        }
+                    }
+
+                    if (isPrime)
+                    {
+                        Debug.WriteLine(String.Format("Verified prime: {0}", savedNumberNumber));
+                    }
+                    else
+                    {
+                        Debug.WriteLine(String.Format("Bad data in prime file: {0}", savedNumberNumber));
                     }
                 }
             }
 
-            return true;
+            return isPrime;
         }
         
         public Tuple<NumberSegments, NumberSegments> GetComposite(IMathEnvironment environment, IBasicMathAlgorithm basicMath, NumberSegments a)
@@ -84,9 +111,9 @@ namespace VariableBase.Mathematics
             if (a.Size == 1)
             {
                 Boolean isPrime = true;
-                Decimal halfPrime = a[0] / 2;
+                Decimal squareRootOfPrime = (Decimal)Math.Sqrt((Double)a[0]);
                 Int32 i = 2;
-                for (; i <= halfPrime; i++)
+                for (; i <= squareRootOfPrime; i++)
                 {
                     if (a[0] % i == 0)
                     {
