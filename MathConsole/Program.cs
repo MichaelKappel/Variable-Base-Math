@@ -27,7 +27,7 @@ namespace VariableBase.MathematicsConsole
 
             Console.WriteLine("Multiplication Result");
 
-            String multipliedNumbers = (firstNumberRaw * secondNumberRaw).ToString(); ;
+            String multipliedNumbers = (firstNumberRaw * secondNumberRaw).ToString(); 
 
             Console.WriteLine(multipliedNumbers);
 

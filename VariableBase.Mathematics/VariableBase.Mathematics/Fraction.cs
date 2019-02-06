@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
 using VariableBase.Mathematics.Models;
+using VariableBase.Mathematics.Operators;
 
 namespace VariableBase.Mathematics
 {

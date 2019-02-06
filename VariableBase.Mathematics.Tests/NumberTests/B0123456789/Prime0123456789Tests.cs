@@ -8,33 +8,33 @@ namespace VariableBase.Mathematics.Tests.NumberTests.B0123456789
     [TestClass]
     public class Prime0123456789Tests
     {
-        [TestMethod]
-        [TestCategory("Number")]
-        [TestCategory("Subtract")]
-        [TestCategory("0123456789")]
-        public void IsPrime_7()
-        {
-            var env = new CharMathEnvironment("0123456789");
+        //[TestMethod]
+        //[TestCategory("Number")]
+        //[TestCategory("Subtract")]
+        //[TestCategory("0123456789")]
+        //public void IsPrime_7()
+        //{
+        //    var env = new CharMathEnvironment("0123456789");
             
 
-            Number a = env.GetNumber("7");
+        //    Number a = env.GetNumber("7");
             
-            Assert.IsTrue(a.IsPrime());
-        }
+        //    Assert.IsTrue(a.IsPrime());
+        //}
 
 
-        [TestMethod]
-        [TestCategory("Number")]
-        [TestCategory("Subtract")]
-        [TestCategory("0123456789")]
-        public void IsPrime_9()
-        {
-            var env = new CharMathEnvironment("0123456789");
+        //[TestMethod]
+        //[TestCategory("Number")]
+        //[TestCategory("Subtract")]
+        //[TestCategory("0123456789")]
+        //public void IsPrime_9()
+        //{
+        //    var env = new CharMathEnvironment("0123456789");
 
 
-            Number a = env.GetNumber("9");
+        //    Number a = env.GetNumber("9");
 
-            Assert.IsFalse(a.IsPrime());
-        }
+        //    Assert.IsFalse(a.IsPrime());
+        //}
     }
 }

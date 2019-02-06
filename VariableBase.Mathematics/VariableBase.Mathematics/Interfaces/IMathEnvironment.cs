@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using VariableBase.Mathematics.Interfaces;
 
-namespace VariableBase.Mathematics
+namespace VariableBase.Mathematics.Interfaces
 {
     public interface IMathEnvironment: IEquatable<IMathEnvironment>
     {

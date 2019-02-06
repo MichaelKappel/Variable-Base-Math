@@ -28,7 +28,7 @@ namespace VariableBase.Mathematics
 
             this.Key = new ReadOnlyCollection<Char>(tempKey);
 
-            this.Base = size;
+            this.Base = (Decimal)size;
 
             this.SetupMathEnvironment();
         }
@@ -152,7 +152,7 @@ namespace VariableBase.Mathematics
             }
 
             this.KeyNumber = new ReadOnlyCollection<Number>(tempKeyNumber);
-
+            PowerOfFirstNumber = new Number(this, new NumberSegments(new UInt16[] { 0, 1 }), null, false);
             if (this.Base > 2)
             {
                 this.SecondNumber = this.KeyNumber[2];

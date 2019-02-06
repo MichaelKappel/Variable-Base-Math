@@ -4,21 +4,18 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
 using System.Linq;
-using static VariableBase.Mathematics.BasicMathAlgorithm;
 using System.Diagnostics;
 using VariableBase.Mathematics.Models;
 
-namespace VariableBase.Mathematics
+namespace VariableBase.Mathematics.Operators
 {
     public class NumberOperator : INumberOperator
     {
         public IBasicMathAlgorithm BasicMath { get; set; }
-        public IPrimeAlgorithm PrimeAlgorithm { get; set; }
 
-        public NumberOperator(IBasicMathAlgorithm basicMath, IPrimeAlgorithm primeAlgorithm)
+        public NumberOperator(IBasicMathAlgorithm basicMath)
         {
             this.BasicMath = basicMath;
-            this.PrimeAlgorithm = primeAlgorithm;
         }
         public Number Square(Number number)
         {
@@ -371,29 +368,6 @@ namespace VariableBase.Mathematics
         public Boolean IsEven(Number number)
         {
             return this.BasicMath.IsEven(number.Environment, number.Segments);
-        }
-
-        public Boolean IsPrime(Number number)
-        {
-            if (number.Fragment != default(Fraction))
-            {
-                return false;
-            }
-            return this.PrimeAlgorithm.IsPrime(number.Environment, this.BasicMath,  number.Segments);
-        }
-
-
-        public Tuple<Number, Number> GetComposite(Number number)
-        {
-            Tuple<NumberSegments, NumberSegments> tuple = this.PrimeAlgorithm.GetComposite(number.Environment, this.BasicMath, number.Segments);
-
-            if (tuple == default(Tuple<NumberSegments, NumberSegments>))
-            {
-                return default(Tuple<Number, Number>);
-            }
-
-            return new Tuple<Number, Number>(new Number(number.Environment, tuple.Item1, null, false),
-                new Number(number.Environment, tuple.Item2, null, false));
         }
 
         public Number Convert(IMathEnvironment environment, Number number)

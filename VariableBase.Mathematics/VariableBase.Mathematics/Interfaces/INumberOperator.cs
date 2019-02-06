@@ -17,8 +17,6 @@ namespace VariableBase.Mathematics.Interfaces
         Boolean IsLessThanOrEqualTo(Number a, Number b);
         Boolean IsBottom(Number number);
         Boolean IsEven(Number number);
-        Boolean IsPrime(Number number);
         Number Convert(IMathEnvironment environment, Number number);
-        Tuple<Number, Number> GetComposite(Number number);
     }
 }

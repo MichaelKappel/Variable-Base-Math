@@ -12,6 +12,7 @@ namespace VariableBase.Mathematics.Interfaces
         NumberSegments Add(IMathEnvironment environment,NumberSegments a, NumberSegments b);
         Tuple<NumberSegments, NumberSegments, NumberSegments> Divide(IMathEnvironment environment,NumberSegments numerator, NumberSegments denominator, NumberSegments hint = null);
         NumberSegments GetWholeNumberSomewhereBetween(IMathEnvironment environment,NumberSegments a, NumberSegments b, Decimal variance = 0);
+        Int32 CompareTo(IMathEnvironment environment, NumberSegments a, NumberSegments b);
         Boolean IsEqual(IMathEnvironment environment,NumberSegments a, NumberSegments b);
         Boolean IsEven(IMathEnvironment environment,NumberSegments a);
         Boolean IsGreaterThan(IMathEnvironment environment,NumberSegments a, NumberSegments b);

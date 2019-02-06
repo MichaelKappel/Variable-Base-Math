@@ -6,16 +6,15 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using VariableBase.Mathematics.Models;
-using static VariableBase.Mathematics.SieveOfEratosthenePrimeAlgorithm;
+using VariableBase.Mathematics.Algorithms;
+using VariableBase.Mathematics.Operators;
 
 [assembly: InternalsVisibleToAttribute("Math.Tests")]
-[assembly: InternalsVisibleToAttribute("Prime_Number_Generator_Console")]
-
 namespace VariableBase.Mathematics
 {
     public struct Number:IEquatable<Number>, IComparable<Number>, IEquatable<Decimal>, IComparable<Decimal>, IDisposable
     {
-        public static INumberOperator Operator = new NumberOperator(new BasicMathAlgorithm(), new SieveOfEratosthenePrimeAlgorithm(SavePrimesTypes.All));
+        public static INumberOperator Operator = new NumberOperator(new BasicMathAlgorithm());
 
         public static Boolean IsBottom(Number number)
         {
@@ -283,17 +282,6 @@ namespace VariableBase.Mathematics
             return (UInt64)d.Segments[0];
         }
 
-        public Tuple<Number, Number> GetComposite()
-        {
-            return Operator.GetComposite(this);
-        }
-
-        public Boolean IsPrime()
-        {
-            return Operator.IsPrime(this);
-           
-        }
-
         public override int GetHashCode()
         {
             unchecked
@@ -334,8 +322,35 @@ namespace VariableBase.Mathematics
             return result;
         }
         
-     
-        public String GetActualValue(IMathEnvironment environment = default(IMathEnvironment))
+        public String GetCharArray(IMathEnvironment environment = default(IMathEnvironment))
+        {
+            String result = String.Empty;
+            if (this.IsNegative)
+            {
+                result = "-" + result;
+            }
+
+            NumberSegments resultSegments;
+            if (environment != default(IMathEnvironment) && environment != this.Environment)
+            {
+                resultSegments = this.Convert(environment).Segments;
+            }
+            else
+            {
+                resultSegments = this.Segments;
+            }
+
+            result += String.Concat(resultSegments.Select(x => (Char)x));
+
+            if (this.Fragment != default(Fraction))
+            {
+                result = String.Format("{0} {1}", result, this.Fragment);
+            }
+
+            return result;
+        }
+
+        public String GetDecimalArray(IMathEnvironment environment = default(IMathEnvironment))
         {
             String result = String.Empty;
             if (this.IsNegative)
@@ -383,7 +398,7 @@ namespace VariableBase.Mathematics
 
         public String ToString(IMathEnvironment environment)
         {
-            return this.GetActualValue(environment);
+            return this.GetDecimalArray(environment);
         }
 
         public override String ToString()

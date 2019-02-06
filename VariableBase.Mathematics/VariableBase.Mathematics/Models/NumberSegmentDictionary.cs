@@ -47,23 +47,33 @@ namespace VariableBase.Mathematics.Models
             
             for (var i = segments.Length - 1; i >= 0; i--)
             {
-                NumberSegmentDictionary childSegment;
-                if (lastItem.TryGetValue(segments[i], out childSegment))
+                try
                 {
-                    lastItem = childSegment;
+                    this.AddAt(segments[i], numberType, lastItem);
                 }
-                else
-                {
-                    childSegment = new NumberSegmentDictionary(lastItem);
-                    lastItem.Add(segments[i], childSegment);
+                catch (Exception) {
+                    this.AddAt(segments[i], numberType, lastItem);
                 }
             }
 
             lastItem.NumberType = numberType;
         }
 
+        public NumberSegmentDictionary AddAt(Decimal segment, NumberTypes numberType, NumberSegmentDictionary lastItem)
+        {
+            NumberSegmentDictionary childSegment;
+            if (lastItem.TryGetValue(segment, out childSegment))
+            {
+                lastItem = childSegment;
+            }
+            else
+            {
+                childSegment = new NumberSegmentDictionary(lastItem);
+                lastItem.Add(segment, childSegment);
+            }
+            return lastItem;
+        }
         
-
         public NumberTypes GetNumberType(NumberSegments segments)
         {
             NumberSegmentDictionary lastItem;

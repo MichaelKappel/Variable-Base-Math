@@ -9,7 +9,7 @@ using VariableBase.Mathematics.Interfaces;
 using VariableBase.Mathematics.Models;
 using static VariableBase.Mathematics.Models.NumberSegmentDictionary;
 
-namespace VariableBase.Mathematics
+namespace VariableBase.Mathematics.Algorithms
 {
     /// <summary>
     ///  Prime Algorithm

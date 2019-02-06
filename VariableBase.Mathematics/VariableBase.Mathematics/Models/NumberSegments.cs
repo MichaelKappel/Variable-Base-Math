@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using VariableBase.Mathematics.Interfaces;
 
 namespace VariableBase.Mathematics.Models
 {
@@ -408,6 +409,11 @@ namespace VariableBase.Mathematics.Models
             {
                 throw new Exception("NumberSegmentType Unknown");
             }
+        }
+
+        public String GetCharArray(IMathEnvironment environment = default(IMathEnvironment))
+        {
+            return String.Concat(this.Select(x => (Char)x));
         }
 
         public String GetActualValue(IMathEnvironment environment = default(IMathEnvironment))

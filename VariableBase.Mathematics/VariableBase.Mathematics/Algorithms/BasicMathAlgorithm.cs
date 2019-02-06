@@ -9,7 +9,7 @@ using System.Threading;
 using VariableBase.Mathematics.Interfaces;
 using VariableBase.Mathematics.Models;
 
-namespace VariableBase.Mathematics
+namespace VariableBase.Mathematics.Algorithms
 {
     public class BasicMathAlgorithm : IBasicMathAlgorithm
     {

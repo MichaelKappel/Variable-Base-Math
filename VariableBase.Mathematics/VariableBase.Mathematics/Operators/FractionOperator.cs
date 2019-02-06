@@ -5,7 +5,7 @@ using System.Collections.ObjectModel;
 using System.Text;
 using VariableBase.Mathematics.Models;
 
-namespace VariableBase.Mathematics
+namespace VariableBase.Mathematics.Operators
 {
     public class FractionOperator : IFractionOperator
     {
