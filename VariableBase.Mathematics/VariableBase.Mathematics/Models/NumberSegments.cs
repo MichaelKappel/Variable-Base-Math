@@ -9,6 +9,8 @@ namespace VariableBase.Mathematics.Models
 {
     public class NumberSegments: IEnumerable<Decimal>, IEnumerator<Decimal>
     {
+        private Number number;
+
         public NumberSegmentTypes NumberSegmentType { get; protected set; }
 
         public enum NumberSegmentTypes
@@ -115,6 +117,11 @@ namespace VariableBase.Mathematics.Models
             this.Length = segments.Length;
         }
 
+        public NumberSegments(Number number)
+        {
+            this.number = number;
+        }
+        
         public Decimal Size
         {
             get;
@@ -411,12 +418,7 @@ namespace VariableBase.Mathematics.Models
             }
         }
 
-        public String GetCharArray(IMathEnvironment environment = default(IMathEnvironment))
-        {
-            return String.Concat(this.Select(x => (Char)x));
-        }
-
-        public String GetActualValue(IMathEnvironment environment = default(IMathEnvironment))
+        public String ToCsv()
         {
             return String.Join(',', this.Reverse());
         }

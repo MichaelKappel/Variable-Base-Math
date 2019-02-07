@@ -16,6 +16,37 @@ namespace VariableBase.Mathematics
 
         }
 
+        public CharMathEnvironment(Boolean allowDigit, Boolean allowLetter, Boolean allowLower, Boolean allowNumber, 
+            Boolean allowPunctuation, Boolean allowSymbols, Boolean allowSeparators, Boolean allowSurrogates, Boolean allowControl, Boolean allowWhiteSpace) 
+            : this()
+        {
+            var tempKey = new List<Char>();
+            for (UInt64 i = 0; i <= Char.MaxValue; i++)
+            {
+                Char currentChar = Convert.ToChar(i);
+                
+
+                if ((allowDigit || !Char.IsDigit(currentChar))
+                    && (allowLetter || !Char.IsLetter(currentChar))
+                    && (allowLower || !Char.IsLower(currentChar))
+                    && (allowNumber || !Char.IsNumber(currentChar))
+                    && (allowPunctuation || !Char.IsPunctuation(currentChar))
+                    && (allowSymbols || !Char.IsSymbol(currentChar))
+                    && (allowSeparators || !Char.IsSeparator(currentChar))
+                    && (allowSurrogates || !Char.IsSurrogate(currentChar))
+                    && (allowControl || !Char.IsControl(currentChar))
+                    && (allowWhiteSpace || !Char.IsWhiteSpace(currentChar)))
+                {
+                    tempKey.Add(currentChar);
+                }
+            }
+
+            this.Key = new ReadOnlyCollection<Char>(tempKey);
+
+            this.Base = (Decimal)tempKey.Count;
+
+            this.SetupMathEnvironment();
+        }
         public CharMathEnvironment(Char size)
         {
             var tempKey = new List<Char>();
@@ -138,7 +169,7 @@ namespace VariableBase.Mathematics
             }
         }
 
-        public UInt16 GetChar(Char arg)
+        public Decimal GetIndex(Char arg)
         {
             return (UInt16)this.Key.IndexOf(arg);
         }
@@ -258,6 +289,21 @@ namespace VariableBase.Mathematics
 
         //    return new Number(this, result, null, isNegative);
         //}
+
+        public String GetDefinition()
+        {
+            return String.Concat(this.Key);
+        }
+
+        public NumberSegments ParseNumberSegments(String raw)
+        {
+           return new NumberSegments(raw.ToCharArray().Select(x2 => this.GetIndex(x2)).Reverse().ToArray());
+        }
+
+        public String ConvertToString(NumberSegments segments)
+        {
+            return String.Concat(segments.Select(x => this.Key[(Int32)x]).Reverse());
+        }
 
         public Boolean Equals(IMathEnvironment other)
         {

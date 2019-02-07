@@ -16,7 +16,7 @@ namespace VariableBase.Mathematics.Algorithms
 {
     /// <summary>
     ///  Prime Algorithm
-    ///  Based on the Sieve Of EratostheneD:\git\Math\VariableBase.Mathematics\VariableBase.Mathematics\Algorithms\SieveOfEratosthenePrimeAlgorithm.cs
+    ///  Based on the Sieve Of Eratosthene 
     ///  By: Michael Kappel, MCPD
     ///  Date: 1/23/2019
     /// </summary>
@@ -32,25 +32,23 @@ namespace VariableBase.Mathematics.Algorithms
         {
             this.Started = DateTime.Now;
             this.OnPrimeFound = onPrimeFound;
-            this.LoadSupplementalPrimes(new List<Char[]>() { new Char[] { (Char)2 } , new Char[] { (Char)3 } });
+            this.LoadSupplementalPrimes(new List<NumberSegments>() { new NumberSegments(new Char[] { (Char)2 }) , new NumberSegments(new Char[] { (Char)3 }) });
             this.PrimeListMaxNumber = PrimeNumbers[1];
         }
 
-        public void LoadSupplementalPrimes(IList<Char[]> primeNumbersRaw)
+        public void LoadSupplementalPrimes(IList<NumberSegments> primeNumbersRaw)
         {
-            foreach (var primeRaw in primeNumbersRaw)
+            foreach (var prime in primeNumbersRaw)
             {
-                NumberSegments prime = new NumberSegments(primeRaw);
                 this.PrimeNumberTree.Add(prime, NumberTypes.Prime);
                 this.PrimeNumbers.Add(prime);
             }
         }
 
-        public void LoadSeedPrimes(IList<Char[]> primeNumbersRaw, IMathEnvironment environment, IBasicMathAlgorithm basicMath)
+        public void LoadSeedPrimes(IList<NumberSegments> primeNumbersRaw, IMathEnvironment environment, IBasicMathAlgorithm basicMath)
         {
-            foreach (var primeRaw in primeNumbersRaw)
+            foreach (var prime in primeNumbersRaw)
             {
-                NumberSegments prime = new NumberSegments(primeRaw);
                 this.PrimeNumberTree.Add(prime, NumberTypes.Prime);
                 this.PrimeNumbers.Add(prime);
 

@@ -340,7 +340,7 @@ namespace VariableBase.Mathematics
                 resultSegments = this.Segments;
             }
 
-            result += String.Concat(resultSegments.Select(x => (Char)x));
+            result += String.Concat(resultSegments.Select(x => (Char)x).Reverse());
 
             if (this.Fragment != default(Fraction))
             {

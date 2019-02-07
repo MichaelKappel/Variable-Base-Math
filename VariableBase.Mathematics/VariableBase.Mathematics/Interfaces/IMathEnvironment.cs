@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using VariableBase.Mathematics.Interfaces;
+using VariableBase.Mathematics.Models;
 
 namespace VariableBase.Mathematics.Interfaces
 {
     public interface IMathEnvironment: IEquatable<IMathEnvironment>
     {
+        String ConvertToString(NumberSegments segments);
+        String GetDefinition();
         Decimal Base { get; }
         ReadOnlyCollection<Char> Key { get; }
         ReadOnlyCollection<Number> KeyNumber { get; }
@@ -21,5 +24,7 @@ namespace VariableBase.Mathematics.Interfaces
         String ToString();
         void ValidateFraction(List<Char> numerator, List<Char> denominator);
         void ValidateWholeNumber(List<Char> numberSegments);
+        Decimal GetIndex(Char arg);
+        NumberSegments ParseNumberSegments(String raw);
     }
 }
