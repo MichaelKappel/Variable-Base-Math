@@ -337,10 +337,11 @@ namespace VariableBase.Mathematics
             }
             else
             {
+                environment = this.Environment;
                 resultSegments = this.Segments;
             }
 
-            result += String.Concat(resultSegments.Select(x => (Char)x).Reverse());
+            result += String.Concat(resultSegments.Select(x => environment.Key[(Int32)x]).Reverse());
 
             if (this.Fragment != default(Fraction))
             {
