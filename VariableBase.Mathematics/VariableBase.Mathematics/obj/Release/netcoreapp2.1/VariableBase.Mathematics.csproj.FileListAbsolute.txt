@@ -7,3 +7,12 @@ D:\git\Math\VariableBase.Mathematics\VariableBase.Mathematics\obj\Release\netcor
 D:\git\Math\VariableBase.Mathematics\VariableBase.Mathematics\obj\Release\netcoreapp2.1\VariableBase.Mathematics.dll
 D:\git\Math\VariableBase.Mathematics\VariableBase.Mathematics\obj\Release\netcoreapp2.1\VariableBase.Mathematics.pdb
 D:\git\Math\VariableBase.Mathematics\VariableBase.Mathematics\obj\Release\netcoreapp2.1\VariableBase.Mathematics.csprojAssemblyReference.cache
+D:\git\Variable-Base-Math\VariableBase.Mathematics\VariableBase.Mathematics\obj\Release\netcoreapp2.1\VariableBase.Mathematics.csprojAssemblyReference.cache
+D:\git\Variable-Base-Math\VariableBase.Mathematics\VariableBase.Mathematics\obj\Release\netcoreapp2.1\VariableBase.Mathematics.csproj.CoreCompileInputs.cache
+D:\git\Variable-Base-Math\VariableBase.Mathematics\VariableBase.Mathematics\obj\Release\netcoreapp2.1\VariableBase.Mathematics.AssemblyInfoInputs.cache
+D:\git\Variable-Base-Math\VariableBase.Mathematics\VariableBase.Mathematics\obj\Release\netcoreapp2.1\VariableBase.Mathematics.AssemblyInfo.cs
+D:\git\Variable-Base-Math\VariableBase.Mathematics\VariableBase.Mathematics\obj\Release\netcoreapp2.1\VariableBase.Mathematics.dll
+D:\git\Variable-Base-Math\VariableBase.Mathematics\VariableBase.Mathematics\obj\Release\netcoreapp2.1\VariableBase.Mathematics.pdb
+D:\git\Variable-Base-Math\VariableBase.Mathematics\VariableBase.Mathematics\bin\Release\netcoreapp2.1\VariableBase.Mathematics.deps.json
+D:\git\Variable-Base-Math\VariableBase.Mathematics\VariableBase.Mathematics\bin\Release\netcoreapp2.1\VariableBase.Mathematics.dll
+D:\git\Variable-Base-Math\VariableBase.Mathematics\VariableBase.Mathematics\bin\Release\netcoreapp2.1\VariableBase.Mathematics.pdb

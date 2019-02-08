@@ -8,6 +8,8 @@ using System.Text;
 using VariableBase.Mathematics.Models;
 using VariableBase.Mathematics.Algorithms;
 using VariableBase.Mathematics.Operators;
+using System.IO;
+using System.Diagnostics;
 
 [assembly: InternalsVisibleToAttribute("Math.Tests")]
 namespace VariableBase.Mathematics
@@ -245,6 +247,30 @@ namespace VariableBase.Mathematics
         }
 
         #endregion
+
+        public Boolean SaveFile(String fileName)
+        {
+            try
+            {
+                var numberString = String.Empty;
+                using (FileStream fs = File.Open(fileName, FileMode.CreateNew))
+                {
+                    using (StreamWriter sr = new StreamWriter(fs))
+                    {
+                        foreach (Decimal segment in this.Segments)
+                        {
+                            sr.Write(this.Environment.Key[(Int32)segment]);
+                        }
+                    }
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Debug.Write("SaveFile ERROR: " + ex.Message);
+                return false;
+            }
+        }
 
         internal Number Copy()
         {

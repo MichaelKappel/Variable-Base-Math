@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using VariableBase.Mathematics.Models;
+using System.IO;
 
 namespace VariableBase.Mathematics
 {
@@ -81,6 +82,18 @@ namespace VariableBase.Mathematics
             this.Base = (UInt64)this.Key.Count;
 
             this.SetupMathEnvironment();
+        }
+
+        public Number OpenNumberFile(String fileName)
+        {
+            var numberString = String.Empty;
+            using (FileStream fs = File.OpenRead(fileName))
+            {
+                using (StreamReader sr = new StreamReader(fs))
+                {
+                    return new Number(this, new NumberSegments(sr.ReadToEnd().ToCharArray()), null, false);
+                }
+            }
         }
 
         public Number GetNumber(Int32 zeros, Boolean isNegative = false)
