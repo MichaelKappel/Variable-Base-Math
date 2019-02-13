@@ -8,6 +8,7 @@ namespace VariableBase.Mathematics.Interfaces
 {
     public interface IBasicMathAlgorithm
     {
+        NumberSegments ConvertToBase10(IMathEnvironment base10Environment, IMathEnvironment currentEnvironment, NumberSegments segments);
         NumberSegments AsSegments(IMathEnvironment environment, Decimal rawDouble);
         NumberSegments Add(IMathEnvironment environment,NumberSegments a, NumberSegments b);
         Tuple<NumberSegments, NumberSegments, NumberSegments> Divide(IMathEnvironment environment,NumberSegments numerator, NumberSegments denominator, NumberSegments hint = null);

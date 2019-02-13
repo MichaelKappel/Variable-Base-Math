@@ -45,15 +45,24 @@ namespace VariableBase.Mathematics.Algorithms
             }
         }
 
-        public void LoadSeedPrimes(IList<NumberSegments> primeNumbersRaw, IMathEnvironment environment, IBasicMathAlgorithm basicMath)
+        public void LoadSeedPrimes(IList<String> primeNumbersRaw, IMathEnvironment environment, IBasicMathAlgorithm basicMath, Action<Int32, NumberSegments> perPercent = null)
         {
-            foreach (var prime in primeNumbersRaw)
+            Int32 currentPercent = 0;
+            for (var i = 0; i < primeNumbersRaw.Count; i++)
             {
-                this.PrimeNumberTree.Add(prime, NumberTypes.Prime);
-                this.PrimeNumbers.Add(prime);
+                NumberSegments primeSegments = environment.ParseNumberSegments(primeNumbersRaw[i]);
+                this.PrimeNumberTree.Add(primeSegments, NumberTypes.Prime); 
+                this.PrimeNumbers.Add(primeSegments);
 
-                if (basicMath.IsGreaterThan(environment, prime, this.PrimeListMaxNumber)) {
-                    this.PrimeListMaxNumber = prime;
+                if (basicMath.IsGreaterThan(environment, primeSegments, this.PrimeListMaxNumber)) {
+                    this.PrimeListMaxNumber = primeSegments;
+                }
+
+                Int32 nextPercent = Convert.ToInt32(i / primeNumbersRaw.Count * 100);
+                if (nextPercent != currentPercent)
+                {
+                    currentPercent = nextPercent;
+                    perPercent(currentPercent, primeSegments);
                 }
             }
         }

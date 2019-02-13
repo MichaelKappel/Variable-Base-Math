@@ -1,5 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
+  <PropertyGroup Label="Globals">
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+  </PropertyGroup>
+
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
 
@@ -13,6 +20,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\AzureStorageRepositories\AzureStorageRepositories.csproj" />
+    <ProjectReference Include="..\Common\Common.csproj" />
+    <ProjectReference Include="..\FileRepositories\FileRepositories.csproj" />
     <ProjectReference Include="..\VariableBase.Mathematics\VariableBase.Mathematics\VariableBase.Mathematics.csproj" />
   </ItemGroup>
 

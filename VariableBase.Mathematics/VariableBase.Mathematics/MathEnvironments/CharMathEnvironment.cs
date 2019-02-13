@@ -83,17 +83,10 @@ namespace VariableBase.Mathematics
 
             this.SetupMathEnvironment();
         }
-
-        public Number OpenNumberFile(String fileName)
+        
+        public Number OpenNumberFile(String folderName, String fileName)
         {
-            var numberString = String.Empty;
-            using (FileStream fs = File.OpenRead(fileName))
-            {
-                using (StreamReader sr = new StreamReader(fs))
-                {
-                    return new Number(this, new NumberSegments(sr.ReadToEnd().ToCharArray()), null, false);
-                }
-            }
+            return this.GetNumber(Number.StorageRepository.Get(folderName, fileName));
         }
 
         public Number GetNumber(Int32 zeros, Boolean isNegative = false)

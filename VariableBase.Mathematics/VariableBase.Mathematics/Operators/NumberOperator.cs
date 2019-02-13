@@ -17,16 +17,31 @@ namespace VariableBase.Mathematics.Operators
         {
             this.BasicMath = basicMath;
         }
+
         public Number Square(Number number)
         {
             return new Number(number.Environment, this.BasicMath.Square(number.Environment, number.Segments), null, number.IsNegative);
+        }
+
+        public Number ConvertToBase10(Number number)
+        {
+            var base10Environment = new CharMathEnvironment("0123456789");
+            if (number.Fragment == default(Fraction))
+            {
+                return new Number(base10Environment, this.BasicMath.ConvertToBase10(base10Environment, number.Environment, number.Segments), null, number.IsNegative);
+            }
+            else
+            {
+                Number numerator = number.Fragment.Numerator.ConvertToBase10();
+                Number denominator = number.Fragment.Denominator.ConvertToBase10();
+                return new Number(base10Environment, this.BasicMath.ConvertToBase10(base10Environment, number.Environment, number.Segments), new Fraction(numerator, denominator), number.IsNegative);
+            }
         }
 
         public Number SquareRoot(Number number)
         {
             return new Number(number.Environment, this.BasicMath.SquareRoot(number.Environment, number.Segments).Item1, null, number.IsNegative);
         }
-
 
         public Number AsFraction(Number number, Number numerator, Number denominator)
         {

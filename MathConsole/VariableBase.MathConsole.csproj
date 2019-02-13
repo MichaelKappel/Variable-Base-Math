@@ -13,6 +13,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\AzureStorageRepositories\AzureStorageRepositories.csproj" />
+    <ProjectReference Include="..\Common\Common.csproj" />
+    <ProjectReference Include="..\FileRepositories\FileRepositories.csproj" />
     <ProjectReference Include="..\VariableBase.Mathematics\VariableBase.Mathematics\VariableBase.Mathematics.csproj" />
   </ItemGroup>
 

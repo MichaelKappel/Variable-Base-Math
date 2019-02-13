@@ -146,6 +146,23 @@ namespace VariableBase.Mathematics.Algorithms
         }
 
         #endregion
+       
+        public NumberSegments ConvertToBase10(IMathEnvironment base10Environment, IMathEnvironment currentEnvironment, NumberSegments segments)
+        {
+            NumberSegments result = base10Environment.KeyNumber[0].Segments;
+            for (var iSegments = 0; iSegments < segments.Length; iSegments++)
+            {
+                NumberSegments currentNumber = base10Environment.KeyNumber[1].Segments;
+                for (var i2 = 0; i2 < iSegments; i2++)
+                {
+                    currentNumber = this.Multiply(base10Environment, currentNumber, currentEnvironment.Base);
+                }
+
+                currentNumber = this.Multiply(base10Environment, currentNumber, segments[iSegments]);
+                result = this.Add(base10Environment, result, currentNumber);
+            }
+            return result;
+        }
 
         public NumberSegments GetWholeNumberSomewhereBetween(IMathEnvironment environment, NumberSegments a, NumberSegments b, Decimal variance = 0)
         {
@@ -832,7 +849,7 @@ namespace VariableBase.Mathematics.Algorithms
             while (carryOver > 0)
             {
                 Decimal carryOverResult;
-                if (carryOver > environment.Base)
+                if (carryOver >= environment.Base)
                 {
                     Decimal remainder = carryOver % environment.Base;
                     carryOverResult = remainder;

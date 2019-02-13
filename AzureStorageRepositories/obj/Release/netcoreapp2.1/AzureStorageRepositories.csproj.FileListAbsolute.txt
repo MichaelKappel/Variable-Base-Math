@@ -1,0 +1,12 @@
+D:\vs\Math\MathConsole\AzureStorageRepositories\bin\Release\netcoreapp2.1\AzureStorageRepositories.deps.json
+D:\vs\Math\MathConsole\AzureStorageRepositories\bin\Release\netcoreapp2.1\AzureStorageRepositories.dll
+D:\vs\Math\MathConsole\AzureStorageRepositories\bin\Release\netcoreapp2.1\AzureStorageRepositories.pdb
+D:\vs\Math\MathConsole\AzureStorageRepositories\bin\Release\netcoreapp2.1\Common.dll
+D:\vs\Math\MathConsole\AzureStorageRepositories\bin\Release\netcoreapp2.1\Common.pdb
+D:\vs\Math\MathConsole\AzureStorageRepositories\obj\Release\netcoreapp2.1\AzureStorageRepositories.csprojAssemblyReference.cache
+D:\vs\Math\MathConsole\AzureStorageRepositories\obj\Release\netcoreapp2.1\AzureStorageRepositories.csproj.CoreCompileInputs.cache
+D:\vs\Math\MathConsole\AzureStorageRepositories\obj\Release\netcoreapp2.1\AzureStorageRepositories.AssemblyInfoInputs.cache
+D:\vs\Math\MathConsole\AzureStorageRepositories\obj\Release\netcoreapp2.1\AzureStorageRepositories.AssemblyInfo.cs
+D:\vs\Math\MathConsole\AzureStorageRepositories\obj\Release\netcoreapp2.1\AzureStorageRepositories.csproj.CopyComplete
+D:\vs\Math\MathConsole\AzureStorageRepositories\obj\Release\netcoreapp2.1\AzureStorageRepositories.dll
+D:\vs\Math\MathConsole\AzureStorageRepositories\obj\Release\netcoreapp2.1\AzureStorageRepositories.pdb

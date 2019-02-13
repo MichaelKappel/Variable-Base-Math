@@ -10,6 +10,7 @@ using VariableBase.Mathematics.Algorithms;
 using VariableBase.Mathematics.Operators;
 using System.IO;
 using System.Diagnostics;
+using Common.Interfaces;
 
 [assembly: InternalsVisibleToAttribute("Math.Tests")]
 namespace VariableBase.Mathematics
@@ -17,6 +18,7 @@ namespace VariableBase.Mathematics
     public struct Number:IEquatable<Number>, IComparable<Number>, IEquatable<Decimal>, IComparable<Decimal>, IDisposable
     {
         public static INumberOperator Operator = new NumberOperator(new BasicMathAlgorithm());
+        public static IStorageRepository StorageRepository = new AzureBlobStorageRepository();
 
         public static Boolean IsBottom(Number number)
         {
@@ -248,21 +250,17 @@ namespace VariableBase.Mathematics
 
         #endregion
 
-        public Boolean SaveFile(String fileName)
+        public Boolean SaveFile(String folderName, String fileName)
         {
             try
             {
-                var numberString = String.Empty;
-                using (FileStream fs = File.Open(fileName, FileMode.CreateNew))
-                {
-                    using (StreamWriter sr = new StreamWriter(fs))
-                    {
-                        foreach (Decimal segment in this.Segments)
-                        {
-                            sr.Write(this.Environment.Key[(Int32)segment]);
-                        }
-                    }
-                }
+
+                var environment = this.Environment;
+                String numberString = new String(this.Segments.Select(x => environment.Key[(Int32)x]).Reverse().ToArray());
+
+
+                StorageRepository.Create(folderName, fileName, numberString);
+
                 return true;
             }
             catch (Exception ex)
@@ -431,6 +429,11 @@ namespace VariableBase.Mathematics
         public override String ToString()
         {
             return this.GetDisplayValue();
+        }
+
+        public Number ConvertToBase10()
+        {
+            return Operator.ConvertToBase10(this);
         }
 
         public void Dispose()

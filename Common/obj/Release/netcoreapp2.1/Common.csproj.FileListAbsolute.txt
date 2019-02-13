@@ -1,0 +1,8 @@
+D:\vs\Math\MathConsole\Common\bin\Release\netcoreapp2.1\Common.deps.json
+D:\vs\Math\MathConsole\Common\bin\Release\netcoreapp2.1\Common.dll
+D:\vs\Math\MathConsole\Common\bin\Release\netcoreapp2.1\Common.pdb
+D:\vs\Math\MathConsole\Common\obj\Release\netcoreapp2.1\Common.csproj.CoreCompileInputs.cache
+D:\vs\Math\MathConsole\Common\obj\Release\netcoreapp2.1\Common.AssemblyInfoInputs.cache
+D:\vs\Math\MathConsole\Common\obj\Release\netcoreapp2.1\Common.AssemblyInfo.cs
+D:\vs\Math\MathConsole\Common\obj\Release\netcoreapp2.1\Common.dll
+D:\vs\Math\MathConsole\Common\obj\Release\netcoreapp2.1\Common.pdb

@@ -18,5 +18,6 @@ namespace VariableBase.Mathematics.Interfaces
         Boolean IsBottom(Number number);
         Boolean IsEven(Number number);
         Number Convert(IMathEnvironment environment, Number number);
+        Number ConvertToBase10(Number number);
     }
 }

@@ -1,0 +1,17 @@
+D:\vs\Math\MathConsole\AzureStorageRepositories.Tests\bin\Debug\netcoreapp2.1\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+D:\vs\Math\MathConsole\AzureStorageRepositories.Tests\bin\Debug\netcoreapp2.1\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+D:\vs\Math\MathConsole\AzureStorageRepositories.Tests\bin\Debug\netcoreapp2.1\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+D:\vs\Math\MathConsole\AzureStorageRepositories.Tests\bin\Debug\netcoreapp2.1\AzureStorageRepositories.Tests.deps.json
+D:\vs\Math\MathConsole\AzureStorageRepositories.Tests\bin\Debug\netcoreapp2.1\AzureStorageRepositories.Tests.runtimeconfig.json
+D:\vs\Math\MathConsole\AzureStorageRepositories.Tests\bin\Debug\netcoreapp2.1\AzureStorageRepositories.Tests.runtimeconfig.dev.json
+D:\vs\Math\MathConsole\AzureStorageRepositories.Tests\bin\Debug\netcoreapp2.1\AzureStorageRepositories.Tests.dll
+D:\vs\Math\MathConsole\AzureStorageRepositories.Tests\bin\Debug\netcoreapp2.1\AzureStorageRepositories.Tests.pdb
+D:\vs\Math\MathConsole\AzureStorageRepositories.Tests\bin\Debug\netcoreapp2.1\AzureStorageRepositories.dll
+D:\vs\Math\MathConsole\AzureStorageRepositories.Tests\bin\Debug\netcoreapp2.1\AzureStorageRepositories.pdb
+D:\vs\Math\MathConsole\AzureStorageRepositories.Tests\obj\Debug\netcoreapp2.1\AzureStorageRepositories.Tests.csprojAssemblyReference.cache
+D:\vs\Math\MathConsole\AzureStorageRepositories.Tests\obj\Debug\netcoreapp2.1\AzureStorageRepositories.Tests.csproj.CoreCompileInputs.cache
+D:\vs\Math\MathConsole\AzureStorageRepositories.Tests\obj\Debug\netcoreapp2.1\AzureStorageRepositories.Tests.AssemblyInfoInputs.cache
+D:\vs\Math\MathConsole\AzureStorageRepositories.Tests\obj\Debug\netcoreapp2.1\AzureStorageRepositories.Tests.AssemblyInfo.cs
+D:\vs\Math\MathConsole\AzureStorageRepositories.Tests\obj\Debug\netcoreapp2.1\AzureStorageRepositories.Tests.csproj.CopyComplete
+D:\vs\Math\MathConsole\AzureStorageRepositories.Tests\obj\Debug\netcoreapp2.1\AzureStorageRepositories.Tests.dll
+D:\vs\Math\MathConsole\AzureStorageRepositories.Tests\obj\Debug\netcoreapp2.1\AzureStorageRepositories.Tests.pdb
