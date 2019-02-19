@@ -7,3 +7,12 @@ D:\vs\Math\MathConsole\Common\obj\Debug\netcoreapp2.1\Common.AssemblyInfoInputs.
 D:\vs\Math\MathConsole\Common\obj\Debug\netcoreapp2.1\Common.AssemblyInfo.cs
 D:\vs\Math\MathConsole\Common\obj\Debug\netcoreapp2.1\Common.dll
 D:\vs\Math\MathConsole\Common\obj\Debug\netcoreapp2.1\Common.pdb
+D:\git\Math\Common\bin\Debug\netcoreapp2.1\Common.deps.json
+D:\git\Math\Common\bin\Debug\netcoreapp2.1\Common.dll
+D:\git\Math\Common\bin\Debug\netcoreapp2.1\Common.pdb
+D:\git\Math\Common\obj\Debug\netcoreapp2.1\Common.csprojAssemblyReference.cache
+D:\git\Math\Common\obj\Debug\netcoreapp2.1\Common.csproj.CoreCompileInputs.cache
+D:\git\Math\Common\obj\Debug\netcoreapp2.1\Common.AssemblyInfoInputs.cache
+D:\git\Math\Common\obj\Debug\netcoreapp2.1\Common.AssemblyInfo.cs
+D:\git\Math\Common\obj\Debug\netcoreapp2.1\Common.dll
+D:\git\Math\Common\obj\Debug\netcoreapp2.1\Common.pdb

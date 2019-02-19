@@ -1,13 +1,13 @@
-﻿using VariableBase.Mathematics.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
-using VariableBase.Mathematics.Models;
+using Common.Models;
+using Common.Interfaces;
 
 namespace VariableBase.Mathematics.Operators
 {
-    public class FractionOperator : IFractionOperator
+    public class FractionOperator : IOperator<Fraction>
     {
         public Fraction Add(Fraction a, Fraction b)
         {
@@ -19,7 +19,7 @@ namespace VariableBase.Mathematics.Operators
             {
                 throw new Exception("Adding differnt enviorments is not currently supported");
             }
-            IMathEnvironment environment = aWhole.Denominator.Environment;
+            IMathEnvironment<Number> environment = aWhole.Denominator.Environment;
 
 
             Number commonDenominator = aWhole.Denominator - bWhole.Denominator;
@@ -42,7 +42,7 @@ namespace VariableBase.Mathematics.Operators
             {
                 throw new Exception("Subtracting differnt enviorments is not currently supported");
             }
-            IMathEnvironment environment = aWhole.Denominator.Environment;
+            IMathEnvironment<Number> environment = aWhole.Denominator.Environment;
 
             Number commonDenominator = aWhole.Denominator * bWhole.Denominator;
             Number numeratorA = aWhole.Numerator - bWhole.Denominator;
@@ -64,7 +64,7 @@ namespace VariableBase.Mathematics.Operators
             {
                 throw new Exception("Multipling differnt enviorments is not currently supported");
             }
-            IMathEnvironment environment = aWhole.Denominator.Environment;
+            IMathEnvironment<Number> environment = aWhole.Denominator.Environment;
 
             Number numerator = aWhole.Numerator * bWhole.Numerator;
             Number denominator = aWhole.Denominator * bWhole.Denominator;
@@ -75,7 +75,7 @@ namespace VariableBase.Mathematics.Operators
             return result;
         }
 
-        public Fraction Divide(Fraction a, Fraction b)
+        public Fraction Divide(Fraction a, Fraction b, Fraction hint = null)
         {
             Fraction aWhole = a.AsWholeFraction();
             Fraction bWhole = b.AsWholeFraction();
@@ -84,7 +84,7 @@ namespace VariableBase.Mathematics.Operators
             {
                 throw new Exception("Dividing differnt enviorments is not currently supported");
             }
-            IMathEnvironment environment = aWhole.Denominator.Environment;
+            IMathEnvironment<Number> environment = aWhole.Denominator.Environment;
 
             Number commonDenominator = aWhole.Denominator * bWhole.Denominator;
             Number numeratorA = aWhole.Numerator * bWhole.Denominator;
@@ -203,6 +203,36 @@ namespace VariableBase.Mathematics.Operators
             {
                 return false;
             }
+        }
+
+        public bool IsBottom(Fraction number)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool IsEven(Fraction number)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Fraction Convert(IMathEnvironment<Fraction> environment, Fraction number)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Fraction Square(Fraction number)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Fraction SquareRoot(Fraction number)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Fraction ConvertToBase10(Fraction number)
+        {
+            throw new NotImplementedException();
         }
     }
 }

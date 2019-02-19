@@ -2222,6 +2222,7 @@
         "framework": ".NETCoreApp,Version=v2.1",
         "dependencies": {
           "AzureStorageRepositories": "1.0.0",
+          "Common": "1.0.0",
           "FileRepositories": "1.0.0"
         },
         "compile": {

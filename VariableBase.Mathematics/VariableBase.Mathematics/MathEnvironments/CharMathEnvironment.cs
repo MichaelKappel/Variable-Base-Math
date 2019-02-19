@@ -1,15 +1,15 @@
-﻿using VariableBase.Mathematics.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
-using VariableBase.Mathematics.Models;
+using Common.Models;
 using System.IO;
+using Common.Interfaces;
 
 namespace VariableBase.Mathematics
 {
-    public class CharMathEnvironment : IMathEnvironment
+    public class CharMathEnvironment : IMathEnvironment<Number>
     {
         public CharMathEnvironment()
             : this((Char)65534)
@@ -19,7 +19,6 @@ namespace VariableBase.Mathematics
 
         public CharMathEnvironment(Boolean allowDigit, Boolean allowLetter, Boolean allowLower, Boolean allowNumber, 
             Boolean allowPunctuation, Boolean allowSymbols, Boolean allowSeparators, Boolean allowSurrogates, Boolean allowControl, Boolean allowWhiteSpace) 
-            : this()
         {
             var tempKey = new List<Char>();
             for (UInt64 i = 0; i <= Char.MaxValue; i++)
@@ -89,22 +88,59 @@ namespace VariableBase.Mathematics
             return this.GetNumber(Number.StorageRepository.Get(folderName, fileName));
         }
 
-        public Number GetNumber(Int32 zeros, Boolean isNegative = false)
-        {
-            var numberSegments = new UInt64[zeros];
-            for (var i = 0; i < zeros - 1; i++)
-            {
-                numberSegments[i] = 0;
-            }
-            numberSegments[numberSegments.Length - 1] = 1;
-
-            return new Number(this, new NumberSegments(numberSegments), null, isNegative);
-        }
-
         public Number GetNumber(String[] wholeNumberSegments, Boolean isNegative = false)
         {
             return new Number(this, new NumberSegments(wholeNumberSegments.Select((x) => UInt64.Parse(x)).ToArray()),
                                null, isNegative);
+        }
+
+        public Number GetNumber(NumberSegments segments, Boolean isNegative = false)
+        {
+            return new Number(this, segments, null, isNegative);
+        }
+
+        public Number GetNumber(Decimal rawDecimal)
+        {
+            //FIX: include fraction
+            var resultRaw = new List<Decimal>();
+            Boolean isNegative = false;
+            if (rawDecimal < 0)
+            {
+                isNegative = true;
+                rawDecimal = Math.Abs(rawDecimal);
+            }
+
+            if (rawDecimal < this.Base)
+            {
+                return this.KeyNumber[(Int32)rawDecimal];
+            }
+
+            if (rawDecimal == 0)
+            {
+                resultRaw.Add(0);
+            }
+            else
+            {
+
+                Decimal carryOver = rawDecimal;
+                while (carryOver > 0)
+                {
+                    if (carryOver >= this.Base)
+                    {
+                        Decimal columnResultRaw = 0;
+                        columnResultRaw = carryOver % this.Base;
+                        resultRaw.Add(columnResultRaw);
+                        carryOver = ((carryOver - columnResultRaw) / this.Base);
+                    }
+                    else
+                    {
+                        resultRaw.Add(carryOver);
+                        carryOver = 0;
+                    }
+                }
+            }
+
+            return new Number(this, new NumberSegments(resultRaw), null, isNegative);
         }
 
         public Number GetNumber(String wholeNumber, String fractionNumerator = null, String fractionDenominator = null, Boolean isNegative = false)
@@ -190,14 +226,6 @@ namespace VariableBase.Mathematics
 
             this.KeyNumber = new ReadOnlyCollection<Number>(tempKeyNumber);
             PowerOfFirstNumber = new Number(this, new NumberSegments(new UInt16[] { 0, 1 }), null, false);
-            if (this.Base > 2)
-            {
-                this.SecondNumber = this.KeyNumber[2];
-            }
-            else
-            {
-                this.SecondNumber = this.PowerOfFirstNumber;
-            }
         }
 
         public Number PowerOfFirstNumber
@@ -263,38 +291,18 @@ namespace VariableBase.Mathematics
 
         public override Boolean Equals(Object other)
         {
-            return this.Equals((IMathEnvironment)other);
+            return this.Equals((IMathEnvironment<Number>)other);
         }
 
-        public static bool operator ==(CharMathEnvironment a, IMathEnvironment b)
+        public static bool operator ==(CharMathEnvironment a, IMathEnvironment<Number> b)
         {
             return a.Equals(b);
         }
 
-        public static bool operator !=(CharMathEnvironment a, IMathEnvironment b)
+        public static bool operator !=(CharMathEnvironment a, IMathEnvironment<Number> b)
         {
             return !a.Equals(b);
         }
-
-        //public Number AsNumber(Boolean[] binary, Boolean isNegative = false)
-        //{
-        //    NumberSegments result = this.KeyNumber[0].Segments;
-        //    for (UInt64 i = 0; i < binary.Length; i++)
-        //    {
-        //        if (binary[(Int32)i])
-        //        {
-        //            NumberSegments currentResult = new NumberSegments(new UInt64[] { 1 });
-        //            for (UInt64 iSq = 0; iSq < i; iSq++)
-        //            {
-        //                currentResult = this.BasicMath.Multiply(currentResult,
-        //                    this.SecondNumber.Segments);
-        //            }
-        //            result = this.BasicMath.Add(result, currentResult);
-        //        }
-        //    }
-
-        //    return new Number(this, result, null, isNegative);
-        //}
 
         public String GetDefinition()
         {
@@ -311,9 +319,9 @@ namespace VariableBase.Mathematics
             return String.Concat(segments.Select(x => this.Key[(Int32)x]).Reverse());
         }
 
-        public Boolean Equals(IMathEnvironment other)
+        public Boolean Equals(IMathEnvironment<Number> other)
         {
-            if (object.ReferenceEquals(other, default(IMathEnvironment)) || this.Base != other.Base)
+            if (object.ReferenceEquals(other, default(IMathEnvironment<Number>)) || this.Base != other.Base)
             {
                 return false;
             }

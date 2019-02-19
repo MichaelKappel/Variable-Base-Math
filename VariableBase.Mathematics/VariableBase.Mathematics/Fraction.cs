@@ -1,19 +1,19 @@
-﻿using VariableBase.Mathematics.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
-using VariableBase.Mathematics.Models;
+using Common.Models;
 using VariableBase.Mathematics.Operators;
+using Common.Interfaces;
 
 namespace VariableBase.Mathematics
 {
     public class Fraction: IEquatable<Fraction>, IComparable<Fraction>
     {
 
-        public static IFractionOperator Operator = new FractionOperator();
+        public static IOperator<Fraction> Operator = new FractionOperator();
 
-        internal Fraction(IMathEnvironment environment, NumberSegments numerator, NumberSegments denominator)
+        internal Fraction(IMathEnvironment<Number> environment, NumberSegments numerator, NumberSegments denominator)
         {
             this.Numerator = new Number(environment, numerator, null, null, false);
             this.Denominator = new Number(environment, denominator, null, null, false);

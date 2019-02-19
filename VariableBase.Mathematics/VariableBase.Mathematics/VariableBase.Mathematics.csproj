@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\AzureStorageRepositories\AzureStorageRepositories.csproj" />
+    <ProjectReference Include="..\..\Common\Common.csproj" />
     <ProjectReference Include="..\..\FileRepositories\FileRepositories.csproj" />
   </ItemGroup>
 

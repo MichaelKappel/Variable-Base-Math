@@ -32,3 +32,10 @@ D:\vs\Math\MathConsole\VariableBase.Mathematics\VariableBase.Mathematics\obj\Rel
 D:\vs\Math\MathConsole\VariableBase.Mathematics\VariableBase.Mathematics\obj\Release\netcoreapp2.1\VariableBase.Mathematics.csproj.CopyComplete
 D:\vs\Math\MathConsole\VariableBase.Mathematics\VariableBase.Mathematics\obj\Release\netcoreapp2.1\VariableBase.Mathematics.dll
 D:\vs\Math\MathConsole\VariableBase.Mathematics\VariableBase.Mathematics\obj\Release\netcoreapp2.1\VariableBase.Mathematics.pdb
+D:\git\Math\VariableBase.Mathematics\VariableBase.Mathematics\bin\Release\netcoreapp2.1\AzureStorageRepositories.dll
+D:\git\Math\VariableBase.Mathematics\VariableBase.Mathematics\bin\Release\netcoreapp2.1\Common.dll
+D:\git\Math\VariableBase.Mathematics\VariableBase.Mathematics\bin\Release\netcoreapp2.1\FileRepositories.dll
+D:\git\Math\VariableBase.Mathematics\VariableBase.Mathematics\bin\Release\netcoreapp2.1\AzureStorageRepositories.pdb
+D:\git\Math\VariableBase.Mathematics\VariableBase.Mathematics\bin\Release\netcoreapp2.1\Common.pdb
+D:\git\Math\VariableBase.Mathematics\VariableBase.Mathematics\bin\Release\netcoreapp2.1\FileRepositories.pdb
+D:\git\Math\VariableBase.Mathematics\VariableBase.Mathematics\obj\Release\netcoreapp2.1\VariableBase.Mathematics.csproj.CopyComplete

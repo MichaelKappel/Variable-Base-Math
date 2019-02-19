@@ -1,11 +1,10 @@
-﻿using VariableBase.Mathematics.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
-using VariableBase.Mathematics.Models;
+using Common.Models;
 using VariableBase.Mathematics.Algorithms;
 using VariableBase.Mathematics.Operators;
 using System.IO;
@@ -15,9 +14,9 @@ using Common.Interfaces;
 [assembly: InternalsVisibleToAttribute("Math.Tests")]
 namespace VariableBase.Mathematics
 {
-    public struct Number:IEquatable<Number>, IComparable<Number>, IEquatable<Decimal>, IComparable<Decimal>, IDisposable
+    public struct Number:IEquatable<Number>, IComparable<Number>, IDisposable
     {
-        public static INumberOperator Operator = new NumberOperator(new BasicMathAlgorithm());
+        public static IOperator<Number> Operator = new NumberOperator(new BasicMathAlgorithm());
         public static IStorageRepository StorageRepository = new AzureBlobStorageRepository();
 
         public static Boolean IsBottom(Number number)
@@ -45,13 +44,34 @@ namespace VariableBase.Mathematics
         public Decimal First { get; set; }
         
         public Boolean IsNegative { get; set; }
+        
+        public Boolean? Even { get; set; }
 
-        public IMathEnvironment Environment { get; set; }
+        public Boolean IsOdd()
+        {
+            if (!this.Even.HasValue)
+            {
+                this.Even = Operator.IsEven(this);
+            }
+            return !Even.Value;
+        }
+
+
+        public Boolean IsEven()
+        {
+            if (!this.Even.HasValue)
+            {
+                this.Even = Operator.IsEven(this);
+            }
+            return Even.Value;
+        }
+
+        public IMathEnvironment<Number> Environment { get; set; }
 
         public NumberSegments Segments { get; set; }
         public int Size { get; private set; }
 
-        internal Number(IMathEnvironment environment, NumberSegments segments, NumberSegments numerator, NumberSegments denominator, Boolean isNegative)
+        public Number(IMathEnvironment<Number> environment, NumberSegments segments, NumberSegments numerator, NumberSegments denominator, Boolean isNegative)
         {
             if (segments == default(NumberSegments) || segments.Size == 0)
             {
@@ -80,6 +100,8 @@ namespace VariableBase.Mathematics
             {
                 throw new Exception("Numbers longer then a power can not start with bottom number char");
             }
+
+            this.Even = null;
         }
 
 
@@ -89,13 +111,13 @@ namespace VariableBase.Mathematics
             {
                 throw new Exception("Adding differnt enviorments is not currently supported");
             }
-            IMathEnvironment environment = fraction.Numerator.Environment;
+            IMathEnvironment<Number> environment = fraction.Numerator.Environment;
 
             this.Environment = environment;
 
             if (fraction.Denominator == 0)
             {
-                this.Segments = environment.KeyNumber[0].Segments;
+                this.Segments = environment.GetNumber(0).Segments;
                 this.Fragment = default(Fraction);
             }
             else if (Operator.IsGreaterThan(fraction.Denominator, fraction.Numerator))
@@ -115,23 +137,23 @@ namespace VariableBase.Mathematics
                     if (numerator.Fragment != default(Fraction))
                     {
                         Number aDividend = Operator.Add(Operator.Multiply(numerator, numerator.Fragment.Denominator), numerator.Fragment.Numerator);
-                        aFraction = new Fraction(aDividend, environment.KeyNumber[1]);
+                        aFraction = new Fraction(aDividend, environment.GetNumber(1));
                     }
                     else
                     {
-                        aFraction = new Fraction(numerator.Environment, numerator.Segments, environment.KeyNumber[1].Segments);
+                        aFraction = new Fraction(numerator.Environment, numerator.Segments, environment.GetNumber(1).Segments);
                     }
 
                     var bFraction = default(Fraction);
                     if (denominator.Fragment != default(Fraction))
                     {
                         Number bDividend = Operator.Add(Operator.Multiply(denominator, denominator.Fragment.Denominator), denominator.Fragment.Numerator);
-                        bFraction = new Fraction(bDividend, environment.KeyNumber[1]);
+                        bFraction = new Fraction(bDividend, environment.GetNumber(1));
 
                     }
                     else if (aFraction != default(Fraction))
                     {
-                        bFraction = new Fraction(denominator.Environment, denominator.Segments, environment.KeyNumber[1].Segments);
+                        bFraction = new Fraction(denominator.Environment, denominator.Segments, environment.GetNumber(1).Segments);
                     }
 
                     Fraction fractionResult = aFraction / bFraction;
@@ -153,10 +175,13 @@ namespace VariableBase.Mathematics
             this.Size = this.Segments.Length;
             this.IsNegative = false;
             this.First = this.Segments[this.Segments.Length-1];
+
+
+            this.Even = null;
         }
 
 
-        internal Number(IMathEnvironment environment, NumberSegments segments, Fraction fragment, Boolean isNegative)
+        internal Number(IMathEnvironment<Number> environment, NumberSegments segments, Fraction fragment, Boolean isNegative)
         {
             this.Environment = environment;
 
@@ -186,7 +211,8 @@ namespace VariableBase.Mathematics
             {
                 throw new Exception("Numbers longer then a power can not start with bottom number char");
             }
-
+            
+            this.Even = null;
         }
 
         #region operator overrides
@@ -330,23 +356,22 @@ namespace VariableBase.Mathematics
             return Operator.Compare(this, other);
         }
 
-        public Boolean Equals(Decimal other)
+        public Number Convert(IMathEnvironment<Number> environment)
         {
-            return Operator.Compare(this, other) == 0;
+            return Operator.Convert(environment, this);
         }
 
-        public Int32 CompareTo(Decimal other)
+        public Number Square()
         {
-            return Operator.Compare(this, other);
+            return Operator.Square(this);
         }
 
-        public Number Convert(IMathEnvironment environment)
+        public Number SquareRoot()
         {
-            Number result = Operator.Convert(environment, this);
-            return result;
+            return Operator.SquareRoot(this);
         }
-        
-        public String GetCharArray(IMathEnvironment environment = default(IMathEnvironment))
+
+        public String GetCharArray(IMathEnvironment<Number> environment = default(IMathEnvironment<Number>))
         {
             String result = String.Empty;
             if (this.IsNegative)
@@ -355,7 +380,7 @@ namespace VariableBase.Mathematics
             }
 
             NumberSegments resultSegments;
-            if (environment != default(IMathEnvironment) && environment != this.Environment)
+            if (environment != default(IMathEnvironment<Number>) && environment != this.Environment)
             {
                 resultSegments = this.Convert(environment).Segments;
             }
@@ -375,7 +400,7 @@ namespace VariableBase.Mathematics
             return result;
         }
 
-        public String GetDecimalArray(IMathEnvironment environment = default(IMathEnvironment))
+        public String GetDecimalArray(IMathEnvironment<Number> environment = default(IMathEnvironment<Number>))
         {
             String result = String.Empty;
             if (this.IsNegative)
@@ -384,7 +409,7 @@ namespace VariableBase.Mathematics
             }
 
             NumberSegments resultSegments;
-            if (environment != default(IMathEnvironment) && environment != this.Environment)
+            if (environment != default(IMathEnvironment<Number>) && environment != this.Environment)
             {
                 resultSegments = this.Convert(environment).Segments;
             }
@@ -421,7 +446,7 @@ namespace VariableBase.Mathematics
             return result;
         }
 
-        public String ToString(IMathEnvironment environment)
+        public String ToString(IMathEnvironment<Number> environment)
         {
             return this.GetDecimalArray(environment);
         }
@@ -444,7 +469,7 @@ namespace VariableBase.Mathematics
             
             this.IsNegative = false;
 
-            this.Environment = default(IMathEnvironment);
+            this.Environment = default(IMathEnvironment<Number>);
 
             this.Segments = default(NumberSegments);
         }

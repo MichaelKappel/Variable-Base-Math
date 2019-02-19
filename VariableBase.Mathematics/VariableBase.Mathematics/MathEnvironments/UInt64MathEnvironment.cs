@@ -1,10 +1,10 @@
-﻿//using VariableBase.Mathematics.Interfaces;
+﻿//using Common.Interfaces;
 //using System;
 //using System.Collections.Generic;
 //using System.Collections.ObjectModel;
 //using System.Linq;
 //using System.Text;
-//using VariableBase.Mathematics.Models;
+//using Common.Models;
 
 //namespace VariableBase.Mathematics
 //{
@@ -167,11 +167,11 @@
     
 //            if (this.Base > 2)
 //            {
-//                this.SecondNumber = this.KeyNumber[2];
+//                this.GetNumber(2) = this.KeyNumber[2];
 //            }
 //            else
 //            {
-//                this.SecondNumber = this.PowerOfFirstNumber;
+//                this.GetNumber(2) = this.PowerOfFirstNumber;
 //            }
 //        }
         
@@ -181,7 +181,7 @@
 //            protected set;
 //        }
 
-//        public Number SecondNumber
+//        public Number GetNumber(2)
 //        {
 //            get;
 //            protected set;
@@ -245,19 +245,19 @@
 //            return this.Equals((IMathEnvironment)other);
 //        }
 
-//        public static bool operator ==(IMathEnvironment a, IMathEnvironment b)
+//        public static bool operator ==(IMathEnvironment<T> a, IMathEnvironment<T> b)
 //        {
 //            return a.Equals(b);
 //        }
 
-//        public static bool operator !=(IMathEnvironment a, IMathEnvironment b)
+//        public static bool operator !=(IMathEnvironment<T> a, IMathEnvironment<T> b)
 //        {
 //            return !a.Equals(b);
 //        }
 
 //        public Number AsNumber(Boolean[] binary, Boolean isNegative = false)
 //        {
-//            NumberSegments result = this.KeyNumber[0].Segments;
+//            NumberSegments result = this.GetNumber(0).Segments;
 //            for (UInt64 i = 0; i < binary.Length; i++)
 //            {
 //                if (binary[(Int32)i])
@@ -266,7 +266,7 @@
 //                    for (UInt64 iSq = 0; iSq < i; iSq++)
 //                    {
 //                        currentResult = this.BasicMath.Multiply(currentResult,
-//                            this.SecondNumber.Segments);
+//                            this.GetNumber(2).Segments);
 //                    }
 //                    result = this.BasicMath.Add(result, currentResult);
 //                }
@@ -275,7 +275,7 @@
 //            return new Number(this, result, null, isNegative);
 //        }
 
-//        public Boolean Equals(IMathEnvironment other)
+//        public Boolean Equals(IMathEnvironment<T> other)
 //        {
 //            if (object.ReferenceEquals(other, default(IMathEnvironment)) || this.Base != other.Base)
 //            {

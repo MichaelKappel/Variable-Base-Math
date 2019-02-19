@@ -5182,6 +5182,7 @@
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.1": [
       "AzureStorageRepositories >= 1.0.0",
+      "Common >= 1.0.0",
       "FileRepositories >= 1.0.0",
       "Microsoft.NETCore.App >= 2.1.0"
     ]
@@ -5218,6 +5219,9 @@
           "projectReferences": {
             "D:\\git\\Math\\AzureStorageRepositories\\AzureStorageRepositories.csproj": {
               "projectPath": "D:\\git\\Math\\AzureStorageRepositories\\AzureStorageRepositories.csproj"
+            },
+            "D:\\git\\Math\\Common\\Common.csproj": {
+              "projectPath": "D:\\git\\Math\\Common\\Common.csproj"
             },
             "D:\\git\\Math\\FileRepositories\\FileRepositories.csproj": {
               "projectPath": "D:\\git\\Math\\FileRepositories\\FileRepositories.csproj"
