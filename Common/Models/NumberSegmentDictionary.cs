@@ -15,7 +15,6 @@ namespace Common.Models
             Prime
         }
 
-
         public NumberSegmentDictionary Parent;
 
         public NumberTypes NumberType;

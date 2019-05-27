@@ -75,18 +75,18 @@ namespace VariableBase.Mathematics.Algorithms
 
             return isPrime;
         }
-        
-        public Tuple<Number, Number> GetComposite(Number a)
+
+        public (Number Numerator, Number Denominator) GetComposite(Number a)
         {
             IMathEnvironment<Number> environment = a.Environment;
-            Tuple<Number, Number> result = default(Tuple<Number, Number>);
+            (Number Numerator, Number Denominator) result = default((Number Numerator, Number Denominator));
             if (a <= environment.GetNumber(3))
             {
 
             }
             else if (a.IsEven())
             {
-                result = new Tuple<Number, Number>(a / environment.GetNumber(2), environment.GetNumber(2));
+                result = (a / environment.GetNumber(2), environment.GetNumber(2));
             }
             else
             {
@@ -97,7 +97,7 @@ namespace VariableBase.Mathematics.Algorithms
                     Number currentNumber =  a / testNumber;
                     if (currentNumber.Fragment == default(Fraction))
                     {
-                        result = new Tuple<Number, Number>(currentNumber, testNumber);
+                        result = (currentNumber, testNumber);
                         break;
                     }
                     testNumber = testNumber + environment.GetNumber(2);
@@ -118,18 +118,19 @@ namespace VariableBase.Mathematics.Algorithms
                     }
                 }
 
-                if (isPrime == false && result == default(Tuple<Number, Number>))
+                if (isPrime == false && result == default((Number Numerator, Number Denominator)))
                 {
                     throw new Exception(String.Format("Math Error in GetComposite {0} should have had a Composite of {1}", a.Segments[0], i));
                 }
-                else if (isPrime == true && result != default(Tuple<Number, Number>))
+                else if (isPrime == true && result != default((Number Numerator, Number Denominator)))
                 {
-                    throw new Exception(String.Format("Math Error in GetComposite {0} should NOT have a Composite of {1} x {2}", a.Segments[0], result.Item1.Segments[0], result.Item2.Segments[0]));
+                    throw new Exception(String.Format("Math Error in GetComposite {0} should NOT have a Composite of {1} x {2}", a.Segments[0], result.Numerator.Segments[0], result.Denominator.Segments[0]));
                 }
             }
-            if (result != default(Tuple<Number, Number>))
+
+            if (result != default((Number Numerator, Number Denominator)))
             {
-                foreach (Decimal segment in result.Item1.Segments)
+                foreach (Decimal segment in result.Numerator.Segments)
                 {
                     if (segment > environment.Base)
                     {
@@ -141,7 +142,7 @@ namespace VariableBase.Mathematics.Algorithms
                     }
                 }
 
-                foreach (Decimal segment in result.Item2.Segments)
+                foreach (Decimal segment in result.Denominator.Segments)
                 {
                     if (segment > environment.Base)
                     {

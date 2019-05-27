@@ -281,7 +281,7 @@ namespace VariableBase.Mathematics
             try
             {
 
-                var environment = this.Environment;
+                IMathEnvironment<Number> environment = this.Environment;
                 String numberString = new String(this.Segments.Select(x => environment.Key[(Int32)x]).Reverse().ToArray());
 
 
@@ -440,7 +440,7 @@ namespace VariableBase.Mathematics
          
             if (this.Fragment != default(Fraction))
             {
-                result += String.Format("{0} {1}", result, this.Fragment);
+                result = String.Format("{0} {1}", result, this.Fragment);
             }
 
             return result;
@@ -471,7 +471,7 @@ namespace VariableBase.Mathematics
 
             this.Environment = default(IMathEnvironment<Number>);
 
-            this.Segments = default(NumberSegments);
+            this.Segments.Dispose();
         }
     }
 }

@@ -25,9 +25,9 @@ namespace VariableBase.Mathematics.Operators
 
         public Number SquareRoot(Number number)
         {
-            Tuple<NumberSegments, NumberSegments, NumberSegments> rawResult = this.BasicMath.SquareRoot(number.Environment, number.Segments);
+            (NumberSegments Whole, NumberSegments Numerator, NumberSegments Denominator) rawResult = this.BasicMath.SquareRoot(number.Environment, number.Segments);
 
-            return new Number(number.Environment, rawResult.Item1, rawResult.Item2, rawResult.Item3, number.IsNegative);
+            return new Number(number.Environment, rawResult.Whole, rawResult.Numerator, rawResult.Denominator, number.IsNegative);
         }
 
         public Number ConvertToBase10(Number number)
@@ -131,7 +131,7 @@ namespace VariableBase.Mathematics.Operators
             if (a.Fragment == default(Fraction) && b.Fragment == default(Fraction))
             {
                 NumberSegments resultSegments = this.BasicMath.Multiply(environment, a.Segments, b.Segments);
-                return new Number(environment, resultSegments, null, false);
+                return new Number(environment, resultSegments, default(Fraction), false);
             }
             else
             {
@@ -158,7 +158,7 @@ namespace VariableBase.Mathematics.Operators
                 if (numerator.Fragment != default(Fraction))
                 {
                     NumberSegments aDividend = this.BasicMath.Add(environment, this.BasicMath.Multiply(environment, numerator.Segments, numerator.Fragment.Denominator.Segments), numerator.Fragment.Numerator.Segments);
-                    aFraction = new Fraction(numerator.Environment, aDividend, environment.GetNumber(1).Segments);
+                    aFraction = new Fraction(numerator.Environment, aDividend, numerator.Fragment.Denominator.Segments);
                 }
                 else
                 {
@@ -169,7 +169,7 @@ namespace VariableBase.Mathematics.Operators
                 if (denominator.Fragment != default(Fraction))
                 {
                     NumberSegments bDividend =this.BasicMath.Add(environment, this.BasicMath.Multiply(environment, denominator.Segments, denominator.Fragment.Denominator.Segments), denominator.Fragment.Numerator.Segments);
-                    bFraction = new Fraction(numerator.Environment, bDividend, environment.GetNumber(1).Segments);
+                    bFraction = new Fraction(denominator.Environment, bDividend, denominator.Fragment.Denominator.Segments);
 
                 }
                 else if (aFraction != default(Fraction))
@@ -182,7 +182,7 @@ namespace VariableBase.Mathematics.Operators
                 denominator = fractionResult.Denominator;
             }
 
-            Tuple<NumberSegments, NumberSegments, NumberSegments> resultSegments;
+            (NumberSegments Whole, NumberSegments Numerator, NumberSegments Denominator) resultSegments;
             if (hint == default(Number))
             {
                 resultSegments = this.BasicMath.Divide(environment, numerator.Segments, denominator.Segments);
@@ -192,13 +192,13 @@ namespace VariableBase.Mathematics.Operators
                 resultSegments = this.BasicMath.Divide(environment, numerator.Segments, denominator.Segments, hint.Segments);
             }
 
-            if (resultSegments.Item2 != default(NumberSegments) && resultSegments.Item3 != default(NumberSegments))
+            if (resultSegments.Numerator != default(NumberSegments) && resultSegments.Denominator != default(NumberSegments))
             {
-                return new Number(environment, resultSegments.Item1, resultSegments.Item2, resultSegments.Item3, false);
+                return new Number(environment, resultSegments.Whole, resultSegments.Numerator, resultSegments.Denominator, false);
             }
             else
             {
-                return new Number(environment, resultSegments.Item1, null, false);
+                return new Number(environment, resultSegments.Whole, default(Fraction), false);
             }
         }
 
@@ -481,20 +481,8 @@ namespace VariableBase.Mathematics.Operators
                 if (number.Fragment.Numerator.Fragment != default(Fraction) || number.Fragment.Denominator.Fragment != default(Fraction))
                 {
                     Fraction numeratorFraction = this.AsFraction(numerator);
-                    if (number.Fragment.Numerator.Fragment != default(Fraction))
-                    {
-                        numeratorFraction = this.AsFraction(numerator) + number.Fragment.Numerator.Fragment;
-                    }
-
-                    Fraction denominatorFraction = this.AsFraction(numerator);
-                    if (number.Fragment.Numerator.Fragment != default(Fraction))
-                    {
-                        denominatorFraction = this.AsFraction(denominator) + number.Fragment.Denominator.Fragment;
-                    }
-
-                    Fraction fractionResult = numeratorFraction / denominatorFraction;
-                    numerator = fractionResult.Numerator;
-                    denominator = fractionResult.Denominator;
+                    Fraction denominatorFraction = this.AsFraction(denominator);
+                    return new Fraction(new Number(numeratorFraction), new Number(denominatorFraction));
                 }
             }
 

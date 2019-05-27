@@ -19,7 +19,7 @@ namespace VariableBase.Mathematics.Tests.NumberTests.B0123456789
 
             var expected = true;
 
-            Number a = env.KeyNumber[0];
+            Number a = env.GetNumber(0);
             Number b = default(Number);
             
             Boolean actual = (a == b);
@@ -39,7 +39,7 @@ namespace VariableBase.Mathematics.Tests.NumberTests.B0123456789
             var expected = true;
 
             Number a = default(Number); 
-            Number b = env.KeyNumber[0];
+            Number b = env.GetNumber(0);
 
             Boolean actual = (a == b);
 
@@ -57,8 +57,8 @@ namespace VariableBase.Mathematics.Tests.NumberTests.B0123456789
 
             var expected = true;
 
-            Number a = env.KeyNumber[1];
-            Number b = env.GetNumber(env.KeyNumber[1].ToString());
+            Number a = env.GetNumber(1);
+            Number b = env.GetNumber(env.GetNumber(1).ToString());
 
             Boolean actual = (a == b);
 
@@ -75,9 +75,9 @@ namespace VariableBase.Mathematics.Tests.NumberTests.B0123456789
 
             var expected = true;
 
-            Number a = env.GetNumber(env.KeyNumber[1].ToString());
+            Number a = env.GetNumber(env.GetNumber(1).ToString());
        
-            Number b = env.KeyNumber[1];
+            Number b = env.GetNumber(1);
 
             Boolean actual = (a == b);
 

@@ -164,7 +164,7 @@ namespace VariableBase.Mathematics
             else
             {
                 return new Number(this, new NumberSegments(wholeNumberSegments.Select((x) => (UInt16)this.Key.IndexOf(x)).ToArray()), 
-                    null, isNegative);
+                    default(Fraction), isNegative);
             }
         }
 

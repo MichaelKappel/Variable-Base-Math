@@ -64,11 +64,11 @@ namespace VariableBase.Mathematics.Operators
             {
                 throw new Exception("Multipling differnt enviorments is not currently supported");
             }
+
             IMathEnvironment<Number> environment = aWhole.Denominator.Environment;
 
             Number numerator = aWhole.Numerator * bWhole.Numerator;
             Number denominator = aWhole.Denominator * bWhole.Denominator;
-
 
             var result = new Fraction(numerator, denominator);
 
@@ -84,9 +84,7 @@ namespace VariableBase.Mathematics.Operators
             {
                 throw new Exception("Dividing differnt enviorments is not currently supported");
             }
-            IMathEnvironment<Number> environment = aWhole.Denominator.Environment;
 
-            Number commonDenominator = aWhole.Denominator * bWhole.Denominator;
             Number numeratorA = aWhole.Numerator * bWhole.Denominator;
             Number numeratorB = bWhole.Numerator * aWhole.Denominator;
 

@@ -11,7 +11,7 @@ namespace Common.Interfaces
         NumberSegments ConvertToBase10(IMathEnvironment<T> base10Environment, IMathEnvironment<T> currentEnvironment, NumberSegments segments);
         NumberSegments AsSegments(IMathEnvironment<T> environment, Decimal rawDouble);
         NumberSegments Add(IMathEnvironment<T> environment,NumberSegments a, NumberSegments b);
-        Tuple<NumberSegments, NumberSegments, NumberSegments> Divide(IMathEnvironment<T> environment,NumberSegments numerator, NumberSegments denominator, NumberSegments hint = null);
+        (NumberSegments Whole, NumberSegments Numerator, NumberSegments Denominator) Divide(IMathEnvironment<T> environment,NumberSegments numerator, NumberSegments denominator, NumberSegments hint = null);
         NumberSegments GetWholeNumberSomewhereBetween(IMathEnvironment<T> environment,NumberSegments a, NumberSegments b, Decimal variance = 0);
         Int32 CompareTo(IMathEnvironment<T> environment, NumberSegments a, NumberSegments b);
         Boolean IsEqual(IMathEnvironment<T> environment,NumberSegments a, NumberSegments b);
@@ -25,7 +25,7 @@ namespace Common.Interfaces
         NumberSegments Multiply(IMathEnvironment<T> environment,NumberSegments a, NumberSegments b);
         NumberSegments PowerOfBase(IMathEnvironment<T> environment,NumberSegments a, Decimal times);
         NumberSegments Square(IMathEnvironment<T> environment,NumberSegments a);
-        Tuple<NumberSegments, NumberSegments, NumberSegments> SquareRoot(IMathEnvironment<T> environment, NumberSegments number);
+        (NumberSegments Whole, NumberSegments Numerator, NumberSegments Denominator) SquareRoot(IMathEnvironment<T> environment, NumberSegments number);
         NumberSegments Subtract(IMathEnvironment<T> environment,NumberSegments a, NumberSegments b);
     }
 }

@@ -150,10 +150,10 @@ namespace VariableBase.Mathematics.Algorithms
         public NumberSegments ConvertToBase10(IMathEnvironment<Number> base10Environment, IMathEnvironment<Number> currentEnvironment, NumberSegments segments)
         {
             NumberSegments result = base10Environment.GetNumber(0).Segments;
-            for (var iSegments = 0; iSegments < segments.Length; iSegments++)
+            for (Int32 iSegments = 0; iSegments < segments.Length; iSegments++)
             {
                 NumberSegments currentNumber = base10Environment.GetNumber(1).Segments;
-                for (var i2 = 0; i2 < iSegments; i2++)
+                for (Int32 i2 = 0; i2 < iSegments; i2++)
                 {
                     currentNumber = this.Multiply(base10Environment, currentNumber, currentEnvironment.Base);
                 }
@@ -174,7 +174,6 @@ namespace VariableBase.Mathematics.Algorithms
             }
             else
             {
-
                 NumberSegments largerNumber;
                 NumberSegments smallerNumber;
 
@@ -285,7 +284,7 @@ namespace VariableBase.Mathematics.Algorithms
                 remainder = halfBaseIndexDetailed;
             }
 
-            for (var i = resultSegments.Length - 1; i >= 0; i--)
+            for (Int32 i = resultSegments.Length - 1; i >= 0; i--)
             {
                 Decimal charIndex = number[i];
                 Decimal halfCharIndexWithRemainder = (charIndex / 2M) + remainder;
@@ -348,27 +347,27 @@ namespace VariableBase.Mathematics.Algorithms
         public NumberSegments GetAboutHalf(IMathEnvironment<Number> environment, NumberSegments a, NumberSegments b, Decimal variance)
         {
             NumberSegments x = this.Add(environment,a, b);
-            Tuple<NumberSegments,NumberSegments,NumberSegments> rawResult = this.Divide(environment,x, environment.GetNumber(2).Segments);
+            (NumberSegments Whole, NumberSegments Numerator, NumberSegments Denominator) rawResult = this.Divide(environment, x, environment.GetNumber(2).Segments);
 
             NumberSegments result;
-            if (variance == 1 && rawResult.Item2 != default(NumberSegments))
+            if (variance == 1 && rawResult.Numerator != default(NumberSegments))
             {
-                result = this.Add(environment,rawResult.Item1, environment.GetNumber(1).Segments);
+                result = this.Add(environment,rawResult.Whole, environment.GetNumber(1).Segments);
             }
-            else if (variance == -1 || rawResult.Item2 == default(NumberSegments))
+            else if (variance == -1 || rawResult.Numerator == default(NumberSegments))
             {
-                result = rawResult.Item1;
+                result = rawResult.Whole;
             }
             else
             {
-                NumberSegments doubleNumerator = this.Multiply(environment,rawResult.Item2, 2);
-                if (this.IsGreaterThanOrEqualTo(environment, doubleNumerator, rawResult.Item2))
+                NumberSegments doubleNumerator = this.Multiply(environment,rawResult.Numerator, 2);
+                if (this.IsGreaterThanOrEqualTo(environment, doubleNumerator, rawResult.Numerator))
                 {
-                    result = this.Add(environment,rawResult.Item1, environment.GetNumber(1).Segments);
+                    result = this.Add(environment,rawResult.Whole, environment.GetNumber(1).Segments);
                 }
                 else
                 {
-                    result = rawResult.Item1;
+                    result = rawResult.Whole;
                 }
             }
 
@@ -489,8 +488,8 @@ namespace VariableBase.Mathematics.Algorithms
             }
             else
             {
-                Tuple<NumberSegments, NumberSegments, NumberSegments> half = this.Divide(environment, a, environment.GetNumber(2).Segments);
-                if (half.Item2 == default(NumberSegments))
+                (NumberSegments Whole, NumberSegments Numerator, NumberSegments Denominator) half = this.Divide(environment, a, environment.GetNumber(2).Segments);
+                if (half.Numerator == default(NumberSegments))
                 {
                     isEven = true;
                 }
@@ -535,11 +534,11 @@ namespace VariableBase.Mathematics.Algorithms
             }
 //#if DEBUG
 //            Tuple<NumberSegments, NumberSegments, NumberSegments> half = this.Divide(environment,a, environment.GetNumber(2).Segments);
-//            if (half.Item2 == default(NumberSegments) && !isEven)
+//            if (half.Numerator == default(NumberSegments) && !isEven)
 //            {
 //                throw new Exception("IsEven should be even but is not");
 //            }
-//            else if(half.Item2 != default(NumberSegments) && isEven)
+//            else if(half.Numerator != default(NumberSegments) && isEven)
 //            {
 //                throw new Exception("IsEven should NOT be even but is");
 //            }
@@ -552,13 +551,13 @@ namespace VariableBase.Mathematics.Algorithms
             return this.Multiply(environment,a, a);
         }
 
-        public Tuple<NumberSegments, NumberSegments, NumberSegments> SquareRoot(IMathEnvironment<Number> environment, Decimal number)
+        public (NumberSegments Whole, NumberSegments Numerator, NumberSegments Denominator) SquareRoot(IMathEnvironment<Number> environment, Decimal number)
         {
             Decimal x = (Decimal)System.Math.Sqrt((Double)number);
             Decimal remainder = (x % 1);
             if (remainder == 0)
             {
-                return new Tuple<NumberSegments, NumberSegments, NumberSegments>(new NumberSegments(new Decimal[] { x }), null, null);
+                return (new NumberSegments(new Decimal[] { x }), null, null);
             }
             else
             {
@@ -566,16 +565,16 @@ namespace VariableBase.Mathematics.Algorithms
                 NumberSegments wholeNumber = this.AsSegments(environment, Math.Floor(x));
                 NumberSegments numerator = this.AsSegments(environment, Math.Floor(remainder * 100000));
                 NumberSegments denominator = this.AsSegments(environment, Math.Floor(number * 100000));
-                return new Tuple<NumberSegments, NumberSegments, NumberSegments>(wholeNumber, numerator, denominator);
+                return (wholeNumber, numerator, denominator);
             }
         }
 
-        public Tuple<NumberSegments, NumberSegments, NumberSegments> SquareRoot(IMathEnvironment<Number> environment, NumberSegments number)
+        public (NumberSegments Whole, NumberSegments Numerator, NumberSegments Denominator) SquareRoot(IMathEnvironment<Number> environment, NumberSegments number)
         {
 
             if (this.IsBottom(number))
             {
-                return default(Tuple<NumberSegments, NumberSegments, NumberSegments>);
+                return default((NumberSegments Whole, NumberSegments Numerator, NumberSegments Denominator));
             }
             else if (number.Size == 1)
             {
@@ -583,11 +582,11 @@ namespace VariableBase.Mathematics.Algorithms
             }
             else if (this.IsLessThanOrEqualTo(environment, number, this.AsSegments(environment, 3)))
             {
-                return new Tuple<NumberSegments, NumberSegments, NumberSegments>(environment.GetNumber(1).Segments, null, null);
+                return (environment.GetNumber(1).Segments, default(NumberSegments), default(NumberSegments));
             }
             
             NumberSegments floor = environment.GetNumber(2).Segments;
-            NumberSegments ceiling = this.Divide(environment,number, environment.GetNumber(2).Segments).Item1;
+            NumberSegments ceiling = this.Divide(environment,number, environment.GetNumber(2).Segments).Whole;
 
             NumberSegments lastNumberTried = this.GetWholeNumberSomewhereBetween(environment, ceiling, floor);
             NumberSegments squareTestResult = this.Square(environment, lastNumberTried);
@@ -619,26 +618,26 @@ namespace VariableBase.Mathematics.Algorithms
                 
             }
 
-            Tuple<NumberSegments, NumberSegments, NumberSegments> result;
+            (NumberSegments Whole, NumberSegments Numerator, NumberSegments Denominator) result;
 
             if (this.IsGreaterThan(environment,number, squareTestResult))
             {
-                var leftOver = this.Subtract(environment,number, squareTestResult);
-                result = new Tuple<NumberSegments, NumberSegments, NumberSegments>(lastNumberTried, leftOver, number);
+                NumberSegments leftOver = this.Subtract(environment,number, squareTestResult);
+                result = (lastNumberTried, leftOver, number);
 
             }
             else if (this.IsGreaterThan(environment,squareTestResult, number))
             {
-                var wholeNumber = this.Subtract(environment,lastNumberTried, environment.GetNumber(0).Segments);
-                var leftOver = this.Subtract(environment,squareTestResult, number);
-                result = new Tuple<NumberSegments, NumberSegments, NumberSegments>(wholeNumber, leftOver, number);
+                NumberSegments wholeNumber = this.Subtract(environment,lastNumberTried, environment.GetNumber(0).Segments);
+                NumberSegments leftOver = this.Subtract(environment,squareTestResult, number);
+                result = (wholeNumber, leftOver, number);
             }
             else
             {
-                result = new Tuple<NumberSegments, NumberSegments, NumberSegments>(lastNumberTried, null, null);
+                result = (lastNumberTried, null, null);
             }
 #if DEBUG
-            foreach (Decimal segment in result.Item1)
+            foreach (Decimal segment in result.Whole)
             {
                 if (segment > environment.Base)
                 {
@@ -654,9 +653,9 @@ namespace VariableBase.Mathematics.Algorithms
                 }
             }
 
-            if (result.Item2 != default(NumberSegments))
+            if (result.Numerator != default(NumberSegments))
             {
-                foreach (Decimal segment in result.Item2)
+                foreach (Decimal segment in result.Numerator)
                 {
                     if (segment > environment.Base)
                     {
@@ -672,7 +671,7 @@ namespace VariableBase.Mathematics.Algorithms
                     }
                 }
 
-                foreach (Decimal segment in result.Item3)
+                foreach (Decimal segment in result.Denominator)
                 {
                     if (segment > environment.Base)
                     {
@@ -788,7 +787,7 @@ namespace VariableBase.Mathematics.Algorithms
 
             if (result == 0)
             {
-                for (var i = a.Size - 1; i >= 0; i--)
+                for (Int32 i = ((Int32)a.Size) - 1; i >= 0; i--)
                 {
                     if (a[i] != b[i])
                     {
@@ -824,7 +823,7 @@ namespace VariableBase.Mathematics.Algorithms
             Decimal numberIndex = b;
 
             Decimal carryOver = 0;
-            for (var i = 0; i < a.Size; i++)
+            for (Int32 i = 0; i < a.Size; i++)
             {
                 Decimal segmentIndex = a[i];
 
@@ -975,7 +974,7 @@ namespace VariableBase.Mathematics.Algorithms
 
         #region Divide
 
-        public Tuple<NumberSegments, NumberSegments, NumberSegments> Divide(IMathEnvironment<Number> environment, NumberSegments numerator, NumberSegments denominator, NumberSegments hint = default(NumberSegments))
+        public (NumberSegments Whole, NumberSegments Numerator, NumberSegments Denominator) Divide(IMathEnvironment<Number> environment, NumberSegments numerator, NumberSegments denominator, NumberSegments hint = default(NumberSegments))
         {
 
 #if DEBUG
@@ -1014,15 +1013,15 @@ namespace VariableBase.Mathematics.Algorithms
 #endif
             if (this.IsBottom(denominator))
             {
-                return new Tuple<NumberSegments, NumberSegments, NumberSegments>(numerator, null, null);
+                return (numerator, null, null);
             }
             else if (this.IsEqual(environment, numerator, denominator))
             {
-                return new Tuple<NumberSegments, NumberSegments, NumberSegments>(new NumberSegments(new Decimal[] { 1 }), null, null);
+                return (new NumberSegments(new Decimal[] { 1 }), null, null);
             }
             else if (this.IsLessThan(environment,numerator, denominator))
             {
-                return new Tuple<NumberSegments, NumberSegments, NumberSegments>(new NumberSegments(new Decimal[] { 0 }), numerator, denominator);
+                return (new NumberSegments(new Decimal[] { 0 }), numerator, denominator);
             }
             else if (numerator.Size == 1 && denominator.Size == 1)
             {
@@ -1070,37 +1069,37 @@ namespace VariableBase.Mathematics.Algorithms
                 numeratorTestResult = this.Multiply(environment,lastNumberTried, denominator);
             }
 
-            Tuple<NumberSegments, NumberSegments, NumberSegments> result;
+            (NumberSegments Whole, NumberSegments Numerator, NumberSegments Denominator) result;
 
             if (this.IsEqual(environment, numeratorTestResult, numerator))
             {
-                result = new Tuple<NumberSegments, NumberSegments, NumberSegments>(lastNumberTried, null, null);
+                result = (lastNumberTried, default(NumberSegments), default(NumberSegments));
             }
             else
             {
-                var leftOver = this.Subtract(environment,numerator, numeratorTestResult);
-                result = new Tuple<NumberSegments, NumberSegments, NumberSegments>(lastNumberTried, leftOver, denominator);
+                NumberSegments leftOver = this.Subtract(environment,numerator, numeratorTestResult);
+                result = (lastNumberTried, leftOver, denominator);
             }
 
 #if DEBUG
-            if (this.IsGreaterThan(environment,result.Item1, numerator) && this.IsGreaterThan(environment,result.Item1, denominator))
+            if (this.IsGreaterThan(environment,result.Whole, numerator) && this.IsGreaterThan(environment,result.Whole, denominator))
             {
                 throw new Exception("MathAlgorithm Division error");
             }
-            else if (result.Item1 != default(NumberSegments) && result.Item1.Size > 1 && result.Item1[result.Item1.Size - 1] == 0)
+            else if (result.Whole != default(NumberSegments) && result.Whole.Size > 1 && result.Whole[result.Whole.Size - 1] == 0)
             {
                 throw new Exception("MathAlgorithm Division leading zero error whole number");
             }
-            else if (result.Item2 != default(NumberSegments) && result.Item2.Size > 1 && result.Item2[result.Item2.Size - 1] == 0)
+            else if (result.Numerator != default(NumberSegments) && result.Numerator.Size > 1 && result.Numerator[result.Numerator.Size - 1] == 0)
             {
                 throw new Exception("MathAlgorithm Division leading zero error numerator");
             }
-            else if (result.Item3 != default(NumberSegments) && result.Item3.Size > 1 && result.Item3[result.Item3.Size - 1] == 0)
+            else if (result.Denominator != default(NumberSegments) && result.Denominator.Size > 1 && result.Denominator[result.Denominator.Size - 1] == 0)
             {
                 throw new Exception("MathAlgorithm Division leading zero error denominator");
             }
 
-            foreach (Decimal segment in result.Item1)
+            foreach (Decimal segment in result.Whole)
             {
                 if (segment > environment.Base)
                 {
@@ -1116,9 +1115,9 @@ namespace VariableBase.Mathematics.Algorithms
                 }
             }
 
-            if (result.Item2 != default(NumberSegments))
+            if (result.Numerator != default(NumberSegments))
             {
-                foreach (Decimal segment in result.Item2)
+                foreach (Decimal segment in result.Numerator)
                 {
                     if (segment > environment.Base)
                     {
@@ -1130,7 +1129,7 @@ namespace VariableBase.Mathematics.Algorithms
                     }
                 }
 
-                foreach (Decimal segment in result.Item3)
+                foreach (Decimal segment in result.Denominator)
                 {
                     if (segment > environment.Base)
                     {
@@ -1143,20 +1142,20 @@ namespace VariableBase.Mathematics.Algorithms
                 }
             }
 
-            Debug.WriteLine("Division result {0}", String.Join(',', result.Item1.Reverse()));
+            Debug.WriteLine("Division result {0}", String.Join(',', result.Whole.Reverse()));
 
-            if (result.Item2 != default(NumberSegments))
+            if (result.Numerator != default(NumberSegments))
             {
-                Debug.WriteLine("Division remainder {0} / {1}", String.Join(',', result.Item2.Reverse()), String.Join(',', result.Item3.Reverse()));
+                Debug.WriteLine("Division remainder {0} / {1}", String.Join(',', result.Numerator.Reverse()), String.Join(',', result.Denominator.Reverse()));
             }
 #endif
             return result;
         }
 
 
-        public Tuple<NumberSegments, NumberSegments, NumberSegments> Divide(IMathEnvironment<Number> environment, Decimal dividend, Decimal divisor)
+        public (NumberSegments Whole, NumberSegments Numerator, NumberSegments Denominator) Divide(IMathEnvironment<Number> environment, Decimal dividend, Decimal divisor)
         {
-            Tuple<NumberSegments, NumberSegments, NumberSegments> result;
+            (NumberSegments Whole, NumberSegments Numerator, NumberSegments Denominator) result;
 
             Decimal remainder;
 
@@ -1168,21 +1167,21 @@ namespace VariableBase.Mathematics.Algorithms
 
                 if (remainder == 0)
                 {
-                    result = new Tuple<NumberSegments, NumberSegments, NumberSegments>(new NumberSegments(new Decimal[] { resultRaw }), null, null);
+                    result = (new NumberSegments(new Decimal[] { resultRaw }), default(NumberSegments), default(NumberSegments));
                 }
                 else
                 {
-                    result = new Tuple<NumberSegments, NumberSegments, NumberSegments>(new NumberSegments(new Decimal[] { resultRaw }), new NumberSegments(new Decimal[] { remainder }), new NumberSegments(new Decimal[] { divisor }));
+                    result = (new NumberSegments(new Decimal[] { resultRaw }), new NumberSegments(new Decimal[] { remainder }), new NumberSegments(new Decimal[] { divisor }));
                 }
 
-           }
+            }
             else
             {
-                result = new Tuple<NumberSegments, NumberSegments, NumberSegments>(new NumberSegments(new Decimal[] { 0 }), new NumberSegments(new Decimal[] { dividend }), new NumberSegments(new Decimal[] { divisor }));
+                result = (new NumberSegments(new Decimal[] { 0 }), new NumberSegments(new Decimal[] { dividend }), new NumberSegments(new Decimal[] { divisor }));
             }
 
 #if DEBUG
-            foreach (Decimal segment in result.Item1)
+            foreach (Decimal segment in result.Whole)
             {
                 if (segment > environment.Base)
                 {
@@ -1198,9 +1197,9 @@ namespace VariableBase.Mathematics.Algorithms
                 }
             }
 
-            if (result.Item2 != default(NumberSegments))
+            if (result.Numerator != default(NumberSegments))
             {
-                foreach (Decimal segment in result.Item2)
+                foreach (Decimal segment in result.Numerator)
                 {
                     if (segment > environment.Base)
                     {
@@ -1216,7 +1215,7 @@ namespace VariableBase.Mathematics.Algorithms
                     }
                 }
 
-                foreach (Decimal segment in result.Item3)
+                foreach (Decimal segment in result.Denominator)
                 {
                     if (segment > environment.Base)
                     {
@@ -1238,14 +1237,14 @@ namespace VariableBase.Mathematics.Algorithms
             return result;
         }
 
-        public Tuple<NumberSegments, NumberSegments, NumberSegments> Divide(IMathEnvironment<Number> environment, NumberSegments dividend, Decimal divisor)
+        public (NumberSegments Whole, NumberSegments Numerator, NumberSegments Denominator) Divide(IMathEnvironment<Number> environment, NumberSegments dividend, Decimal divisor)
         {
             if (dividend.Size == 1)
             {
                 return this.Divide(environment, dividend[0], divisor);
             }
 
-            Tuple<NumberSegments, NumberSegments, NumberSegments> result;
+            (NumberSegments Whole, NumberSegments Numerator, NumberSegments Denominator) result;
 
             Decimal remainder = 0M;
 
@@ -1279,15 +1278,15 @@ namespace VariableBase.Mathematics.Algorithms
 
             if (remainder == 0)
             {
-                result = new Tuple<NumberSegments, NumberSegments, NumberSegments>(new NumberSegments(resultRaw), null, null);
+                result = (new NumberSegments(resultRaw), default(NumberSegments), default(NumberSegments));
             }
             else
             {
-                result = new Tuple<NumberSegments, NumberSegments, NumberSegments>(new NumberSegments(resultRaw), new NumberSegments(new Decimal[] { remainder }), new NumberSegments(new Decimal[] { divisor }));
+                result = (new NumberSegments(resultRaw), new NumberSegments(new Decimal[] { remainder }), new NumberSegments(new Decimal[] { divisor }));
             }
 
 #if DEBUG
-            foreach (Decimal segment in result.Item1)
+            foreach (Decimal segment in result.Whole)
             {
                 if (segment > environment.Base)
                 {
@@ -1299,9 +1298,9 @@ namespace VariableBase.Mathematics.Algorithms
                 }
             }
 
-            if (result.Item2 == default(NumberSegments))
+            if (result.Numerator == default(NumberSegments))
             {
-                NumberSegments reverseCheck = this.Multiply(environment,result.Item1, divisor);
+                NumberSegments reverseCheck = this.Multiply(environment,result.Whole, divisor);
                 if (!this.IsEqual(environment, reverseCheck, dividend))
                 {
                     throw new Exception(String.Format("Division Error {0} != {1} ", String.Join(',', reverseCheck.Reverse()), String.Join(',', dividend.Reverse())));
@@ -1309,7 +1308,7 @@ namespace VariableBase.Mathematics.Algorithms
             }
             else
             { 
-                foreach (Decimal segment in result.Item2)
+                foreach (Decimal segment in result.Numerator)
                 {
                     if (segment > environment.Base)
                     {
@@ -1325,7 +1324,7 @@ namespace VariableBase.Mathematics.Algorithms
                     }
                 }
 
-                foreach (Decimal segment in result.Item3)
+                foreach (Decimal segment in result.Denominator)
                 {
                     if (segment > environment.Base)
                     {
@@ -1341,7 +1340,7 @@ namespace VariableBase.Mathematics.Algorithms
                     }
                 }
             
-                NumberSegments reverseCheck = this.Add(environment,this.Multiply(environment,result.Item1, divisor), result.Item2);
+                NumberSegments reverseCheck = this.Add(environment,this.Multiply(environment,result.Whole, divisor), result.Numerator);
                 if (this.IsNotEqual(environment, reverseCheck, dividend))
                 {
                     throw new Exception(String.Format("Division Error {0} != {1} ", String.Join(',', reverseCheck.Reverse()), String.Join(',', dividend.Reverse())));

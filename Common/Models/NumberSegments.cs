@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Common.Models
 {
-    public class NumberSegments: IEnumerable<Decimal>, IEnumerator<Decimal>
+    public class NumberSegments: IEnumerable<Decimal>
     {
 
         public NumberSegmentTypes NumberSegmentType { get; protected set; }
@@ -131,23 +131,19 @@ namespace Common.Models
         {
             get
             {
-                if (this.NumberSegmentType == NumberSegmentTypes.Boolean)
+                switch (this.NumberSegmentType)
                 {
-                    return this.BooleanSegments[(UInt32)i] ? 1 : 0;
+                    case NumberSegmentTypes.Boolean:
+                        return this.BooleanSegments[(UInt32)i] ? 1 : 0;
+                    case NumberSegmentTypes.UInt16:
+                        return (Decimal)this.UInt16Segments[(UInt32)i];
+                    case NumberSegmentTypes.UInt32:
+                        return (Decimal)this.UInt32Segments[(UInt32)i];
+                    case NumberSegmentTypes.UInt64:
+                        return (Decimal)this.UInt64Segments[(UInt32)i];
+                    default:
+                        throw new Exception("NumberSegmentType Unknown");
                 }
-                else if (this.NumberSegmentType == NumberSegmentTypes.UInt16)
-                {
-                    return (Decimal)this.UInt16Segments[(UInt32)i];
-                }
-                else if (this.NumberSegmentType == NumberSegmentTypes.UInt32)
-                {
-                    return (Decimal)this.UInt32Segments[(UInt32)i];
-                }
-                else if (this.NumberSegmentType == NumberSegmentTypes.UInt64)
-                {
-                    return (Decimal)this.UInt64Segments[(UInt32)i];
-                }
-                throw new Exception("NumberSegmentType Unknown");
             }
         }
 
@@ -155,23 +151,19 @@ namespace Common.Models
         {
             get
             {
-                if (this.NumberSegmentType == NumberSegmentTypes.Boolean)
+                switch (this.NumberSegmentType)
                 {
-                    return this.BooleanSegments[(UInt32)i]?1:0;
+                    case NumberSegmentTypes.Boolean:
+                        return this.BooleanSegments[(UInt32)i] ? 1 : 0;
+                    case NumberSegmentTypes.UInt16:
+                        return (Decimal)this.UInt16Segments[(UInt32)i];
+                    case NumberSegmentTypes.UInt32:
+                        return (Decimal)this.UInt32Segments[(UInt32)i];
+                    case NumberSegmentTypes.UInt64:
+                        return (Decimal)this.UInt64Segments[(UInt32)i];
+                    default:
+                        throw new Exception("NumberSegmentType Unknown");
                 }
-                else if (this.NumberSegmentType == NumberSegmentTypes.UInt16)
-                {
-                    return (Decimal)this.UInt16Segments[(UInt32)i];
-                }
-                else if (this.NumberSegmentType == NumberSegmentTypes.UInt32)
-                {
-                    return (Decimal)this.UInt32Segments[(UInt32)i];
-                }
-                else if (this.NumberSegmentType == NumberSegmentTypes.UInt64)
-                {
-                    return (Decimal)this.UInt64Segments[(UInt32)i];
-                }
-                throw new Exception("NumberSegmentType Unknown");
             }
         }
 
@@ -179,122 +171,70 @@ namespace Common.Models
         {
             get
             {
-                if (this.NumberSegmentType == NumberSegmentTypes.Boolean)
+                switch (this.NumberSegmentType)
                 {
-                    return this.BooleanSegments[(UInt32)i] ? 1 : 0;
-                }
-                else if (this.NumberSegmentType == NumberSegmentTypes.UInt16)
-                {
-                    return (Decimal)this.UInt16Segments[(UInt32)i];
-                }
-                else if (this.NumberSegmentType == NumberSegmentTypes.UInt32)
-                {
-                    return (Decimal)this.UInt32Segments[(UInt32)i];
-                }
-                else if (this.NumberSegmentType == NumberSegmentTypes.UInt64)
-                {
-                    return (Decimal)this.UInt64Segments[(UInt32)i];
-                }
-                else
-                {
-                    throw new Exception("NumberSegmentType Unknown");
+                    case NumberSegmentTypes.Boolean:
+                        return this.BooleanSegments[(UInt32)i] ? 1 : 0;
+                    case NumberSegmentTypes.UInt16:
+                        return (Decimal)this.UInt16Segments[(UInt32)i];
+                    case NumberSegmentTypes.UInt32:
+                        return (Decimal)this.UInt32Segments[(UInt32)i];
+                    case NumberSegmentTypes.UInt64:
+                        return (Decimal)this.UInt64Segments[(UInt32)i];
+                    default:
+                        throw new Exception("NumberSegmentType Unknown");
                 }
             }
         }
 
         public IEnumerator<Decimal> GetEnumerator()
         {
-            if (this.NumberSegmentType == NumberSegmentTypes.Boolean)
+            switch (this.NumberSegmentType)
             {
-                foreach (Boolean item in this.BooleanSegments)
-                {
-                    yield return item ? 1 : 0;
-                }
-            }
-            else if (this.NumberSegmentType == NumberSegmentTypes.UInt16)
-            {
-                foreach (Decimal item in this.UInt16Segments)
-                {
-                    yield return item;
-                }
-            }
-            else if (this.NumberSegmentType == NumberSegmentTypes.UInt32)
-            {
-                foreach (Decimal item in this.UInt32Segments)
-                {
-                    yield return item;
-                }
-            }
-            else if (this.NumberSegmentType == NumberSegmentTypes.UInt64)
-            {
-                foreach (Decimal item in this.UInt64Segments)
-                {
-                    yield return item;
-                }
-            }
-            else
-            {
-                throw new Exception("NumberSegmentType Unknown");
+                case NumberSegmentTypes.Boolean:
+                    return this.BooleanSegments.Select(x => x ? (Decimal)1 : (Decimal)0).GetEnumerator();
+                case NumberSegmentTypes.UInt16:
+                    return this.UInt16Segments.Select(x => (Decimal)x).GetEnumerator();
+                case NumberSegmentTypes.UInt32:
+                    return this.UInt32Segments.Select(x => (Decimal)x).GetEnumerator();
+                case NumberSegmentTypes.UInt64:
+                    return this.UInt64Segments.Select(x => (Decimal)x).GetEnumerator();
+                default:
+                    throw new Exception("NumberSegmentType Unknown");
             }
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            if (this.NumberSegmentType == NumberSegmentTypes.Boolean)
+            switch (this.NumberSegmentType)
             {
-                foreach (Boolean item in this.BooleanSegments)
-                {
-                    yield return item ? 1 : 0;
-                }
-            }
-            else if (this.NumberSegmentType == NumberSegmentTypes.UInt16)
-            {
-                foreach (Decimal item in this.UInt16Segments)
-                {
-                    yield return item;
-                }
-            }
-            else if (this.NumberSegmentType == NumberSegmentTypes.UInt32)
-            {
-                foreach (Decimal item in this.UInt32Segments)
-                {
-                    yield return item;
-                }
-            }
-            else if (this.NumberSegmentType == NumberSegmentTypes.UInt64)
-            {
-                foreach (Decimal item in this.UInt64Segments)
-                {
-                    yield return item;
-                }
-            }
-            else
-            {
-                throw new Exception("NumberSegmentType Unknown");
+                case NumberSegmentTypes.Boolean:
+                    return this.BooleanSegments.GetEnumerator();
+                case NumberSegmentTypes.UInt16:
+                    return this.UInt16Segments.GetEnumerator();
+                case NumberSegmentTypes.UInt32:
+                    return this.UInt32Segments.GetEnumerator();
+                case NumberSegmentTypes.UInt64:
+                    return this.UInt64Segments.GetEnumerator();
+                default:
+                    throw new Exception("NumberSegmentType Unknown");
             }
         }
 
         public Decimal[] GetSegments()
         {
-            if (this.NumberSegmentType == NumberSegmentTypes.Boolean)
+            switch (this.NumberSegmentType)
             {
-                return this.BooleanSegments.Select(x => x ? (Decimal)0 : (Decimal)1).ToArray();
-            }
-            else if (this.NumberSegmentType == NumberSegmentTypes.UInt16)
-            {
-                return this.UInt16Segments.Select(x => (Decimal)x).ToArray();
-            }
-            else if (this.NumberSegmentType == NumberSegmentTypes.UInt32)
-            {
-                return this.UInt32Segments.Select(x => (Decimal)x).ToArray();
-            }
-            else if (this.NumberSegmentType == NumberSegmentTypes.UInt64)
-            {
-                return this.UInt64Segments.Select(x => (Decimal)x).ToArray();
-            }
-            else
-            {
-                throw new Exception("NumberSegmentType Unknown");
+                case NumberSegmentTypes.Boolean:
+                    return this.BooleanSegments.Select(x => x ? (Decimal)0 : (Decimal)1).ToArray();
+                case NumberSegmentTypes.UInt16:
+                    return this.UInt16Segments.Select(x => (Decimal)x).ToArray();
+                case NumberSegmentTypes.UInt32:
+                    return this.UInt32Segments.Select(x => (Decimal)x).ToArray();
+                case NumberSegmentTypes.UInt64:
+                    return this.UInt64Segments.Select(x => (Decimal)x).ToArray();
+                default:
+                    throw new Exception("NumberSegmentType Unknown");
             }
         }
 
@@ -306,108 +246,82 @@ namespace Common.Models
 
         protected UInt64[] UInt64Segments { get; set; }
 
-        public decimal Current => throw new NotImplementedException();
-
-        object IEnumerator.Current => throw new NotImplementedException();
-
-        public bool MoveNext()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Reset()
-        {
-            throw new NotImplementedException();
-        }
-
         public void Dispose()
         {
-            if (this.NumberSegmentType == NumberSegmentTypes.Boolean)
+            switch (this.NumberSegmentType)
             {
-                this.BooleanSegments = default(Boolean[]);
+                case NumberSegmentTypes.Boolean:
+                    this.BooleanSegments = default(Boolean[]);
+                    break;
+                case NumberSegmentTypes.UInt16:
+                    this.UInt16Segments = default(UInt16[]);
+                    break;
+                case NumberSegmentTypes.UInt32:
+                    this.UInt32Segments = default(UInt32[]);
+                    break;
+                case NumberSegmentTypes.UInt64:
+                    this.UInt64Segments = default(UInt64[]);
+                    break;
+                default:
+                    throw new Exception("NumberSegmentType Unknown");
             }
-            else if (this.NumberSegmentType == NumberSegmentTypes.UInt16)
-            {
-                this.UInt16Segments = default(UInt16[]);
-            }
-            else if (this.NumberSegmentType == NumberSegmentTypes.UInt32)
-            {
-                this.UInt32Segments = default(UInt32[]);
-            }
-            else if (this.NumberSegmentType == NumberSegmentTypes.UInt64)
-            {
-                this.UInt64Segments = default(UInt64[]);
-            }
-            else
-            {
-                throw new Exception("NumberSegmentType Unknown");
-            }
-
-            GC.Collect();
-            GC.WaitForPendingFinalizers();
-            GC.WaitForFullGCComplete();
-            GC.Collect();
         }
 
         public void CopyTo(decimal[] segments)
         {
-            if (this.NumberSegmentType == NumberSegmentTypes.Boolean)
+            switch(this.NumberSegmentType)
             {
-                Int32 i1 = this.BooleanSegments.Length - 1;
-                for (var i = segments.Length - 1; i >= 0; i--)
-                {
-                    if (i1 == 0)
+                case NumberSegmentTypes.Boolean:
+                    Int32 i2 = this.BooleanSegments.Length - 1;
+                    for (var i = segments.Length - 1; i >= 0; i--)
                     {
-                        break;
+                        if (i2 == 0)
+                        {
+                            break;
+                        }
+                        segments[i] = (this.BooleanSegments[i2])?1:0;
+                        i2--;
                     }
-                    segments[i] = (this.BooleanSegments[i1])?1:0;
-                    i1--;
-                }
-            }
-            else if (this.NumberSegmentType == NumberSegmentTypes.UInt16)
-            {
-                Int32 i1 = this.UInt16Segments.Length - 1;
-                for (var i = segments.Length - 1; i >= 0; i--)
-                {
-                    if (i1 == 0)
+                    break;
+                case NumberSegmentTypes.UInt16:
+                    Int32 i16 = this.UInt16Segments.Length - 1;
+                    for (var i = segments.Length - 1; i >= 0; i--)
                     {
-                        break;
+                        if (i16 == 0)
+                        {
+                            break;
+                        }
+                        segments[i] = this.UInt16Segments[i16];
+                        i16--;
                     }
-                    segments[i] = this.UInt16Segments[i1];
-                    i1--;
-                }
-            }
-            else if (this.NumberSegmentType == NumberSegmentTypes.UInt32)
-            {
-                Int32 i1 = this.UInt32Segments.Length - 1;
-                for (var i = segments.Length - 1; i >= 0; i--)
-                {
-                    if (i1 == 0)
+                    break;
+                case NumberSegmentTypes.UInt32:
+                    Int32 i1 = this.UInt32Segments.Length - 1;
+                    for (var i = segments.Length - 1; i >= 0; i--)
                     {
-                        break;
+                        if (i1 == 0)
+                        {
+                            break;
+                        }
+                        segments[i] = this.UInt32Segments[i1];
+                        i1--;
                     }
-                    segments[i] = this.UInt32Segments[i1];
-                    i1--;
-                }
-            }
-            else if (this.NumberSegmentType == NumberSegmentTypes.UInt64)
-            {
-                Int32 i1 = this.UInt64Segments.Length - 1;
-                for (var i = segments.Length - 1; i >= 0; i--)
-                {
-                    segments[i] = this.UInt64Segments[i1];
+                    break;
+                case NumberSegmentTypes.UInt64:
+                    Int32 i64 = this.UInt64Segments.Length - 1;
+                    for (var i = segments.Length - 1; i >= 0; i--)
+                    {
+                        segments[i] = this.UInt64Segments[i64];
 
-                    if (i1 == 0)
-                    {
-                        break;
+                        if (i64 == 0)
+                        {
+                            break;
+                        }
+                        i64--;
                     }
-
-                    i1--;
-                }
-            }
-            else
-            {
-                throw new Exception("NumberSegmentType Unknown");
+                    break;
+                default:
+                    throw new Exception("NumberSegmentType Unknown");
             }
         }
 
@@ -430,7 +344,7 @@ namespace Common.Models
             }
             else
             {
-                result = String.Join(" ", this.Select(x => x.ToString()).Reverse());
+                result = String.Join("", this.Select(x => x.ToString()).Reverse());
             }
             return result;
         }

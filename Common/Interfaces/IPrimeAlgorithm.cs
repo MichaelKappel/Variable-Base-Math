@@ -9,6 +9,6 @@ namespace Common.Interfaces
     public interface IPrimeAlgorithm<T>
     {
         Boolean IsPrime(T number);
-        Tuple<T, T> GetComposite(T number);
+         (T Numerator, T Denominator) GetComposite(T number);
     }
 }
