@@ -71,14 +71,15 @@ namespace VariableBase.Mathematics.Tests.NumberTests.B0123456789ABCDEF
         {
             var env = new CharMathEnvironment("0123456789ABCDEF");
 
-            var expected = env.GetNumber("6DA","1", "3");
-
             var a = env.GetNumber("3DAD","2", "3");
             var b = env.GetNumber("9","7", "8");
 
-            Number actual = a / b;
+            Number c = a / b;
 
-            Assert.AreEqual(expected, actual);
+
+            Number d = c * b;
+
+            Assert.AreEqual(a, d);
         }
 
     }

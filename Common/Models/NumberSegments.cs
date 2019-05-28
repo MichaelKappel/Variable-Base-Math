@@ -344,7 +344,7 @@ namespace Common.Models
             }
             else
             {
-                result = String.Join("", this.Select(x => x.ToString()).Reverse());
+                result = String.Join(" ", this.Select(x => x.ToString()).Reverse());
             }
             return result;
         }

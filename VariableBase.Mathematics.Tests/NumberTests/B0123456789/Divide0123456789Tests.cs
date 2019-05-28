@@ -92,9 +92,6 @@ namespace VariableBase.Math.Tests.NumberTests.B0123456789
             var a = env.GetNumber("78485789435878690790970952072");
             var b = env.GetNumber("89573297589472827");
 
-            Number actual = a / b;
-
-
             Number c = a * b;
 
             Assert.IsTrue(c == cNumber);

@@ -154,6 +154,27 @@ namespace VariableBase.Mathematics.Operators
 
             if (denominator.Fragment != default(Fraction) || denominator.Fragment != default(Fraction))
             {
+                if (a.Fragment != default(Fraction) && a.Fragment.Numerator != default(Number) && a.Fragment.Numerator.Fragment != default(Fraction))
+                {
+                    throw new Exception("Dividing multilevel fractions is not currently supported in 'a' Numerator");
+                }
+
+                if (a.Fragment != default(Fraction) && a.Fragment.Denominator != default(Number) && a.Fragment.Denominator.Fragment != default(Fraction))
+                {
+                    throw new Exception("Dividing multilevel fractions is not currently supported in 'a' Denominator");
+                }
+
+                if (b.Fragment != default(Fraction) && b.Fragment.Numerator != default(Number) && b.Fragment.Numerator.Fragment != default(Fraction))
+                {
+                    throw new Exception("Dividing multilevel fractions is not currently supported in 'b' Numerator");
+                }
+
+                if (b.Fragment != default(Fraction) && b.Fragment.Denominator != default(Number) && b.Fragment.Denominator.Fragment != default(Fraction))
+                {
+                    throw new Exception("Dividing multilevel fractions is not currently supported in 'b' Denominator");
+                }
+
+
                 var aFraction = default(Fraction);
                 if (numerator.Fragment != default(Fraction))
                 {

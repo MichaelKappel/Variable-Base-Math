@@ -169,7 +169,7 @@ namespace VariableBase.Mathematics
                 }
                 else
                 {
-                    this.Fragment = new Fraction(numerator, denominator);
+                    this.Fragment = new Fraction(resultSegments.Fragment.Numerator, resultSegments.Fragment.Denominator);
                 }
             }
             this.Size = this.Segments.Length;
@@ -440,6 +440,7 @@ namespace VariableBase.Mathematics
         }
         public String GetDisplayValue()
         {
+            //return "Disabled";
             String result = String.Empty;
 
             if (this.IsNegative)
@@ -447,8 +448,8 @@ namespace VariableBase.Mathematics
                 result = "-" + result;
             }
 
-            result += this.Segments.ToString();
-         
+            result = String.Join("", this.Environment.ConvertToString(this.Segments));
+
             if (this.Fragment != default(Fraction))
             {
                 result = String.Format("{0} {1}", result, this.Fragment);
