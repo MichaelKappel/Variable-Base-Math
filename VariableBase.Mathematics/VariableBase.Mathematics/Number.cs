@@ -245,25 +245,36 @@ namespace VariableBase.Mathematics
             return Operator.Compare(a, b) != 0;
         }
 
-
         public static Number operator +(Number a, Number b)
         {
+#if DEBUG
+            Console.WriteLine("Add Number");
+#endif
             return Operator.Add(a, b);
         }
         
         public static Number operator -(Number a, Number b)
         {
+#if DEBUG
+            Console.WriteLine("Subtract Number");
+#endif
             return Operator.Subtract(a, b);
         }
 
         public static Number operator *(Number a, Number b)
         {
+#if DEBUG
+            Console.WriteLine("Multiply Number");
+#endif
             return Operator.Multiply(a, b);
         }
 
 
         public static Number operator /(Number a, Number b)
         {
+#if DEBUG
+            Console.WriteLine("Divide Number");
+#endif
             return Operator.Divide(a, b);
         }
 
@@ -274,7 +285,7 @@ namespace VariableBase.Mathematics
             return new Number(a.Environment, new NumberSegments(new Decimal[] { 0 }), totalResult.Fragment, totalResult.IsNegative);
         }
 
-        #endregion
+#endregion
 
         public Boolean SaveFile(String folderName, String fileName)
         {

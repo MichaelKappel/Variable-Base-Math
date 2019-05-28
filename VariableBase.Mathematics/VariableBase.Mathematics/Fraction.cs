@@ -105,22 +105,34 @@ namespace VariableBase.Mathematics
 
         public static Fraction operator +(Fraction a, Fraction b)
         {
+#if DEBUG
+            Console.WriteLine("Add Fraction");
+#endif
             return Operator.Add(a, b);
         }
 
         public static Fraction operator -(Fraction a, Fraction b)
         {
+#if DEBUG
+            Console.WriteLine("Subtract Fraction");
+#endif
             return Operator.Subtract(a, b);
         }
 
         public static Fraction operator *(Fraction a, Fraction b)
         {
+#if DEBUG
+            Console.WriteLine("Multiply Fraction");
+#endif
             return Operator.Multiply(a, b);
         }
 
 
         public static Fraction operator /(Fraction a, Fraction b)
         {
+#if DEBUG
+            Console.WriteLine("Divide Fraction");
+#endif
             return Operator.Divide(a, b);
         }
 

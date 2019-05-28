@@ -170,16 +170,14 @@ namespace VariableBase.Mathematics.Operators
                 {
                     NumberSegments bDividend =this.BasicMath.Add(environment, this.BasicMath.Multiply(environment, denominator.Segments, denominator.Fragment.Denominator.Segments), denominator.Fragment.Numerator.Segments);
                     bFraction = new Fraction(denominator.Environment, bDividend, denominator.Fragment.Denominator.Segments);
-
                 }
                 else if (aFraction != default(Fraction))
                 {
                     bFraction = new Fraction(denominator.Environment, denominator.Segments, environment.GetNumber(1).Segments);
                 }
 
-                Fraction fractionResult = aFraction / bFraction;
-                numerator = fractionResult.Numerator;
-                denominator = fractionResult.Denominator;
+                numerator = aFraction.Numerator * bFraction.Denominator;
+                denominator = bFraction.Numerator * aFraction.Denominator;
             }
 
             (NumberSegments Whole, NumberSegments Numerator, NumberSegments Denominator) resultSegments;
@@ -465,28 +463,31 @@ namespace VariableBase.Mathematics.Operators
 
             IMathEnvironment<Number> environment = number.Environment;
 
-            Number numerator;
-            Number denominator;
-
             if (number.Fragment == default(Fraction))
             {
-                numerator = number;
-                denominator = environment.GetNumber(1);
+                Number numerator = number;
+                Number denominator = environment.GetNumber(1);
+
+                return new Fraction(numerator, denominator);
+            }
+            else if (number.Fragment.Numerator.Fragment != default(Fraction) || number.Fragment.Denominator.Fragment != default(Fraction))
+            {
+                Fraction numeratorFraction = this.AsFraction(number.Fragment.Numerator);
+                Fraction denominatorFraction = this.AsFraction(number.Fragment.Denominator);
+
+                return new Fraction(new Number(numeratorFraction), new Number(denominatorFraction));
             }
             else
             {
-                numerator = this.Add(this.Multiply(number, number.Fragment.Denominator), number.Fragment.Numerator);
-                denominator = number.Fragment.Denominator;
+                Number numerator = new Number(environment, 
+                    this.BasicMath.Add(environment, this.BasicMath.Multiply(environment, number.Segments, number.Fragment.Denominator.Segments), number.Fragment.Numerator.Segments)
+                    , default(Fraction)
+                    , number.IsNegative);
 
-                if (number.Fragment.Numerator.Fragment != default(Fraction) || number.Fragment.Denominator.Fragment != default(Fraction))
-                {
-                    Fraction numeratorFraction = this.AsFraction(numerator);
-                    Fraction denominatorFraction = this.AsFraction(denominator);
-                    return new Fraction(new Number(numeratorFraction), new Number(denominatorFraction));
-                }
+                Number denominator = number.Fragment.Denominator;
+
+                return new Fraction(numerator, denominator);
             }
-
-            return new Fraction(numerator, denominator);
         }
 
         public int CompareTo(Number other)
