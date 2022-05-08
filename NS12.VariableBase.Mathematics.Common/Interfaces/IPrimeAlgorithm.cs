@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
-using Common.Models;
 
-namespace Common.Interfaces
+using NS12.VariableBase.Mathematics.Common.Models;
+
+namespace NS12.VariableBase.Mathematics.Common.Interfaces
 {
     public interface IPrimeAlgorithm<T>
     {
-        Boolean IsPrime(T number);
-         (T Numerator, T Denominator) GetComposite(T number);
+        bool IsPrime(T number);
+        (T Numerator, T Denominator) GetComposite(T number);
     }
 }

@@ -3,72 +3,73 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
-using Common.Models;
+using NS12.VariableBase.Mathematics.Common.Models;
 using System.IO;
-using Common.Interfaces;
+using NS12.VariableBase.Mathematics.Providers;
+using NS12.VariableBase.Mathematics.Common.Interfaces;
 
-namespace VariableBase.Mathematics
+namespace NS12.VariableBase.Mathematics.Providers.MathEnvironments
 {
     public class CharMathEnvironment : IMathEnvironment<Number>
     {
         public CharMathEnvironment()
-            : this((Char)65534)
+            : this((char)65534)
         {
 
         }
 
-        public CharMathEnvironment(Boolean allowDigit, Boolean allowLetter, Boolean allowLower, Boolean allowNumber, 
-            Boolean allowPunctuation, Boolean allowSymbols, Boolean allowSeparators, Boolean allowSurrogates, Boolean allowControl, Boolean allowWhiteSpace) 
+        public CharMathEnvironment(bool allowDigit, bool allowLetter, bool allowLower, bool allowNumber,
+            bool allowPunctuation, bool allowSymbols, bool allowSeparators, bool allowSurrogates, bool allowControl, bool allowWhiteSpace)
         {
-            var tempKey = new List<Char>();
-            for (UInt64 i = 0; i <= Char.MaxValue; i++)
+            var tempKey = new List<char>();
+            for (ulong i = 0; i <= char.MaxValue; i++)
             {
-                Char currentChar = Convert.ToChar(i);
-                
+                char currentChar = Convert.ToChar(i);
 
-                if ((allowDigit || !Char.IsDigit(currentChar))
-                    && (allowLetter || !Char.IsLetter(currentChar))
-                    && (allowLower || !Char.IsLower(currentChar))
-                    && (allowNumber || !Char.IsNumber(currentChar))
-                    && (allowPunctuation || !Char.IsPunctuation(currentChar))
-                    && (allowSymbols || !Char.IsSymbol(currentChar))
-                    && (allowSeparators || !Char.IsSeparator(currentChar))
-                    && (allowSurrogates || !Char.IsSurrogate(currentChar))
-                    && (allowControl || !Char.IsControl(currentChar))
-                    && (allowWhiteSpace || !Char.IsWhiteSpace(currentChar)))
+
+                if ((allowDigit || !char.IsDigit(currentChar))
+                    && (allowLetter || !char.IsLetter(currentChar))
+                    && (allowLower || !char.IsLower(currentChar))
+                    && (allowNumber || !char.IsNumber(currentChar))
+                    && (allowPunctuation || !char.IsPunctuation(currentChar))
+                    && (allowSymbols || !char.IsSymbol(currentChar))
+                    && (allowSeparators || !char.IsSeparator(currentChar))
+                    && (allowSurrogates || !char.IsSurrogate(currentChar))
+                    && (allowControl || !char.IsControl(currentChar))
+                    && (allowWhiteSpace || !char.IsWhiteSpace(currentChar)))
                 {
                     tempKey.Add(currentChar);
                 }
             }
 
-            this.Key = new ReadOnlyCollection<Char>(tempKey);
+            Key = new ReadOnlyCollection<char>(tempKey);
 
-            this.Base = (Decimal)tempKey.Count;
+            Base = tempKey.Count;
 
-            this.SetupMathEnvironment();
+            SetupMathEnvironment();
         }
-        public CharMathEnvironment(Char size)
+        public CharMathEnvironment(char size)
         {
-            var tempKey = new List<Char>();
+            var tempKey = new List<char>();
 
-            for (UInt64 i = 0; i < size; i++)
+            for (ulong i = 0; i < size; i++)
             {
-                Char currentChar = Convert.ToChar(i);
+                char currentChar = Convert.ToChar(i);
                 tempKey.Add(currentChar);
             }
 
-            this.Key = new ReadOnlyCollection<Char>(tempKey);
+            Key = new ReadOnlyCollection<char>(tempKey);
 
-            this.Base = (Decimal)size;
+            Base = size;
 
-            this.SetupMathEnvironment();
+            SetupMathEnvironment();
         }
 
-        public CharMathEnvironment(String rawKey)
+        public CharMathEnvironment(string rawKey)
         {
-            var tempKey = new List<Char>();
+            var tempKey = new List<char>();
 
-            foreach (Char segment in rawKey.ToCharArray())
+            foreach (char segment in rawKey.ToCharArray())
             {
                 if (!tempKey.Contains(segment))
                 {
@@ -76,43 +77,43 @@ namespace VariableBase.Mathematics
                 }
             }
 
-            this.Key = new ReadOnlyCollection<Char>(tempKey);
+            Key = new ReadOnlyCollection<char>(tempKey);
 
-            this.Base = (UInt64)this.Key.Count;
+            Base = (ulong)Key.Count;
 
-            this.SetupMathEnvironment();
-        }
-        
-        public Number OpenNumberFile(String folderName, String fileName)
-        {
-            return this.GetNumber(Number.StorageRepository.Get(folderName, fileName));
+            SetupMathEnvironment();
         }
 
-        public Number GetNumber(String[] wholeNumberSegments, Boolean isNegative = false)
+        //public Number OpenNumberFile(string folderName, string fileName)
+        //{
+        //    return this.GetNumber(Number.StorageRepository.Get(folderName, fileName));
+        //}
+
+        public Number GetNumber(string[] wholeNumberSegments, bool isNegative = false)
         {
-            return new Number(this, new NumberSegments(wholeNumberSegments.Select((x) => UInt64.Parse(x)).ToArray()),
+            return new Number(this, new NumberSegments(wholeNumberSegments.Select((x) => ulong.Parse(x)).ToArray()),
                                null, isNegative);
         }
 
-        public Number GetNumber(NumberSegments segments, Boolean isNegative = false)
+        public Number GetNumber(NumberSegments segments, bool isNegative = false)
         {
             return new Number(this, segments, null, isNegative);
         }
 
-        public Number GetNumber(Decimal rawDecimal)
+        public Number GetNumber(decimal rawDecimal)
         {
             //FIX: include fraction
-            var resultRaw = new List<Decimal>();
-            Boolean isNegative = false;
+            var resultRaw = new List<decimal>();
+            bool isNegative = false;
             if (rawDecimal < 0)
             {
                 isNegative = true;
                 rawDecimal = Math.Abs(rawDecimal);
             }
 
-            if (rawDecimal < this.Base)
+            if (rawDecimal < Base)
             {
-                return this.KeyNumber[(Int32)rawDecimal];
+                return KeyNumber[(int)rawDecimal];
             }
 
             if (rawDecimal == 0)
@@ -122,15 +123,15 @@ namespace VariableBase.Mathematics
             else
             {
 
-                Decimal carryOver = rawDecimal;
+                decimal carryOver = rawDecimal;
                 while (carryOver > 0)
                 {
-                    if (carryOver >= this.Base)
+                    if (carryOver >= Base)
                     {
-                        Decimal columnResultRaw = 0;
-                        columnResultRaw = carryOver % this.Base;
+                        decimal columnResultRaw = 0;
+                        columnResultRaw = carryOver % Base;
                         resultRaw.Add(columnResultRaw);
-                        carryOver = ((carryOver - columnResultRaw) / this.Base);
+                        carryOver = (carryOver - columnResultRaw) / Base;
                     }
                     else
                     {
@@ -143,34 +144,34 @@ namespace VariableBase.Mathematics
             return new Number(this, new NumberSegments(resultRaw), null, isNegative);
         }
 
-        public Number GetNumber(String wholeNumber, String fractionNumerator = null, String fractionDenominator = null, Boolean isNegative = false)
+        public Number GetNumber(string wholeNumber, string fractionNumerator = null, string fractionDenominator = null, bool isNegative = false)
         {
-            List<Char> wholeNumberSegments = wholeNumber.ToCharArray().Reverse().ToList();
+            List<char> wholeNumberSegments = wholeNumber.ToCharArray().Reverse().ToList();
 
-            this.ValidateWholeNumber(wholeNumberSegments);
+            ValidateWholeNumber(wholeNumberSegments);
 
-            if (!String.IsNullOrEmpty(fractionNumerator) && !String.IsNullOrEmpty(fractionDenominator))
+            if (!string.IsNullOrEmpty(fractionNumerator) && !string.IsNullOrEmpty(fractionDenominator))
             {
-                List<Char> fractionNumeratorSegments = fractionNumerator.ToCharArray().Reverse().ToList();
-                List<Char> fractionDenominatorSegments = fractionDenominator.ToCharArray().Reverse().ToList();
+                List<char> fractionNumeratorSegments = fractionNumerator.ToCharArray().Reverse().ToList();
+                List<char> fractionDenominatorSegments = fractionDenominator.ToCharArray().Reverse().ToList();
 
-                this.ValidateFraction(fractionNumeratorSegments, fractionDenominatorSegments);
-                return new Number(this, 
-                    new NumberSegments(wholeNumberSegments.Select(x => (UInt16)this.Key.IndexOf(x)).ToArray()),
-                    new NumberSegments(fractionNumeratorSegments.Select(x => (UInt16)this.Key.IndexOf(x)).ToArray()),
-                    new NumberSegments(fractionDenominatorSegments.Select(x => (UInt16)this.Key.IndexOf(x)).ToArray()),
+                ValidateFraction(fractionNumeratorSegments, fractionDenominatorSegments);
+                return new Number(this,
+                    new NumberSegments(wholeNumberSegments.Select(x => (ushort)Key.IndexOf(x)).ToArray()),
+                    new NumberSegments(fractionNumeratorSegments.Select(x => (ushort)Key.IndexOf(x)).ToArray()),
+                    new NumberSegments(fractionDenominatorSegments.Select(x => (ushort)Key.IndexOf(x)).ToArray()),
                     isNegative);
             }
             else
             {
-                return new Number(this, new NumberSegments(wholeNumberSegments.Select((x) => (UInt16)this.Key.IndexOf(x)).ToArray()), 
-                    default(Fraction), isNegative);
+                return new Number(this, new NumberSegments(wholeNumberSegments.Select((x) => (ushort)Key.IndexOf(x)).ToArray()),
+                    default, isNegative);
             }
         }
 
-        public void ValidateWholeNumber(List<Char> numberSegments)
+        public void ValidateWholeNumber(List<char> numberSegments)
         {
-            while (numberSegments.Count > 1 && numberSegments[numberSegments.Count - 1] == this.Key[0])
+            while (numberSegments.Count > 1 && numberSegments[numberSegments.Count - 1] == Key[0])
             {
                 numberSegments.RemoveAt(numberSegments.Count - 1);
             }
@@ -186,19 +187,19 @@ namespace VariableBase.Mathematics
             }
 
 
-            foreach (Char segment in numberSegments)
+            foreach (char segment in numberSegments)
             {
-                if (this.Base < UInt64.MaxValue - 1 && !this.Key.Contains(segment))
+                if (Base < ulong.MaxValue - 1 && !Key.Contains(segment))
                 {
-                    throw new Exception(String.Format("Invalid Number {0} not found in {1}", segment, this));
+                    throw new Exception(string.Format("Invalid Number {0} not found in {1}", segment, this));
                 }
             }
         }
 
-        public void ValidateFraction(List<Char> numerator, List<Char> denominator)
+        public void ValidateFraction(List<char> numerator, List<char> denominator)
         {
-            this.ValidateWholeNumber(numerator);
-            this.ValidateWholeNumber(denominator);
+            ValidateWholeNumber(numerator);
+            ValidateWholeNumber(denominator);
 
             if (numerator == null || numerator.Count == 0 || numerator.Count == 1 && numerator[0] == 0)
             {
@@ -211,21 +212,21 @@ namespace VariableBase.Mathematics
             }
         }
 
-        public Decimal GetIndex(Char arg)
+        public decimal GetIndex(char arg)
         {
-            return (UInt16)this.Key.IndexOf(arg);
+            return (ushort)Key.IndexOf(arg);
         }
 
         public void SetupMathEnvironment()
         {
             var tempKeyNumber = new List<Number>();
-            for (UInt16 i = 0; i < this.Key.Count; i++)
+            for (ushort i = 0; i < Key.Count; i++)
             {
-                tempKeyNumber.Add(new Number(this, new NumberSegments(new UInt16[] { i }), null, false));
+                tempKeyNumber.Add(new Number(this, new NumberSegments(new ushort[] { i }), null, false));
             }
 
-            this.KeyNumber = new ReadOnlyCollection<Number>(tempKeyNumber);
-            PowerOfFirstNumber = new Number(this, new NumberSegments(new UInt16[] { 0, 1 }), null, false);
+            KeyNumber = new ReadOnlyCollection<Number>(tempKeyNumber);
+            PowerOfFirstNumber = new Number(this, new NumberSegments(new ushort[] { 0, 1 }), null, false);
         }
 
         public Number PowerOfFirstNumber
@@ -240,13 +241,13 @@ namespace VariableBase.Mathematics
             protected set;
         }
 
-        public ReadOnlyCollection<Char> Key
+        public ReadOnlyCollection<char> Key
         {
             get;
             protected set;
         }
 
-        public Decimal Base
+        public decimal Base
         {
             get;
             private set;
@@ -261,14 +262,14 @@ namespace VariableBase.Mathematics
         public override string ToString()
         {
 
-            String result = String.Empty;
-            if (this.Base > 500)
+            string result = string.Empty;
+            if (Base > 500)
             {
-                result = String.Format("B {0}", this.Base);
+                result = string.Format("B {0}", Base);
             }
             else
             {
-                foreach (UInt64 segment in this.Key)
+                foreach (ulong segment in Key)
                 {
                     if (result != null)
                     {
@@ -284,14 +285,14 @@ namespace VariableBase.Mathematics
         {
             unchecked
             {
-                int hashCode = this.Key.GetHashCode();
+                int hashCode = Key.GetHashCode();
                 return hashCode;
             }
         }
 
-        public override Boolean Equals(Object other)
+        public override bool Equals(object other)
         {
-            return this.Equals((IMathEnvironment<Number>)other);
+            return Equals((IMathEnvironment<Number>)other);
         }
 
         public static bool operator ==(CharMathEnvironment a, IMathEnvironment<Number> b)
@@ -304,34 +305,34 @@ namespace VariableBase.Mathematics
             return !a.Equals(b);
         }
 
-        public String GetDefinition()
+        public string GetDefinition()
         {
-            return String.Concat(this.Key);
+            return string.Concat(Key);
         }
 
-        public NumberSegments ParseNumberSegments(String raw)
+        public NumberSegments ParseNumberSegments(string raw)
         {
-           return new NumberSegments(raw.ToCharArray().Select(x2 => this.GetIndex(x2)).Reverse().ToArray());
+            return new NumberSegments(raw.ToCharArray().Select(x2 => GetIndex(x2)).Reverse().ToArray());
         }
 
-        public String ConvertToString(NumberSegments segments)
+        public string ConvertToString(NumberSegments segments)
         {
-            return String.Concat(segments.Select(x => this.Key[(Int32)x]).Reverse());
+            return string.Concat(segments.Select(x => Key[(int)x]).Reverse());
         }
 
-        public Boolean Equals(IMathEnvironment<Number> other)
+        public bool Equals(IMathEnvironment<Number> other)
         {
-            if (object.ReferenceEquals(other, default(IMathEnvironment<Number>)) || this.Base != other.Base)
+            if (ReferenceEquals(other, default(IMathEnvironment<Number>)) || Base != other.Base)
             {
                 return false;
             }
 
-            if (this.Base != other.Base)
+            if (Base != other.Base)
             {
                 return false;
             }
 
-            if (this.Base != other.Base)
+            if (Base != other.Base)
             {
                 return false;
             }

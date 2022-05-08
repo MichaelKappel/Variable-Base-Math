@@ -1,0 +1,5 @@
+C:\GH\MichaelKappel\Variable-Base-Math\NS12.VariableBase.Mathematics.Providers\obj\Debug\net6.0\NS12.VariableBase.Mathematics.Providers.csproj.AssemblyReference.cache
+C:\GH\MichaelKappel\Variable-Base-Math\NS12.VariableBase.Mathematics.Providers\obj\Debug\net6.0\NS12.VariableBase.Mathematics.Providers.GeneratedMSBuildEditorConfig.editorconfig
+C:\GH\MichaelKappel\Variable-Base-Math\NS12.VariableBase.Mathematics.Providers\obj\Debug\net6.0\NS12.VariableBase.Mathematics.Providers.AssemblyInfoInputs.cache
+C:\GH\MichaelKappel\Variable-Base-Math\NS12.VariableBase.Mathematics.Providers\obj\Debug\net6.0\NS12.VariableBase.Mathematics.Providers.AssemblyInfo.cs
+C:\GH\MichaelKappel\Variable-Base-Math\NS12.VariableBase.Mathematics.Providers\obj\Debug\net6.0\NS12.VariableBase.Mathematics.Providers.csproj.CoreCompileInputs.cache

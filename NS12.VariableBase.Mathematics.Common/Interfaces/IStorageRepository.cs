@@ -1,12 +1,13 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Common.Interfaces
+namespace NS12.VariableBase.Mathematics.Common.Interfaces
 {
     public interface IStorageRepository
     {
-        void Create(String containerName, String blobName, String value);
-        String Get(String containerName, String blobName);
+        void Create(string containerName, string blobName, string value);
+        string Get(string containerName, string blobName);
     }
 }

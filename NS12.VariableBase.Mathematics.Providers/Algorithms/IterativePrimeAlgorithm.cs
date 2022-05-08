@@ -5,11 +5,14 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
-using Common.Interfaces;
-using Common.Models;
-using static Common.Models.NumberSegmentDictionary;
 
-namespace VariableBase.Mathematics.Algorithms
+using NS12.VariableBase.Mathematics.Common.Models;
+using NS12.VariableBase.Mathematics.Common.Interfaces;
+using NS12.VariableBase.Mathematics.Providers;
+
+using static NS12.VariableBase.Mathematics.Common.Models.NumberSegmentDictionary;
+
+namespace NS12.VariableBase.Mathematics.Providers.Algorithms
 {
     /// <summary>
     ///  Prime Algorithm
@@ -19,41 +22,41 @@ namespace VariableBase.Mathematics.Algorithms
     public class IterativePrimeAlgorithm : IPrimeAlgorithm<Number>
     {
         public readonly DateTime Started;
-        public NumberSegments MaxPrimeTested = new NumberSegments(new Decimal[] { 1 });
-        public Decimal[][] PrimeNumbers = default(Decimal[][]);
+        public NumberSegments MaxPrimeTested = new NumberSegments(new decimal[] { 1 });
+        public decimal[][] PrimeNumbers = default;
 
         public IterativePrimeAlgorithm()
         {
-            this.Started = DateTime.Now;
+            Started = DateTime.Now;
         }
 
-        public Boolean SavePrimes { get; set; }
+        public bool SavePrimes { get; set; }
 
-        public Boolean IsPrime(Number number)
+        public bool IsPrime(Number number)
         {
-            Boolean isPrime = true;
+            bool isPrime = true;
             if (number.Size > 3)
             {
                 throw new NotImplementedException();
             }
             else
             {
-                Decimal savedNumberNumber = number.Segments[0];
+                decimal savedNumberNumber = number.Segments[0];
 
                 if (number.Segments.Length <= 3)
                 {
                     if (number.Segments.Length > 1)
                     {
-                        savedNumberNumber = savedNumberNumber + (number.Segments[1] * number.Environment.Base);
+                        savedNumberNumber = savedNumberNumber + number.Segments[1] * number.Environment.Base;
                     }
 
                     if (number.Segments.Length > 2)
                     {
-                        savedNumberNumber = savedNumberNumber + (number.Segments[2] * (number.Environment.Base * number.Environment.Base));
+                        savedNumberNumber = savedNumberNumber + number.Segments[2] * (number.Environment.Base * number.Environment.Base);
                     }
 
-                    Decimal squareRootOfPrime = (Decimal)Math.Sqrt((Double)savedNumberNumber);
-                    for (Int32 i = 2; i < squareRootOfPrime; i++)
+                    decimal squareRootOfPrime = (decimal)Math.Sqrt((double)savedNumberNumber);
+                    for (int i = 2; i < squareRootOfPrime; i++)
                     {
                         if (savedNumberNumber % i == 0)
                         {
@@ -64,11 +67,11 @@ namespace VariableBase.Mathematics.Algorithms
 
                     if (isPrime)
                     {
-                        Debug.WriteLine(String.Format("Verified prime: {0}", savedNumberNumber));
+                        Debug.WriteLine(string.Format("Verified prime: {0}", savedNumberNumber));
                     }
                     else
                     {
-                        Debug.WriteLine(String.Format("Bad data in prime file: {0}", savedNumberNumber));
+                        Debug.WriteLine(string.Format("Bad data in prime file: {0}", savedNumberNumber));
                     }
                 }
             }
@@ -79,7 +82,7 @@ namespace VariableBase.Mathematics.Algorithms
         public (Number Numerator, Number Denominator) GetComposite(Number a)
         {
             IMathEnvironment<Number> environment = a.Environment;
-            (Number Numerator, Number Denominator) result = default((Number Numerator, Number Denominator));
+            (Number Numerator, Number Denominator) result = default;
             if (a <= environment.GetNumber(3))
             {
 
@@ -90,12 +93,12 @@ namespace VariableBase.Mathematics.Algorithms
             }
             else
             {
-                Number halfPrime = environment.GetNumber(System.Math.Ceiling(a.Segments[0] / 2));
+                Number halfPrime = environment.GetNumber(Math.Ceiling(a.Segments[0] / 2));
                 Number testNumber = environment.GetNumber(1);
                 while (testNumber <= halfPrime)
                 {
-                    Number currentNumber =  a / testNumber;
-                    if (currentNumber.Fragment == default(Fraction))
+                    Number currentNumber = a / testNumber;
+                    if (currentNumber.Fragment == default)
                     {
                         result = (currentNumber, testNumber);
                         break;
@@ -106,9 +109,9 @@ namespace VariableBase.Mathematics.Algorithms
 #if DEBUG
             if (a.Size == 1)
             {
-                Boolean isPrime = true;
-                Decimal squareRootOfPrime = (Decimal)Math.Sqrt((Double)a.Segments[0]);
-                Int32 i = 2;
+                bool isPrime = true;
+                decimal squareRootOfPrime = (decimal)Math.Sqrt((double)a.Segments[0]);
+                int i = 2;
                 for (; i <= squareRootOfPrime; i++)
                 {
                     if (a.Segments[0] % i == 0)
@@ -118,19 +121,19 @@ namespace VariableBase.Mathematics.Algorithms
                     }
                 }
 
-                if (isPrime == false && result == default((Number Numerator, Number Denominator)))
+                if (isPrime == false && result == default)
                 {
-                    throw new Exception(String.Format("Math Error in GetComposite {0} should have had a Composite of {1}", a.Segments[0], i));
+                    throw new Exception(string.Format("Math Error in GetComposite {0} should have had a Composite of {1}", a.Segments[0], i));
                 }
-                else if (isPrime == true && result != default((Number Numerator, Number Denominator)))
+                else if (isPrime == true && result != default)
                 {
-                    throw new Exception(String.Format("Math Error in GetComposite {0} should NOT have a Composite of {1} x {2}", a.Segments[0], result.Numerator.Segments[0], result.Denominator.Segments[0]));
+                    throw new Exception(string.Format("Math Error in GetComposite {0} should NOT have a Composite of {1} x {2}", a.Segments[0], result.Numerator.Segments[0], result.Denominator.Segments[0]));
                 }
             }
 
-            if (result != default((Number Numerator, Number Denominator)))
+            if (result != default)
             {
-                foreach (Decimal segment in result.Numerator.Segments)
+                foreach (decimal segment in result.Numerator.Segments)
                 {
                     if (segment > environment.Base)
                     {
@@ -142,7 +145,7 @@ namespace VariableBase.Mathematics.Algorithms
                     }
                 }
 
-                foreach (Decimal segment in result.Denominator.Segments)
+                foreach (decimal segment in result.Denominator.Segments)
                 {
                     if (segment > environment.Base)
                     {

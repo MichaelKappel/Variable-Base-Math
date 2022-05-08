@@ -1,11 +1,12 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Common.Models
+namespace NS12.VariableBase.Mathematics.Common.Models
 {
-    public class NumberSegmentDictionary : Dictionary<Decimal, NumberSegmentDictionary>
+    public class NumberSegmentDictionary : Dictionary<decimal, NumberSegmentDictionary>
     {
 
         public enum NumberTypes
@@ -19,46 +20,48 @@ namespace Common.Models
 
         public NumberTypes NumberType;
 
-        public NumberSegmentDictionary(NumberSegmentDictionary parent){
-            this.Parent = parent;
+        public NumberSegmentDictionary(NumberSegmentDictionary parent)
+        {
+            Parent = parent;
         }
-        
-        public void Add(NumberSegments segments, NumberTypes numberType, NumberSegmentDictionary parent = default(NumberSegmentDictionary))
+
+        public void Add(NumberSegments segments, NumberTypes numberType, NumberSegmentDictionary parent = default)
         {
             NumberSegmentDictionary lastItem;
-            if (this.Parent == default(NumberSegmentDictionary))
+            if (Parent == default(NumberSegmentDictionary))
             {
                 NumberSegmentDictionary topLevelNumberSegment;
-                if (this.TryGetValue(segments.Length, out topLevelNumberSegment))
+                if (TryGetValue(segments.Length, out topLevelNumberSegment))
                 {
                     lastItem = topLevelNumberSegment;
                 }
                 else
                 {
                     lastItem = new NumberSegmentDictionary(this);
-                    this.Add(segments.Length, lastItem);
+                    Add(segments.Length, lastItem);
                 }
             }
             else
             {
-                lastItem = this.Parent;
+                lastItem = Parent;
             }
-            
+
             for (var i = segments.Length - 1; i >= 0; i--)
             {
                 try
                 {
-                    this.AddAt(segments[i], numberType, lastItem);
+                    AddAt(segments[i], numberType, lastItem);
                 }
-                catch (Exception) {
-                    this.AddAt(segments[i], numberType, lastItem);
+                catch (Exception)
+                {
+                    AddAt(segments[i], numberType, lastItem);
                 }
             }
 
             lastItem.NumberType = numberType;
         }
 
-        public NumberSegmentDictionary AddAt(Decimal segment, NumberTypes numberType, NumberSegmentDictionary lastItem)
+        public NumberSegmentDictionary AddAt(decimal segment, NumberTypes numberType, NumberSegmentDictionary lastItem)
         {
             NumberSegmentDictionary childSegment;
             if (lastItem.TryGetValue(segment, out childSegment))
@@ -72,14 +75,14 @@ namespace Common.Models
             }
             return lastItem;
         }
-        
+
         public NumberTypes GetNumberType(NumberSegments segments)
         {
             NumberSegmentDictionary lastItem;
-            if (this.Parent == default(NumberSegmentDictionary))
+            if (Parent == default(NumberSegmentDictionary))
             {
                 NumberSegmentDictionary topLevelNumberSegment;
-                if (this.TryGetValue(segments.Length, out topLevelNumberSegment))
+                if (TryGetValue(segments.Length, out topLevelNumberSegment))
                 {
                     lastItem = topLevelNumberSegment;
                 }
@@ -90,9 +93,9 @@ namespace Common.Models
             }
             else
             {
-                lastItem = this.Parent;
+                lastItem = Parent;
             }
-            
+
             for (var i = segments.Length - 1; i >= 0; i--)
             {
                 NumberSegmentDictionary childSegment;
@@ -101,7 +104,7 @@ namespace Common.Models
                     lastItem = childSegment;
                 }
                 else
-                { 
+                {
                     return NumberTypes.Unknown;
                 }
             }
@@ -109,13 +112,13 @@ namespace Common.Models
             return lastItem.NumberType;
         }
 
-        public Boolean Contains(NumberSegments segments)
+        public bool Contains(NumberSegments segments)
         {
 
             NumberSegmentDictionary lastItem;
-            if (this.Parent == default(NumberSegmentDictionary))
+            if (Parent == default(NumberSegmentDictionary))
             {
-                if (!this.ContainsKey(segments.Length))
+                if (!ContainsKey(segments.Length))
                 {
                     return false;
                 }
@@ -123,7 +126,7 @@ namespace Common.Models
             }
             else
             {
-                lastItem = this.Parent;
+                lastItem = Parent;
             }
 
 
@@ -144,18 +147,18 @@ namespace Common.Models
         {
             List<NumberSegments> numberSegments = new List<NumberSegments>();
 
-            if (this.NumberType == numberType)
+            if (NumberType == numberType)
             {
-                NumberSegmentDictionary parent  = this.Parent;
-                var segments = new List<Decimal>();
+                NumberSegmentDictionary parent = Parent;
+                var segments = new List<decimal>();
                 while (parent != default(NumberSegmentDictionary))
                 {
-                    segments.Add((Decimal)parent.FirstOrDefault(x => x.Value == this).Key);
+                    segments.Add(parent.FirstOrDefault(x => x.Value == this).Key);
                 }
                 numberSegments.Add(new NumberSegments(segments));
             }
-            
-            for (var i = 0; i < this.Count; i++)
+
+            for (var i = 0; i < Count; i++)
             {
                 List<NumberSegments> childList = this[i].ToList(numberType);
                 if (childList != default(List<NumberSegments>))
@@ -167,9 +170,9 @@ namespace Common.Models
             return numberSegments;
         }
 
-        public override String ToString()
+        public override string ToString()
         {
-            return this.Count + "," + String.Join(",", this.ToList().Count());
+            return Count + "," + string.Join(",", this.ToList().Count());
         }
     }
 }

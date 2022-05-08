@@ -1,14 +1,15 @@
-﻿using Common.Interfaces;
+﻿using NS12.VariableBase.Mathematics.Common.Interfaces
+
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Common.Models
+namespace NS12.VariableBase.Mathematics.Common.Models
 {
     public class FibonacciSympleModel
     {
-        public Int32 Base { get; set; }
-        public String First { get; set; }
-        public String Second { get; set; }
+        public int Base { get; set; }
+        public string First { get; set; }
+        public string Second { get; set; }
     }
 }

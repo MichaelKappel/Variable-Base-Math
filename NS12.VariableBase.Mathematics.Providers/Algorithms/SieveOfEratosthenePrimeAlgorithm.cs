@@ -8,11 +8,15 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using Common.Interfaces;
-using Common.Models;
-using static Common.Models.NumberSegmentDictionary;
 
-namespace VariableBase.Mathematics.Algorithms
+using NS12.VariableBase.Mathematics.Common.Models;
+using NS12.VariableBase.Mathematics.Common.Interfaces;
+using NS12.VariableBase.Mathematics.Common.Models;
+using NS12.VariableBase.Mathematics.Providers;
+
+using static NS12.VariableBase.Mathematics.Common.Models.NumberSegmentDictionary;
+
+namespace NS12.VariableBase.Mathematics.Providers.Algorithms
 {
     /// <summary>
     ///  Prime Algorithm
@@ -20,23 +24,23 @@ namespace VariableBase.Mathematics.Algorithms
     ///  By: Michael Kappel, MCPD
     ///  Date: 1/23/2019
     /// </summary>
-    public class SieveOfEratosthenePrimeAlgorithm: IPrimeAlgorithm<Number>
+    public class SieveOfEratosthenePrimeAlgorithm : IPrimeAlgorithm<Number>
     {
         public readonly DateTime Started;
         public Number PrimeListMaxNumber;
-        public IDictionary<Int32, (IList<Number> Numbers, NumberSegmentDictionary Segments)> PrimeNumberTree = new Dictionary<Int32, (IList<Number> NumberList, NumberSegmentDictionary NumberDictionary)>();
+        public IDictionary<int, (IList<Number> Numbers, NumberSegmentDictionary Segments)> PrimeNumberTree = new Dictionary<int, (IList<Number> NumberList, NumberSegmentDictionary NumberDictionary)>();
         public Action<Number> OnPrimeFound;
 
-        public void SavePrimesFile(String fileNameWithoutExtension)
+        public void SavePrimesFile(string fileNameWithoutExtension)
         {
-            foreach (KeyValuePair<Int32, (IList<Number> Numbers, NumberSegmentDictionary Segments)> primesInMemory in this.PrimeNumberTree)
+            foreach (KeyValuePair<int, (IList<Number> Numbers, NumberSegmentDictionary Segments)> primesInMemory in PrimeNumberTree)
             {
-                IEnumerable<String> primes = primesInMemory.Value.Numbers.Select(x => x.GetCharArray()).OrderBy(x => x).Distinct();
+                IEnumerable<string> primes = primesInMemory.Value.Numbers.Select(x => x.GetCharArray()).OrderBy(x => x).Distinct();
                 using (FileStream fs = File.Open(fileNameWithoutExtension + ".p" + primesInMemory.Key, FileMode.Create))
                 {
                     using (StreamWriter sw = new StreamWriter(fs))
                     {
-                        foreach (String prime in primes)
+                        foreach (string prime in primes)
                         {
                             sw.WriteLine(prime);
                         }
@@ -45,7 +49,7 @@ namespace VariableBase.Mathematics.Algorithms
             }
         }
 
-        public void AddToFile(String fileName, String prime)
+        public void AddToFile(string fileName, string prime)
         {
             using (FileStream fs = File.Open(fileName, FileMode.Append))
             {
@@ -55,59 +59,59 @@ namespace VariableBase.Mathematics.Algorithms
                 }
             }
         }
-        
-        public SieveOfEratosthenePrimeAlgorithm(IList<Number> seedPrimeNumbers, Action<Number> onPrimeFound = default(Action<Number>))
+
+        public SieveOfEratosthenePrimeAlgorithm(IList<Number> seedPrimeNumbers, Action<Number> onPrimeFound = default)
         {
             foreach (Number prime in seedPrimeNumbers)
             {
-                Int32 environmentBase = (Int32)prime.Environment.Base;
-                if (!this.PrimeNumberTree.ContainsKey(environmentBase))
+                int environmentBase = (int)prime.Environment.Base;
+                if (!PrimeNumberTree.ContainsKey(environmentBase))
                 {
-                    this.PrimeNumberTree.Add(environmentBase, (new List<Number>(), new NumberSegmentDictionary(null)));
+                    PrimeNumberTree.Add(environmentBase, (new List<Number>(), new NumberSegmentDictionary(null)));
                 }
 
-                this.PrimeNumberTree[environmentBase].Numbers.Add(prime);
-                this.PrimeNumberTree[environmentBase].Segments.Add(prime.Segments, NumberTypes.Prime);
+                PrimeNumberTree[environmentBase].Numbers.Add(prime);
+                PrimeNumberTree[environmentBase].Segments.Add(prime.Segments, NumberTypes.Prime);
 
-                if (onPrimeFound != default(Action<Number>))
+                if (onPrimeFound != default)
                 {
                     onPrimeFound(prime);
                 }
             }
 
-            this.Started = DateTime.Now;
-            this.OnPrimeFound = onPrimeFound;
+            Started = DateTime.Now;
+            OnPrimeFound = onPrimeFound;
         }
 
 
-        public SieveOfEratosthenePrimeAlgorithm(IMathEnvironment<Number> environment, IList<String> primeNumbersRaw, Action<Number> onPrimeFound = default(Action<Number>))
+        public SieveOfEratosthenePrimeAlgorithm(IMathEnvironment<Number> environment, IList<string> primeNumbersRaw, Action<Number> onPrimeFound = default)
         {
-            this.PrimeNumberTree.Add((Int32)environment.Base, (new List<Number>(), new NumberSegmentDictionary(null)));
+            PrimeNumberTree.Add((int)environment.Base, (new List<Number>(), new NumberSegmentDictionary(null)));
 
             for (var i = 0; i < primeNumbersRaw.Count; i++)
             {
                 Number prime = environment.GetNumber(primeNumbersRaw[i]);
-                this.PrimeNumberTree[(Int32)environment.Base].Numbers.Add(prime);
-                this.PrimeNumberTree[(Int32)environment.Base].Segments.Add(prime.Segments, NumberTypes.Prime);
+                PrimeNumberTree[(int)environment.Base].Numbers.Add(prime);
+                PrimeNumberTree[(int)environment.Base].Segments.Add(prime.Segments, NumberTypes.Prime);
 
-                if (prime > this.PrimeListMaxNumber)
+                if (prime > PrimeListMaxNumber)
                 {
-                    this.PrimeListMaxNumber = prime;
+                    PrimeListMaxNumber = prime;
                 }
-                
-                if (onPrimeFound != default(Action<Number>))
+
+                if (onPrimeFound != default)
                 {
                     onPrimeFound(prime);
                 }
             }
 
-            this.Started = DateTime.Now;
-            this.OnPrimeFound = onPrimeFound;
+            Started = DateTime.Now;
+            OnPrimeFound = onPrimeFound;
         }
 
-        public Boolean IsPrime(Number number)
+        public bool IsPrime(Number number)
         {
-            NumberTypes numberType = this.GetNumberType(number);
+            NumberTypes numberType = GetNumberType(number);
             if (numberType == NumberTypes.Prime)
             {
                 return true;
@@ -118,8 +122,8 @@ namespace VariableBase.Mathematics.Algorithms
             }
             else
             {
-                (Number Numerator, Number Denominator) numberComposite = this.GetComposite(number);
-                if (numberComposite == default((Number Numerator, Number Denominator)))
+                (Number Numerator, Number Denominator) numberComposite = GetComposite(number);
+                if (numberComposite == default)
                 {
                     return true;
                 }
@@ -134,13 +138,13 @@ namespace VariableBase.Mathematics.Algorithms
         public NumberTypes GetNumberType(Number number)
         {
             IMathEnvironment<Number> environment = number.Environment;
-            if ((number > number.Environment.GetNumber(2) && number.IsEven()) || number == environment.GetNumber(0))
+            if (number > number.Environment.GetNumber(2) && number.IsEven() || number == environment.GetNumber(0))
             {
                 return NumberTypes.Composite;
             }
 
-            NumberTypes currentNumberType = this.PrimeNumberTree[(Int32)environment.Base].Segments.GetNumberType(number.Segments);
-            if (currentNumberType == NumberTypes.Unknown &&  number < this.PrimeListMaxNumber)
+            NumberTypes currentNumberType = PrimeNumberTree[(int)environment.Base].Segments.GetNumberType(number.Segments);
+            if (currentNumberType == NumberTypes.Unknown && number < PrimeListMaxNumber)
             {
                 return NumberTypes.Composite;
             }
@@ -148,16 +152,16 @@ namespace VariableBase.Mathematics.Algorithms
             {
                 return currentNumberType;
             }
-            
-            (Number Numerator, Number Denominator) numberComposite = this.GetComposite(number);
-            if (numberComposite == default((Number Numerator, Number Denominator)))
+
+            (Number Numerator, Number Denominator) numberComposite = GetComposite(number);
+            if (numberComposite == default)
             {
-                this.PrimeNumberTree[(Int32)environment.Base].Segments.Add(number.Segments, NumberTypes.Prime);
-                this.PrimeNumberTree[(Int32)environment.Base].Numbers.Add(number);
-                this.PrimeListMaxNumber = number;
-                if (this.OnPrimeFound != default(Action<Number>))
+                PrimeNumberTree[(int)environment.Base].Segments.Add(number.Segments, NumberTypes.Prime);
+                PrimeNumberTree[(int)environment.Base].Numbers.Add(number);
+                PrimeListMaxNumber = number;
+                if (OnPrimeFound != default)
                 {
-                    this.OnPrimeFound(number);
+                    OnPrimeFound(number);
                 }
                 return NumberTypes.Prime;
             }
@@ -169,7 +173,7 @@ namespace VariableBase.Mathematics.Algorithms
 
         public (Number Numerator, Number Denominator) GetComposite(Number a)
         {
-            (Number Numerator, Number Denominator) result = default((Number Numerator, Number Denominator));
+            (Number Numerator, Number Denominator) result = default;
             IMathEnvironment<Number> environment = a.Environment;
             if (Number.IsBottom(a) || Number.IsFirst(a) || a == environment.GetNumber(2) || a == environment.GetNumber(3))
             {
@@ -177,28 +181,28 @@ namespace VariableBase.Mathematics.Algorithms
             }
             else if (a.IsEven())
             {
-                result = (a / environment.GetNumber(2), environment.GetNumber(2)); 
+                result = (a / environment.GetNumber(2), environment.GetNumber(2));
             }
             else
             {
                 Number maxNumber = a.SquareRoot();
-                if (maxNumber.Fragment == default(Fraction))
+                if (maxNumber.Fragment == default)
                 {
                     result = (maxNumber, maxNumber);
                 }
                 else
                 {
-                    Number lastResultWholeNumber = default(Number);
+                    Number lastResultWholeNumber = default;
 
-                    Int32 iPrime = 0;
+                    int iPrime = 0;
 
-                    Boolean usePrime = true;
+                    bool usePrime = true;
 
-                    Number currentNumberToTry = this.PrimeNumberTree[(Int32)environment.Base].Numbers[iPrime];
+                    Number currentNumberToTry = PrimeNumberTree[(int)environment.Base].Numbers[iPrime];
                     while (currentNumberToTry <= maxNumber)
                     {
                         Number currentNumber = Number.Operator.Divide(a, currentNumberToTry, lastResultWholeNumber);
-                        if (currentNumber.Fragment == default(Fraction))
+                        if (currentNumber.Fragment == default)
                         {
                             result = (currentNumber, currentNumberToTry);
                             break;
@@ -208,15 +212,15 @@ namespace VariableBase.Mathematics.Algorithms
                         if (usePrime)
                         {
                             iPrime++;
-                            if (iPrime >= this.PrimeNumberTree[(Int32)environment.Base].Numbers.Count)
+                            if (iPrime >= PrimeNumberTree[(int)environment.Base].Numbers.Count)
                             {
                                 usePrime = false;
                             }
 
                             if (usePrime)
                             {
-                                var nextNumberToTry = this.PrimeNumberTree[(Int32)environment.Base].Numbers[iPrime];
-                                if (nextNumberToTry >= this.PrimeListMaxNumber)
+                                var nextNumberToTry = PrimeNumberTree[(int)environment.Base].Numbers[iPrime];
+                                if (nextNumberToTry >= PrimeListMaxNumber)
                                 {
                                     usePrime = false;
                                 }

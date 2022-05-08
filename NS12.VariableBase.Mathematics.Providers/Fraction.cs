@@ -2,61 +2,61 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
-using Common.Models;
-using VariableBase.Mathematics.Operators;
-using Common.Interfaces;
+using NS12.VariableBase.Mathematics.Common.Models;
+using NS12.VariableBase.Mathematics.Providers.Operators;
+using NS12.VariableBase.Mathematics.Common.Interfaces;
 
-namespace VariableBase.Mathematics
+namespace NS12.VariableBase.Mathematics.Providers
 {
-    public class Fraction: IEquatable<Fraction>, IComparable<Fraction>
+    public class Fraction : IEquatable<Fraction>, IComparable<Fraction>
     {
 
         public static IOperator<Fraction> Operator = new FractionOperator();
 
         internal Fraction(IMathEnvironment<Number> environment, NumberSegments numerator, NumberSegments denominator)
         {
-            this.Numerator = new Number(environment, numerator, null, null, false);
-            this.Denominator = new Number(environment, denominator, null, null, false);
+            Numerator = new Number(environment, numerator, null, null, false);
+            Denominator = new Number(environment, denominator, null, null, false);
         }
 
         internal Fraction(Number numerator, Number denominator)
         {
-            this.Numerator =  numerator;
-            this.Denominator = denominator;
+            Numerator = numerator;
+            Denominator = denominator;
         }
 
         public Number Numerator { get; protected set; }
         public Number Denominator { get; protected set; }
 
         #region overrides
-        public override String ToString()
+        public override string ToString()
         {
-            return String.Format("{0}/{1}", this.Numerator, this.Denominator);
+            return string.Format("{0}/{1}", Numerator, Denominator);
         }
 
         public override int GetHashCode()
         {
             unchecked
             {
-                Decimal hashCode1 = this.Numerator.GetHashCode();
-                Decimal hashCode2 = this.Denominator.GetHashCode();
-                Decimal hashCode = hashCode1 + hashCode2;
-                if (hashCode <= Int32.MaxValue)
+                decimal hashCode1 = Numerator.GetHashCode();
+                decimal hashCode2 = Denominator.GetHashCode();
+                decimal hashCode = hashCode1 + hashCode2;
+                if (hashCode <= int.MaxValue)
                 {
-                    return (Int32)hashCode;
+                    return (int)hashCode;
                 }
                 else
                 {
-                    return (Int32)(hashCode - Int32.MaxValue);
+                    return (int)(hashCode - int.MaxValue);
                 }
             }
         }
-        public override Boolean Equals(Object other)
+        public override bool Equals(object other)
         {
             return Operator.Equals(this, (Fraction)other);
         }
 
-        public Boolean Equals(Fraction other)
+        public bool Equals(Fraction other)
         {
             return Operator.Equals(this, other);
         }
@@ -143,11 +143,11 @@ namespace VariableBase.Mathematics
         }
 
         #endregion
-       
+
         public Fraction IncreaseDenominator(Number multiplier)
         {
-            Number biggerNumerator = this.Numerator.Fragment.Denominator * multiplier;
-            Number biggerDenominator = this.Numerator.Fragment.Denominator * multiplier;
+            Number biggerNumerator = Numerator.Fragment.Denominator * multiplier;
+            Number biggerDenominator = Numerator.Fragment.Denominator * multiplier;
 
             return new Fraction(biggerNumerator, biggerDenominator);
         }
@@ -156,7 +156,7 @@ namespace VariableBase.Mathematics
         public Fraction AsWholeFraction()
         {
             Fraction biggerLookingnumber = this;
-            if (this.Numerator.Fragment != default(Fraction))
+            if (Numerator.Fragment != default)
             {
                 Number nWholeNumerator = biggerLookingnumber.Numerator.Fragment.Denominator * biggerLookingnumber.Numerator.Fragment.Numerator;
                 Number nBiggerDenominator = biggerLookingnumber.Numerator.Fragment.Denominator * biggerLookingnumber.Denominator;
@@ -164,7 +164,7 @@ namespace VariableBase.Mathematics
                 biggerLookingnumber = new Fraction(nWholeNumerator, nBiggerDenominator);
             }
 
-            if (biggerLookingnumber.Denominator.Fragment != default(Fraction))
+            if (biggerLookingnumber.Denominator.Fragment != default)
             {
                 Number dWholeNumerator = biggerLookingnumber.Denominator.Fragment.Denominator * biggerLookingnumber.Denominator.Fragment.Numerator;
                 Number dBiggerDenominator = biggerLookingnumber.Denominator.Fragment.Denominator * biggerLookingnumber.Numerator;

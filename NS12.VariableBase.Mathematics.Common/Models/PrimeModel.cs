@@ -1,9 +1,11 @@
-﻿using Common.Interfaces;
+﻿
+using NS12.VariableBase.Mathematics.Common.Interfaces;
+
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Common.Models
+namespace NS12.VariableBase.Mathematics.Common.Models
 {
     public class PrimeModel<T>
     {

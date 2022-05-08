@@ -390,6 +390,29 @@
         "build": {
           "buildTransitive/netcoreapp3.1/_._": {}
         }
+      },
+      "NS12.VariableBase.Mathematics.Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/NS12.VariableBase.Mathematics.Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/NS12.VariableBase.Mathematics.Common.dll": {}
+        }
+      },
+      "NS12.VariableBase.Mathematics.Providers/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "NS12.VariableBase.Mathematics.Common": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/NS12.VariableBase.Mathematics.Providers.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/NS12.VariableBase.Mathematics.Providers.dll": {}
+        }
       }
     },
     "net6.0/browser-wasm": {
@@ -774,6 +797,29 @@
         },
         "build": {
           "buildTransitive/netcoreapp3.1/_._": {}
+        }
+      },
+      "NS12.VariableBase.Mathematics.Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/NS12.VariableBase.Mathematics.Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/NS12.VariableBase.Mathematics.Common.dll": {}
+        }
+      },
+      "NS12.VariableBase.Mathematics.Providers/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "NS12.VariableBase.Mathematics.Common": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/NS12.VariableBase.Mathematics.Providers.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/NS12.VariableBase.Mathematics.Providers.dll": {}
         }
       }
     }
@@ -1537,12 +1583,24 @@
         "system.text.json.nuspec",
         "useSharedDesignerContext.txt"
       ]
+    },
+    "NS12.VariableBase.Mathematics.Common/1.0.0": {
+      "type": "project",
+      "path": "../NS12.VariableBase.Mathematics.Common/NS12.VariableBase.Mathematics.Common.csproj",
+      "msbuildProject": "../NS12.VariableBase.Mathematics.Common/NS12.VariableBase.Mathematics.Common.csproj"
+    },
+    "NS12.VariableBase.Mathematics.Providers/1.0.0": {
+      "type": "project",
+      "path": "../NS12.VariableBase.Mathematics.Providers/NS12.VariableBase.Mathematics.Providers.csproj",
+      "msbuildProject": "../NS12.VariableBase.Mathematics.Providers/NS12.VariableBase.Mathematics.Providers.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
       "Microsoft.AspNetCore.Components.WebAssembly >= 6.0.4",
-      "Microsoft.AspNetCore.Components.WebAssembly.DevServer >= 6.0.4"
+      "Microsoft.AspNetCore.Components.WebAssembly.DevServer >= 6.0.4",
+      "NS12.VariableBase.Mathematics.Common >= 1.0.0",
+      "NS12.VariableBase.Mathematics.Providers >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -1577,7 +1635,14 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\GH\\MichaelKappel\\Variable-Base-Math\\NS12.VariableBase.Mathematics.Common\\NS12.VariableBase.Mathematics.Common.csproj": {
+              "projectPath": "C:\\GH\\MichaelKappel\\Variable-Base-Math\\NS12.VariableBase.Mathematics.Common\\NS12.VariableBase.Mathematics.Common.csproj"
+            },
+            "C:\\GH\\MichaelKappel\\Variable-Base-Math\\NS12.VariableBase.Mathematics.Providers\\NS12.VariableBase.Mathematics.Providers.csproj": {
+              "projectPath": "C:\\GH\\MichaelKappel\\Variable-Base-Math\\NS12.VariableBase.Mathematics.Providers\\NS12.VariableBase.Mathematics.Providers.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

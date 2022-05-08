@@ -1,11 +1,30 @@
 {
   "version": 3,
   "targets": {
-    "net6.0": {}
+    "net6.0": {
+      "NS12.VariableBase.Mathematics.Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/NS12.VariableBase.Mathematics.Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/NS12.VariableBase.Mathematics.Common.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "NS12.VariableBase.Mathematics.Common/1.0.0": {
+      "type": "project",
+      "path": "../NS12.VariableBase.Mathematics.Common/NS12.VariableBase.Mathematics.Common.csproj",
+      "msbuildProject": "../NS12.VariableBase.Mathematics.Common/NS12.VariableBase.Mathematics.Common.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net6.0": []
+    "net6.0": [
+      "NS12.VariableBase.Mathematics.Common >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\Micha\\.nuget\\packages\\": {},
@@ -39,7 +58,11 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\GH\\MichaelKappel\\Variable-Base-Math\\NS12.VariableBase.Mathematics.Common\\NS12.VariableBase.Mathematics.Common.csproj": {
+              "projectPath": "C:\\GH\\MichaelKappel\\Variable-Base-Math\\NS12.VariableBase.Mathematics.Common\\NS12.VariableBase.Mathematics.Common.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

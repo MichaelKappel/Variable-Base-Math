@@ -1,30 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using Common.Models;
 
-namespace Common.Interfaces
+using NS12.VariableBase.Mathematics.Common.Models;
+
+namespace NS12.VariableBase.Mathematics.Common.Interfaces
 {
-    public interface IMathEnvironment<T>: IEquatable<IMathEnvironment<T>>
+    public interface IMathEnvironment<T> : IEquatable<IMathEnvironment<T>>
     {
-        String ConvertToString(NumberSegments segments);
-        String GetDefinition();
-        Decimal Base { get; }
-        ReadOnlyCollection<Char> Key { get; }
+        string ConvertToString(NumberSegments segments);
+        string GetDefinition();
+        decimal Base { get; }
+        ReadOnlyCollection<char> Key { get; }
         T PowerOfFirstNumber { get; }
         T SecondNumber { get; }
-        Boolean Equals(Object other);
-        Int32 GetHashCode();
-        T GetNumber(String wholeNumber, String fractionNumerator = null, String fractionDenominator = null, Boolean isNegative = false);
-        T GetNumber(String[] wholeNumberSegments, Boolean isNegative = false);
-        T GetNumber(NumberSegments segments, Boolean isNegative = false);
-        T GetNumber(Decimal number);
+        bool Equals(object other);
+        int GetHashCode();
+        T GetNumber(string wholeNumber, string fractionNumerator = null, string fractionDenominator = null, bool isNegative = false);
+        T GetNumber(string[] wholeNumberSegments, bool isNegative = false);
+        T GetNumber(NumberSegments segments, bool isNegative = false);
+        T GetNumber(decimal number);
         void SetupMathEnvironment();
-        String ToString();
-        void ValidateFraction(List<Char> numerator, List<Char> denominator);
-        void ValidateWholeNumber(List<Char> numberSegments);
-        Decimal GetIndex(Char arg);
-        NumberSegments ParseNumberSegments(String raw);
-        T OpenNumberFile(String folderName, String fileName);
+        string ToString();
+        void ValidateFraction(List<char> numerator, List<char> denominator);
+        void ValidateWholeNumber(List<char> numberSegments);
+        decimal GetIndex(char arg);
+        NumberSegments ParseNumberSegments(string raw);
+        T OpenNumberFile(string folderName, string fileName);
     }
 }
