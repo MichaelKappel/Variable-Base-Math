@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Text;
+
 using System.Linq;
-using System.Diagnostics;
-using System.IO;
-using System.Threading;
 using NS12.VariableBase.Mathematics.Common.Models;
 using NS12.VariableBase.Mathematics.Providers;
 using NS12.VariableBase.Mathematics.Common.Interfaces;
+using System.Collections.Generic;
 
 namespace NS12.VariableBase.Mathematics.Providers.Algorithms
 {

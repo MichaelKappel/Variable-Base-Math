@@ -1,12 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+
+
 using System.Linq;
-using System.Text;
+
 using NS12.VariableBase.Mathematics.Common.Models;
 using System.IO;
 using NS12.VariableBase.Mathematics.Providers;
 using NS12.VariableBase.Mathematics.Common.Interfaces;
+using System.Collections.Generic;
 
 namespace NS12.VariableBase.Mathematics.Providers.MathEnvironments
 {

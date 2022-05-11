@@ -5,4 +5,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\NS12.VariableBase.Mathematics.Common\NS12.VariableBase.Mathematics.Common.csproj" />
+  </ItemGroup>
+
 </Project>

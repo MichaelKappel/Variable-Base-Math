@@ -13,6 +13,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\NS12.VariableBase.Mathematics.Common\NS12.VariableBase.Mathematics.Common.csproj" />
+    <ProjectReference Include="..\NS12.VariableBase.Mathematics.Providers\NS12.VariableBase.Mathematics.Providers.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ServiceWorker Include="wwwroot\service-worker.js" PublishedContent="wwwroot\service-worker.published.js" />
   </ItemGroup>
 

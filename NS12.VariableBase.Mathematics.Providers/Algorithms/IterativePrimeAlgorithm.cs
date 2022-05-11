@@ -1,14 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+
+
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Text;
+
 
 using NS12.VariableBase.Mathematics.Common.Models;
 using NS12.VariableBase.Mathematics.Common.Interfaces;
-using NS12.VariableBase.Mathematics.Providers;
 
 using static NS12.VariableBase.Mathematics.Common.Models.NumberSegmentDictionary;
 

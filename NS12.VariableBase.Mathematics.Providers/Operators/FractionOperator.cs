@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Text;
-using NS12.VariableBase.Mathematics.Common.Models;
+
 using NS12.VariableBase.Mathematics.Common.Interfaces;
 
 namespace NS12.VariableBase.Mathematics.Providers.Operators
