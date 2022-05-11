@@ -13,6 +13,7 @@ using NS12.VariableBase.Mathematics.Common.Models;
 using NS12.VariableBase.Mathematics.Common.Interfaces;
 
 using static NS12.VariableBase.Mathematics.Common.Models.NumberSegmentDictionary;
+using System.Collections.Generic;
 
 namespace NS12.VariableBase.Mathematics.Providers.Algorithms
 {

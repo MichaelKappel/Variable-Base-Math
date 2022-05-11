@@ -8,6 +8,7 @@ using System.IO;
 using NS12.VariableBase.Mathematics.Providers;
 using NS12.VariableBase.Mathematics.Common.Interfaces;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace NS12.VariableBase.Mathematics.Providers.MathEnvironments
 {

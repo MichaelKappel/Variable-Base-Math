@@ -1,6 +1,4 @@
-﻿using NS12.VariableBase.Mathematics.Common.Interfaces
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 

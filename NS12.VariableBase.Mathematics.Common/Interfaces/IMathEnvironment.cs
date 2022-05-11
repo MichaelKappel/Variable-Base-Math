@@ -26,6 +26,6 @@ namespace NS12.VariableBase.Mathematics.Common.Interfaces
         void ValidateWholeNumber(List<char> numberSegments);
         decimal GetIndex(char arg);
         NumberSegments ParseNumberSegments(string raw);
-        T OpenNumberFile(string folderName, string fileName);
+        //T OpenNumberFile(string folderName, string fileName);
     }
 }

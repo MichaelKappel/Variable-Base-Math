@@ -5,6 +5,7 @@ using NS12.VariableBase.Mathematics.Common.Models;
 using NS12.VariableBase.Mathematics.Providers;
 using NS12.VariableBase.Mathematics.Common.Interfaces;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace NS12.VariableBase.Mathematics.Providers.Algorithms
 {
