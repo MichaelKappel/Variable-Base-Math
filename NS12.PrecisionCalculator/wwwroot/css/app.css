@@ -62,3 +62,20 @@ a, .btn-link {
     .blazor-error-boundary::after {
         content: "An error has occurred."
     }
+
+input.calculator {
+    width: 440px;
+    height: 60px;
+    margin: 4px;
+    border: 3px solid black;
+}
+
+button.calculator {
+    width: 80px;
+    height: 80px;
+    margin: 14px;
+    padding: 14px;
+    font-weight: 900;
+    font-size: 24pt;
+    border: 2px solid black;
+} 

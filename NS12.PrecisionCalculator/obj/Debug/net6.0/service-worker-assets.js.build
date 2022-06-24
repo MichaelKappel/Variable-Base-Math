@@ -1,7 +1,7 @@
 ﻿self.assetsManifest = {
   "assets": [
     {
-      "hash": "sha256-lDAEEaul32OkTANWkZgjgs4sFCsMdLsR5NJxrjVcXdo=",
+      "hash": "sha256-DGPix9weHDM1wzk8v\/WKTEgtj+tAyBQNmAmIhAqMjQk=",
       "url": "css\/app.css"
     },
     {
@@ -61,7 +61,7 @@
       "url": "icon-512.png"
     },
     {
-      "hash": "sha256-Ql2FHH6hMbjCSyfXrp0WGueVZCRv4P\/k0at0L8Y1vAI=",
+      "hash": "sha256-yrI4hSN+S99RwJz2c8Ezqp6tUL\/\/g7q0uukdJtpRhu8=",
       "url": "index.html"
     },
     {
@@ -69,11 +69,7 @@
       "url": "manifest.json"
     },
     {
-      "hash": "sha256-yzFf+O\/mlH+Q9klUSqXP2kxGKOUFLPxaww8da8fKhGU=",
-      "url": "sample-data\/weather.json"
-    },
-    {
-      "hash": "sha256-U2NXIFDrKQGdEXQZZLKORcAbUkhsCJ3C4i7Zc72W3OA=",
+      "hash": "sha256-SMRkVFaqjli18iblxqtc9IcnT\/5L4Tcv2k\/VRb0iezs=",
       "url": "NS12.PrecisionCalculator.styles.css"
     },
     {
@@ -833,8 +829,8 @@
       "url": "_framework\/System.Private.CoreLib.dll"
     },
     {
-      "hash": "sha256-783uOt0jgblQfP6Yz5TJeuW2xxtl6UHZQPngZtCz79U=",
-      "url": "_framework\/dotnet.6.0.5.uo7yhsw6we.js"
+      "hash": "sha256-jOfMbaXeCm62yx0cPv3Z19yvcknDcZyUnruATVPdGPE=",
+      "url": "_framework\/dotnet.6.0.4.dckq00jdfr.js"
     },
     {
       "hash": "sha256-vRU6+wGzQ3FJ0JtyPJtipblPe9MvJf+qKY20xZhuyKQ=",
@@ -861,27 +857,27 @@
       "url": "_framework\/icudt_no_CJK.dat"
     },
     {
-      "hash": "sha256-DC2oo9GgLverBKyxUSJdtRCvGZuVcRGgs0XCATBwgO8=",
+      "hash": "sha256-hj5s8agrUD0ARa95Y2zpp47DSQpGscY6Zs9JY96bgdw=",
       "url": "_framework\/NS12.VariableBase.Mathematics.Common.dll"
     },
     {
-      "hash": "sha256-wpOAUG0PrljlZwmUeKjEhiSWQ838a3ICmURhRJJbW5s=",
+      "hash": "sha256-a0gUHjSBSNRvm+ladYLBRtcDz6z9Lb4niwtjdpg38yg=",
       "url": "_framework\/NS12.VariableBase.Mathematics.Providers.dll"
     },
     {
-      "hash": "sha256-6o5yxm28QFMj32tdeb1zrMUHqst5tr5euK1xOd\/pxb8=",
+      "hash": "sha256-poJif0V+nobRitB3suRToTWYAeAssu1Igxw4zxNNQj8=",
       "url": "_framework\/NS12.VariableBase.Mathematics.Common.pdb"
     },
     {
-      "hash": "sha256-NnQjBM12akZ1ElcE+xoa4vVrq4z3akh\/Fn5CHYbaxUQ=",
+      "hash": "sha256-D7tJaruIxuJC7vs8OlJADywNpgd9tV7cL87GOKyb\/ao=",
       "url": "_framework\/NS12.VariableBase.Mathematics.Providers.pdb"
     },
     {
-      "hash": "sha256-qbDdKD6DMTUH0uI8FOKLBvsgtyeazwZBs2EIcl0vmoA=",
+      "hash": "sha256-aEj\/MPQMDBjBH0WWpg0ne0WxX3aJ1IgAhahSiOKCbyI=",
       "url": "_framework\/NS12.PrecisionCalculator.dll"
     },
     {
-      "hash": "sha256-+ttQekmQUHwPM\/CFUCD7kTH5WnjnIdCn6ID6XYUk7Ko=",
+      "hash": "sha256-W6JlTVp3DK5KEXK3lzIfIBtnpD49kdTZCy3VmOya8Kg=",
       "url": "_framework\/NS12.PrecisionCalculator.pdb"
     },
     {
@@ -889,9 +885,9 @@
       "url": "_framework\/blazor.webassembly.js"
     },
     {
-      "hash": "sha256-RA8cCwy9qFldBjXUC5qOo5HKZbl98zMySsx410+DDPM=",
+      "hash": "sha256-801XrrNsMQ8djN0rPw2o\/eijHuU1XbGk0R65UJYndh8=",
       "url": "_framework\/blazor.boot.json"
     }
   ],
-  "version": "pc1bqSpZ"
+  "version": "yzv576uI"
 };
