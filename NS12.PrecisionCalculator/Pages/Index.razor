@@ -3,46 +3,49 @@
 <PageTitle>Calculator</PageTitle>
 
 <h1>Full Precision Calculator</h1>
-<div>Radix / Number System
-    &nbsp; <select>
-         <option value="2">Binary</option>
-         <option value="3">Ternary</option>
-         <option value="5">Quinary</option>
-         <option value="6">Senary</option>
-         <option value="8">Octal </option>
-         <option selected="selected" value="10">Decimal</option>
-         <option value="16">Hexadecimal</option>
-         <option value="36">Hexatridecimal</option>
-         <option value="63404">Radix 63404</option>
-    </select>
+<div class="calculator"">
+    <div>Radix / Number System
+       <select>
+             <option value="2">Binary</option>
+             <option value="3">Ternary</option>
+             <option value="5">Quinary</option>
+             <option value="6">Senary</option>
+             <option value="8">Octal </option>
+             <option selected="selected" value="10">Decimal</option>
+             <option value="16">Hexadecimal</option>
+             <option value="36">Hexatridecimal</option>
+             <option value="63404">Radix 63404</option>
+        </select>
+    </div>
+    <div class="calculator-input">
+        <textarea id="txtCalculatorFirst" class="calculator" />
+    </div>
+    <div>Action
+        <select>
+             <option value="2">Add</option>
+             <option value="3">Subtract</option>
+             <option value="5">Multiply</option>
+             <option value="6">Divide</option>
+        </select>
+    </div>
+    <div class="calculator-input">
+        <textarea id="txtCalculatorSecond" class="calculator" />
+    </div>
+    <button id="btnGoClicked"  @onclick="btnGoClicked" class="calculator calculator-symbol">Go</button>
+    <div class="calculator-result">
+        <textarea id="txtCalculatorOutputWhole" class="calculator-result-whole" />
+        <textarea id="txtCalculatorOutputNumerator" class="calculator-result-numerator" />
+        <textarea id="txtCalculatorOutputDenominator" class="calculator-result-denominator" />
+    </div>
 </div>
-<input onblur="event" type="text" value="@InputNumber" id="txtCalculator" class="calculator" />
-<br />
-
-<button id="btn7Clicked" @onclick="Button7Clicked" class="calculator calculator-number">7</button>
-<button id="btn8Clicked" @onclick="Button8Clicked" class="calculator calculator-number">8</button>
-<button id="btn9Clicked" @onclick="Button9Clicked" class="calculator calculator-number">9</button>
-<button id="btnDivideClicked"  @onclick="ButtonDivideClicked" class="calculator calculator-symbol">&divide;</button>
-<br />            
-<button id="btn4Clicked" @onclick="Button4Clicked" class="calculator calculator-number">4</button>
-<button id="btn5Clicked" @onclick="Button5Clicked" class="calculator calculator-number">5</button>
-<button id="btn6Clicked" @onclick="Button6Clicked" class="calculator calculator-number">6</button>
-<button id="btnTimesClicked" @onclick="ButtonTimesClicked" class="calculator calculator-symbol">&times;</button>
-<br />         
-<button id="btn1Clicked" @onclick="Button1Clicked" class="calculator calculator-number">1</button>
-<button id="btn2Clicked" @onclick="Button2Clicked" class="calculator calculator-number">2</button>
-<button id="btn3Clicked" @onclick="Button3Clicked" class="calculator calculator-number">3</button>
-<button id="btnMinusClicked" @onclick="ButtonMinusClicked" class="calculator calculator-symbol">&minus;</button>
-<br />            
-<button id="btn0Clicked"  @onclick="Button0Clicked" class="calculator calculator-number">0</button>
-<button id="btnPointClicked"  @onclick="ButtonPointClicked" class="calculator calculator-number">.</button>
-<button id="btnEqualsClicked" @onclick="ButtonEqualsClicked" class="calculator calculator-number">&equals;</button>
-<button id="btnPlusClicked"  @onclick="ButtonPlusClicked" class="calculator calculator-symbol">&plus;</button>
-
 
 <div>
-    [<a href="https://github.com/MichaelKappel/Variable-Base-Math" Title="Written Michael Joseph Kappel, 
-Available on GitHub" >View Source Code on Github</a>]
+    [
+    <a href="https://github.com/MichaelKappel/Variable-Base-Math" 
+            Title="Written Michael Joseph Kappel Available on GitHub">
+                View Source Code on Github
+     </a>
+     ]
 </div>
 
 @code {
@@ -51,80 +54,10 @@ Available on GitHub" >View Source Code on Github</a>]
 
     private NS12.VariableBase.Mathematics.Providers.Number SecondNumber { get; set; };
 
-    private enum MathOperatorTypes {-
-        Divide,
-        Times,
-        Minus,
-        Plus
-    }
 
-    private string PreviousNumber = "";
-    private string InputNumber = "";
-    private MathOperatorTypes Operator = MathOperatorTypes.Plus;
-
-    private void ButtonEqualsClicked()
+    private void btnGoClicked()
     {
 
     }
-    private void ButtonDivideClicked()
-    {
-
-    }
-    private void ButtonTimesClicked()
-    {
-
-    }
-    private void ButtonMinusClicked()
-    {
-
-    }
-    private void ButtonPlusClicked()
-    {
-
-    }
-    private void ButtonPointClicked()
-    {
-
-    }
-    private void Button0Clicked()
-    {
-        this.InputNumber += "0";
-
-    }
-    private void Button1Clicked()
-    {
-        this.InputNumber += "1";
-    }
-    private void Button2Clicked()
-    {
-        this.InputNumber += "2";
-    }
-    private void Button3Clicked()
-    {
-        this.InputNumber += "3";
-    }
-    private void Button4Clicked()
-    {
-        this.InputNumber += "4";
-    }
-    private void Button5Clicked()
-    {
-        this.InputNumber += "5";
-    }
-    private void Button6Clicked()
-    {
-        this.InputNumber += "6";
-    }
-    private void Button7Clicked()
-    {
-        this.InputNumber += "7";
-    }
-    private void Button8Clicked()
-    {
-        this.InputNumber += "8";
-    }
-    private void Button9Clicked()
-    {
-        this.InputNumber += "9";
-    }
+    
 }
