@@ -1,41 +1,45 @@
 ﻿@page "/"
+@using NS12.VariableBase.Mathematics.Common.Interfaces
+@using NS12.VariableBase.Mathematics.Providers
+@using NS12.VariableBase.Mathematics.Providers.MathEnvironments
+@using VariableBase.Mathematics.Common.Models
 
 <PageTitle>Calculator</PageTitle>
 
 <h1>Full Precision Calculator</h1>
-<div class="calculator"">
+<div class="calculator">
     <div>Radix / Number System
-       <select>
+        <select id="ddlRadix" @bind="@ddlRadix_value">
              <option value="2">Binary</option>
              <option value="3">Ternary</option>
              <option value="5">Quinary</option>
              <option value="6">Senary</option>
              <option value="8">Octal </option>
-             <option selected="selected" value="10">Decimal</option>
+             <option value="10" selected="selected">Decimal</option>
              <option value="16">Hexadecimal</option>
              <option value="36">Hexatridecimal</option>
              <option value="63404">Radix 63404</option>
         </select>
     </div>
     <div class="calculator-input">
-        <textarea id="txtCalculatorFirst" class="calculator" />
+        <textarea id="txtCalculatorFirst" class="calculator" @bind="@calculatorFirstRaw" />
     </div>
     <div>Action
-        <select>
-             <option value="2">Add</option>
-             <option value="3">Subtract</option>
-             <option value="5">Multiply</option>
-             <option value="6">Divide</option>
+        <select id="ddlAction" @bind="@ddlAction_value">
+             <option value="Add" selected="selected" >Add</option>
+             <option value="Subtract">Subtract</option>
+             <option value="Multiply">Multiply</option>
+             <option value="Divide">Divide</option>
         </select>
     </div>
     <div class="calculator-input">
-        <textarea id="txtCalculatorSecond" class="calculator" />
+        <textarea id="txtCalculatorSecond" class="calculator" @bind="@calculatorSecondRaw" />
     </div>
     <button id="btnGoClicked"  @onclick="btnGoClicked" class="calculator calculator-symbol">Go</button>
     <div class="calculator-result">
-        <textarea id="txtCalculatorOutputWhole" class="calculator-result-whole" />
-        <textarea id="txtCalculatorOutputNumerator" class="calculator-result-numerator" />
-        <textarea id="txtCalculatorOutputDenominator" class="calculator-result-denominator" />
+        <textarea id="txtCalculatorOutputWhole" class="calculator-result-whole" @bind="@resultWholeRaw"  />
+        <textarea id="txtCalculatorOutputNumerator" class="calculator-result-numerator" @bind="@resultNumeratorRaw" />
+        <textarea id="txtCalculatorOutputDenominator" class="calculator-result-denominator"  @bind="@resultDenominatorRaw"/>
     </div>
 </div>
 
@@ -50,14 +54,62 @@
 
 @code {
 
-    private NS12.VariableBase.Mathematics.Providers.Number FirstNumber { get; set; };
+    String ddlAction_value = "Add";
+    String ddlRadix_value = "10";
 
-    private NS12.VariableBase.Mathematics.Providers.Number SecondNumber { get; set; };
+    String calculatorFirstRaw = "";
+    String calculatorSecondRaw = "";
 
+    String resultWholeRaw = "";
+    String resultNumeratorRaw = "";
+    String resultDenominatorRaw = "";
 
-    private void btnGoClicked()
+    public void btnGoClicked()
     {
+        IMathEnvironment<Number> environment;
 
+        if (ddlRadix_value == "2") {
+            environment = new CharMathEnvironment("01");
+        }else if (ddlRadix_value == "3") {
+            environment = new CharMathEnvironment("012");
+        }else if (ddlRadix_value == "5") {
+            environment = new CharMathEnvironment("01234");
+        }else if (ddlRadix_value == "5") {
+            environment = new CharMathEnvironment("01234567");
+        }else if (ddlRadix_value == "10") {
+            environment = new CharMathEnvironment("0123456789");
+        }else if (ddlRadix_value == "16") {
+            environment = new CharMathEnvironment("0123456789abcdef");
+        }else {
+            environment = new CharMathEnvironment("0123456789abcdefghijklmnopqrstuvwxyz");
+        }
+
+        Number firstNumber = new Number(environment,new NumberSegments(calculatorFirstRaw), default(NumberSegments), default(NumberSegments), false);
+
+        Number secondNumber = new Number(environment,new NumberSegments(calculatorSecondRaw), default(NumberSegments), default(NumberSegments), false);
+
+        Number result;
+
+        if(ddlAction_value == "Add")
+        {
+            result = firstNumber + secondNumber;
+        }
+        else if(ddlAction_value == "Subtract")
+        {
+            result = firstNumber -= secondNumber;
+        }
+        else if(ddlAction_value == "Multiply")
+        {
+            result = firstNumber * secondNumber;
+        }
+        else
+        {
+            result = firstNumber / secondNumber;
+        }
+
+        resultWholeRaw = result.Segments[0].ToString();
+        resultNumeratorRaw = result.Segments[1].ToString();
+        resultDenominatorRaw = result.Segments[2].ToString();
     }
     
 }

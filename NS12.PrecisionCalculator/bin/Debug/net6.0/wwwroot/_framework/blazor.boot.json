@@ -196,17 +196,17 @@
       "mscorlib.dll": "sha256-vpgKSsIVVRm3ImOEM6Mg668KUXfSvUY2v2lQxER\/VSw=",
       "netstandard.dll": "sha256-EzmKN+AbNEDjd5nSFsILG121Oz5G6y6srA1Yq1Jo67k=",
       "System.Private.CoreLib.dll": "sha256-cC5\/4QFeEaYp0kJy5xgdDbYrYr8Rflocn4O4\/B\/5l0I=",
-      "NS12.VariableBase.Mathematics.Common.dll": "sha256-hj5s8agrUD0ARa95Y2zpp47DSQpGscY6Zs9JY96bgdw=",
-      "NS12.VariableBase.Mathematics.Providers.dll": "sha256-a0gUHjSBSNRvm+ladYLBRtcDz6z9Lb4niwtjdpg38yg=",
-      "NS12.PrecisionCalculator.dll": "sha256-hc64o77hDBk0T8J1WSAGL8msU\/5bvF0wm69VqvFJdYU="
+      "NS12.VariableBase.Mathematics.Common.dll": "sha256-5atSdIlU4\/FOY5jmLOzfGqsFy1If1hdvQ2sEOHUK8RI=",
+      "NS12.VariableBase.Mathematics.Providers.dll": "sha256-n1K5qXhYafUZ5IPhRmlQ0D7vhjVwt4jyws7rqd501SE=",
+      "NS12.PrecisionCalculator.dll": "sha256-s3HtKVlmDFL+CeQLq2KSiFXL1+CX3w91nIIN+oUClkY="
     },
     "extensions": null,
     "lazyAssembly": null,
     "libraryInitializers": null,
     "pdb": {
-      "NS12.VariableBase.Mathematics.Common.pdb": "sha256-poJif0V+nobRitB3suRToTWYAeAssu1Igxw4zxNNQj8=",
-      "NS12.VariableBase.Mathematics.Providers.pdb": "sha256-D7tJaruIxuJC7vs8OlJADywNpgd9tV7cL87GOKyb\/ao=",
-      "NS12.PrecisionCalculator.pdb": "sha256-Mh\/GD2700EP+BH7No3Mywz5KbJ54QJnhmfJ6GqRrYh8="
+      "NS12.VariableBase.Mathematics.Common.pdb": "sha256-7a1JCoNS9vw8a\/6tL7BhgQeBTtpdQaAU4BLQrHjOack=",
+      "NS12.VariableBase.Mathematics.Providers.pdb": "sha256-eOwD6gGfdnqfxPwN\/rdh9PTmZlZIZTTENUqjto3Eilk=",
+      "NS12.PrecisionCalculator.pdb": "sha256-fCU0A04LPTQeb57SMgipLOMscmXWBuWbBndgBmeArHs="
     },
     "runtime": {
       "dotnet.6.0.4.dckq00jdfr.js": "sha256-jOfMbaXeCm62yx0cPv3Z19yvcknDcZyUnruATVPdGPE=",

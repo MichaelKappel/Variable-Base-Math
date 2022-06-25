@@ -71,6 +71,12 @@ namespace NS12.VariableBase.Mathematics.Providers
         public NumberSegments Segments { get; set; }
         public int Size { get; private set; }
 
+        public Number(IMathEnvironment<Number> environment, NumberSegments segments, bool isNegative = false)
+            :this(environment, segments, default(NumberSegments), default(NumberSegments), isNegative)
+        {
+           
+        }
+
         public Number(IMathEnvironment<Number> environment, NumberSegments segments, NumberSegments numerator, NumberSegments denominator, bool isNegative)
         {
             if (segments == default(NumberSegments) || segments.Size == 0)

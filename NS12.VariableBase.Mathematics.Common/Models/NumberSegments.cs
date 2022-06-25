@@ -84,12 +84,21 @@ namespace NS12.VariableBase.Mathematics.Common.Models
             Size = segments.Length;
             Length = segments.Length;
         }
+
         public NumberSegments(char[] segments)
         {
             NumberSegmentType = NumberSegmentTypes.UInt16;
             UInt16Segments = segments.Select(x => (ushort)x).ToArray();
             Size = segments.Length;
             Length = segments.Length;
+        }
+
+        public NumberSegments(String number)
+        {
+            NumberSegmentType = NumberSegmentTypes.UInt16;
+            UInt16Segments = number.ToCharArray().Select(x => (ushort)x).ToArray();
+            Size = number.Length;
+            Length = number.Length;
         }
 
         public NumberSegments(uint[] segments)
