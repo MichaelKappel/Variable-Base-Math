@@ -16,7 +16,7 @@ namespace NS12.VariableBase.Mathematics.Common.Models
             Prime
         }
 
-        public NumberSegmentDictionary Parent;
+        public NumberSegmentDictionary? Parent;
 
         public NumberTypes NumberType;
 
@@ -25,10 +25,15 @@ namespace NS12.VariableBase.Mathematics.Common.Models
             Parent = parent;
         }
 
-        public void Add(NumberSegments segments, NumberTypes numberType, NumberSegmentDictionary parent = default)
+        public NumberSegmentDictionary()
+        {
+            Parent = null;
+        }
+
+        public void Add(NumberSegments segments, NumberTypes numberType, NumberSegmentDictionary? parent = null)
         {
             NumberSegmentDictionary lastItem;
-            if (Parent == default(NumberSegmentDictionary))
+            if (Parent == null)
             {
                 NumberSegmentDictionary topLevelNumberSegment;
                 if (TryGetValue(segments.Length, out topLevelNumberSegment))
@@ -79,7 +84,7 @@ namespace NS12.VariableBase.Mathematics.Common.Models
         public NumberTypes GetNumberType(NumberSegments segments)
         {
             NumberSegmentDictionary lastItem;
-            if (Parent == default(NumberSegmentDictionary))
+            if (Parent == null)
             {
                 NumberSegmentDictionary topLevelNumberSegment;
                 if (TryGetValue(segments.Length, out topLevelNumberSegment))
@@ -116,7 +121,7 @@ namespace NS12.VariableBase.Mathematics.Common.Models
         {
 
             NumberSegmentDictionary lastItem;
-            if (Parent == default(NumberSegmentDictionary))
+            if (Parent == null)
             {
                 if (!ContainsKey(segments.Length))
                 {
@@ -149,9 +154,9 @@ namespace NS12.VariableBase.Mathematics.Common.Models
 
             if (NumberType == numberType)
             {
-                NumberSegmentDictionary parent = Parent;
+                NumberSegmentDictionary? parent = Parent;
                 var segments = new List<decimal>();
-                while (parent != default(NumberSegmentDictionary))
+                while (parent != null)
                 {
                     segments.Add(parent.FirstOrDefault(x => x.Value == this).Key);
                 }

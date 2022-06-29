@@ -84,9 +84,9 @@
             environment = new CharMathEnvironment("0123456789abcdefghijklmnopqrstuvwxyz");
         }
 
-        Number firstNumber = new Number(environment,new NumberSegments(calculatorFirstRaw), default(NumberSegments), default(NumberSegments), false);
+        Number firstNumber = new Number(environment,new NumberSegments(calculatorFirstRaw.ToCharArray()), false);
 
-        Number secondNumber = new Number(environment,new NumberSegments(calculatorSecondRaw), default(NumberSegments), default(NumberSegments), false);
+        Number secondNumber = new Number(environment,new NumberSegments(calculatorSecondRaw.ToCharArray()),  false);
 
         Number result;
 

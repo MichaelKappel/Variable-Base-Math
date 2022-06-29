@@ -829,6 +829,10 @@
       "url": "_framework\/System.Private.CoreLib.dll"
     },
     {
+      "hash": "sha256-zJXgw\/tAzTVOXksPhtpZVT12vxHC7S9mQyBRM36dwD0=",
+      "url": "_framework\/dotnet.6.0.6.gtlv6n91nv.js"
+    },
+    {
       "hash": "sha256-vRU6+wGzQ3FJ0JtyPJtipblPe9MvJf+qKY20xZhuyKQ=",
       "url": "_framework\/dotnet.timezones.blat"
     },
@@ -853,27 +857,27 @@
       "url": "_framework\/icudt_no_CJK.dat"
     },
     {
-      "hash": "sha256-5atSdIlU4\/FOY5jmLOzfGqsFy1If1hdvQ2sEOHUK8RI=",
+      "hash": "sha256-ujPQ3t8fVaHzz1z58wegCPsYHFSjBraxl4ola5\/Jsi0=",
       "url": "_framework\/NS12.VariableBase.Mathematics.Common.dll"
     },
     {
-      "hash": "sha256-n1K5qXhYafUZ5IPhRmlQ0D7vhjVwt4jyws7rqd501SE=",
+      "hash": "sha256-letd+0SvSN1LyVgZvnWBOEWZkpU0z4ebvw3ogZC7MsY=",
       "url": "_framework\/NS12.VariableBase.Mathematics.Providers.dll"
     },
     {
-      "hash": "sha256-7a1JCoNS9vw8a\/6tL7BhgQeBTtpdQaAU4BLQrHjOack=",
+      "hash": "sha256-iXN8Jfs6RjQP3bEyqbMwt8\/TuEOSgtN7YB46bPu8AH8=",
       "url": "_framework\/NS12.VariableBase.Mathematics.Common.pdb"
     },
     {
-      "hash": "sha256-eOwD6gGfdnqfxPwN\/rdh9PTmZlZIZTTENUqjto3Eilk=",
+      "hash": "sha256-SlCO6S0f2QMbmJUOnwZXlUn3RuV6yFdWs0A5\/\/rZbG4=",
       "url": "_framework\/NS12.VariableBase.Mathematics.Providers.pdb"
     },
     {
-      "hash": "sha256-s3HtKVlmDFL+CeQLq2KSiFXL1+CX3w91nIIN+oUClkY=",
+      "hash": "sha256-q6t\/fkXjWSNZ3BBJQJASkA0nHuDtmxxSqYCV9ihkFrw=",
       "url": "_framework\/NS12.PrecisionCalculator.dll"
     },
     {
-      "hash": "sha256-fCU0A04LPTQeb57SMgipLOMscmXWBuWbBndgBmeArHs=",
+      "hash": "sha256-9vqET1BXPY58Xc+8kTH1wjxT7+xY0Xp0l8AQ4j\/nL2Q=",
       "url": "_framework\/NS12.PrecisionCalculator.pdb"
     },
     {
@@ -881,13 +885,9 @@
       "url": "_framework\/blazor.webassembly.js"
     },
     {
-      "hash": "sha256-pZGlTbZBLoPj9EuosMhglTgfbTTjXayvtYpfMpFLS4k=",
+      "hash": "sha256-rj4gzQUnI\/vSrYTd0Boka48VI4\/CqWE5AzEgAK2iv4E=",
       "url": "_framework\/blazor.boot.json"
-    },
-    {
-      "hash": "sha256-zJXgw\/tAzTVOXksPhtpZVT12vxHC7S9mQyBRM36dwD0=",
-      "url": "_framework\/dotnet.6.0.6.gtlv6n91nv.js"
     }
   ],
-  "version": "Q+eWt7Io"
+  "version": "uYm6bTlK"
 };

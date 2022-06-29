@@ -83,9 +83,9 @@ namespace NS12.VariableBase.Mathematics.Providers.Algorithms
         }
 
 
-        public SieveOfEratosthenePrimeAlgorithm(IMathEnvironment<Number> environment, IList<string> primeNumbersRaw, Action<Number> onPrimeFound = default)
+        public SieveOfEratosthenePrimeAlgorithm(IMathEnvironment<Number> environment, IList<string> primeNumbersRaw, Action<Number> onPrimeFound)
         {
-            PrimeNumberTree.Add((int)environment.Base, (new List<Number>(), new NumberSegmentDictionary(null)));
+            PrimeNumberTree.Add((int)environment.Base, (new List<Number>(), new NumberSegmentDictionary()));
 
             for (var i = 0; i < primeNumbersRaw.Count; i++)
             {
