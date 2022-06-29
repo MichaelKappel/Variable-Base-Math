@@ -11,3 +11,16 @@ C:\GH\MichaelKappel\Variable-Base-Math\NS12.VariableBase.Mathematics.Providers\b
 C:\GH\MichaelKappel\Variable-Base-Math\NS12.VariableBase.Mathematics.Providers\obj\Debug\netstandard2.1\NS12.VariableBase.Mathematics.Providers.csproj.CopyComplete
 C:\GH\MichaelKappel\Variable-Base-Math\NS12.VariableBase.Mathematics.Providers\obj\Debug\netstandard2.1\NS12.VariableBase.Mathematics.Providers.dll
 C:\GH\MichaelKappel\Variable-Base-Math\NS12.VariableBase.Mathematics.Providers\obj\Debug\netstandard2.1\NS12.VariableBase.Mathematics.Providers.pdb
+C:\Git\MichaelKappel\Variable-Base-Math\NS12.VariableBase.Mathematics.Providers\bin\Debug\netstandard2.1\NS12.VariableBase.Mathematics.Providers.deps.json
+C:\Git\MichaelKappel\Variable-Base-Math\NS12.VariableBase.Mathematics.Providers\bin\Debug\netstandard2.1\NS12.VariableBase.Mathematics.Providers.dll
+C:\Git\MichaelKappel\Variable-Base-Math\NS12.VariableBase.Mathematics.Providers\bin\Debug\netstandard2.1\NS12.VariableBase.Mathematics.Providers.pdb
+C:\Git\MichaelKappel\Variable-Base-Math\NS12.VariableBase.Mathematics.Providers\bin\Debug\netstandard2.1\NS12.VariableBase.Mathematics.Common.dll
+C:\Git\MichaelKappel\Variable-Base-Math\NS12.VariableBase.Mathematics.Providers\bin\Debug\netstandard2.1\NS12.VariableBase.Mathematics.Common.pdb
+C:\Git\MichaelKappel\Variable-Base-Math\NS12.VariableBase.Mathematics.Providers\obj\Debug\netstandard2.1\NS12.VariableBase.Mathematics.Providers.csproj.AssemblyReference.cache
+C:\Git\MichaelKappel\Variable-Base-Math\NS12.VariableBase.Mathematics.Providers\obj\Debug\netstandard2.1\NS12.VariableBase.Mathematics.Providers.GeneratedMSBuildEditorConfig.editorconfig
+C:\Git\MichaelKappel\Variable-Base-Math\NS12.VariableBase.Mathematics.Providers\obj\Debug\netstandard2.1\NS12.VariableBase.Mathematics.Providers.AssemblyInfoInputs.cache
+C:\Git\MichaelKappel\Variable-Base-Math\NS12.VariableBase.Mathematics.Providers\obj\Debug\netstandard2.1\NS12.VariableBase.Mathematics.Providers.AssemblyInfo.cs
+C:\Git\MichaelKappel\Variable-Base-Math\NS12.VariableBase.Mathematics.Providers\obj\Debug\netstandard2.1\NS12.VariableBase.Mathematics.Providers.csproj.CoreCompileInputs.cache
+C:\Git\MichaelKappel\Variable-Base-Math\NS12.VariableBase.Mathematics.Providers\obj\Debug\netstandard2.1\NS12.VariableBase.Mathematics.Providers.csproj.CopyComplete
+C:\Git\MichaelKappel\Variable-Base-Math\NS12.VariableBase.Mathematics.Providers\obj\Debug\netstandard2.1\NS12.VariableBase.Mathematics.Providers.dll
+C:\Git\MichaelKappel\Variable-Base-Math\NS12.VariableBase.Mathematics.Providers\obj\Debug\netstandard2.1\NS12.VariableBase.Mathematics.Providers.pdb

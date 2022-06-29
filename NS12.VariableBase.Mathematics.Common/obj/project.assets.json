@@ -8,23 +8,23 @@
     ".NETStandard,Version=v2.1": []
   },
   "packageFolders": {
-    "C:\\Users\\Micha\\.nuget\\packages\\": {},
+    "C:\\Users\\mikek\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\GH\\MichaelKappel\\Variable-Base-Math\\NS12.VariableBase.Mathematics.Common\\NS12.VariableBase.Mathematics.Common.csproj",
+      "projectUniqueName": "C:\\Git\\MichaelKappel\\Variable-Base-Math\\NS12.VariableBase.Mathematics.Common\\NS12.VariableBase.Mathematics.Common.csproj",
       "projectName": "NS12.VariableBase.Mathematics.Common",
-      "projectPath": "C:\\GH\\MichaelKappel\\Variable-Base-Math\\NS12.VariableBase.Mathematics.Common\\NS12.VariableBase.Mathematics.Common.csproj",
-      "packagesPath": "C:\\Users\\Micha\\.nuget\\packages\\",
-      "outputPath": "C:\\GH\\MichaelKappel\\Variable-Base-Math\\NS12.VariableBase.Mathematics.Common\\obj\\",
+      "projectPath": "C:\\Git\\MichaelKappel\\Variable-Base-Math\\NS12.VariableBase.Mathematics.Common\\NS12.VariableBase.Mathematics.Common.csproj",
+      "packagesPath": "C:\\Users\\mikek\\.nuget\\packages\\",
+      "outputPath": "C:\\Git\\MichaelKappel\\Variable-Base-Math\\NS12.VariableBase.Mathematics.Common\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Micha\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\mikek\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -32,9 +32,8 @@
         "netstandard2.1"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Infragistics\\NuGet\\": {},
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "https://api.nuget.org/v3/index.json": {}
+        "https://crresearch.pkgs.visualstudio.com/Packagefeed/_packaging/general-release/nuget/v3/index.json": {}
       },
       "frameworks": {
         "netstandard2.1": {
@@ -66,7 +65,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -8,3 +8,13 @@ C:\GH\MichaelKappel\Variable-Base-Math\NS12.VariableBase.Mathematics.Common\bin\
 C:\GH\MichaelKappel\Variable-Base-Math\NS12.VariableBase.Mathematics.Common\bin\Debug\netstandard2.1\NS12.VariableBase.Mathematics.Common.pdb
 C:\GH\MichaelKappel\Variable-Base-Math\NS12.VariableBase.Mathematics.Common\obj\Debug\netstandard2.1\NS12.VariableBase.Mathematics.Common.dll
 C:\GH\MichaelKappel\Variable-Base-Math\NS12.VariableBase.Mathematics.Common\obj\Debug\netstandard2.1\NS12.VariableBase.Mathematics.Common.pdb
+C:\Git\MichaelKappel\Variable-Base-Math\NS12.VariableBase.Mathematics.Common\bin\Debug\netstandard2.1\NS12.VariableBase.Mathematics.Common.deps.json
+C:\Git\MichaelKappel\Variable-Base-Math\NS12.VariableBase.Mathematics.Common\bin\Debug\netstandard2.1\NS12.VariableBase.Mathematics.Common.dll
+C:\Git\MichaelKappel\Variable-Base-Math\NS12.VariableBase.Mathematics.Common\bin\Debug\netstandard2.1\NS12.VariableBase.Mathematics.Common.pdb
+C:\Git\MichaelKappel\Variable-Base-Math\NS12.VariableBase.Mathematics.Common\obj\Debug\netstandard2.1\NS12.VariableBase.Mathematics.Common.csproj.AssemblyReference.cache
+C:\Git\MichaelKappel\Variable-Base-Math\NS12.VariableBase.Mathematics.Common\obj\Debug\netstandard2.1\NS12.VariableBase.Mathematics.Common.GeneratedMSBuildEditorConfig.editorconfig
+C:\Git\MichaelKappel\Variable-Base-Math\NS12.VariableBase.Mathematics.Common\obj\Debug\netstandard2.1\NS12.VariableBase.Mathematics.Common.AssemblyInfoInputs.cache
+C:\Git\MichaelKappel\Variable-Base-Math\NS12.VariableBase.Mathematics.Common\obj\Debug\netstandard2.1\NS12.VariableBase.Mathematics.Common.AssemblyInfo.cs
+C:\Git\MichaelKappel\Variable-Base-Math\NS12.VariableBase.Mathematics.Common\obj\Debug\netstandard2.1\NS12.VariableBase.Mathematics.Common.csproj.CoreCompileInputs.cache
+C:\Git\MichaelKappel\Variable-Base-Math\NS12.VariableBase.Mathematics.Common\obj\Debug\netstandard2.1\NS12.VariableBase.Mathematics.Common.dll
+C:\Git\MichaelKappel\Variable-Base-Math\NS12.VariableBase.Mathematics.Common\obj\Debug\netstandard2.1\NS12.VariableBase.Mathematics.Common.pdb

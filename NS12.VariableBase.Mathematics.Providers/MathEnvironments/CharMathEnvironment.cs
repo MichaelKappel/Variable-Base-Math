@@ -48,7 +48,9 @@ namespace NS12.VariableBase.Mathematics.Providers.MathEnvironments
 
             Base = tempKey.Count;
 
-            SetupMathEnvironment();
+            this.KeyNumber = this.GetKeyNumber();
+
+            this.PowerOfFirstNumber = new Number(this, new NumberSegments(new ushort[] { 0, 1 }));
         }
         public CharMathEnvironment(char size)
         {
@@ -60,11 +62,13 @@ namespace NS12.VariableBase.Mathematics.Providers.MathEnvironments
                 tempKey.Add(currentChar);
             }
 
-            Key = new ReadOnlyCollection<char>(tempKey);
+            this.Key = new ReadOnlyCollection<char>(tempKey);
 
-            Base = size;
+            this.Base = size;
 
-            SetupMathEnvironment();
+            this.KeyNumber = this.GetKeyNumber();
+
+            this.PowerOfFirstNumber = new Number(this, new NumberSegments(new ushort[] { 0, 1 }));
         }
 
         public CharMathEnvironment(string rawKey)
@@ -79,11 +83,13 @@ namespace NS12.VariableBase.Mathematics.Providers.MathEnvironments
                 }
             }
 
-            Key = new ReadOnlyCollection<char>(tempKey);
+            this.Key = new ReadOnlyCollection<char>(tempKey);
 
-            Base = (ulong)Key.Count;
+            this.Base = (ulong)Key.Count;
 
-            SetupMathEnvironment();
+            this.KeyNumber = this.GetKeyNumber();
+
+            this.PowerOfFirstNumber = new Number(this, new NumberSegments(new ushort[] { 0, 1 }));
         }
 
         //public Number OpenNumberFile(string folderName, string fileName)
@@ -93,13 +99,12 @@ namespace NS12.VariableBase.Mathematics.Providers.MathEnvironments
 
         public Number GetNumber(string[] wholeNumberSegments, bool isNegative = false)
         {
-            return new Number(this, new NumberSegments(wholeNumberSegments.Select((x) => ulong.Parse(x)).ToArray()),
-                               null, isNegative);
+            return new Number(this, new NumberSegments(wholeNumberSegments.Select((x) => ulong.Parse(x)).ToArray()), isNegative);
         }
 
         public Number GetNumber(NumberSegments segments, bool isNegative = false)
         {
-            return new Number(this, segments, null, isNegative);
+            return new Number(this, segments, isNegative);
         }
 
         public Number GetNumber(decimal rawDecimal)
@@ -146,7 +151,7 @@ namespace NS12.VariableBase.Mathematics.Providers.MathEnvironments
             return new Number(this, new NumberSegments(resultRaw), null, isNegative);
         }
 
-        public Number GetNumber(string wholeNumber, string fractionNumerator = null, string fractionDenominator = null, bool isNegative = false)
+        public Number GetNumber(string wholeNumber, string fractionNumerator = "", string fractionDenominator = "", bool isNegative = false)
         {
             List<char> wholeNumberSegments = wholeNumber.ToCharArray().Reverse().ToList();
 
@@ -219,16 +224,14 @@ namespace NS12.VariableBase.Mathematics.Providers.MathEnvironments
             return (ushort)Key.IndexOf(arg);
         }
 
-        public void SetupMathEnvironment()
+        public ReadOnlyCollection<Number> GetKeyNumber()
         {
             var tempKeyNumber = new List<Number>();
             for (ushort i = 0; i < Key.Count; i++)
             {
-                tempKeyNumber.Add(new Number(this, new NumberSegments(new ushort[] { i }), null, false));
+                tempKeyNumber.Add(new Number(this, new NumberSegments(new ushort[] { i })));
             }
-
-            KeyNumber = new ReadOnlyCollection<Number>(tempKeyNumber);
-            PowerOfFirstNumber = new Number(this, new NumberSegments(new ushort[] { 0, 1 }), null, false);
+            return new ReadOnlyCollection<Number>(tempKeyNumber);
         }
 
         public Number PowerOfFirstNumber
