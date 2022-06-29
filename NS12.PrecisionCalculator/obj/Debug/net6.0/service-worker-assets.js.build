@@ -857,27 +857,27 @@
       "url": "_framework\/icudt_no_CJK.dat"
     },
     {
-      "hash": "sha256-ujPQ3t8fVaHzz1z58wegCPsYHFSjBraxl4ola5\/Jsi0=",
+      "hash": "sha256-0mYsuMG3cf0nwRLelXbosDGg66F1ipi23SmD\/Yenbxs=",
       "url": "_framework\/NS12.VariableBase.Mathematics.Common.dll"
     },
     {
-      "hash": "sha256-letd+0SvSN1LyVgZvnWBOEWZkpU0z4ebvw3ogZC7MsY=",
+      "hash": "sha256-vh7rpmSHBcMtKuYqNfdQEfiqg+2YrqXnCqXdhJx12ec=",
       "url": "_framework\/NS12.VariableBase.Mathematics.Providers.dll"
     },
     {
-      "hash": "sha256-iXN8Jfs6RjQP3bEyqbMwt8\/TuEOSgtN7YB46bPu8AH8=",
+      "hash": "sha256-MqNJJhEFga8Dup33Yuv5F6B\/No1YBszKC2FIKcKOyzE=",
       "url": "_framework\/NS12.VariableBase.Mathematics.Common.pdb"
     },
     {
-      "hash": "sha256-SlCO6S0f2QMbmJUOnwZXlUn3RuV6yFdWs0A5\/\/rZbG4=",
+      "hash": "sha256-bAp0fnEQPq9UBcAI4mY8nzEaDPHJMQCfVqNrmv6nhXI=",
       "url": "_framework\/NS12.VariableBase.Mathematics.Providers.pdb"
     },
     {
-      "hash": "sha256-q6t\/fkXjWSNZ3BBJQJASkA0nHuDtmxxSqYCV9ihkFrw=",
+      "hash": "sha256-8YFCPXC77CnRHtl6IG69NYi476m4UovxxvEOM6wfT2Y=",
       "url": "_framework\/NS12.PrecisionCalculator.dll"
     },
     {
-      "hash": "sha256-9vqET1BXPY58Xc+8kTH1wjxT7+xY0Xp0l8AQ4j\/nL2Q=",
+      "hash": "sha256-3eWQa\/VPGt9P7\/cTxqswima+20dU19ULKmoWVRSyPic=",
       "url": "_framework\/NS12.PrecisionCalculator.pdb"
     },
     {
@@ -885,9 +885,9 @@
       "url": "_framework\/blazor.webassembly.js"
     },
     {
-      "hash": "sha256-rj4gzQUnI\/vSrYTd0Boka48VI4\/CqWE5AzEgAK2iv4E=",
+      "hash": "sha256-DCo3caiky8eurymJz0H5vKYPlQdeNBiIF18x1f9fQhY=",
       "url": "_framework\/blazor.boot.json"
     }
   ],
-  "version": "uYm6bTlK"
+  "version": "VfI5dJh5"
 };

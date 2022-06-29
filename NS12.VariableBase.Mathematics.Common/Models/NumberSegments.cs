@@ -119,9 +119,14 @@ namespace NS12.VariableBase.Mathematics.Common.Models
             this.Length = segments.Length;
         }
 
-        public NumberSegments(Decimal baseSize, String number)
+        public NumberSegments(Decimal baseSize, IList<Char> number)
+            :this(baseSize, number.ToArray())
         {
-            Char[] segments = number.ToCharArray();
+           
+        }
+        
+        public NumberSegments(Decimal baseSize, Char[] segments)
+        {
             if (baseSize <= 2)
             {
                 this.NumberSegmentType = NumberSegmentTypes.Boolean;

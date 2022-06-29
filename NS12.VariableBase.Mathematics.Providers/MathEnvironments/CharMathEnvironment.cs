@@ -171,7 +171,7 @@ namespace NS12.VariableBase.Mathematics.Providers.MathEnvironments
             }
             else
             {
-                return new Number(this, new NumberSegments(this.Base,wholeNumberSegments.Select((x) => (ushort)Key.IndexOf(x)).ToArray()),
+                return new Number(this, new NumberSegments(this.Base, wholeNumberSegments.Select((x) => (char)Key.IndexOf(x)).ToArray()),
                     default, isNegative);
             }
         }

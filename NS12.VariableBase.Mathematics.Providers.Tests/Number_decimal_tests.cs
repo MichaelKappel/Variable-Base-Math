@@ -20,7 +20,7 @@ namespace NS12.VariableBase.Mathematics.Providers.Tests
 
             Number result = firstNumber + secondNumber;
 
-            Assert.AreEqual(result, "112333");
+            Assert.AreEqual(result, mathEnvironment.GetNumber("112333"));
         }
     }
 }
