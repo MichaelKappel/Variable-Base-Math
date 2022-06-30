@@ -72,7 +72,7 @@ namespace NS12.VariableBase.Mathematics.Providers.Operators
             return result;
         }
 
-        public Fraction Divide(Fraction a, Fraction b, Fraction hint = null)
+        public Fraction Divide(Fraction a, Fraction b)
         {
             Fraction aWhole = a.AsWholeFraction();
             Fraction bWhole = b.AsWholeFraction();

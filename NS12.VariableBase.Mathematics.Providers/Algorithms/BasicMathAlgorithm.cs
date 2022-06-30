@@ -147,10 +147,10 @@ namespace NS12.VariableBase.Mathematics.Providers.Algorithms
 
         public NumberSegments ConvertToBase10(IMathEnvironment<Number> base10Environment, IMathEnvironment<Number> currentEnvironment, NumberSegments segments)
         {
-            NumberSegments result = base10Environment.GetNumber(0).Segments;
+            NumberSegments result = base10Environment.GetNumber(0).Whole;
             for (int iSegments = 0; iSegments < segments.Length; iSegments++)
             {
-                NumberSegments currentNumber = base10Environment.GetNumber(1).Segments;
+                NumberSegments currentNumber = base10Environment.GetNumber(1).Whole;
                 for (int i2 = 0; i2 < iSegments; i2++)
                 {
                     currentNumber = Multiply(base10Environment, currentNumber, currentEnvironment.Base);
@@ -345,12 +345,12 @@ namespace NS12.VariableBase.Mathematics.Providers.Algorithms
         public NumberSegments GetAboutHalf(IMathEnvironment<Number> environment, NumberSegments a, NumberSegments b, decimal variance)
         {
             NumberSegments x = Add(environment, a, b);
-            (NumberSegments Whole, NumberSegments Numerator, NumberSegments Denominator) rawResult = Divide(environment, x, environment.GetNumber(2).Segments);
+            (NumberSegments Whole, NumberSegments Numerator, NumberSegments Denominator) rawResult = Divide(environment, x, environment.GetNumber(2).Whole);
 
             NumberSegments result;
             if (variance == 1 && rawResult.Numerator != default(NumberSegments))
             {
-                result = Add(environment, rawResult.Whole, environment.GetNumber(1).Segments);
+                result = Add(environment, rawResult.Whole, environment.GetNumber(1).Whole);
             }
             else if (variance == -1 || rawResult.Numerator == default(NumberSegments))
             {
@@ -361,7 +361,7 @@ namespace NS12.VariableBase.Mathematics.Providers.Algorithms
                 NumberSegments doubleNumerator = Multiply(environment, rawResult.Numerator, 2);
                 if (IsGreaterThanOrEqualTo(environment, doubleNumerator, rawResult.Numerator))
                 {
-                    result = Add(environment, rawResult.Whole, environment.GetNumber(1).Segments);
+                    result = Add(environment, rawResult.Whole, environment.GetNumber(1).Whole);
                 }
                 else
                 {
@@ -486,7 +486,7 @@ namespace NS12.VariableBase.Mathematics.Providers.Algorithms
             }
             else
             {
-                (NumberSegments Whole, NumberSegments Numerator, NumberSegments Denominator) half = Divide(environment, a, environment.GetNumber(2).Segments);
+                (NumberSegments Whole, NumberSegments Numerator, NumberSegments Denominator) half = Divide(environment, a, environment.GetNumber(2).Whole);
                 if (half.Numerator == default(NumberSegments))
                 {
                     isEven = true;
@@ -580,18 +580,18 @@ namespace NS12.VariableBase.Mathematics.Providers.Algorithms
             }
             else if (IsLessThanOrEqualTo(environment, number, AsSegments(environment, 3)))
             {
-                return (environment.GetNumber(1).Segments, default(NumberSegments), default(NumberSegments));
+                return (environment.GetNumber(1).Whole, default(NumberSegments), default(NumberSegments));
             }
 
-            NumberSegments floor = environment.GetNumber(2).Segments;
-            NumberSegments ceiling = Divide(environment, number, environment.GetNumber(2).Segments).Whole;
+            NumberSegments floor = environment.GetNumber(2).Whole;
+            NumberSegments ceiling = Divide(environment, number, environment.GetNumber(2).Whole).Whole;
 
             NumberSegments lastNumberTried = GetWholeNumberSomewhereBetween(environment, ceiling, floor);
             NumberSegments squareTestResult = Square(environment, lastNumberTried);
 
             NumberSegments maxDifference = Subtract(environment, lastNumberTried, new NumberSegments(new decimal[] { 1 }));
 
-            while (IsNotEqual(environment, squareTestResult, number) && IsGreaterThan(environment, Subtract(environment, ceiling, floor), environment.GetNumber(1).Segments))
+            while (IsNotEqual(environment, squareTestResult, number) && IsGreaterThan(environment, Subtract(environment, ceiling, floor), environment.GetNumber(1).Whole))
             {
                 NumberSegments numberBeforLast = lastNumberTried;
                 if (IsLessThan(environment, squareTestResult, number))
@@ -600,7 +600,7 @@ namespace NS12.VariableBase.Mathematics.Providers.Algorithms
                     lastNumberTried = GetWholeNumberSomewhereBetween(environment, ceiling, floor);
                     if (IsEqual(environment, numberBeforLast, lastNumberTried))
                     {
-                        lastNumberTried = Add(environment, lastNumberTried, environment.GetNumber(1).Segments);
+                        lastNumberTried = Add(environment, lastNumberTried, environment.GetNumber(1).Whole);
                     }
                 }
                 else if (IsGreaterThan(environment, squareTestResult, number))
@@ -609,7 +609,7 @@ namespace NS12.VariableBase.Mathematics.Providers.Algorithms
                     lastNumberTried = GetWholeNumberSomewhereBetween(environment, ceiling, floor, -1);
                     if (IsEqual(environment, numberBeforLast, lastNumberTried))
                     {
-                        lastNumberTried = Subtract(environment, lastNumberTried, environment.GetNumber(1).Segments);
+                        lastNumberTried = Subtract(environment, lastNumberTried, environment.GetNumber(1).Whole);
                     }
                 }
                 squareTestResult = Square(environment, lastNumberTried);
@@ -626,7 +626,7 @@ namespace NS12.VariableBase.Mathematics.Providers.Algorithms
             }
             else if (IsGreaterThan(environment, squareTestResult, number))
             {
-                NumberSegments wholeNumber = Subtract(environment, lastNumberTried, environment.GetNumber(0).Segments);
+                NumberSegments wholeNumber = Subtract(environment, lastNumberTried, environment.GetNumber(0).Whole);
                 NumberSegments leftOver = Subtract(environment, squareTestResult, number);
                 result = (wholeNumber, leftOver, number);
             }
@@ -1030,7 +1030,7 @@ namespace NS12.VariableBase.Mathematics.Providers.Algorithms
                 return this.Divide(environment, numerator, denominator[0]);
             }
 
-            NumberSegments floor = hint == default(NumberSegments) || IsGreaterThan(environment, denominator, hint) ? environment.GetNumber(1).Segments : GetAboutHalf(environment, hint, environment.GetNumber(1).Segments, -1);
+            NumberSegments floor = hint == default(NumberSegments) || IsGreaterThan(environment, denominator, hint) ? environment.GetNumber(1).Whole : GetAboutHalf(environment, hint, environment.GetNumber(1).Whole, -1);
             NumberSegments ceiling = hint == default(NumberSegments) || IsGreaterThan(environment, denominator, hint) ? numerator : GetAboutHalf(environment, hint, numerator, 1);
 
             NumberSegments lastNumberTried = GetWholeNumberSomewhereBetween(environment, ceiling, floor);
@@ -1039,7 +1039,7 @@ namespace NS12.VariableBase.Mathematics.Providers.Algorithms
             NumberSegments maxDifference = Subtract(environment, denominator, new NumberSegments(new decimal[] { 1 }));
             NumberSegments minimumTestResult = Subtract(environment, numerator, maxDifference);
 
-            NumberSegments lastNumeratorTestResult = environment.GetNumber(0).Segments;
+            NumberSegments lastNumeratorTestResult = environment.GetNumber(0).Whole;
 
             while (IsLessThan(environment, numeratorTestResult, minimumTestResult) || IsGreaterThan(environment, numeratorTestResult, numerator))
             {
@@ -1057,7 +1057,7 @@ namespace NS12.VariableBase.Mathematics.Providers.Algorithms
 
                 if (IsGreaterThanOrEqualTo(environment, floor, ceiling))
                 {
-                    floor = GetWholeNumberSomewhereBetween(environment, ceiling, environment.GetNumber(1).Segments);
+                    floor = GetWholeNumberSomewhereBetween(environment, ceiling, environment.GetNumber(1).Whole);
                 }
                 else if (IsLessThanOrEqualTo(environment, ceiling, floor))
                 {

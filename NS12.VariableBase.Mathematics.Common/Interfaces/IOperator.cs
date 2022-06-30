@@ -12,7 +12,7 @@ namespace NS12.VariableBase.Mathematics.Common.Interfaces
         T Add(T a, T b);
         T Subtract(T a, T b);
         T Multiply(T a, T b);
-        T Divide(T a, T b, T hint = default);
+        T Divide(T a, T b);
         bool Equals(T a, T b);
         bool IsGreaterThan(T a, T b);
         bool IsLessThan(T a, T b);

@@ -18,12 +18,12 @@ namespace NS12.VariableBase.Mathematics.Providers.Operators
 
         public Number Square(Number number)
         {
-            return new Number(number.Environment, BasicMath.Square(number.Environment, number.Segments), null, number.IsNegative);
+            return new Number(number.Environment, BasicMath.Square(number.Environment, number.Whole), null, number.IsNegative);
         }
 
         public Number SquareRoot(Number number)
         {
-            (NumberSegments Whole, NumberSegments Numerator, NumberSegments Denominator) rawResult = BasicMath.SquareRoot(number.Environment, number.Segments);
+            (NumberSegments Whole, NumberSegments Numerator, NumberSegments Denominator) rawResult = BasicMath.SquareRoot(number.Environment, number.Whole);
 
             return new Number(number.Environment, rawResult.Whole, rawResult.Numerator, rawResult.Denominator, number.IsNegative);
         }
@@ -33,13 +33,13 @@ namespace NS12.VariableBase.Mathematics.Providers.Operators
             var base10Environment = new CharMathEnvironment("0123456789");
             if (number.Fragment == default)
             {
-                return new Number(base10Environment, BasicMath.ConvertToBase10(base10Environment, number.Environment, number.Segments), null, number.IsNegative);
+                return new Number(base10Environment, BasicMath.ConvertToBase10(base10Environment, number.Environment, number.Whole), null, number.IsNegative);
             }
             else
             {
                 Number numerator = number.Fragment.Numerator.ConvertToBase10();
                 Number denominator = number.Fragment.Denominator.ConvertToBase10();
-                return new Number(base10Environment, BasicMath.ConvertToBase10(base10Environment, number.Environment, number.Segments), new Fraction(numerator, denominator), number.IsNegative);
+                return new Number(base10Environment, BasicMath.ConvertToBase10(base10Environment, number.Environment, number.Whole), new Fraction(numerator, denominator), number.IsNegative);
             }
         }
 
@@ -52,15 +52,15 @@ namespace NS12.VariableBase.Mathematics.Providers.Operators
             IMathEnvironment<Number> environment = number.Environment;
 
             Number result;
-            NumberSegments numberSegments = number.Segments;
+            NumberSegments numberSegments = number.Whole;
             if (numerator != 0)
             {
                 var fraction = new Fraction(numerator, denominator);
-                result = new Number(environment, number.Segments, fraction, false);
+                result = new Number(environment, number.Whole, fraction, false);
             }
             else
             {
-                result = new Number(environment, number.Segments, default(Fraction), false);
+                result = new Number(environment, number.Whole, default(Fraction), false);
             }
             return result;
         }
@@ -75,7 +75,7 @@ namespace NS12.VariableBase.Mathematics.Providers.Operators
 
             if (a.Fragment == default && b.Fragment == default)
             {
-                NumberSegments resultSegments = BasicMath.Add(environment, a.Segments, b.Segments);
+                NumberSegments resultSegments = BasicMath.Add(environment, a.Whole, b.Whole);
                 return new Number(environment, resultSegments, null, false);
             }
             else
@@ -107,7 +107,7 @@ namespace NS12.VariableBase.Mathematics.Providers.Operators
 
             if (a.Fragment == default && b.Fragment == default)
             {
-                NumberSegments resultSegments = BasicMath.Subtract(environment, a.Segments, b.Segments);
+                NumberSegments resultSegments = BasicMath.Subtract(environment, a.Whole, b.Whole);
                 return new Number(environment, resultSegments, null, false);
             }
             else
@@ -128,7 +128,7 @@ namespace NS12.VariableBase.Mathematics.Providers.Operators
 
             if (a.Fragment == default && b.Fragment == default)
             {
-                NumberSegments resultSegments = BasicMath.Multiply(environment, a.Segments, b.Segments);
+                NumberSegments resultSegments = BasicMath.Multiply(environment, a.Whole, b.Whole);
                 return new Number(environment, resultSegments, default(Fraction), false);
             }
             else
@@ -139,7 +139,7 @@ namespace NS12.VariableBase.Mathematics.Providers.Operators
 
         }
 
-        public Number Divide(Number a, Number b, Number hint = default)
+        public Number Divide(Number a, Number b)
         {
             if (a.Environment != b.Environment)
             {
@@ -173,41 +173,33 @@ namespace NS12.VariableBase.Mathematics.Providers.Operators
                 }
 
 
-                var aFraction = default(Fraction);
+                Fraction aFraction = default(Fraction);
                 if (numerator.Fragment != default)
                 {
-                    NumberSegments aDividend = BasicMath.Add(environment, BasicMath.Multiply(environment, numerator.Segments, numerator.Fragment.Denominator.Segments), numerator.Fragment.Numerator.Segments);
-                    aFraction = new Fraction(numerator.Environment, aDividend, numerator.Fragment.Denominator.Segments);
+                    NumberSegments aDividend = BasicMath.Add(environment, BasicMath.Multiply(environment, numerator.Whole, numerator.Fragment.Denominator.Whole), numerator.Fragment.Numerator.Whole);
+                    aFraction = new Fraction(numerator.Environment, aDividend, numerator.Fragment.Denominator.Whole);
                 }
                 else
                 {
-                    aFraction = new Fraction(numerator.Environment, numerator.Segments, environment.GetNumber(1).Segments);
+                    aFraction = new Fraction(numerator.Environment, numerator.Whole, environment.GetNumber(1).Whole);
                 }
 
                 var bFraction = default(Fraction);
                 if (denominator.Fragment != default)
                 {
-                    NumberSegments bDividend = BasicMath.Add(environment, BasicMath.Multiply(environment, denominator.Segments, denominator.Fragment.Denominator.Segments), denominator.Fragment.Numerator.Segments);
-                    bFraction = new Fraction(denominator.Environment, bDividend, denominator.Fragment.Denominator.Segments);
+                    NumberSegments bDividend = BasicMath.Add(environment, BasicMath.Multiply(environment, denominator.Whole, denominator.Fragment.Denominator.Whole), denominator.Fragment.Numerator.Whole);
+                    bFraction = new Fraction(denominator.Environment, bDividend, denominator.Fragment.Denominator.Whole);
                 }
                 else if (aFraction != default)
                 {
-                    bFraction = new Fraction(denominator.Environment, denominator.Segments, environment.GetNumber(1).Segments);
+                    bFraction = new Fraction(denominator.Environment, denominator.Whole, environment.GetNumber(1).Whole);
                 }
 
                 numerator = aFraction.Numerator * bFraction.Denominator;
                 denominator = bFraction.Numerator * aFraction.Denominator;
             }
 
-            (NumberSegments Whole, NumberSegments Numerator, NumberSegments Denominator) resultSegments;
-            if (hint == default)
-            {
-                resultSegments = BasicMath.Divide(environment, numerator.Segments, denominator.Segments);
-            }
-            else
-            {
-                resultSegments = BasicMath.Divide(environment, numerator.Segments, denominator.Segments, hint.Segments);
-            }
+            (NumberSegments Whole, NumberSegments Numerator, NumberSegments Denominator) resultSegments = BasicMath.Divide(environment, numerator.Whole, denominator.Whole);
 
             if (resultSegments.Numerator != default(NumberSegments) && resultSegments.Denominator != default(NumberSegments))
             {
@@ -278,27 +270,27 @@ namespace NS12.VariableBase.Mathematics.Providers.Operators
             }
 
             int result = 0;
-            if (a.Segments.Size > b.Segments.Size)
+            if (a.Whole.Size > b.Whole.Size)
             {
                 result = 1;
             }
-            else if (a.Segments.Size < b.Segments.Size)
+            else if (a.Whole.Size < b.Whole.Size)
             {
                 result = -1;
             }
 
             if (result == 0)
             {
-                for (var i = a.Segments.Size - 1; i >= 0; i--)
+                for (var i = a.Whole.Size - 1; i >= 0; i--)
                 {
-                    if (a.Segments[i] != b.Segments[i])
+                    if (a.Whole[i] != b.Whole[i])
                     {
-                        if (a.Segments[i] > b.Segments[i])
+                        if (a.Whole[i] > b.Whole[i])
                         {
                             result = 1;
                             break;
                         }
-                        else if (a.Segments[i] < b.Segments[i])
+                        else if (a.Whole[i] < b.Whole[i])
                         {
                             result = -1;
                             break;
@@ -391,11 +383,11 @@ namespace NS12.VariableBase.Mathematics.Providers.Operators
 
         public bool IsBottom(Number number)
         {
-            if (number.Environment == default(IMathEnvironment<Number>) || number.Segments == default(NumberSegments) || number.Segments.Size == 0)
+            if (number.Environment == default(IMathEnvironment<Number>) || number.Whole == default(NumberSegments) || number.Whole.Size == 0)
             {
                 return true;
             }
-            else if (number.Segments.Size == 1 && number.Segments[0] == 0)
+            else if (number.Whole.Size == 1 && number.Whole[0] == 0)
             {
                 return true;
             }
@@ -410,7 +402,7 @@ namespace NS12.VariableBase.Mathematics.Providers.Operators
         }
         public bool IsEven(Number number)
         {
-            return BasicMath.IsEven(number.Environment, number.Segments);
+            return BasicMath.IsEven(number.Environment, number.Whole);
         }
 
         public Number Convert(IMathEnvironment<Number> environment, Number number)
@@ -499,7 +491,7 @@ namespace NS12.VariableBase.Mathematics.Providers.Operators
             else
             {
                 Number numerator = new Number(environment,
-                    BasicMath.Add(environment, BasicMath.Multiply(environment, number.Segments, number.Fragment.Denominator.Segments), number.Fragment.Numerator.Segments)
+                    BasicMath.Add(environment, BasicMath.Multiply(environment, number.Whole, number.Fragment.Denominator.Whole), number.Fragment.Numerator.Whole)
                     , default(Fraction)
                     , number.IsNegative);
 

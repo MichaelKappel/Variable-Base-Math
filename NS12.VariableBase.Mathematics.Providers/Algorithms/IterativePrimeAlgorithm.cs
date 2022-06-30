@@ -40,18 +40,18 @@ namespace NS12.VariableBase.Mathematics.Providers.Algorithms
             }
             else
             {
-                decimal savedNumberNumber = number.Segments[0];
+                decimal savedNumberNumber = number.Whole[0];
 
-                if (number.Segments.Length <= 3)
+                if (number.Whole.Length <= 3)
                 {
-                    if (number.Segments.Length > 1)
+                    if (number.Whole.Length > 1)
                     {
-                        savedNumberNumber = savedNumberNumber + number.Segments[1] * number.Environment.Base;
+                        savedNumberNumber = savedNumberNumber + number.Whole[1] * number.Environment.Base;
                     }
 
-                    if (number.Segments.Length > 2)
+                    if (number.Whole.Length > 2)
                     {
-                        savedNumberNumber = savedNumberNumber + number.Segments[2] * (number.Environment.Base * number.Environment.Base);
+                        savedNumberNumber = savedNumberNumber + number.Whole[2] * (number.Environment.Base * number.Environment.Base);
                     }
 
                     decimal squareRootOfPrime = (decimal)Math.Sqrt((double)savedNumberNumber);
@@ -92,7 +92,7 @@ namespace NS12.VariableBase.Mathematics.Providers.Algorithms
             }
             else
             {
-                Number halfPrime = environment.GetNumber(Math.Ceiling(a.Segments[0] / 2));
+                Number halfPrime = environment.GetNumber(Math.Ceiling(a.Whole[0] / 2));
                 Number testNumber = environment.GetNumber(1);
                 while (testNumber <= halfPrime)
                 {
@@ -109,11 +109,11 @@ namespace NS12.VariableBase.Mathematics.Providers.Algorithms
             if (a.Size == 1)
             {
                 bool isPrime = true;
-                decimal squareRootOfPrime = (decimal)Math.Sqrt((double)a.Segments[0]);
+                decimal squareRootOfPrime = (decimal)Math.Sqrt((double)a.Whole[0]);
                 int i = 2;
                 for (; i <= squareRootOfPrime; i++)
                 {
-                    if (a.Segments[0] % i == 0)
+                    if (a.Whole[0] % i == 0)
                     {
                         isPrime = false;
                         break;
@@ -122,17 +122,17 @@ namespace NS12.VariableBase.Mathematics.Providers.Algorithms
 
                 if (isPrime == false && result == default)
                 {
-                    throw new Exception(string.Format("Math Error in GetComposite {0} should have had a Composite of {1}", a.Segments[0], i));
+                    throw new Exception(string.Format("Math Error in GetComposite {0} should have had a Composite of {1}", a.Whole[0], i));
                 }
                 else if (isPrime == true && result != default)
                 {
-                    throw new Exception(string.Format("Math Error in GetComposite {0} should NOT have a Composite of {1} x {2}", a.Segments[0], result.Numerator.Segments[0], result.Denominator.Segments[0]));
+                    throw new Exception(string.Format("Math Error in GetComposite {0} should NOT have a Composite of {1} x {2}", a.Whole[0], result.Numerator.Whole[0], result.Denominator.Whole[0]));
                 }
             }
 
             if (result != default)
             {
-                foreach (decimal segment in result.Numerator.Segments)
+                foreach (decimal segment in result.Numerator.Whole)
                 {
                     if (segment > environment.Base)
                     {
@@ -144,7 +144,7 @@ namespace NS12.VariableBase.Mathematics.Providers.Algorithms
                     }
                 }
 
-                foreach (decimal segment in result.Denominator.Segments)
+                foreach (decimal segment in result.Denominator.Whole)
                 {
                     if (segment > environment.Base)
                     {

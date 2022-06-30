@@ -70,7 +70,7 @@ namespace NS12.VariableBase.Mathematics.Providers.Algorithms
                 }
 
                 PrimeNumberTree[environmentBase].Numbers.Add(prime);
-                PrimeNumberTree[environmentBase].Segments.Add(prime.Segments, NumberTypes.Prime);
+                PrimeNumberTree[environmentBase].Segments.Add(prime.Whole, NumberTypes.Prime);
 
                 if (onPrimeFound != default)
                 {
@@ -91,7 +91,7 @@ namespace NS12.VariableBase.Mathematics.Providers.Algorithms
             {
                 Number prime = environment.GetNumber(primeNumbersRaw[i]);
                 PrimeNumberTree[(int)environment.Base].Numbers.Add(prime);
-                PrimeNumberTree[(int)environment.Base].Segments.Add(prime.Segments, NumberTypes.Prime);
+                PrimeNumberTree[(int)environment.Base].Segments.Add(prime.Whole, NumberTypes.Prime);
 
                 if (prime > PrimeListMaxNumber)
                 {
@@ -142,7 +142,7 @@ namespace NS12.VariableBase.Mathematics.Providers.Algorithms
                 return NumberTypes.Composite;
             }
 
-            NumberTypes currentNumberType = PrimeNumberTree[(int)environment.Base].Segments.GetNumberType(number.Segments);
+            NumberTypes currentNumberType = PrimeNumberTree[(int)environment.Base].Segments.GetNumberType(number.Whole);
             if (currentNumberType == NumberTypes.Unknown && number < PrimeListMaxNumber)
             {
                 return NumberTypes.Composite;
@@ -155,7 +155,7 @@ namespace NS12.VariableBase.Mathematics.Providers.Algorithms
             (Number Numerator, Number Denominator) numberComposite = GetComposite(number);
             if (numberComposite == default)
             {
-                PrimeNumberTree[(int)environment.Base].Segments.Add(number.Segments, NumberTypes.Prime);
+                PrimeNumberTree[(int)environment.Base].Segments.Add(number.Whole, NumberTypes.Prime);
                 PrimeNumberTree[(int)environment.Base].Numbers.Add(number);
                 PrimeListMaxNumber = number;
                 if (OnPrimeFound != default)
@@ -191,8 +191,6 @@ namespace NS12.VariableBase.Mathematics.Providers.Algorithms
                 }
                 else
                 {
-                    Number lastResultWholeNumber = default;
-
                     int iPrime = 0;
 
                     bool usePrime = true;
@@ -200,14 +198,12 @@ namespace NS12.VariableBase.Mathematics.Providers.Algorithms
                     Number currentNumberToTry = PrimeNumberTree[(int)environment.Base].Numbers[iPrime];
                     while (currentNumberToTry <= maxNumber)
                     {
-                        Number currentNumber = Number.Operator.Divide(a, currentNumberToTry, lastResultWholeNumber);
+                        Number currentNumber = Number.Operator.Divide(a, currentNumberToTry);
                         if (currentNumber.Fragment == default)
                         {
                             result = (currentNumber, currentNumberToTry);
                             break;
                         }
-                        lastResultWholeNumber = environment.GetNumber(currentNumber.Segments);
-
                         if (usePrime)
                         {
                             iPrime++;

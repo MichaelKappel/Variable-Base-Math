@@ -1,15 +1,13 @@
 ﻿using System;
-
-
 using System.Linq;
 using System.Runtime.CompilerServices;
-
 using NS12.VariableBase.Mathematics.Common.Models;
 using NS12.VariableBase.Mathematics.Providers.Algorithms;
 using NS12.VariableBase.Mathematics.Providers.Operators;
 using System.IO;
 using System.Diagnostics;
 using NS12.VariableBase.Mathematics.Common.Interfaces;
+#nullable disable
 
 [assembly: InternalsVisibleTo("Math.Tests")]
 namespace NS12.VariableBase.Mathematics.Providers
@@ -21,12 +19,12 @@ namespace NS12.VariableBase.Mathematics.Providers
 
         public static bool IsBottom(Number number)
         {
-            return number.Size == 1 && number.Segments[0] == 0;
+            return number.Size == 1 && number.Whole[0] == 0;
         }
 
         public static bool IsFirst(Number number)
         {
-            return number.Size == 1 && number.Segments[0] == 1;
+            return number.Size == 1 && number.Whole[0] == 1;
         }
 
         public static bool IsBottom(NumberSegments segments)
@@ -68,46 +66,43 @@ namespace NS12.VariableBase.Mathematics.Providers
 
         public IMathEnvironment<Number> Environment { get; set; }
 
-        public NumberSegments Segments { get; set; }
+        public NumberSegments Whole { get; set; }
         public int Size { get; private set; }
 
         public Number(IMathEnvironment<Number> environment, NumberSegments segments, bool isNegative = false)
-            :this(environment, segments, default(NumberSegments), default(NumberSegments), isNegative)
+            :this(environment, segments, null, null, isNegative)
         {
            
         }
 
-        public Number(IMathEnvironment<Number> environment, NumberSegments segments, NumberSegments numerator, NumberSegments denominator, bool isNegative)
+        public Number(IMathEnvironment<Number> environment, NumberSegments wholeNumber, NumberSegments? numerator, NumberSegments? denominator, bool isNegative)
         {
-            if (segments == default(NumberSegments) || segments.Size == 0)
+            if (wholeNumber == default(NumberSegments) || wholeNumber.Size == 0)
             {
-                segments = new NumberSegments(new decimal[] { 0 });
+                wholeNumber = new NumberSegments(new decimal[] { 0 });
             }
 
-            Environment = environment;
-
-            IsNegative = isNegative;
-
-            Segments = segments;
-
-            Size = segments.Length;
+            this.Environment = environment;
+            this.IsNegative = isNegative;
+            this.Whole = wholeNumber;
+            this.Size = wholeNumber.Length;
 
             if (numerator != default(NumberSegments) && denominator != default(NumberSegments))
             {
-                Fragment = new Fraction(environment, numerator, denominator);
+                this.Fragment = new Fraction(environment, numerator, denominator);
             }
             else
             {
-                Fragment = default;
+                this.Fragment = default;
             }
 
-            First = Segments[Segments.Size - 1];
-            if (First == 0 && Segments.Size > 1)
+            this.First = this.Whole[this.Whole.Size - 1];
+            if (this.First == 0 && this.Whole.Size > 1)
             {
                 throw new Exception("Numbers longer then a power can not start with bottom number char");
             }
 
-            Even = null;
+            this.Even = null;
         }
 
 
@@ -123,17 +118,16 @@ namespace NS12.VariableBase.Mathematics.Providers
 
             if (fraction.Denominator == 0)
             {
-                Segments = environment.GetNumber(0).Segments;
-                Fragment = default;
+                this.Whole = environment.GetNumber(0).Whole;
+                this.Fragment = default;
             }
             else if (Operator.IsGreaterThan(fraction.Denominator, fraction.Numerator))
             {
-                Segments = new NumberSegments(new decimal[] { 0 });
-                Fragment = fraction;
+                this.Whole = new NumberSegments(new decimal[] { 0 });
+                this.Fragment = fraction;
             }
             else
             {
-
                 Number numerator = fraction.Numerator;
                 Number denominator = fraction.Denominator;
 
@@ -147,7 +141,7 @@ namespace NS12.VariableBase.Mathematics.Providers
                     }
                     else
                     {
-                        aFraction = new Fraction(numerator.Environment, numerator.Segments, environment.GetNumber(1).Segments);
+                        aFraction = new Fraction(numerator.Environment, numerator.Whole, environment.GetNumber(1).Whole);
                     }
 
                     var bFraction = default(Fraction);
@@ -159,7 +153,7 @@ namespace NS12.VariableBase.Mathematics.Providers
                     }
                     else if (aFraction != default)
                     {
-                        bFraction = new Fraction(denominator.Environment, denominator.Segments, environment.GetNumber(1).Segments);
+                        bFraction = new Fraction(denominator.Environment, denominator.Whole, environment.GetNumber(1).Whole);
                     }
 
                     Fraction fractionResult = aFraction / bFraction;
@@ -168,7 +162,7 @@ namespace NS12.VariableBase.Mathematics.Providers
                 }
 
                 Number resultSegments = Operator.Divide(numerator, denominator);
-                Segments = resultSegments.Segments;
+                Whole = resultSegments.Whole;
                 if (resultSegments.Fragment == default)
                 {
                     Fragment = default;
@@ -178,9 +172,9 @@ namespace NS12.VariableBase.Mathematics.Providers
                     Fragment = new Fraction(resultSegments.Fragment.Numerator, resultSegments.Fragment.Denominator);
                 }
             }
-            Size = Segments.Length;
+            Size = Whole.Length;
             IsNegative = false;
-            First = Segments[Segments.Length - 1];
+            First = Whole[Whole.Length - 1];
 
 
             Even = null;
@@ -189,12 +183,12 @@ namespace NS12.VariableBase.Mathematics.Providers
 
         internal Number(IMathEnvironment<Number> environment, NumberSegments segments, Fraction fragment, bool isNegative)
         {
-            Environment = environment;
+            this.Environment = environment;
 
 #if DEBUG
             foreach (decimal segment in segments)
             {
-                if (segment > Environment.Base)
+                if (segment > this.Environment.Base)
                 {
                     throw new Exception("Bad number segment larger than base");
                 }
@@ -205,21 +199,21 @@ namespace NS12.VariableBase.Mathematics.Providers
             }
 #endif
 
-            IsNegative = isNegative;
+            this.IsNegative = isNegative;
 
-            Segments = segments;
+            this.Whole = segments;
 
-            Fragment = fragment;
+            this.Fragment = fragment;
 
-            Size = segments.Length;
+            this.Size = segments.Length;
 
-            First = Segments[Segments.Size - 1];
-            if (First == 0 && Segments.Size > 1)
+            this.First = this.Whole[Whole.Size - 1];
+            if (First == 0 && Whole.Size > 1)
             {
                 throw new Exception("Numbers longer then a power can not start with bottom number char");
             }
 
-            Even = null;
+            this.Even = null;
         }
 
         #region operator overrides
@@ -316,45 +310,45 @@ namespace NS12.VariableBase.Mathematics.Providers
 
         internal Number Copy()
         {
-            return new Number(Environment, Segments, Fragment, IsNegative);
+            return new Number(this.Environment, this.Whole, this.Fragment, IsNegative);
         }
 
         internal Number AsNegativeNumber()
         {
-            return new Number(Environment, Segments, Fragment, true);
+            return new Number(this.Environment, this.Whole, this.Fragment, true);
         }
 
         internal Number AsPositiveNumber()
         {
-            return new Number(Environment, Segments, Fragment, false);
+            return new Number(this.Environment, this.Whole, this.Fragment, false);
         }
 
         internal Number Floor()
         {
-            return new Number(Environment, Segments, null, IsNegative);
+            return new Number(this.Environment, this.Whole, IsNegative);
         }
 
         public static implicit operator decimal(Number d)
         {
-            return d.Segments[0];
+            return d.Whole[0];
         }
 
         public static implicit operator long(Number d)
         {
-            return (long)d.Segments[0];
+            return (long)d.Whole[0];
         }
 
 
         public static implicit operator ulong(Number d)
         {
-            return (ulong)d.Segments[0];
+            return (ulong)d.Whole[0];
         }
 
         public override int GetHashCode()
         {
             unchecked
             {
-                int hashCode = Segments.GetHashCode();
+                int hashCode = Whole.GetHashCode();
                 return hashCode;
             }
         }
@@ -400,12 +394,12 @@ namespace NS12.VariableBase.Mathematics.Providers
             NumberSegments resultSegments;
             if (environment != default(IMathEnvironment<Number>) && environment != Environment)
             {
-                resultSegments = Convert(environment).Segments;
+                resultSegments = Convert(environment).Whole;
             }
             else
             {
                 environment = Environment;
-                resultSegments = Segments;
+                resultSegments = Whole;
             }
 
             result += string.Concat(resultSegments.Select(x => environment.Key[(int)x]).Reverse());
@@ -418,7 +412,7 @@ namespace NS12.VariableBase.Mathematics.Providers
             return result;
         }
 
-        public string GetDecimalArray(IMathEnvironment<Number> environment = default)
+        public string GetDecimalArray(IMathEnvironment<Number> environment)
         {
             string result = string.Empty;
             if (IsNegative)
@@ -429,16 +423,16 @@ namespace NS12.VariableBase.Mathematics.Providers
             NumberSegments resultSegments;
             if (environment != default(IMathEnvironment<Number>) && environment != Environment)
             {
-                resultSegments = Convert(environment).Segments;
+                resultSegments = this.Convert(environment).Whole;
             }
             else
             {
-                resultSegments = Segments;
+                resultSegments = Whole;
             }
 
             result += string.Join(',', resultSegments.Reverse());
 
-            if (Fragment != default)
+            if (this.Fragment != null)
             {
                 result = string.Format("{0} {1}", result, Fragment);
             }
@@ -455,9 +449,9 @@ namespace NS12.VariableBase.Mathematics.Providers
                 result = "-" + result;
             }
 
-            result = string.Join("", Environment.ConvertToString(Segments));
+            result = string.Join("", Environment.ConvertToString(Whole));
 
-            if (Fragment != default)
+            if (this.Fragment != default)
             {
                 result = string.Format("{0} {1}", result, Fragment);
             }
@@ -482,15 +476,15 @@ namespace NS12.VariableBase.Mathematics.Providers
 
         public void Dispose()
         {
-            Fragment = default;
+            this.Fragment = default;
 
-            First = 0;
+            this.First = 0;
 
-            IsNegative = false;
+            this.IsNegative = false;
 
-            Environment = default;
+            this.Environment = default;
 
-            Segments.Dispose();
+            this.Whole.Dispose();
         }
     }
 }

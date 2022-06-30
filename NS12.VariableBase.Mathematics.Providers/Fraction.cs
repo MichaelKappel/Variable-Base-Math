@@ -1,10 +1,8 @@
 ﻿using System;
-
-
-
 using NS12.VariableBase.Mathematics.Common.Models;
 using NS12.VariableBase.Mathematics.Providers.Operators;
 using NS12.VariableBase.Mathematics.Common.Interfaces;
+#nullable disable
 
 namespace NS12.VariableBase.Mathematics.Providers
 {
@@ -15,8 +13,8 @@ namespace NS12.VariableBase.Mathematics.Providers
 
         internal Fraction(IMathEnvironment<Number> environment, NumberSegments numerator, NumberSegments denominator)
         {
-            Numerator = new Number(environment, numerator, default, default, false);
-            Denominator = new Number(environment, denominator, default, default, false);
+            Numerator = new Number(environment, numerator, false);
+            Denominator = new Number(environment, denominator, false);
         }
 
         internal Fraction(Number numerator, Number denominator)
