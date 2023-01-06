@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "VTDcLnxYOn3E6VQACzRY4eYM3LSx9Mv3thbsHrxlJ8owp6iTeVA1VOeIMn6EdCGL/n5pBhXB9fPtBecGcsgDEQ==",
+  "dgSpecHash": "GZf8SHRpUth9txy5wuPe4OoHoHCnVPb0bUCXUonvIdNFsIp7sf7aSeldpbj7wgxAXzGZX5fZjmr0Y0c+IJ3gEw==",
   "success": true,
   "projectFilePath": "C:\\Git\\MichaelKappel\\Variable-Base-Math\\NS12.PrecisionCalculator\\NS12.PrecisionCalculator.csproj",
   "expectedPackageFiles": [
@@ -32,7 +32,8 @@
     "C:\\Users\\mikek\\.nuget\\packages\\system.io.pipelines\\6.0.3\\system.io.pipelines.6.0.3.nupkg.sha512",
     "C:\\Users\\mikek\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
     "C:\\Users\\mikek\\.nuget\\packages\\system.text.encodings.web\\6.0.0\\system.text.encodings.web.6.0.0.nupkg.sha512",
-    "C:\\Users\\mikek\\.nuget\\packages\\system.text.json\\6.0.0\\system.text.json.6.0.0.nupkg.sha512"
+    "C:\\Users\\mikek\\.nuget\\packages\\system.text.json\\6.0.0\\system.text.json.6.0.0.nupkg.sha512",
+    "C:\\Users\\mikek\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\6.0.11\\microsoft.netcore.app.runtime.mono.browser-wasm.6.0.11.nupkg.sha512"
   ],
   "logs": []
 }

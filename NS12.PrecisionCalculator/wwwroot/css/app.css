@@ -78,4 +78,14 @@ button.calculator {
     font-weight: 900;
     font-size: 24pt;
     border: 2px solid black;
-} 
+}
+
+#calculator-result-whole{
+    width:100%;
+}
+#calculator-result-numerator {
+    width: 100%;
+}
+#calculator-result-denominator {
+    width: 100%;
+}

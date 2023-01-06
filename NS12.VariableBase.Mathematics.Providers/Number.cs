@@ -37,7 +37,7 @@ namespace NS12.VariableBase.Mathematics.Providers
             return segments.Size == 1 && segments[0] == 1;
         }
 
-        public Fraction Fragment { get; set; }
+        public Fraction? Fragment { get; set; }
 
         public decimal First { get; set; }
 
@@ -172,16 +172,16 @@ namespace NS12.VariableBase.Mathematics.Providers
                     Fragment = new Fraction(resultSegments.Fragment.Numerator, resultSegments.Fragment.Denominator);
                 }
             }
-            Size = Whole.Length;
-            IsNegative = false;
-            First = Whole[Whole.Length - 1];
+            this.Size = Whole.Length;
+            this.IsNegative = false;
+            this.First = Whole[Whole.Length - 1];
 
 
-            Even = null;
+            this.Even = null;
         }
 
 
-        internal Number(IMathEnvironment<Number> environment, NumberSegments segments, Fraction fragment, bool isNegative)
+        internal Number(IMathEnvironment<Number> environment, NumberSegments segments, Fraction? fragment, bool isNegative)
         {
             this.Environment = environment;
 
