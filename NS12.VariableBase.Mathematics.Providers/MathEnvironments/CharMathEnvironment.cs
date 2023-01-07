@@ -135,8 +135,7 @@ namespace NS12.VariableBase.Mathematics.Providers.MathEnvironments
                 {
                     if (carryOver >= Base)
                     {
-                        decimal columnResultRaw = 0;
-                        columnResultRaw = carryOver % Base;
+                        decimal columnResultRaw = carryOver % Base;
                         resultRaw.Add(columnResultRaw);
                         carryOver = (carryOver - columnResultRaw) / Base;
                     }
@@ -153,16 +152,22 @@ namespace NS12.VariableBase.Mathematics.Providers.MathEnvironments
 
         public Number GetNumber(string wholeNumber, string fractionNumerator = "", string fractionDenominator = "", bool isNegative = false)
         {
+            if (String.IsNullOrWhiteSpace(wholeNumber))
+            {
+                wholeNumber = this.Key[0].ToString();
+            }
+
             List<char> wholeNumberSegments = wholeNumber.ToCharArray().Reverse().ToList();
 
             ValidateWholeNumber(wholeNumberSegments);
 
-            if (!string.IsNullOrEmpty(fractionNumerator) && !string.IsNullOrEmpty(fractionDenominator))
+            if (!this.IsZero(fractionNumerator))
             {
                 List<char> fractionNumeratorSegments = fractionNumerator.ToCharArray().Reverse().ToList();
                 List<char> fractionDenominatorSegments = fractionDenominator.ToCharArray().Reverse().ToList();
 
                 ValidateFraction(fractionNumeratorSegments, fractionDenominatorSegments);
+
                 return new Number(this,
                     new NumberSegments(wholeNumberSegments.Select(x => (ushort)Key.IndexOf(x)).ToArray()),
                     new NumberSegments(fractionNumeratorSegments.Select(x => (ushort)Key.IndexOf(x)).ToArray()),
@@ -171,19 +176,21 @@ namespace NS12.VariableBase.Mathematics.Providers.MathEnvironments
             }
             else
             {
-                return new Number(this, new NumberSegments(this.Base, wholeNumberSegments.Select((x) => (char)Key.IndexOf(x)).ToArray()),
-                    default, isNegative);
+                return new Number(this, new NumberSegments(this.Base, 
+                    wholeNumberSegments.Select((x) => (char)Key.IndexOf(x)).ToArray()),
+                    null,
+                    isNegative);
             }
         }
 
         public void ValidateWholeNumber(List<char> numberSegments)
         {
-            while (numberSegments.Count > 1 && numberSegments[numberSegments.Count - 1] == Key[0])
+            while (numberSegments.Count > 1 && numberSegments[^1] == Key[0])
             {
                 numberSegments.RemoveAt(numberSegments.Count - 1);
             }
 
-            if (numberSegments[numberSegments.Count - 1] == '\u202c' || numberSegments[numberSegments.Count - 1] == 8237)
+            if (numberSegments[^1] == '\u202c' || numberSegments[^1] == 8237)
             {
                 numberSegments.RemoveAt(numberSegments.Count - 1);
             }
@@ -240,12 +247,6 @@ namespace NS12.VariableBase.Mathematics.Providers.MathEnvironments
             protected set;
         }
 
-        public Number SecondNumber
-        {
-            get;
-            protected set;
-        }
-
         public ReadOnlyCollection<char> Key
         {
             get;
@@ -263,7 +264,6 @@ namespace NS12.VariableBase.Mathematics.Providers.MathEnvironments
             get;
             protected set;
         }
-
         public override string ToString()
         {
 
@@ -343,5 +343,34 @@ namespace NS12.VariableBase.Mathematics.Providers.MathEnvironments
             }
             return true;
         }
+
+        public NumberSegments Zero { get { return new NumberSegments(new List<Char> { this.Key[0] }); } }
+
+        public NumberSegments One { get { return new NumberSegments(new List<Char> { this.Key[1] }); } }
+
+        public Boolean IsZero(String number)
+        {
+            String zero = this.Key[0].ToString();
+
+            return (number.Trim().Replace(zero, String.Empty) == String.Empty);
+        }
+
+        public bool IsOne(String number)
+        {
+            String zero = this.Key[0].ToString();
+            String one = this.Key[1].ToString();
+
+            String numberCleaned = number.Trim();
+            while (numberCleaned.IndexOf(zero) == 0)
+            {
+                numberCleaned = numberCleaned.Remove(1);
+            }
+            if (numberCleaned.Length > 1)
+            {
+                return false;
+            }
+            return (numberCleaned == one);
+        }
+
     }
 }

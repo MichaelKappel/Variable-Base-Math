@@ -13,10 +13,9 @@ namespace NS12.VariableBase.Mathematics.Common.Interfaces
         decimal Base { get; }
         ReadOnlyCollection<char> Key { get; }
         T PowerOfFirstNumber { get; }
-        T SecondNumber { get; }
         bool Equals(object other);
         int GetHashCode();
-        T GetNumber(string wholeNumber, string fractionNumerator = null, string fractionDenominator = null, bool isNegative = false);
+        T GetNumber(string wholeNumber, string fractionNumerator = "", string fractionDenominator = "", bool isNegative = false);
         T GetNumber(string[] wholeNumberSegments, bool isNegative = false);
         T GetNumber(NumberSegments segments, bool isNegative = false);
         T GetNumber(decimal number);
@@ -24,6 +23,11 @@ namespace NS12.VariableBase.Mathematics.Common.Interfaces
         void ValidateFraction(List<char> numerator, List<char> denominator);
         void ValidateWholeNumber(List<char> numberSegments);
         decimal GetIndex(char arg);
+        NumberSegments Zero { get; }
+        NumberSegments One { get; }
+        Boolean IsZero(String number);
+        Boolean IsOne(String number);
+
         NumberSegments ParseNumberSegments(string raw);
         //T OpenNumberFile(string folderName, string fileName);
     }

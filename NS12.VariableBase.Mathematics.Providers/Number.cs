@@ -7,7 +7,6 @@ using NS12.VariableBase.Mathematics.Providers.Operators;
 using System.IO;
 using System.Diagnostics;
 using NS12.VariableBase.Mathematics.Common.Interfaces;
-#nullable disable
 
 [assembly: InternalsVisibleTo("Math.Tests")]
 namespace NS12.VariableBase.Mathematics.Providers
@@ -37,6 +36,9 @@ namespace NS12.VariableBase.Mathematics.Providers
             return segments.Size == 1 && segments[0] == 1;
         }
 
+        /// <summary>
+        /// Must be nullable to avoid infinite recursion
+        /// </summary>
         public Fraction? Fragment { get; set; }
 
         public decimal First { get; set; }
@@ -70,12 +72,12 @@ namespace NS12.VariableBase.Mathematics.Providers
         public int Size { get; private set; }
 
         public Number(IMathEnvironment<Number> environment, NumberSegments segments, bool isNegative = false)
-            :this(environment, segments, null, null, isNegative)
+            :this(environment, segments, null, isNegative)
         {
            
         }
 
-        public Number(IMathEnvironment<Number> environment, NumberSegments wholeNumber, NumberSegments? numerator, NumberSegments? denominator, bool isNegative)
+        public Number(IMathEnvironment<Number> environment, NumberSegments wholeNumber, NumberSegments numerator, NumberSegments denominator, bool isNegative)
         {
             if (wholeNumber == default(NumberSegments) || wholeNumber.Size == 0)
             {
@@ -133,7 +135,7 @@ namespace NS12.VariableBase.Mathematics.Providers
 
                 if (denominator.Fragment != default || denominator.Fragment != default)
                 {
-                    var aFraction = default(Fraction);
+                    Fraction aFraction;
                     if (numerator.Fragment != default)
                     {
                         Number aDividend = Operator.Add(Operator.Multiply(numerator, numerator.Fragment.Denominator), numerator.Fragment.Numerator);
@@ -174,7 +176,7 @@ namespace NS12.VariableBase.Mathematics.Providers
             }
             this.Size = Whole.Length;
             this.IsNegative = false;
-            this.First = Whole[Whole.Length - 1];
+            this.First = Whole[^1];
 
 
             this.Even = null;
@@ -386,7 +388,7 @@ namespace NS12.VariableBase.Mathematics.Providers
         public string GetCharArray(IMathEnvironment<Number> environment = default)
         {
             string result = string.Empty;
-            if (IsNegative)
+            if (this.IsNegative)
             {
                 result = "-" + result;
             }
@@ -404,7 +406,7 @@ namespace NS12.VariableBase.Mathematics.Providers
 
             result += string.Concat(resultSegments.Select(x => environment.Key[(int)x]).Reverse());
 
-            if (Fragment != default)
+            if (this.Fragment != null)
             {
                 result = string.Format("{0} {1}", result, Fragment);
             }
@@ -415,7 +417,7 @@ namespace NS12.VariableBase.Mathematics.Providers
         public string GetDecimalArray(IMathEnvironment<Number> environment)
         {
             string result = string.Empty;
-            if (IsNegative)
+            if (this.IsNegative)
             {
                 result = "-" + result;
             }
@@ -441,17 +443,14 @@ namespace NS12.VariableBase.Mathematics.Providers
         }
         public string GetDisplayValue()
         {
-            //return "Disabled";
-            string result = string.Empty;
+            string result = string.Join("", Environment.ConvertToString(Whole));
 
-            if (IsNegative)
+            if (this.IsNegative)
             {
                 result = "-" + result;
             }
 
-            result = string.Join("", Environment.ConvertToString(Whole));
-
-            if (this.Fragment != default)
+            if (this.Fragment != null)
             {
                 result = string.Format("{0} {1}", result, Fragment);
             }

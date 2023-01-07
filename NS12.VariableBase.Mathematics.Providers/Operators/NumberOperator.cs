@@ -31,7 +31,7 @@ namespace NS12.VariableBase.Mathematics.Providers.Operators
         public Number ConvertToBase10(Number number)
         {
             var base10Environment = new CharMathEnvironment("0123456789");
-            if (number.Fragment == default)
+            if (number.Fragment == null)
             {
                 return new Number(base10Environment, BasicMath.ConvertToBase10(base10Environment, number.Environment, number.Whole), null, number.IsNegative);
             }
@@ -80,7 +80,7 @@ namespace NS12.VariableBase.Mathematics.Providers.Operators
             }
             else
             {
-                Fraction aResult = AsFraction(a) + AsFraction(a);
+                Fraction aResult = AsFraction(a) + AsFraction(b);
                 return new Number(aResult);
             }
         }

@@ -1,13 +1,28 @@
 ﻿using System;
 
 using NS12.VariableBase.Mathematics.Common.Interfaces;
+using NS12.VariableBase.Mathematics.Common.Models;
 
 namespace NS12.VariableBase.Mathematics.Providers.Operators
 {
-    public class FractionOperator : IOperator<Fraction>
+    public class FractionOperator : IOperator<Fraction?>
     {
-        public Fraction Add(Fraction a, Fraction b)
+        public Fraction? Add(Fraction? a, Fraction? b)
         {
+            if (a is null && b is null)
+            {
+                return null;
+
+            }
+            else if (a is null)
+            {
+                a = this.AsNonNullable(b!.Denominator.Environment, a);
+            }
+            else if (b is null)
+            {
+                b = this.AsNonNullable(a.Denominator.Environment, b);
+            }
+
             Fraction aWhole = a.AsWholeFraction();
             Fraction bWhole = b.AsWholeFraction();
 
@@ -18,20 +33,31 @@ namespace NS12.VariableBase.Mathematics.Providers.Operators
             }
             IMathEnvironment<Number> environment = aWhole.Denominator.Environment;
 
-
-            Number commonDenominator = aWhole.Denominator - bWhole.Denominator;
+            Number commonDenominator = aWhole.Denominator * bWhole.Denominator;
             Number numeratorA = aWhole.Numerator * bWhole.Denominator;
             Number numeratorB = bWhole.Numerator * aWhole.Denominator;
 
             Number resultRaw = numeratorA + numeratorB;
 
             return new Fraction(resultRaw, commonDenominator);
-
-
         }
 
-        public Fraction Subtract(Fraction a, Fraction b)
+        public Fraction? Subtract(Fraction? a, Fraction? b)
         {
+            if (a is null && b is null)
+            {
+                return null;
+
+            }
+            else if (a is null)
+            {
+                a = this.AsNonNullable(b!.Denominator.Environment, a);
+            }
+            else if (b is null)
+            {
+                b = this.AsNonNullable(a.Denominator.Environment, b);
+            }
+
             Fraction aWhole = a.AsWholeFraction();
             Fraction bWhole = b.AsWholeFraction();
 
@@ -42,8 +68,8 @@ namespace NS12.VariableBase.Mathematics.Providers.Operators
             IMathEnvironment<Number> environment = aWhole.Denominator.Environment;
 
             Number commonDenominator = aWhole.Denominator * bWhole.Denominator;
-            Number numeratorA = aWhole.Numerator - bWhole.Denominator;
-            Number numeratorB = bWhole.Numerator - aWhole.Denominator;
+            Number numeratorA = aWhole.Numerator * bWhole.Denominator;
+            Number numeratorB = bWhole.Numerator * aWhole.Denominator;
 
             Number resultnumerator = numeratorA - numeratorB;
 
@@ -52,8 +78,22 @@ namespace NS12.VariableBase.Mathematics.Providers.Operators
             return result;
         }
 
-        public Fraction Multiply(Fraction a, Fraction b)
+        public Fraction? Multiply(Fraction? a, Fraction? b)
         {
+            if (a is null && b is null)
+            {
+                return null;
+
+            }
+            else if (a is null)
+            {
+                a = this.AsNonNullable(b!.Denominator.Environment, a);
+            }
+            else if (b is null)
+            {
+                b = this.AsNonNullable(a.Denominator.Environment, b);
+            }
+
             Fraction aWhole = a.AsWholeFraction();
             Fraction bWhole = b.AsWholeFraction();
 
@@ -72,8 +112,22 @@ namespace NS12.VariableBase.Mathematics.Providers.Operators
             return result;
         }
 
-        public Fraction Divide(Fraction a, Fraction b)
+        public Fraction? Divide(Fraction? a, Fraction? b)
         {
+            if (a is null && b is null)
+            {
+                return null;
+
+            }
+            else if (a is null)
+            {
+                a = this.AsNonNullable(b!.Denominator.Environment, a);
+            }
+            else if (b is null)
+            {
+                b = this.AsNonNullable(a.Denominator.Environment, b);
+            }
+
             Fraction aWhole = a.AsWholeFraction();
             Fraction bWhole = b.AsWholeFraction();
 
@@ -88,8 +142,22 @@ namespace NS12.VariableBase.Mathematics.Providers.Operators
             return new Fraction(numeratorA, numeratorB);
         }
 
-        public int Compare(Fraction a, Fraction b)
+        public int Compare(Fraction? a, Fraction? b)
         {
+            if (a is null && b is null)
+            {
+                return 0;
+
+            }
+            else if (a is null)
+            {
+                a = this.AsNonNullable(b!.Denominator.Environment, a);
+            }
+            else if (b is null)
+            {
+                b = this.AsNonNullable(a.Denominator.Environment, b);
+            }
+
             if (ReferenceEquals(a, default(Fraction)) && ReferenceEquals(b, default(Fraction)))
             {
                 return 0;
@@ -140,8 +208,21 @@ namespace NS12.VariableBase.Mathematics.Providers.Operators
 
 
 
-        public bool Equals(Fraction a, Fraction b)
+        public bool Equals(Fraction? a, Fraction? b)
         {
+            if (a is null && b is null)
+            {
+                return true;
+            }
+            else if (a is null)
+            {
+                return false;
+            }
+            else if (b is null)
+            {
+                return false;
+            }
+
             if (Compare(a, b) == 0)
             {
                 return true;
@@ -152,8 +233,23 @@ namespace NS12.VariableBase.Mathematics.Providers.Operators
             }
         }
 
-        public bool IsGreaterThan(Fraction a, Fraction b)
+        public bool IsGreaterThan(Fraction? a, Fraction? b)
         {
+            if (a is null && b is null)
+            {
+                return false;
+
+            }
+            else if (a is null)
+            {
+                a = this.AsNonNullable(b!.Denominator.Environment, a);
+            }
+            else if (b is null)
+            {
+                b = this.AsNonNullable(a.Denominator.Environment, b);
+            }
+
+
             if (Compare(a, b) > 0)
             {
                 return true;
@@ -164,8 +260,23 @@ namespace NS12.VariableBase.Mathematics.Providers.Operators
             }
         }
 
-        public bool IsLessThan(Fraction a, Fraction b)
+        public bool IsLessThan(Fraction? a, Fraction? b)
         {
+            if (a is null && b is null)
+            {
+                return false;
+
+            }
+            else if (a is null)
+            {
+                a = this.AsNonNullable(b!.Denominator.Environment, a);
+            }
+            else if (b is null)
+            {
+                b = this.AsNonNullable(a.Denominator.Environment, b);
+            }
+
+
             if (Compare(a, b) < 0)
             {
                 return true;
@@ -176,8 +287,23 @@ namespace NS12.VariableBase.Mathematics.Providers.Operators
             }
         }
 
-        public bool IsGreaterThanOrEqualTo(Fraction a, Fraction b)
+        public bool IsGreaterThanOrEqualTo(Fraction? a, Fraction? b)
         {
+            if (a is null && b is null)
+            {
+                return true;
+
+            }
+            else if (a is null)
+            {
+                a = this.AsNonNullable(b!.Denominator.Environment, a);
+            }
+            else if (b is null)
+            {
+                b = this.AsNonNullable(a.Denominator.Environment, b);
+            }
+
+
             if (Compare(a, b) >= 0)
             {
                 return true;
@@ -188,8 +314,22 @@ namespace NS12.VariableBase.Mathematics.Providers.Operators
             }
         }
 
-        public bool IsLessThanOrEqualTo(Fraction a, Fraction b)
+        public bool IsLessThanOrEqualTo(Fraction? a, Fraction? b)
         {
+            if (a is null && b is null)
+            {
+                return true;
+
+            }
+            else if (a is null)
+            {
+                a = this.AsNonNullable(b!.Denominator.Environment, a);
+            }
+            else if (b is null)
+            {
+                b = this.AsNonNullable(a.Denominator.Environment, b);
+            }
+
             if (Compare(a, b) <= 0)
             {
                 return true;
@@ -200,32 +340,44 @@ namespace NS12.VariableBase.Mathematics.Providers.Operators
             }
         }
 
-        public bool IsBottom(Fraction number)
+        public Fraction AsNonNullable(IMathEnvironment<Number> environment, Fraction? fraction)
+        {
+            if (fraction is null)
+            {
+                return new Fraction(environment, environment.Zero, environment.Zero);
+            }
+            else
+            {
+                return fraction;
+            }
+        }
+
+        public bool IsBottom(Fraction? number)
         {
             throw new NotImplementedException();
         }
 
-        public bool IsEven(Fraction number)
+        public bool IsEven(Fraction? number)
         {
             throw new NotImplementedException();
         }
 
-        public Fraction Convert(IMathEnvironment<Fraction> environment, Fraction number)
+        public Fraction? Convert(IMathEnvironment<Fraction> environment, Fraction? number)
         {
             throw new NotImplementedException();
         }
 
-        public Fraction Square(Fraction number)
+        public Fraction Square(Fraction? number)
         {
             throw new NotImplementedException();
         }
 
-        public Fraction SquareRoot(Fraction number)
+        public Fraction SquareRoot(Fraction? number)
         {
             throw new NotImplementedException();
         }
 
-        public Fraction ConvertToBase10(Fraction number)
+        public Fraction ConvertToBase10(Fraction? number)
         {
             throw new NotImplementedException();
         }

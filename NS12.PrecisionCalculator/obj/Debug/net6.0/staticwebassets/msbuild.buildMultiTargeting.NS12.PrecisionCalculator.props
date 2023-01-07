@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\build\NS12.PrecisionCalculator.props" />
-</Project>

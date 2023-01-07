@@ -2,14 +2,13 @@
 using NS12.VariableBase.Mathematics.Common.Models;
 using NS12.VariableBase.Mathematics.Providers.Operators;
 using NS12.VariableBase.Mathematics.Common.Interfaces;
-#nullable disable
 
 namespace NS12.VariableBase.Mathematics.Providers
 {
-    public class Fraction : IEquatable<Fraction>, IComparable<Fraction>
+    public class Fraction : IEquatable<Fraction?>, IComparable<Fraction?>
     {
 
-        public static IOperator<Fraction> Operator = new FractionOperator();
+        public static IOperator<Fraction?> Operator = new FractionOperator();
 
         internal Fraction(IMathEnvironment<Number> environment, NumberSegments numerator, NumberSegments denominator)
         {
@@ -51,15 +50,15 @@ namespace NS12.VariableBase.Mathematics.Providers
         }
         public override bool Equals(object other)
         {
-            return Operator.Equals(this, (Fraction)other);
+            return Operator.Equals(this, (Fraction?)other);
         }
 
-        public bool Equals(Fraction other)
+        public bool Equals(Fraction? other)
         {
             return Operator.Equals(this, other);
         }
 
-        public int CompareTo(Fraction other)
+        public int CompareTo(Fraction? other)
         {
             return Operator.Compare(this, other);
         }
@@ -68,32 +67,56 @@ namespace NS12.VariableBase.Mathematics.Providers
         #endregion
 
         #region operator overrides
-        public static bool operator <(Fraction a, Fraction b)
+        public static bool operator <(Fraction? a, Fraction? b)
         {
+            if (a is null && b is null)
+            {
+                return false;
+            }
             return Operator.IsLessThan(a, b);
         }
 
-        public static bool operator <=(Fraction a, Fraction b)
+        public static bool operator <=(Fraction? a, Fraction? b)
         {
+            if (a is null && b is null)
+            {
+                return true;
+            }
             return Operator.IsLessThanOrEqualTo(a, b);
         }
-        public static bool operator >(Fraction a, Fraction b)
+        public static bool operator >(Fraction? a, Fraction? b)
         {
+            if (a is null && b is null)
+            {
+                return false;
+            }
             return Operator.IsGreaterThan(a, b);
         }
 
-        public static bool operator >=(Fraction a, Fraction b)
+        public static bool operator >=(Fraction? a, Fraction? b)
         {
+            if (a is null && b is null)
+            {
+                return true;
+            }
             return Operator.IsGreaterThanOrEqualTo(a, b);
         }
 
-        public static bool operator ==(Fraction a, Fraction b)
+        public static bool operator ==(Fraction? a, Fraction? b)
         {
+            if (a is null && b is null)
+            {
+                return true;
+            }
             return Operator.Equals(a, b);
         }
 
-        public static bool operator !=(Fraction a, Fraction b)
+        public static bool operator !=(Fraction? a, Fraction? b)
         {
+            if (a is null && b is null)
+            {
+                return false;
+            }
             return !Operator.Equals(a, b);
         }
 
@@ -101,7 +124,7 @@ namespace NS12.VariableBase.Mathematics.Providers
 
         #region operator overrides
 
-        public static Fraction operator +(Fraction a, Fraction b)
+        public static Fraction? operator +(Fraction? a, Fraction? b)
         {
 #if DEBUG
             Console.WriteLine("Add Fraction");
@@ -109,7 +132,7 @@ namespace NS12.VariableBase.Mathematics.Providers
             return Operator.Add(a, b);
         }
 
-        public static Fraction operator -(Fraction a, Fraction b)
+        public static Fraction? operator -(Fraction? a, Fraction? b)
         {
 #if DEBUG
             Console.WriteLine("Subtract Fraction");
@@ -117,7 +140,7 @@ namespace NS12.VariableBase.Mathematics.Providers
             return Operator.Subtract(a, b);
         }
 
-        public static Fraction operator *(Fraction a, Fraction b)
+        public static Fraction? operator *(Fraction? a, Fraction? b)
         {
 #if DEBUG
             Console.WriteLine("Multiply Fraction");
@@ -126,7 +149,7 @@ namespace NS12.VariableBase.Mathematics.Providers
         }
 
 
-        public static Fraction operator /(Fraction a, Fraction b)
+        public static Fraction? operator /(Fraction? a, Fraction? b)
         {
 #if DEBUG
             Console.WriteLine("Divide Fraction");
@@ -135,7 +158,7 @@ namespace NS12.VariableBase.Mathematics.Providers
         }
 
 
-        public static Fraction operator %(Fraction a, Fraction b)
+        public static Fraction operator %(Fraction? a, Fraction? b)
         {
             throw new Exception("% not supported yet");
         }
@@ -153,16 +176,20 @@ namespace NS12.VariableBase.Mathematics.Providers
 
         public Fraction AsWholeFraction()
         {
-            Fraction biggerLookingnumber = this;
-            if (Numerator.Fragment != default)
+            Fraction biggerLookingnumber;
+            if (Numerator.Fragment != null)
             {
-                Number nWholeNumerator = biggerLookingnumber.Numerator.Fragment.Denominator * biggerLookingnumber.Numerator.Fragment.Numerator;
-                Number nBiggerDenominator = biggerLookingnumber.Numerator.Fragment.Denominator * biggerLookingnumber.Denominator;
+                Number nWholeNumerator = this.Numerator.Fragment.Denominator * this.Numerator.Fragment.Numerator;
+                Number nBiggerDenominator = this.Numerator.Fragment.Denominator * this.Denominator;
 
                 biggerLookingnumber = new Fraction(nWholeNumerator, nBiggerDenominator);
             }
+            else
+            {
+                biggerLookingnumber = this;
+            }
 
-            if (biggerLookingnumber.Denominator.Fragment != default)
+            if (biggerLookingnumber.Denominator.Fragment != null)
             {
                 Number dWholeNumerator = biggerLookingnumber.Denominator.Fragment.Denominator * biggerLookingnumber.Denominator.Fragment.Numerator;
                 Number dBiggerDenominator = biggerLookingnumber.Denominator.Fragment.Denominator * biggerLookingnumber.Numerator;
