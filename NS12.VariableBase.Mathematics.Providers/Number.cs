@@ -485,5 +485,41 @@ namespace NS12.VariableBase.Mathematics.Providers
 
             this.Whole.Dispose();
         }
+
+        public static Number Reduce(Number number)
+        { 
+            if (number.Fragment == null)
+            {
+                return number;
+            }
+            else
+            {
+                Number numberWithFractionUnder1;
+                if (number.Fragment.Numerator > number.Fragment.Denominator)
+                {
+                    Number fractionAsWholeNumber = number.Fragment.Numerator / number.Fragment.Denominator;
+                    numberWithFractionUnder1 = fractionAsWholeNumber + number.Environment.GetNumber(number.Whole, number.IsNegative);
+                }
+                else
+                {
+                    numberWithFractionUnder1 = number;
+                }
+
+                Number fractionDivided = numberWithFractionUnder1.Fragment!.Denominator / numberWithFractionUnder1.Fragment!.Numerator;
+                if (fractionDivided.Fragment == null)
+                {
+                    numberWithFractionUnder1.Fragment = new Fraction(number.Environment.First, fractionDivided);
+
+                }
+                //else
+                //{
+                //    while (numberWithFractionUnder1.Fragment!.Numerator.IsEven() && numberWithFractionUnder1.Fragment!.Denominator.IsEven())
+                //    {
+                //        numberWithFractionUnder1.Fragment = new Fraction((numberWithFractionUnder1.Fragment.Numerator / number.Environment.Secound), (numberWithFractionUnder1.Fragment.Denominator / number.Environment.Secound));
+                //    }
+                //}
+                return numberWithFractionUnder1;
+            }
+        }
     }
 }

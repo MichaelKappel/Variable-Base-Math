@@ -344,7 +344,7 @@ namespace NS12.VariableBase.Mathematics.Providers.Operators
         {
             if (fraction is null)
             {
-                return new Fraction(environment, environment.Zero, environment.Zero);
+                return new Fraction(environment.Nothing, environment.Nothing);
             }
             else
             {

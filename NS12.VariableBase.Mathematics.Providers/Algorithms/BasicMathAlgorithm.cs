@@ -41,19 +41,18 @@ namespace NS12.VariableBase.Mathematics.Providers.Algorithms
 
         public NumberSegments Add(IMathEnvironment<Number> environment, NumberSegments a, NumberSegments b)
         {
-            NumberSegments result = default;
-
             if (IsLessThan(environment, a, b))
             {
-                result = Add(environment, b, a);
+                return this.Add(environment, b, a);
             }
 
             if (a.Size == 1 && b.Size == 1)
             {
-                result = this.Add(environment, a[0], b[0]);
+                return this.Add(environment, a[0], b[0]);
             }
 
-            if (result == default(NumberSegments))
+            NumberSegments? result = null;
+            if (result == null)
             {
                 var resultNumber = new List<decimal>();
                 decimal carryOver = 0;

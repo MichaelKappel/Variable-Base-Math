@@ -18,6 +18,20 @@ namespace NS12.VariableBase.Mathematics.Providers
 
         internal Fraction(Number numerator, Number denominator)
         {
+            if (numerator.Environment.Base != denominator.Environment.Base)
+            {
+                throw new ArgumentException("Numerator and Denominator Base must match");
+            }
+#if DEBUG
+            //Too slow for production builds for debugging only
+            for (int i = 0; i < numerator.Environment.Key.Count; i++)
+            {
+                if (numerator.Environment.Key[i] != numerator.Environment.Key[i])
+                {
+                    throw new ArgumentException("Numerator and Denominator Base must match");
+                }
+            }
+#endif
             Numerator = numerator;
             Denominator = denominator;
         }
@@ -25,7 +39,7 @@ namespace NS12.VariableBase.Mathematics.Providers
         public Number Numerator { get; protected set; }
         public Number Denominator { get; protected set; }
 
-        #region overrides
+#region overrides
         public override string ToString()
         {
             return string.Format("{0}/{1}", Numerator, Denominator);
@@ -64,9 +78,9 @@ namespace NS12.VariableBase.Mathematics.Providers
         }
 
 
-        #endregion
+#endregion
 
-        #region operator overrides
+#region operator overrides
         public static bool operator <(Fraction? a, Fraction? b)
         {
             if (a is null && b is null)
@@ -120,9 +134,9 @@ namespace NS12.VariableBase.Mathematics.Providers
             return !Operator.Equals(a, b);
         }
 
-        #endregion
+#endregion
 
-        #region operator overrides
+#region operator overrides
 
         public static Fraction? operator +(Fraction? a, Fraction? b)
         {
@@ -163,7 +177,7 @@ namespace NS12.VariableBase.Mathematics.Providers
             throw new Exception("% not supported yet");
         }
 
-        #endregion
+#endregion
 
         public Fraction IncreaseDenominator(Number multiplier)
         {

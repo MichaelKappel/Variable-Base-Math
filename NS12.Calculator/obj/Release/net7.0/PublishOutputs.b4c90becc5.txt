@@ -1,0 +1,1 @@
+C:\GH\MichaelKappel\Variable-Base-Math\NS12.Calculator\obj\Release\net7.0\browser-wasm\PubTmp\Out\web.config

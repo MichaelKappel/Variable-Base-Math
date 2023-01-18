@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121.
+-->
+<Project>
+  <PropertyGroup>
+    <_PublishTargetUrl>C:\Publish\Calculator</_PublishTargetUrl>
+    <History>True|2023-01-18T15:53:21.0130498Z;True|2023-01-18T09:50:20.4145830-06:00;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+</Project>

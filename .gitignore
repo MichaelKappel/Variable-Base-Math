@@ -71,3 +71,10 @@
 /Windows.Calculator/obj
 /Windows.Calculator.Net/obj/Debug
 /FileRepositories.Tests/obj
+/NS12.PrecisionCalculator/bin/Debug/net6.0/wwwroot/_framework/dotnet.6.0.4.dckq00jdfr.js
+/NS12.PrecisionCalculator/bin/Debug/net6.0/wwwroot/_framework/dotnet.6.0.13.1o8phgzn7b.js.gz
+/NS12.PrecisionCalculator/bin/Debug/net6.0/wwwroot/_framework/dotnet.6.0.13.1o8phgzn7b.js
+/NS12.PrecisionCalculator/bin/Debug/net6.0/dotnet.js
+/.vs/PrecisionCalculator/FileContentIndex
+*.json
+/.vs/PrecisionCalculator/v17/.suo

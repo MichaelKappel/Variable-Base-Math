@@ -108,6 +108,12 @@
         <table style="width:90%;">
             <thead>
                 <tr>
+                    <th width="100">
+                        @if (isNegative)
+                        {
+                            <span style="color:darkred">Negative</span>
+                        }
+                    </th>
                     <th>
                         Whole Number
                     </th>
@@ -118,6 +124,12 @@
             </thead>
             <tbody>
                 <tr>
+                    <td rowspan="2" align="right" valign="middle">
+                        @if (isNegative)
+                        {
+                            <div style="font-size:64px;font-weight:bolder;color:red;text-align:right;">-</div>
+                        }
+                    </td>
                     <td rowspan="2">
                         <textarea readonly="readonly" placeholder="Whole Number Result" style="width:100%;height:150px;" id="txtCalculatorOutputWhole" class="calculator-result-whole" @bind="@resultWholeRaw" />
                     </td>
@@ -161,9 +173,16 @@
     String resultWholeRaw = "";
     String resultNumeratorRaw = "";
     String resultDenominatorRaw = "";
+    Boolean isNegative = false;
 
     public void btnGoClicked()
     {
+
+        resultWholeRaw = String.Empty;
+        resultNumeratorRaw = String.Empty;
+        resultDenominatorRaw = String.Empty;
+        isNegative = false;
+
         IMathEnvironment<Number> environment;
 
         if (ddlRadix_value == "2")
@@ -218,6 +237,8 @@
             result = firstNumber / secondNumber;
         }
 
+        result = Number.Reduce(result);
+
         resultWholeRaw = result.Whole.ToString().Replace(" ", "");
         if (result.Fragment == null)
         {
@@ -229,6 +250,7 @@
             resultNumeratorRaw = result.Fragment.Numerator.ToString().ToString().Replace(" ", "");
             resultDenominatorRaw = result.Fragment.Denominator.ToString().ToString().Replace(" ", "");
         }
+        isNegative = result.IsNegative;
     }
 
 }

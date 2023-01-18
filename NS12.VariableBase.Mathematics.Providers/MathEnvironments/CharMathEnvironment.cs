@@ -150,6 +150,11 @@ namespace NS12.VariableBase.Mathematics.Providers.MathEnvironments
             return new Number(this, new NumberSegments(resultRaw), isNegative);
         }
 
+        //public Number GetNegativeNumber(string wholeNumber, string fractionNumerator = "", string fractionDenominator = "")
+        //{
+        //    return this.GetNumber(wholeNumber, fractionNumerator, fractionDenominator, true);
+        //}
+
         public Number GetNumber(string wholeNumber, string fractionNumerator = "", string fractionDenominator = "", bool isNegative = false)
         {
             if (String.IsNullOrWhiteSpace(wholeNumber))
@@ -176,7 +181,7 @@ namespace NS12.VariableBase.Mathematics.Providers.MathEnvironments
             }
             else
             {
-                return new Number(this, new NumberSegments(this.Base, 
+                return new Number(this, new NumberSegments(this.Base,
                     wholeNumberSegments.Select((x) => (char)Key.IndexOf(x)).ToArray()),
                     null,
                     isNegative);
@@ -344,12 +349,105 @@ namespace NS12.VariableBase.Mathematics.Providers.MathEnvironments
             return true;
         }
 
-        public NumberSegments Zero { get { return new NumberSegments(new List<Char> { this.Key[0] }); } }
+        public Number Nothing
+        {
+            get
+            {
+                return new Number(this, this.Zero);
+            }
+        }
 
-        public NumberSegments One { get { return new NumberSegments(new List<Char> { this.Key[1] }); } }
+        #region replace with Prime number algorithm 
+
+        public NumberSegments Zero {
+                get {
+                    return new NumberSegments(this.Base, new List<Char> { (char)0 });
+                }
+            }
+
+            public NumberSegments One { 
+                get {
+                    if (this.Base > 1)
+                    {
+                        return new NumberSegments(this.Base, new List<Char> { (char)1 });
+                    }
+                    else
+                    {
+                        return new NumberSegments(this.Base, new List<Char> { (char)0 });
+                    }
+                } 
+            }
+
+            public NumberSegments Two { 
+                get {
+                    if (this.Base > 2)
+                    {
+                        return new NumberSegments(this.Base, new List<Char> { (char)2 });
+                    }
+                    else if (this.Base == 2)
+                    {
+                        return new NumberSegments(this.Base, new List<Char> { (char)1, (char)0 });
+                    }
+                    else //this.Base == 1
+                    {
+                        return new NumberSegments(this.Base, new List<Char> { (char)0, (char)0 });
+                    }
+                }
+            }
+
+            public NumberSegments Three
+            {
+                get
+                {
+                    if (this.Base > 3)
+                    {
+                        return new NumberSegments(this.Base, new List<Char> { (char)3 });
+                    }
+                    else if (this.Base == 3)
+                    {
+                        return new NumberSegments(this.Base, new List<Char> { (char)1, (char)0 });
+                    }
+                    else if (this.Base == 2)
+                    {
+                        return new NumberSegments(this.Base, new List<Char> { (char)1, (char)1 });
+                    }
+                    else //this.Base == 1
+                    {
+                        return new NumberSegments(this.Base, new List<Char> { (char)0, (char)0, (char)0 });
+                    }
+                }
+            }
+
+            public Number First {
+                get { 
+                    return new Number(this, this.One);
+                }
+            }
+
+            public Number Secound
+            {
+                get
+                {
+                    return new Number(this, this.Two);
+                }
+            }
+
+            public Number Third
+            {
+                get
+                {
+                    return new Number(this, this.Three);
+                }
+            }
+
+        #endregion replace with Prime number algorithm 
 
         public Boolean IsZero(String number)
         {
+            if (String.IsNullOrWhiteSpace(number)) { 
+                return true;
+            }
+
             String zero = this.Key[0].ToString();
 
             return (number.Trim().Replace(zero, String.Empty) == String.Empty);
@@ -371,6 +469,5 @@ namespace NS12.VariableBase.Mathematics.Providers.MathEnvironments
             }
             return (numberCleaned == one);
         }
-
     }
 }

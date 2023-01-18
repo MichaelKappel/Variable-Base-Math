@@ -23,8 +23,10 @@ namespace NS12.VariableBase.Mathematics.Common.Interfaces
         void ValidateFraction(List<char> numerator, List<char> denominator);
         void ValidateWholeNumber(List<char> numberSegments);
         decimal GetIndex(char arg);
-        NumberSegments Zero { get; }
-        NumberSegments One { get; }
+        T Nothing { get; }
+        T First { get; }
+        T Secound { get; }
+        T Third { get; }
         Boolean IsZero(String number);
         Boolean IsOne(String number);
 

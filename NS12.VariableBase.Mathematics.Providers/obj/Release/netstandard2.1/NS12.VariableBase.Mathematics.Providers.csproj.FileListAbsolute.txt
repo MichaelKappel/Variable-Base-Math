@@ -1,0 +1,13 @@
+C:\GH\MichaelKappel\Variable-Base-Math\NS12.VariableBase.Mathematics.Providers\bin\Release\netstandard2.1\NS12.VariableBase.Mathematics.Providers.deps.json
+C:\GH\MichaelKappel\Variable-Base-Math\NS12.VariableBase.Mathematics.Providers\bin\Release\netstandard2.1\NS12.VariableBase.Mathematics.Providers.dll
+C:\GH\MichaelKappel\Variable-Base-Math\NS12.VariableBase.Mathematics.Providers\bin\Release\netstandard2.1\NS12.VariableBase.Mathematics.Providers.pdb
+C:\GH\MichaelKappel\Variable-Base-Math\NS12.VariableBase.Mathematics.Providers\bin\Release\netstandard2.1\NS12.VariableBase.Mathematics.Common.dll
+C:\GH\MichaelKappel\Variable-Base-Math\NS12.VariableBase.Mathematics.Providers\bin\Release\netstandard2.1\NS12.VariableBase.Mathematics.Common.pdb
+C:\GH\MichaelKappel\Variable-Base-Math\NS12.VariableBase.Mathematics.Providers\obj\Release\netstandard2.1\NS12.VariableBase.Mathematics.Providers.csproj.AssemblyReference.cache
+C:\GH\MichaelKappel\Variable-Base-Math\NS12.VariableBase.Mathematics.Providers\obj\Release\netstandard2.1\NS12.VariableBase.Mathematics.Providers.GeneratedMSBuildEditorConfig.editorconfig
+C:\GH\MichaelKappel\Variable-Base-Math\NS12.VariableBase.Mathematics.Providers\obj\Release\netstandard2.1\NS12.VariableBase.Mathematics.Providers.AssemblyInfoInputs.cache
+C:\GH\MichaelKappel\Variable-Base-Math\NS12.VariableBase.Mathematics.Providers\obj\Release\netstandard2.1\NS12.VariableBase.Mathematics.Providers.AssemblyInfo.cs
+C:\GH\MichaelKappel\Variable-Base-Math\NS12.VariableBase.Mathematics.Providers\obj\Release\netstandard2.1\NS12.VariableBase.Mathematics.Providers.csproj.CoreCompileInputs.cache
+C:\GH\MichaelKappel\Variable-Base-Math\NS12.VariableBase.Mathematics.Providers\obj\Release\netstandard2.1\NS12.VariableBase.Mathematics.Providers.csproj.CopyComplete
+C:\GH\MichaelKappel\Variable-Base-Math\NS12.VariableBase.Mathematics.Providers\obj\Release\netstandard2.1\NS12.VariableBase.Mathematics.Providers.dll
+C:\GH\MichaelKappel\Variable-Base-Math\NS12.VariableBase.Mathematics.Providers\obj\Release\netstandard2.1\NS12.VariableBase.Mathematics.Providers.pdb

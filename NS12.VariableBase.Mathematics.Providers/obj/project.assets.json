@@ -27,23 +27,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\mikek\\.nuget\\packages\\": {},
+    "C:\\Users\\Micha\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Git\\MichaelKappel\\Variable-Base-Math\\NS12.VariableBase.Mathematics.Providers\\NS12.VariableBase.Mathematics.Providers.csproj",
+      "projectUniqueName": "C:\\GH\\MichaelKappel\\Variable-Base-Math\\NS12.VariableBase.Mathematics.Providers\\NS12.VariableBase.Mathematics.Providers.csproj",
       "projectName": "NS12.VariableBase.Mathematics.Providers",
-      "projectPath": "C:\\Git\\MichaelKappel\\Variable-Base-Math\\NS12.VariableBase.Mathematics.Providers\\NS12.VariableBase.Mathematics.Providers.csproj",
-      "packagesPath": "C:\\Users\\mikek\\.nuget\\packages\\",
-      "outputPath": "C:\\Git\\MichaelKappel\\Variable-Base-Math\\NS12.VariableBase.Mathematics.Providers\\obj\\",
+      "projectPath": "C:\\GH\\MichaelKappel\\Variable-Base-Math\\NS12.VariableBase.Mathematics.Providers\\NS12.VariableBase.Mathematics.Providers.csproj",
+      "packagesPath": "C:\\Users\\Micha\\.nuget\\packages\\",
+      "outputPath": "C:\\GH\\MichaelKappel\\Variable-Base-Math\\NS12.VariableBase.Mathematics.Providers\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\mikek\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Micha\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -51,6 +51,8 @@
         "netstandard2.1"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Infragistics\\NuGet\\": {},
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
@@ -58,8 +60,8 @@
         "netstandard2.1": {
           "targetAlias": "netstandard2.1",
           "projectReferences": {
-            "C:\\Git\\MichaelKappel\\Variable-Base-Math\\NS12.VariableBase.Mathematics.Common\\NS12.VariableBase.Mathematics.Common.csproj": {
-              "projectPath": "C:\\Git\\MichaelKappel\\Variable-Base-Math\\NS12.VariableBase.Mathematics.Common\\NS12.VariableBase.Mathematics.Common.csproj"
+            "C:\\GH\\MichaelKappel\\Variable-Base-Math\\NS12.VariableBase.Mathematics.Common\\NS12.VariableBase.Mathematics.Common.csproj": {
+              "projectPath": "C:\\GH\\MichaelKappel\\Variable-Base-Math\\NS12.VariableBase.Mathematics.Common\\NS12.VariableBase.Mathematics.Common.csproj"
             }
           }
         }
@@ -89,7 +91,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
       }
     }
   }
