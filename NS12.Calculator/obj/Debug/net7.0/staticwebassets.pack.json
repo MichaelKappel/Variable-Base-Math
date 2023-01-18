@@ -13,6 +13,10 @@
       "PackagePath": "staticwebassets\\NS12.Calculator.styles.css"
     },
     {
+      "Id": "C:\\GH\\MichaelKappel\\Variable-Base-Math\\NS12.Calculator\\wwwroot\\Index.html",
+      "PackagePath": "staticwebassets\\Index.html"
+    },
+    {
       "Id": "C:\\GH\\MichaelKappel\\Variable-Base-Math\\NS12.Calculator\\wwwroot\\css\\app.css",
       "PackagePath": "staticwebassets\\css\\app.css"
     },
@@ -67,10 +71,6 @@
     {
       "Id": "C:\\GH\\MichaelKappel\\Variable-Base-Math\\NS12.Calculator\\wwwroot\\icon-192.png",
       "PackagePath": "staticwebassets\\icon-192.png"
-    },
-    {
-      "Id": "C:\\GH\\MichaelKappel\\Variable-Base-Math\\NS12.Calculator\\wwwroot\\index.html",
-      "PackagePath": "staticwebassets\\index.html"
     },
     {
       "Id": "C:\\GH\\MichaelKappel\\Variable-Base-Math\\NS12.Calculator\\wwwroot\\sample-data\\weather.json",

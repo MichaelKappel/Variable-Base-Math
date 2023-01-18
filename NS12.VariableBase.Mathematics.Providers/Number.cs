@@ -475,14 +475,12 @@ namespace NS12.VariableBase.Mathematics.Providers
 
         public void Dispose()
         {
-            this.Fragment = default;
-
-            this.First = 0;
-
-            this.IsNegative = false;
-
-            this.Environment = default;
-
+            if (this.Fragment != null)
+            {
+                this.Fragment.Numerator.Dispose();
+                this.Fragment.Denominator.Dispose();
+                this.Fragment = null;
+            }
             this.Whole.Dispose();
         }
 

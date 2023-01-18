@@ -345,16 +345,16 @@ namespace NS12.VariableBase.Mathematics.Common.Models
             switch (NumberSegmentType)
             {
                 case NumberSegmentTypes.Boolean:
-                    BooleanSegments = default;
+                    BooleanSegments = null;
                     break;
                 case NumberSegmentTypes.UInt16:
-                    UInt16Segments = default;
+                    UInt16Segments = null;
                     break;
                 case NumberSegmentTypes.UInt32:
-                    UInt32Segments = default;
+                    UInt32Segments = null;
                     break;
                 case NumberSegmentTypes.UInt64:
-                    UInt64Segments = default;
+                    UInt64Segments = null;
                     break;
                 default:
                     throw new Exception("NumberSegmentType Unknown");

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "5Uw/KPs+Ke2Kozj8PnZJBiHy6YeljpTiKiIqu89P1tg=",
+  "Hash": "QQMRpie1beIeQhbq57dBQphr0LLSLdSYgiWpbmYsdEM=",
   "Source": "NS12.Calculator",
   "BasePath": "/",
   "Mode": "Root",
@@ -7276,12 +7276,12 @@
       "OriginalItemSpec": "wwwroot\\icon-192.png"
     },
     {
-      "Identity": "C:\\GH\\MichaelKappel\\Variable-Base-Math\\NS12.Calculator\\wwwroot\\index.html",
+      "Identity": "C:\\GH\\MichaelKappel\\Variable-Base-Math\\NS12.Calculator\\wwwroot\\Index.html",
       "SourceId": "NS12.Calculator",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\GH\\MichaelKappel\\Variable-Base-Math\\NS12.Calculator\\wwwroot\\",
       "BasePath": "/",
-      "RelativePath": "index.html",
+      "RelativePath": "Index.html",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -7290,7 +7290,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\index.html"
+      "OriginalItemSpec": "wwwroot\\Index.html"
     },
     {
       "Identity": "C:\\GH\\MichaelKappel\\Variable-Base-Math\\NS12.Calculator\\wwwroot\\sample-data\\weather.json",
