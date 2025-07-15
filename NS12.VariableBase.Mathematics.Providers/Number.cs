@@ -357,11 +357,15 @@ namespace NS12.VariableBase.Mathematics.Providers
 
         public override bool Equals(object other)
         {
-            return Operator.Compare(this, (Number)other) == 0;
+            return other is Number number && Operator.Compare(this, number) == 0;
         }
 
         public bool Equals(Number other)
         {
+            if (other is null)
+            {
+                return false;
+            }
             return Operator.Compare(this, other) == 0;
         }
 
