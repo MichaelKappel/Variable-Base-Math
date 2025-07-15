@@ -332,7 +332,7 @@ namespace NS12.VariableBase.Mathematics.Providers.MathEnvironments
 
         public bool Equals(IMathEnvironment<Number> other)
         {
-            if (ReferenceEquals(other, default(IMathEnvironment<Number>)) || Base != other.Base)
+            if (ReferenceEquals(other, null))
             {
                 return false;
             }
@@ -342,10 +342,19 @@ namespace NS12.VariableBase.Mathematics.Providers.MathEnvironments
                 return false;
             }
 
-            if (Base != other.Base)
+            if (Key.Count != other.Key.Count)
             {
                 return false;
             }
+
+            for (int i = 0; i < Key.Count; i++)
+            {
+                if (Key[i] != other.Key[i])
+                {
+                    return false;
+                }
+            }
+
             return true;
         }
 
