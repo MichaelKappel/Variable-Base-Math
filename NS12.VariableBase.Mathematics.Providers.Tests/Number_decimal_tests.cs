@@ -74,5 +74,15 @@ namespace NS12.VariableBase.Mathematics.Providers.Tests
             Assert.AreEqual(result, mathEnvironment.GetNumber("6", null, null, true));
         }
 
+        [TestMethod]
+        public void Environment_Equals_KeyMismatch_Test()
+        {
+            IMathEnvironment<Number> env1 = new CharMathEnvironment("0123");
+            IMathEnvironment<Number> env2 = new CharMathEnvironment("0124");
+
+            Assert.IsFalse(env1.Equals(env2));
+            Assert.IsFalse(env2.Equals(env1));
+        }
+
     }
 }
