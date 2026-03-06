@@ -362,7 +362,7 @@ namespace NS12.VariableBase.Mathematics.Providers.Operators
             throw new NotImplementedException();
         }
 
-        public Fraction? Convert(IMathEnvironment<Fraction> environment, Fraction? number)
+        public Fraction? Convert(IMathEnvironment<Fraction?> environment, Fraction? number)
         {
             throw new NotImplementedException();
         }

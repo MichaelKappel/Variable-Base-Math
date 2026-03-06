@@ -1,0 +1,9 @@
+.calculator-page[b-73zwk5kh1g] {
+    padding: 0.9rem 0 0;
+}
+
+@media (min-width: 920px) {
+    .calculator-page[b-73zwk5kh1g] {
+        padding-top: 1.25rem;
+    }
+}

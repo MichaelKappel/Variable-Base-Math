@@ -1,0 +1,221 @@
+@using NS12.VariableBase.Mathematics.Providers.Utilities
+
+<div class="cipher-shell">
+    <header class="cipher-hero">
+        <p class="cipher-hero-eyebrow">Text Obfuscation</p>
+        <h1>Multiply text as radix math, then reverse it by division.</h1>
+        <p class="cipher-hero-copy">
+            This tool turns a message and a secret into numbers inside a custom radix built from the characters you actually use.
+            It then multiplies those numbers to produce reversible ciphertext and publishes the exact radix key so the math can be reconstructed elsewhere.
+        </p>
+        <p class="cipher-hero-warning">
+            This is educational math-based obfuscation, not modern cryptography. It is transparent, deterministic, and easy to audit, but it is not a substitute for AES, authenticated encryption, or standard key management.
+        </p>
+        <div class="cipher-hero-actions">
+            <a class="cipher-hero-link" href="calculator">Open calculator</a>
+            <a class="cipher-hero-link cipher-hero-link--alt" href="converter">Open converter</a>
+        </div>
+    </header>
+
+    <section class="cipher-explainer-grid">
+        <article>
+            <h2>What the math means</h2>
+            <p>The radix key is the ordered alphabet of symbols used as digits. The first symbol is a reserved zero digit so your message and secret can be read as stable base-N numbers.</p>
+        </article>
+        <article>
+            <h2>Why it is portable</h2>
+            <p>The output includes the encrypted text, the radix key, and the base size. With those values and the secret, you can reproduce the multiplication or division anywhere that supports ordinary integer math.</p>
+        </article>
+        <article>
+            <h2>How it compares to standard encryption</h2>
+            <p>Positive: simple, explainable, and reconstructable. Negative: no randomness, no authentication, predictable structure, and weak resistance to brute-force or algebraic attacks.</p>
+        </article>
+    </section>
+
+    <section class="cipher-grid">
+        <article class="cipher-card">
+            <h2>Encrypt</h2>
+            <label for="messageText">Plain text message</label>
+            <textarea id="messageText" rows="5" @bind="messageText" placeholder="Type the message to encode"></textarea>
+
+            <label for="secretText">Secret</label>
+            <textarea id="secretText" rows="4" @bind="secretText" placeholder="Type the secret multiplier"></textarea>
+
+            <div class="cipher-actions">
+                <button type="button" class="cipher-btn cipher-btn-ghost" @onclick="ClearEncryption">Clear</button>
+                <button type="button" class="cipher-btn cipher-btn-primary" @onclick="EncryptMessage">Encrypt</button>
+            </div>
+
+            @if (!string.IsNullOrWhiteSpace(encryptError))
+            {
+                <div class="cipher-error" role="alert">@encryptError</div>
+            }
+        </article>
+
+        <article class="cipher-card cipher-card--result">
+            <h2>Encryption Output</h2>
+            @if (encryptResult is null)
+            {
+                <p class="cipher-placeholder">Run encryption to view the ciphertext, radix key, and strength estimate.</p>
+            }
+            else
+            {
+                <div class="cipher-strength-row">
+                    <span class="cipher-strength-badge">@encryptResult.StrengthLabel</span>
+                    <span class="cipher-strength-meta">Base @encryptResult.Radix, about @encryptResult.EstimatedKeySpaceBits.ToString("F1") bits of secret search effort</span>
+                </div>
+
+                <div class="cipher-output-grid">
+                    <div>
+                        <label>Encrypted text</label>
+                        <textarea readonly rows="3">@encryptResult.CipherText</textarea>
+                    </div>
+                    <div>
+                        <label>Encrypted text (escaped)</label>
+                        <textarea readonly rows="3">@encryptResult.EscapedCipherText</textarea>
+                    </div>
+                    <div>
+                        <label>Radix key</label>
+                        <textarea readonly rows="3">@encryptResult.RadixKey</textarea>
+                    </div>
+                    <div>
+                        <label>Radix key (escaped)</label>
+                        <textarea readonly rows="3">@encryptResult.EscapedRadixKey</textarea>
+                    </div>
+                    <div>
+                        <label>Secret as radix digits</label>
+                        <textarea readonly rows="2">@encryptResult.SecretText</textarea>
+                    </div>
+                    <div>
+                        <label>Secret as escaped digits</label>
+                        <textarea readonly rows="2">@encryptResult.EscapedSecretText</textarea>
+                    </div>
+                </div>
+
+                <p class="cipher-summary">@encryptResult.StrengthSummary</p>
+                <p class="cipher-summary">Manual reconstruction: treat the radix key as the digit alphabet, read the secret and ciphertext as base-@encryptResult.Radix numbers in that alphabet, then divide ciphertext by secret to recover the message digits.</p>
+            }
+        </article>
+    </section>
+
+    <section class="cipher-grid cipher-grid--decrypt">
+        <article class="cipher-card">
+            <h2>Decrypt</h2>
+            <label for="decryptCipherText">Encrypted text</label>
+            <textarea id="decryptCipherText" rows="4" @bind="decryptCipherText" placeholder="Paste the encrypted text"></textarea>
+
+            <label for="decryptSecretText">Secret</label>
+            <textarea id="decryptSecretText" rows="3" @bind="decryptSecretText" placeholder="Paste the secret multiplier"></textarea>
+
+            <label for="decryptRadixKey">Radix key</label>
+            <textarea id="decryptRadixKey" rows="4" @bind="decryptRadixKey" placeholder="Paste the radix key"></textarea>
+
+            <label for="decryptRadix">Base/radix</label>
+            <input id="decryptRadix" @bind="decryptRadixRaw" placeholder="Optional explicit radix" />
+
+            <div class="cipher-actions">
+                <button type="button" class="cipher-btn cipher-btn-ghost" @onclick="ClearDecryption">Clear</button>
+                <button type="button" class="cipher-btn cipher-btn-primary" @onclick="DecryptMessage">Decrypt</button>
+            </div>
+
+            @if (!string.IsNullOrWhiteSpace(decryptError))
+            {
+                <div class="cipher-error" role="alert">@decryptError</div>
+            }
+        </article>
+
+        <article class="cipher-card cipher-card--result">
+            <h2>Decryption Output</h2>
+            @if (decryptResult is null)
+            {
+                <p class="cipher-placeholder">Decrypt a payload to verify the message and escaped representation.</p>
+            }
+            else
+            {
+                <div class="cipher-output-grid">
+                    <div>
+                        <label>Recovered message</label>
+                        <textarea readonly rows="4">@decryptResult.MessageText</textarea>
+                    </div>
+                    <div>
+                        <label>Recovered message (escaped)</label>
+                        <textarea readonly rows="4">@decryptResult.EscapedMessageText</textarea>
+                    </div>
+                </div>
+                <p class="cipher-summary">The recovered message divides cleanly in radix @decryptResult.Radix. If the secret or radix key is wrong, this tool will fail instead of pretending the output is valid text.</p>
+            }
+        </article>
+    </section>
+</div>
+
+@code {
+    private string messageText = string.Empty;
+    private string secretText = string.Empty;
+    private string encryptError = string.Empty;
+    private TextRadixCipherResult? encryptResult;
+
+    private string decryptCipherText = string.Empty;
+    private string decryptSecretText = string.Empty;
+    private string decryptRadixKey = string.Empty;
+    private string decryptRadixRaw = string.Empty;
+    private string decryptError = string.Empty;
+    private TextRadixCipherResult? decryptResult;
+
+    private void EncryptMessage()
+    {
+        encryptError = string.Empty;
+
+        try
+        {
+            encryptResult = TextRadixCipher.Encrypt(messageText, secretText);
+            decryptCipherText = encryptResult.CipherText;
+            decryptSecretText = encryptResult.SecretText;
+            decryptRadixKey = encryptResult.RadixKey;
+            decryptRadixRaw = encryptResult.Radix.ToString();
+        }
+        catch (Exception ex)
+        {
+            encryptResult = null;
+            encryptError = ex.Message;
+        }
+    }
+
+    private void DecryptMessage()
+    {
+        decryptError = string.Empty;
+
+        try
+        {
+            int? radix = null;
+            if (!string.IsNullOrWhiteSpace(decryptRadixRaw))
+            {
+                radix = int.Parse(decryptRadixRaw);
+            }
+
+            decryptResult = TextRadixCipher.Decrypt(decryptCipherText, decryptSecretText, decryptRadixKey, radix);
+        }
+        catch (Exception ex)
+        {
+            decryptResult = null;
+            decryptError = ex.Message;
+        }
+    }
+
+    private void ClearEncryption()
+    {
+        messageText = string.Empty;
+        secretText = string.Empty;
+        encryptError = string.Empty;
+        encryptResult = null;
+    }
+
+    private void ClearDecryption()
+    {
+        decryptCipherText = string.Empty;
+        decryptSecretText = string.Empty;
+        decryptRadixKey = string.Empty;
+        decryptRadixRaw = string.Empty;
+        decryptError = string.Empty;
+        decryptResult = null;
+    }
+}

@@ -1,6 +1,7 @@
-﻿using System;
-
+using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Numerics;
 using NS12.VariableBase.Mathematics.Common.Models;
 using NS12.VariableBase.Mathematics.Common.Interfaces;
 using NS12.VariableBase.Mathematics.Providers.MathEnvironments;
@@ -23,7 +24,7 @@ namespace NS12.VariableBase.Mathematics.Providers.Operators
 
         public Number SquareRoot(Number number)
         {
-            (NumberSegments Whole, NumberSegments Numerator, NumberSegments Denominator) rawResult = BasicMath.SquareRoot(number.Environment, number.Whole);
+            (NumberSegments Whole, NumberSegments? Numerator, NumberSegments? Denominator) rawResult = BasicMath.SquareRoot(number.Environment, number.Whole);
 
             return new Number(number.Environment, rawResult.Whole, rawResult.Numerator, rawResult.Denominator, number.IsNegative);
         }
@@ -80,8 +81,8 @@ namespace NS12.VariableBase.Mathematics.Providers.Operators
             }
             else
             {
-                Fraction aResult = AsFraction(a) + AsFraction(b);
-                return new Number(aResult);
+                Fraction? aResult = AsFraction(a) + AsFraction(b);
+                return new Number(aResult ?? throw new InvalidOperationException("Add produced a null fraction result."));
             }
         }
 
@@ -95,7 +96,7 @@ namespace NS12.VariableBase.Mathematics.Providers.Operators
             }
             if (IsBottom(b))
             {
-                return b;
+                return a;
             }
 
             if (a.Environment != b.Environment)
@@ -118,8 +119,8 @@ namespace NS12.VariableBase.Mathematics.Providers.Operators
             }
             else
             {
-                Fraction aResult = AsFraction(a) - AsFraction(b);
-                return new Number(aResult);
+                Fraction? aResult = AsFraction(a) - AsFraction(b);
+                return new Number(aResult ?? throw new InvalidOperationException("Subtract produced a null fraction result."));
             }
         }
 
@@ -139,8 +140,8 @@ namespace NS12.VariableBase.Mathematics.Providers.Operators
             }
             else
             {
-                Fraction aResult = AsFraction(a) * AsFraction(b);
-                return new Number(aResult);
+                Fraction? aResult = AsFraction(a) * AsFraction(b);
+                return new Number(aResult ?? throw new InvalidOperationException("Multiply produced a null fraction result."));
             }
 
         }
@@ -179,7 +180,7 @@ namespace NS12.VariableBase.Mathematics.Providers.Operators
                 }
 
 
-                Fraction aFraction = null;
+                Fraction aFraction;
                 if (numerator.Fragment != null)
                 {
                     NumberSegments aDividend = BasicMath.Add(environment, BasicMath.Multiply(environment, numerator.Whole, numerator.Fragment.Denominator.Whole), numerator.Fragment.Numerator.Whole);
@@ -190,7 +191,7 @@ namespace NS12.VariableBase.Mathematics.Providers.Operators
                     aFraction = new Fraction(numerator.Environment, numerator.Whole, environment.GetNumber(1).Whole);
                 }
 
-                Fraction? bFraction;
+                Fraction bFraction;
                 if (denominator.Fragment != null)
                 {
                     NumberSegments bDividend = BasicMath.Add(environment, BasicMath.Multiply(environment, denominator.Whole, denominator.Fragment.Denominator.Whole), denominator.Fragment.Numerator.Whole);
@@ -205,9 +206,9 @@ namespace NS12.VariableBase.Mathematics.Providers.Operators
                 denominator = bFraction.Numerator * aFraction.Denominator;
             }
 
-            (NumberSegments Whole, NumberSegments Numerator, NumberSegments Denominator) resultSegments = BasicMath.Divide(environment, numerator.Whole, denominator.Whole);
+            (NumberSegments Whole, NumberSegments? Numerator, NumberSegments? Denominator) resultSegments = BasicMath.Divide(environment, numerator.Whole, denominator.Whole);
 
-            if (resultSegments.Numerator != default(NumberSegments) && resultSegments.Denominator != default(NumberSegments))
+            if (resultSegments.Numerator != null && resultSegments.Denominator != null)
             {
                 return new Number(environment, resultSegments.Whole, resultSegments.Numerator, resultSegments.Denominator, false);
             }
@@ -415,61 +416,74 @@ namespace NS12.VariableBase.Mathematics.Providers.Operators
         {
             Debug.WriteLine(string.Format("Convert {0} to Base {1}", number, environment.Base));
 
-            Number result = environment.GetNumber(0);
-            if (number == number.Environment.GetNumber(1))
+            if (environment == null)
             {
-                return environment.GetNumber(1);
+                throw new ArgumentNullException(nameof(environment));
             }
-            else if (number == number.Environment.GetNumber(2))
+
+            NumberSegments whole = ConvertSegments(number.Environment.Base, environment.Base, number.Whole);
+            Number result;
+            if (number.Fragment == null)
             {
-                return environment.GetNumber(2);
+                result = new Number(environment, whole, null, number.IsNegative);
             }
-            else if (!IsBottom(number))
+            else
             {
-                Number tempNumber = number;
-
-                Number numberDivider = new Number(number.Environment, BasicMath.AsSegments(number.Environment, decimal.MaxValue), null, false);
-                Number resultMultiplier = new Number(environment, BasicMath.AsSegments(environment, decimal.MaxValue), null, false);
-
-                while (numberDivider < number)
-                {
-                    numberDivider = Square(numberDivider);
-                    resultMultiplier = Square(resultMultiplier);
-                }
-
-                while (IsGreaterThan(numberDivider, number.Environment.GetNumber(1)))
-                {
-                    while (tempNumber > numberDivider)
-                    {
-                        tempNumber -= numberDivider;
-                        result += resultMultiplier;
-                    }
-                    numberDivider = SquareRoot(numberDivider);
-                    resultMultiplier = SquareRoot(resultMultiplier);
-                }
-
-                while (tempNumber >= tempNumber.Environment.GetNumber(1))
-                {
-                    tempNumber -= tempNumber.Environment.GetNumber(1);
-                    result += result.Environment.GetNumber(1);
-                }
+                NumberSegments numerator = ConvertSegments(number.Environment.Base, environment.Base, number.Fragment.Numerator.Whole);
+                NumberSegments denominator = ConvertSegments(number.Environment.Base, environment.Base, number.Fragment.Denominator.Whole);
+                result = new Number(environment, whole, numerator, denominator, number.IsNegative);
             }
+
 #if DEBUG
             Debug.WriteLine(string.Format("Converted {0} to {1}", number, result));
-            if (number.Environment.Base == 10)
-            {
-                Debug.WriteLine(string.Format("Reverse check {0} back to Base {1}", result, number.Environment.Base));
-                Number reverseBack = this.Convert(number.Environment, result);
-                if (number != reverseBack)
-                {
-                    throw new Exception(string.Format("GetActualValue Error {0} != {1}", number, reverseBack));
-                }
-                Debug.WriteLine(string.Format("Converted {0} back to {1}", result, reverseBack));
-            }
 #endif
             return result;
         }
 
+        private static NumberSegments ConvertSegments(decimal sourceBase, decimal targetBase, NumberSegments segments)
+        {
+            BigInteger value = ToBigInteger(sourceBase, segments);
+            return FromBigInteger(targetBase, value);
+        }
+
+        private static BigInteger ToBigInteger(decimal sourceBase, NumberSegments segments)
+        {
+            BigInteger result = BigInteger.Zero;
+            BigInteger radix = new BigInteger((ulong)sourceBase);
+
+            for (int i = segments.Length - 1; i >= 0; i--)
+            {
+                result *= radix;
+                result += new BigInteger((ulong)segments[i]);
+            }
+
+            return result;
+        }
+
+        private static NumberSegments FromBigInteger(decimal targetBase, BigInteger value)
+        {
+            if (value.Sign < 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(value));
+            }
+
+            if (value.IsZero)
+            {
+                return new NumberSegments(new ulong[] { 0UL });
+            }
+
+            BigInteger radix = new BigInteger((ulong)targetBase);
+            var digits = new List<ulong>();
+            BigInteger remaining = value;
+
+            while (remaining > BigInteger.Zero)
+            {
+                remaining = BigInteger.DivRem(remaining, radix, out BigInteger remainder);
+                digits.Add((ulong)remainder);
+            }
+
+            return new NumberSegments(digits);
+        }
 
         public Fraction AsFraction(Number number)
         {
@@ -538,3 +552,4 @@ namespace NS12.VariableBase.Mathematics.Providers.Operators
         }
     }
 }
+

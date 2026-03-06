@@ -1,0 +1,250 @@
+@using NS12.VariableBase.Mathematics.Common.Interfaces
+@using NS12.VariableBase.Mathematics.Common.Models
+@using NS12.VariableBase.Mathematics.Providers
+
+<div class="convert-shell">
+    <header class="convert-hero">
+        <p class="convert-hero-eyebrow">Converter</p>
+        <h1>Keep the value, change the notation.</h1>
+        <p class="convert-hero-copy">
+            A radix or base is the alphabet used to write a number. Decimal uses ten symbols, binary uses two,
+            and hexadecimal uses sixteen. This tool preserves the underlying value and rewrites it in a different base.
+        </p>
+        <p class="convert-hero-note">
+            Example: decimal <code>255</code>, hexadecimal <code>ff</code>, and binary <code>11111111</code> are the same value written with different symbol sets.
+        </p>
+        <div class="convert-hero-actions">
+            <a class="convert-hero-link" href="calculator">Open calculator</a>
+            <a class="convert-hero-link convert-hero-link--alt" href="encryption">Open text obfuscation</a>
+        </div>
+    </header>
+
+    <section class="convert-toolbar">
+        <div class="convert-field-group">
+            <label for="sourceRadixSelect">Source radix</label>
+            <select id="sourceRadixSelect" @bind="sourceRadix">
+                @foreach (var option in RadixOptions)
+                {
+                    <option value="@option.Value">@option.Label</option>
+                }
+            </select>
+        </div>
+
+        <div class="convert-field-group">
+            <label for="targetRadixSelect">Target radix</label>
+            <select id="targetRadixSelect" @bind="targetRadix">
+                @foreach (var option in RadixOptions)
+                {
+                    <option value="@option.Value">@option.Label</option>
+                }
+            </select>
+        </div>
+
+        <p class="convert-key-hint">Source: @SourceRadixHelp</p>
+        <p class="convert-key-hint">Target: @TargetRadixHelp</p>
+
+        <div class="convert-actions">
+            <button type="button" class="convert-btn convert-btn-secondary" @onclick="SwapBases">Swap bases</button>
+            <button type="button" class="convert-btn convert-btn-ghost" @onclick="ClearAll">Clear</button>
+            <button type="button" class="convert-btn convert-btn-primary" @onclick="ConvertValue">Convert</button>
+        </div>
+    </section>
+
+    @if (!string.IsNullOrWhiteSpace(errorMessage))
+    {
+        <div class="convert-error" role="alert">@errorMessage</div>
+    }
+
+    <section class="convert-grid">
+        <article class="convert-card">
+            <h2>Source Value</h2>
+            <label class="convert-check">
+                <input type="checkbox" @bind="sourceNegative" />
+                Negative
+            </label>
+
+            <label for="sourceWhole">Whole</label>
+            <textarea id="sourceWhole" rows="4" @bind="sourceWholeRaw" placeholder="Whole number"></textarea>
+
+            <div class="convert-fraction-grid">
+                <div>
+                    <label for="sourceNumerator">Numerator</label>
+                    <input id="sourceNumerator" @bind="sourceNumeratorRaw" placeholder="Optional numerator" />
+                </div>
+                <div>
+                    <label for="sourceDenominator">Denominator</label>
+                    <input id="sourceDenominator" @bind="sourceDenominatorRaw" placeholder="Optional denominator" />
+                </div>
+            </div>
+        </article>
+
+        <article class="convert-card convert-card--result @(hasResult ? "has-result" : string.Empty)">
+            <h2>Converted Value</h2>
+            @if (!hasResult)
+            {
+                <p class="convert-placeholder">Run a conversion to view the target representation.</p>
+            }
+            else
+            {
+                <div class="convert-result-header">
+                    @if (resultNegative)
+                    {
+                        <span class="convert-negative-pill">Negative</span>
+                    }
+                    <span class="convert-action">Base @sourceRadix -> base @targetRadix</span>
+                </div>
+
+                <div class="convert-result-grid">
+                    <div>
+                        <label>Whole</label>
+                        <textarea readonly rows="3">@resultWholeRaw</textarea>
+                    </div>
+                    <div>
+                        <label>Numerator</label>
+                        <textarea readonly rows="3">@resultNumeratorRaw</textarea>
+                    </div>
+                    <div>
+                        <label>Denominator</label>
+                        <textarea readonly rows="3">@resultDenominatorRaw</textarea>
+                    </div>
+                </div>
+
+                <p class="convert-display"><span>Display:</span> <code>@resultDisplay</code></p>
+                <div class="convert-meta-grid">
+                    <div>
+                        <label>Source radix key</label>
+                        <textarea readonly rows="2">@sourceKeyRaw</textarea>
+                    </div>
+                    <div>
+                        <label>Target radix key</label>
+                        <textarea readonly rows="2">@targetKeyRaw</textarea>
+                    </div>
+                    <div>
+                        <label>Target radix key (escaped)</label>
+                        <textarea readonly rows="2">@targetKeyEscaped</textarea>
+                    </div>
+                </div>
+            }
+        </article>
+    </section>
+
+    @if (history.Count > 0)
+    {
+        <section class="convert-history">
+            <h2>Recent Conversions</h2>
+            <ul>
+                @foreach (var item in history)
+                {
+                    <li>
+                        <span>@item.Timestamp</span>
+                        <code>@item.Expression</code>
+                        <strong>@item.Result</strong>
+                    </li>
+                }
+            </ul>
+        </section>
+    }
+</div>
+
+@code {
+    private sealed record HistoryEntry(string Timestamp, string Expression, string Result);
+
+    private static readonly IReadOnlyList<RadixOption> RadixOptions = MathToolSupport.PublicRadixOptions.Where(option => option.Value <= 62).ToArray();
+    private readonly List<HistoryEntry> history = new();
+
+    private int sourceRadix = 10;
+    private int targetRadix = 16;
+
+    private string sourceWholeRaw = string.Empty;
+    private string sourceNumeratorRaw = string.Empty;
+    private string sourceDenominatorRaw = string.Empty;
+    private bool sourceNegative;
+
+    private string resultWholeRaw = string.Empty;
+    private string resultNumeratorRaw = string.Empty;
+    private string resultDenominatorRaw = string.Empty;
+    private string resultDisplay = string.Empty;
+    private bool resultNegative;
+    private string sourceKeyRaw = string.Empty;
+    private string targetKeyRaw = string.Empty;
+    private string targetKeyEscaped = string.Empty;
+
+    private bool hasResult;
+    private string errorMessage = string.Empty;
+
+    private string SourceRadixHelp => MathToolSupport.GetRadixOption(sourceRadix).HelpText;
+    private string TargetRadixHelp => MathToolSupport.GetRadixOption(targetRadix).HelpText;
+
+    private void ConvertValue()
+    {
+        errorMessage = string.Empty;
+
+        try
+        {
+            IMathEnvironment<Number> sourceEnvironment = MathToolSupport.CreateEnvironment(sourceRadix);
+            IMathEnvironment<Number> targetEnvironment = MathToolSupport.CreateEnvironment(targetRadix);
+
+            Number sourceValue = MathToolSupport.CreateNumber(sourceEnvironment, sourceWholeRaw, sourceNumeratorRaw, sourceDenominatorRaw, sourceNegative, "Source value");
+            Number convertedValue = Number.Reduce(sourceValue.Convert(targetEnvironment));
+
+            resultWholeRaw = targetEnvironment.ConvertToString(convertedValue.Whole);
+            if (convertedValue.Fragment == null)
+            {
+                resultNumeratorRaw = string.Empty;
+                resultDenominatorRaw = string.Empty;
+            }
+            else
+            {
+                resultNumeratorRaw = targetEnvironment.ConvertToString(convertedValue.Fragment.Numerator.Whole);
+                resultDenominatorRaw = targetEnvironment.ConvertToString(convertedValue.Fragment.Denominator.Whole);
+            }
+
+            resultDisplay = convertedValue.ToString();
+            resultNegative = convertedValue.IsNegative;
+            sourceKeyRaw = new string(sourceEnvironment.Key.ToArray());
+            targetKeyRaw = new string(targetEnvironment.Key.ToArray());
+            targetKeyEscaped = MathToolSupport.EscapeForDisplay(targetKeyRaw);
+            hasResult = true;
+
+            history.Insert(0, new HistoryEntry(DateTime.Now.ToString("HH:mm:ss"), $"{sourceValue} (base {sourceRadix}) -> base {targetRadix}", resultDisplay));
+            if (history.Count > 8)
+            {
+                history.RemoveAt(history.Count - 1);
+            }
+        }
+        catch (Exception ex)
+        {
+            ClearResult();
+            errorMessage = ex.Message;
+        }
+    }
+
+    private void SwapBases()
+    {
+        (sourceRadix, targetRadix) = (targetRadix, sourceRadix);
+        errorMessage = string.Empty;
+    }
+
+    private void ClearAll()
+    {
+        sourceWholeRaw = string.Empty;
+        sourceNumeratorRaw = string.Empty;
+        sourceDenominatorRaw = string.Empty;
+        sourceNegative = false;
+        ClearResult();
+        errorMessage = string.Empty;
+    }
+
+    private void ClearResult()
+    {
+        hasResult = false;
+        resultWholeRaw = string.Empty;
+        resultNumeratorRaw = string.Empty;
+        resultDenominatorRaw = string.Empty;
+        resultDisplay = string.Empty;
+        resultNegative = false;
+        sourceKeyRaw = string.Empty;
+        targetKeyRaw = string.Empty;
+        targetKeyEscaped = string.Empty;
+    }
+}

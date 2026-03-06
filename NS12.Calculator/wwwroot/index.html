@@ -1,32 +1,90 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>NS12.Calculator</title>
+    <meta name="google" content="notranslate" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Protocol5 mathematics tools powered by the NS12 variable-base providers." />
+    <title>Protocol5 Mathematics Tools</title>
     <base href="/" />
-    <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />
-    <link href="css/app.css" rel="stylesheet" />
-    <link rel="icon" type="image/png" href="favicon.png" />
-    <link href="NS12.Calculator.styles.css" rel="stylesheet" />
 </head>
 
 <body>
     <div id="app">
-        <svg class="loading-progress">
+        <svg class="loading-progress" aria-hidden="true">
             <circle r="40%" cx="50%" cy="50%" />
             <circle r="40%" cx="50%" cy="50%" />
         </svg>
         <div class="loading-progress-text"></div>
     </div>
 
-    <div id="blazor-error-ui">
+    <div id="blazor-error-ui" hidden>
         An unhandled error has occurred.
         <a href="" class="reload">Reload</a>
-        <a class="dismiss">🗙</a>
+        <a class="dismiss">x</a>
+        <pre id="blazor-error-details" hidden></pre>
     </div>
-    <script src="_framework/blazor.webassembly.js"></script>
+
+    <script>
+        (function () {
+            var isLocalDevelopment = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
+            var errorUi = document.getElementById("blazor-error-ui");
+            var errorDetails = document.getElementById("blazor-error-details");
+
+            function appendStylesheet(href) {
+                var link = document.createElement("link");
+                link.rel = "stylesheet";
+                link.href = href;
+                document.head.appendChild(link);
+            }
+
+            function appendBlazorScript(src) {
+                var script = document.createElement("script");
+                script.src = src;
+                script.setAttribute("autostart", "false");
+                script.onload = function () {
+                    window.Blazor.start().catch(function (error) {
+                        showErrorDetails(error && error.stack ? error.stack : String(error));
+                        throw error;
+                    });
+                };
+                document.body.appendChild(script);
+            }
+
+            function showErrorDetails(message) {
+                if (!message) {
+                    return;
+                }
+
+                if (errorUi) {
+                    errorUi.hidden = false;
+                    errorUi.style.display = "block";
+                }
+
+                if (isLocalDevelopment && errorDetails) {
+                    errorDetails.hidden = false;
+                    errorDetails.textContent = message;
+                }
+            }
+
+            window.addEventListener("error", function (event) {
+                var message = event && event.message ? event.message : "Unknown browser error.";
+                var source = event && event.filename ? " (" + event.filename + ":" + event.lineno + ":" + event.colno + ")" : "";
+                showErrorDetails(message + source);
+            });
+
+            window.addEventListener("unhandledrejection", function (event) {
+                var reason = event && event.reason ? event.reason : "Unknown unhandled rejection.";
+                var message = reason && reason.message ? reason.message : String(reason);
+                var stack = reason && reason.stack ? "\n" + reason.stack : "";
+                showErrorDetails(message + stack);
+            });
+
+            appendStylesheet("/css/app.css");
+            appendBlazorScript("/_framework/blazor.webassembly.js");
+        })();
+    </script>
 </body>
 
 </html>

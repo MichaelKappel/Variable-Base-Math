@@ -344,7 +344,7 @@ namespace NS12.VariableBase.Mathematics.Providers.Algorithms
         public NumberSegments GetAboutHalf(IMathEnvironment<Number> environment, NumberSegments a, NumberSegments b, decimal variance)
         {
             NumberSegments x = Add(environment, a, b);
-            (NumberSegments Whole, NumberSegments Numerator, NumberSegments Denominator) rawResult = Divide(environment, x, environment.GetNumber(2).Whole);
+            (NumberSegments Whole, NumberSegments? Numerator, NumberSegments? Denominator) rawResult = Divide(environment, x, environment.GetNumber(2).Whole);
 
             NumberSegments result;
             if (variance == 1 && rawResult.Numerator != default(NumberSegments))
@@ -485,8 +485,8 @@ namespace NS12.VariableBase.Mathematics.Providers.Algorithms
             }
             else
             {
-                (NumberSegments Whole, NumberSegments Numerator, NumberSegments Denominator) half = Divide(environment, a, environment.GetNumber(2).Whole);
-                if (half.Numerator == default(NumberSegments))
+                (NumberSegments Whole, NumberSegments? Numerator, NumberSegments? Denominator) half = Divide(environment, a, environment.GetNumber(2).Whole);
+                if (half.Numerator == null)
                 {
                     isEven = true;
                 }
@@ -548,7 +548,7 @@ namespace NS12.VariableBase.Mathematics.Providers.Algorithms
             return Multiply(environment, a, a);
         }
 
-        public (NumberSegments Whole, NumberSegments Numerator, NumberSegments Denominator) SquareRoot(IMathEnvironment<Number> environment, decimal number)
+        public (NumberSegments Whole, NumberSegments? Numerator, NumberSegments? Denominator) SquareRoot(IMathEnvironment<Number> environment, decimal number)
         {
             decimal x = (decimal)Math.Sqrt((double)number);
             decimal remainder = x % 1;
@@ -566,7 +566,7 @@ namespace NS12.VariableBase.Mathematics.Providers.Algorithms
             }
         }
 
-        public (NumberSegments Whole, NumberSegments Numerator, NumberSegments Denominator) SquareRoot(IMathEnvironment<Number> environment, NumberSegments number)
+        public (NumberSegments Whole, NumberSegments? Numerator, NumberSegments? Denominator) SquareRoot(IMathEnvironment<Number> environment, NumberSegments number)
         {
 
             if (IsBottom(number))
@@ -615,7 +615,7 @@ namespace NS12.VariableBase.Mathematics.Providers.Algorithms
 
             }
 
-            (NumberSegments Whole, NumberSegments Numerator, NumberSegments Denominator) result;
+            (NumberSegments Whole, NumberSegments? Numerator, NumberSegments? Denominator) result;
 
             if (IsGreaterThan(environment, number, squareTestResult))
             {
@@ -634,7 +634,7 @@ namespace NS12.VariableBase.Mathematics.Providers.Algorithms
                 result = (lastNumberTried, null, null);
             }
 #if DEBUG
-            foreach (decimal segment in result.Whole)
+            foreach (decimal segment in result.Whole!)
             {
                 if (segment > environment.Base)
                 {
@@ -650,7 +650,7 @@ namespace NS12.VariableBase.Mathematics.Providers.Algorithms
                 }
             }
 
-            if (result.Numerator != default(NumberSegments))
+            if (result.Numerator != null)
             {
                 foreach (decimal segment in result.Numerator)
                 {
@@ -668,7 +668,7 @@ namespace NS12.VariableBase.Mathematics.Providers.Algorithms
                     }
                 }
 
-                foreach (decimal segment in result.Denominator)
+                foreach (decimal segment in result.Denominator!)
                 {
                     if (segment > environment.Base)
                     {
@@ -971,7 +971,7 @@ namespace NS12.VariableBase.Mathematics.Providers.Algorithms
 
         #region Divide
 
-        public (NumberSegments Whole, NumberSegments Numerator, NumberSegments Denominator) Divide(IMathEnvironment<Number> environment, NumberSegments numerator, NumberSegments denominator, NumberSegments hint = default)
+        public (NumberSegments Whole, NumberSegments? Numerator, NumberSegments? Denominator) Divide(IMathEnvironment<Number> environment, NumberSegments numerator, NumberSegments denominator, NumberSegments? hint = default)
         {
 
 #if DEBUG
@@ -1012,6 +1012,10 @@ namespace NS12.VariableBase.Mathematics.Providers.Algorithms
             {
                 return (numerator, null, null);
             }
+            else if (IsBottom(numerator))
+            {
+                return (new NumberSegments(new decimal[] { 0 }), null, null);
+            }
             else if (IsEqual(environment, numerator, denominator))
             {
                 return (new NumberSegments(new decimal[] { 1 }), null, null);
@@ -1029,8 +1033,8 @@ namespace NS12.VariableBase.Mathematics.Providers.Algorithms
                 return this.Divide(environment, numerator, denominator[0]);
             }
 
-            NumberSegments floor = hint == default(NumberSegments) || IsGreaterThan(environment, denominator, hint) ? environment.GetNumber(1).Whole : GetAboutHalf(environment, hint, environment.GetNumber(1).Whole, -1);
-            NumberSegments ceiling = hint == default(NumberSegments) || IsGreaterThan(environment, denominator, hint) ? numerator : GetAboutHalf(environment, hint, numerator, 1);
+            NumberSegments floor = hint == null || IsGreaterThan(environment, denominator, hint) ? environment.GetNumber(1).Whole : GetAboutHalf(environment, hint, environment.GetNumber(1).Whole, -1);
+            NumberSegments ceiling = hint == null || IsGreaterThan(environment, denominator, hint) ? numerator : GetAboutHalf(environment, hint, numerator, 1);
 
             NumberSegments lastNumberTried = GetWholeNumberSomewhereBetween(environment, ceiling, floor);
             NumberSegments numeratorTestResult = Multiply(environment, lastNumberTried, denominator);
@@ -1066,11 +1070,11 @@ namespace NS12.VariableBase.Mathematics.Providers.Algorithms
                 numeratorTestResult = Multiply(environment, lastNumberTried, denominator);
             }
 
-            (NumberSegments Whole, NumberSegments Numerator, NumberSegments Denominator) result;
+            (NumberSegments Whole, NumberSegments? Numerator, NumberSegments? Denominator) result;
 
             if (IsEqual(environment, numeratorTestResult, numerator))
             {
-                result = (lastNumberTried, default(NumberSegments), default(NumberSegments));
+                result = (lastNumberTried, null, null);
             }
             else
             {
@@ -1087,16 +1091,16 @@ namespace NS12.VariableBase.Mathematics.Providers.Algorithms
             {
                 throw new Exception("MathAlgorithm Division leading zero error whole number");
             }
-            else if (result.Numerator != default(NumberSegments) && result.Numerator.Size > 1 && result.Numerator[result.Numerator.Size - 1] == 0)
+            else if (result.Numerator != null && result.Numerator.Size > 1 && result.Numerator[result.Numerator.Size - 1] == 0)
             {
                 throw new Exception("MathAlgorithm Division leading zero error numerator");
             }
-            else if (result.Denominator != default(NumberSegments) && result.Denominator.Size > 1 && result.Denominator[result.Denominator.Size - 1] == 0)
+            else if (result.Denominator != null && result.Denominator.Size > 1 && result.Denominator[result.Denominator.Size - 1] == 0)
             {
                 throw new Exception("MathAlgorithm Division leading zero error denominator");
             }
 
-            foreach (decimal segment in result.Whole)
+            foreach (decimal segment in result.Whole!)
             {
                 if (segment > environment.Base)
                 {
@@ -1112,7 +1116,7 @@ namespace NS12.VariableBase.Mathematics.Providers.Algorithms
                 }
             }
 
-            if (result.Numerator != default(NumberSegments))
+            if (result.Numerator != null)
             {
                 foreach (decimal segment in result.Numerator)
                 {
@@ -1126,7 +1130,7 @@ namespace NS12.VariableBase.Mathematics.Providers.Algorithms
                     }
                 }
 
-                foreach (decimal segment in result.Denominator)
+                foreach (decimal segment in result.Denominator!)
                 {
                     if (segment > environment.Base)
                     {
@@ -1141,7 +1145,7 @@ namespace NS12.VariableBase.Mathematics.Providers.Algorithms
 
             Debug.WriteLine("Division result {0}", string.Join(',', result.Whole.Reverse()));
 
-            if (result.Numerator != default(NumberSegments))
+            if (result.Numerator != null)
             {
                 Debug.WriteLine("Division remainder {0} / {1}", string.Join(',', result.Numerator.Reverse()), string.Join(',', result.Denominator.Reverse()));
             }
@@ -1150,11 +1154,15 @@ namespace NS12.VariableBase.Mathematics.Providers.Algorithms
         }
 
 
-        public (NumberSegments Whole, NumberSegments Numerator, NumberSegments Denominator) Divide(IMathEnvironment<Number> environment, decimal dividend, decimal divisor)
+        public (NumberSegments Whole, NumberSegments? Numerator, NumberSegments? Denominator) Divide(IMathEnvironment<Number> environment, decimal dividend, decimal divisor)
         {
-            (NumberSegments Whole, NumberSegments Numerator, NumberSegments Denominator) result;
+            (NumberSegments Whole, NumberSegments? Numerator, NumberSegments? Denominator) result;
 
             decimal remainder;
+            if (dividend == 0)
+            {
+                return (new NumberSegments(new decimal[] { 0 }), null, null);
+            }
 
             if (dividend > divisor)
             {
@@ -1164,7 +1172,7 @@ namespace NS12.VariableBase.Mathematics.Providers.Algorithms
 
                 if (remainder == 0)
                 {
-                    result = (new NumberSegments(new decimal[] { resultRaw }), default(NumberSegments), default(NumberSegments));
+                    result = (new NumberSegments(new decimal[] { resultRaw }), null, null);
                 }
                 else
                 {
@@ -1194,7 +1202,7 @@ namespace NS12.VariableBase.Mathematics.Providers.Algorithms
                 }
             }
 
-            if (result.Numerator != default(NumberSegments))
+            if (result.Numerator != null)
             {
                 foreach (decimal segment in result.Numerator)
                 {
@@ -1212,7 +1220,7 @@ namespace NS12.VariableBase.Mathematics.Providers.Algorithms
                     }
                 }
 
-                foreach (decimal segment in result.Denominator)
+                foreach (decimal segment in result.Denominator!)
                 {
                     if (segment > environment.Base)
                     {
@@ -1234,14 +1242,14 @@ namespace NS12.VariableBase.Mathematics.Providers.Algorithms
             return result;
         }
 
-        public (NumberSegments Whole, NumberSegments Numerator, NumberSegments Denominator) Divide(IMathEnvironment<Number> environment, NumberSegments dividend, decimal divisor)
+        public (NumberSegments Whole, NumberSegments? Numerator, NumberSegments? Denominator) Divide(IMathEnvironment<Number> environment, NumberSegments dividend, decimal divisor)
         {
             if (dividend.Size == 1)
             {
                 return this.Divide(environment, dividend[0], divisor);
             }
 
-            (NumberSegments Whole, NumberSegments Numerator, NumberSegments Denominator) result;
+            (NumberSegments Whole, NumberSegments? Numerator, NumberSegments? Denominator) result;
 
             decimal remainder = 0M;
 
@@ -1275,7 +1283,7 @@ namespace NS12.VariableBase.Mathematics.Providers.Algorithms
 
             if (remainder == 0)
             {
-                result = (new NumberSegments(resultRaw), default(NumberSegments), default(NumberSegments));
+                result = (new NumberSegments(resultRaw), null, null);
             }
             else
             {
@@ -1295,7 +1303,7 @@ namespace NS12.VariableBase.Mathematics.Providers.Algorithms
                 }
             }
 
-            if (result.Numerator == default(NumberSegments))
+            if (result.Numerator == null)
             {
                 NumberSegments reverseCheck = Multiply(environment, result.Whole, divisor);
                 if (!IsEqual(environment, reverseCheck, dividend))
@@ -1321,7 +1329,7 @@ namespace NS12.VariableBase.Mathematics.Providers.Algorithms
                     }
                 }
 
-                foreach (decimal segment in result.Denominator)
+                foreach (decimal segment in result.Denominator!)
                 {
                     if (segment > environment.Base)
                     {

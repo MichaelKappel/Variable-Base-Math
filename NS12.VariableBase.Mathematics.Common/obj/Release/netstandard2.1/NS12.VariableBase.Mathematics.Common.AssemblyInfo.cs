@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("NS12.VariableBase.Mathematics.Common")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a48a04e5c2a18da452e1c2381f4b87554fb781ef")]
 [assembly: System.Reflection.AssemblyProductAttribute("NS12.VariableBase.Mathematics.Common")]
 [assembly: System.Reflection.AssemblyTitleAttribute("NS12.VariableBase.Mathematics.Common")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -1,7 +1,20 @@
 ﻿<Router AppAssembly="@typeof(App).Assembly">
     <Found Context="routeData">
-        <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
-        <FocusOnNavigate RouteData="@routeData" Selector="h1" />
+        <ErrorBoundary>
+            <ChildContent>
+                <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
+                <FocusOnNavigate RouteData="@routeData" Selector="h1" />
+            </ChildContent>
+            <ErrorContent Context="ex">
+                <LayoutView Layout="@typeof(MainLayout)">
+                    <section class="route-error">
+                        <h1>Application Error</h1>
+                        <p>The requested tool failed during render.</p>
+                        <pre>@ex.ToString()</pre>
+                    </section>
+                </LayoutView>
+            </ErrorContent>
+        </ErrorBoundary>
     </Found>
     <NotFound>
         <PageTitle>Not found</PageTitle>

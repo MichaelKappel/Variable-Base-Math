@@ -10,29 +10,30 @@
         "projectUniqueName": "C:\\GH\\MichaelKappel\\Variable-Base-Math\\NS12.Calculator\\NS12.Calculator.csproj",
         "projectName": "NS12.Calculator",
         "projectPath": "C:\\GH\\MichaelKappel\\Variable-Base-Math\\NS12.Calculator\\NS12.Calculator.csproj",
-        "packagesPath": "C:\\Users\\Micha\\.nuget\\packages\\",
+        "packagesPath": "C:\\Users\\mkapp\\.nuget\\packages\\",
         "outputPath": "C:\\GH\\MichaelKappel\\Variable-Base-Math\\NS12.Calculator\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Micha\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\mkapp\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 19.2.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "net7.0"
+          "net8.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Infragistics\\NuGet\\": {},
+          "C:\\Program Files (x86)\\DevExpress 19.2\\Components\\System\\Components\\Packages": {},
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net7.0": {
-            "targetAlias": "net7.0",
+          "net8.0": {
+            "targetAlias": "net8.0",
             "projectReferences": {
               "C:\\GH\\MichaelKappel\\Variable-Base-Math\\NS12.VariableBase.Mathematics.Common\\NS12.VariableBase.Mathematics.Common.csproj": {
                 "projectPath": "C:\\GH\\MichaelKappel\\Variable-Base-Math\\NS12.VariableBase.Mathematics.Common\\NS12.VariableBase.Mathematics.Common.csproj"
@@ -47,20 +48,38 @@
           "warnAsError": [
             "NU1605"
           ]
-        }
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "10.0.100"
       },
       "frameworks": {
-        "net7.0": {
-          "targetAlias": "net7.0",
+        "net8.0": {
+          "targetAlias": "net8.0",
           "dependencies": {
             "Microsoft.AspNetCore.Components.WebAssembly": {
               "target": "Package",
-              "version": "[7.0.0, )"
+              "version": "[8.0.0, )"
             },
             "Microsoft.AspNetCore.Components.WebAssembly.DevServer": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[7.0.0, )"
+              "version": "[8.0.0, )"
+            },
+            "Microsoft.NET.ILLink.Tasks": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.24, )",
+              "autoReferenced": true
+            },
+            "Microsoft.NET.Sdk.WebAssembly.Pack": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[10.0.3, )",
+              "autoReferenced": true
             }
           },
           "imports": [
@@ -74,12 +93,18 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.NETCore.App.Runtime.Mono.browser-wasm",
+              "version": "[8.0.24, 8.0.24]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.103/PortableRuntimeIdentifierGraph.json"
         }
       },
       "runtimes": {
@@ -94,14 +119,15 @@
         "projectUniqueName": "C:\\GH\\MichaelKappel\\Variable-Base-Math\\NS12.VariableBase.Mathematics.Common\\NS12.VariableBase.Mathematics.Common.csproj",
         "projectName": "NS12.VariableBase.Mathematics.Common",
         "projectPath": "C:\\GH\\MichaelKappel\\Variable-Base-Math\\NS12.VariableBase.Mathematics.Common\\NS12.VariableBase.Mathematics.Common.csproj",
-        "packagesPath": "C:\\Users\\Micha\\.nuget\\packages\\",
+        "packagesPath": "C:\\Users\\mkapp\\.nuget\\packages\\",
         "outputPath": "C:\\GH\\MichaelKappel\\Variable-Base-Math\\NS12.VariableBase.Mathematics.Common\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Micha\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\mkapp\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 19.2.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -109,7 +135,7 @@
           "netstandard2.1"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Infragistics\\NuGet\\": {},
+          "C:\\Program Files (x86)\\DevExpress 19.2\\Components\\System\\Components\\Packages": {},
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
@@ -124,7 +150,13 @@
           "warnAsError": [
             "NU1605"
           ]
-        }
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "10.0.100"
       },
       "frameworks": {
         "netstandard2.1": {
@@ -145,7 +177,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.103\\RuntimeIdentifierGraph.json"
         }
       }
     },
@@ -155,14 +187,15 @@
         "projectUniqueName": "C:\\GH\\MichaelKappel\\Variable-Base-Math\\NS12.VariableBase.Mathematics.Providers\\NS12.VariableBase.Mathematics.Providers.csproj",
         "projectName": "NS12.VariableBase.Mathematics.Providers",
         "projectPath": "C:\\GH\\MichaelKappel\\Variable-Base-Math\\NS12.VariableBase.Mathematics.Providers\\NS12.VariableBase.Mathematics.Providers.csproj",
-        "packagesPath": "C:\\Users\\Micha\\.nuget\\packages\\",
+        "packagesPath": "C:\\Users\\mkapp\\.nuget\\packages\\",
         "outputPath": "C:\\GH\\MichaelKappel\\Variable-Base-Math\\NS12.VariableBase.Mathematics.Providers\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Micha\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\mkapp\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 19.2.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -170,7 +203,7 @@
           "netstandard2.1"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Infragistics\\NuGet\\": {},
+          "C:\\Program Files (x86)\\DevExpress 19.2\\Components\\System\\Components\\Packages": {},
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
@@ -189,7 +222,13 @@
           "warnAsError": [
             "NU1605"
           ]
-        }
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "10.0.100"
       },
       "frameworks": {
         "netstandard2.1": {
@@ -210,7 +249,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.103\\RuntimeIdentifierGraph.json"
         }
       }
     }

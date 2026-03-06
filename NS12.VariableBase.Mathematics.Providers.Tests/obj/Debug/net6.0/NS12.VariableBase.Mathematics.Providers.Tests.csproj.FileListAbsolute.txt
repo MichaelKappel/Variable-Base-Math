@@ -95,9 +95,10 @@ C:\GH\MichaelKappel\Variable-Base-Math\NS12.VariableBase.Mathematics.Providers.T
 C:\GH\MichaelKappel\Variable-Base-Math\NS12.VariableBase.Mathematics.Providers.Tests\obj\Debug\net6.0\NS12.VariableBase.Mathematics.Providers.Tests.AssemblyInfoInputs.cache
 C:\GH\MichaelKappel\Variable-Base-Math\NS12.VariableBase.Mathematics.Providers.Tests\obj\Debug\net6.0\NS12.VariableBase.Mathematics.Providers.Tests.AssemblyInfo.cs
 C:\GH\MichaelKappel\Variable-Base-Math\NS12.VariableBase.Mathematics.Providers.Tests\obj\Debug\net6.0\NS12.VariableBase.Mathematics.Providers.Tests.csproj.CoreCompileInputs.cache
-C:\GH\MichaelKappel\Variable-Base-Math\NS12.VariableBase.Mathematics.Providers.Tests\obj\Debug\net6.0\NS12.VariableBase.Mathematics.Providers.Tests.csproj.CopyComplete
 C:\GH\MichaelKappel\Variable-Base-Math\NS12.VariableBase.Mathematics.Providers.Tests\obj\Debug\net6.0\NS12.VariableBase.Mathematics.Providers.Tests.dll
 C:\GH\MichaelKappel\Variable-Base-Math\NS12.VariableBase.Mathematics.Providers.Tests\obj\Debug\net6.0\refint\NS12.VariableBase.Mathematics.Providers.Tests.dll
 C:\GH\MichaelKappel\Variable-Base-Math\NS12.VariableBase.Mathematics.Providers.Tests\obj\Debug\net6.0\NS12.VariableBase.Mathematics.Providers.Tests.pdb
 C:\GH\MichaelKappel\Variable-Base-Math\NS12.VariableBase.Mathematics.Providers.Tests\obj\Debug\net6.0\NS12.VariableBase.Mathematics.Providers.Tests.genruntimeconfig.cache
 C:\GH\MichaelKappel\Variable-Base-Math\NS12.VariableBase.Mathematics.Providers.Tests\obj\Debug\net6.0\ref\NS12.VariableBase.Mathematics.Providers.Tests.dll
+C:\GH\MichaelKappel\Variable-Base-Math\NS12.VariableBase.Mathematics.Providers.Tests\obj\Debug\net6.0\NS12.VariableBase.Mathematics.Providers.Tests.sourcelink.json
+C:\GH\MichaelKappel\Variable-Base-Math\NS12.VariableBase.Mathematics.Providers.Tests\obj\Debug\net6.0\NS12.Var.AD7A4BDF.Up2Date

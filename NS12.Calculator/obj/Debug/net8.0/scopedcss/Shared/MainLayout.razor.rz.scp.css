@@ -1,0 +1,17 @@
+.page[b-u41l0liz3m] {
+    min-height: 0;
+}
+
+main[b-u41l0liz3m] {
+    width: 100%;
+}
+
+article[b-u41l0liz3m] {
+    padding: 0 0.35rem 1.5rem;
+}
+
+@media (min-width: 920px) {
+    article[b-u41l0liz3m] {
+        padding: 0 0.9rem 2rem;
+    }
+}

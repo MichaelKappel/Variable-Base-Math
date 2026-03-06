@@ -1,0 +1,10 @@
+<Project>
+  <PropertyGroup>
+    <Protocol5ArtifactsRoot Condition="'$(Protocol5ArtifactsRoot)' == '' and '$(LOCALAPPDATA)' != ''">$(LOCALAPPDATA)\Protocol5\VariableBaseMath\artifacts\</Protocol5ArtifactsRoot>
+    <Protocol5ArtifactsRoot Condition="'$(Protocol5ArtifactsRoot)' == ''">$(TEMP)\Protocol5\VariableBaseMath\artifacts\</Protocol5ArtifactsRoot>
+    <BaseOutputPath Condition="'$(BaseOutputPath)' == ''">$(Protocol5ArtifactsRoot)bin\</BaseOutputPath>
+    <BaseIntermediateOutputPath Condition="'$(BaseIntermediateOutputPath)' == ''">$(Protocol5ArtifactsRoot)obj\$(MSBuildProjectName)\</BaseIntermediateOutputPath>
+    <MSBuildProjectExtensionsPath Condition="'$(MSBuildProjectExtensionsPath)' == ''">$(BaseIntermediateOutputPath)</MSBuildProjectExtensionsPath>
+    <DefaultItemExcludes>$(DefaultItemExcludes);$(MSBuildProjectDirectory)\bin\**;$(MSBuildProjectDirectory)\obj\**</DefaultItemExcludes>
+  </PropertyGroup>
+</Project>

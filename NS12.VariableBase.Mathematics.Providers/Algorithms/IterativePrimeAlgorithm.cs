@@ -22,7 +22,7 @@ namespace NS12.VariableBase.Mathematics.Providers.Algorithms
     {
         public readonly DateTime Started;
         public NumberSegments MaxPrimeTested = new NumberSegments(new decimal[] { 1 });
-        public decimal[][] PrimeNumbers = default;
+        public decimal[][] PrimeNumbers = Array.Empty<decimal[]>();
 
         public IterativePrimeAlgorithm()
         {

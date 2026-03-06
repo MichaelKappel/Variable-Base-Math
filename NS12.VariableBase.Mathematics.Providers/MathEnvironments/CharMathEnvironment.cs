@@ -470,7 +470,7 @@ namespace NS12.VariableBase.Mathematics.Providers.MathEnvironments
             String numberCleaned = number.Trim();
             while (numberCleaned.IndexOf(zero) == 0)
             {
-                numberCleaned = numberCleaned.Remove(1);
+                numberCleaned = numberCleaned.Remove(0, 1);
             }
             if (numberCleaned.Length > 1)
             {

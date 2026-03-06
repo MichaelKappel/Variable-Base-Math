@@ -6371,7 +6371,7 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Micha\\.nuget\\packages\\": {},
+    "C:\\Users\\mkapp\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
@@ -6380,14 +6380,15 @@
       "projectUniqueName": "C:\\GH\\MichaelKappel\\Variable-Base-Math\\NS12.VariableBase.Mathematics.Providers.Tests\\NS12.VariableBase.Mathematics.Providers.Tests.csproj",
       "projectName": "NS12.VariableBase.Mathematics.Providers.Tests",
       "projectPath": "C:\\GH\\MichaelKappel\\Variable-Base-Math\\NS12.VariableBase.Mathematics.Providers.Tests\\NS12.VariableBase.Mathematics.Providers.Tests.csproj",
-      "packagesPath": "C:\\Users\\Micha\\.nuget\\packages\\",
+      "packagesPath": "C:\\Users\\mkapp\\.nuget\\packages\\",
       "outputPath": "C:\\GH\\MichaelKappel\\Variable-Base-Math\\NS12.VariableBase.Mathematics.Providers.Tests\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Micha\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\mkapp\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 19.2.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -6395,7 +6396,7 @@
         "net6.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Infragistics\\NuGet\\": {},
+        "C:\\Program Files (x86)\\DevExpress 19.2\\Components\\System\\Components\\Packages": {},
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
@@ -6417,7 +6418,13 @@
         "warnAsError": [
           "NU1605"
         ]
-      }
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
+      },
+      "SdkAnalysisLevel": "10.0.100"
     },
     "frameworks": {
       "net6.0": {
@@ -6456,7 +6463,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.103\\RuntimeIdentifierGraph.json"
       }
     }
   }

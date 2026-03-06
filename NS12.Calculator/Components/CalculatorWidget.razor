@@ -1,0 +1,314 @@
+@using NS12.VariableBase.Mathematics.Common.Interfaces
+@using NS12.VariableBase.Mathematics.Common.Models
+@using NS12.VariableBase.Mathematics.Providers
+
+<div class="calc-shell">
+    <header class="calc-hero">
+        <p class="calc-hero-eyebrow">Calculator</p>
+        <h1>Change the number, keep the radix fixed.</h1>
+        <p class="calc-hero-copy">
+            Use the calculator when you want arithmetic to change the value itself. Addition, subtraction,
+            multiplication, and division all happen inside one chosen base, with exact mixed-fraction output.
+        </p>
+        <p class="calc-hero-note">
+            If the value should stay the same and only the notation should change, use the radix/base converter instead.
+        </p>
+        <div class="calc-hero-actions">
+            <a class="calc-hero-link" href="converter">Open converter</a>
+            <a class="calc-hero-link calc-hero-link--alt" href="encryption">Open text obfuscation</a>
+        </div>
+    </header>
+
+    <section class="calc-toolbar">
+        <div class="calc-field-group">
+            <label for="radixSelect">Radix</label>
+            <select id="radixSelect" @bind="selectedRadix">
+                @foreach (var option in RadixOptions)
+                {
+                    <option value="@option.Value">@option.Label</option>
+                }
+            </select>
+        </div>
+
+        <div class="calc-field-group">
+            <label for="actionSelect">Operation</label>
+            <select id="actionSelect" @bind="selectedAction">
+                @foreach (var option in OperationOptions)
+                {
+                    <option value="@option">@option</option>
+                }
+            </select>
+        </div>
+
+        <p class="calc-key-hint">@CurrentRadixHelp</p>
+        @if (selectedRadix > 62)
+        {
+            <p class="calc-note">
+                High radix mode uses extended Unicode symbols. Input works best when pasted from pre-generated values.
+            </p>
+        }
+
+        <div class="calc-actions">
+            <button type="button" class="calc-btn calc-btn-secondary" @onclick="SwapOperands">Swap Inputs</button>
+            <button type="button" class="calc-btn calc-btn-ghost" @onclick="ClearAll">Clear</button>
+            <button type="button" class="calc-btn calc-btn-primary" @onclick="Calculate">Calculate</button>
+        </div>
+    </section>
+
+    @if (!string.IsNullOrWhiteSpace(errorMessage))
+    {
+        <div class="calc-error" role="alert">@errorMessage</div>
+    }
+
+    <section class="calc-grid">
+        <article class="calc-card">
+            <h2>First Number</h2>
+            <label class="calc-check">
+                <input type="checkbox" @bind="firstNegative" />
+                Negative
+            </label>
+
+            <label for="firstWhole">Whole</label>
+            <textarea id="firstWhole" rows="4" @bind="firstWholeRaw" placeholder="Whole number"></textarea>
+
+            <div class="calc-fraction-grid">
+                <div>
+                    <label for="firstNumerator">Numerator</label>
+                    <input id="firstNumerator" @bind="firstNumeratorRaw" placeholder="Optional numerator" />
+                </div>
+                <div>
+                    <label for="firstDenominator">Denominator</label>
+                    <input id="firstDenominator" @bind="firstDenominatorRaw" placeholder="Optional denominator" />
+                </div>
+            </div>
+        </article>
+
+        <article class="calc-card">
+            <h2>Second Number</h2>
+            <label class="calc-check">
+                <input type="checkbox" @bind="secondNegative" />
+                Negative
+            </label>
+
+            <label for="secondWhole">Whole</label>
+            <textarea id="secondWhole" rows="4" @bind="secondWholeRaw" placeholder="Whole number"></textarea>
+
+            <div class="calc-fraction-grid">
+                <div>
+                    <label for="secondNumerator">Numerator</label>
+                    <input id="secondNumerator" @bind="secondNumeratorRaw" placeholder="Optional numerator" />
+                </div>
+                <div>
+                    <label for="secondDenominator">Denominator</label>
+                    <input id="secondDenominator" @bind="secondDenominatorRaw" placeholder="Optional denominator" />
+                </div>
+            </div>
+        </article>
+    </section>
+
+    <section class="calc-result @(hasResult ? "has-result" : string.Empty)">
+        <h2>Result</h2>
+        @if (!hasResult)
+        {
+            <p class="calc-placeholder">Run a calculation to view output.</p>
+        }
+        else
+        {
+            <div class="result-header">
+                @if (resultNegative)
+                {
+                    <span class="result-negative-pill">Negative</span>
+                }
+                <span class="result-action">@selectedAction in base @selectedRadix</span>
+            </div>
+
+            <div class="result-grid">
+                <div>
+                    <label>Whole</label>
+                    <textarea readonly rows="3">@resultWholeRaw</textarea>
+                </div>
+                <div>
+                    <label>Numerator</label>
+                    <textarea readonly rows="3">@resultNumeratorRaw</textarea>
+                </div>
+                <div>
+                    <label>Denominator</label>
+                    <textarea readonly rows="3">@resultDenominatorRaw</textarea>
+                </div>
+            </div>
+
+            <p class="result-display"><span>Display:</span> <code>@resultDisplay</code></p>
+        }
+    </section>
+
+    @if (history.Count > 0)
+    {
+        <section class="calc-history">
+            <h2>Recent Calculations</h2>
+            <ul>
+                @foreach (var item in history)
+                {
+                    <li>
+                        <span>@item.Timestamp</span>
+                        <code>@item.Expression</code>
+                        <strong>@item.Result</strong>
+                    </li>
+                }
+            </ul>
+        </section>
+    }
+</div>
+
+@code {
+    private enum MathAction
+    {
+        Add,
+        Subtract,
+        Multiply,
+        Divide
+    }
+
+    private sealed record HistoryEntry(string Timestamp, string Expression, string Result);
+
+    private static readonly IReadOnlyList<RadixOption> RadixOptions = MathToolSupport.PublicRadixOptions;
+    private static readonly IReadOnlyList<MathAction> OperationOptions = new[]
+    {
+        MathAction.Add,
+        MathAction.Subtract,
+        MathAction.Multiply,
+        MathAction.Divide
+    };
+
+    private readonly List<HistoryEntry> history = new();
+
+    private MathAction selectedAction = MathAction.Add;
+    private int selectedRadix = 10;
+
+    private string firstWholeRaw = string.Empty;
+    private string firstNumeratorRaw = string.Empty;
+    private string firstDenominatorRaw = string.Empty;
+    private bool firstNegative;
+
+    private string secondWholeRaw = string.Empty;
+    private string secondNumeratorRaw = string.Empty;
+    private string secondDenominatorRaw = string.Empty;
+    private bool secondNegative;
+
+    private string resultWholeRaw = string.Empty;
+    private string resultNumeratorRaw = string.Empty;
+    private string resultDenominatorRaw = string.Empty;
+    private bool resultNegative;
+    private string resultDisplay = string.Empty;
+
+    private bool hasResult;
+    private string errorMessage = string.Empty;
+
+    private string CurrentRadixHelp => MathToolSupport.GetRadixOption(selectedRadix).HelpText;
+
+    private void Calculate()
+    {
+        errorMessage = string.Empty;
+
+        try
+        {
+            IMathEnvironment<Number> environment = MathToolSupport.CreateEnvironment(selectedRadix);
+
+            Number firstNumber = MathToolSupport.CreateNumber(environment, firstWholeRaw, firstNumeratorRaw, firstDenominatorRaw, firstNegative, "First number");
+            Number secondNumber = MathToolSupport.CreateNumber(environment, secondWholeRaw, secondNumeratorRaw, secondDenominatorRaw, secondNegative, "Second number");
+
+            if (selectedAction == MathAction.Divide && MathToolSupport.IsZero(secondNumber))
+            {
+                throw new DivideByZeroException("Division by zero is not allowed.");
+            }
+
+            Number rawResult = selectedAction switch
+            {
+                MathAction.Add => firstNumber + secondNumber,
+                MathAction.Subtract => firstNumber - secondNumber,
+                MathAction.Multiply => firstNumber * secondNumber,
+                MathAction.Divide => firstNumber / secondNumber,
+                _ => throw new InvalidOperationException("Unsupported operation.")
+            };
+
+            Number reducedResult = Number.Reduce(rawResult);
+            resultWholeRaw = environment.ConvertToString(reducedResult.Whole);
+
+            if (reducedResult.Fragment == null)
+            {
+                resultNumeratorRaw = string.Empty;
+                resultDenominatorRaw = string.Empty;
+            }
+            else
+            {
+                resultNumeratorRaw = environment.ConvertToString(reducedResult.Fragment.Numerator.Whole);
+                resultDenominatorRaw = environment.ConvertToString(reducedResult.Fragment.Denominator.Whole);
+            }
+
+            resultNegative = reducedResult.IsNegative;
+            resultDisplay = reducedResult.ToString();
+            hasResult = true;
+
+            AddHistory(firstNumber, secondNumber, reducedResult);
+        }
+        catch (Exception ex)
+        {
+            ClearResult();
+            errorMessage = ex.Message;
+        }
+    }
+
+    private void SwapOperands()
+    {
+        (firstWholeRaw, secondWholeRaw) = (secondWholeRaw, firstWholeRaw);
+        (firstNumeratorRaw, secondNumeratorRaw) = (secondNumeratorRaw, firstNumeratorRaw);
+        (firstDenominatorRaw, secondDenominatorRaw) = (secondDenominatorRaw, firstDenominatorRaw);
+        (firstNegative, secondNegative) = (secondNegative, firstNegative);
+        errorMessage = string.Empty;
+    }
+
+    private void ClearAll()
+    {
+        firstWholeRaw = string.Empty;
+        firstNumeratorRaw = string.Empty;
+        firstDenominatorRaw = string.Empty;
+        firstNegative = false;
+
+        secondWholeRaw = string.Empty;
+        secondNumeratorRaw = string.Empty;
+        secondDenominatorRaw = string.Empty;
+        secondNegative = false;
+
+        ClearResult();
+        errorMessage = string.Empty;
+    }
+
+    private void ClearResult()
+    {
+        hasResult = false;
+        resultNegative = false;
+        resultWholeRaw = string.Empty;
+        resultNumeratorRaw = string.Empty;
+        resultDenominatorRaw = string.Empty;
+        resultDisplay = string.Empty;
+    }
+
+    private void AddHistory(Number firstNumber, Number secondNumber, Number result)
+    {
+        string symbol = selectedAction switch
+        {
+            MathAction.Add => "+",
+            MathAction.Subtract => "-",
+            MathAction.Multiply => "*",
+            MathAction.Divide => "/",
+            _ => "?"
+        };
+
+        string expression = $"{firstNumber} {symbol} {secondNumber} (base {selectedRadix})";
+        history.Insert(0, new HistoryEntry(DateTime.Now.ToString("HH:mm:ss"), expression, result.ToString()));
+
+        if (history.Count > 8)
+        {
+            history.RemoveAt(history.Count - 1);
+        }
+    }
+}

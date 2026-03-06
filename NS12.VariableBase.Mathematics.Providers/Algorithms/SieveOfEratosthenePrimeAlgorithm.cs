@@ -28,7 +28,7 @@ namespace NS12.VariableBase.Mathematics.Providers.Algorithms
         public readonly DateTime Started;
         public Number PrimeListMaxNumber;
         public IDictionary<int, (IList<Number> Numbers, NumberSegmentDictionary Segments)> PrimeNumberTree = new Dictionary<int, (IList<Number> NumberList, NumberSegmentDictionary NumberDictionary)>();
-        public Action<Number> OnPrimeFound;
+        public Action<Number>? OnPrimeFound;
 
         public void SavePrimesFile(string fileNameWithoutExtension)
         {
@@ -59,20 +59,20 @@ namespace NS12.VariableBase.Mathematics.Providers.Algorithms
             }
         }
 
-        public SieveOfEratosthenePrimeAlgorithm(IList<Number> seedPrimeNumbers, Action<Number> onPrimeFound = default)
+        public SieveOfEratosthenePrimeAlgorithm(IList<Number> seedPrimeNumbers, Action<Number>? onPrimeFound = default)
         {
             foreach (Number prime in seedPrimeNumbers)
             {
                 int environmentBase = (int)prime.Environment.Base;
                 if (!PrimeNumberTree.ContainsKey(environmentBase))
                 {
-                    PrimeNumberTree.Add(environmentBase, (new List<Number>(), new NumberSegmentDictionary(null)));
+                    PrimeNumberTree.Add(environmentBase, (new List<Number>(), new NumberSegmentDictionary()));
                 }
 
                 PrimeNumberTree[environmentBase].Numbers.Add(prime);
                 PrimeNumberTree[environmentBase].Segments.Add(prime.Whole, NumberTypes.Prime);
 
-                if (onPrimeFound != default)
+                if (onPrimeFound != null)
                 {
                     onPrimeFound(prime);
                 }
@@ -83,7 +83,7 @@ namespace NS12.VariableBase.Mathematics.Providers.Algorithms
         }
 
 
-        public SieveOfEratosthenePrimeAlgorithm(IMathEnvironment<Number> environment, IList<string> primeNumbersRaw, Action<Number> onPrimeFound)
+        public SieveOfEratosthenePrimeAlgorithm(IMathEnvironment<Number> environment, IList<string> primeNumbersRaw, Action<Number>? onPrimeFound)
         {
             PrimeNumberTree.Add((int)environment.Base, (new List<Number>(), new NumberSegmentDictionary()));
 
@@ -98,7 +98,7 @@ namespace NS12.VariableBase.Mathematics.Providers.Algorithms
                     PrimeListMaxNumber = prime;
                 }
 
-                if (onPrimeFound != default)
+                if (onPrimeFound != null)
                 {
                     onPrimeFound(prime);
                 }
@@ -158,7 +158,7 @@ namespace NS12.VariableBase.Mathematics.Providers.Algorithms
                 PrimeNumberTree[(int)environment.Base].Segments.Add(number.Whole, NumberTypes.Prime);
                 PrimeNumberTree[(int)environment.Base].Numbers.Add(number);
                 PrimeListMaxNumber = number;
-                if (OnPrimeFound != default)
+                if (OnPrimeFound != null)
                 {
                     OnPrimeFound(number);
                 }

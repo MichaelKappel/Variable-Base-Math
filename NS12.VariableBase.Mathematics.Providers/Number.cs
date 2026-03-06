@@ -77,7 +77,7 @@ namespace NS12.VariableBase.Mathematics.Providers
            
         }
 
-        public Number(IMathEnvironment<Number> environment, NumberSegments wholeNumber, NumberSegments numerator, NumberSegments denominator, bool isNegative)
+        public Number(IMathEnvironment<Number> environment, NumberSegments wholeNumber, NumberSegments? numerator, NumberSegments? denominator, bool isNegative)
         {
             if (wholeNumber == default(NumberSegments) || wholeNumber.Size == 0)
             {
@@ -146,19 +146,19 @@ namespace NS12.VariableBase.Mathematics.Providers
                         aFraction = new Fraction(numerator.Environment, numerator.Whole, environment.GetNumber(1).Whole);
                     }
 
-                    var bFraction = default(Fraction);
+                    Fraction bFraction;
                     if (denominator.Fragment != default)
                     {
                         Number bDividend = Operator.Add(Operator.Multiply(denominator, denominator.Fragment.Denominator), denominator.Fragment.Numerator);
                         bFraction = new Fraction(bDividend, environment.GetNumber(1));
 
                     }
-                    else if (aFraction != default)
+                    else
                     {
                         bFraction = new Fraction(denominator.Environment, denominator.Whole, environment.GetNumber(1).Whole);
                     }
 
-                    Fraction fractionResult = aFraction / bFraction;
+                    Fraction fractionResult = aFraction / bFraction ?? throw new InvalidOperationException("Fraction division produced null.");
                     numerator = fractionResult.Numerator;
                     denominator = fractionResult.Denominator;
                 }
@@ -385,7 +385,7 @@ namespace NS12.VariableBase.Mathematics.Providers
             return Operator.SquareRoot(this);
         }
 
-        public string GetCharArray(IMathEnvironment<Number> environment = default)
+        public string GetCharArray(IMathEnvironment<Number>? environment = default)
         {
             string result = string.Empty;
             if (this.IsNegative)

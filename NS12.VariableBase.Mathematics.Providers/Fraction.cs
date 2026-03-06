@@ -181,6 +181,11 @@ namespace NS12.VariableBase.Mathematics.Providers
 
         public Fraction IncreaseDenominator(Number multiplier)
         {
+            if (Numerator.Fragment == null)
+            {
+                return new Fraction(Numerator * multiplier, Denominator * multiplier);
+            }
+
             Number biggerNumerator = Numerator.Fragment.Denominator * multiplier;
             Number biggerDenominator = Numerator.Fragment.Denominator * multiplier;
 

@@ -1,6 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\NS12.Calculator",
+    "\\NS12.Calculator\\wwwroot"
   ],
+  "SelectedNode": "\\NS12.Calculator\\wwwroot\\index.html",
   "PreviewInSolutionExplorer": false
 }

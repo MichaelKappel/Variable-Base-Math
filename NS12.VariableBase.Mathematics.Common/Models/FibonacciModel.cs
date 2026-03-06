@@ -9,9 +9,9 @@ namespace NS12.VariableBase.Mathematics.Common.Models
 {
     public class FibonacciModel<T>
     {
-        public IMathEnvironment<T> MathEnvironment { get; set; }
-        public T First { get; set; }
-        public T Second { get; set; }
+        public IMathEnvironment<T> MathEnvironment { get; set; } = default!;
+        public T First { get; set; } = default!;
+        public T Second { get; set; } = default!;
         public DateTime StartDate { get; set; }
     }
 }
