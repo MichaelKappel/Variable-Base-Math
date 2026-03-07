@@ -1,3 +1,4 @@
+@using System.Linq
 @using NS12.VariableBase.Mathematics.Providers.Utilities
 
 <div class="cipher-shell">
@@ -24,7 +25,7 @@
         </article>
         <article>
             <h2>Why it is portable</h2>
-            <p>The output includes the encrypted text, the radix key, and the base size. With those values and the secret, you can reproduce the multiplication or division anywhere that supports ordinary integer math.</p>
+            <p>The output includes the encrypted text and radix key. The base size is derived directly from that key, so the same values can be reconstructed anywhere that supports ordinary integer math.</p>
         </article>
         <article>
             <h2>How it compares to standard encryption</h2>
@@ -60,6 +61,9 @@
             }
             else
             {
+                bool cipherHasEdgeWhitespace = HasEdgeWhitespace(encryptResult.CipherText);
+                bool radixKeyHasEdgeWhitespace = HasEdgeWhitespace(encryptResult.RadixKey);
+
                 <div class="cipher-strength-row">
                     <span class="cipher-strength-badge">@encryptResult.StrengthLabel</span>
                     <span class="cipher-strength-meta">Base @encryptResult.Radix, about @encryptResult.EstimatedKeySpaceBits.ToString("F1") bits of secret search effort</span>
@@ -92,6 +96,15 @@
                     </div>
                 </div>
 
+                @if (cipherHasEdgeWhitespace || radixKeyHasEdgeWhitespace)
+                {
+                    <p class="cipher-summary cipher-summary--warning">Whitespace is part of the encoded number. This payload starts or ends with whitespace, so the escaped values are the safest way to copy it without losing digits.</p>
+                }
+                else
+                {
+                    <p class="cipher-summary">Whitespace and punctuation are part of the radix alphabet. Use the escaped values when you need an unambiguous transport format.</p>
+                }
+
                 <p class="cipher-summary">@encryptResult.StrengthSummary</p>
                 <p class="cipher-summary">Manual reconstruction: treat the radix key as the digit alphabet, read the secret and ciphertext as base-@encryptResult.Radix numbers in that alphabet, then divide ciphertext by secret to recover the message digits.</p>
             }
@@ -110,8 +123,12 @@
             <label for="decryptRadixKey">Radix key</label>
             <textarea id="decryptRadixKey" rows="4" @bind="decryptRadixKey" placeholder="Paste the radix key"></textarea>
 
-            <label for="decryptRadix">Base/radix</label>
-            <input id="decryptRadix" @bind="decryptRadixRaw" placeholder="Optional explicit radix" />
+            <div class="cipher-detected-radix" aria-live="polite">
+                <span class="cipher-detected-radix__label">Detected radix</span>
+                <strong class="cipher-detected-radix__value">@DetectedDecryptRadixLabel</strong>
+            </div>
+
+            <p class="cipher-field-note">Whitespace is data. If a raw payload seems wrong, compare it against the escaped output to make sure no leading or trailing spaces were lost.</p>
 
             <div class="cipher-actions">
                 <button type="button" class="cipher-btn cipher-btn-ghost" @onclick="ClearDecryption">Clear</button>
@@ -128,7 +145,7 @@
             <h2>Decryption Output</h2>
             @if (decryptResult is null)
             {
-                <p class="cipher-placeholder">Decrypt a payload to verify the message and escaped representation.</p>
+                <p class="cipher-placeholder">Decrypt a payload with encrypted text, secret, and radix key to verify the message and escaped representation.</p>
             }
             else
             {
@@ -157,9 +174,12 @@
     private string decryptCipherText = string.Empty;
     private string decryptSecretText = string.Empty;
     private string decryptRadixKey = string.Empty;
-    private string decryptRadixRaw = string.Empty;
     private string decryptError = string.Empty;
     private TextRadixCipherResult? decryptResult;
+
+    private string DetectedDecryptRadixLabel => string.IsNullOrWhiteSpace(decryptRadixKey)
+        ? "Paste a radix key"
+        : GetDetectedRadixLabel(decryptRadixKey);
 
     private void EncryptMessage()
     {
@@ -171,11 +191,14 @@
             decryptCipherText = encryptResult.CipherText;
             decryptSecretText = encryptResult.SecretText;
             decryptRadixKey = encryptResult.RadixKey;
-            decryptRadixRaw = encryptResult.Radix.ToString();
+            decryptError = string.Empty;
+            decryptResult = null;
         }
         catch (Exception ex)
         {
             encryptResult = null;
+            decryptError = string.Empty;
+            decryptResult = null;
             encryptError = ex.Message;
         }
     }
@@ -186,13 +209,7 @@
 
         try
         {
-            int? radix = null;
-            if (!string.IsNullOrWhiteSpace(decryptRadixRaw))
-            {
-                radix = int.Parse(decryptRadixRaw);
-            }
-
-            decryptResult = TextRadixCipher.Decrypt(decryptCipherText, decryptSecretText, decryptRadixKey, radix);
+            decryptResult = TextRadixCipher.Decrypt(decryptCipherText, decryptSecretText, decryptRadixKey);
         }
         catch (Exception ex)
         {
@@ -214,8 +231,27 @@
         decryptCipherText = string.Empty;
         decryptSecretText = string.Empty;
         decryptRadixKey = string.Empty;
-        decryptRadixRaw = string.Empty;
         decryptError = string.Empty;
         decryptResult = null;
     }
+
+    private static string GetDetectedRadixLabel(string radixKey)
+    {
+        if (string.IsNullOrWhiteSpace(radixKey))
+        {
+            return "Paste a radix key";
+        }
+
+        int uniqueCount = radixKey.Distinct().Count();
+        return uniqueCount == radixKey.Length
+            ? uniqueCount.ToString()
+            : string.Format("{0} unique symbols, duplicates present", uniqueCount);
+    }
+
+    private static bool HasEdgeWhitespace(string value)
+    {
+        return !string.IsNullOrEmpty(value)
+            && (char.IsWhiteSpace(value[0]) || char.IsWhiteSpace(value[^1]));
+    }
 }
+

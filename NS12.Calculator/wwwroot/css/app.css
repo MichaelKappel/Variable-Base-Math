@@ -1,4 +1,4 @@
-﻿:root {
+:root {
     --page-bg: #eef5f2;
     --panel: rgba(255, 255, 255, 0.92);
     --panel-strong: #ffffff;
@@ -43,9 +43,23 @@ body::before {
     content: "";
     position: fixed;
     inset: 0;
+    z-index: 0;
     pointer-events: none;
     background:
-        linear-gradient(135deg, rgba(255, 255, 255, 0.48) 0%, rgba(255, 255, 255, 0) 38%),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.64) 0%, rgba(255, 255, 255, 0.12) 38%, rgba(255, 255, 255, 0.52) 100%),
+        url("/images/MathBackground.jpg") center top / cover no-repeat;
+    opacity: 0.26;
+    mix-blend-mode: multiply;
+    filter: saturate(0.74) contrast(1.04);
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background:
         radial-gradient(circle at 18% 18%, rgba(12, 143, 122, 0.08) 0, rgba(12, 143, 122, 0) 24%),
         radial-gradient(circle at 82% 12%, rgba(216, 132, 52, 0.08) 0, rgba(216, 132, 52, 0) 24%);
 }
@@ -1068,10 +1082,16 @@ a {
 
 .cipher-explainer-grid p,
 .cipher-summary,
-.cipher-placeholder {
+.cipher-placeholder,
+.cipher-field-note {
     margin: 0.6rem 0 0;
     color: var(--ink-soft);
     line-height: 1.6;
+}
+
+.cipher-summary--warning {
+    color: #8b2f1f;
+    font-weight: 600;
 }
 
 .cipher-grid {
@@ -1114,6 +1134,30 @@ a {
 .cipher-card textarea {
     min-height: 5rem;
     resize: vertical;
+}
+
+.cipher-detected-radix {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.7rem 0.85rem;
+    border: 1px solid #c5cfdf;
+    border-radius: var(--radius-sm);
+    background: linear-gradient(145deg, rgba(15, 127, 120, 0.08) 0%, rgba(255, 240, 222, 0.9) 100%);
+}
+
+.cipher-detected-radix__label {
+    font-size: 0.8rem;
+    color: var(--ink-soft);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.cipher-detected-radix__value {
+    font-size: 1.05rem;
+    color: var(--accent-strong);
 }
 
 .cipher-actions {
@@ -1226,4 +1270,8 @@ a {
         padding-top: 0.65rem;
     }
 }
+
+
+
+
 

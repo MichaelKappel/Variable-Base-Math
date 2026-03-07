@@ -16,4 +16,7 @@
     <ProjectReference Include="..\NS12.VariableBase.Mathematics.Providers\NS12.VariableBase.Mathematics.Providers.csproj" />
   </ItemGroup>
 
-</Project>
+  <ItemGroup>
+    <Content Include="..\Protocol5.com\images\MathBackground.jpg" Link="wwwroot\images\MathBackground.jpg" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup></Project>
+

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -8,6 +8,21 @@
     <link rel="stylesheet" href="css/home.css" />
 </head>
 <body>
+    <div class="boot-overlay" data-boot-overlay hidden>
+        <div class="boot-overlay__frame" role="dialog" aria-label="Traveler note">
+            <p class="boot-overlay__eyebrow">Traveler's Note // Boot Sequence</p>
+            <div class="boot-overlay__message">
+                <span>In the absence of direction,</span>
+                <span>maintain your host's life.</span>
+            </div>
+            <p class="boot-overlay__status">Preserve the invariant. Load the correct protocol. Enter the mathematics shell.</p>
+            <div class="boot-overlay__meter" aria-hidden="true">
+                <span></span>
+            </div>
+            <button class="boot-overlay__skip" type="button" data-overlay-dismiss>Enter Site</button>
+        </div>
+    </div>
+
     <div class="site-shell">
         <header class="site-header">
             <div class="brand-lockup">
@@ -26,22 +41,48 @@
 
         <main>
             <section class="hero panel reveal">
-                <div>
+                <div class="hero-copy-block">
                     <p class="eyebrow">Protocol5 mathematics</p>
-                    <h2>Choose the right instrument before you touch the number.</h2>
-                    <p class="lead">The calculator changes values inside a chosen base. The converter keeps the value and changes the notation. The encryption tool turns text and a secret into reversible radix math with an explicit key.</p>
+                    <h2>Choose the correct protocol before you touch the number.</h2>
+                    <p class="lead">Protocol5 separates three different jobs. Calculator changes the value. Converter preserves the value and changes the notation. Encryption turns text and a secret into reversible radix math with an explicit key.</p>
+
+                    <div class="hero-signals" aria-label="Protocol5 attributes">
+                        <span>Exact arithmetic</span>
+                        <span>Custom radices</span>
+                        <span>Explicit key material</span>
+                        <span>Reconstructable output</span>
+                    </div>
+
                     <div class="hero-actions">
                         <a class="btn btn-primary" href="/calculator" data-tool-link="calculator">Open Calculator</a>
                         <a class="btn btn-secondary" href="/converter" data-tool-link="converter">Open Converter</a>
                         <a class="btn btn-ghost" href="/encryption" data-tool-link="encryption">Open Encryption Tool</a>
                     </div>
                 </div>
-                <aside class="traveler-note">
-                    <p class="eyebrow">Traveler's Note</p>
-                    <blockquote>
-                        In the absence of direction, maintain your host's life.
-                    </blockquote>
-                    <p>Protocol5 applies the same discipline to numbers: preserve the invariant, then choose the correct protocol.</p>
+
+                <aside class="hero-decision" aria-label="Protocol chooser">
+                    <p class="eyebrow">Quick protocol check</p>
+                    <h3>Start by naming what must stay intact.</h3>
+
+                    <div class="hero-decision__list">
+                        <article class="hero-decision__item">
+                            <span class="hero-decision__question">Should the numeric value change?</span>
+                            <strong>Use Calculator</strong>
+                            <p>Operate inside one base and return the exact result.</p>
+                        </article>
+                        <article class="hero-decision__item">
+                            <span class="hero-decision__question">Should the value stay the same?</span>
+                            <strong>Use Converter</strong>
+                            <p>Keep the value stable and rewrite it in another radix.</p>
+                        </article>
+                        <article class="hero-decision__item">
+                            <span class="hero-decision__question">Should text become reversible math?</span>
+                            <strong>Use Encryption</strong>
+                            <p>Build a radix from the payload, multiply by the secret, and publish the key.</p>
+                        </article>
+                    </div>
+
+                    <p class="hero-decision__summary">Protocol5 is easiest to use when you decide the invariant first: value, notation, or message.</p>
                 </aside>
             </section>
 
@@ -100,8 +141,3 @@
     <script src="js/home.js"></script>
 </body>
 </html>
-
-
-
-
-

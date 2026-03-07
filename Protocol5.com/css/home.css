@@ -14,11 +14,15 @@
     --radius-lg: 18px;
     --body-font: "Avenir Next", "Franklin Gothic Medium", "Trebuchet MS", sans-serif;
     --display-font: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+    --mono-font: "Consolas", "Lucida Console", "Courier New", monospace;
 }
 
 * { box-sizing: border-box; }
 html, body { margin: 0; min-height: 100%; }
 body {
+    position: relative;
+    isolation: isolate;
+    overflow-x: hidden;
     color: var(--ink);
     font-family: var(--body-font);
     background:
@@ -27,10 +31,173 @@ body {
         linear-gradient(180deg, #f5fbf8 0%, #eef4f1 50%, #f8f4ec 100%);
 }
 
+body.overlay-active {
+    overflow: hidden;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    pointer-events: none;
+    background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.78) 0%, rgba(255, 255, 255, 0.22) 42%, rgba(255, 255, 255, 0.72) 100%),
+        url("/images/MathBackground.jpg") center top / cover no-repeat;
+    opacity: 0.3;
+    mix-blend-mode: multiply;
+    filter: saturate(0.8) contrast(1.05);
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+        radial-gradient(circle at 16% 18%, rgba(12, 143, 122, 0.14) 0, rgba(12, 143, 122, 0) 26%),
+        radial-gradient(circle at 84% 12%, rgba(216, 132, 52, 0.12) 0, rgba(216, 132, 52, 0) 24%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.24) 100%);
+}
+
 a { color: inherit; text-decoration: none; }
 h1, h2, h3 { font-family: var(--display-font); margin: 0; }
 
+.boot-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 80;
+    display: grid;
+    place-items: center;
+    padding: 1rem;
+    background: rgba(5, 12, 16, 0.74);
+    backdrop-filter: blur(10px);
+    opacity: 1;
+    transition: opacity 420ms ease;
+}
+
+.boot-overlay[hidden] {
+    display: none !important;
+}
+
+.boot-overlay.is-dismissed {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.boot-overlay::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        repeating-linear-gradient(180deg, rgba(159, 225, 215, 0.05) 0 2px, rgba(0, 0, 0, 0) 2px 6px),
+        radial-gradient(circle at center, rgba(12, 143, 122, 0.18) 0%, rgba(12, 143, 122, 0) 52%);
+    pointer-events: none;
+}
+
+.boot-overlay__frame {
+    position: relative;
+    width: min(780px, 100%);
+    padding: 1.4rem 1.45rem 1.25rem;
+    border: 1px solid rgba(121, 226, 213, 0.26);
+    border-radius: 24px;
+    background:
+        linear-gradient(180deg, rgba(6, 22, 28, 0.97) 0%, rgba(9, 18, 26, 0.98) 100%);
+    color: #e6fffb;
+    box-shadow: 0 22px 60px rgba(0, 0, 0, 0.34);
+    overflow: hidden;
+}
+
+.boot-overlay__frame::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(90deg, rgba(12, 143, 122, 0.09) 0 1px, rgba(0, 0, 0, 0) 1px 100%),
+        linear-gradient(180deg, rgba(12, 143, 122, 0.08) 0 1px, rgba(0, 0, 0, 0) 1px 100%);
+    background-size: 30px 30px;
+    opacity: 0.32;
+    pointer-events: none;
+}
+
+.boot-overlay__eyebrow,
+.boot-overlay__status,
+.boot-overlay__skip {
+    position: relative;
+    z-index: 1;
+}
+
+.boot-overlay__eyebrow {
+    margin: 0;
+    font-family: var(--mono-font);
+    color: #8fe8da;
+    font-size: 0.78rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+}
+
+.boot-overlay__message {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    gap: 0.3rem;
+    margin-top: 1rem;
+    font-family: var(--mono-font);
+    font-size: clamp(1.6rem, 4vw, 2.6rem);
+    font-weight: 700;
+    line-height: 1.05;
+    text-transform: uppercase;
+    text-shadow: 0 0 16px rgba(143, 232, 218, 0.22);
+}
+
+.boot-overlay__status {
+    margin: 1rem 0 0;
+    max-width: 38rem;
+    color: rgba(230, 255, 251, 0.76);
+    line-height: 1.7;
+}
+
+.boot-overlay__meter {
+    position: relative;
+    z-index: 1;
+    height: 0.7rem;
+    margin-top: 1rem;
+    border-radius: 999px;
+    background: rgba(143, 232, 218, 0.12);
+    overflow: hidden;
+}
+
+.boot-overlay__meter span {
+    display: block;
+    width: 100%;
+    height: 100%;
+    transform-origin: left center;
+    animation: boot-progress 5s linear forwards;
+    background: linear-gradient(90deg, rgba(12, 143, 122, 0.76) 0%, rgba(143, 232, 218, 0.96) 100%);
+    box-shadow: 0 0 18px rgba(143, 232, 218, 0.32);
+}
+
+.boot-overlay__skip {
+    margin-top: 1rem;
+    min-height: 2.7rem;
+    padding: 0.65rem 1rem;
+    border-radius: 999px;
+    border: 1px solid rgba(143, 232, 218, 0.28);
+    background: rgba(255, 255, 255, 0.06);
+    color: #f2fffd;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+@keyframes boot-progress {
+    from { transform: scaleX(0); }
+    to { transform: scaleX(1); }
+}
+
 .site-shell {
+    position: relative;
+    z-index: 1;
     width: min(1200px, calc(100% - 1.5rem));
     margin: 0 auto;
     padding: 1rem 0 1.8rem;
@@ -116,34 +283,99 @@ h1, h2, h3 { font-family: var(--display-font); margin: 0; }
 
 .hero {
     display: grid;
-    grid-template-columns: minmax(0, 1.4fr) minmax(280px, 0.9fr);
-    gap: 1rem;
+    grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.95fr);
+    gap: 1.1rem;
     padding: 1.5rem;
+    align-items: stretch;
+}
+
+.hero-copy-block {
+    display: grid;
+    align-content: start;
+    gap: 1rem;
 }
 
 .hero h2 {
-    margin: 0.45rem 0 0.8rem;
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    line-height: 1.02;
-    max-width: 11ch;
+    margin: 0.35rem 0 0;
+    font-size: clamp(2rem, 4.8vw, 3.5rem);
+    line-height: 0.96;
+    max-width: 10ch;
+    text-wrap: balance;
 }
 
-.traveler-note {
-    padding: 1.1rem;
+.lead {
+    max-width: 64ch;
+    font-size: 1.04rem;
+}
+
+.hero-signals {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+}
+
+.hero-signals span {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.1rem;
+    padding: 0.4rem 0.8rem;
+    border-radius: 999px;
+    border: 1px solid rgba(17, 53, 50, 0.12);
+    background: rgba(255, 255, 255, 0.78);
+    color: var(--ink);
+    font-weight: 700;
+}
+
+.hero-decision {
+    padding: 1.15rem 1.2rem;
     border-radius: var(--radius-lg);
-    background: linear-gradient(180deg, rgba(13, 45, 43, 0.96) 0%, rgba(11, 34, 32, 0.96) 100%);
-    color: #eef8f6;
+    border: 1px solid rgba(17, 53, 50, 0.1);
+    background:
+        linear-gradient(180deg, rgba(12, 143, 122, 0.08) 0%, rgba(255, 255, 255, 0.92) 40%, rgba(255, 241, 222, 0.88) 100%);
+    display: grid;
+    align-content: start;
+    gap: 0.9rem;
 }
 
-.traveler-note blockquote {
-    margin: 0.6rem 0;
-    font-family: var(--display-font);
-    font-size: 1.4rem;
-    line-height: 1.3;
+.hero-decision h3 {
+    font-size: clamp(1.5rem, 2.8vw, 2rem);
+    line-height: 1.05;
 }
 
-.traveler-note p {
-    color: rgba(238, 248, 246, 0.9);
+.hero-decision__list {
+    display: grid;
+    gap: 0.75rem;
+}
+
+.hero-decision__item {
+    padding: 0.9rem 0.95rem;
+    border-radius: 18px;
+    border: 1px solid rgba(17, 53, 50, 0.1);
+    background: rgba(255, 255, 255, 0.72);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+.hero-decision__question {
+    display: block;
+    color: var(--ink-soft);
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.hero-decision__item strong {
+    display: block;
+    margin-top: 0.32rem;
+    font-size: 1.08rem;
+    color: var(--ink);
+}
+
+.hero-decision__item p,
+.hero-decision__summary {
+    margin: 0.45rem 0 0;
+    color: var(--ink-soft);
+    line-height: 1.6;
 }
 
 .tool-grid,
@@ -207,13 +439,24 @@ h1, h2, h3 { font-family: var(--display-font); margin: 0; }
     .hero,
     .tool-card,
     .detail-grid .panel,
-    .site-footer {
+    .site-footer,
+    .boot-overlay__frame {
         padding: 1rem;
     }
 
     .site-nav a,
-    .btn {
+    .btn,
+    .boot-overlay__skip {
         width: 100%;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .boot-overlay,
+    .reveal,
+    .boot-overlay__meter span {
+        transition: none;
+        animation: none;
     }
 }
 
