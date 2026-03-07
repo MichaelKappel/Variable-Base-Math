@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="..\Protocol5.com\images\MathBackground.jpg" Link="wwwroot\images\MathBackground.jpg" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="..\Protocol5.com\SiteContent\images\MathBackground.jpg" Link="wwwroot\images\MathBackground.jpg" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup></Project>
+
 

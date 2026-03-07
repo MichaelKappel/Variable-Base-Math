@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.AspNetCore.StaticFiles;
 
@@ -8,7 +8,7 @@ var app = builder.Build();
 var deploymentRoot = AppContext.BaseDirectory;
 var siteRoot = ResolveDirectory(
     Path.Combine(deploymentRoot, "SiteContent"),
-    Path.GetFullPath(Path.Combine(app.Environment.ContentRootPath, "..", "Protocol5.com")));
+    Path.GetFullPath(Path.Combine(app.Environment.ContentRootPath, "..", "Protocol5.com", "SiteContent")));
 var calculatorShellRoot = ResolveDirectory(
     Path.Combine(deploymentRoot, "CalculatorShell"),
     Path.GetFullPath(Path.Combine(app.Environment.ContentRootPath, "..", "NS12.Calculator", "wwwroot")));
@@ -109,6 +109,7 @@ static string ResolveDirectory(params string[] candidates)
 
     return candidates.FirstOrDefault(candidate => !string.IsNullOrWhiteSpace(candidate)) ?? string.Empty;
 }
+
 
 
 

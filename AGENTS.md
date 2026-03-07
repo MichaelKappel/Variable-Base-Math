@@ -54,9 +54,15 @@ Notes:
 - Keep environment compatibility checks (`a.Environment == b.Environment`) intact unless intentionally adding cross-environment support.
 - Preserve segment validity checks (digit range, no leading zero in multi-digit values).
 - Avoid committing generated artifacts (`bin/`, `obj/`, `.vs/`), even though this repo currently contains many tracked generated files.
+- `Protocol5.com/SiteContent/Fibonacci/index.html` and `Protocol5.com/SiteContent/Prime/index.html` may use the new site shell, but the generated numeric files under `Protocol5.com/SiteContent/Fibonacci/*.htm` and `Protocol5.com/SiteContent/Prime/*.htm` are off-limits.
+- Never modify, rename, move, recreate, or delete generated `{number}.htm` files in the source `Protocol5.com/SiteContent/Fibonacci` and `Protocol5.com/SiteContent/Prime` trees or in deployed `SiteContent/Fibonacci` and `SiteContent/Prime` copies.
+- When adding navigation for Fibonacci or Prime, prefer linking directly to the existing generated `{number}.htm` pages whenever those pages already exist.
+- Published output must not include generated numeric `.htm` files from `Protocol5.com/SiteContent/Fibonacci` or `Protocol5.com/SiteContent/Prime`; production keeps the original generated files in place and publish must not overwrite them.
 
 ## High-Value Test Areas When Changing Math Logic
 - Cross-base arithmetic consistency (`binary`, `decimal`, `base36`).
 - Fractional division/reduction (`Number.Reduce`, `NumberOperator.Divide`).
 - Comparison semantics with negative numbers and fractions.
 - Parsing/formatting round-trips (`ParseNumberSegments` <-> `ConvertToString`).
+
+
