@@ -5,22 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="Protocol5 mathematics home page with direct links to the precision calculator, radix converter, and text obfuscation tools." />
     <title>Protocol5 Mathematics</title>
+    <style>
+        html, body {
+            margin: 0;
+            min-height: 100%;
+        }
+
+        .boot-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 80;
+            overflow: hidden;
+            background: #000000;
+            opacity: 1;
+            pointer-events: none;
+            transition: opacity 5000ms linear;
+        }
+
+        .boot-overlay[hidden] {
+            display: none !important;
+        }
+
+        .boot-overlay.is-fading {
+            opacity: 0;
+        }
+
+        .boot-overlay .matrix-loader__canvas {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+    </style>
     <link rel="stylesheet" href="css/home.css" />
 </head>
 <body>
-    <div class="boot-overlay" data-boot-overlay hidden>
-        <div class="boot-overlay__frame" role="dialog" aria-label="Traveler note">
-            <p class="boot-overlay__eyebrow">Traveler's Note // Boot Sequence</p>
-            <div class="boot-overlay__message">
-                <span>In the absence of direction,</span>
-                <span>maintain your host's life.</span>
-            </div>
-            <p class="boot-overlay__status">Preserve the invariant. Load the correct protocol. Enter the mathematics shell.</p>
-            <div class="boot-overlay__meter" aria-hidden="true">
-                <span></span>
-            </div>
-            <button class="boot-overlay__skip" type="button" data-overlay-dismiss>Enter Site</button>
-        </div>
+    <div class="boot-overlay" data-boot-overlay aria-hidden="true">
+        <canvas class="matrix-loader__canvas" data-matrix-canvas aria-hidden="true"></canvas>
     </div>
 
     <div class="site-shell">
@@ -44,8 +66,9 @@
                 <aside class="hero-radix-lab" aria-label="Radix 63404 preview">
                     <div class="hero-radix-lab__header">
                         <div>
-                            <p class="eyebrow">Radix 63404</p>
-                            <h2>Dense math in one visible BMP character per digit.</h2>
+                            <p class="eyebrow">Radix 63404 / Variable Base Math / Simple Encryption / Large Number Calculator</p>
+                            <h2>Protocol5.com</h2>
+                            <p class="eyebrow">Michael Joseph Kappel's Math Experiments Website</p>
                         </div>
                         <div class="hero-signals hero-radix-lab__stats" aria-label="Radix 63404 attributes">
                             <span>63,404 legal digits</span>
@@ -148,6 +171,9 @@
         </footer>
     </div>
 
+    <script src="js/matrix-loader.js"></script>
     <script src="js/home.js"></script>
 </body>
 </html>
+
+

@@ -21,35 +21,28 @@
     }
 
     var overlay = document.querySelector("[data-boot-overlay]");
-    var dismissButton = document.querySelector("[data-overlay-dismiss]");
     var overlayTimer = 0;
+    var stopBootLoader = overlay && typeof window.Protocol5BootLoader !== "undefined"
+        ? window.Protocol5BootLoader.start(overlay)
+        : function () { };
 
     function dismissOverlay() {
-        if (!overlay || overlay.classList.contains("is-dismissed")) {
+        if (!overlay || overlay.classList.contains("is-fading")) {
             return;
         }
 
-        overlay.classList.add("is-dismissed");
-        document.body.classList.remove("overlay-active");
+        overlay.classList.add("is-fading");
         window.clearTimeout(overlayTimer);
-        window.setTimeout(function () {
+        overlayTimer = window.setTimeout(function () {
+            stopBootLoader();
             overlay.hidden = true;
-        }, 430);
+        }, 5000);
     }
 
     if (overlay) {
         overlay.hidden = false;
-        document.body.classList.add("overlay-active");
-        overlayTimer = window.setTimeout(dismissOverlay, 5000);
-
-        if (dismissButton) {
-            dismissButton.addEventListener("click", dismissOverlay);
-        }
-
-        overlay.addEventListener("click", function (event) {
-            if (event.target === overlay) {
-                dismissOverlay();
-            }
+        window.requestAnimationFrame(function () {
+            window.requestAnimationFrame(dismissOverlay);
         });
     }
 
@@ -115,10 +108,10 @@
         var radixKey = buildRadix63404Key();
         var samples = [
             { label: "Addition", symbol: "+", a: 541n, b: 29n },
-            { label: "Multiplication", symbol: "×", a: 7919n, b: 34n },
+            { label: "Multiplication", symbol: "Ã—", a: 7919n, b: 34n },
             { label: "Prime catalog", symbol: "+", a: 1299709n, b: 104729n },
             { label: "Fibonacci page", symbol: "+", a: 354224848179261915075n, b: 1299709n },
-            { label: "Dense multiply", symbol: "×", a: 104729n, b: 144n },
+            { label: "Dense multiply", symbol: "Ã—", a: 104729n, b: 144n },
             { label: "Prime stride", symbol: "+", a: 999983n, b: 7919n }
         ];
 
@@ -164,3 +157,4 @@
         }
     });
 })();
+
