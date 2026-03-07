@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using NS12.VariableBase.Mathematics.Common.Models;
 using NS12.VariableBase.Mathematics.Providers.Operators;
 using NS12.VariableBase.Mathematics.Common.Interfaces;
@@ -195,28 +195,27 @@ namespace NS12.VariableBase.Mathematics.Providers
 
         public Fraction AsWholeFraction()
         {
-            Fraction biggerLookingnumber;
-            if (Numerator.Fragment != null)
-            {
-                Number nWholeNumerator = this.Numerator.Fragment.Denominator * this.Numerator.Fragment.Numerator;
-                Number nBiggerDenominator = this.Numerator.Fragment.Denominator * this.Denominator;
+            Fraction result = this;
 
-                biggerLookingnumber = new Fraction(nWholeNumerator, nBiggerDenominator);
-            }
-            else
+            if (result.Numerator.Fragment != null)
             {
-                biggerLookingnumber = this;
+                Number wholeNumerator = result.Numerator.Environment.GetNumber(result.Numerator.Whole, result.Numerator.IsNegative);
+                Number improperNumerator = (wholeNumerator * result.Numerator.Fragment.Denominator) + result.Numerator.Fragment.Numerator;
+                Number improperDenominator = result.Numerator.Fragment.Denominator * result.Denominator;
+
+                result = new Fraction(improperNumerator, improperDenominator);
             }
 
-            if (biggerLookingnumber.Denominator.Fragment != null)
+            if (result.Denominator.Fragment != null)
             {
-                Number dWholeNumerator = biggerLookingnumber.Denominator.Fragment.Denominator * biggerLookingnumber.Denominator.Fragment.Numerator;
-                Number dBiggerDenominator = biggerLookingnumber.Denominator.Fragment.Denominator * biggerLookingnumber.Numerator;
+                Number wholeDenominator = result.Denominator.Environment.GetNumber(result.Denominator.Whole, result.Denominator.IsNegative);
+                Number improperDenominator = (wholeDenominator * result.Denominator.Fragment.Denominator) + result.Denominator.Fragment.Numerator;
+                Number improperNumerator = result.Numerator * result.Denominator.Fragment.Denominator;
 
-                biggerLookingnumber = new Fraction(dWholeNumerator, dBiggerDenominator);
+                result = new Fraction(improperNumerator, improperDenominator);
             }
 
-            return biggerLookingnumber;
+            return result;
         }
     }
 }

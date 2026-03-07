@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using NS12.VariableBase.Mathematics.Common.Models;
@@ -110,7 +110,7 @@ namespace NS12.VariableBase.Mathematics.Providers
 
         internal Number(Fraction fraction)
         {
-            if (fraction.Numerator.Environment != fraction.Numerator.Environment)
+            if (fraction.Numerator.Environment != fraction.Denominator.Environment)
             {
                 throw new Exception("Adding differnt enviorments is not currently supported");
             }
@@ -118,7 +118,7 @@ namespace NS12.VariableBase.Mathematics.Providers
 
             Environment = environment;
 
-            if (fraction.Denominator == 0)
+            if (Number.IsBottom(fraction.Denominator))
             {
                 this.Whole = environment.GetNumber(0).Whole;
                 this.Fragment = default;
@@ -133,7 +133,7 @@ namespace NS12.VariableBase.Mathematics.Providers
                 Number numerator = fraction.Numerator;
                 Number denominator = fraction.Denominator;
 
-                if (denominator.Fragment != default || denominator.Fragment != default)
+                if (numerator.Fragment != default || denominator.Fragment != default)
                 {
                     Fraction aFraction;
                     if (numerator.Fragment != default)

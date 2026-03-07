@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -14,106 +14,108 @@
             min-height: 100%;
         }
 
-        body.matrix-loading {
+        body.boot-loading {
             overflow: hidden;
-            background: #000000;
-            color: #8efda2;
+            background: #06131a;
+            color: #e8fbf5;
         }
 
-        body.matrix-loading::before,
-        body.matrix-loading::after {
+        body.boot-loading::before,
+        body.boot-loading::after {
             display: none !important;
         }
 
-        body.matrix-loading #app {
+        body.boot-loading #app {
             min-height: 100vh;
         }
 
-        body.matrix-loading .matrix-loader {
+        body.boot-loading .boot-loader {
             position: fixed;
             inset: 0;
             z-index: 1000;
             overflow: hidden;
-            background: #000000;
-            color: #8efda2;
-            font-family: "Cascadia Mono", Consolas, "Lucida Console", monospace;
+            background:
+                radial-gradient(circle at 18% 18%, rgba(12, 143, 122, 0.28) 0, rgba(12, 143, 122, 0) 28%),
+                radial-gradient(circle at 82% 16%, rgba(31, 90, 224, 0.22) 0, rgba(31, 90, 224, 0) 26%),
+                radial-gradient(circle at 50% 74%, rgba(216, 132, 52, 0.16) 0, rgba(216, 132, 52, 0) 28%),
+                linear-gradient(180deg, #071019 0%, #06121a 42%, #09161c 100%);
         }
 
-        body.matrix-loading .matrix-loader__canvas {
+        body.boot-loading .boot-loader__canvas,
+        body.boot-loading .boot-loader__layout {
             position: absolute;
             inset: 0;
+        }
+
+        body.boot-loading .boot-loader__canvas {
             width: 100%;
             height: 100%;
             display: block;
-        }
-
-        body.matrix-loading .matrix-loader__hud {
-            position: relative;
-            z-index: 1;
-            min-height: 100vh;
-            width: min(42rem, 100%);
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            gap: 0.55rem;
-            padding: 1.25rem;
-        }
-
-        body.matrix-loading .matrix-loader__hud > * {
-            margin: 0;
-        }
-
-        body.matrix-loading .matrix-loader__eyebrow {
-            color: rgba(167, 255, 181, 0.78);
-            font-size: 0.8rem;
-            font-weight: 700;
-            letter-spacing: 0.28em;
-            text-transform: uppercase;
-        }
-
-        body.matrix-loading .matrix-loader__title {
-            color: #e1ffe8;
-            font-size: clamp(1.1rem, 1.4vw + 0.75rem, 1.5rem);
-            line-height: 1.5;
-        }
-
-        body.matrix-loading .matrix-loader__copy,
-        body.matrix-loading .matrix-loader__legend {
-            color: rgba(181, 255, 193, 0.78);
-            line-height: 1.6;
-        }
-
-        body.matrix-loading .matrix-loader__legend {
-            font-size: 0.88rem;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-        }
-
-        body.matrix-loading .matrix-loader__progress {
-            display: inline-flex;
-            align-items: center;
-            align-self: flex-start;
-            min-height: 2.6rem;
-            padding: 0.65rem 0.9rem;
-            border: 1px solid rgba(142, 253, 162, 0.24);
-            border-radius: 999px;
-            background: rgba(0, 0, 0, 0.48);
-            color: #c8ffd2;
-        }
-
-        body.matrix-loading .matrix-loader__progress::after {
-            content: var(--blazor-load-percentage-text, "Loading Protocol5 mathematics");
         }
     </style>
     <link rel="stylesheet" href="/css/app.css" />
 </head>
 
-<body class="matrix-loading">
+<body class="boot-loading">
     <div id="app">
-        <div class="matrix-loader" data-matrix-loader role="status" aria-live="polite" aria-label="Loading Protocol5 mathematics tools">
-            <canvas class="matrix-loader__canvas" data-matrix-canvas aria-hidden="true"></canvas>
+        <div class="boot-loader" data-boot-loader role="status" aria-live="polite" aria-label="Loading Protocol5 mathematics tools">
+            <canvas class="boot-loader__canvas" data-boot-canvas aria-hidden="true"></canvas>
+            <div class="boot-loader__layout" aria-hidden="true">
+                <section class="boot-loader__panel boot-loader__panel--north" data-boot-panel="convert">
+                    <div class="boot-loader__panel-head">
+                        <span class="boot-loader__panel-chip" data-panel-primary>&lt;-&gt;</span>
+                        <span class="boot-loader__panel-chip" data-panel-secondary>2.10.16</span>
+                    </div>
+                    <p class="boot-loader__panel-value" data-panel-line-a></p>
+                    <p class="boot-loader__panel-value boot-loader__panel-value--soft" data-panel-line-b></p>
+                </section>
+
+                <section class="boot-loader__panel boot-loader__panel--west" data-boot-panel="arithmetic">
+                    <div class="boot-loader__panel-head">
+                        <span class="boot-loader__panel-chip" data-panel-primary>+</span>
+                        <span class="boot-loader__panel-chip" data-panel-secondary>16</span>
+                    </div>
+                    <p class="boot-loader__panel-value" data-panel-line-a></p>
+                    <p class="boot-loader__panel-value boot-loader__panel-value--soft" data-panel-line-b></p>
+                </section>
+
+                <div class="boot-loader__engine">
+                    <div class="boot-loader__orbit">
+                        <span class="boot-loader__node" data-radix-node="2" style="--angle:-90deg; --node-color:#82efe0; --delay:0s;">2</span>
+                        <span class="boot-loader__node" data-radix-node="8" style="--angle:-28deg; --node-color:#8ce0ff; --delay:0.25s;">8</span>
+                        <span class="boot-loader__node" data-radix-node="10" style="--angle:28deg; --node-color:#f3fbff; --delay:0.5s;">10</span>
+                        <span class="boot-loader__node" data-radix-node="16" style="--angle:86deg; --node-color:#ffd191; --delay:0.75s;">16</span>
+                        <span class="boot-loader__node" data-radix-node="36" style="--angle:148deg; --node-color:#9fb6ff; --delay:1s;">36</span>
+                        <span class="boot-loader__node boot-loader__node--wide" data-radix-node="63404" style="--angle:214deg; --node-color:#8ef5c1; --delay:1.25s;">63404</span>
+                    </div>
+                    <div class="boot-loader__core">
+                        <div class="boot-loader__core-stack">
+                            <span class="boot-loader__core-value" data-boot-core-value>2D</span>
+                            <span class="boot-loader__core-meta" data-boot-core-meta>45<sub>10</sub> -&gt; 2D<sub>16</sub></span>
+                        </div>
+                    </div>
+                </div>
+
+                <section class="boot-loader__panel boot-loader__panel--east" data-boot-panel="division">
+                    <div class="boot-loader__panel-head">
+                        <span class="boot-loader__panel-chip" data-panel-primary>/</span>
+                        <span class="boot-loader__panel-chip" data-panel-secondary>10</span>
+                    </div>
+                    <p class="boot-loader__panel-value" data-panel-line-a></p>
+                    <p class="boot-loader__panel-value boot-loader__panel-value--soft" data-panel-line-b></p>
+                </section>
+
+                <section class="boot-loader__panel boot-loader__panel--south" data-boot-panel="glyph">
+                    <div class="boot-loader__panel-head">
+                        <span class="boot-loader__panel-chip" data-panel-primary>63404</span>
+                        <span class="boot-loader__panel-chip" data-panel-secondary>10</span>
+                    </div>
+                    <p class="boot-loader__panel-value" data-panel-line-a></p>
+                    <p class="boot-loader__panel-value boot-loader__panel-value--soft" data-panel-line-b></p>
+                </section>
             </div>
         </div>
+    </div>
 
     <div id="blazor-error-ui" hidden>
         An unhandled error has occurred.
@@ -122,13 +124,13 @@
         <pre id="blazor-error-details" hidden></pre>
     </div>
 
-    <script src="/js/matrix-loader.js"></script>
+    <script src="/js/protocol5-loader.js"></script>
     <script>
         (function () {
             var isLocalDevelopment = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
             var errorUi = document.getElementById("blazor-error-ui");
             var errorDetails = document.getElementById("blazor-error-details");
-            var bootLoader = document.querySelector("[data-matrix-loader]");
+            var bootLoader = document.querySelector("[data-boot-loader]");
             var finishTimer = 0;
             var stopBootLoader = typeof window.Protocol5BootLoader !== "undefined"
                 ? window.Protocol5BootLoader.start(bootLoader)
@@ -136,11 +138,11 @@
 
             function finishBootLoader() {
                 if (!bootLoader || bootLoader.classList.contains("is-fading")) {
-                    document.body.classList.remove("matrix-loading");
+                    document.body.classList.remove("boot-loading");
                     return;
                 }
 
-                document.body.classList.remove("matrix-loading");
+                document.body.classList.remove("boot-loading");
                 window.requestAnimationFrame(function () {
                     bootLoader.classList.add("is-fading");
                 });
@@ -203,6 +205,3 @@
 </body>
 
 </html>
-
-
-

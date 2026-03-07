@@ -1,4 +1,4 @@
-@using NS12.VariableBase.Mathematics.Common.Interfaces
+﻿@using NS12.VariableBase.Mathematics.Common.Interfaces
 @using NS12.VariableBase.Mathematics.Common.Models
 @using NS12.VariableBase.Mathematics.Providers
 
@@ -200,7 +200,7 @@
             IMathEnvironment<Number> sourceEnvironment = MathToolSupport.CreateEnvironment(sourceRadix);
             IMathEnvironment<Number> targetEnvironment = MathToolSupport.CreateEnvironment(targetRadix);
 
-            Number sourceValue = MathToolSupport.CreateNumber(sourceEnvironment, sourceWholeRaw, sourceNumeratorRaw, sourceDenominatorRaw, sourceNegative, "Source value");
+            Number sourceValue = MathToolSupport.CreateNumberForInput(sourceEnvironment, sourceRadix, sourceWholeRaw, sourceNumeratorRaw, sourceDenominatorRaw, sourceNegative, "Source value");
             Number convertedValue = Number.Reduce(sourceValue.Convert(targetEnvironment));
 
             resultWholeRaw = targetEnvironment.ConvertToString(convertedValue.Whole);
@@ -268,3 +268,4 @@
         hasLargeKeyDefinition = false;
     }
 }
+

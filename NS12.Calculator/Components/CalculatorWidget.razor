@@ -1,4 +1,4 @@
-@using NS12.VariableBase.Mathematics.Common.Interfaces
+﻿@using NS12.VariableBase.Mathematics.Common.Interfaces
 @using NS12.VariableBase.Mathematics.Common.Models
 @using NS12.VariableBase.Mathematics.Providers
 
@@ -219,8 +219,8 @@
         {
             IMathEnvironment<Number> environment = MathToolSupport.CreateEnvironment(selectedRadix);
 
-            Number firstNumber = MathToolSupport.CreateNumber(environment, firstWholeRaw, firstNumeratorRaw, firstDenominatorRaw, firstNegative, "First number");
-            Number secondNumber = MathToolSupport.CreateNumber(environment, secondWholeRaw, secondNumeratorRaw, secondDenominatorRaw, secondNegative, "Second number");
+            Number firstNumber = MathToolSupport.CreateNumberForInput(environment, selectedRadix, firstWholeRaw, firstNumeratorRaw, firstDenominatorRaw, firstNegative, "First number");
+            Number secondNumber = MathToolSupport.CreateNumberForInput(environment, selectedRadix, secondWholeRaw, secondNumeratorRaw, secondDenominatorRaw, secondNegative, "Second number");
 
             if (selectedAction == MathAction.Divide && MathToolSupport.IsZero(secondNumber))
             {
@@ -318,4 +318,5 @@
         }
     }
 }
+
 

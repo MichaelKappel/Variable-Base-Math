@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using NS12.VariableBase.Mathematics.Common.Interfaces;
@@ -91,6 +91,37 @@ internal static class MathToolSupport
         return environment.GetNumber(whole, numerator, denominator, isNegative);
     }
 
+    internal static Number CreateNumberForInput(
+        IMathEnvironment<Number> environment,
+        int radix,
+        string? wholeRaw,
+        string? numeratorRaw,
+        string? denominatorRaw,
+        bool negativeFlag,
+        string label)
+    {
+        try
+        {
+            return CreateNumber(environment, wholeRaw, numeratorRaw, denominatorRaw, negativeFlag, label);
+        }
+        catch (Exception exception)
+        {
+            throw new FormatException(FormatUserFacingError(exception, radix, label), exception);
+        }
+    }
+
+    internal static string FormatUserFacingError(Exception exception, int radix, string label)
+    {
+        ArgumentNullException.ThrowIfNull(exception);
+
+        if (TryFormatInvalidNumberError(exception.Message, radix, label, out string formatted))
+        {
+            return formatted;
+        }
+
+        return exception.Message;
+    }
+
     internal static (string Whole, bool IsNegative) NormalizeWhole(string? value, bool initialNegative)
     {
         string whole = (value ?? string.Empty).Trim();
@@ -156,4 +187,75 @@ internal static class MathToolSupport
     {
         return environment.Key.Count > 128;
     }
+
+    private static bool TryFormatInvalidNumberError(string? message, int radix, string label, out string formatted)
+    {
+        const string prefix = "Invalid Number ";
+        const string separator = " not found in ";
+
+        formatted = string.Empty;
+        if (string.IsNullOrWhiteSpace(message) || !message.StartsWith(prefix, StringComparison.Ordinal))
+        {
+            return false;
+        }
+
+        int separatorIndex = message.IndexOf(separator, prefix.Length, StringComparison.Ordinal);
+        if (separatorIndex < 0)
+        {
+            return false;
+        }
+
+        string invalidSymbol = message.Substring(prefix.Length, separatorIndex - prefix.Length);
+        RadixOption option = GetRadixOption(radix);
+        string helpText = EnsureSentence(option.HelpText);
+
+        formatted = string.IsNullOrEmpty(helpText)
+            ? $"{label} contains {DescribeInvalidSymbol(invalidSymbol)}, which is not valid in {option.Label}."
+            : $"{label} contains {DescribeInvalidSymbol(invalidSymbol)}, which is not valid in {option.Label}. {helpText}";
+
+        return true;
+    }
+
+    private static string DescribeInvalidSymbol(string invalidSymbol)
+    {
+        if (string.IsNullOrEmpty(invalidSymbol))
+        {
+            return "an empty symbol";
+        }
+
+        if (invalidSymbol.Length == 1)
+        {
+            char symbol = invalidSymbol[0];
+            if (char.IsWhiteSpace(symbol) || char.IsControl(symbol) || char.IsSurrogate(symbol))
+            {
+                return $"U+{(int)symbol:X4}";
+            }
+
+            return $"'{EscapeSymbol(symbol)}'";
+        }
+
+        return $"\"{invalidSymbol}\"";
+    }
+
+    private static string EscapeSymbol(char symbol)
+    {
+        return symbol switch
+        {
+            '\\' => "\\\\",
+            '\'' => "\\'",
+            _ => symbol.ToString()
+        };
+    }
+
+    private static string EnsureSentence(string text)
+    {
+        string trimmed = (text ?? string.Empty).Trim();
+        if (string.IsNullOrEmpty(trimmed))
+        {
+            return string.Empty;
+        }
+
+        return trimmed.EndsWith(".", StringComparison.Ordinal) ? trimmed : $"{trimmed}.";
+    }
 }
+

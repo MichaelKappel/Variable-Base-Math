@@ -44,16 +44,20 @@ if (Directory.Exists(siteRoot))
     });
 }
 
-app.UseStaticFiles();
-var calculatorOutputContentTypes = new FileExtensionContentTypeProvider();
-calculatorOutputContentTypes.Mappings[".pdb"] = "application/octet-stream";
-calculatorOutputContentTypes.Mappings[".dat"] = "application/octet-stream";
+var calculatorAssetContentTypes = new FileExtensionContentTypeProvider();
+calculatorAssetContentTypes.Mappings[".pdb"] = "application/octet-stream";
+calculatorAssetContentTypes.Mappings[".dat"] = "application/octet-stream";
+
+app.UseStaticFiles(new StaticFileOptions
+{
+    ContentTypeProvider = calculatorAssetContentTypes
+});
 
 app.UseStaticFiles(new StaticFileOptions
 {
     FileProvider = new PhysicalFileProvider(deploymentRoot),
     RequestPath = "/_framework",
-    ContentTypeProvider = calculatorOutputContentTypes
+    ContentTypeProvider = calculatorAssetContentTypes
 });
 
 MapHtmlPage("/", Path.Combine(siteRoot, "index.html"));
