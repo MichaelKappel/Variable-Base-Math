@@ -40,49 +40,54 @@
         </header>
 
         <main>
-            <section class="hero panel reveal">
-                <div class="hero-copy-block">
-                    <p class="eyebrow">Protocol5 mathematics</p>
-                    <h2>Choose the correct protocol before you touch the number.</h2>
-                    <p class="lead">Protocol5 separates three different jobs. Calculator changes the value. Converter preserves the value and changes the notation. Encryption turns text and a secret into reversible radix math with an explicit key.</p>
-
-                    <div class="hero-signals" aria-label="Protocol5 attributes">
-                        <span>Exact arithmetic</span>
-                        <span>Custom radices</span>
-                        <span>Explicit key material</span>
-                        <span>Reconstructable output</span>
+            <section class="hero hero--radix panel reveal">
+                <aside class="hero-radix-lab" aria-label="Radix 63404 preview">
+                    <div class="hero-radix-lab__header">
+                        <div>
+                            <p class="eyebrow">Radix 63404</p>
+                            <h2>Dense math in one visible BMP character per digit.</h2>
+                        </div>
+                        <div class="hero-signals hero-radix-lab__stats" aria-label="Radix 63404 attributes">
+                            <span>63,404 legal digits</span>
+                            <span>1 glyph per digit</span>
+                            <span>Unicode BMP key</span>
+                            <span>Prime + Fibonacci catalogs</span>
+                        </div>
                     </div>
-
-                    <div class="hero-actions">
-                        <a class="btn btn-primary" href="/calculator" data-tool-link="calculator">Open Calculator</a>
-                        <a class="btn btn-secondary" href="/converter" data-tool-link="converter">Open Converter</a>
-                        <a class="btn btn-ghost" href="/encryption" data-tool-link="encryption">Open Encryption Tool</a>
+                    <p class="hero-radix-lab__copy">Radix 63404 uses every BMP character that is not whitespace, not control, and not a surrogate code unit. That gives Protocol5 a dense historical radix for huge reference catalogs without switching to multicharacter digits.</p>
+                    <div class="radix-stage" data-radix-stage>
+                        <div class="radix-stage__glyphs" aria-hidden="true" data-radix-glyphs></div>
+                        <div class="radix-stage__operations">
+                            <article class="radix-op">
+                                <span class="radix-op__mode">Addition</span>
+                                <code class="radix-op__radix" data-radix-line="0">Loading radix stream...</code>
+                                <span class="radix-op__decimal" data-decimal-line="0">Preparing numeric overlay...</span>
+                            </article>
+                            <article class="radix-op">
+                                <span class="radix-op__mode">Multiplication</span>
+                                <code class="radix-op__radix" data-radix-line="1">Loading radix stream...</code>
+                                <span class="radix-op__decimal" data-decimal-line="1">Preparing numeric overlay...</span>
+                            </article>
+                            <article class="radix-op">
+                                <span class="radix-op__mode">Catalog compression</span>
+                                <code class="radix-op__radix" data-radix-line="2">Loading radix stream...</code>
+                                <span class="radix-op__decimal" data-decimal-line="2">Preparing numeric overlay...</span>
+                            </article>
+                            <article class="radix-op">
+                                <span class="radix-op__mode">Sequence jump</span>
+                                <code class="radix-op__radix" data-radix-line="3">Loading radix stream...</code>
+                                <span class="radix-op__decimal" data-decimal-line="3">Preparing numeric overlay...</span>
+                            </article>
+                        </div>
                     </div>
-                </div>
-
-                <aside class="hero-decision" aria-label="Protocol chooser">
-                    <p class="eyebrow">Quick protocol check</p>
-                    <h3>Start by naming what must stay intact.</h3>
-
-                    <div class="hero-decision__list">
-                        <article class="hero-decision__item">
-                            <span class="hero-decision__question">Should the numeric value change?</span>
-                            <strong>Use Calculator</strong>
-                            <p>Operate inside one base and return the exact result.</p>
-                        </article>
-                        <article class="hero-decision__item">
-                            <span class="hero-decision__question">Should the value stay the same?</span>
-                            <strong>Use Converter</strong>
-                            <p>Keep the value stable and rewrite it in another radix.</p>
-                        </article>
-                        <article class="hero-decision__item">
-                            <span class="hero-decision__question">Should text become reversible math?</span>
-                            <strong>Use Encryption</strong>
-                            <p>Build a radix from the payload, multiply by the secret, and publish the key.</p>
-                        </article>
+                    <div class="hero-radix-lab__footer">
+                        <p class="hero-radix-lab__note">Why Protocol5 uses it: giant generated Fibonacci and Prime pages can show large values with far fewer visible digits, while keeping the alphabet stable enough that each digit is still just one character.</p>
+                        <div class="hero-actions">
+                            <a class="btn btn-primary" href="/calculator" data-tool-link="calculator">Open Calculator</a>
+                            <a class="btn btn-secondary" href="/converter" data-tool-link="converter">Open Converter</a>
+                            <a class="btn btn-ghost" href="/encryption" data-tool-link="encryption">Open Encryption Tool</a>
+                        </div>
                     </div>
-
-                    <p class="hero-decision__summary">Protocol5 is easiest to use when you decide the invariant first: value, notation, or message.</p>
                 </aside>
             </section>
 
@@ -95,7 +100,7 @@
                 <a class="tool-card" href="/converter" data-tool-link="converter">
                     <p class="tool-kicker">Converter</p>
                     <h3>Radix/Base Converter</h3>
-                    <p>Keep the value the same while rewriting it in binary, decimal, hexadecimal, base 36, and more.</p>
+                    <p>Keep the value the same while rewriting it in binary, decimal, hexadecimal, base 36, radix 63404, and more.</p>
                 </a>
                 <a class="tool-card" href="/encryption" data-tool-link="encryption">
                     <p class="tool-kicker">Encryption Tool</p>
@@ -105,20 +110,25 @@
             </section>
 
             <section class="detail-grid reveal">
-                <article class="panel">
+                <article class="panel detail-card">
                     <p class="eyebrow">What protocol5.com is</p>
                     <h3>A public home for numeric experiments</h3>
                     <p>Protocol5 brings together exact arithmetic, number-system tooling, and related mathematics pages like Fibonacci and prime-number exploration.</p>
                 </article>
-                <article class="panel">
-                    <p class="eyebrow">What radix means</p>
-                    <h3>The alphabet used to write a number</h3>
-                    <p>Base 10 uses ten symbols, base 2 uses two, base 16 uses sixteen. The value can remain identical while the representation changes completely.</p>
+                <article class="panel detail-card">
+                    <p class="eyebrow">Why Radix 63404 exists</p>
+                    <h3>Dense numbers without multi-character digits</h3>
+                    <p>Generated catalogs can contain millions of numeric references. Radix 63404 collapses the displayed digit count aggressively while keeping each digit to one BMP character.</p>
                 </article>
-                <article class="panel">
-                    <p class="eyebrow">What the text tool is not</p>
-                    <h3>Not a substitute for standard cryptography</h3>
-                    <p>It is deterministic, inspectable, and portable, but it does not replace authenticated encryption, IVs, salts, or modern cryptographic hygiene.</p>
+                <article class="panel detail-card">
+                    <p class="eyebrow">How the key is defined</p>
+                    <h3>All BMP chars except whitespace, control, and surrogates</h3>
+                    <p>The key is deterministic: walk Unicode code points from low to high, keep only characters that are not whitespace, not control characters, and not surrogate code units.</p>
+                </article>
+                <article class="panel detail-card">
+                    <p class="eyebrow">What that tradeoff means</p>
+                    <h3>Fewer digits first, byte savings second</h3>
+                    <p>Radix 63404 primarily compresses visual length and token count. On disk, the payoff depends on encoding and context, but repeated generated number pages still benefit from the shorter representation.</p>
                 </article>
             </section>
         </main>

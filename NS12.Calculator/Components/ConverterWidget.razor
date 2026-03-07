@@ -43,6 +43,11 @@
         <p class="convert-key-hint">Source: @SourceRadixHelp</p>
         <p class="convert-key-hint">Target: @TargetRadixHelp</p>
 
+        @if (sourceRadix == 63404 || targetRadix == 63404)
+        {
+            <p class="convert-key-hint convert-key-hint--wide">Radix 63404 uses every BMP character that is not whitespace, not control, and not a surrogate. The full key is intentionally summarized instead of dumped inline.</p>
+        }
+
         <div class="convert-actions">
             <button type="button" class="convert-btn convert-btn-secondary" @onclick="SwapBases">Swap bases</button>
             <button type="button" class="convert-btn convert-btn-ghost" @onclick="ClearAll">Clear</button>
@@ -112,18 +117,27 @@
                 <p class="convert-display"><span>Display:</span> <code>@resultDisplay</code></p>
                 <div class="convert-meta-grid">
                     <div>
-                        <label>Source radix key</label>
-                        <textarea readonly rows="2">@sourceKeyRaw</textarea>
+                        <label>Source radix definition</label>
+                        <textarea readonly rows="2">@sourceKeyDefinition</textarea>
                     </div>
                     <div>
-                        <label>Target radix key</label>
-                        <textarea readonly rows="2">@targetKeyRaw</textarea>
+                        <label>Source key preview</label>
+                        <textarea readonly rows="2">@sourceKeyPreview</textarea>
                     </div>
                     <div>
-                        <label>Target radix key (escaped)</label>
-                        <textarea readonly rows="2">@targetKeyEscaped</textarea>
+                        <label>Target radix definition</label>
+                        <textarea readonly rows="2">@targetKeyDefinition</textarea>
+                    </div>
+                    <div>
+                        <label>Target key preview</label>
+                        <textarea readonly rows="2">@targetKeyPreview</textarea>
                     </div>
                 </div>
+
+                @if (hasLargeKeyDefinition)
+                {
+                    <p class="convert-meta-note">Radix 63404 keeps one visible BMP character per digit while avoiding whitespace, control characters, and surrogate code units. That gives Protocol5 a dense representation without inventing a multi-character digit syntax.</p>
+                }
             }
         </article>
     </section>
@@ -149,7 +163,7 @@
 @code {
     private sealed record HistoryEntry(string Timestamp, string Expression, string Result);
 
-    private static readonly IReadOnlyList<RadixOption> RadixOptions = MathToolSupport.PublicRadixOptions.Where(option => option.Value <= 62).ToArray();
+    private static readonly IReadOnlyList<RadixOption> RadixOptions = MathToolSupport.PublicRadixOptions;
     private readonly List<HistoryEntry> history = new();
 
     private int sourceRadix = 10;
@@ -165,9 +179,11 @@
     private string resultDenominatorRaw = string.Empty;
     private string resultDisplay = string.Empty;
     private bool resultNegative;
-    private string sourceKeyRaw = string.Empty;
-    private string targetKeyRaw = string.Empty;
-    private string targetKeyEscaped = string.Empty;
+    private string sourceKeyDefinition = string.Empty;
+    private string sourceKeyPreview = string.Empty;
+    private string targetKeyDefinition = string.Empty;
+    private string targetKeyPreview = string.Empty;
+    private bool hasLargeKeyDefinition;
 
     private bool hasResult;
     private string errorMessage = string.Empty;
@@ -201,9 +217,11 @@
 
             resultDisplay = convertedValue.ToString();
             resultNegative = convertedValue.IsNegative;
-            sourceKeyRaw = new string(sourceEnvironment.Key.ToArray());
-            targetKeyRaw = new string(targetEnvironment.Key.ToArray());
-            targetKeyEscaped = MathToolSupport.EscapeForDisplay(targetKeyRaw);
+            sourceKeyDefinition = MathToolSupport.GetRadixDefinitionDisplay(sourceEnvironment);
+            sourceKeyPreview = MathToolSupport.GetRadixPreviewDisplay(sourceEnvironment);
+            targetKeyDefinition = MathToolSupport.GetRadixDefinitionDisplay(targetEnvironment);
+            targetKeyPreview = MathToolSupport.GetRadixPreviewDisplay(targetEnvironment);
+            hasLargeKeyDefinition = MathToolSupport.UsesLargeRadixDefinition(sourceEnvironment) || MathToolSupport.UsesLargeRadixDefinition(targetEnvironment);
             hasResult = true;
 
             history.Insert(0, new HistoryEntry(DateTime.Now.ToString("HH:mm:ss"), $"{sourceValue} (base {sourceRadix}) -> base {targetRadix}", resultDisplay));
@@ -243,8 +261,10 @@
         resultDenominatorRaw = string.Empty;
         resultDisplay = string.Empty;
         resultNegative = false;
-        sourceKeyRaw = string.Empty;
-        targetKeyRaw = string.Empty;
-        targetKeyEscaped = string.Empty;
+        sourceKeyDefinition = string.Empty;
+        sourceKeyPreview = string.Empty;
+        targetKeyDefinition = string.Empty;
+        targetKeyPreview = string.Empty;
+        hasLargeKeyDefinition = false;
     }
 }

@@ -41,7 +41,13 @@
         </div>
 
         <p class="calc-key-hint">@CurrentRadixHelp</p>
-        @if (selectedRadix > 62)
+        @if (selectedRadix == 63404)
+        {
+            <p class="calc-note">
+                Radix 63404 uses every BMP character that is not whitespace, not control, and not a surrogate. It keeps one visible character per digit and matches the historical Protocol5 Fibonacci and Prime examples.
+            </p>
+        }
+        else if (selectedRadix > 62)
         {
             <p class="calc-note">
                 High radix mode uses extended Unicode symbols. Input works best when pasted from pre-generated values.
@@ -312,3 +318,4 @@
         }
     }
 }
+

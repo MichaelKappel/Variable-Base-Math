@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project>
+  <PropertyGroup>
+    <_PublishTargetUrl>C:\Publish\Protocol5</_PublishTargetUrl>
+    <History>True|2026-03-07T00:36:38.1300112Z||;True|2026-03-06T18:25:30.1966736-06:00||;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+</Project>

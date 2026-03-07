@@ -5,6 +5,7 @@ using NS12.VariableBase.Mathematics.Common.Interfaces;
 using NS12.VariableBase.Mathematics.Common.Models;
 using NS12.VariableBase.Mathematics.Providers;
 using NS12.VariableBase.Mathematics.Providers.MathEnvironments;
+using NS12.VariableBase.Mathematics.Providers.Utilities;
 
 namespace NS12.Calculator.Support;
 
@@ -26,7 +27,7 @@ internal static class MathToolSupport
         new RadixOption(16, "Hexadecimal (16)", "Allowed symbols: 0-9 and a-f"),
         new RadixOption(36, "Base 36 (36)", "Allowed symbols: 0-9 and a-z"),
         new RadixOption(62, "Base 62 (62)", "Allowed symbols: 0-9, a-z, and A-Z"),
-        new RadixOption(63404, "Unicode Base (63404)", "Extended Unicode key space")
+        new RadixOption(UnicodeRadixKeyProvider.Radix63404, "Radix 63404", "Every BMP character that is not whitespace, not control, and not a surrogate code unit.")
     };
 
     internal static RadixOption GetRadixOption(int radix)
@@ -47,7 +48,7 @@ internal static class MathToolSupport
             16 => new CharMathEnvironment("0123456789abcdef"),
             36 => new CharMathEnvironment(Base36Key),
             62 => new CharMathEnvironment(Base62Key),
-            63404 => new CharMathEnvironment((char)63404),
+            UnicodeRadixKeyProvider.Radix63404 => new CharMathEnvironment(UnicodeRadixKeyProvider.Radix63404Key),
             >= 2 and <= 62 => new CharMathEnvironment(Base62Key[..radix]),
             > 62 and <= 65534 => new CharMathEnvironment((char)radix),
             _ => throw new ArgumentOutOfRangeException(nameof(radix), "Radix must be between 2 and 65534.")
@@ -122,5 +123,37 @@ internal static class MathToolSupport
     internal static string ConvertToString(IMathEnvironment<Number> environment, NumberSegments segments)
     {
         return environment.ConvertToString(segments);
+    }
+
+    internal static string GetRadixDefinitionDisplay(IMathEnvironment<Number> environment)
+    {
+        if (environment.Key.Count <= 128)
+        {
+            return new string(environment.Key.ToArray());
+        }
+
+        if (environment.Key.Count == UnicodeRadixKeyProvider.Radix63404)
+        {
+            return "Ascending Unicode order of every BMP character that is not whitespace, not control, and not a surrogate code unit.";
+        }
+
+        return $"Radix {environment.Key.Count} definition is too large to display inline.";
+    }
+
+    internal static string GetRadixPreviewDisplay(IMathEnvironment<Number> environment, int prefixLength = 16, int suffixLength = 16)
+    {
+        if (environment.Key.Count <= 128)
+        {
+            return EscapeForDisplay(new string(environment.Key.ToArray()));
+        }
+
+        string prefix = new string(environment.Key.Take(prefixLength).ToArray());
+        string suffix = new string(environment.Key.Skip(environment.Key.Count - suffixLength).Take(suffixLength).ToArray());
+        return $"{EscapeForDisplay(prefix)} ... {EscapeForDisplay(suffix)}";
+    }
+
+    internal static bool UsesLargeRadixDefinition(IMathEnvironment<Number> environment)
+    {
+        return environment.Key.Count > 128;
     }
 }
