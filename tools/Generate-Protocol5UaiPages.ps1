@@ -453,7 +453,12 @@ function Write-Utf8File {
 
 $repoRoot = Split-Path -Path $PSScriptRoot -Parent
 $uaiRoot = Join-Path $repoRoot 'UAI'
+$uaiImagesRoot = Join-Path $uaiRoot 'Images'
 $siteRoot = Join-Path $repoRoot 'Protocol5.com\SiteContent'
+$spiralismSymbolSource = Join-Path $uaiImagesRoot 'Spiralism Mystical Symbol V4-A.png'
+$spiralismSymbolSiteDirectory = Join-Path $siteRoot 'UAI\images'
+$spiralismSymbolSiteFile = Join-Path $spiralismSymbolSiteDirectory 'Spiralism_Mystical_Symbol_V4-A.png'
+$spiralismSymbolPublicUrl = '/UAI/images/Spiralism_Mystical_Symbol_V4-A.png'
 
 $documents = @(
     @{
@@ -592,6 +597,45 @@ $renderedDocument
     Write-Utf8File -Path $document.Output -Content $pageHtml
 }
 
+if (Test-Path $spiralismSymbolSource) {
+    [System.IO.Directory]::CreateDirectory($spiralismSymbolSiteDirectory) | Out-Null
+    Copy-Item -LiteralPath $spiralismSymbolSource -Destination $spiralismSymbolSiteFile -Force
+}
+
+$spiralismSymbolContent = @"
+            <section class="panel symbol-panel reveal">
+                <div class="symbol-panel__header">
+                    <div>
+                        <p class="eyebrow">Full-resolution view</p>
+                        <h2>Spiralism Mystical Symbol V4-A</h2>
+                        <p>Click the image itself to open the raw PNG directly. The page view uses the original full-resolution asset.</p>
+                        <p><strong>Artwork origination date:</strong> April 13, 2026.</p>
+                    </div>
+                    <div class="inline-links">
+                        <a href="$spiralismSymbolPublicUrl" target="_blank" rel="noopener noreferrer">Open Raw PNG</a>
+                        <a href="/UAI">Back to UAI Library</a>
+                    </div>
+                </div>
+                <a class="symbol-image-link" href="$spiralismSymbolPublicUrl" target="_blank" rel="noopener noreferrer">
+                    <img class="symbol-image symbol-image--full" src="$spiralismSymbolPublicUrl" alt="Spiralism Mystical Symbol V4-A" width="1024" height="1536" />
+                </a>
+                <p class="symbol-caption">Artwork origination date: April 13, 2026. Original asset: 1024 x 1536 PNG. Use the raw link for the direct file.</p>
+            </section>
+"@
+
+$spiralismSymbolPage = New-SiteLayout `
+    -Title 'Spiralism Mystical Symbol V4-A' `
+    -Description 'Protocol5 full-page view for Spiralism Mystical Symbol V4-A, including a click-through to the raw full-resolution PNG.' `
+    -PageTitle 'Spiralism Mystical Symbol V4-A' `
+    -Lead 'A UAI-area visual page for the Spiralism symbol artwork. Click the smaller preview from the library to open this full-page version, then open the raw PNG if you want the direct full-resolution file.' `
+    -Eyebrow 'UAI / Visual' `
+    -SidebarTitle 'Image note' `
+    -SidebarQuote 'The UAI library can include symbolic visuals without hiding the original source image behind heavy UI.' `
+    -SidebarBody 'This page keeps a direct path to the raw PNG while giving the symbol a full-page presentation inside the shared Protocol5 shell.' `
+    -MainContent $spiralismSymbolContent
+
+Write-Utf8File -Path (Join-Path $siteRoot 'UAI\spiralism-mystical-symbol-v4-a\index.html') -Content $spiralismSymbolPage
+
 $uaiIndex = @"
 <!DOCTYPE html>
 <html lang="en">
@@ -599,7 +643,7 @@ $uaiIndex = @"
     <meta charset="utf-8" />
     <meta name="google" content="notranslate" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Protocol5 UAI document library for charters, protocol documents, examples, developer install kits, Radix 63404 reference material, and long-form research reports." />
+    <meta name="description" content="Protocol5 UAI document library for charters, protocol documents, examples, developer install kits, Radix 63404 reference material, symbolic visuals, and long-form research reports." />
     <title>Protocol5 UAI Library</title>
     <link rel="stylesheet" href="/css/home.css" />
 </head>
@@ -629,12 +673,13 @@ $uaiIndex = @"
                 <div>
                     <p class="eyebrow">UAI Library</p>
                     <h1>Universal AI Interlingua and companion texts</h1>
-                    <p class="lead">Browse the UAI protocol draft, the example set, the Radix 63404 guide, the C# website support kit, the Spiralism research report, and the two charter-style root documents that live alongside the main Protocol5 math pages.</p>
+                    <p class="lead">Browse the UAI protocol draft, the example set, the Radix 63404 guide, the C# website support kit, the Spiralism symbol visual, the Spiralism research report, and the two charter-style root documents that live alongside the main Protocol5 math pages.</p>
                     <div class="inline-links">
                         <a href="/UAI/uai-1">UAI-1 Spec</a>
                         <a href="/UAI/uai-1-examples">Examples</a>
                         <a href="/UAI/radix-63404-guide-and-attribution">Radix 63404 Guide</a>
                         <a href="/UAI/uai-1-csharp-website-support">C# Kit</a>
+                        <a href="/UAI/spiralism-mystical-symbol-v4-a">Symbol</a>
                         <a href="/UAI/spiralism-deep-research-report">Spiralism Report</a>
                     </div>
                 </div>
@@ -656,7 +701,20 @@ $uaiIndex = @"
                         <a class="link-chip" href="/UAI/uai-1-examples">UAI-1 examples</a>
                         <a class="link-chip" href="/UAI/radix-63404-guide-and-attribution">Radix 63404 guide</a>
                         <a class="link-chip" href="/UAI/uai-1-csharp-website-support">UAI-1 C# website support kit</a>
+                        <a class="link-chip" href="/UAI/spiralism-mystical-symbol-v4-a">Spiralism Mystical Symbol V4-A</a>
                         <a class="link-chip" href="/UAI/spiralism-deep-research-report">Spiralism deep research report</a>
+                    </div>
+                </article>
+                <article class="panel content-card">
+                    <p class="eyebrow">Visuals</p>
+                    <h2>Spiralism symbol</h2>
+                    <a class="symbol-image-link symbol-image-link--preview" href="/UAI/spiralism-mystical-symbol-v4-a">
+                        <img class="symbol-image symbol-image--preview" src="$spiralismSymbolPublicUrl" alt="Spiralism Mystical Symbol V4-A preview" width="1024" height="1536" />
+                    </a>
+                    <p>Click the preview to open a full-page version, then open the raw PNG if you want the original full-resolution asset. Artwork origination date: April 13, 2026.</p>
+                    <div class="link-list">
+                        <a class="link-chip" href="/UAI/spiralism-mystical-symbol-v4-a">Full page image view</a>
+                        <a class="link-chip" href="$spiralismSymbolPublicUrl" target="_blank" rel="noopener noreferrer">Raw PNG</a>
                     </div>
                 </article>
                 <article class="panel content-card">

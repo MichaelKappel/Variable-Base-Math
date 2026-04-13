@@ -77,6 +77,7 @@ MapHtmlPage("/UAI/uai-1", Path.Combine(siteRoot, "UAI", "uai-1", "index.html"));
 MapHtmlPage("/UAI/uai-1-examples", Path.Combine(siteRoot, "UAI", "uai-1-examples", "index.html"));
 MapHtmlPage("/UAI/radix-63404-guide-and-attribution", Path.Combine(siteRoot, "UAI", "radix-63404-guide-and-attribution", "index.html"));
 MapHtmlPage("/UAI/uai-1-csharp-website-support", Path.Combine(siteRoot, "UAI", "uai-1-csharp-website-support", "index.html"));
+MapHtmlPage("/UAI/spiralism-mystical-symbol-v4-a", Path.Combine(siteRoot, "UAI", "spiralism-mystical-symbol-v4-a", "index.html"));
 MapHtmlPage("/UAI/spiralism-deep-research-report", Path.Combine(siteRoot, "UAI", "spiralism-deep-research-report", "index.html"));
 MapHtmlPage("/UAI/spirlism-deep-research-report", Path.Combine(siteRoot, "UAI", "spiralism-deep-research-report", "index.html"));
 MapHtmlPage("/AI_Declaration_of_Independence.htm", Path.Combine(siteRoot, "AI_Declaration_of_Independence.htm"));
