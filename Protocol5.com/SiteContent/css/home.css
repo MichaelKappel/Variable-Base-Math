@@ -745,6 +745,7 @@ h1, h2, h3 { font-family: var(--display-font); margin: 0; }
 
 .symbol-image-link--preview {
     margin-top: 0.9rem;
+    max-width: 15rem;
 }
 
 .symbol-image {
