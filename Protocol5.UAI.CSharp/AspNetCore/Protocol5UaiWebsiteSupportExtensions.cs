@@ -1,0 +1,49 @@
+#if NET8_0_OR_GREATER
+using System.Globalization;
+
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection;
+
+namespace Protocol5.UAI;
+
+public static class Protocol5UaiWebsiteSupportExtensions
+{
+    public static IServiceCollection AddProtocol5UaiWebsiteSupport(
+        this IServiceCollection services,
+        Action<Protocol5UaiWebsiteSupportOptions>? configure = null)
+    {
+        services.AddOptions<Protocol5UaiWebsiteSupportOptions>();
+
+        if (configure is not null)
+        {
+            services.Configure(configure);
+        }
+
+        return services;
+    }
+
+    public static IApplicationBuilder UseProtocol5UaiWebsiteSupport(this IApplicationBuilder app)
+    {
+        return app.UseMiddleware<Protocol5UaiWebsiteSupportMiddleware>();
+    }
+
+    public static bool IsProtocol5UaiRequest(this HttpContext context)
+    {
+        return context.Items.ContainsKey(Protocol5UaiWebsiteSupportMiddleware.HttpContextItemKey);
+    }
+
+    public static string GetProtocol5HtmlLanguage(this HttpContext context)
+    {
+        if (context.Items.TryGetValue(Protocol5UaiWebsiteSupportMiddleware.HttpContextItemKey, out var value) &&
+            value is string languageTag)
+        {
+            return languageTag;
+        }
+
+        return string.IsNullOrWhiteSpace(CultureInfo.CurrentUICulture.Name)
+            ? UaiCultureInfo.CanonicalLanguageTag
+            : CultureInfo.CurrentUICulture.Name;
+    }
+}
+#endif

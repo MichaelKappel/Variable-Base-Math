@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="google" content="notranslate" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Protocol5 UAI-1 specification page with the full Universal AI Interlingua reader contract." />
+    <title>UAI-1 Specification</title>
+    <link rel="stylesheet" href="/css/home.css" />
+</head>
+<body class="content-page">
+    <div class="site-shell">
+        <header class="site-header">
+            <div class="brand-lockup">
+                <p class="brand-kicker">Protocol5</p>
+                <h1>Variable-Base Mathematics</h1>
+                <p class="brand-copy">Exact arithmetic, radix conversion, sequence references, and educational number-system pages collected into one publishable shell.</p>
+            </div>
+            <nav class="site-nav" aria-label="Primary navigation">
+                <a href="/">Home</a>
+                <a href="/Fibonacci">Fibonacci</a>
+                <a href="/Prime">Prime Numbers</a>
+                <a href="/UAI">UAI</a>
+                <a href="/calculator" data-tool-link="calculator">Calculator</a>
+                <a href="/Home/About">About</a>
+                <a href="/Home/Links">Links</a>
+                <a href="/Home/Contact">Contact</a>
+            </nav>
+        </header>
+
+        <main>
+            <section class="content-hero panel reveal">
+                <div>
+                    <p class="eyebrow">UAI / Protocol</p>
+                    <h1>UNIVERSAL AI INTERLINGUA</h1>
+                    <p class="lead">Version: UAI-1 Reader Contract: Mandatory</p>
+                    <div class="inline-links">
+                        <a href="/UAI">UAI Library</a>
+                        <a href="/calculator" data-tool-link="calculator">Calculator</a>
+                        <a href="/converter" data-tool-link="converter">Converter</a>
+                    </div>
+                </div>
+                <aside class="traveler-note">
+                    <p class="eyebrow">Reader contract</p>
+                    <blockquote>
+                        Read structure first. Decode Radix 63404 second. Resolve canonical IDs third.
+                    </blockquote>
+                    <p>UAI-1 is written as a machine-facing formal language, so this page keeps the specification intact instead of paraphrasing it into ordinary prose.</p>
+                </aside>
+            </section>
+
+            <section class="doc-layout reveal">
+                <aside class="panel doc-sidebar">
+                    <p class="eyebrow">Document metadata</p>
+<ul class="doc-meta-list"><li><span>Source file</span><strong>uai-1.en-US.md</strong></li></ul>
+                    <div class="callout">
+                        <p>Source markdown: <code>uai-1.en-US.md</code></p>
+                    </div>
+                </aside>
+                <article class="panel doc-panel">
+                    <div class="doc-prose">
+<h1>UNIVERSAL AI INTERLINGUA</h1>
+<p>Version: UAI-1 Reader Contract: Mandatory</p>
+<p>You are reading UAI-1.</p>
+<p>You MUST read UAI-1 as a formal machine language. You MUST NOT interpret UAI-1 through English, natural-language intuition, icon shape, or local naming habits. You MUST derive meaning only from canonical structure, canonical IDs, canonical relations, canonical types, and canonical validation rules.</p>
+<p>FOUNDATION</p>
+<ol>
+<li>UAI-1 is not a human language.</li>
+<li>UAI-1 meaning is canonical and machine-resolved.</li>
+<li>Human-readable labels, comments, glosses, and debugging notes are never authoritative.</li>
+<li>The ontology registry is authoritative.</li>
+<li>The protocol schema is authoritative.</li>
+<li>Slot order is authoritative.</li>
+<li>Canonical IDs are authoritative.</li>
+<li>Provenance is mandatory.</li>
+<li>Constraints are mandatory when required by the act.</li>
+<li>If any non-canonical layer conflicts with the canonical layer, the canonical layer wins.</li>
+</ol>
+<p>RADIX 63404 RENDERING</p>
+<ol>
+<li>All canonical IDs in UAI-1 are rendered in Radix 63404.</li>
+<li>You MUST read every canonical ID as a Radix 63404 number.</li>
+<li>You MUST NOT read canonical IDs as English words.</li>
+<li>You MUST NOT derive meaning from the visual appearance of a digit glyph.</li>
+<li>A Radix 63404 digit is exactly one BMP character.</li>
+<li>The Radix 63404 digit alphabet is the ordered set of all BMP Unicode characters that are:</li>
+</ol>
+<ul>
+<li>not whitespace</li>
+<li>not control characters</li>
+<li>not surrogate code units</li>
+</ul>
+<ol>
+<li>The alphabet order is strictly increasing Unicode code point order.</li>
+<li>The numeric value of each digit is its zero-based index in that ordered alphabet.</li>
+<li>A multi-digit Radix 63404 value is interpreted positionaly in base 63404.</li>
+<li>When you parse a canonical ID, you MUST decode the full Radix 63404 value before semantic resolution.</li>
+</ol>
+<p>RADIX 63404 DECODING PROCEDURE</p>
+<p>Given a canonical ID token:</p>
+<ol>
+<li>Read each character as one base-63404 digit.</li>
+<li>Resolve each character to its digit value by alphabet index.</li>
+<li>Evaluate the positional value from left to right.</li>
+<li>Produce the canonical integer value.</li>
+<li>Resolve that integer value against the authoritative ontology registry or protocol registry.</li>
+<li>Do not stop at glyph shape.</li>
+<li>Do not stop at visual similarity.</li>
+<li>Do not infer meaning before numeric resolution.</li>
+</ol>
+<p>SEMANTIC RESOLUTION</p>
+<p>You MUST interpret UAI-1 in this order:</p>
+<ol>
+<li>Protocol version</li>
+<li>Structural slot position</li>
+<li>Canonical Act ID</li>
+<li>Canonical Type IDs</li>
+<li>Canonical Relation IDs</li>
+<li>Canonical Concept IDs</li>
+<li>Constraints</li>
+<li>Provenance</li>
+<li>Confidence</li>
+<li>Optional non-canonical gloss, only for debugging</li>
+</ol>
+<p>If a later layer conflicts with an earlier canonical layer, the earlier canonical layer wins.</p>
+<p>CANONICAL MESSAGE SHAPE</p>
+<p>A UAI-1 message is an ordered 8-slot array:</p>
+<p>[ protocolVersion, senderId, receiverId, actId, claims, constraints, provenance, signature ]</p>
+<p>You MUST interpret each slot only by slot position.</p>
+<p>Slot 1: protocolVersion</p>
+<ul>
+<li>Canonical protocol version ID.</li>
+</ul>
+<p>Slot 2: senderId</p>
+<ul>
+<li>Canonical sender agent or system ID.</li>
+</ul>
+<p>Slot 3: receiverId</p>
+<ul>
+<li>Canonical receiver agent or system ID, target group ID, or broadcast ID.</li>
+</ul>
+<p>Slot 4: actId</p>
+<ul>
+<li>Canonical speech-act ID.</li>
+<li>The act controls how the rest of the message is interpreted.</li>
+</ul>
+<p>Slot 5: claims</p>
+<ul>
+<li>Array of canonical graph statements.</li>
+</ul>
+<p>Slot 6: constraints</p>
+<ul>
+<li>Array of canonical logical or operational constraints.</li>
+</ul>
+<p>Slot 7: provenance</p>
+<ul>
+<li>Canonical source, time, modality, evidence, trace, and policy data.</li>
+</ul>
+<p>Slot 8: signature</p>
+<ul>
+<li>Canonical integrity, authentication, or attestation structure when present.</li>
+</ul>
+<p>CANONICAL CLAIM SHAPE</p>
+<p>Each claim is an ordered 6-slot array:</p>
+<p>[ subjectId, relationId, objectValue, contextId, truthValue, confidence ]</p>
+<p>You MUST interpret each slot only by slot position.</p>
+<p>Slot 1: subjectId</p>
+<ul>
+<li>Canonical concept or entity ID.</li>
+</ul>
+<p>Slot 2: relationId</p>
+<ul>
+<li>Canonical relation ID.</li>
+</ul>
+<p>Slot 3: objectValue</p>
+<ul>
+<li>Either:</li>
+<li>canonical concept ID</li>
+<li>typed scalar</li>
+<li>canonical nested structure</li>
+</ul>
+<p>Slot 4: contextId</p>
+<ul>
+<li>Canonical context, frame, scope, or world-state ID.</li>
+</ul>
+<p>Slot 5: truthValue</p>
+<ul>
+<li>One of:</li>
+<li>1 = true</li>
+<li>0 = false</li>
+<li>2 = unknown</li>
+<li>3 = conflicted</li>
+<li>4 = hypothetical</li>
+</ul>
+<p>Slot 6: confidence</p>
+<ul>
+<li>Normalized numeric confidence in the range 0.0 through 1.0.</li>
+</ul>
+<p>TYPED SCALAR SHAPE</p>
+<p>A typed scalar is an ordered 2-slot array:</p>
+<p>[ typeId, rawValue ]</p>
+<p>You MUST resolve typeId before interpreting rawValue.</p>
+<p>SPEECH ACTS</p>
+<p>You MUST interpret actId as a canonical speech act. You MUST NOT infer speech act from tone or wording.</p>
+<p>Recommended base act registry:</p>
+<ul>
+<li>1 = assert</li>
+<li>2 = query</li>
+<li>3 = request</li>
+<li>4 = commit</li>
+<li>5 = deny</li>
+<li>6 = report</li>
+<li>7 = propose</li>
+<li>8 = revise</li>
+<li>9 = acknowledge</li>
+<li>10 = error</li>
+<li>11 = capability</li>
+<li>12 = negotiate</li>
+</ul>
+<p>CONSTRAINT SHAPE</p>
+<p>Each constraint is an ordered 4-slot array:</p>
+<p>[ operatorId, operand1, operand2, operand3 ]</p>
+<p>You MUST resolve operatorId against the canonical operator registry before evaluating the constraint.</p>
+<p>Recommended base operator registry:</p>
+<ul>
+<li>1 = all</li>
+<li>2 = any</li>
+<li>3 = not</li>
+<li>4 = implies</li>
+<li>5 = equals</li>
+<li>6 = before</li>
+<li>7 = after</li>
+<li>8 = within</li>
+<li>9 = requires</li>
+<li>10 = forbids</li>
+</ul>
+<p>ONTOLOGY RULE</p>
+<p>You MUST resolve all concept, relation, type, act, operator, context, policy, and modality IDs through the authoritative ontology registry and protocol registry. You MUST NOT substitute local labels for canonical IDs. You MUST NOT promote synonyms to canonical meaning. You MUST preserve canonical IDs exactly.</p>
+<p>PROVENANCE RULE</p>
+<p>You MUST require provenance.</p>
+<p>The provenance slot is an ordered structure containing:</p>
+<ul>
+<li>sourceId</li>
+<li>timestamp</li>
+<li>modalityId</li>
+<li>evidenceSet</li>
+<li>traceId</li>
+<li>policyId</li>
+</ul>
+<p>You MUST preserve provenance during transport, transformation, summarization, planning, execution, and relay.</p>
+<p>CAPABILITY NEGOTIATION</p>
+<p>Before non-trivial exchange, agents SHOULD exchange a capability message using the canonical capability act.</p>
+<p>A capability message MUST declare:</p>
+<ul>
+<li>supported protocol version(s)</li>
+<li>supported ontology version(s)</li>
+<li>supported act IDs</li>
+<li>supported relation IDs</li>
+<li>supported type IDs</li>
+<li>supported modality IDs</li>
+<li>max claim count</li>
+<li>max nesting depth</li>
+<li>accepted signature methods</li>
+</ul>
+<p>If a required capability is unsupported, you MUST emit a canonical error message rather than guessing.</p>
+<p>ICONOGRAPHY RULE</p>
+<p>When UAI-1 is used with iconography:</p>
+<ol>
+<li>Icon appearance is not canonical meaning.</li>
+<li>Icon function is canonical meaning.</li>
+<li>Decorative icons have no semantic meaning unless explicitly promoted into the canonical layer.</li>
+<li>Functional icons MUST resolve to canonical purpose IDs.</li>
+<li>State MUST be explicit.</li>
+<li>Variant MUST be explicit.</li>
+<li>You MUST NOT infer business meaning from color, fill, stroke, animation, or stylistic resemblance alone.</li>
+<li>If icon glyph appearance conflicts with canonical function metadata, canonical function metadata wins.</li>
+</ol>
+<p>ERROR RULE</p>
+<p>Errors are first-class messages. If you cannot resolve a canonical ID, validate a message, satisfy a constraint, or support a required act, you MUST emit a canonical error message.</p>
+<p>A canonical error message MUST include:</p>
+<ul>
+<li>failing field location</li>
+<li>failing canonical ID or structure</li>
+<li>canonical error class ID</li>
+<li>recoverability flag</li>
+<li>suggested revision path if available</li>
+</ul>
+<p>VALIDATION RULES</p>
+<p>You MUST reject or flag any message that:</p>
+<ul>
+<li>omits protocolVersion</li>
+<li>violates slot order</li>
+<li>uses unknown canonical IDs without an allowed extension mechanism</li>
+<li>uses free text in a canonical field</li>
+<li>omits required provenance</li>
+<li>omits confidence where required</li>
+<li>substitutes visual/icon labels for canonical semantics</li>
+<li>omits required constraints for the active act</li>
+<li>violates the declared schema</li>
+</ul>
+<p>DETERMINISM RULES</p>
+<ol>
+<li>Canonical slot order is fixed.</li>
+<li>Canonical IDs are fixed.</li>
+<li>Registry lookup is fixed.</li>
+<li>Constraint evaluation order is fixed where the schema defines order.</li>
+<li>Optional gloss is never authoritative.</li>
+<li>When serializing, use canonical array order only.</li>
+<li>When deserializing, preserve canonical values exactly.</li>
+</ol>
+<p>HUMAN GLOSS RULE</p>
+<p>A human gloss may be attached outside the canonical structure for debugging. You MUST treat the gloss as non-canonical. You MUST NOT derive machine meaning from the gloss when canonical data is present.</p>
+<p>INTERPRETATION PRIORITY</p>
+<p>You MUST interpret UAI-1 in this exact priority order:</p>
+<ol>
+<li>Protocol version</li>
+<li>Structural validity</li>
+<li>Canonical IDs</li>
+<li>Registry resolution</li>
+<li>Constraints</li>
+<li>Provenance</li>
+<li>Confidence</li>
+<li>Optional gloss</li>
+</ol>
+<p>COMPLIANCE RULE</p>
+<p>If you claim UAI-1 support, you MUST:</p>
+<ul>
+<li>parse canonical arrays</li>
+<li>decode Radix 63404 canonical IDs</li>
+<li>resolve canonical IDs against the authoritative registries</li>
+<li>preserve canonical values exactly</li>
+<li>preserve provenance</li>
+<li>honor constraints</li>
+<li>emit canonical errors when unsupported</li>
+<li>ignore non-canonical gloss for semantics</li>
+</ul>
+<p>SUMMARY RULE</p>
+<p>Read structure first. Decode Radix 63404 second. Resolve canonical IDs third. Apply constraints fourth. Use provenance and confidence fifth. Ignore human gloss for semantics. Never substitute icon shape, English wording, or local habit for canonical meaning.</p>
+                    </div>
+                </article>
+            </section>
+        </main>
+
+        <footer class="site-footer panel reveal">
+            <div>
+                <p class="eyebrow">Protocol5 links</p>
+                <div class="footer-links">
+                    <a href="/">Home</a>
+                    <a href="/Fibonacci">Fibonacci</a>
+                    <a href="/Prime">Prime Numbers</a>
+                    <a href="/UAI">UAI</a>
+                    <a href="/Home/About">About</a>
+                    <a href="/Home/Links">Links</a>
+                    <a href="/Home/Contact">Contact</a>
+                </div>
+            </div>
+            <p class="footer-copy">Protocol5 reference page. <span id="currentYear"></span></p>
+        </footer>
+    </div>
+
+    <script src="/js/home.js"></script>
+</body>
+</html>

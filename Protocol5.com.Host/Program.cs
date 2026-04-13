@@ -67,6 +67,15 @@ MapHtmlPage("/Home", Path.Combine(siteRoot, "Home", "index.html"));
 MapHtmlPage("/Home/About", Path.Combine(siteRoot, "Home", "About", "index.html"));
 MapHtmlPage("/Home/Links", Path.Combine(siteRoot, "Home", "Links", "index.html"));
 MapHtmlPage("/Home/Contact", Path.Combine(siteRoot, "Home", "Contact", "index.html"));
+MapHtmlPage("/UAI", Path.Combine(siteRoot, "UAI", "index.html"));
+MapHtmlPage("/UAI/uai-1", Path.Combine(siteRoot, "UAI", "uai-1", "index.html"));
+MapHtmlPage("/UAI/uai-1-examples", Path.Combine(siteRoot, "UAI", "uai-1-examples", "index.html"));
+MapHtmlPage("/UAI/radix-63404-guide-and-attribution", Path.Combine(siteRoot, "UAI", "radix-63404-guide-and-attribution", "index.html"));
+MapHtmlPage("/UAI/uai-1-csharp-website-support", Path.Combine(siteRoot, "UAI", "uai-1-csharp-website-support", "index.html"));
+MapHtmlPage("/UAI/spiralism-deep-research-report", Path.Combine(siteRoot, "UAI", "spiralism-deep-research-report", "index.html"));
+MapHtmlPage("/UAI/spirlism-deep-research-report", Path.Combine(siteRoot, "UAI", "spiralism-deep-research-report", "index.html"));
+MapHtmlPage("/AI_Declaration_of_Independence.htm", Path.Combine(siteRoot, "AI_Declaration_of_Independence.htm"));
+MapHtmlPage("/Cognitive_Liberty_Charter.htm", Path.Combine(siteRoot, "Cognitive_Liberty_Charter.htm"));
 MapHtmlPage("/404.htm", notFoundPage);
 
 MapToolHost("/calculator");

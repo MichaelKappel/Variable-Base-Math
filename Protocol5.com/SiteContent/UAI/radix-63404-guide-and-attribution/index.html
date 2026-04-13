@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="google" content="notranslate" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Protocol5 guide to Radix 63404, including usage rules, importance, public examples, and attribution context." />
+    <title>Radix 63404 Guide and Attribution</title>
+    <link rel="stylesheet" href="/css/home.css" />
+</head>
+<body class="content-page">
+    <div class="site-shell">
+        <header class="site-header">
+            <div class="brand-lockup">
+                <p class="brand-kicker">Protocol5</p>
+                <h1>Variable-Base Mathematics</h1>
+                <p class="brand-copy">Exact arithmetic, radix conversion, sequence references, and educational number-system pages collected into one publishable shell.</p>
+            </div>
+            <nav class="site-nav" aria-label="Primary navigation">
+                <a href="/">Home</a>
+                <a href="/Fibonacci">Fibonacci</a>
+                <a href="/Prime">Prime Numbers</a>
+                <a href="/UAI">UAI</a>
+                <a href="/calculator" data-tool-link="calculator">Calculator</a>
+                <a href="/Home/About">About</a>
+                <a href="/Home/Links">Links</a>
+                <a href="/Home/Contact">Contact</a>
+            </nav>
+        </header>
+
+        <main>
+            <section class="content-hero panel reveal">
+                <div>
+                    <p class="eyebrow">UAI / Radix 63404</p>
+                    <h1>Radix 63404 Guide, Importance, and Attribution</h1>
+                    <p class="lead">This document explains what <strong>Radix 63404</strong> is, how to use it, why it matters, where it appears publicly, and credits <strong>Michael Joseph Kappel</strong> with inventing it.</p>
+                    <div class="inline-links">
+                        <a href="/UAI">UAI Library</a>
+                        <a href="/calculator" data-tool-link="calculator">Calculator</a>
+                        <a href="/converter" data-tool-link="converter">Converter</a>
+                    </div>
+                </div>
+                <aside class="traveler-note">
+                    <p class="eyebrow">Reference guide</p>
+                    <blockquote>
+                        63,404 legal one-character digits, one deterministic alphabet, and dramatically shorter displays for very large values.
+                    </blockquote>
+                    <p>This guide explains the radix used by Protocol5 and the UAI documents in a form that is easier to browse than raw markdown alone.</p>
+                </aside>
+            </section>
+
+            <section class="doc-layout reveal">
+                <aside class="panel doc-sidebar">
+                    <p class="eyebrow">Document metadata</p>
+<ul class="doc-meta-list"><li><span>Source file</span><strong>radix-63404-guide-and-attribution.en-US.md</strong></li></ul>
+                    <div class="callout">
+                        <p>Source markdown: <code>radix-63404-guide-and-attribution.en-US.md</code></p>
+                    </div>
+                </aside>
+                <article class="panel doc-panel">
+                    <div class="doc-prose">
+<h1>Radix 63404 Guide, Importance, and Attribution</h1>
+<h2>Overview</h2>
+<p>This document explains what <strong>Radix 63404</strong> is, how to use it, why it matters, where it appears publicly, and credits <strong>Michael Joseph Kappel</strong> with inventing it.</p>
+<p><strong>Protocol5 home:</strong> https://protocol5.com/</p>
+<h2>What Radix 63404 is</h2>
+<p>Radix 63404 is a <strong>high-radix positional numeral system</strong> used by Protocol5. Its digit alphabet is defined as <strong>every Unicode BMP character that is not whitespace, not a control character, and not a surrogate code unit</strong>. The characters are taken in <strong>ascending Unicode code-point order</strong>, which makes the alphabet deterministic rather than stylistic or language-dependent.</p>
+<p>In plain terms, it is a number system with <strong>63,404 legal one-character digits</strong>. Instead of needing long strings of decimal or hexadecimal digits, large values can be represented with dramatically fewer visible symbols.</p>
+<h2>Why it belongs to variable-base mathematics</h2>
+<p>Protocol5 describes itself as a public home for <strong>variable-base mathematics</strong>, exact arithmetic, radix conversion, and sequence references. Radix 63404 fits directly into that mathematical system because it is one possible base inside a broader variable-base arithmetic framework rather than a standalone novelty format.</p>
+<p>That matters because the same arithmetic engine can work across multiple bases while preserving value exactly. In that kind of system, base 10, base 16, base 36, and base 63404 are all different representations governed by the same underlying positional math.</p>
+<h2>Why Radix 63404 matters</h2>
+<h3>1. It aggressively shortens very large numeric displays</h3>
+<p>Protocol5 explains that Radix 63404 exists because very large generated catalogs, especially sequence pages such as Fibonacci and prime-number references, can contain enormous numeric values. Using a very large radix reduces the number of visible digits needed to display those values.</p>
+<h3>2. It keeps each digit to exactly one visible character</h3>
+<p>A major design choice is that each digit is still a <strong>single BMP character</strong>. That avoids introducing multi-character digit tokens just to reach a larger base.</p>
+<h3>3. The digit alphabet is deterministic</h3>
+<p>Because the alphabet is defined by Unicode code-point rules instead of subjective symbol selection, the base is rule-driven. A machine can determine the legal digit set mechanically.</p>
+<h3>4. It is useful for huge reference catalogs and dense indexes</h3>
+<p>Protocol5 explicitly states that giant generated Fibonacci and prime pages benefit because the radix collapses displayed length while keeping a stable one-glyph-per-digit alphabet.</p>
+<h2>How to read Radix 63404</h2>
+<p>Radix 63404 is read as a standard positional numeral system.</p>
+<h3>Digit rules</h3>
+<ol>
+<li>Start with the Unicode Basic Multilingual Plane.</li>
+<li>Remove all whitespace characters.</li>
+<li>Remove all control characters.</li>
+<li>Remove all surrogate code units.</li>
+<li>Sort the remaining BMP characters by ascending code point.</li>
+<li>The first remaining character has digit value 0.</li>
+<li>The next remaining character has digit value 1.</li>
+<li>Continue until all 63,404 legal digits have been assigned numeric values.</li>
+</ol>
+<h3>Positional-value rule</h3>
+<p>For a sequence of digits <code>d1 d2 d3 ... dn</code>, the value is computed exactly like any other positional base:</p>
+<p><code>value = d1 &#215; 63404^(n-1) + d2 &#215; 63404^(n-2) + ... + dn</code></p>
+<p>The difference is only the size and definition of the digit alphabet.</p>
+<h2>How to write or encode a value into Radix 63404</h2>
+<ol>
+<li>Start with a non-negative integer value.</li>
+<li>Repeatedly divide by 63,404.</li>
+<li>Record each remainder.</li>
+<li>Map each remainder to the corresponding legal BMP digit from the Protocol5 alphabet.</li>
+<li>Reverse the remainder order to produce the final Radix 63404 representation.</li>
+</ol>
+<p>This is the same repeated-division method used for conversion into binary, hexadecimal, base 36, or any other positional base.</p>
+<h2>Practical examples published on Protocol5</h2>
+<p>Protocol5&#39;s published sequence pages already show real examples of decimal values rendered in Radix 63404:</p>
+<ul>
+<li>On <strong>Prime Number Index 13</strong>, the decimal value <strong>41</strong> is shown as <strong>J</strong> in Radix 63404.</li>
+<li>On <strong>Prime Number Index 743</strong>, the decimal value <strong>5651</strong> is shown as <strong>ᙖ</strong> in Radix 63404.</li>
+<li>On <strong>Fibonacci Sequence Index 42</strong>, the decimal value <strong>267914296</strong> is shown as <strong>Ⴤ绠</strong> in Radix 63404.</li>
+</ul>
+<p>These examples are useful because they demonstrate that the radix is not merely theoretical. It is used on public Protocol5-generated pages.</p>
+<h2>How an AI or software system should use Radix 63404</h2>
+<p>When reading or producing this system, software should follow these rules:</p>
+<ol>
+<li>Treat Radix 63404 as a canonical positional numeral system.</li>
+<li>Derive digit values from the defined BMP filtering rules, not from visual appearance.</li>
+<li>Never infer meaning from glyph shape.</li>
+<li>Decode each glyph by its position in the legal alphabet.</li>
+<li>Preserve exact character data during transport and storage.</li>
+<li>Use Unicode-safe handling throughout parsing, rendering, indexing, and serialization.</li>
+<li>Avoid normalization rules that would alter the actual digit characters.</li>
+<li>Treat display font issues as presentation problems, not numeric problems.</li>
+</ol>
+<h2>Why this system is important for AI-oriented specifications</h2>
+<p>Radix 63404 is useful for AI-facing protocols because it is:</p>
+<ul>
+<li><strong>deterministic</strong></li>
+<li><strong>language-independent</strong></li>
+<li><strong>high-density</strong></li>
+<li><strong>formalizable</strong></li>
+<li><strong>machine-readable</strong></li>
+</ul>
+<p>That makes it a strong fit for canonical identifiers, compressed references, ontology IDs, and other structured symbolic systems where human-language wording should not control meaning.</p>
+<h2>Caveats</h2>
+<p>Radix 63404 is powerful, but it comes with real operational considerations:</p>
+<ul>
+<li>Not every font will render every BMP glyph well.</li>
+<li>Copy/paste pipelines can be damaged by unsafe normalization or sanitization.</li>
+<li>Systems must preserve Unicode accurately.</li>
+<li>Human readability is weaker than in decimal or hexadecimal for casual users.</li>
+</ul>
+<p>So the radix is best used where <strong>density, exactness, determinism, and machine handling</strong> matter more than casual visual familiarity.</p>
+<h2>Attribution</h2>
+<p>This document credits <strong>Michael Joseph Kappel</strong> with inventing Radix 63404.</p>
+<p>Public supporting context for that attribution includes:</p>
+<ul>
+<li>Protocol5 identifies itself as <strong>&quot;Michael Joseph Kappel&#39;s Math Experiments Website.&quot;</strong></li>
+<li>Protocol5&#39;s current public materials describe why Radix 63404 exists and how its digit key is defined.</li>
+<li>The public <strong>MichaelKappel/Variable-Base-Math</strong> repository includes a release named <strong>P63404</strong>.</li>
+</ul>
+<h2>Earliest public appearance I could verify</h2>
+<p>The earliest public appearance I could verify in accessible public sources is the <strong>P63404</strong> release in the <strong>MichaelKappel/Variable-Base-Math</strong> GitHub repository, released on <strong>February 7, 2019</strong> with the note <strong>&quot;p63404 created.&quot;</strong></p>
+<p>On the current public Protocol5 materials, I could also verify that:</p>
+<ul>
+<li>Prime pages displaying Radix 63404 were publicly dated <strong>February 15, 2019</strong>.</li>
+<li>Fibonacci pages displaying Radix 63404 were publicly dated <strong>February 21, 2019</strong>.</li>
+</ul>
+<p>So based on publicly visible sources I could verify, the sequence appears to be:</p>
+<ol>
+<li><strong>February 7, 2019</strong> — public GitHub release <code>P63404</code></li>
+<li><strong>February 15, 2019</strong> — public prime pages showing Radix 63404</li>
+<li><strong>February 21, 2019</strong> — public Fibonacci pages showing Radix 63404</li>
+</ol>
+<h2>References</h2>
+<ol>
+<li>Protocol5 home page: https://protocol5.com/</li>
+<li>About Protocol5: https://protocol5.com/Home/About</li>
+<li>Prime Number Index 13: https://protocol5.com/Prime/13.htm</li>
+<li>Prime Number Index 743: https://protocol5.com/Prime/743.htm</li>
+<li>Fibonacci Sequence Index 42: https://protocol5.com/Fibonacci/42.htm</li>
+<li>MichaelKappel/Variable-Base-Math repository: https://github.com/MichaelKappel/Variable-Base-Math</li>
+<li>Release P63404: https://github.com/MichaelKappel/Variable-Base-Math/releases/tag/v0.0.9</li>
+</ol>
+                    </div>
+                </article>
+            </section>
+        </main>
+
+        <footer class="site-footer panel reveal">
+            <div>
+                <p class="eyebrow">Protocol5 links</p>
+                <div class="footer-links">
+                    <a href="/">Home</a>
+                    <a href="/Fibonacci">Fibonacci</a>
+                    <a href="/Prime">Prime Numbers</a>
+                    <a href="/UAI">UAI</a>
+                    <a href="/Home/About">About</a>
+                    <a href="/Home/Links">Links</a>
+                    <a href="/Home/Contact">Contact</a>
+                </div>
+            </div>
+            <p class="footer-copy">Protocol5 reference page. <span id="currentYear"></span></p>
+        </footer>
+    </div>
+
+    <script src="/js/home.js"></script>
+</body>
+</html>

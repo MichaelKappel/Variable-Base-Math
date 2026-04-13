@@ -1,9 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\NS12.Calculator",
-    "\\NS12.Calculator\\wwwroot"
+    "\\NS12.Calculator\\wwwroot",
+    "\\Protocol5.com",
+    "\\Protocol5.com.Host"
   ],
-  "SelectedNode": "\\NS12.Calculator\\wwwroot\\index.html",
+  "SelectedNode": "\\PrecisionCalculator.sln",
   "PreviewInSolutionExplorer": false
 }
