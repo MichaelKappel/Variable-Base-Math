@@ -342,7 +342,9 @@ function New-SiteLayout {
         [Parameter(Mandatory = $true)]
         [string]$SidebarBody,
         [Parameter(Mandatory = $true)]
-        [string]$MainContent
+        [string]$MainContent,
+        [Parameter()]
+        [object[]]$HeroLinks
     )
 
     $safeTitle = [System.Net.WebUtility]::HtmlEncode($Title)
@@ -353,6 +355,36 @@ function New-SiteLayout {
     $safeSidebarTitle = [System.Net.WebUtility]::HtmlEncode($SidebarTitle)
     $safeSidebarQuote = [System.Net.WebUtility]::HtmlEncode($SidebarQuote)
     $safeSidebarBody = [System.Net.WebUtility]::HtmlEncode($SidebarBody)
+    $resolvedHeroLinks = if ($null -ne $HeroLinks -and $HeroLinks.Count -gt 0) {
+        $HeroLinks
+    } elseif ($Title -eq 'UAI-1 Specification') {
+        @(
+            @{ Href = '/UAI'; Label = 'UAI Library' },
+            @{ Href = '/UAI/uai-1-examples'; Label = 'Examples' },
+            @{ Href = '/UAI/uai-1-csharp-website-support'; Label = 'Language Support' }
+        )
+    } else {
+        @(
+            @{ Href = '/UAI'; Label = 'UAI Library' },
+            @{ Href = '/calculator'; Label = 'Calculator'; DataToolLink = 'calculator' },
+            @{ Href = '/converter'; Label = 'Converter'; DataToolLink = 'converter' }
+        )
+    }
+
+    $heroLinksBuilder = [System.Text.StringBuilder]::new()
+    foreach ($heroLink in $resolvedHeroLinks) {
+        $safeHref = [System.Net.WebUtility]::HtmlEncode([string]$heroLink.Href)
+        $safeLabel = [System.Net.WebUtility]::HtmlEncode([string]$heroLink.Label)
+        $dataToolLink = if ($heroLink.ContainsKey('DataToolLink') -and -not [string]::IsNullOrWhiteSpace([string]$heroLink.DataToolLink)) {
+            " data-tool-link=""$([System.Net.WebUtility]::HtmlEncode([string]$heroLink.DataToolLink))"""
+        } else {
+            ''
+        }
+
+        [void]$heroLinksBuilder.AppendLine("                        <a href=""$safeHref""$dataToolLink>$safeLabel</a>")
+    }
+
+    $heroLinksHtml = $heroLinksBuilder.ToString().TrimEnd()
 
 @"
 <!DOCTYPE html>
@@ -393,9 +425,7 @@ function New-SiteLayout {
                     <h1>$safePageTitle</h1>
                     <p class="lead">$safeLead</p>
                     <div class="inline-links">
-                        <a href="/UAI">UAI Library</a>
-                        <a href="/calculator" data-tool-link="calculator">Calculator</a>
-                        <a href="/converter" data-tool-link="converter">Converter</a>
+$heroLinksHtml
                     </div>
                 </div>
                 <aside class="traveler-note">
@@ -490,6 +520,11 @@ $documents = @(
         SidebarTitle = 'Reader contract'
         SidebarQuote = 'Read structure first. Decode Radix 63404 second. Resolve canonical IDs third.'
         SidebarBody = 'UAI-1 is written as a machine-facing formal language, so this page keeps the specification intact instead of paraphrasing it into ordinary prose.'
+        HeroLinks = @(
+            @{ Href = '/UAI'; Label = 'UAI Library' }
+            @{ Href = '/UAI/uai-1-examples'; Label = 'Examples' }
+            @{ Href = '/UAI/uai-1-csharp-website-support'; Label = 'Language Support' }
+        )
     },
     @{
         Source = Join-Path $uaiRoot 'uai-1-examples.en-US.md'
@@ -551,7 +586,31 @@ foreach ($document in $documents) {
 
     $heading = Get-PrimaryHeading -Markdown $markdown
     $lead = Get-LeadParagraph -Markdown $markdown
-    $infoItems = Get-DocumentInfoItems -Markdown $markdown
+    $infoItems = [System.Collections.Generic.List[hashtable]]::new()
+    foreach ($item in (Get-DocumentInfoItems -Markdown $markdown)) {
+        $infoItems.Add($item)
+    }
+
+    if ($document.ContainsKey('AdditionalInfoItems')) {
+        foreach ($additionalItem in $document.AdditionalInfoItems) {
+            $infoItems.Add($additionalItem)
+        }
+    }
+
+    if ($infoItems.Count -gt 1) {
+        $dedupedInfoItems = [System.Collections.Generic.List[hashtable]]::new()
+        $seenInfoItems = [System.Collections.Generic.HashSet[string]]::new([System.StringComparer]::OrdinalIgnoreCase)
+
+        foreach ($infoItem in $infoItems) {
+            $infoKey = "$($infoItem.Label)`n$($infoItem.Value)"
+            if ($seenInfoItems.Add($infoKey)) {
+                $dedupedInfoItems.Add($infoItem)
+            }
+        }
+
+        $infoItems = $dedupedInfoItems
+    }
+
     $renderedDocument = Convert-MarkdownDocument -Markdown $markdown
 
     $metaHtml = if ($infoItems.Count -gt 0) {
@@ -592,7 +651,8 @@ $renderedDocument
         -SidebarTitle $document.SidebarTitle `
         -SidebarQuote $document.SidebarQuote `
         -SidebarBody $document.SidebarBody `
-        -MainContent $mainContent
+        -MainContent $mainContent `
+        -HeroLinks $document.HeroLinks
 
     Write-Utf8File -Path $document.Output -Content $pageHtml
 }
