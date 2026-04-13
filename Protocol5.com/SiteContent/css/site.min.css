@@ -1,0 +1,20 @@
+@import url("/lib/bootstrap/dist/css/bootstrap.min.css");
+
+body {
+    padding-top: 70px;
+    padding-bottom: 20px;
+}
+
+.number-result {
+    list-style: none;
+    padding-left: 0;
+}
+
+.number-result li {
+    margin-bottom: 1rem;
+}
+
+.fibonacci a {
+    display: inline-block;
+    margin: 0 0.25rem 0.35rem 0;
+}

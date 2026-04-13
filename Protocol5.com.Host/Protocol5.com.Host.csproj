@@ -20,6 +20,10 @@
     <Content Update="..\Protocol5.com\SiteContent\Fibonacci\*.htm;..\Protocol5.com\SiteContent\Prime\*.htm">
       <CopyToPublishDirectory>Never</CopyToPublishDirectory>
     </Content>
+    <Content Update="..\Protocol5.com\SiteContent\Fibonacci\index.htm;..\Protocol5.com\SiteContent\Prime\index.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
     <Content Include="..\NS12.Calculator\wwwroot\index.html">
       <Link>CalculatorShell\index.html</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

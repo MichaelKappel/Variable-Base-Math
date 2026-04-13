@@ -22,11 +22,23 @@ app.UseHttpsRedirection();
 
 app.Use(async (context, next) =>
 {
+    if (context.Request.Path.HasValue &&
+        context.Request.Path.Value!.Length > 1 &&
+        context.Request.Path.Value!.EndsWith("/", StringComparison.Ordinal))
+    {
+        var trimmedPath = context.Request.Path.Value!.TrimEnd('/');
+        context.Response.Redirect(trimmedPath + context.Request.QueryString, permanent: false);
+        return;
+    }
+
     var redirectPath = context.Request.Path.Value switch
     {
         "/Calculator" or "/Calculator/" or "/Calculator/index.html" or "/Calculator/calculator" or "/Calculator/calculator/" => "/calculator",
         "/Calculator/converter" or "/Calculator/converter/" => "/converter",
         "/Calculator/encryption" or "/Calculator/encryption/" => "/encryption",
+        "/Fibonacci/index.htm" or "/Fibonacci/index.html" => "/Fibonacci",
+        "/Prime/index.htm" or "/Prime/index.html" => "/Prime",
+        "/Home" or "/Home/" or "/Home/index.htm" or "/Home/index.html" => "/",
         _ => null
     };
 
@@ -67,7 +79,7 @@ app.UseStaticFiles(new StaticFileOptions
 MapHtmlPage("/", Path.Combine(siteRoot, "index.html"));
 MapHtmlPage("/Fibonacci", Path.Combine(siteRoot, "Fibonacci", "index.html"));
 MapHtmlPage("/Prime", Path.Combine(siteRoot, "Prime", "index.html"));
-MapHtmlPage("/Home", Path.Combine(siteRoot, "Home", "index.html"));
+MapHtmlPage("/Home", Path.Combine(siteRoot, "index.html"));
 MapHtmlPage("/Home/About", Path.Combine(siteRoot, "Home", "About", "index.html"));
 MapHtmlPage("/Home/GitHub", Path.Combine(siteRoot, "Home", "GitHub", "index.html"));
 MapHtmlPage("/Home/Links", Path.Combine(siteRoot, "Home", "Links", "index.html"));

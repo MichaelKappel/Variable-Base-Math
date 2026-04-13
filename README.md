@@ -1,24 +1,184 @@
-## Welcome to the C# Variable Base Math project
+# Variable-Base Mathematics / Protocol5
 
-You can use this math program to add, subtract, multiply, and divide very large numbers with any base you would like.   Variable Base Math in a very strong basis for Encryption and an important part of Cryptography. 
+This repository contains the variable-base math engine, the Blazor calculator shell, and the Protocol5 website content and host used to publish the public site.
 
-Huge number calculator 
+## Main Projects
 
-```text
-Base 10 Example
+- `NS12.VariableBase.Mathematics.Common`: low-level shared math contracts and segment models.
+- `NS12.VariableBase.Mathematics.Providers`: arbitrary-base number and fraction implementations.
+- `NS12.VariableBase.Mathematics.Providers.Tests`: provider tests.
+- `NS12.Calculator`: Blazor WebAssembly calculator/converter/encryption shell.
+- `Protocol5.com`: source-controlled site content.
+- `Protocol5.com.Host`: ASP.NET Core host that serves Protocol5 content and the calculator shell.
+- `Protocol5.UAI.CSharp`: downloadable UAI helper package.
 
-7848578943587869079097095207278485789435878690790970952072784857894358786907909709520727848578943587869079097095207278485789435878690790970952072 
-X
-895732975894728278957329758947282789573297589472827895732975894728278957329758947282789573297589472827
-=
-7030230973684664674587262834847483632372822538517685854708233754041860488982766035728404973516310376696023789142517103192839438521360237891425170328905297016747134920187968225570920706569882172020557046279817435252472461961287852330534576763347544
+## Protocol5 Publishing Model
 
+The live Protocol5 site is not just the files tracked in this repo.
 
-BASE 37 Example
+As inspected on **April 13, 2026**, the published site at `E:\Sites\Protocol5.com\$web` contains:
 
-89A2757323413245474677645A93273240218983245474677645A2109A980
-X
-3245474677645A
-=
-00YICXCDSHI3_MJ9FAZ0NU1EPWIZX8HVHR938F35ZQ973UTRLPZL7I61V3A2J3V26GJF61W815A
+- `SiteContent`: public site pages and many legacy/generated assets.
+- `wwwroot`: host-level static assets used by the calculator shell and compatibility assets.
+- `CalculatorShell`: published calculator shell content.
+- `Protocol5.com.Host.*`: the ASP.NET Core host binaries.
+
+The host behavior is defined in [Protocol5.com.Host/Program.cs](Protocol5.com.Host/Program.cs):
+
+- `SiteContent` is served as a root static file tree.
+- `wwwroot` is also served at the root.
+- `/_framework` is served from the published deployment root for the calculator shell.
+- Clean HTML routes are mapped explicitly for `/`, `/Fibonacci`, `/Prime`, `/Home/*`, `/UAI/*`, and the root charter pages.
+- Tool routes are hosted at `/calculator`, `/converter`, and `/encryption`.
+- Legacy `/Calculator/...` routes are redirected to the modern lowercase tool routes.
+
+## The Most Important Rule
+
+**Generated sequence links are part of the public contract and must keep working exactly as deployed.**
+
+Examples:
+
+- `/Fibonacci/999.htm`
+- `/Prime/999.htm`
+- `/Fibonacci/index.htm`
+- `/Prime/index.htm`
+- `/Prime/`
+
+Do not "clean up" those URLs into route parameters, extensionless paths, or a different folder layout. Support the existing files and links instead of rewriting the generated content.
+
+## Source Tree vs Live Tree
+
+The repo only contains a tiny sample of the generated numeric pages:
+
+- source `Protocol5.com/SiteContent/Fibonacci`: `3` tracked `.htm` files
+- source `Protocol5.com/SiteContent/Prime`: `4` tracked `.htm` files
+
+The live publish tree is much larger:
+
+- published `SiteContent/Fibonacci`: `618,761` `.htm` files
+- published `SiteContent/Prime`: `5,385,299` `.htm` files
+- published `SiteContent/Fibonaccis`: `4,032` auxiliary `.p*` files such as `.p2`, `.p10`, `.p16`, `.p36`, and `.p63404`
+
+That means:
+
+- the repo is **not** a full copy of production sequence content
+- production compatibility cannot be inferred from the repo alone
+- publishing from a clean repo-only output directory can remove real public content unless the live generated trees are preserved
+
+## Linking Rules For Protocol5
+
+When editing site pages, generated references, or host behavior:
+
+- Link to generated Fibonacci pages with root-absolute paths like `/Fibonacci/{n}.htm`.
+- Link to generated prime pages with root-absolute paths like `/Prime/{n}.htm`.
+- Preserve legacy index compatibility for `/Fibonacci/index.htm`, `/Prime/index.htm`, and `/Prime/`.
+- Link to modern shell pages with the clean routes mapped in `Program.cs`, such as `/Fibonacci`, `/Prime`, `/UAI`, `/Home/About`, `/Home/GitHub`, `/Home/Links`, and `/Home/Contact`.
+- Link calculator tools to `/calculator`, `/converter`, and `/encryption`.
+- Do not link to files inside `CalculatorShell` directly.
+- Keep the two root charter documents on their canonical root paths:
+  - `/AI_Declaration_of_Independence.htm`
+  - `/Cognitive_Liberty_Charter.htm`
+- Keep UAI section pages under `/UAI/...`.
+- Keep downloadable packages and ZIP files under `/downloads/...`.
+- Keep UAI image assets on their published paths, for example `/UAI/images/Spiralism_Mystical_Symbol_V4-A.png`.
+
+## Legacy Generated Page Constraints
+
+The legacy generated `.htm` files already contain hardcoded links and asset references. For example:
+
+- generated Fibonacci pages link to `/Fibonacci/{n}.htm`
+- generated prime pages link to `/Prime/{n}.htm`
+- some legacy pages point "previous" links to `/Fibonacci/index.htm` or `/Prime/`
+- legacy pages reference root assets like `/css/site.min.css` and `/js/site.min.js`
+- legacy pages also contain CDN fallbacks that point at `/lib/...`
+
+Because there are millions of published files, **do not fix these by editing the generated pages**.
+
+If compatibility needs to change:
+
+- add host routes
+- add compatibility files
+- add redirects
+- restore missing root assets
+
+Do not rewrite the numeric page set.
+
+## What Must Be Preserved In Publish
+
+Do not delete, rename, recreate, or bulk-overwrite these published compatibility areas unless you are intentionally regenerating them from the original generation pipeline:
+
+- `SiteContent/Fibonacci/*.htm`
+- `SiteContent/Prime/*.htm`
+- `SiteContent/Fibonacci/index.htm`
+- `SiteContent/Prime/index.htm`
+- `SiteContent/Fibonaccis/*`
+- any other published-only compatibility files already present in `E:\Sites\Protocol5.com\$web\SiteContent`
+
+This is especially important because the current repo does not contain the full production dataset.
+
+## Safe Publish Workflow
+
+Use [Publish-Protocol5.ps1](Publish-Protocol5.ps1) as the staging publish step, not as permission to wipe production.
+
+Recommended flow:
+
+1. Generate UAI pages and downloadable assets.
+2. Publish `Protocol5.com.Host` to a **staging directory**.
+3. Compare staging output with the live `$web` tree.
+4. Merge only the known updated files into the live publish tree.
+5. Preserve the existing generated sequence trees and published-only compatibility files.
+
+Do **not** assume a clean `dotnet publish` output is a complete production site.
+
+## Smoke Test Checklist
+
+After Protocol5 changes, verify these URLs against the published host:
+
+- `/`
+- `/Fibonacci`
+- `/Fibonacci/999.htm`
+- `/Fibonacci/index.htm`
+- `/Prime`
+- `/Prime/999.htm`
+- `/Prime/index.htm`
+- `/Prime/`
+- `/UAI`
+- `/AI_Declaration_of_Independence.htm`
+- `/Cognitive_Liberty_Charter.htm`
+- `/downloads/Protocol5.UAI.CSharp.0.1.0.nupkg`
+- `/calculator`
+- `/converter`
+- `/encryption`
+
+If any of those fail, fix the host or compatibility assets. Do not patch the millions of generated numeric files.
+
+## Files To Read Before Changing Protocol5
+
+- [Protocol5.com.Host/Program.cs](Protocol5.com.Host/Program.cs)
+- [Publish-Protocol5.ps1](Publish-Protocol5.ps1)
+- [tools/Generate-Protocol5UaiPages.ps1](tools/Generate-Protocol5UaiPages.ps1)
+- [Protocol5.com/SiteContent/index.html](Protocol5.com/SiteContent/index.html)
+- [Protocol5.com/SiteContent/Fibonacci/index.html](Protocol5.com/SiteContent/Fibonacci/index.html)
+- [Protocol5.com/SiteContent/Prime/index.html](Protocol5.com/SiteContent/Prime/index.html)
+
+## Build / Test
+
+From repo root:
+
+```powershell
+dotnet restore PrecisionCalculator.sln
+dotnet build PrecisionCalculator.sln -c Debug
+dotnet test NS12.VariableBase.Mathematics.Providers.Tests\NS12.VariableBase.Mathematics.Providers.Tests.csproj
+```
+
+Run the calculator locally:
+
+```powershell
+dotnet run --project NS12.Calculator\NS12.Calculator.csproj
+```
+
+Run the Protocol5 host locally:
+
+```powershell
+dotnet run --project Protocol5.com.Host\Protocol5.com.Host.csproj
 ```
