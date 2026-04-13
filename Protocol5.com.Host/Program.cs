@@ -69,6 +69,7 @@ MapHtmlPage("/Fibonacci", Path.Combine(siteRoot, "Fibonacci", "index.html"));
 MapHtmlPage("/Prime", Path.Combine(siteRoot, "Prime", "index.html"));
 MapHtmlPage("/Home", Path.Combine(siteRoot, "Home", "index.html"));
 MapHtmlPage("/Home/About", Path.Combine(siteRoot, "Home", "About", "index.html"));
+MapHtmlPage("/Home/GitHub", Path.Combine(siteRoot, "Home", "GitHub", "index.html"));
 MapHtmlPage("/Home/Links", Path.Combine(siteRoot, "Home", "Links", "index.html"));
 MapHtmlPage("/Home/Contact", Path.Combine(siteRoot, "Home", "Contact", "index.html"));
 MapHtmlPage("/UAI", Path.Combine(siteRoot, "UAI", "index.html"));

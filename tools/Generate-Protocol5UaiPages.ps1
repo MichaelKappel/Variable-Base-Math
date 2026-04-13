@@ -379,6 +379,7 @@ function New-SiteLayout {
                 <a href="/Prime">Prime Numbers</a>
                 <a href="/UAI">UAI</a>
                 <a href="/calculator" data-tool-link="calculator">Calculator</a>
+                <a href="/Home/GitHub">GitHub</a>
                 <a href="/Home/About">About</a>
                 <a href="/Home/Links">Links</a>
                 <a href="/Home/Contact">Contact</a>
@@ -417,6 +418,7 @@ $MainContent
                     <a href="/Fibonacci">Fibonacci</a>
                     <a href="/Prime">Prime Numbers</a>
                     <a href="/UAI">UAI</a>
+                    <a href="/Home/GitHub">GitHub</a>
                     <a href="/Home/About">About</a>
                     <a href="/Home/Links">Links</a>
                     <a href="/Home/Contact">Contact</a>
@@ -615,6 +617,7 @@ $uaiIndex = @"
                 <a href="/Prime">Prime Numbers</a>
                 <a href="/UAI">UAI</a>
                 <a href="/calculator" data-tool-link="calculator">Calculator</a>
+                <a href="/Home/GitHub">GitHub</a>
                 <a href="/Home/About">About</a>
                 <a href="/Home/Links">Links</a>
                 <a href="/Home/Contact">Contact</a>
@@ -699,6 +702,7 @@ $uaiIndex = @"
                     <a href="/Fibonacci">Fibonacci</a>
                     <a href="/Prime">Prime Numbers</a>
                     <a href="/UAI">UAI</a>
+                    <a href="/Home/GitHub">GitHub</a>
                     <a href="/Home/About">About</a>
                     <a href="/Home/Links">Links</a>
                     <a href="/Home/Contact">Contact</a>
