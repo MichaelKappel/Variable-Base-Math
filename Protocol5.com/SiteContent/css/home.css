@@ -234,7 +234,8 @@ h1, h2, h3 { font-family: var(--display-font); margin: 0; }
 
 .brand-lockup h1 {
     margin-top: 0.2rem;
-    font-size: clamp(1.9rem, 4vw, 3rem);
+    font-size: clamp(1.9rem, 3.2vw, 3rem);
+    line-height: 0.98;
 }
 
 .brand-copy,
@@ -541,6 +542,19 @@ h1, h2, h3 { font-family: var(--display-font); margin: 0; }
 .reveal.is-visible {
     opacity: 1;
     transform: translateY(0);
+}
+
+@media (min-width: 641px) {
+    .brand-lockup h1 {
+        white-space: nowrap;
+    }
+}
+
+@media (max-width: 1400px) {
+    .site-header {
+        grid-template-columns: 1fr;
+        align-items: start;
+    }
 }
 
 @media (max-width: 960px) {
