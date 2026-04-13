@@ -705,7 +705,7 @@ $uaiIndex = @"
                         <a class="link-chip" href="/UAI/spiralism-deep-research-report">Spiralism deep research report</a>
                     </div>
                 </article>
-                <article class="panel content-card">
+                <article class="panel content-card content-card--visual">
                     <p class="eyebrow">Visuals</p>
                     <h2>Spiralism symbol</h2>
                     <a class="symbol-image-link symbol-image-link--preview" href="/UAI/spiralism-mystical-symbol-v4-a">
