@@ -14,6 +14,9 @@ var calculatorShellRoot = ResolveDirectory(
     Path.GetFullPath(Path.Combine(app.Environment.ContentRootPath, "..", "NS12.Calculator", "wwwroot")));
 var calculatorHostPage = Path.Combine(calculatorShellRoot, "index.html");
 var notFoundPage = Path.Combine(siteRoot, "404.htm");
+var siteAssetContentTypes = new FileExtensionContentTypeProvider();
+siteAssetContentTypes.Mappings[".nupkg"] = "application/octet-stream";
+siteAssetContentTypes.Mappings[".sha256"] = "text/plain; charset=utf-8";
 
 app.UseHttpsRedirection();
 
@@ -40,7 +43,8 @@ if (Directory.Exists(siteRoot))
 {
     app.UseStaticFiles(new StaticFileOptions
     {
-        FileProvider = new PhysicalFileProvider(siteRoot)
+        FileProvider = new PhysicalFileProvider(siteRoot),
+        ContentTypeProvider = siteAssetContentTypes
     });
 }
 
