@@ -30,15 +30,31 @@ public static class Protocol5UaiWebsiteSupportExtensions
 
     public static bool IsProtocol5UaiRequest(this HttpContext context)
     {
-        return context.Items.ContainsKey(Protocol5UaiWebsiteSupportMiddleware.HttpContextItemKey);
+        return context.GetProtocol5UaiRequestContext() is not null;
+    }
+
+    public static Protocol5UaiWebsiteRequestContext? GetProtocol5UaiRequestContext(this HttpContext context)
+    {
+        if (context.Items.TryGetValue(Protocol5UaiWebsiteSupportMiddleware.HttpContextItemKey, out var value) &&
+            value is Protocol5UaiWebsiteRequestContext requestContext)
+        {
+            return requestContext;
+        }
+
+        return null;
+    }
+
+    public static bool WantsProtocol5UaiJson(this HttpContext context)
+    {
+        return context.GetProtocol5UaiRequestContext()?.WantsUaiJson == true;
     }
 
     public static string GetProtocol5HtmlLanguage(this HttpContext context)
     {
-        if (context.Items.TryGetValue(Protocol5UaiWebsiteSupportMiddleware.HttpContextItemKey, out var value) &&
-            value is string languageTag)
+        var requestContext = context.GetProtocol5UaiRequestContext();
+        if (!string.IsNullOrWhiteSpace(requestContext?.HtmlLanguageTag))
         {
-            return languageTag;
+            return requestContext.HtmlLanguageTag!;
         }
 
         return string.IsNullOrWhiteSpace(CultureInfo.CurrentUICulture.Name)

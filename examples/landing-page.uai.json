@@ -1,0 +1,133 @@
+{
+  "spec": "UAI-1",
+  "version": "1.0.0",
+  "schemaVersion": "1.0.0",
+  "documentId": "landing-page",
+  "source": {
+    "uri": "https://example.org/launch",
+    "title": "Launch Product",
+    "retrievedAt": "2026-04-13T20:10:00Z",
+    "contentHash": "sha256:33333333333333333333333333333333",
+    "mimeType": "text/html",
+    "htmlLanguage": "en",
+    "canonicalUri": "https://example.org/launch"
+  },
+  "metadata": {
+    "title": "Launch Product",
+    "description": "A landing page with feature list and supporting callout.",
+    "language": "en",
+    "siteName": "Example Site",
+    "pageType": "landing-page",
+    "canonicalUrl": "https://example.org/launch"
+  },
+  "structure": [
+    {
+      "type": "document",
+      "id": "landing-page",
+      "children": [
+        {
+          "type": "section",
+          "id": "landing-page.section.1",
+          "sectionKind": "hero",
+          "children": [
+            {
+              "type": "heading",
+              "id": "landing-page.heading.1",
+              "level": 1,
+              "text": {
+                "literal": "Launch Product",
+                "normalized": "Launch Product",
+                "language": "en"
+              }
+            },
+            {
+              "type": "paragraph",
+              "id": "landing-page.paragraph.1",
+              "text": {
+                "literal": "A clear single-purpose page intended to drive signups.",
+                "normalized": "A clear single-purpose page intended to drive signups.",
+                "language": "en"
+              }
+            },
+            {
+              "type": "button",
+              "id": "landing-page.button.1",
+              "text": {
+                "literal": "Get access",
+                "normalized": "Get access",
+                "language": "en"
+              },
+              "action": {
+                "kind": "link",
+                "target": "/signup"
+              }
+            }
+          ]
+        },
+        {
+          "type": "callout",
+          "id": "landing-page.callout.1",
+          "calloutType": "info",
+          "children": [
+            {
+              "type": "paragraph",
+              "id": "landing-page.paragraph.2",
+              "text": {
+                "literal": "No credit card is required during the evaluation period.",
+                "normalized": "No credit card is required during the evaluation period.",
+                "language": "en"
+              }
+            }
+          ]
+        },
+        {
+          "type": "list",
+          "id": "landing-page.list.1",
+          "ordered": false,
+          "children": [
+            {
+              "type": "listItem",
+              "id": "landing-page.listItem.1",
+              "text": {
+                "literal": "Fast onboarding",
+                "normalized": "Fast onboarding",
+                "language": "en"
+              }
+            },
+            {
+              "type": "listItem",
+              "id": "landing-page.listItem.2",
+              "text": {
+                "literal": "Transparent pricing",
+                "normalized": "Transparent pricing",
+                "language": "en"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "semantics": [],
+  "symbols": [],
+  "assets": [],
+  "relationships": [],
+  "annotations": [],
+  "provenance": {
+    "generatedAt": "2026-04-13T20:10:00Z",
+    "generator": {
+      "name": "Protocol5.UAI.CSharp",
+      "version": "1.0.0"
+    },
+    "translator": {
+      "name": "Protocol5.UAI.CSharp",
+      "version": "1.0.0",
+      "contractVersion": "1.0.0",
+      "mode": "deterministic-html"
+    },
+    "capture": {
+      "method": "example-authored"
+    }
+  },
+  "extensions": {}
+}

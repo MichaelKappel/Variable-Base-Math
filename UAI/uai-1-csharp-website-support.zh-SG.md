@@ -1,53 +1,53 @@
-# UAI-1 C# 网站支持工具包
+# UAI-1 C# ç½‘ç«™æ”¯æŒå·¥å…·åŒ…
 
-本页发布 Protocol5 的入门下载包，用于为 C# 网站添加 UAI-1 支持，尤其适合希望在不让规范 UAI 语义依赖本地人类语言格式规则的前提下，获得 `CultureInfo` 与 `Accept-Language` 实用集成路径的 ASP.NET Core 站点。
+æœ¬é¡µå‘å¸ƒ Protocol5 çš„å…¥é—¨ä¸‹è½½åŒ…ï¼Œç”¨äºŽä¸º C# ç½‘ç«™æ·»åŠ  UAI-1 æ”¯æŒï¼Œå°¤å…¶é€‚åˆå¸Œæœ›åœ¨ä¸è®©è§„èŒƒ UAI è¯­ä¹‰ä¾èµ–æœ¬åœ°äººç±»è¯­è¨€æ ¼å¼è§„åˆ™çš„å‰æä¸‹ï¼ŒèŽ·å¾— `CultureInfo` ä¸Ž `Accept-Language` å®žç”¨é›†æˆè·¯å¾„çš„ ASP.NET Core ç«™ç‚¹ã€‚
 
-## 文档信息
+## æ–‡æ¡£ä¿¡æ¯
 
-- **目标读者：** C# 与 ASP.NET 网站开发者
-- **ZIP 下载：** [protocol5-uai-1-csharp-web-starter.zip](/downloads/protocol5-uai-1-csharp-web-starter.zip)
-- **NuGet 包下载：** [Protocol5.UAI.CSharp.0.1.0.nupkg](/downloads/Protocol5.UAI.CSharp.0.1.0.nupkg)
-- **ZIP 校验和：** [protocol5-uai-1-csharp-web-starter.zip.sha256](/downloads/protocol5-uai-1-csharp-web-starter.zip.sha256)
-- **规范语言标签：** `x-uai-1`
-- **规范序列化文化：** `InvariantCulture`
-- **Microsoft 文档：** [CultureInfo](https://learn.microsoft.com/en-us/dotnet/fundamentals/runtime-libraries/system-globalization-cultureinfo), [InvariantCulture](https://learn.microsoft.com/en-us/dotnet/fundamentals/runtime-libraries/system-globalization-cultureinfo-invariantculture), [CultureAndRegionInfoBuilder](https://learn.microsoft.com/en-us/dotnet/fundamentals/runtime-libraries/system-globalization-cultureandregioninfobuilder)
+- **ç›®æ ‡è¯»è€…ï¼š** C# ä¸Ž ASP.NET ç½‘ç«™å¼€å‘è€…
+- **ZIP ä¸‹è½½ï¼š** [protocol5-uai-1-csharp-web-starter.zip](/downloads/protocol5-uai-1-csharp-web-starter.zip)
+- **NuGet åŒ…ä¸‹è½½ï¼š** [Protocol5.UAI.CSharp.1.0.0.nupkg](/downloads/Protocol5.UAI.CSharp.1.0.0.nupkg)
+- **ZIP æ ¡éªŒå’Œï¼š** [protocol5-uai-1-csharp-web-starter.zip.sha256](/downloads/protocol5-uai-1-csharp-web-starter.zip.sha256)
+- **è§„èŒƒè¯­è¨€æ ‡ç­¾ï¼š** `x-uai-1`
+- **è§„èŒƒåºåˆ—åŒ–æ–‡åŒ–ï¼š** `InvariantCulture`
+- **Microsoft æ–‡æ¡£ï¼š** [CultureInfo](https://learn.microsoft.com/en-us/dotnet/fundamentals/runtime-libraries/system-globalization-cultureinfo), [InvariantCulture](https://learn.microsoft.com/en-us/dotnet/fundamentals/runtime-libraries/system-globalization-cultureinfo-invariantculture), [CultureAndRegionInfoBuilder](https://learn.microsoft.com/en-us/dotnet/fundamentals/runtime-libraries/system-globalization-cultureandregioninfobuilder)
 
-## 下载包包含的内容
+## ä¸‹è½½åŒ…åŒ…å«çš„å†…å®¹
 
-- `Protocol5.UAI.CSharp` 源项目
-- 打包好的 `Protocol5.UAI.CSharp` `.nupkg`
-- Radix 63404 编码与解码辅助工具
-- 能够从 query string、cookie 或 `Accept-Language` 识别 UAI 请求的 ASP.NET Core 中间件
-- 一个简短安装说明，供偏好直接下载而不是包源的团队使用
+- `Protocol5.UAI.CSharp` æºé¡¹ç›®
+- æ‰“åŒ…å¥½çš„ `Protocol5.UAI.CSharp` `.nupkg`
+- Radix 63404 ç¼–ç ä¸Žè§£ç è¾…åŠ©å·¥å…·
+- èƒ½å¤Ÿä»Ž query stringã€cookie æˆ– `Accept-Language` è¯†åˆ« UAI è¯·æ±‚çš„ ASP.NET Core ä¸­é—´ä»¶
+- ä¸€ä¸ªç®€çŸ­å®‰è£…è¯´æ˜Žï¼Œä¾›åå¥½ç›´æŽ¥ä¸‹è½½è€Œä¸æ˜¯åŒ…æºçš„å›¢é˜Ÿä½¿ç”¨
 
-## 为什么 starter 使用 `x-uai-1`
+## ä¸ºä»€ä¹ˆ starter ä½¿ç”¨ `x-uai-1`
 
-对网站而言，清晰的职责拆分如下：
+å¯¹ç½‘ç«™è€Œè¨€ï¼Œæ¸…æ™°çš„èŒè´£æ‹†åˆ†å¦‚ä¸‹ï¼š
 
-- 用 `x-uai-1` 处理 HTML `lang`、请求协商以及 `Content-Language`
-- 当运行时支持时，使用 `CultureInfo.GetCultureInfo("x-uai-1")`
-- 在序列化规范 UAI 值时，使用 `CultureInfo.InvariantCulture`
+- ç”¨ `x-uai-1` å¤„ç† HTML `lang`ã€è¯·æ±‚åå•†ä»¥åŠ `Content-Language`
+- å½“è¿è¡Œæ—¶æ”¯æŒæ—¶ï¼Œä½¿ç”¨ `CultureInfo.GetCultureInfo("x-uai-1")`
+- åœ¨åºåˆ—åŒ–è§„èŒƒ UAI å€¼æ—¶ï¼Œä½¿ç”¨ `CultureInfo.InvariantCulture`
 
-最后这条规则非常重要，因为 UAI-1 被定义为一种规范机器语言。小数分隔符、日期格式和本地显示约定绝不应改变 UAI 消息序列化后的含义。
+æœ€åŽè¿™æ¡è§„åˆ™éžå¸¸é‡è¦ï¼Œå› ä¸º UAI-1 è¢«å®šä¹‰ä¸ºä¸€ç§è§„èŒƒæœºå™¨è¯­è¨€ã€‚å°æ•°åˆ†éš”ç¬¦ã€æ—¥æœŸæ ¼å¼å’Œæœ¬åœ°æ˜¾ç¤ºçº¦å®šç»ä¸åº”æ”¹å˜ UAI æ¶ˆæ¯åºåˆ—åŒ–åŽçš„å«ä¹‰ã€‚
 
-## 为什么这不仅仅是一个 Windows 文化安装器
+## ä¸ºä»€ä¹ˆè¿™ä¸ä»…ä»…æ˜¯ä¸€ä¸ª Windows æ–‡åŒ–å®‰è£…å™¨
 
-Microsoft 的全球化指南做了一个重要区分：
+Microsoft çš„å…¨çƒåŒ–æŒ‡å—åšäº†ä¸€ä¸ªé‡è¦åŒºåˆ†ï¼š
 
-- `CultureInfo` 是运行时处理中立文化行为的正常入口点
-- `CultureAndRegionInfoBuilder` 可用于创建自定义文化，但那条路径是 Windows 专用的，并不是跨平台网站采用时的默认正确做法
+- `CultureInfo` æ˜¯è¿è¡Œæ—¶å¤„ç†ä¸­ç«‹æ–‡åŒ–è¡Œä¸ºçš„æ­£å¸¸å…¥å£ç‚¹
+- `CultureAndRegionInfoBuilder` å¯ç”¨äºŽåˆ›å»ºè‡ªå®šä¹‰æ–‡åŒ–ï¼Œä½†é‚£æ¡è·¯å¾„æ˜¯ Windows ä¸“ç”¨çš„ï¼Œå¹¶ä¸æ˜¯è·¨å¹³å°ç½‘ç«™é‡‡ç”¨æ—¶çš„é»˜è®¤æ­£ç¡®åšæ³•
 
-因此，这个 Protocol5 starter **不**要求在操作系统级别注册自定义文化。它首先为网站提供一条实用路径，而把平台特定的文化注册留作可选的高级步骤。
+å› æ­¤ï¼Œè¿™ä¸ª Protocol5 starter **ä¸**è¦æ±‚åœ¨æ“ä½œç³»ç»Ÿçº§åˆ«æ³¨å†Œè‡ªå®šä¹‰æ–‡åŒ–ã€‚å®ƒé¦–å…ˆä¸ºç½‘ç«™æä¾›ä¸€æ¡å®žç”¨è·¯å¾„ï¼Œè€ŒæŠŠå¹³å°ç‰¹å®šçš„æ–‡åŒ–æ³¨å†Œç•™ä½œå¯é€‰çš„é«˜çº§æ­¥éª¤ã€‚
 
-## 快速开始
+## å¿«é€Ÿå¼€å§‹
 
-从下载的包文件进行安装：
+ä»Žä¸‹è½½çš„åŒ…æ–‡ä»¶è¿›è¡Œå®‰è£…ï¼š
 
 ```powershell
 dotnet add package Protocol5.UAI.CSharp --source .\downloads
 ```
 
-然后把它接入 ASP.NET Core 网站：
+ç„¶åŽæŠŠå®ƒæŽ¥å…¥ ASP.NET Core ç½‘ç«™ï¼š
 
 ```csharp
 using Protocol5.UAI;
@@ -73,17 +73,17 @@ app.MapGet("/uai-demo", (HttpContext context) =>
 app.Run();
 ```
 
-## HTML 建议
+## HTML å»ºè®®
 
-如果某个页面要直接声明其内容面向 UAI，则使用：
+å¦‚æžœæŸä¸ªé¡µé¢è¦ç›´æŽ¥å£°æ˜Žå…¶å†…å®¹é¢å‘ UAIï¼Œåˆ™ä½¿ç”¨ï¼š
 
 ```html
 <html lang="x-uai-1">
 ```
 
-## 规范格式化规则
+## è§„èŒƒæ ¼å¼åŒ–è§„åˆ™
 
-在序列化规范 UAI 值时，始终使用 `InvariantCulture`：
+åœ¨åºåˆ—åŒ–è§„èŒƒ UAI å€¼æ—¶ï¼Œå§‹ç»ˆä½¿ç”¨ `InvariantCulture`ï¼š
 
 ```csharp
 using Protocol5.UAI;
@@ -91,17 +91,17 @@ using Protocol5.UAI;
 var confidence = 0.875m.ToString(UaiCultureInfo.CanonicalSerializationCulture);
 ```
 
-## 工具包中包含的 Radix 63404 示例
+## å·¥å…·åŒ…ä¸­åŒ…å«çš„ Radix 63404 ç¤ºä¾‹
 
 ```csharp
 Radix63404.Encode(41);        // J
-Radix63404.Encode(5651);      // á™–
-Radix63404.Encode(267914296); // áƒ„ç» 
+Radix63404.Encode(5651);      // Ã¡â„¢â€“
+Radix63404.Encode(267914296); // Ã¡Æ’â€žÃ§Â»Â 
 ```
 
-## 下载链接
+## ä¸‹è½½é“¾æŽ¥
 
-- [下载完整 starter ZIP](/downloads/protocol5-uai-1-csharp-web-starter.zip)
-- [直接下载 NuGet 包](/downloads/Protocol5.UAI.CSharp.0.1.0.nupkg)
-- [阅读 UAI-1 规范](/UAI-1)
-- [阅读 Radix 63404 指南](/UAI/radix-63404-guide-and-attribution)
+- [ä¸‹è½½å®Œæ•´ starter ZIP](/downloads/protocol5-uai-1-csharp-web-starter.zip)
+- [ç›´æŽ¥ä¸‹è½½ NuGet åŒ…](/downloads/Protocol5.UAI.CSharp.1.0.0.nupkg)
+- [é˜…è¯» UAI-1 è§„èŒƒ](/UAI-1)
+- [é˜…è¯» Radix 63404 æŒ‡å—](/UAI/radix-63404-guide-and-attribution)

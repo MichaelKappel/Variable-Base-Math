@@ -1,0 +1,95 @@
+{
+  "spec": "UAI-1",
+  "version": "1.0.0",
+  "schemaVersion": "1.0.0",
+  "documentId": "navigation-menu",
+  "source": {
+    "uri": "https://example.org/menu",
+    "title": "Menu",
+    "retrievedAt": "2026-04-13T20:15:00Z",
+    "contentHash": "sha256:44444444444444444444444444444444",
+    "mimeType": "text/html",
+    "htmlLanguage": "en",
+    "canonicalUri": "https://example.org/menu"
+  },
+  "metadata": {
+    "title": "Menu",
+    "description": "A standalone navigation menu example.",
+    "language": "en",
+    "siteName": "Example Site",
+    "pageType": "navigation",
+    "canonicalUrl": "https://example.org/menu"
+  },
+  "structure": [
+    {
+      "type": "document",
+      "id": "navigation-menu",
+      "children": [
+        {
+          "type": "navigation",
+          "id": "navigation-menu.navigation.1",
+          "label": "Main menu",
+          "children": [
+            {
+              "type": "link",
+              "id": "navigation-menu.link.1",
+              "href": "/",
+              "linkPurpose": "navigation",
+              "text": {
+                "literal": "Home",
+                "normalized": "Home",
+                "language": "en"
+              }
+            },
+            {
+              "type": "link",
+              "id": "navigation-menu.link.2",
+              "href": "/products",
+              "linkPurpose": "navigation",
+              "text": {
+                "literal": "Products",
+                "normalized": "Products",
+                "language": "en"
+              }
+            },
+            {
+              "type": "button",
+              "id": "navigation-menu.button.1",
+              "text": {
+                "literal": "Sign in",
+                "normalized": "Sign in",
+                "language": "en"
+              },
+              "action": {
+                "kind": "link",
+                "target": "/login"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "semantics": [],
+  "symbols": [],
+  "assets": [],
+  "relationships": [],
+  "annotations": [],
+  "provenance": {
+    "generatedAt": "2026-04-13T20:15:00Z",
+    "generator": {
+      "name": "Protocol5.UAI.CSharp",
+      "version": "1.0.0"
+    },
+    "translator": {
+      "name": "Protocol5.UAI.CSharp",
+      "version": "1.0.0",
+      "contractVersion": "1.0.0",
+      "mode": "deterministic-html"
+    },
+    "capture": {
+      "method": "example-authored"
+    }
+  },
+  "extensions": {}
+}

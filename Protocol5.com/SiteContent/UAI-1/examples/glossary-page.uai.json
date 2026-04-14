@@ -1,0 +1,88 @@
+{
+  "spec": "UAI-1",
+  "version": "1.0.0",
+  "schemaVersion": "1.0.0",
+  "documentId": "glossary-page",
+  "source": {
+    "uri": "https://example.org/glossary",
+    "title": "Glossary",
+    "retrievedAt": "2026-04-13T20:30:00Z",
+    "contentHash": "sha256:77777777777777777777777777777777",
+    "mimeType": "text/html",
+    "htmlLanguage": "en",
+    "canonicalUri": "https://example.org/glossary"
+  },
+  "metadata": {
+    "title": "Glossary",
+    "description": "A glossary page with term-definition pairs.",
+    "language": "en",
+    "siteName": "Example Site",
+    "pageType": "glossary",
+    "canonicalUrl": "https://example.org/glossary"
+  },
+  "structure": [
+    {
+      "type": "document",
+      "id": "glossary-page",
+      "children": [
+        {
+          "type": "section",
+          "id": "glossary-page.section.1",
+          "sectionKind": "glossary",
+          "children": [
+            {
+              "type": "glossaryEntry",
+              "id": "glossary-page.entry.1",
+              "term": {
+                "literal": "Literal source content",
+                "normalized": "Literal source content",
+                "language": "en"
+              },
+              "definition": {
+                "literal": "Text copied from the source before translator inference or normalization changes its meaning.",
+                "normalized": "Text copied from the source before translator inference or normalization changes its meaning.",
+                "language": "en"
+              }
+            },
+            {
+              "type": "glossaryEntry",
+              "id": "glossary-page.entry.2",
+              "term": {
+                "literal": "Unknown node",
+                "normalized": "Unknown node",
+                "language": "en"
+              },
+              "definition": {
+                "literal": "A preserved fragment for unsupported content that cannot be represented by a known node type without loss.",
+                "normalized": "A preserved fragment for unsupported content that cannot be represented by a known node type without loss.",
+                "language": "en"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "semantics": [],
+  "symbols": [],
+  "assets": [],
+  "relationships": [],
+  "annotations": [],
+  "provenance": {
+    "generatedAt": "2026-04-13T20:30:00Z",
+    "generator": {
+      "name": "Protocol5.UAI.CSharp",
+      "version": "1.0.0"
+    },
+    "translator": {
+      "name": "Protocol5.UAI.CSharp",
+      "version": "1.0.0",
+      "contractVersion": "1.0.0",
+      "mode": "deterministic-html"
+    },
+    "capture": {
+      "method": "example-authored"
+    }
+  },
+  "extensions": {}
+}

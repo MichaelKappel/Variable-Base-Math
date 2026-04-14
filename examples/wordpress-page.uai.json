@@ -1,0 +1,99 @@
+{
+  "spec": "UAI-1",
+  "version": "1.0.0",
+  "schemaVersion": "1.0.0",
+  "documentId": "wordpress-page",
+  "source": {
+    "uri": "https://example.org/about-us",
+    "title": "About Us",
+    "retrievedAt": "2026-04-13T20:20:00Z",
+    "contentHash": "sha256:55555555555555555555555555555555",
+    "mimeType": "text/html",
+    "htmlLanguage": "en",
+    "canonicalUri": "https://example.org/about-us"
+  },
+  "metadata": {
+    "title": "About Us",
+    "description": "A WordPress page exported into UAI-1.",
+    "language": "en",
+    "siteName": "Example Site",
+    "pageType": "wordpress-page",
+    "authors": [
+      "Site Owner"
+    ],
+    "canonicalUrl": "https://example.org/about-us"
+  },
+  "structure": [
+    {
+      "type": "document",
+      "id": "wordpress-page",
+      "children": [
+        {
+          "type": "section",
+          "id": "wordpress-page.section.1",
+          "children": [
+            {
+              "type": "heading",
+              "id": "wordpress-page.heading.1",
+              "level": 1,
+              "text": {
+                "literal": "About Us",
+                "normalized": "About Us",
+                "language": "en"
+              }
+            },
+            {
+              "type": "image",
+              "id": "wordpress-page.image.1",
+              "assetRef": "asset.wordpress.hero",
+              "altText": "Team photo",
+              "decorative": false
+            },
+            {
+              "type": "paragraph",
+              "id": "wordpress-page.paragraph.1",
+              "text": {
+                "literal": "This page was originally authored in WordPress and exported as structured JSON for downstream systems.",
+                "normalized": "This page was originally authored in WordPress and exported as structured JSON for downstream systems.",
+                "language": "en"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "semantics": [],
+  "symbols": [],
+  "assets": [
+    {
+      "id": "asset.wordpress.hero",
+      "kind": "image",
+      "uri": "https://example.org/wp-content/uploads/team.jpg",
+      "mimeType": "image/jpeg",
+      "altText": "Team photo",
+      "width": 1600,
+      "height": 900,
+      "decorative": false
+    }
+  ],
+  "relationships": [],
+  "annotations": [],
+  "provenance": {
+    "generatedAt": "2026-04-13T20:20:00Z",
+    "generator": {
+      "name": "Protocol5.UAI.CSharp",
+      "version": "1.0.0"
+    },
+    "translator": {
+      "name": "Protocol5.UAI.CSharp",
+      "version": "1.0.0",
+      "contractVersion": "1.0.0",
+      "mode": "deterministic-html"
+    },
+    "capture": {
+      "method": "wordpress-export"
+    }
+  },
+  "extensions": {}
+}

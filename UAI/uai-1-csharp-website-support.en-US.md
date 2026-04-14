@@ -6,7 +6,7 @@ This page publishes the Protocol5 starter download for adding UAI-1 support to C
 
 - **Audience:** C# and ASP.NET website developers
 - **Download ZIP:** [protocol5-uai-1-csharp-web-starter.zip](/downloads/protocol5-uai-1-csharp-web-starter.zip)
-- **Download NuGet package:** [Protocol5.UAI.CSharp.0.1.0.nupkg](/downloads/Protocol5.UAI.CSharp.0.1.0.nupkg)
+- **Download NuGet package:** [Protocol5.UAI.CSharp.1.0.0.nupkg](/downloads/Protocol5.UAI.CSharp.1.0.0.nupkg)
 - **Download ZIP checksum:** [protocol5-uai-1-csharp-web-starter.zip.sha256](/downloads/protocol5-uai-1-csharp-web-starter.zip.sha256)
 - **Canonical language tag:** `x-uai-1`
 - **Canonical serialization culture:** `InvariantCulture`
@@ -95,13 +95,13 @@ var confidence = 0.875m.ToString(UaiCultureInfo.CanonicalSerializationCulture);
 
 ```csharp
 Radix63404.Encode(41);        // J
-Radix63404.Encode(5651);      // ᙖ
-Radix63404.Encode(267914296); // Ⴤ绠
+Radix63404.Encode(5651);      // á™–
+Radix63404.Encode(267914296); // áƒ„ç» 
 ```
 
 ## Download links
 
 - [Download the full starter ZIP](/downloads/protocol5-uai-1-csharp-web-starter.zip)
-- [Download the NuGet package directly](/downloads/Protocol5.UAI.CSharp.0.1.0.nupkg)
+- [Download the NuGet package directly](/downloads/Protocol5.UAI.CSharp.1.0.0.nupkg)
 - [Read the UAI-1 specification](/UAI-1)
 - [Read the Radix 63404 guide](/UAI/radix-63404-guide-and-attribution)

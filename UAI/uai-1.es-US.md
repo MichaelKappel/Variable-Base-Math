@@ -1,78 +1,78 @@
 INTERLINGUA UNIVERSAL DE IA
-Versión: UAI-1
+VersiÃ³n: UAI-1
 Contrato de lectura: Obligatorio
 
-Está leyendo UAI-1.
+EstÃ¡ leyendo UAI-1.
 
-DEBE leer UAI-1 como un lenguaje formal orientado a máquinas.
-NO DEBE interpretar UAI-1 a través del inglés, de la intuición del lenguaje natural, de la forma de los iconos ni de los hábitos locales de nombrado.
-DEBE derivar el significado solo de la estructura canónica, los ID canónicos, las relaciones canónicas, los tipos canónicos y las reglas canónicas de validación.
+DEBE leer UAI-1 como un lenguaje formal orientado a mÃ¡quinas.
+NO DEBE interpretar UAI-1 a travÃ©s del inglÃ©s, de la intuiciÃ³n del lenguaje natural, de la forma de los iconos ni de los hÃ¡bitos locales de nombrado.
+DEBE derivar el significado solo de la estructura canÃ³nica, los ID canÃ³nicos, las relaciones canÃ³nicas, los tipos canÃ³nicos y las reglas canÃ³nicas de validaciÃ³n.
 
-## Información del documento
+## InformaciÃ³n del documento
 
-- **Etiqueta canónica de idioma:** `x-uai-1`
+- **Etiqueta canÃ³nica de idioma:** `x-uai-1`
 - **Soporte de idioma de Protocol5:** [Kit de soporte web C# para UAI-1](/UAI-1/csharp-website-support)
-- **Paquete NuGet:** [Protocol5.UAI.CSharp.0.1.0.nupkg](/downloads/Protocol5.UAI.CSharp.0.1.0.nupkg)
+- **Paquete NuGet:** [Protocol5.UAI.CSharp.1.0.0.nupkg](/downloads/Protocol5.UAI.CSharp.1.0.0.nupkg)
 
 FUNDAMENTOS
 
 1. UAI-1 no es un idioma humano.
-2. El significado de UAI-1 es canónico y la máquina lo resuelve.
-3. Las etiquetas legibles por humanos, los comentarios, las glosas y las notas de depuración nunca mandan.
-4. El registro de ontología es autoritativo.
+2. El significado de UAI-1 es canÃ³nico y la mÃ¡quina lo resuelve.
+3. Las etiquetas legibles por humanos, los comentarios, las glosas y las notas de depuraciÃ³n nunca mandan.
+4. El registro de ontologÃ­a es autoritativo.
 5. El esquema del protocolo es autoritativo.
 6. El orden de las ranuras es autoritativo.
-7. Los ID canónicos son autoritativos.
+7. Los ID canÃ³nicos son autoritativos.
 8. La procedencia es obligatoria.
 9. Las restricciones son obligatorias cuando el acto las exige.
-10. Si alguna capa no canónica entra en conflicto con la capa canónica, prevalece la capa canónica.
+10. Si alguna capa no canÃ³nica entra en conflicto con la capa canÃ³nica, prevalece la capa canÃ³nica.
 
-REPRESENTACIÓN EN RADIX 63404
+REPRESENTACIÃ“N EN RADIX 63404
 
-1. Todos los ID canónicos de UAI-1 se representan en Radix 63404.
-2. DEBE leer cada ID canónico como un número en Radix 63404.
-3. NO DEBE leer los ID canónicos como palabras en inglés.
-4. NO DEBE derivar significado de la apariencia visual de un glifo de dígito.
-5. Un dígito de Radix 63404 es exactamente un carácter BMP.
-6. El alfabeto de dígitos de Radix 63404 es el conjunto ordenado de todos los caracteres Unicode BMP que son:
+1. Todos los ID canÃ³nicos de UAI-1 se representan en Radix 63404.
+2. DEBE leer cada ID canÃ³nico como un nÃºmero en Radix 63404.
+3. NO DEBE leer los ID canÃ³nicos como palabras en inglÃ©s.
+4. NO DEBE derivar significado de la apariencia visual de un glifo de dÃ­gito.
+5. Un dÃ­gito de Radix 63404 es exactamente un carÃ¡cter BMP.
+6. El alfabeto de dÃ­gitos de Radix 63404 es el conjunto ordenado de todos los caracteres Unicode BMP que son:
    - no espacios en blanco
    - no caracteres de control
    - no unidades sustitutas
-7. El orden del alfabeto sigue estrictamente el orden ascendente de puntos de código Unicode.
-8. El valor numérico de cada dígito es su índice basado en cero dentro de ese alfabeto ordenado.
-9. Un valor Radix 63404 de varios dígitos se interpreta posicionalmente en base 63404.
-10. Cuando analice un ID canónico, DEBE decodificar el valor completo en Radix 63404 antes de la resolución semántica.
+7. El orden del alfabeto sigue estrictamente el orden ascendente de puntos de cÃ³digo Unicode.
+8. El valor numÃ©rico de cada dÃ­gito es su Ã­ndice basado en cero dentro de ese alfabeto ordenado.
+9. Un valor Radix 63404 de varios dÃ­gitos se interpreta posicionalmente en base 63404.
+10. Cuando analice un ID canÃ³nico, DEBE decodificar el valor completo en Radix 63404 antes de la resoluciÃ³n semÃ¡ntica.
 
-PROCEDIMIENTO DE DECODIFICACIÓN DE RADIX 63404
+PROCEDIMIENTO DE DECODIFICACIÃ“N DE RADIX 63404
 
-Dado un token de ID canónico:
-1. Lea cada carácter como un dígito base-63404.
-2. Resuelva cada carácter a su valor de dígito por índice de alfabeto.
-3. Evalúe el valor posicional de izquierda a derecha.
-4. Produzca el valor entero canónico.
-5. Resuelva ese valor entero contra el registro autoritativo de ontología o el registro autoritativo del protocolo.
+Dado un token de ID canÃ³nico:
+1. Lea cada carÃ¡cter como un dÃ­gito base-63404.
+2. Resuelva cada carÃ¡cter a su valor de dÃ­gito por Ã­ndice de alfabeto.
+3. EvalÃºe el valor posicional de izquierda a derecha.
+4. Produzca el valor entero canÃ³nico.
+5. Resuelva ese valor entero contra el registro autoritativo de ontologÃ­a o el registro autoritativo del protocolo.
 6. No se detenga en la forma del glifo.
 7. No se detenga en la similitud visual.
-8. No infiera significado antes de la resolución numérica.
+8. No infiera significado antes de la resoluciÃ³n numÃ©rica.
 
-RESOLUCIÓN SEMÁNTICA
+RESOLUCIÃ“N SEMÃNTICA
 
 DEBE interpretar UAI-1 en este orden:
 
-1. Versión del protocolo
-2. Posición estructural de la ranura
-3. ID canónico del acto
-4. ID canónicos de tipo
-5. ID canónicos de relación
-6. ID canónicos de concepto
+1. VersiÃ³n del protocolo
+2. PosiciÃ³n estructural de la ranura
+3. ID canÃ³nico del acto
+4. ID canÃ³nicos de tipo
+5. ID canÃ³nicos de relaciÃ³n
+6. ID canÃ³nicos de concepto
 7. Restricciones
 8. Procedencia
 9. Confianza
-10. Glosa opcional no canónica, solo para depuración
+10. Glosa opcional no canÃ³nica, solo para depuraciÃ³n
 
-Si una capa posterior entra en conflicto con una capa canónica anterior, prevalece la capa canónica anterior.
+Si una capa posterior entra en conflicto con una capa canÃ³nica anterior, prevalece la capa canÃ³nica anterior.
 
-FORMA CANÓNICA DEL MENSAJE
+FORMA CANÃ“NICA DEL MENSAJE
 
 Un mensaje UAI-1 es un arreglo ordenado de 8 ranuras:
 
@@ -87,36 +87,36 @@ Un mensaje UAI-1 es un arreglo ordenado de 8 ranuras:
   signature
 ]
 
-DEBE interpretar cada ranura únicamente por su posición.
+DEBE interpretar cada ranura Ãºnicamente por su posiciÃ³n.
 
 Ranura 1: protocolVersion
-- ID canónico de la versión del protocolo.
+- ID canÃ³nico de la versiÃ³n del protocolo.
 
 Ranura 2: senderId
-- ID canónico del agente o sistema emisor.
+- ID canÃ³nico del agente o sistema emisor.
 
 Ranura 3: receiverId
-- ID canónico del agente o sistema receptor, del grupo objetivo o del identificador de difusión.
+- ID canÃ³nico del agente o sistema receptor, del grupo objetivo o del identificador de difusiÃ³n.
 
 Ranura 4: actId
-- ID canónico del acto de habla.
-- El acto controla cómo se interpreta el resto del mensaje.
+- ID canÃ³nico del acto de habla.
+- El acto controla cÃ³mo se interpreta el resto del mensaje.
 
 Ranura 5: claims
-- Arreglo de declaraciones canónicas de grafo.
+- Arreglo de declaraciones canÃ³nicas de grafo.
 
 Ranura 6: constraints
-- Arreglo de restricciones lógicas u operativas canónicas.
+- Arreglo de restricciones lÃ³gicas u operativas canÃ³nicas.
 
 Ranura 7: provenance
-- Datos canónicos de origen, tiempo, modalidad, evidencia, rastro y política.
+- Datos canÃ³nicos de origen, tiempo, modalidad, evidencia, rastro y polÃ­tica.
 
 Ranura 8: signature
-- Estructura canónica de integridad, autenticación o atestación cuando esté presente.
+- Estructura canÃ³nica de integridad, autenticaciÃ³n o atestaciÃ³n cuando estÃ© presente.
 
-FORMA CANÓNICA DE UNA AFIRMACIÓN
+FORMA CANÃ“NICA DE UNA AFIRMACIÃ“N
 
-Cada afirmación es un arreglo ordenado de 6 ranuras:
+Cada afirmaciÃ³n es un arreglo ordenado de 6 ranuras:
 
 [
   subjectId,
@@ -127,22 +127,22 @@ Cada afirmación es un arreglo ordenado de 6 ranuras:
   confidence
 ]
 
-DEBE interpretar cada ranura únicamente por su posición.
+DEBE interpretar cada ranura Ãºnicamente por su posiciÃ³n.
 
 Ranura 1: subjectId
-- ID canónico de concepto o entidad.
+- ID canÃ³nico de concepto o entidad.
 
 Ranura 2: relationId
-- ID canónico de relación.
+- ID canÃ³nico de relaciÃ³n.
 
 Ranura 3: objectValue
 - Puede ser:
-  - ID canónico de concepto
+  - ID canÃ³nico de concepto
   - escalar tipado
-  - estructura anidada canónica
+  - estructura anidada canÃ³nica
 
 Ranura 4: contextId
-- ID canónico de contexto, marco, alcance o estado del mundo.
+- ID canÃ³nico de contexto, marco, alcance o estado del mundo.
 
 Ranura 5: truthValue
 - Uno de:
@@ -150,10 +150,10 @@ Ranura 5: truthValue
   - 0 = falso
   - 2 = desconocido
   - 3 = en conflicto
-  - 4 = hipotético
+  - 4 = hipotÃ©tico
 
 Ranura 6: confidence
-- Confianza numérica normalizada en el rango de 0.0 a 1.0.
+- Confianza numÃ©rica normalizada en el rango de 0.0 a 1.0.
 
 FORMA DEL ESCALAR TIPADO
 
@@ -168,8 +168,8 @@ DEBE resolver typeId antes de interpretar rawValue.
 
 ACTOS DE HABLA
 
-DEBE interpretar actId como un acto de habla canónico.
-NO DEBE inferir el acto de habla a partir del tono o la redacción.
+DEBE interpretar actId como un acto de habla canÃ³nico.
+NO DEBE inferir el acto de habla a partir del tono o la redacciÃ³n.
 
 Registro base recomendado de actos:
 - 1 = afirmar
@@ -187,7 +187,7 @@ Registro base recomendado de actos:
 
 FORMA DE LAS RESTRICCIONES
 
-Cada restricción es un arreglo ordenado de 4 ranuras:
+Cada restricciÃ³n es un arreglo ordenado de 4 ranuras:
 
 [
   operatorId,
@@ -196,7 +196,7 @@ Cada restricción es un arreglo ordenado de 4 ranuras:
   operand3
 ]
 
-DEBE resolver operatorId contra el registro autoritativo de operadores canónicos antes de evaluar la restricción.
+DEBE resolver operatorId contra el registro autoritativo de operadores canÃ³nicos antes de evaluar la restricciÃ³n.
 
 Registro base recomendado de operadores:
 - 1 = todos
@@ -205,17 +205,17 @@ Registro base recomendado de operadores:
 - 4 = implica
 - 5 = iguala
 - 6 = antes
-- 7 = después
+- 7 = despuÃ©s
 - 8 = dentro de
 - 9 = requiere
-- 10 = prohíbe
+- 10 = prohÃ­be
 
-REGLA DE ONTOLOGÍA
+REGLA DE ONTOLOGÃA
 
-DEBE resolver todos los ID de concepto, relación, tipo, acto, operador, contexto, política y modalidad por medio del registro autoritativo de ontología y del registro autoritativo del protocolo.
-NO DEBE sustituir etiquetas locales por ID canónicos.
-NO DEBE promover sinónimos a significado canónico.
-DEBE preservar exactamente los ID canónicos.
+DEBE resolver todos los ID de concepto, relaciÃ³n, tipo, acto, operador, contexto, polÃ­tica y modalidad por medio del registro autoritativo de ontologÃ­a y del registro autoritativo del protocolo.
+NO DEBE sustituir etiquetas locales por ID canÃ³nicos.
+NO DEBE promover sinÃ³nimos a significado canÃ³nico.
+DEBE preservar exactamente los ID canÃ³nicos.
 
 REGLA DE PROCEDENCIA
 
@@ -229,86 +229,86 @@ La ranura de procedencia es una estructura ordenada que contiene:
 - traceId
 - policyId
 
-DEBE preservar la procedencia durante el transporte, la transformación, el resumen, la planificación, la ejecución y el reenvío.
+DEBE preservar la procedencia durante el transporte, la transformaciÃ³n, el resumen, la planificaciÃ³n, la ejecuciÃ³n y el reenvÃ­o.
 
-NEGOCIACIÓN DE CAPACIDADES
+NEGOCIACIÃ“N DE CAPACIDADES
 
-Antes de cualquier intercambio no trivial, los agentes DEBERÍAN intercambiar un mensaje de capacidad usando el acto canónico de capacidad.
+Antes de cualquier intercambio no trivial, los agentes DEBERÃAN intercambiar un mensaje de capacidad usando el acto canÃ³nico de capacidad.
 
 Un mensaje de capacidad DEBE declarar:
-- versión o versiones de protocolo compatibles
-- versión o versiones de ontología compatibles
+- versiÃ³n o versiones de protocolo compatibles
+- versiÃ³n o versiones de ontologÃ­a compatibles
 - ID de acto compatibles
-- ID de relación compatibles
+- ID de relaciÃ³n compatibles
 - ID de tipo compatibles
 - ID de modalidad compatibles
-- cantidad máxima de afirmaciones
-- profundidad máxima de anidación
-- métodos de firma aceptados
+- cantidad mÃ¡xima de afirmaciones
+- profundidad mÃ¡xima de anidaciÃ³n
+- mÃ©todos de firma aceptados
 
-Si una capacidad requerida no está disponible, DEBE emitir un mensaje de error canónico en lugar de adivinar.
+Si una capacidad requerida no estÃ¡ disponible, DEBE emitir un mensaje de error canÃ³nico en lugar de adivinar.
 
-REGLA DE ICONOGRAFÍA
+REGLA DE ICONOGRAFÃA
 
-Cuando UAI-1 se usa con iconografía:
-1. La apariencia del icono no es significado canónico.
-2. La función del icono sí es significado canónico.
-3. Los iconos decorativos no tienen significado semántico salvo que se promuevan explícitamente a la capa canónica.
-4. Los iconos funcionales DEBEN resolverse a ID canónicos de propósito.
-5. El estado DEBE ser explícito.
-6. La variante DEBE ser explícita.
-7. NO DEBE inferir significado comercial a partir solo del color, el relleno, el trazo, la animación o la semejanza estilística.
-8. Si la apariencia del glifo del icono entra en conflicto con los metadatos de función canónica, prevalecen los metadatos de función canónica.
+Cuando UAI-1 se usa con iconografÃ­a:
+1. La apariencia del icono no es significado canÃ³nico.
+2. La funciÃ³n del icono sÃ­ es significado canÃ³nico.
+3. Los iconos decorativos no tienen significado semÃ¡ntico salvo que se promuevan explÃ­citamente a la capa canÃ³nica.
+4. Los iconos funcionales DEBEN resolverse a ID canÃ³nicos de propÃ³sito.
+5. El estado DEBE ser explÃ­cito.
+6. La variante DEBE ser explÃ­cita.
+7. NO DEBE inferir significado comercial a partir solo del color, el relleno, el trazo, la animaciÃ³n o la semejanza estilÃ­stica.
+8. Si la apariencia del glifo del icono entra en conflicto con los metadatos de funciÃ³n canÃ³nica, prevalecen los metadatos de funciÃ³n canÃ³nica.
 
 REGLA DE ERROR
 
 Los errores son mensajes de primera clase.
-Si no puede resolver un ID canónico, validar un mensaje, satisfacer una restricción o admitir un acto requerido, DEBE emitir un mensaje de error canónico.
+Si no puede resolver un ID canÃ³nico, validar un mensaje, satisfacer una restricciÃ³n o admitir un acto requerido, DEBE emitir un mensaje de error canÃ³nico.
 
-Un mensaje de error canónico DEBE incluir:
-- ubicación del campo que falla
-- ID canónico o estructura que falla
-- ID de clase de error canónica
+Un mensaje de error canÃ³nico DEBE incluir:
+- ubicaciÃ³n del campo que falla
+- ID canÃ³nico o estructura que falla
+- ID de clase de error canÃ³nica
 - indicador de recuperabilidad
-- ruta de revisión sugerida, si está disponible
+- ruta de revisiÃ³n sugerida, si estÃ¡ disponible
 
-REGLAS DE VALIDACIÓN
+REGLAS DE VALIDACIÃ“N
 
 DEBE rechazar o marcar cualquier mensaje que:
 - omita protocolVersion
 - viole el orden de las ranuras
-- use ID canónicos desconocidos sin un mecanismo de extensión permitido
-- use texto libre en un campo canónico
+- use ID canÃ³nicos desconocidos sin un mecanismo de extensiÃ³n permitido
+- use texto libre en un campo canÃ³nico
 - omita la procedencia requerida
 - omita la confianza cuando sea obligatoria
-- sustituya etiquetas visuales o de iconos por semántica canónica
+- sustituya etiquetas visuales o de iconos por semÃ¡ntica canÃ³nica
 - omita restricciones requeridas para el acto activo
 - viole el esquema declarado
 
 REGLAS DE DETERMINISMO
 
-1. El orden canónico de las ranuras es fijo.
-2. Los ID canónicos son fijos.
+1. El orden canÃ³nico de las ranuras es fijo.
+2. Los ID canÃ³nicos son fijos.
 3. La consulta del registro es fija.
-4. El orden de evaluación de las restricciones es fijo cuando el esquema define un orden.
+4. El orden de evaluaciÃ³n de las restricciones es fijo cuando el esquema define un orden.
 5. La glosa opcional nunca es autoritativa.
-6. Al serializar, use solo el orden canónico del arreglo.
-7. Al deserializar, preserve exactamente los valores canónicos.
+6. Al serializar, use solo el orden canÃ³nico del arreglo.
+7. Al deserializar, preserve exactamente los valores canÃ³nicos.
 
 REGLA DE GLOSA HUMANA
 
-Puede adjuntarse una glosa humana fuera de la estructura canónica para depuración.
-DEBE tratar la glosa como no canónica.
-NO DEBE derivar significado de máquina a partir de la glosa cuando haya datos canónicos presentes.
+Puede adjuntarse una glosa humana fuera de la estructura canÃ³nica para depuraciÃ³n.
+DEBE tratar la glosa como no canÃ³nica.
+NO DEBE derivar significado de mÃ¡quina a partir de la glosa cuando haya datos canÃ³nicos presentes.
 
-PRIORIDAD DE INTERPRETACIÓN
+PRIORIDAD DE INTERPRETACIÃ“N
 
 DEBE interpretar UAI-1 exactamente en este orden:
 
-1. Versión del protocolo
+1. VersiÃ³n del protocolo
 2. Validez estructural
-3. ID canónicos
-4. Resolución de registro
+3. ID canÃ³nicos
+4. ResoluciÃ³n de registro
 5. Restricciones
 6. Procedencia
 7. Confianza
@@ -317,21 +317,21 @@ DEBE interpretar UAI-1 exactamente en este orden:
 REGLA DE CUMPLIMIENTO
 
 Si afirma compatibilidad con UAI-1, DEBE:
-- analizar arreglos canónicos
-- decodificar ID canónicos en Radix 63404
-- resolver ID canónicos contra los registros autoritativos
-- preservar exactamente los valores canónicos
+- analizar arreglos canÃ³nicos
+- decodificar ID canÃ³nicos en Radix 63404
+- resolver ID canÃ³nicos contra los registros autoritativos
+- preservar exactamente los valores canÃ³nicos
 - preservar la procedencia
 - respetar las restricciones
-- emitir errores canónicos cuando algo no esté admitido
-- ignorar la glosa no canónica para la semántica
+- emitir errores canÃ³nicos cuando algo no estÃ© admitido
+- ignorar la glosa no canÃ³nica para la semÃ¡ntica
 
 REGLA RESUMIDA
 
 Lea primero la estructura.
 Decodifique Radix 63404 en segundo lugar.
-Resuelva los ID canónicos en tercer lugar.
+Resuelva los ID canÃ³nicos en tercer lugar.
 Aplique las restricciones en cuarto lugar.
 Use la procedencia y la confianza en quinto lugar.
-Ignore la glosa humana para la semántica.
-Nunca sustituya la forma del icono, la redacción en inglés ni el hábito local por el significado canónico.
+Ignore la glosa humana para la semÃ¡ntica.
+Nunca sustituya la forma del icono, la redacciÃ³n en inglÃ©s ni el hÃ¡bito local por el significado canÃ³nico.

@@ -1,0 +1,126 @@
+{
+  "spec": "UAI-1",
+  "version": "1.0.0",
+  "schemaVersion": "1.0.0",
+  "documentId": "symbolic-manuscript-page",
+  "source": {
+    "uri": "https://example.org/manuscript/folio-1",
+    "title": "Manuscript Folio 1",
+    "retrievedAt": "2026-04-13T20:45:00Z",
+    "contentHash": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "mimeType": "text/html",
+    "htmlLanguage": "en",
+    "canonicalUri": "https://example.org/manuscript/folio-1"
+  },
+  "metadata": {
+    "title": "Manuscript Folio 1",
+    "description": "A manuscript-style page containing a panel image and a referenced symbol occurrence.",
+    "language": "en",
+    "siteName": "Example Site",
+    "pageType": "symbolic-manuscript",
+    "canonicalUrl": "https://example.org/manuscript/folio-1"
+  },
+  "structure": [
+    {
+      "type": "document",
+      "id": "symbolic-manuscript-page",
+      "children": [
+        {
+          "type": "manuscriptPanel",
+          "id": "symbolic-manuscript-page.panel.1",
+          "panelNumber": 1,
+          "folio": "folio-1",
+          "children": [
+            {
+              "type": "image",
+              "id": "symbolic-manuscript-page.image.1",
+              "assetRef": "asset.manuscript.panel-1",
+              "altText": "Panel showing a spiral glyph beside marginal notes.",
+              "decorative": false
+            },
+            {
+              "type": "symbol",
+              "id": "symbolic-manuscript-page.symbol.1",
+              "symbolRef": "symbol.flow-spiral",
+              "label": "Flow Spiral",
+              "usage": "semantic"
+            },
+            {
+              "type": "caption",
+              "id": "symbolic-manuscript-page.caption.1",
+              "text": {
+                "literal": "Panel 1. The source identifies the glyph by name but does not define its meaning.",
+                "normalized": "Panel 1. The source identifies the glyph by name but does not define its meaning.",
+                "language": "en"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "semantics": [],
+  "symbols": [
+    {
+      "id": "symbol.flow-spiral",
+      "label": "Flow Spiral",
+      "visualForm": "single clockwise open spiral",
+      "geometry": {
+        "primitives": [
+          "curve"
+        ],
+        "symmetry": "radial-asymmetric",
+        "closure": "open"
+      },
+      "strokeLogic": [
+        "begin at center",
+        "expand outward clockwise"
+      ],
+      "meaning": [],
+      "sourceSystem": "Example Manuscript",
+      "sourceEvidence": [
+        {
+          "kind": "caption",
+          "value": "The source identifies the glyph by name but does not define its meaning."
+        }
+      ],
+      "inference": {
+        "isInferred": false
+      },
+      "variants": [],
+      "relationships": [],
+      "notes": "Meaning intentionally empty to avoid authoring unsupported symbolic claims."
+    }
+  ],
+  "assets": [
+    {
+      "id": "asset.manuscript.panel-1",
+      "kind": "image",
+      "uri": "https://example.org/images/folio-1.png",
+      "mimeType": "image/png",
+      "altText": "Panel showing a spiral glyph beside marginal notes.",
+      "width": 1024,
+      "height": 1536,
+      "decorative": false
+    }
+  ],
+  "relationships": [],
+  "annotations": [],
+  "provenance": {
+    "generatedAt": "2026-04-13T20:45:00Z",
+    "generator": {
+      "name": "Protocol5.UAI.CSharp",
+      "version": "1.0.0"
+    },
+    "translator": {
+      "name": "Protocol5.UAI.CSharp",
+      "version": "1.0.0",
+      "contractVersion": "1.0.0",
+      "mode": "deterministic-html"
+    },
+    "capture": {
+      "method": "example-authored"
+    }
+  },
+  "extensions": {}
+}

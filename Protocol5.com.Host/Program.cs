@@ -3,6 +3,8 @@ using Microsoft.Extensions.FileProviders;
 using Microsoft.AspNetCore.StaticFiles;
 using System.Text.RegularExpressions;
 
+using Protocol5.UAI;
+
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
@@ -63,7 +65,8 @@ if (Directory.Exists(siteRoot))
     app.UseStaticFiles(new StaticFileOptions
     {
         FileProvider = new PhysicalFileProvider(siteRoot),
-        ContentTypeProvider = siteAssetContentTypes
+        ContentTypeProvider = siteAssetContentTypes,
+        OnPrepareResponse = PrepareStaticResponse
     });
 }
 
@@ -73,14 +76,16 @@ calculatorAssetContentTypes.Mappings[".dat"] = "application/octet-stream";
 
 app.UseStaticFiles(new StaticFileOptions
 {
-    ContentTypeProvider = calculatorAssetContentTypes
+    ContentTypeProvider = calculatorAssetContentTypes,
+    OnPrepareResponse = PrepareStaticResponse
 });
 
 app.UseStaticFiles(new StaticFileOptions
 {
     FileProvider = new PhysicalFileProvider(deploymentRoot),
     RequestPath = "/_framework",
-    ContentTypeProvider = calculatorAssetContentTypes
+    ContentTypeProvider = calculatorAssetContentTypes,
+    OnPrepareResponse = PrepareStaticResponse
 });
 
 MapHtmlPage("/", Path.Combine(siteRoot, "index.html"));
@@ -226,6 +231,19 @@ static bool TryRedirectLegacyPrefix(string? path, string legacyPrefix, string ca
 static bool IsLocaleSegment(string value)
 {
     return Regex.IsMatch(value, "^[A-Za-z]{2,3}(?:-[A-Za-z0-9]{2,8})*$", RegexOptions.CultureInvariant);
+}
+
+static void PrepareStaticResponse(StaticFileResponseContext context)
+{
+    var requestPath = context.Context.Request.Path.Value;
+    if (requestPath is null || !requestPath.EndsWith(".uai.json", StringComparison.OrdinalIgnoreCase))
+    {
+        return;
+    }
+
+    context.Context.Response.ContentType = UaiHttpNegotiation.BuildContentType();
+    context.Context.Response.Headers[UaiConstants.LegacyHttpHeader] = UaiHttpNegotiation.BuildLegacyHeaderValue();
+    context.Context.Response.Headers[UaiConstants.VaryHeader] = $"{UaiConstants.AcceptHeader}, {UaiConstants.LegacyHttpHeader}";
 }
 
 

@@ -1,0 +1,162 @@
+{
+  "spec": "UAI-1",
+  "version": "1.0.0",
+  "schemaVersion": "1.0.0",
+  "documentId": "homepage",
+  "source": {
+    "uri": "https://example.org/",
+    "title": "Example Home",
+    "retrievedAt": "2026-04-13T20:00:00Z",
+    "contentHash": "sha256:11111111111111111111111111111111",
+    "mimeType": "text/html",
+    "htmlLanguage": "en",
+    "canonicalUri": "https://example.org/"
+  },
+  "metadata": {
+    "title": "Example Home",
+    "description": "A homepage with navigation, hero text, and a primary call to action.",
+    "language": "en",
+    "siteName": "Example Site",
+    "pageType": "homepage",
+    "canonicalUrl": "https://example.org/"
+  },
+  "structure": [
+    {
+      "type": "document",
+      "id": "homepage",
+      "children": [
+        {
+          "type": "header",
+          "id": "homepage.header.1",
+          "children": [
+            {
+              "type": "heading",
+              "id": "homepage.heading.1",
+              "level": 1,
+              "text": {
+                "literal": "Example Site",
+                "normalized": "Example Site",
+                "language": "en"
+              }
+            },
+            {
+              "type": "navigation",
+              "id": "homepage.navigation.1",
+              "label": "Primary navigation",
+              "children": [
+                {
+                  "type": "link",
+                  "id": "homepage.link.1",
+                  "href": "/about",
+                  "linkPurpose": "navigation",
+                  "text": {
+                    "literal": "About",
+                    "normalized": "About",
+                    "language": "en"
+                  }
+                },
+                {
+                  "type": "link",
+                  "id": "homepage.link.2",
+                  "href": "/contact",
+                  "linkPurpose": "navigation",
+                  "text": {
+                    "literal": "Contact",
+                    "normalized": "Contact",
+                    "language": "en"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "id": "homepage.section.1",
+          "sectionKind": "hero",
+          "children": [
+            {
+              "type": "heading",
+              "id": "homepage.heading.2",
+              "level": 2,
+              "text": {
+                "literal": "Structured content for humans and machines.",
+                "normalized": "Structured content for humans and machines.",
+                "language": "en"
+              }
+            },
+            {
+              "type": "paragraph",
+              "id": "homepage.paragraph.1",
+              "text": {
+                "literal": "This page introduces the site and points visitors to the primary workflow.",
+                "normalized": "This page introduces the site and points visitors to the primary workflow.",
+                "language": "en"
+              }
+            },
+            {
+              "type": "button",
+              "id": "homepage.button.1",
+              "text": {
+                "literal": "Start now",
+                "normalized": "Start now",
+                "language": "en"
+              },
+              "action": {
+                "kind": "link",
+                "target": "/start"
+              }
+            }
+          ]
+        },
+        {
+          "type": "footer",
+          "id": "homepage.footer.1",
+          "children": [
+            {
+              "type": "paragraph",
+              "id": "homepage.paragraph.2",
+              "text": {
+                "literal": "Copyright Example Site.",
+                "normalized": "Copyright Example Site.",
+                "language": "en"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "semantics": [
+    {
+      "id": "sem.homepage.primary-cta",
+      "targets": [
+        "homepage.button.1"
+      ],
+      "kind": "call-to-action",
+      "value": "start-primary-flow",
+      "source": "translator-structural"
+    }
+  ],
+  "symbols": [],
+  "assets": [],
+  "relationships": [],
+  "annotations": [],
+  "provenance": {
+    "generatedAt": "2026-04-13T20:00:00Z",
+    "generator": {
+      "name": "Protocol5.UAI.CSharp",
+      "version": "1.0.0"
+    },
+    "translator": {
+      "name": "Protocol5.UAI.CSharp",
+      "version": "1.0.0",
+      "contractVersion": "1.0.0",
+      "mode": "deterministic-html"
+    },
+    "capture": {
+      "method": "example-authored"
+    }
+  },
+  "extensions": {}
+}

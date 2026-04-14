@@ -5,7 +5,15 @@ public sealed class Protocol5UaiWebsiteSupportOptions
 {
     public bool CheckAcceptLanguageHeader { get; set; } = true;
 
+    public bool CheckAcceptHeader { get; set; } = true;
+
+    public bool CheckLegacyHeader { get; set; } = true;
+
     public bool SetContentLanguageHeader { get; set; } = true;
+
+    public bool SetVaryHeader { get; set; } = true;
+
+    public bool EmitLegacyHeader { get; set; } = true;
 
     public IList<string> QueryKeys { get; } = new List<string>
     {

@@ -1,0 +1,45 @@
+{
+  "defaultLocale": "en-US",
+  "humanLocales": [
+    {
+      "code": "en-US",
+      "label": "English (US)"
+    },
+    {
+      "code": "es-US",
+      "label": "Espa\u00f1ol (US)"
+    },
+    {
+      "code": "uk-UA",
+      "label": "\u0423\u043a\u0440\u0430\u0457\u043d\u0441\u044c\u043a\u0430"
+    },
+    {
+      "code": "zh-SG",
+      "label": "\u7b80\u4f53\u4e2d\u6587\uff08\u65b0\u52a0\u5761\uff09"
+    },
+    {
+      "code": "th",
+      "label": "\u0e44\u0e17\u0e22"
+    }
+  ],
+  "documentFamilies": [
+    {
+      "baseName": "uai-1",
+      "title": "UAI-1 Specification",
+      "canonicalRoute": "/UAI-1",
+      "canonicalSitePath": "UAI-1"
+    },
+    {
+      "baseName": "uai-1-examples",
+      "title": "UAI-1 Examples",
+      "canonicalRoute": "/UAI-1/examples",
+      "canonicalSitePath": "UAI-1\\examples"
+    },
+    {
+      "baseName": "uai-1-csharp-website-support",
+      "title": "UAI-1 C# Website Support",
+      "canonicalRoute": "/UAI-1/csharp-website-support",
+      "canonicalSitePath": "UAI-1\\csharp-website-support"
+    }
+  ]
+}

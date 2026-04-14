@@ -620,6 +620,7 @@ $renderedDocument
 
 $repoRoot = Split-Path -Path $PSScriptRoot -Parent
 $uaiRoot = Join-Path $repoRoot 'UAI'
+$examplesRoot = Join-Path $repoRoot 'examples'
 $uaiImagesRoot = Join-Path $uaiRoot 'Images'
 $siteRoot = Join-Path $repoRoot 'Protocol5.com\SiteContent'
 $uaiTranslationConfigPath = Join-Path $uaiRoot 'uai-translation-config.json'
@@ -933,7 +934,7 @@ $uaiTranslationLinksHtml
                     <h2>Starter assets</h2>
                     <div class="link-list">
                         <a class="link-chip" href="/downloads/protocol5-uai-1-csharp-web-starter.zip">Starter ZIP</a>
-                        <a class="link-chip" href="/downloads/Protocol5.UAI.CSharp.0.1.0.nupkg">NuGet package</a>
+                        <a class="link-chip" href="/downloads/Protocol5.UAI.CSharp.1.0.0.nupkg">NuGet package</a>
                         <a class="link-chip" href="/UAI-1/csharp-website-support">Install guide</a>
                     </div>
                     <p>The first downloadable UAI starter focuses on C# websites and ASP.NET Core integration.</p>
@@ -981,3 +982,11 @@ $uaiSourceFilesHtml
 "@
 
 Write-Utf8File -Path (Join-Path $siteRoot 'UAI\index.html') -Content $uaiIndex
+
+$siteExamplesRoot = Join-Path $siteRoot 'UAI-1\examples'
+if (Test-Path $examplesRoot) {
+    Get-ChildItem -Path $siteExamplesRoot -Filter '*.uai.json' -ErrorAction SilentlyContinue | Remove-Item -Force -ErrorAction SilentlyContinue
+    Get-ChildItem -Path $examplesRoot -Filter '*.uai.json' -File | ForEach-Object {
+        Copy-Item -LiteralPath $_.FullName -Destination (Join-Path $siteExamplesRoot $_.Name) -Force
+    }
+}

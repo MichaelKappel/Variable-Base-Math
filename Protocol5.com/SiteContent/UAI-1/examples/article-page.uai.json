@@ -1,0 +1,108 @@
+{
+  "spec": "UAI-1",
+  "version": "1.0.0",
+  "schemaVersion": "1.0.0",
+  "documentId": "article-page",
+  "source": {
+    "uri": "https://example.org/articles/uai-intro",
+    "title": "Introducing UAI",
+    "retrievedAt": "2026-04-13T20:05:00Z",
+    "contentHash": "sha256:22222222222222222222222222222222",
+    "mimeType": "text/html",
+    "htmlLanguage": "en",
+    "canonicalUri": "https://example.org/articles/uai-intro"
+  },
+  "metadata": {
+    "title": "Introducing UAI",
+    "description": "A simple article page with metadata and body sections.",
+    "language": "en",
+    "siteName": "Example Site",
+    "pageType": "article",
+    "authors": [
+      "Example Editor"
+    ],
+    "publishedAt": "2026-04-12T12:00:00Z",
+    "updatedAt": "2026-04-13T19:00:00Z",
+    "canonicalUrl": "https://example.org/articles/uai-intro"
+  },
+  "structure": [
+    {
+      "type": "document",
+      "id": "article-page",
+      "children": [
+        {
+          "type": "metadataBlock",
+          "id": "article-page.metadata.1",
+          "entries": [
+            {
+              "key": "author",
+              "value": "Example Editor",
+              "source": "source"
+            },
+            {
+              "key": "publishedAt",
+              "value": "2026-04-12T12:00:00Z",
+              "source": "source"
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "id": "article-page.section.1",
+          "children": [
+            {
+              "type": "heading",
+              "id": "article-page.heading.1",
+              "level": 1,
+              "text": {
+                "literal": "Introducing UAI",
+                "normalized": "Introducing UAI",
+                "language": "en"
+              }
+            },
+            {
+              "type": "paragraph",
+              "id": "article-page.paragraph.1",
+              "text": {
+                "literal": "UAI-1 provides a strict intermediate representation for websites and symbolic content.",
+                "normalized": "UAI-1 provides a strict intermediate representation for websites and symbolic content.",
+                "language": "en"
+              }
+            },
+            {
+              "type": "quote",
+              "id": "article-page.quote.1",
+              "text": {
+                "literal": "Preserve source meaning before adding interpretation.",
+                "normalized": "Preserve source meaning before adding interpretation.",
+                "language": "en"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "semantics": [],
+  "symbols": [],
+  "assets": [],
+  "relationships": [],
+  "annotations": [],
+  "provenance": {
+    "generatedAt": "2026-04-13T20:05:00Z",
+    "generator": {
+      "name": "Protocol5.UAI.CSharp",
+      "version": "1.0.0"
+    },
+    "translator": {
+      "name": "Protocol5.UAI.CSharp",
+      "version": "1.0.0",
+      "contractVersion": "1.0.0",
+      "mode": "deterministic-html"
+    },
+    "capture": {
+      "method": "example-authored"
+    }
+  },
+  "extensions": {}
+}

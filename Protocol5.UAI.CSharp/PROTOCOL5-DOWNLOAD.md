@@ -1,37 +1,36 @@
-# Protocol5 UAI-1 C# Website Starter
+# Protocol5 UAI-1 C# Download
 
-This download contains the first Protocol5 starter kit for adding UAI-1 support to C# websites.
+This download packages the reference .NET runtime for the UAI-1 production website format.
 
-## Included items
+Contents:
 
-- `downloads/Protocol5.UAI.CSharp.0.1.0.nupkg`
-- `src/Protocol5.UAI.CSharp/` source project
+- `downloads/Protocol5.UAI.CSharp.1.0.0.nupkg`
+- `src/Protocol5.UAI.CSharp/`
 - `LICENSE`
+- `README.md`
 
-## Fastest install path
+The NuGet package itself also contains:
 
-From the directory that contains the downloaded `.nupkg`:
+- `contentFiles/any/any/Protocol5.UAI/spec/...`
+- `contentFiles/any/any/Protocol5.UAI/examples/...`
+- `contentFiles/any/any/Protocol5.UAI/docs/...`
+
+## Install from the local package
 
 ```powershell
 dotnet add package Protocol5.UAI.CSharp --source .\downloads
 ```
 
-## Source-first path
+## Primary capabilities
 
-If you want to review or modify the library before using it:
+- translate HTML into UAI-1
+- validate and normalize UAI-1
+- render UAI-1 back to HTML
+- load the embedded JSON Schema and example documents
+- keep existing `x-uai-1` and Radix 63404 support
 
-1. Open `src/Protocol5.UAI.CSharp/Protocol5.UAI.CSharp.csproj`
-2. Build it with `dotnet build`
-3. Reference the project directly from your website
+## HTTP conventions
 
-## What the starter does
-
-- Normalizes website language negotiation to `x-uai-1`
-- Exposes `CultureInfo` helpers for UAI-aware sites
-- Uses `InvariantCulture` for canonical UAI serialization
-- Adds Radix 63404 encoding and decoding
-- Includes ASP.NET Core middleware for request detection and `Content-Language`
-
-## Canonical rule
-
-UAI-1 is machine-facing and canonical. Use `x-uai-1` for website negotiation, but use `InvariantCulture` when serializing canonical UAI values.
+- canonical media type: `application/uai+json`
+- legacy compatibility header: `X-UAI-1: version=1.0.0`
+- HTML negotiation compatibility tag: `x-uai-1`

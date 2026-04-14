@@ -9,6 +9,7 @@
     <ProjectReference Include="..\NS12.Calculator\NS12.Calculator.csproj"
                       ReferenceOutputAssembly="false"
                       GlobalPropertiesToRemove="PublishProfile" />
+    <ProjectReference Include="..\Protocol5.UAI.CSharp\Protocol5.UAI.CSharp.csproj" />
   </ItemGroup>
 
   <ItemGroup>

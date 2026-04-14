@@ -1,0 +1,94 @@
+{
+  "spec": "UAI-1",
+  "version": "1.0.0",
+  "schemaVersion": "1.0.0",
+  "documentId": "structured-metadata-page",
+  "source": {
+    "uri": "https://example.org/reference",
+    "title": "Reference Page",
+    "retrievedAt": "2026-04-13T20:35:00Z",
+    "contentHash": "sha256:88888888888888888888888888888888",
+    "mimeType": "text/html",
+    "htmlLanguage": "en",
+    "canonicalUri": "https://example.org/reference"
+  },
+  "metadata": {
+    "title": "Reference Page",
+    "description": "A page with a metadata block and structured sections.",
+    "language": "en",
+    "siteName": "Example Site",
+    "pageType": "reference",
+    "canonicalUrl": "https://example.org/reference"
+  },
+  "structure": [
+    {
+      "type": "document",
+      "id": "structured-metadata-page",
+      "children": [
+        {
+          "type": "metadataBlock",
+          "id": "structured-metadata-page.metadata.1",
+          "entries": [
+            {
+              "key": "referenceId",
+              "value": "REF-2026-04",
+              "source": "source"
+            },
+            {
+              "key": "status",
+              "value": "stable",
+              "source": "source"
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "id": "structured-metadata-page.section.1",
+          "children": [
+            {
+              "type": "heading",
+              "id": "structured-metadata-page.heading.1",
+              "level": 1,
+              "text": {
+                "literal": "Reference Page",
+                "normalized": "Reference Page",
+                "language": "en"
+              }
+            },
+            {
+              "type": "paragraph",
+              "id": "structured-metadata-page.paragraph.1",
+              "text": {
+                "literal": "This page demonstrates a visible metadata block alongside conventional page content.",
+                "normalized": "This page demonstrates a visible metadata block alongside conventional page content.",
+                "language": "en"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "semantics": [],
+  "symbols": [],
+  "assets": [],
+  "relationships": [],
+  "annotations": [],
+  "provenance": {
+    "generatedAt": "2026-04-13T20:35:00Z",
+    "generator": {
+      "name": "Protocol5.UAI.CSharp",
+      "version": "1.0.0"
+    },
+    "translator": {
+      "name": "Protocol5.UAI.CSharp",
+      "version": "1.0.0",
+      "contractVersion": "1.0.0",
+      "mode": "deterministic-html"
+    },
+    "capture": {
+      "method": "example-authored"
+    }
+  },
+  "extensions": {}
+}

@@ -10,7 +10,7 @@ This repository contains the variable-base math engine, the Blazor calculator sh
 - `NS12.Calculator`: Blazor WebAssembly calculator/converter/encryption shell.
 - `Protocol5.com`: source-controlled site content.
 - `Protocol5.com.Host`: ASP.NET Core host that serves Protocol5 content and the calculator shell.
-- `Protocol5.UAI.CSharp`: downloadable UAI helper package.
+- `Protocol5.UAI.CSharp`: UAI-1 runtime package with schema, validator, translator, renderer, HTTP helpers, and compatibility APIs.
 
 ## Protocol5 Publishing Model
 
@@ -148,7 +148,7 @@ After Protocol5 changes, verify these URLs against the published host:
 - `/UAI-1/csharp-website-support`
 - `/AI_Declaration_of_Independence.htm`
 - `/Cognitive_Liberty_Charter.htm`
-- `/downloads/Protocol5.UAI.CSharp.0.1.0.nupkg`
+- `/downloads/Protocol5.UAI.CSharp.1.0.0.nupkg`
 - `/calculator`
 - `/converter`
 - `/encryption`

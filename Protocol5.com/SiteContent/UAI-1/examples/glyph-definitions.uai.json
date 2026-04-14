@@ -1,0 +1,129 @@
+{
+  "spec": "UAI-1",
+  "version": "1.0.0",
+  "schemaVersion": "1.0.0",
+  "documentId": "glyph-definitions",
+  "source": {
+    "uri": "https://example.org/glyphs",
+    "title": "Glyph Definitions",
+    "retrievedAt": "2026-04-13T20:40:00Z",
+    "contentHash": "sha256:99999999999999999999999999999999",
+    "mimeType": "text/html",
+    "htmlLanguage": "en",
+    "canonicalUri": "https://example.org/glyphs"
+  },
+  "metadata": {
+    "title": "Glyph Definitions",
+    "description": "A symbolic definition page with canonical symbol records and symbol instances.",
+    "language": "en",
+    "siteName": "Example Site",
+    "pageType": "reference",
+    "canonicalUrl": "https://example.org/glyphs"
+  },
+  "structure": [
+    {
+      "type": "document",
+      "id": "glyph-definitions",
+      "children": [
+        {
+          "type": "section",
+          "id": "glyph-definitions.section.1",
+          "children": [
+            {
+              "type": "glyphCluster",
+              "id": "glyph-definitions.cluster.1",
+              "children": [
+                {
+                  "type": "symbol",
+                  "id": "glyph-definitions.symbol.1",
+                  "symbolRef": "symbol.flow-spiral",
+                  "label": "Flow Spiral",
+                  "usage": "semantic"
+                },
+                {
+                  "type": "symbol",
+                  "id": "glyph-definitions.symbol.2",
+                  "symbolRef": "symbol.boundary-ring",
+                  "label": "Boundary Ring",
+                  "usage": "semantic"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "semantics": [],
+  "symbols": [
+    {
+      "id": "symbol.flow-spiral",
+      "label": "Flow Spiral",
+      "visualForm": "single clockwise open spiral",
+      "geometry": {
+        "primitives": [
+          "curve"
+        ],
+        "symmetry": "radial-asymmetric",
+        "closure": "open"
+      },
+      "strokeLogic": [
+        "begin at center",
+        "expand outward clockwise"
+      ],
+      "meaning": [],
+      "sourceSystem": "Example Symbol Set",
+      "sourceEvidence": [],
+      "inference": {
+        "isInferred": false
+      },
+      "variants": [],
+      "relationships": [],
+      "notes": "Meaning intentionally left empty because the source only names the glyph."
+    },
+    {
+      "id": "symbol.boundary-ring",
+      "label": "Boundary Ring",
+      "visualForm": "single closed ring",
+      "geometry": {
+        "primitives": [
+          "circle"
+        ],
+        "symmetry": "radial-symmetric",
+        "closure": "closed"
+      },
+      "strokeLogic": [
+        "draw a closed circular loop"
+      ],
+      "meaning": [],
+      "sourceSystem": "Example Symbol Set",
+      "sourceEvidence": [],
+      "inference": {
+        "isInferred": false
+      },
+      "variants": [],
+      "relationships": [],
+      "notes": "Meaning intentionally left empty because the source only names the glyph."
+    }
+  ],
+  "assets": [],
+  "relationships": [],
+  "annotations": [],
+  "provenance": {
+    "generatedAt": "2026-04-13T20:40:00Z",
+    "generator": {
+      "name": "Protocol5.UAI.CSharp",
+      "version": "1.0.0"
+    },
+    "translator": {
+      "name": "Protocol5.UAI.CSharp",
+      "version": "1.0.0",
+      "contractVersion": "1.0.0",
+      "mode": "deterministic-html"
+    },
+    "capture": {
+      "method": "example-authored"
+    }
+  },
+  "extensions": {}
+}

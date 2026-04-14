@@ -1,0 +1,86 @@
+{
+  "spec": "UAI-1",
+  "version": "1.0.0",
+  "schemaVersion": "1.0.0",
+  "documentId": "images-and-captions",
+  "source": {
+    "uri": "https://example.org/gallery",
+    "title": "Gallery",
+    "retrievedAt": "2026-04-13T20:25:00Z",
+    "contentHash": "sha256:66666666666666666666666666666666",
+    "mimeType": "text/html",
+    "htmlLanguage": "en",
+    "canonicalUri": "https://example.org/gallery"
+  },
+  "metadata": {
+    "title": "Gallery",
+    "description": "An image and caption example.",
+    "language": "en",
+    "siteName": "Example Site",
+    "pageType": "gallery",
+    "canonicalUrl": "https://example.org/gallery"
+  },
+  "structure": [
+    {
+      "type": "document",
+      "id": "images-and-captions",
+      "children": [
+        {
+          "type": "figure",
+          "id": "images-and-captions.figure.1",
+          "children": [
+            {
+              "type": "image",
+              "id": "images-and-captions.image.1",
+              "assetRef": "asset.gallery.sunrise",
+              "altText": "Sunrise over the mountains",
+              "decorative": false
+            },
+            {
+              "type": "caption",
+              "id": "images-and-captions.caption.1",
+              "text": {
+                "literal": "Sunrise over the mountains at 6:14 AM.",
+                "normalized": "Sunrise over the mountains at 6:14 AM.",
+                "language": "en"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "semantics": [],
+  "symbols": [],
+  "assets": [
+    {
+      "id": "asset.gallery.sunrise",
+      "kind": "image",
+      "uri": "https://example.org/images/sunrise.jpg",
+      "mimeType": "image/jpeg",
+      "altText": "Sunrise over the mountains",
+      "width": 1200,
+      "height": 800,
+      "decorative": false
+    }
+  ],
+  "relationships": [],
+  "annotations": [],
+  "provenance": {
+    "generatedAt": "2026-04-13T20:25:00Z",
+    "generator": {
+      "name": "Protocol5.UAI.CSharp",
+      "version": "1.0.0"
+    },
+    "translator": {
+      "name": "Protocol5.UAI.CSharp",
+      "version": "1.0.0",
+      "contractVersion": "1.0.0",
+      "mode": "deterministic-html"
+    },
+    "capture": {
+      "method": "example-authored"
+    }
+  },
+  "extensions": {}
+}

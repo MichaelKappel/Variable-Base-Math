@@ -7,13 +7,22 @@
     <IsPackable>true</IsPackable>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <PackageId>Protocol5.UAI.CSharp</PackageId>
-    <Version>0.1.0</Version>
+    <Version>1.0.0</Version>
     <Authors>Protocol5</Authors>
     <Company>Protocol5</Company>
-    <Description>Protocol5 UAI-1 helpers for C# websites, including Radix 63404, language-tag handling, and ASP.NET Core integration.</Description>
-    <PackageTags>Protocol5;UAI;UAI-1;Radix63404;ASP.NET;CultureInfo</PackageTags>
+    <Description>Protocol5 UAI-1 production runtime for website translation, validation, normalization, rendering, schema access, Radix 63404, and ASP.NET Core integration.</Description>
+    <PackageTags>Protocol5;UAI;UAI-1;Radix63404;ASP.NET;CultureInfo;Schema;Translator;Validator;Renderer</PackageTags>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/MichaelKappel/Variable-Base-Math</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/MichaelKappel/Variable-Base-Math</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);CS1591</NoWarn>
   </PropertyGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'net8.0'">
@@ -21,6 +30,20 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="HtmlAgilityPack" Version="1.11.71" />
+    <PackageReference Include="System.Text.Json" Version="8.0.5" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="README.md" Pack="true" PackagePath="\" />
+    <None Include="..\spec\**\*" Pack="true" PackagePath="contentFiles\any\any\Protocol5.UAI\spec\%(RecursiveDir)%(Filename)%(Extension)" Visible="false" />
+    <None Include="..\examples\**\*" Pack="true" PackagePath="contentFiles\any\any\Protocol5.UAI\examples\%(RecursiveDir)%(Filename)%(Extension)" Visible="false" />
+    <None Include="..\docs\**\*" Pack="true" PackagePath="contentFiles\any\any\Protocol5.UAI\docs\%(RecursiveDir)%(Filename)%(Extension)" Visible="false" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="..\spec\schema\**\*" Link="EmbeddedSpec\%(RecursiveDir)%(Filename)%(Extension)" />
+    <EmbeddedResource Include="..\examples\**\*.uai.json" Link="EmbeddedExamples\%(RecursiveDir)%(Filename)%(Extension)" />
   </ItemGroup>
 </Project>

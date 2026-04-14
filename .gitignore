@@ -78,3 +78,7 @@
 /.vs/PrecisionCalculator/FileContentIndex
 *.json
 /.vs/PrecisionCalculator/v17/.suo
+!spec/schema/*.json
+!examples/*.uai.json
+!UAI/uai-translation-config.json
+!Protocol5.com/SiteContent/UAI-1/examples/*.uai.json

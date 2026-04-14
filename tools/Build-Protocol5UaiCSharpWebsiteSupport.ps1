@@ -30,6 +30,9 @@ $projectRoot = Join-Path $repoRoot 'Protocol5.UAI.CSharp'
 $projectFile = Join-Path $projectRoot 'Protocol5.UAI.CSharp.csproj'
 $downloadReadme = Join-Path $projectRoot 'PROTOCOL5-DOWNLOAD.md'
 $licenseFile = Join-Path $repoRoot 'LICENSE'
+$specRoot = Join-Path $repoRoot 'spec'
+$docsRoot = Join-Path $repoRoot 'docs'
+$examplesRoot = Join-Path $repoRoot 'examples'
 $siteDownloadRoot = Join-Path $repoRoot 'Protocol5.com\SiteContent\downloads'
 
 $tempRoot = Join-Path ([System.IO.Path]::GetTempPath()) 'Protocol5.UAI.CSharp.WebStarter'
@@ -38,6 +41,9 @@ $archiveRoot = Join-Path $tempRoot 'archive'
 $archiveDownloadRoot = Join-Path $archiveRoot 'downloads'
 $archiveSourceRoot = Join-Path $archiveRoot 'src'
 $archiveProjectRoot = Join-Path $archiveSourceRoot 'Protocol5.UAI.CSharp'
+$archiveSpecRoot = Join-Path $archiveRoot 'spec'
+$archiveDocsRoot = Join-Path $archiveRoot 'docs'
+$archiveExamplesRoot = Join-Path $archiveRoot 'examples'
 
 if (Test-Path $tempRoot) {
     Remove-Item -LiteralPath $tempRoot -Recurse -Force
@@ -46,6 +52,9 @@ if (Test-Path $tempRoot) {
 Ensure-Directory -Path $packageOutputRoot
 Ensure-Directory -Path $archiveDownloadRoot
 Ensure-Directory -Path $archiveSourceRoot
+Ensure-Directory -Path $archiveSpecRoot
+Ensure-Directory -Path $archiveDocsRoot
+Ensure-Directory -Path $archiveExamplesRoot
 Ensure-Directory -Path $siteDownloadRoot
 
 dotnet pack $projectFile -c $Configuration -o $packageOutputRoot
@@ -59,6 +68,9 @@ if (-not $packageFile) {
 }
 
 Copy-Item -LiteralPath $projectRoot -Destination $archiveSourceRoot -Recurse -Force
+Copy-Item -LiteralPath $specRoot -Destination $archiveRoot -Recurse -Force
+Copy-Item -LiteralPath $docsRoot -Destination $archiveRoot -Recurse -Force
+Copy-Item -LiteralPath $examplesRoot -Destination $archiveRoot -Recurse -Force
 Remove-Item -LiteralPath (Join-Path $archiveProjectRoot 'bin') -Recurse -Force -ErrorAction SilentlyContinue
 Remove-Item -LiteralPath (Join-Path $archiveProjectRoot 'obj') -Recurse -Force -ErrorAction SilentlyContinue
 
@@ -75,6 +87,7 @@ Compress-Archive -Path (Join-Path $archiveRoot '*') -DestinationPath $zipPath -C
 
 $packageDestination = Join-Path $siteDownloadRoot $packageFile.Name
 Get-ChildItem -Path $siteDownloadRoot -Filter 'Protocol5.UAI.CSharp.*.nupkg' | Remove-Item -Force -ErrorAction SilentlyContinue
+Get-ChildItem -Path $siteDownloadRoot -Filter 'Protocol5.UAI.CSharp.*.nupkg.sha256' | Remove-Item -Force -ErrorAction SilentlyContinue
 Copy-Item -LiteralPath $packageFile.FullName -Destination $packageDestination -Force
 
 $zipHash = (Get-FileHash -Algorithm SHA256 -Path $zipPath).Hash.ToLowerInvariant()

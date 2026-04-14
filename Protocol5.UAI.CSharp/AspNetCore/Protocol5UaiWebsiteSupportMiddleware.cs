@@ -24,26 +24,56 @@ public sealed class Protocol5UaiWebsiteSupportMiddleware
     public async Task InvokeAsync(HttpContext context)
     {
         var languageTag = TryResolveLanguageTag(context);
-        if (languageTag is null)
+        var requestPreferences = UaiHttpNegotiation.FromHttpRequest(context.Request);
+        var wantsUaiJson = _options.CheckAcceptHeader && requestPreferences.WantsUaiJson;
+        var legacyHeaderVersion = _options.CheckLegacyHeader
+            ? requestPreferences.LegacyVersion
+            : null;
+
+        if (languageTag is null && !wantsUaiJson && legacyHeaderVersion is null)
         {
             await _next(context);
             return;
         }
 
-        context.Items[HttpContextItemKey] = languageTag;
+        context.Items[HttpContextItemKey] = new Protocol5UaiWebsiteRequestContext
+        {
+            HtmlLanguageTag = languageTag,
+            WantsUaiJson = wantsUaiJson,
+            LegacyHeaderVersion = legacyHeaderVersion
+        };
 
-        var websiteCulture = UaiCultureInfo.CreateWebsiteCulture();
         var previousCulture = CultureInfo.CurrentCulture;
         var previousUiCulture = CultureInfo.CurrentUICulture;
+        var cultureWasChanged = false;
 
-        CultureInfo.CurrentCulture = websiteCulture;
-        CultureInfo.CurrentUICulture = websiteCulture;
+        if (languageTag is not null)
+        {
+            var websiteCulture = UaiCultureInfo.CreateWebsiteCulture();
+            CultureInfo.CurrentCulture = websiteCulture;
+            CultureInfo.CurrentUICulture = websiteCulture;
+            cultureWasChanged = true;
+        }
 
-        if (_options.SetContentLanguageHeader)
+        if (_options.SetContentLanguageHeader || _options.SetVaryHeader || (_options.EmitLegacyHeader && (wantsUaiJson || legacyHeaderVersion is not null)))
         {
             context.Response.OnStarting(() =>
             {
-                context.Response.Headers["Content-Language"] = languageTag;
+                if (_options.SetContentLanguageHeader && languageTag is not null)
+                {
+                    context.Response.Headers["Content-Language"] = languageTag;
+                }
+
+                if (_options.SetVaryHeader)
+                {
+                    context.Response.Headers[UaiConstants.VaryHeader] = $"{UaiConstants.AcceptHeader}, {UaiConstants.LegacyHttpHeader}, Accept-Language";
+                }
+
+                if (_options.EmitLegacyHeader && (wantsUaiJson || legacyHeaderVersion is not null))
+                {
+                    context.Response.Headers[UaiConstants.LegacyHttpHeader] = UaiHttpNegotiation.BuildLegacyHeaderValue();
+                }
+
                 return Task.CompletedTask;
             });
         }
@@ -54,8 +84,11 @@ public sealed class Protocol5UaiWebsiteSupportMiddleware
         }
         finally
         {
-            CultureInfo.CurrentCulture = previousCulture;
-            CultureInfo.CurrentUICulture = previousUiCulture;
+            if (cultureWasChanged)
+            {
+                CultureInfo.CurrentCulture = previousCulture;
+                CultureInfo.CurrentUICulture = previousUiCulture;
+            }
         }
     }
 
@@ -95,7 +128,7 @@ public sealed class Protocol5UaiWebsiteSupportMiddleware
         if (_options.CheckAcceptLanguageHeader)
         {
             var acceptLanguage = context.Request.Headers.AcceptLanguage.ToString();
-            foreach (var candidate in acceptLanguage.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries))
+            foreach (var candidate in Guard.SplitAndTrim(acceptLanguage, ','))
             {
                 var normalized = UaiCultureInfo.NormalizeLanguageTag(candidate);
                 if (normalized is not null)
@@ -116,7 +149,7 @@ public sealed class Protocol5UaiWebsiteSupportMiddleware
         }
 
         var decodedValue = Uri.UnescapeDataString(cookieValue);
-        foreach (var segment in decodedValue.Split('|', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries))
+        foreach (var segment in Guard.SplitAndTrim(decodedValue, '|'))
         {
             var normalized = UaiCultureInfo.NormalizeLanguageTag(segment);
             if (normalized is not null)
