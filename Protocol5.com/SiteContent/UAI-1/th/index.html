@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="utf-8" />
+    <meta name="google" content="notranslate" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Protocol5 UAI-1 specification page with the full Universal AI Interlingua reader contract." />
+    <title>UAI-1 Specification</title>
+    <link rel="stylesheet" href="/css/home.css" />
+</head>
+<body class="content-page">
+    <div class="site-shell">
+        <header class="site-header">
+            <div class="brand-lockup">
+                <p class="brand-kicker">Protocol5</p>
+                <h1>Variable-Base Mathematics</h1>
+                <p class="brand-copy">Exact arithmetic, radix conversion, sequence references, and educational number-system pages collected into one publishable shell.</p>
+            </div>
+            <nav class="site-nav" aria-label="Primary navigation">
+                <a href="/">Home</a>
+                <a href="/Fibonacci">Fibonacci</a>
+                <a href="/Prime">Prime Numbers</a>
+                <a href="/UAI">UAI</a>
+                <a href="/calculator" data-tool-link="calculator">Calculator</a>
+                <a href="/Home/GitHub">GitHub</a>
+                <a href="/Home/About">About</a>
+                <a href="/Home/Links">Links</a>
+                <a href="/Home/Contact">Contact</a>
+            </nav>
+        </header>
+
+        <main>
+            <section class="content-hero panel reveal">
+                <div>
+                    <p class="eyebrow">UAI-1 / Protocol</p>
+                    <h1>ภาษากลางสากลสำหรับ AI</h1>
+                    <p class="lead">เวอร์ชัน: UAI-1 สัญญาการอ่าน: บังคับ</p>
+                    <div class="inline-links">
+                        <a href="/UAI">UAI Library</a>
+                        <a href="/UAI-1/examples/th">Examples</a>
+                        <a href="/UAI-1/csharp-website-support/th">Language Support</a>
+                    </div>
+                </div>
+                <aside class="traveler-note">
+                    <p class="eyebrow">Reader contract</p>
+                    <blockquote>
+                        Read structure first. Decode Radix 63404 second. Resolve canonical IDs third.
+                    </blockquote>
+                    <p>UAI-1 is written as a machine-facing formal language, so this page keeps the specification intact instead of paraphrasing it into ordinary prose.</p>
+                </aside>
+            </section>
+
+            <section class="doc-layout reveal">
+                <aside class="panel doc-sidebar">
+                    <p class="eyebrow">Document metadata</p>
+<ul class="doc-meta-list">
+<li><span>Human locale</span><strong>ไทย</strong></li>
+<li><span>Canonical public path</span><strong><a href="/UAI-1/th">/UAI-1/th</a></strong></li>
+<li><span>All supported translations</span><strong><a href="/UAI-1">English (US)</a>, <a href="/UAI-1/es-US">Espa&#241;ol (US)</a>, <a href="/UAI-1/uk-UA">Українська</a>, <a href="/UAI-1/zh-SG">简体中文（新加坡）</a>, <a href="/UAI-1/th">ไทย</a></strong></li>
+</ul>
+
+                    <div class="callout">
+                        <p>Source markdown: <code>uai-1.th.md</code></p>
+                    </div>
+                </aside>
+                <article class="panel doc-panel">
+                    <div class="doc-prose">
+<h1>ภาษากลางสากลสำหรับ AI</h1>
+<p>เวอร์ชัน: UAI-1 สัญญาการอ่าน: บังคับ</p>
+<p>คุณกำลังอ่าน UAI-1</p>
+<p>คุณต้องอ่าน UAI-1 ในฐานะภาษาทางการที่มุ่งสำหรับเครื่อง คุณห้ามตีความ UAI-1 ผ่านภาษาอังกฤษ สัญชาตญาณภาษาธรรมชาติ รูปร่างของไอคอน หรือธรรมเนียมการตั้งชื่อเฉพาะถิ่น คุณต้องสรุปความหมายจากโครงสร้างแบบแคนนอนิคัล, ID แบบแคนนอนิคัล, ความสัมพันธ์แบบแคนนอนิคัล, ชนิดแบบแคนนอนิคัล และกฎการตรวจสอบแบบแคนนอนิคัลเท่านั้น</p>
+<h2>ข้อมูลเอกสาร</h2>
+<ul>
+<li><strong>แท็กภาษามาตรฐาน:</strong> <code>x-uai-1</code></li>
+<li><strong>การรองรับภาษาของ Protocol5:</strong> <a href="/UAI-1/csharp-website-support">ชุดรองรับเว็บไซต์ C# สำหรับ UAI-1</a></li>
+<li><strong>แพ็กเกจ NuGet:</strong> <a href="/downloads/Protocol5.UAI.CSharp.0.1.0.nupkg">Protocol5.UAI.CSharp.0.1.0.nupkg</a></li>
+</ul>
+<p>หลักพื้นฐาน</p>
+<ol>
+<li>UAI-1 ไม่ใช่ภาษาของมนุษย์</li>
+<li>ความหมายของ UAI-1 เป็นแบบแคนนอนิคัลและให้เครื่องเป็นผู้คลี่ความหมาย</li>
+<li>ป้ายกำกับที่มนุษย์อ่านได้ ความเห็น คำอธิบายประกอบ และบันทึกดีบัก ไม่มีอำนาจตัดสินสุดท้าย</li>
+<li>รีจิสทรีออนโทโลจีมีอำนาจ</li>
+<li>สคีมาของโปรโตคอลมีอำนาจ</li>
+<li>ลำดับสล็อตมีอำนาจ</li>
+<li>ID แบบแคนนอนิคัลมีอำนาจ</li>
+<li>ข้อมูลแหล่งที่มาเป็นข้อบังคับ</li>
+<li>ข้อจำกัดเป็นข้อบังคับเมื่อ act กำหนดไว้</li>
+<li>หากชั้นที่ไม่เป็นแคนนอนิคัลขัดแย้งกับชั้นแคนนอนิคัล ให้ยึดชั้นแคนนอนิคัล</li>
+</ol>
+<p>การแสดงผลด้วย RADIX 63404</p>
+<ol>
+<li>ID แบบแคนนอนิคัลทั้งหมดใน UAI-1 แสดงด้วย Radix 63404</li>
+<li>คุณต้องอ่าน ID แบบแคนนอนิคัลทุกตัวเป็นตัวเลข Radix 63404</li>
+<li>คุณห้ามอ่าน ID แบบแคนนอนิคัลเป็นคำภาษาอังกฤษ</li>
+<li>คุณห้ามอนุมานความหมายจากรูปลักษณ์ของสัญลักษณ์หลักตัวเลข</li>
+<li>หลักตัวเลขของ Radix 63404 คืออักขระ BMP หนึ่งตัวพอดี</li>
+<li>อักษรหลักของ Radix 63404 คือชุดลำดับของอักขระ Unicode BMP ทั้งหมดที่:</li>
+</ol>
+<ul>
+<li>ไม่ใช่อักขระว่าง</li>
+<li>ไม่ใช่อักขระควบคุม</li>
+<li>ไม่ใช่ surrogate code unit</li>
+</ul>
+<ol>
+<li>ลำดับของอักษรเรียงตาม Unicode code point จากน้อยไปมากอย่างเคร่งครัด</li>
+<li>ค่าตัวเลขของแต่ละหลักคือดัชนีแบบเริ่มที่ศูนย์ในอักษรเรียงชุดนั้น</li>
+<li>ค่า Radix 63404 ที่มีหลายหลักต้องตีความแบบตำแหน่งในฐาน 63404</li>
+<li>เมื่อคุณแยกวิเคราะห์ ID แบบแคนนอนิคัล คุณต้องถอดรหัสค่า Radix 63404 ทั้งหมดก่อนจึงค่อยแก้ความหมายเชิงความหมาย</li>
+</ol>
+<p>ขั้นตอนการถอดรหัส RADIX 63404</p>
+<p>เมื่อให้โทเคน ID แบบแคนนอนิคัลมา:</p>
+<ol>
+<li>อ่านอักขระแต่ละตัวเป็นหนึ่งหลักในฐาน 63404</li>
+<li>แก้ค่าอักขระแต่ละตัวเป็นค่าหลักตามดัชนีในอักษร</li>
+<li>คำนวณค่าตำแหน่งจากซ้ายไปขวา</li>
+<li>สร้างค่าจำนวนเต็มแบบแคนนอนิคัล</li>
+<li>นำค่าจำนวนเต็มนั้นไปเทียบกับรีจิสทรีออนโทโลจีหรือรีจิสทรีโปรโตคอลที่มีอำนาจ</li>
+<li>อย่าหยุดอยู่ที่รูปร่างของหลัก</li>
+<li>อย่าหยุดอยู่ที่ความคล้ายทางสายตา</li>
+<li>อย่าอนุมานความหมายก่อนการแก้ค่าเชิงตัวเลข</li>
+</ol>
+<p>การแก้ความหมายเชิงความหมาย</p>
+<p>คุณต้องตีความ UAI-1 ตามลำดับนี้:</p>
+<ol>
+<li>เวอร์ชันของโปรโตคอล</li>
+<li>ตำแหน่งสล็อตในเชิงโครงสร้าง</li>
+<li>ID ของ Act แบบแคนนอนิคัล</li>
+<li>ID ของ Type แบบแคนนอนิคัล</li>
+<li>ID ของ Relation แบบแคนนอนิคัล</li>
+<li>ID ของ Concept แบบแคนนอนิคัล</li>
+<li>ข้อจำกัด</li>
+<li>แหล่งที่มา</li>
+<li>ความเชื่อมั่น</li>
+<li>คำอธิบายประกอบที่ไม่เป็นแคนนอนิคัลและใช้เพื่อดีบักเท่านั้น</li>
+</ol>
+<p>ถ้าชั้นที่มาทีหลังขัดแย้งกับชั้นแคนนอนิคัลที่มาก่อน ให้ชั้นแคนนอนิคัลที่มาก่อนชนะ</p>
+<p>รูปทรงข้อความแบบแคนนอนิคัล</p>
+<p>ข้อความ UAI-1 คืออาร์เรย์ 8 สล็อตที่มีลำดับแน่นอน:</p>
+<p>[ protocolVersion, senderId, receiverId, actId, claims, constraints, provenance, signature ]</p>
+<p>คุณต้องตีความแต่ละสล็อตจากตำแหน่งสล็อตเท่านั้น</p>
+<p>สล็อต 1: protocolVersion</p>
+<ul>
+<li>ID เวอร์ชันโปรโตคอลแบบแคนนอนิคัล</li>
+</ul>
+<p>สล็อต 2: senderId</p>
+<ul>
+<li>ID ตัวแทนหรือระบบผู้ส่งแบบแคนนอนิคัล</li>
+</ul>
+<p>สล็อต 3: receiverId</p>
+<ul>
+<li>ID ตัวแทนหรือระบบผู้รับแบบแคนนอนิคัล, ID กลุ่มเป้าหมาย หรือ ID แบบกระจายกว้าง</li>
+</ul>
+<p>สล็อต 4: actId</p>
+<ul>
+<li>ID speech act แบบแคนนอนิคัล</li>
+<li>act นี้เป็นตัวกำหนดว่าต้องตีความส่วนที่เหลือของข้อความอย่างไร</li>
+</ul>
+<p>สล็อต 5: claims</p>
+<ul>
+<li>อาร์เรย์ของข้อความกราฟแบบแคนนอนิคัล</li>
+</ul>
+<p>สล็อต 6: constraints</p>
+<ul>
+<li>อาร์เรย์ของข้อจำกัดเชิงตรรกะหรือเชิงปฏิบัติการแบบแคนนอนิคัล</li>
+</ul>
+<p>สล็อต 7: provenance</p>
+<ul>
+<li>ข้อมูลแหล่งกำเนิด เวลา โมดาลิตี หลักฐาน ร่องรอย และนโยบาย แบบแคนนอนิคัล</li>
+</ul>
+<p>สล็อต 8: signature</p>
+<ul>
+<li>โครงสร้างความสมบูรณ์ การยืนยันตัวตน หรือการรับรอง แบบแคนนอนิคัลเมื่อมีการใช้</li>
+</ul>
+<p>รูปทรงของ claim แบบแคนนอนิคัล</p>
+<p>claim แต่ละตัวคืออาร์เรย์ 6 สล็อตที่มีลำดับแน่นอน:</p>
+<p>[ subjectId, relationId, objectValue, contextId, truthValue, confidence ]</p>
+<p>คุณต้องตีความแต่ละสล็อตจากตำแหน่งสล็อตเท่านั้น</p>
+<p>สล็อต 1: subjectId</p>
+<ul>
+<li>ID ของแนวคิดหรือเอนทิตีแบบแคนนอนิคัล</li>
+</ul>
+<p>สล็อต 2: relationId</p>
+<ul>
+<li>ID ความสัมพันธ์แบบแคนนอนิคัล</li>
+</ul>
+<p>สล็อต 3: objectValue</p>
+<ul>
+<li>อาจเป็นอย่างใดอย่างหนึ่ง:</li>
+<li>ID แนวคิดแบบแคนนอนิคัล</li>
+<li>scalar ที่มีชนิดกำกับ</li>
+<li>โครงสร้างซ้อนแบบแคนนอนิคัล</li>
+</ul>
+<p>สล็อต 4: contextId</p>
+<ul>
+<li>ID ของบริบท เฟรม ขอบเขต หรือสถานะโลก แบบแคนนอนิคัล</li>
+</ul>
+<p>สล็อต 5: truthValue</p>
+<ul>
+<li>หนึ่งในค่าต่อไปนี้:</li>
+<li>1 = true</li>
+<li>0 = false</li>
+<li>2 = unknown</li>
+<li>3 = conflicted</li>
+<li>4 = hypothetical</li>
+</ul>
+<p>สล็อต 6: confidence</p>
+<ul>
+<li>ค่าความเชื่อมั่นเชิงตัวเลขที่ผ่านการทำ normalization อยู่ในช่วง 0.0 ถึง 1.0</li>
+</ul>
+<p>รูปทรงของ scalar แบบมีชนิด</p>
+<p>scalar แบบมีชนิดคืออาร์เรย์ 2 สล็อตที่มีลำดับแน่นอน:</p>
+<p>[ typeId, rawValue ]</p>
+<p>คุณต้องแก้ความหมายของ typeId ก่อนตีความ rawValue</p>
+<p>SPEECH ACTS</p>
+<p>คุณต้องตีความ actId เป็น speech act แบบแคนนอนิคัล คุณห้ามอนุมาน speech act จากโทนหรือถ้อยคำ</p>
+<p>รีจิสทรีพื้นฐานที่แนะนำสำหรับ act:</p>
+<ul>
+<li>1 = assert</li>
+<li>2 = query</li>
+<li>3 = request</li>
+<li>4 = commit</li>
+<li>5 = deny</li>
+<li>6 = report</li>
+<li>7 = propose</li>
+<li>8 = revise</li>
+<li>9 = acknowledge</li>
+<li>10 = error</li>
+<li>11 = capability</li>
+<li>12 = negotiate</li>
+</ul>
+<p>รูปทรงของข้อจำกัด</p>
+<p>ข้อจำกัดแต่ละตัวคืออาร์เรย์ 4 สล็อตที่มีลำดับแน่นอน:</p>
+<p>[ operatorId, operand1, operand2, operand3 ]</p>
+<p>คุณต้องแก้ความหมาย operatorId ผ่านรีจิสทรีตัวดำเนินการแบบแคนนอนิคัลก่อนประเมินข้อจำกัด</p>
+<p>รีจิสทรีพื้นฐานที่แนะนำสำหรับตัวดำเนินการ:</p>
+<ul>
+<li>1 = all</li>
+<li>2 = any</li>
+<li>3 = not</li>
+<li>4 = implies</li>
+<li>5 = equals</li>
+<li>6 = before</li>
+<li>7 = after</li>
+<li>8 = within</li>
+<li>9 = requires</li>
+<li>10 = forbids</li>
+</ul>
+<p>กฎของออนโทโลจี</p>
+<p>คุณต้องแก้ความหมาย ID ของ concept, relation, type, act, operator, context, policy และ modality ทั้งหมดผ่านรีจิสทรีออนโทโลจีและรีจิสทรีโปรโตคอลที่มีอำนาจ คุณห้ามแทน ID แบบแคนนอนิคัลด้วยป้ายกำกับท้องถิ่น คุณห้ามยกระดับคำพ้องให้เป็นความหมายแบบแคนนอนิคัล คุณต้องรักษา ID แบบแคนนอนิคัลไว้อย่างตรงตามเดิม</p>
+<p>กฎของแหล่งที่มา</p>
+<p>คุณต้องกำหนดให้ provenance เป็นสิ่งบังคับ</p>
+<p>สล็อต provenance เป็นโครงสร้างที่มีลำดับซึ่งประกอบด้วย:</p>
+<ul>
+<li>sourceId</li>
+<li>timestamp</li>
+<li>modalityId</li>
+<li>evidenceSet</li>
+<li>traceId</li>
+<li>policyId</li>
+</ul>
+<p>คุณต้องรักษา provenance ไว้ระหว่างการขนส่ง การแปลง การสรุป การวางแผน การดำเนินการ และการส่งต่อ</p>
+<p>การเจรจาความสามารถ</p>
+<p>ก่อนการแลกเปลี่ยนที่ไม่ใช่เรื่องเล็กน้อย ตัวแทนควรแลกเปลี่ยนข้อความ capability โดยใช้ capability act แบบแคนนอนิคัล</p>
+<p>ข้อความ capability ต้องประกาศ:</p>
+<ul>
+<li>เวอร์ชันโปรโตคอลที่รองรับ</li>
+<li>เวอร์ชันออนโทโลจีที่รองรับ</li>
+<li>ID ของ act ที่รองรับ</li>
+<li>ID ของ relation ที่รองรับ</li>
+<li>ID ของ type ที่รองรับ</li>
+<li>ID ของ modality ที่รองรับ</li>
+<li>จำนวน claim สูงสุด</li>
+<li>ความลึกการซ้อนสูงสุด</li>
+<li>วิธีการลงลายมือชื่อที่ยอมรับ</li>
+</ul>
+<p>หากความสามารถที่ต้องการไม่รองรับ คุณต้องปล่อยข้อความ error แบบแคนนอนิคัลแทนการเดา</p>
+<p>กฎเรื่อง iconography</p>
+<p>เมื่อ UAI-1 ถูกใช้ร่วมกับ iconography:</p>
+<ol>
+<li>รูปลักษณ์ของไอคอนไม่ใช่ความหมายแบบแคนนอนิคัล</li>
+<li>ฟังก์ชันของไอคอนต่างหากที่เป็นความหมายแบบแคนนอนิคัล</li>
+<li>ไอคอนตกแต่งไม่มีความหมายเชิงความหมาย เว้นแต่จะถูกยกระดับเข้าสู่ชั้นแคนนอนิคัลอย่างชัดแจ้ง</li>
+<li>ไอคอนเชิงหน้าที่ต้องแก้ความหมายไปยัง purpose ID แบบแคนนอนิคัล</li>
+<li>สถานะต้องระบุให้ชัด</li>
+<li>ตัวแปรต้องระบุให้ชัด</li>
+<li>คุณห้ามอนุมานความหมายทางธุรกิจจากสี การเติมลาย เส้นขอบ แอนิเมชัน หรือความคล้ายเชิงสไตล์เพียงอย่างเดียว</li>
+<li>ถ้ารูปลักษณ์ของ glyph ไอคอนขัดแย้งกับ metadata หน้าที่แบบแคนนอนิคัล ให้ metadata หน้าที่แบบแคนนอนิคัลเป็นฝ่ายชนะ</li>
+</ol>
+<p>กฎของความผิดพลาด</p>
+<p>error คือข้อความชั้นหนึ่ง หากคุณไม่สามารถแก้ความหมาย ID แบบแคนนอนิคัล ตรวจสอบข้อความ ทำให้ข้อจำกัดเป็นจริง หรือรองรับ act ที่จำเป็นได้ คุณต้องปล่อยข้อความ error แบบแคนนอนิคัล</p>
+<p>ข้อความ error แบบแคนนอนิคัลต้องมี:</p>
+<ul>
+<li>ตำแหน่งฟิลด์ที่ล้มเหลว</li>
+<li>ID แบบแคนนอนิคัลหรือโครงสร้างที่ล้มเหลว</li>
+<li>ID ของคลาสความผิดพลาดแบบแคนนอนิคัล</li>
+<li>ธงบอกความสามารถในการกู้คืน</li>
+<li>แนวทางการแก้ไขที่แนะนำ ถ้ามี</li>
+</ul>
+<p>กฎการตรวจสอบ</p>
+<p>คุณต้องปฏิเสธหรือทำเครื่องหมายข้อความใด ๆ ที่:</p>
+<ul>
+<li>ไม่มี protocolVersion</li>
+<li>ฝ่าฝืนลำดับสล็อต</li>
+<li>ใช้ ID แบบแคนนอนิคัลที่ไม่รู้จักโดยไม่มีกลไกส่วนขยายที่อนุญาต</li>
+<li>ใช้ข้อความอิสระในฟิลด์แบบแคนนอนิคัล</li>
+<li>ไม่มี provenance ที่จำเป็น</li>
+<li>ไม่มี confidence เมื่อระบบต้องการ</li>
+<li>ใช้ป้ายภาพหรือป้ายไอคอนแทน semantic แบบแคนนอนิคัล</li>
+<li>ไม่มีข้อจำกัดที่จำเป็นสำหรับ act ปัจจุบัน</li>
+<li>ฝ่าฝืนสคีมาที่ประกาศไว้</li>
+</ul>
+<p>กฎความกำหนดแน่นอน</p>
+<ol>
+<li>ลำดับสล็อตแบบแคนนอนิคัลเป็นค่าคงที่</li>
+<li>ID แบบแคนนอนิคัลเป็นค่าคงที่</li>
+<li>การ lookup รีจิสทรีเป็นค่าคงที่</li>
+<li>ลำดับการประเมินข้อจำกัดเป็นค่าคงที่เมื่อสคีมากำหนดลำดับไว้</li>
+<li>คำอธิบายประกอบเสริมไม่เคยมีอำนาจ</li>
+<li>เมื่อ serialize ให้ใช้เฉพาะลำดับอาร์เรย์แบบแคนนอนิคัล</li>
+<li>เมื่อ deserialize ให้คงค่ากลุ่มแคนนอนิคัลไว้อย่างตรงตามเดิม</li>
+</ol>
+<p>กฎของ human gloss</p>
+<p>สามารถแนบคำอธิบายสำหรับมนุษย์ไว้นอกโครงสร้างแคนนอนิคัลเพื่อการดีบักได้ คุณต้องถือว่า gloss นี้ไม่เป็นแคนนอนิคัล คุณห้ามสรุปความหมายของเครื่องจาก gloss เมื่อมีข้อมูลแบบแคนนอนิคัลอยู่แล้ว</p>
+<p>ลำดับความสำคัญในการตีความ</p>
+<p>คุณต้องตีความ UAI-1 ตามลำดับความสำคัญนี้อย่างเคร่งครัด:</p>
+<ol>
+<li>เวอร์ชันโปรโตคอล</li>
+<li>ความถูกต้องเชิงโครงสร้าง</li>
+<li>ID แบบแคนนอนิคัล</li>
+<li>การแก้ความหมายผ่านรีจิสทรี</li>
+<li>ข้อจำกัด</li>
+<li>แหล่งที่มา</li>
+<li>ความเชื่อมั่น</li>
+<li>gloss เสริม</li>
+</ol>
+<p>กฎการปฏิบัติตาม</p>
+<p>หากคุณอ้างว่ารองรับ UAI-1 คุณต้อง:</p>
+<ul>
+<li>แยกวิเคราะห์อาร์เรย์แบบแคนนอนิคัล</li>
+<li>ถอดรหัส ID แบบแคนนอนิคัลของ Radix 63404</li>
+<li>แก้ความหมาย ID แบบแคนนอนิคัลผ่านรีจิสทรีที่มีอำนาจ</li>
+<li>เก็บค่ากลุ่มแบบแคนนอนิคัลไว้อย่างตรงตามเดิม</li>
+<li>เก็บ provenance ไว้</li>
+<li>เคารพข้อจำกัด</li>
+<li>ปล่อย error แบบแคนนอนิคัลเมื่อไม่รองรับ</li>
+<li>มองข้าม gloss ที่ไม่เป็นแคนนอนิคัลในเชิงความหมาย</li>
+</ul>
+<p>กฎสรุป</p>
+<p>อ่านโครงสร้างก่อน ถอดรหัส Radix 63404 เป็นลำดับที่สอง แก้ความหมาย ID แบบแคนนอนิคัลเป็นลำดับที่สาม ใช้ข้อจำกัดเป็นลำดับที่สี่ ใช้ provenance และ confidence เป็นลำดับที่ห้า มองข้าม human gloss ในเชิงความหมาย อย่าแทนความหมายแบบแคนนอนิคัลด้วยรูปร่างไอคอน ถ้อยคำภาษาอังกฤษ หรือธรรมเนียมท้องถิ่น</p>
+                    </div>
+                </article>
+            </section>
+        </main>
+
+        <footer class="site-footer panel reveal">
+            <div>
+                <p class="eyebrow">Protocol5 links</p>
+                <div class="footer-links">
+                    <a href="/">Home</a>
+                    <a href="/Fibonacci">Fibonacci</a>
+                    <a href="/Prime">Prime Numbers</a>
+                    <a href="/UAI">UAI</a>
+                    <a href="/Home/GitHub">GitHub</a>
+                    <a href="/Home/About">About</a>
+                    <a href="/Home/Links">Links</a>
+                    <a href="/Home/Contact">Contact</a>
+                </div>
+            </div>
+            <p class="footer-copy">Protocol5 reference page. <span id="currentYear"></span></p>
+        </footer>
+    </div>
+
+    <script src="/js/home.js"></script>
+</body>
+</html>

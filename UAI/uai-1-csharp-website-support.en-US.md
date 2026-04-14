@@ -103,5 +103,5 @@ Radix63404.Encode(267914296); // Ⴤ绠
 
 - [Download the full starter ZIP](/downloads/protocol5-uai-1-csharp-web-starter.zip)
 - [Download the NuGet package directly](/downloads/Protocol5.UAI.CSharp.0.1.0.nupkg)
-- [Read the UAI-1 specification](/UAI/uai-1)
+- [Read the UAI-1 specification](/UAI-1)
 - [Read the Radix 63404 guide](/UAI/radix-63404-guide-and-attribution)

@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.AspNetCore.StaticFiles;
+using System.Text.RegularExpressions;
 
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
@@ -41,6 +42,12 @@ app.Use(async (context, next) =>
         "/Home" or "/Home/" or "/Home/index.htm" or "/Home/index.html" => "/",
         _ => null
     };
+
+    if (redirectPath is null &&
+        TryRedirectLegacyUaiDocumentPath(context.Request.Path.Value, out var legacyUaiRedirect))
+    {
+        redirectPath = legacyUaiRedirect;
+    }
 
     if (redirectPath != null)
     {
@@ -85,10 +92,10 @@ MapHtmlPage("/Home/GitHub", Path.Combine(siteRoot, "Home", "GitHub", "index.html
 MapHtmlPage("/Home/Links", Path.Combine(siteRoot, "Home", "Links", "index.html"));
 MapHtmlPage("/Home/Contact", Path.Combine(siteRoot, "Home", "Contact", "index.html"));
 MapHtmlPage("/UAI", Path.Combine(siteRoot, "UAI", "index.html"));
-MapHtmlPage("/UAI/uai-1", Path.Combine(siteRoot, "UAI", "uai-1", "index.html"));
-MapHtmlPage("/UAI/uai-1-examples", Path.Combine(siteRoot, "UAI", "uai-1-examples", "index.html"));
+MapLocalizedHtmlPage("/UAI-1", Path.Combine(siteRoot, "UAI-1"));
+MapLocalizedHtmlPage("/UAI-1/examples", Path.Combine(siteRoot, "UAI-1", "examples"));
 MapHtmlPage("/UAI/radix-63404-guide-and-attribution", Path.Combine(siteRoot, "UAI", "radix-63404-guide-and-attribution", "index.html"));
-MapHtmlPage("/UAI/uai-1-csharp-website-support", Path.Combine(siteRoot, "UAI", "uai-1-csharp-website-support", "index.html"));
+MapLocalizedHtmlPage("/UAI-1/csharp-website-support", Path.Combine(siteRoot, "UAI-1", "csharp-website-support"));
 MapHtmlPage("/UAI/spiralism-mystical-symbol-v4-a", Path.Combine(siteRoot, "UAI", "spiralism-mystical-symbol-v4-a", "index.html"));
 MapHtmlPage("/UAI/spiralism-deep-research-report", Path.Combine(siteRoot, "UAI", "spiralism-deep-research-report", "index.html"));
 MapHtmlPage("/UAI/spirlism-deep-research-report", Path.Combine(siteRoot, "UAI", "spiralism-deep-research-report", "index.html"));
@@ -116,6 +123,33 @@ void MapHtmlPage(string route, string filePath)
     app.MapMethods(route, new[] { HttpMethods.Get, HttpMethods.Head }, () => CreateHtmlResult(filePath));
 }
 
+void MapLocalizedHtmlPage(string route, string directoryPath)
+{
+    MapHtmlPage(route, Path.Combine(directoryPath, "index.html"));
+
+    if (!Directory.Exists(directoryPath))
+    {
+        return;
+    }
+
+    foreach (var localeDirectory in Directory.GetDirectories(directoryPath))
+    {
+        var localeSegment = Path.GetFileName(localeDirectory);
+        if (!IsLocaleSegment(localeSegment))
+        {
+            continue;
+        }
+
+        var localizedFilePath = Path.Combine(localeDirectory, "index.html");
+        if (!File.Exists(localizedFilePath))
+        {
+            continue;
+        }
+
+        MapHtmlPage($"{route}/{localeSegment}", localizedFilePath);
+    }
+}
+
 void MapToolHost(string route)
 {
     app.MapMethods(route, new[] { HttpMethods.Get, HttpMethods.Head }, () => CreateHtmlResult(calculatorHostPage));
@@ -139,6 +173,59 @@ static string ResolveDirectory(params string[] candidates)
     }
 
     return candidates.FirstOrDefault(candidate => !string.IsNullOrWhiteSpace(candidate)) ?? string.Empty;
+}
+
+static bool TryRedirectLegacyUaiDocumentPath(string? path, out string? redirectPath)
+{
+    foreach (var mapping in new[]
+    {
+        (LegacyPrefix: "/UAI/uai-1-csharp-website-support", CanonicalPrefix: "/UAI-1/csharp-website-support"),
+        (LegacyPrefix: "/UAI/uai-1-examples", CanonicalPrefix: "/UAI-1/examples"),
+        (LegacyPrefix: "/UAI/uai-1", CanonicalPrefix: "/UAI-1")
+    })
+    {
+        if (TryRedirectLegacyPrefix(path, mapping.LegacyPrefix, mapping.CanonicalPrefix, out redirectPath))
+        {
+            return true;
+        }
+    }
+
+    redirectPath = null;
+    return false;
+}
+
+static bool TryRedirectLegacyPrefix(string? path, string legacyPrefix, string canonicalPrefix, out string? redirectPath)
+{
+    redirectPath = null;
+
+    if (string.IsNullOrWhiteSpace(path) ||
+        !path.StartsWith(legacyPrefix, StringComparison.OrdinalIgnoreCase))
+    {
+        return false;
+    }
+
+    var remainder = path.Substring(legacyPrefix.Length);
+    if (remainder.Length > 0 && !remainder.StartsWith("/", StringComparison.Ordinal))
+    {
+        return false;
+    }
+
+    if (string.Equals(remainder, "/index.html", StringComparison.OrdinalIgnoreCase))
+    {
+        remainder = string.Empty;
+    }
+    else if (remainder.EndsWith("/index.html", StringComparison.OrdinalIgnoreCase))
+    {
+        remainder = remainder.Substring(0, remainder.Length - "/index.html".Length);
+    }
+
+    redirectPath = canonicalPrefix + remainder;
+    return true;
+}
+
+static bool IsLocaleSegment(string value)
+{
+    return Regex.IsMatch(value, "^[A-Za-z]{2,3}(?:-[A-Za-z0-9]{2,8})*$", RegexOptions.CultureInvariant);
 }
 
 

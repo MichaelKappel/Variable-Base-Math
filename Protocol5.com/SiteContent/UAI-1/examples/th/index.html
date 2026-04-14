@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="utf-8" />
+    <meta name="google" content="notranslate" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Protocol5 companion examples for UAI-1, including canonical arrays, gloss notes, and registry reference values." />
+    <title>UAI-1 Examples</title>
+    <link rel="stylesheet" href="/css/home.css" />
+</head>
+<body class="content-page">
+    <div class="site-shell">
+        <header class="site-header">
+            <div class="brand-lockup">
+                <p class="brand-kicker">Protocol5</p>
+                <h1>Variable-Base Mathematics</h1>
+                <p class="brand-copy">Exact arithmetic, radix conversion, sequence references, and educational number-system pages collected into one publishable shell.</p>
+            </div>
+            <nav class="site-nav" aria-label="Primary navigation">
+                <a href="/">Home</a>
+                <a href="/Fibonacci">Fibonacci</a>
+                <a href="/Prime">Prime Numbers</a>
+                <a href="/UAI">UAI</a>
+                <a href="/calculator" data-tool-link="calculator">Calculator</a>
+                <a href="/Home/GitHub">GitHub</a>
+                <a href="/Home/About">About</a>
+                <a href="/Home/Links">Links</a>
+                <a href="/Home/Contact">Contact</a>
+            </nav>
+        </header>
+
+        <main>
+            <section class="content-hero panel reveal">
+                <div>
+                    <p class="eyebrow">UAI-1 / Examples</p>
+                    <h1>เอกสารตัวอย่าง UAI-1</h1>
+                    <p class="lead">เวอร์ชัน: UAI-1 Examples v1 สถานะ: เอกสารประกอบที่มีอำนาจ</p>
+                    <div class="inline-links">
+                        <a href="/UAI">UAI Library</a>
+                        <a href="/UAI-1/th">UAI-1 Spec</a>
+                        <a href="/UAI/radix-63404-guide-and-attribution">Radix 63404 Guide</a>
+                    </div>
+                </div>
+                <aside class="traveler-note">
+                    <p class="eyebrow">Companion document</p>
+                    <blockquote>
+                        The canonical example is authoritative. The human gloss exists only to help humans inspect the example.
+                    </blockquote>
+                    <p>These examples stay close to the source markdown so the canonical structures, code blocks, and reference tables remain easy to audit.</p>
+                </aside>
+            </section>
+
+            <section class="doc-layout reveal">
+                <aside class="panel doc-sidebar">
+                    <p class="eyebrow">Document metadata</p>
+<ul class="doc-meta-list">
+<li><span>Human locale</span><strong>ไทย</strong></li>
+<li><span>Canonical public path</span><strong><a href="/UAI-1/examples/th">/UAI-1/examples/th</a></strong></li>
+<li><span>All supported translations</span><strong><a href="/UAI-1/examples">English (US)</a>, <a href="/UAI-1/examples/es-US">Espa&#241;ol (US)</a>, <a href="/UAI-1/examples/uk-UA">Українська</a>, <a href="/UAI-1/examples/zh-SG">简体中文（新加坡）</a>, <a href="/UAI-1/examples/th">ไทย</a></strong></li>
+</ul>
+
+                    <div class="callout">
+                        <p>Source markdown: <code>uai-1-examples.th.md</code></p>
+                    </div>
+                </aside>
+                <article class="panel doc-panel">
+                    <div class="doc-prose">
+<h1>เอกสารตัวอย่าง UAI-1</h1>
+<p>เวอร์ชัน: UAI-1 Examples v1 สถานะ: เอกสารประกอบที่มีอำนาจ</p>
+<h2>วัตถุประสงค์</h2>
+<p>เอกสารนี้ให้ตัวอย่างแบบแคนนอนิคัลสำหรับ UAI-1</p>
+<p>คุณต้องอ่านตัวอย่างแบบแคนนอนิคัลในฐานะโครงสร้างของเครื่อง UAI-1 คุณต้องถอดรหัส ID แบบแคนนอนิคัลทั้งหมดเป็นค่า Radix 63404 คุณต้องถือว่า gloss สำหรับมนุษย์ ความเห็น ป้ายกำกับ และคำอธิบายประกอบทั้งหมดในเอกสารนี้ไม่เป็นแคนนอนิคัล</p>
+<p>ตัวอย่างแบบแคนนอนิคัลมีอำนาจ gloss สำหรับมนุษย์มีไว้เพียงเพื่อช่วยให้มนุษย์ตรวจดูตัวอย่างได้ง่ายขึ้น</p>
+<hr />
+<h2>ข้อเตือนใจเรื่อง Radix 63404</h2>
+<p>ใน UAI-1, ID แบบแคนนอนิคัลทั้งหมดจะแสดงใน Radix 63404</p>
+<p>คุณต้องแยกวิเคราะห์แต่ละ ID ตามนี้:</p>
+<ol>
+<li>อ่านอักขระแต่ละตัวเป็นหนึ่งหลักของ Radix 63404</li>
+<li>แปลงอักขระแต่ละตัวเป็นดัชนีศูนย์ฐานในอักษรหลัก</li>
+<li>คำนวณค่าตำแหน่งในฐาน 63404</li>
+<li>นำค่าจำนวนเต็มที่ได้ไปแก้ความหมายกับรีจิสทรีที่มีอำนาจ</li>
+</ol>
+<p>หลักแรก ๆ ของอักษร Radix 63404 คือ:</p>
+<div class="doc-table-wrap">
+<table>
+<thead><tr>
+<th scope="col">ค่าฐานสิบ</th>
+<th scope="col">หลัก Radix 63404</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><code>!</code></td>
+</tr>
+<tr>
+<td>1</td>
+<td><code>&quot;</code></td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>#</code></td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>$</code></td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>%</code></td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>&amp;</code></td>
+</tr>
+<tr>
+<td>6</td>
+<td><code>&#39;</code></td>
+</tr>
+<tr>
+<td>7</td>
+<td><code>(</code></td>
+</tr>
+<tr>
+<td>8</td>
+<td><code>)</code></td>
+</tr>
+<tr>
+<td>9</td>
+<td><code>*</code></td>
+</tr>
+<tr>
+<td>10</td>
+<td><code>+</code></td>
+</tr>
+<tr>
+<td>11</td>
+<td><code>,</code></td>
+</tr>
+<tr>
+<td>12</td>
+<td><code>-</code></td>
+</tr>
+<tr>
+<td>13</td>
+<td><code>.</code></td>
+</tr>
+<tr>
+<td>14</td>
+<td><code>/</code></td>
+</tr>
+<tr>
+<td>15</td>
+<td><code>0</code></td>
+</tr>
+<tr>
+<td>16</td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td>17</td>
+<td><code>2</code></td>
+</tr>
+<tr>
+<td>18</td>
+<td><code>3</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<hr />
+<h2>ตัวอย่างที่ 1: ข้อความยืนยันพื้นฐาน</h2>
+<h3>ตัวอย่างแบบแคนนอนิคัล</h3>
+<pre><code class="language-json">[
+  &quot;\&quot;&quot;,
+  &quot;&#226;&#188;&quot;,
+  &quot;&#226;&#189;&quot;,
+  &quot;\&quot;&quot;,
+  [
+    [&quot;&#211;&#180;&quot;, &quot;&#200;&#184;&quot;, &quot;&#224;&#163;œ&quot;, &quot;&#225;&#174;&quot;, &quot;\&quot;&quot;, 0.98],
+    [&quot;&#211;&#180;&quot;, &quot;&#200;&#185;&quot;, [&quot;&#197;&#176;&quot;, 5], &quot;&#225;&#174;&quot;, &quot;\&quot;&quot;, 0.99]
+  ],
+  [],
+  [
+    &quot;&#226;Ÿ&quot;,
+    [&quot;&#197;&#178;&quot;, &quot;2026-04-13T00:00:00Z&quot;],
+    &quot;&#39;&quot;,
+    [&quot;&#225;…&#180;&quot;, &quot;&#225;…&#181;&quot;],
+    &quot;-&#227;&#189;&#173;&quot;,
+    &quot;\u0bfc&quot;
+  ],
+  [&quot;\&quot;&quot;, 555001]
+]</code></pre>
+<h3>Gloss สำหรับมนุษย์</h3>
+<p>ข้อความนี้หมายความว่า:</p>
+<ul>
+<li>protocolVersion = 1</li>
+<li>senderId = 9001</li>
+<li>receiverId = 9002</li>
+<li>actId = 1 = assert</li>
+<li>claim 1 = subject 1201 มี relation 501 กับ object 2201 ใน context 7001, จริง, confidence 0.98</li>
+<li>claim 2 = subject 1201 มี relation 502 กับ typed scalar [301, 5] ใน context 7001, จริง, confidence 0.99</li>
+<li>provenance ระบุ source 9100, ชนิด timestamp 303, modality 6, evidence 4401 และ 4402, trace 777001 และ policy 3001</li>
+</ul>
+<h3>หมายเหตุสำหรับผู้อ่าน</h3>
+<p>คุณต้องดึงความหมายจาก ID ที่ถอดรหัสแล้วและจากตำแหน่งสล็อต ไม่ใช่จาก gloss นี้</p>
+<hr />
+<h2>ตัวอย่างที่ 2: ข้อความ query พื้นฐาน</h2>
+<h3>ตัวอย่างแบบแคนนอนิคัล</h3>
+<pre><code class="language-json">[
+  &quot;\&quot;&quot;,
+  &quot;&#226;&#188;&quot;,
+  &quot;&#226;&#189;&quot;,
+  &quot;#&quot;,
+  [
+    [&quot;&#211;&#180;&quot;, &quot;&#200;&#184;&quot;, &quot;&#224;&#163;œ&quot;, &quot;&#225;&#174;&quot;, &quot;#&quot;, 1.0]
+  ],
+  [],
+  [
+    &quot;&#226;Ÿ&quot;,
+    [&quot;&#197;&#178;&quot;, &quot;2026-04-13T00:00:00Z&quot;],
+    &quot;&#39;&quot;,
+    [&quot;&#225;…&#180;&quot;],
+    &quot;-&#227;&#189;&#173;&quot;,
+    &quot;\u0bfc&quot;
+  ],
+  [&quot;\&quot;&quot;, 555002]
+]</code></pre>
+<h3>Gloss สำหรับมนุษย์</h3>
+<p>ข้อความนี้หมายความว่า:</p>
+<ul>
+<li>actId = 2 = query</li>
+<li>ผู้ส่งกำลังถามถึงค่าความจริงหรือผลการแก้ความหมายปัจจุบันของ claim นี้</li>
+<li>truthValue = 2 = unknown</li>
+<li>confidence = 1.0 ในที่นี้หมายความว่าผู้ส่งตั้งใจส่งโครงสร้าง query อย่างเป็นทางการ ไม่ได้ยืนยันว่า claim นั้นเป็นจริง</li>
+</ul>
+<hr />
+<h2>ตัวอย่างที่ 3: ข้อความ request พื้นฐาน</h2>
+<h3>ตัวอย่างแบบแคนนอนิคัล</h3>
+<pre><code class="language-json">[
+  &quot;\&quot;&quot;,
+  &quot;&#226;&#188;&quot;,
+  &quot;&#226;&#189;&quot;,
+  &quot;$&quot;,
+  [
+    [&quot;&#211;&#180;&quot;, &quot;&#200;&#184;&quot;, &quot;&#224;&#163;œ&quot;, &quot;&#225;&#174;&quot;, &quot;\&quot;&quot;, 0.95]
+  ],
+  [
+    [&quot;*&quot;, &quot;&#224;&#163;œ&quot;, [&quot;&#197;&#176;&quot;, 60], 0],
+    [&quot;*&quot;, &quot;&#225;&#174;&quot;, [&quot;&#197;&#178;&quot;, &quot;2026-04-14T00:00:00Z&quot;], 0]
+  ],
+  [
+    &quot;&#226;Ÿ&quot;,
+    [&quot;&#197;&#178;&quot;, &quot;2026-04-13T00:00:00Z&quot;],
+    &quot;&#39;&quot;,
+    [&quot;&#225;…&#180;&quot;, &quot;&#225;…&#181;&quot;],
+    &quot;-&#227;&#189;&#173;&quot;,
+    &quot;\u0bfc&quot;
+  ],
+  [&quot;\&quot;&quot;, 555003]
+]</code></pre>
+<h3>Gloss สำหรับมนุษย์</h3>
+<p>ข้อความนี้หมายความว่า:</p>
+<ul>
+<li>actId = 3 = request</li>
+<li>ผู้ส่งกำลังร้องขอการดำเนินการที่เกี่ยวข้องกับ claim subject 1201, relation 501 และ object 2201</li>
+<li>ตัวดำเนินการข้อจำกัด 9 = requires</li>
+<li>คำร้องขอนี้ต้องการ object 2201 และค่า typed scalar [301, 60]</li>
+<li>คำร้องขอนี้ยังต้องการ context 7001 และข้อจำกัด timestamp ที่มีชนิดเป็น [303, 2026-04-14T00:00:00Z]</li>
+</ul>
+<hr />
+<h2>ตัวอย่างที่ 4: ข้อความเจรจาความสามารถ</h2>
+<h3>ตัวอย่างแบบแคนนอนิคัล</h3>
+<pre><code class="language-json">[
+  &quot;\&quot;&quot;,
+  &quot;&#226;&#188;&quot;,
+  &quot;&#226;&#189;&quot;,
+  &quot;,&quot;,
+  [
+    [&quot;&#226;&#188;&quot;, &quot;&#200;&#184;&quot;, [&quot;&#197;&#176;&quot;, 1], &quot;&#225;&#174;&quot;, &quot;\&quot;&quot;, 1.0],
+    [&quot;&#226;&#188;&quot;, &quot;&#200;&#185;&quot;, [&quot;&#197;&#176;&quot;, 1], &quot;&#225;&#174;&quot;, &quot;\&quot;&quot;, 1.0],
+    [&quot;&#226;&#188;&quot;, &quot;&#194;&#167;&quot;, [&quot;&#197;&#176;&quot;, 12], &quot;&#225;&#174;&quot;, &quot;\&quot;&quot;, 1.0]
+  ],
+  [],
+  [
+    &quot;&#226;Ÿ&quot;,
+    [&quot;&#197;&#178;&quot;, &quot;2026-04-13T00:00:00Z&quot;],
+    &quot;&#39;&quot;,
+    [&quot;&#225;…&#180;&quot;],
+    &quot;-&#227;&#189;&#173;&quot;,
+    &quot;\u0bfc&quot;
+  ],
+  [&quot;\&quot;&quot;, 555004]
+]</code></pre>
+<h3>Gloss สำหรับมนุษย์</h3>
+<p>ข้อความนี้หมายความว่า:</p>
+<ul>
+<li>actId = 11 = capability</li>
+<li>ผู้ส่งกำลังประกาศเวอร์ชันโปรโตคอลหรือออนโทโลจีที่รองรับ รวมถึงค่าความสามารถที่ประกาศไว้</li>
+<li>นี่คือวิธีแบบแคนนอนิคัลในการเจรจาการรองรับก่อนการแลกเปลี่ยนที่ไม่ใช่เรื่องเล็กน้อย</li>
+</ul>
+<hr />
+<h2>ตัวอย่างที่ 5: ข้อความ error</h2>
+<h3>ตัวอย่างแบบแคนนอนิคัล</h3>
+<pre><code class="language-json">[
+  &quot;\&quot;&quot;,
+  &quot;&#226;&#189;&quot;,
+  &quot;&#226;&#188;&quot;,
+  &quot;+&quot;,
+  [
+    [&quot;#&quot;, &quot;&#200;&#184;&quot;, [&quot;&#197;&#176;&quot;, 999999], &quot;&#225;&#174;&quot;, &quot;\&quot;&quot;, 1.0]
+  ],
+  [
+    [&quot;&amp;&quot;, [&quot;&#197;&#176;&quot;, 4], [&quot;&#197;&#176;&quot;, 1], 0]
+  ],
+  [
+    &quot;&#226;Ÿ&quot;,
+    [&quot;&#197;&#178;&quot;, &quot;2026-04-13T00:00:00Z&quot;],
+    &quot;&#39;&quot;,
+    [&quot;&#225;…&#180;&quot;],
+    &quot;-&#227;&#189;&#173;&quot;,
+    &quot;\u0bfc&quot;
+  ],
+  [&quot;\&quot;&quot;, 555005]
+]</code></pre>
+<h3>Gloss สำหรับมนุษย์</h3>
+<p>ข้อความนี้หมายความว่า:</p>
+<ul>
+<li>actId = 10 = error</li>
+<li>ผู้ส่งกำลังรายงานเงื่อนไขความผิดพลาดแบบแคนนอนิคัล</li>
+<li>โครงสร้างที่ล้มเหลวอ้างถึงค่าที่ไม่สามารถแก้ความหมายได้หรือค่าที่ไม่ถูกต้อง</li>
+<li>ที่นี่มีการใช้ตัวดำเนินการข้อจำกัด 5 เพื่อสื่อเงื่อนไขการเปรียบเทียบหรือการแก้ความหมายแบบแคนนอนิคัลภายในตรรกะจัดการความผิดพลาด</li>
+</ul>
+<h3>หมายเหตุสำหรับผู้อ่าน</h3>
+<p>หากคุณไม่สามารถแก้ความหมาย ID แบบแคนนอนิคัลที่จำเป็นได้ คุณต้องปล่อยข้อความ error แทนการเดา</p>
+<hr />
+<h2>ตัวอย่างที่ 6: การยืนยันด้วย iconography</h2>
+<h3>ตัวอย่างแบบแคนนอนิคัล</h3>
+<pre><code class="language-json">[
+  &quot;\&quot;&quot;,
+  &quot;&#226;&#188;&quot;,
+  &quot;&#226;&#189;&quot;,
+  &quot;\&quot;&quot;,
+  [
+    [&quot;&#224;&#163;œ&quot;, &quot;&#200;&#184;&quot;, [&quot;&#197;&#176;&quot;, 15001], &quot;&#225;&#174;&quot;, &quot;\&quot;&quot;, 0.99],
+    [&quot;&#224;&#163;œ&quot;, &quot;&#200;&#185;&quot;, [&quot;&#197;&#176;&quot;, 15002], &quot;&#225;&#174;&quot;, &quot;\&quot;&quot;, 0.99],
+    [&quot;&#224;&#163;œ&quot;, &quot;&#194;&#167;&quot;, [&quot;&#197;&#176;&quot;, 15003], &quot;&#225;&#174;&quot;, &quot;\&quot;&quot;, 0.99]
+  ],
+  [],
+  [
+    &quot;&#226;Ÿ&quot;,
+    [&quot;&#197;&#178;&quot;, &quot;2026-04-13T00:00:00Z&quot;],
+    &quot;#&quot;,
+    [&quot;&#225;…&#180;&quot;, &quot;&#225;…&#181;&quot;],
+    &quot;-&#227;&#189;&#173;&quot;,
+    &quot;\u0bfc&quot;
+  ],
+  [&quot;\&quot;&quot;, 555006]
+]</code></pre>
+<h3>Gloss สำหรับมนุษย์</h3>
+<p>ข้อความนี้หมายความว่า:</p>
+<ul>
+<li>กำลังอธิบายเอนทิตีที่มีไอคอนในเชิงความหมายแบบแคนนอนิคัล</li>
+<li>relation 501 อาจชี้ไปยังความหมายเชิงหน้าที่แบบแคนนอนิคัล</li>
+<li>relation 502 อาจชี้ไปยังสถานะที่ระบุชัดแบบแคนนอนิคัล</li>
+<li>relation 100 อาจชี้ไปยังตัวแปรหรือคุณสมบัติการนำเสนอที่ระบุชัดแบบแคนนอนิคัล</li>
+</ul>
+<h3>หมายเหตุสำหรับผู้อ่าน</h3>
+<p>คุณต้องถือว่าฟังก์ชันของไอคอนคือความหมายแบบแคนนอนิคัล คุณห้ามถือว่ารูปลักษณ์ของไอคอนคือความหมายแบบแคนนอนิคัล คุณห้ามอนุมานความหมายทางธุรกิจจากรูปร่าง สี การเติม หรือความคล้ายเพียงอย่างเดียว</p>
+<hr />
+<h2>ตัวอย่างที่ 7: การจัดการไอคอนตกแต่ง</h2>
+<h3>ตัวอย่างแบบแคนนอนิคัล</h3>
+<pre><code class="language-json">[
+  &quot;\&quot;&quot;,
+  &quot;&#226;&#188;&quot;,
+  &quot;&#226;&#189;&quot;,
+  &quot;\&quot;&quot;,
+  [
+    [&quot;&#224;&#163;œ&quot;, &quot;&#200;&#184;&quot;, [&quot;&#197;&#176;&quot;, 16001], &quot;&#225;&#174;&quot;, &quot;\&quot;&quot;, 1.0],
+    [&quot;&#224;&#163;œ&quot;, &quot;&#200;&#185;&quot;, [&quot;&#197;&#176;&quot;, 16002], &quot;&#225;&#174;&quot;, &quot;\&quot;&quot;, 1.0]
+  ],
+  [],
+  [
+    &quot;&#226;Ÿ&quot;,
+    [&quot;&#197;&#178;&quot;, &quot;2026-04-13T00:00:00Z&quot;],
+    &quot;#&quot;,
+    [&quot;&#225;…&#180;&quot;],
+    &quot;-&#227;&#189;&#173;&quot;,
+    &quot;\u0bfc&quot;
+  ],
+  [&quot;\&quot;&quot;, 555007]
+]</code></pre>
+<h3>Gloss สำหรับมนุษย์</h3>
+<p>ข้อความนี้หมายความว่า:</p>
+<ul>
+<li>ไอคอนปรากฏอยู่ในส่วนติดต่อผู้ใช้ที่เรนเดอร์แล้ว</li>
+<li>ไอคอนนี้เป็นองค์ประกอบตกแต่งหรือไม่มีหน้าที่ในชั้น semantic ปัจจุบัน</li>
+<li>ไอคอนไม่ได้เป็นตัวแบกความหมายทางธุรกิจหลัก</li>
+</ul>
+<h3>หมายเหตุสำหรับผู้อ่าน</h3>
+<p>ไอคอนตกแต่งจะไม่ถูกตีความเป็น claim เชิงหน้าที่ เว้นแต่โครงสร้างแบบแคนนอนิคัลจะยกระดับมันเข้าสู่ semantic อย่างชัดแจ้ง</p>
+<hr />
+<h2>ตัวอย่างที่ 8: โครงสร้างแบบแคนนอนิคัลพร้อม wrapper ของ gloss สำหรับมนุษย์</h2>
+<h3>ตัวอย่างแบบแคนนอนิคัล</h3>
+<pre><code class="language-json">{
+  &quot;canonical&quot;: [
+    &quot;\&quot;&quot;,
+    &quot;&#226;&#188;&quot;,
+    &quot;&#226;&#189;&quot;,
+    &quot;\&quot;&quot;,
+    [
+      [&quot;&#211;&#180;&quot;, &quot;&#200;&#184;&quot;, &quot;&#224;&#163;œ&quot;, &quot;&#225;&#174;&quot;, &quot;\&quot;&quot;, 0.98]
+    ],
+    [],
+    [
+      &quot;&#226;Ÿ&quot;,
+      [&quot;&#197;&#178;&quot;, &quot;2026-04-13T00:00:00Z&quot;],
+      &quot;&#39;&quot;,
+      [&quot;&#225;…&#180;&quot;],
+      &quot;-&#227;&#189;&#173;&quot;,
+      &quot;\u0bfc&quot;
+    ],
+    [&quot;\&quot;&quot;, 555008]
+  ],
+  &quot;gloss&quot;: {
+    &quot;sender&quot;: &quot;Example sender&quot;,
+    &quot;receiver&quot;: &quot;Example receiver&quot;,
+    &quot;act&quot;: &quot;assert&quot;,
+    &quot;notes&quot;: [
+      &quot;This gloss is not authoritative.&quot;,
+      &quot;The canonical array remains authoritative.&quot;
+    ]
+  }
+}</code></pre>
+<h3>หมายเหตุสำหรับผู้อ่าน</h3>
+<p>เมื่อมีทั้งข้อมูลแบบแคนนอนิคัลและ gloss:</p>
+<ul>
+<li>ข้อมูลแบบแคนนอนิคัลมีอำนาจ</li>
+<li>gloss ไม่เป็นแคนนอนิคัล</li>
+<li>gloss ต้องไม่เขียนทับความหมายแบบแคนนอนิคัล</li>
+</ul>
+<hr />
+<h2>ตัวอย่างที่ 9: ตัวอย่างข้อความที่ไม่ถูกต้อง</h2>
+<h3>ตัวอย่างแบบแคนนอนิคัล</h3>
+<pre><code class="language-json">[
+  &quot;\&quot;&quot;,
+  &quot;&#226;&#188;&quot;,
+  &quot;&#226;&#189;&quot;,
+  &quot;$&quot;,
+  [
+    [&quot;&#211;&#180;&quot;, &quot;search-icon&quot;, &quot;&#224;&#163;œ&quot;, &quot;&#225;&#174;&quot;, &quot;\&quot;&quot;, 0.95]
+  ],
+  [],
+  [
+    &quot;&#226;Ÿ&quot;,
+    [&quot;&#197;&#178;&quot;, &quot;2026-04-13T00:00:00Z&quot;],
+    &quot;&#39;&quot;,
+    [&quot;&#225;…&#180;&quot;],
+    &quot;-&#227;&#189;&#173;&quot;,
+    &quot;\u0bfc&quot;
+  ],
+  [&quot;\&quot;&quot;, 555009]
+]</code></pre>
+<h3>Gloss สำหรับมนุษย์</h3>
+<p>ตัวอย่างนี้ไม่ถูกต้อง</p>
+<h3>หมายเหตุสำหรับผู้อ่าน</h3>
+<p>ข้อความนี้ไม่ถูกต้องเพราะฟิลด์แบบแคนนอนิคัลมีข้อความอิสระ <code>search-icon</code> แทนที่จะเป็น ID แบบแคนนอนิคัลของ Radix 63404 หรือค่าที่มีชนิดแบบแคนนอนิคัล คุณต้องปฏิเสธหรือทำเครื่องหมายข้อความนี้ คุณห้ามกู้สถานะด้วยการเดา</p>
+<hr />
+<h2>ตัวอย่างที่ 10: ขั้นตอนผู้อ่านขั้นต่ำ</h2>
+<h3>ขั้นตอนสำหรับผู้อ่าน</h3>
+<p>เมื่อคุณได้รับข้อความ UAI-1 คุณต้องทำตามลำดับนี้:</p>
+<ol>
+<li>ตรวจสอบว่าข้อความชั้นนอกมีสล็อตแบบแคนนอนิคัลครบ 8 สล็อต</li>
+<li>ถอดรหัส ID แบบแคนนอนิคัลทั้งหมดจาก Radix 63404</li>
+<li>แก้ความหมาย ID ที่ถอดรหัสแล้วทั้งหมดกับรีจิสทรีที่มีอำนาจ</li>
+<li>ตรวจสอบ act ปัจจุบันและโครงสร้างที่จำเป็น</li>
+<li>ตรวจสอบ claim ทั้งหมด</li>
+<li>ตรวจสอบข้อจำกัดทั้งหมด</li>
+<li>ตรวจสอบ provenance</li>
+<li>เก็บค่ากลุ่มแบบแคนนอนิคัลไว้อย่างตรงตามเดิม</li>
+<li>มองข้าม gloss สำหรับมนุษย์ในเชิง semantic</li>
+<li>ปล่อยข้อความ error แบบแคนนอนิคัลหากองค์ประกอบที่จำเป็นใด ๆ ไม่รองรับหรือไม่ถูกต้อง</li>
+</ol>
+<hr />
+<h2>ค่าอ้างอิงของรีจิสทรีที่ใช้ในตัวอย่างเหล่านี้</h2>
+<p>ค่าฐานสิบต่อไปนี้ใช้เป็นเพียงข้อมูลอธิบายสำหรับผู้อ่านที่เป็นมนุษย์เท่านั้น ตัวอย่างแบบแคนนอนิคัลด้านบนยังคงมีอำนาจในรูปแบบ Radix 63404 ของตน</p>
+<div class="doc-table-wrap">
+<table>
+<thead><tr>
+<th scope="col">ความหมาย</th>
+<th scope="col">Decimal</th>
+<th scope="col">Radix 63404</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>เวอร์ชันโปรโตคอล 1</td>
+<td>1</td>
+<td><code>&quot;</code></td>
+</tr>
+<tr>
+<td>act ยืนยัน</td>
+<td>1</td>
+<td><code>&quot;</code></td>
+</tr>
+<tr>
+<td>act สอบถาม</td>
+<td>2</td>
+<td><code>#</code></td>
+</tr>
+<tr>
+<td>act ร้องขอ</td>
+<td>3</td>
+<td><code>$</code></td>
+</tr>
+<tr>
+<td>act ผูกมัด</td>
+<td>4</td>
+<td><code>%</code></td>
+</tr>
+<tr>
+<td>act ปฏิเสธ</td>
+<td>5</td>
+<td><code>&amp;</code></td>
+</tr>
+<tr>
+<td>act รายงาน</td>
+<td>6</td>
+<td><code>&#39;</code></td>
+</tr>
+<tr>
+<td>act เสนอ</td>
+<td>7</td>
+<td><code>(</code></td>
+</tr>
+<tr>
+<td>act แก้ไข</td>
+<td>8</td>
+<td><code>)</code></td>
+</tr>
+<tr>
+<td>act รับทราบ</td>
+<td>9</td>
+<td><code>*</code></td>
+</tr>
+<tr>
+<td>act ข้อผิดพลาด</td>
+<td>10</td>
+<td><code>+</code></td>
+</tr>
+<tr>
+<td>act ความสามารถ</td>
+<td>11</td>
+<td><code>,</code></td>
+</tr>
+<tr>
+<td>act เจรจา</td>
+<td>12</td>
+<td><code>-</code></td>
+</tr>
+<tr>
+<td>type จำนวนเต็ม</td>
+<td>301</td>
+<td><code>&#197;&#176;</code></td>
+</tr>
+<tr>
+<td>type เวลาประทับ</td>
+<td>303</td>
+<td><code>&#197;&#178;</code></td>
+</tr>
+<tr>
+<td>relation 501</td>
+<td>501</td>
+<td><code>&#200;&#184;</code></td>
+</tr>
+<tr>
+<td>relation 502</td>
+<td>502</td>
+<td><code>&#200;&#185;</code></td>
+</tr>
+<tr>
+<td>relation 100</td>
+<td>100</td>
+<td><code>&#194;&#167;</code></td>
+</tr>
+<tr>
+<td>subject ตัวอย่าง</td>
+<td>1201</td>
+<td><code>&#211;&#180;</code></td>
+</tr>
+<tr>
+<td>object ตัวอย่าง</td>
+<td>2201</td>
+<td><code>&#224;&#163;œ</code></td>
+</tr>
+<tr>
+<td>policy ตัวอย่าง</td>
+<td>3001</td>
+<td><code>\u0bfc</code></td>
+</tr>
+<tr>
+<td>evidence ตัวอย่าง A</td>
+<td>4401</td>
+<td><code>&#225;…&#180;</code></td>
+</tr>
+<tr>
+<td>evidence ตัวอย่าง B</td>
+<td>4402</td>
+<td><code>&#225;…&#181;</code></td>
+</tr>
+<tr>
+<td>context ตัวอย่าง</td>
+<td>7001</td>
+<td><code>&#225;&#174;</code></td>
+</tr>
+<tr>
+<td>sender ตัวอย่าง</td>
+<td>9001</td>
+<td><code>&#226;&#188;</code></td>
+</tr>
+<tr>
+<td>receiver ตัวอย่าง</td>
+<td>9002</td>
+<td><code>&#226;&#189;</code></td>
+</tr>
+<tr>
+<td>provenance source</td>
+<td>9100</td>
+<td><code>&#226;Ÿ</code></td>
+</tr>
+<tr>
+<td>trace ตัวอย่าง</td>
+<td>777001</td>
+<td><code>-&#227;&#189;&#173;</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<hr />
+<h2>กฎสุดท้าย</h2>
+<p>อ่านโครงสร้างก่อน ถอดรหัส Radix 63404 เป็นลำดับที่สอง แก้ความหมาย ID แบบแคนนอนิคัลเป็นลำดับที่สาม ใช้ข้อจำกัดเป็นลำดับที่สี่ ใช้ provenance และ confidence เป็นลำดับที่ห้า มองข้าม gloss สำหรับมนุษย์ในเชิง semantic อย่าแทนความหมายแบบแคนนอนิคัลด้วยภาษาอังกฤษ รูปร่างไอคอน หรือธรรมเนียมท้องถิ่น</p>
+                    </div>
+                </article>
+            </section>
+        </main>
+
+        <footer class="site-footer panel reveal">
+            <div>
+                <p class="eyebrow">Protocol5 links</p>
+                <div class="footer-links">
+                    <a href="/">Home</a>
+                    <a href="/Fibonacci">Fibonacci</a>
+                    <a href="/Prime">Prime Numbers</a>
+                    <a href="/UAI">UAI</a>
+                    <a href="/Home/GitHub">GitHub</a>
+                    <a href="/Home/About">About</a>
+                    <a href="/Home/Links">Links</a>
+                    <a href="/Home/Contact">Contact</a>
+                </div>
+            </div>
+            <p class="footer-copy">Protocol5 reference page. <span id="currentYear"></span></p>
+        </footer>
+    </div>
+
+    <script src="/js/home.js"></script>
+</body>
+</html>

@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="utf-8" />
+    <meta name="google" content="notranslate" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Protocol5 companion examples for UAI-1, including canonical arrays, gloss notes, and registry reference values." />
+    <title>UAI-1 Examples</title>
+    <link rel="stylesheet" href="/css/home.css" />
+</head>
+<body class="content-page">
+    <div class="site-shell">
+        <header class="site-header">
+            <div class="brand-lockup">
+                <p class="brand-kicker">Protocol5</p>
+                <h1>Variable-Base Mathematics</h1>
+                <p class="brand-copy">Exact arithmetic, radix conversion, sequence references, and educational number-system pages collected into one publishable shell.</p>
+            </div>
+            <nav class="site-nav" aria-label="Primary navigation">
+                <a href="/">Home</a>
+                <a href="/Fibonacci">Fibonacci</a>
+                <a href="/Prime">Prime Numbers</a>
+                <a href="/UAI">UAI</a>
+                <a href="/calculator" data-tool-link="calculator">Calculator</a>
+                <a href="/Home/GitHub">GitHub</a>
+                <a href="/Home/About">About</a>
+                <a href="/Home/Links">Links</a>
+                <a href="/Home/Contact">Contact</a>
+            </nav>
+        </header>
+
+        <main>
+            <section class="content-hero panel reveal">
+                <div>
+                    <p class="eyebrow">UAI-1 / Examples</p>
+                    <h1>UAI-1 Examples Document</h1>
+                    <p class="lead">Version: UAI-1 Examples v1 Status: Authoritative Companion Document</p>
+                    <div class="inline-links">
+                        <a href="/UAI">UAI Library</a>
+                        <a href="/UAI-1">UAI-1 Spec</a>
+                        <a href="/UAI/radix-63404-guide-and-attribution">Radix 63404 Guide</a>
+                    </div>
+                </div>
+                <aside class="traveler-note">
+                    <p class="eyebrow">Companion document</p>
+                    <blockquote>
+                        The canonical example is authoritative. The human gloss exists only to help humans inspect the example.
+                    </blockquote>
+                    <p>These examples stay close to the source markdown so the canonical structures, code blocks, and reference tables remain easy to audit.</p>
+                </aside>
+            </section>
+
+            <section class="doc-layout reveal">
+                <aside class="panel doc-sidebar">
+                    <p class="eyebrow">Document metadata</p>
+<ul class="doc-meta-list">
+<li><span>Human locale</span><strong>English (US)</strong></li>
+<li><span>Canonical public path</span><strong><a href="/UAI-1/examples">/UAI-1/examples</a></strong></li>
+<li><span>All supported translations</span><strong><a href="/UAI-1/examples">English (US)</a>, <a href="/UAI-1/examples/es-US">Espa&#241;ol (US)</a>, <a href="/UAI-1/examples/uk-UA">Українська</a>, <a href="/UAI-1/examples/zh-SG">简体中文（新加坡）</a>, <a href="/UAI-1/examples/th">ไทย</a></strong></li>
+</ul>
+
+                    <div class="callout">
+                        <p>Source markdown: <code>uai-1-examples.en-US.md</code></p>
+                    </div>
+                </aside>
+                <article class="panel doc-panel">
+                    <div class="doc-prose">
+<h1>UAI-1 Examples Document</h1>
+<p>Version: UAI-1 Examples v1 Status: Authoritative Companion Document</p>
+<h2>Purpose</h2>
+<p>This document provides canonical examples for UAI-1.</p>
+<p>You MUST read the canonical examples as UAI-1 machine structures. You MUST decode all canonical IDs as Radix 63404 values. You MUST treat all human gloss, comments, labels, and explanatory notes in this document as non-canonical.</p>
+<p>The canonical example is authoritative. The human gloss exists only to help humans inspect the example.</p>
+<hr />
+<h2>Radix 63404 Reminder</h2>
+<p>In UAI-1, all canonical IDs are rendered in Radix 63404.</p>
+<p>You MUST parse each ID as follows:</p>
+<ol>
+<li>Read each character as one Radix 63404 digit.</li>
+<li>Resolve each character to its zero-based alphabet index.</li>
+<li>Evaluate the positional value in base 63404.</li>
+<li>Resolve the resulting integer against the authoritative registry.</li>
+</ol>
+<p>The first digits of the Radix 63404 alphabet are:</p>
+<div class="doc-table-wrap">
+<table>
+<thead><tr>
+<th scope="col">Decimal Value</th>
+<th scope="col">Radix 63404 Digit</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><code>!</code></td>
+</tr>
+<tr>
+<td>1</td>
+<td><code>&quot;</code></td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>#</code></td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>$</code></td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>%</code></td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>&amp;</code></td>
+</tr>
+<tr>
+<td>6</td>
+<td><code>&#39;</code></td>
+</tr>
+<tr>
+<td>7</td>
+<td><code>(</code></td>
+</tr>
+<tr>
+<td>8</td>
+<td><code>)</code></td>
+</tr>
+<tr>
+<td>9</td>
+<td><code>*</code></td>
+</tr>
+<tr>
+<td>10</td>
+<td><code>+</code></td>
+</tr>
+<tr>
+<td>11</td>
+<td><code>,</code></td>
+</tr>
+<tr>
+<td>12</td>
+<td><code>-</code></td>
+</tr>
+<tr>
+<td>13</td>
+<td><code>.</code></td>
+</tr>
+<tr>
+<td>14</td>
+<td><code>/</code></td>
+</tr>
+<tr>
+<td>15</td>
+<td><code>0</code></td>
+</tr>
+<tr>
+<td>16</td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td>17</td>
+<td><code>2</code></td>
+</tr>
+<tr>
+<td>18</td>
+<td><code>3</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<hr />
+<h2>Example 1: Basic Assertion Message</h2>
+<h3>Canonical Example</h3>
+<pre><code class="language-json">[
+  &quot;\&quot;&quot;,
+  &quot;⍼&quot;,
+  &quot;⍽&quot;,
+  &quot;\&quot;&quot;,
+  [
+    [&quot;Ӵ&quot;, &quot;ȸ&quot;, &quot;ࣜ&quot;, &quot;ᮝ&quot;, &quot;\&quot;&quot;, 0.98],
+    [&quot;Ӵ&quot;, &quot;ȹ&quot;, [&quot;Ű&quot;, 5], &quot;ᮝ&quot;, &quot;\&quot;&quot;, 0.99]
+  ],
+  [],
+  [
+    &quot;⏟&quot;,
+    [&quot;Ų&quot;, &quot;2026-04-13T00:00:00Z&quot;],
+    &quot;&#39;&quot;,
+    [&quot;ᅴ&quot;, &quot;ᅵ&quot;],
+    &quot;-㽭&quot;,
+    &quot;\u0bfc&quot;
+  ],
+  [&quot;\&quot;&quot;, 555001]
+]</code></pre>
+<h3>Human Gloss</h3>
+<p>This message means:</p>
+<ul>
+<li>protocolVersion = 1</li>
+<li>senderId = 9001</li>
+<li>receiverId = 9002</li>
+<li>actId = 1 = assert</li>
+<li>claim 1 = subject 1201 has relation 501 to object 2201 in context 7001, true, confidence 0.98</li>
+<li>claim 2 = subject 1201 has relation 502 to typed scalar [301, 5] in context 7001, true, confidence 0.99</li>
+<li>provenance identifies source 9100, timestamp type 303, modality 6, evidence 4401 and 4402, trace 777001, policy 3001</li>
+</ul>
+<h3>Reader Notes</h3>
+<p>You MUST derive the meaning from the decoded IDs and slot positions, not from this gloss.</p>
+<hr />
+<h2>Example 2: Basic Query Message</h2>
+<h3>Canonical Example</h3>
+<pre><code class="language-json">[
+  &quot;\&quot;&quot;,
+  &quot;⍼&quot;,
+  &quot;⍽&quot;,
+  &quot;#&quot;,
+  [
+    [&quot;Ӵ&quot;, &quot;ȸ&quot;, &quot;ࣜ&quot;, &quot;ᮝ&quot;, &quot;#&quot;, 1.0]
+  ],
+  [],
+  [
+    &quot;⏟&quot;,
+    [&quot;Ų&quot;, &quot;2026-04-13T00:00:00Z&quot;],
+    &quot;&#39;&quot;,
+    [&quot;ᅴ&quot;],
+    &quot;-㽭&quot;,
+    &quot;\u0bfc&quot;
+  ],
+  [&quot;\&quot;&quot;, 555002]
+]</code></pre>
+<h3>Human Gloss</h3>
+<p>This message means:</p>
+<ul>
+<li>actId = 2 = query</li>
+<li>the sender is querying the truth or current resolution of the claim</li>
+<li>truthValue = 2 = unknown</li>
+<li>confidence = 1.0 here means the sender is intentionally sending a formal query structure, not asserting the claim as true</li>
+</ul>
+<hr />
+<h2>Example 3: Basic Request Message</h2>
+<h3>Canonical Example</h3>
+<pre><code class="language-json">[
+  &quot;\&quot;&quot;,
+  &quot;⍼&quot;,
+  &quot;⍽&quot;,
+  &quot;$&quot;,
+  [
+    [&quot;Ӵ&quot;, &quot;ȸ&quot;, &quot;ࣜ&quot;, &quot;ᮝ&quot;, &quot;\&quot;&quot;, 0.95]
+  ],
+  [
+    [&quot;*&quot;, &quot;ࣜ&quot;, [&quot;Ű&quot;, 60], 0],
+    [&quot;*&quot;, &quot;ᮝ&quot;, [&quot;Ų&quot;, &quot;2026-04-14T00:00:00Z&quot;], 0]
+  ],
+  [
+    &quot;⏟&quot;,
+    [&quot;Ų&quot;, &quot;2026-04-13T00:00:00Z&quot;],
+    &quot;&#39;&quot;,
+    [&quot;ᅴ&quot;, &quot;ᅵ&quot;],
+    &quot;-㽭&quot;,
+    &quot;\u0bfc&quot;
+  ],
+  [&quot;\&quot;&quot;, 555003]
+]</code></pre>
+<h3>Human Gloss</h3>
+<p>This message means:</p>
+<ul>
+<li>actId = 3 = request</li>
+<li>the sender is requesting an operation related to claim subject 1201, relation 501, object 2201</li>
+<li>constraint operator 9 = requires</li>
+<li>the request requires object 2201 and a typed scalar value [301, 60]</li>
+<li>the request also requires context 7001 and a timestamp constraint typed as [303, 2026-04-14T00:00:00Z]</li>
+</ul>
+<hr />
+<h2>Example 4: Capability Negotiation Message</h2>
+<h3>Canonical Example</h3>
+<pre><code class="language-json">[
+  &quot;\&quot;&quot;,
+  &quot;⍼&quot;,
+  &quot;⍽&quot;,
+  &quot;,&quot;,
+  [
+    [&quot;⍼&quot;, &quot;ȸ&quot;, [&quot;Ű&quot;, 1], &quot;ᮝ&quot;, &quot;\&quot;&quot;, 1.0],
+    [&quot;⍼&quot;, &quot;ȹ&quot;, [&quot;Ű&quot;, 1], &quot;ᮝ&quot;, &quot;\&quot;&quot;, 1.0],
+    [&quot;⍼&quot;, &quot;&#167;&quot;, [&quot;Ű&quot;, 12], &quot;ᮝ&quot;, &quot;\&quot;&quot;, 1.0]
+  ],
+  [],
+  [
+    &quot;⏟&quot;,
+    [&quot;Ų&quot;, &quot;2026-04-13T00:00:00Z&quot;],
+    &quot;&#39;&quot;,
+    [&quot;ᅴ&quot;],
+    &quot;-㽭&quot;,
+    &quot;\u0bfc&quot;
+  ],
+  [&quot;\&quot;&quot;, 555004]
+]</code></pre>
+<h3>Human Gloss</h3>
+<p>This message means:</p>
+<ul>
+<li>actId = 11 = capability</li>
+<li>the sender is declaring supported protocol or ontology versions and declared capability values</li>
+<li>this is the canonical way to negotiate support before non-trivial exchange</li>
+</ul>
+<hr />
+<h2>Example 5: Error Message</h2>
+<h3>Canonical Example</h3>
+<pre><code class="language-json">[
+  &quot;\&quot;&quot;,
+  &quot;⍽&quot;,
+  &quot;⍼&quot;,
+  &quot;+&quot;,
+  [
+    [&quot;#&quot;, &quot;ȸ&quot;, [&quot;Ű&quot;, 999999], &quot;ᮝ&quot;, &quot;\&quot;&quot;, 1.0]
+  ],
+  [
+    [&quot;&amp;&quot;, [&quot;Ű&quot;, 4], [&quot;Ű&quot;, 1], 0]
+  ],
+  [
+    &quot;⏟&quot;,
+    [&quot;Ų&quot;, &quot;2026-04-13T00:00:00Z&quot;],
+    &quot;&#39;&quot;,
+    [&quot;ᅴ&quot;],
+    &quot;-㽭&quot;,
+    &quot;\u0bfc&quot;
+  ],
+  [&quot;\&quot;&quot;, 555005]
+]</code></pre>
+<h3>Human Gloss</h3>
+<p>This message means:</p>
+<ul>
+<li>actId = 10 = error</li>
+<li>the sender reports a canonical error condition</li>
+<li>the failing structure references an unresolved or invalid canonical value</li>
+<li>constraint operator 5 is used here to express a canonical comparison or resolution condition in the error handling logic</li>
+</ul>
+<h3>Reader Notes</h3>
+<p>If you cannot resolve a required canonical ID, you MUST emit an error message rather than guessing.</p>
+<hr />
+<h2>Example 6: Iconography Assertion</h2>
+<h3>Canonical Example</h3>
+<pre><code class="language-json">[
+  &quot;\&quot;&quot;,
+  &quot;⍼&quot;,
+  &quot;⍽&quot;,
+  &quot;\&quot;&quot;,
+  [
+    [&quot;ࣜ&quot;, &quot;ȸ&quot;, [&quot;Ű&quot;, 15001], &quot;ᮝ&quot;, &quot;\&quot;&quot;, 0.99],
+    [&quot;ࣜ&quot;, &quot;ȹ&quot;, [&quot;Ű&quot;, 15002], &quot;ᮝ&quot;, &quot;\&quot;&quot;, 0.99],
+    [&quot;ࣜ&quot;, &quot;&#167;&quot;, [&quot;Ű&quot;, 15003], &quot;ᮝ&quot;, &quot;\&quot;&quot;, 0.99]
+  ],
+  [],
+  [
+    &quot;⏟&quot;,
+    [&quot;Ų&quot;, &quot;2026-04-13T00:00:00Z&quot;],
+    &quot;#&quot;,
+    [&quot;ᅴ&quot;, &quot;ᅵ&quot;],
+    &quot;-㽭&quot;,
+    &quot;\u0bfc&quot;
+  ],
+  [&quot;\&quot;&quot;, 555006]
+]</code></pre>
+<h3>Human Gloss</h3>
+<p>This message means:</p>
+<ul>
+<li>a canonical icon-bearing entity is being described semantically</li>
+<li>relation 501 may point to canonical functional meaning</li>
+<li>relation 502 may point to canonical explicit state</li>
+<li>relation 100 may point to canonical explicit variant or presentation property</li>
+</ul>
+<h3>Reader Notes</h3>
+<p>You MUST treat icon function as canonical meaning. You MUST NOT treat icon appearance as canonical meaning. You MUST NOT infer business meaning from shape, color, fill, or resemblance alone.</p>
+<hr />
+<h2>Example 7: Decorative Icon Handling</h2>
+<h3>Canonical Example</h3>
+<pre><code class="language-json">[
+  &quot;\&quot;&quot;,
+  &quot;⍼&quot;,
+  &quot;⍽&quot;,
+  &quot;\&quot;&quot;,
+  [
+    [&quot;ࣜ&quot;, &quot;ȸ&quot;, [&quot;Ű&quot;, 16001], &quot;ᮝ&quot;, &quot;\&quot;&quot;, 1.0],
+    [&quot;ࣜ&quot;, &quot;ȹ&quot;, [&quot;Ű&quot;, 16002], &quot;ᮝ&quot;, &quot;\&quot;&quot;, 1.0]
+  ],
+  [],
+  [
+    &quot;⏟&quot;,
+    [&quot;Ų&quot;, &quot;2026-04-13T00:00:00Z&quot;],
+    &quot;#&quot;,
+    [&quot;ᅴ&quot;],
+    &quot;-㽭&quot;,
+    &quot;\u0bfc&quot;
+  ],
+  [&quot;\&quot;&quot;, 555007]
+]</code></pre>
+<h3>Human Gloss</h3>
+<p>This message means:</p>
+<ul>
+<li>the icon exists in the rendered interface</li>
+<li>the icon is decorative or otherwise non-functional in the active semantic layer</li>
+<li>the icon is not the primary carrier of business meaning</li>
+</ul>
+<h3>Reader Notes</h3>
+<p>Decorative icons are not interpreted as functional claims unless the canonical structure explicitly promotes them into semantic meaning.</p>
+<hr />
+<h2>Example 8: Canonical Structure With Optional Human Gloss Wrapper</h2>
+<h3>Canonical Example</h3>
+<pre><code class="language-json">{
+  &quot;canonical&quot;: [
+    &quot;\&quot;&quot;,
+    &quot;⍼&quot;,
+    &quot;⍽&quot;,
+    &quot;\&quot;&quot;,
+    [
+      [&quot;Ӵ&quot;, &quot;ȸ&quot;, &quot;ࣜ&quot;, &quot;ᮝ&quot;, &quot;\&quot;&quot;, 0.98]
+    ],
+    [],
+    [
+      &quot;⏟&quot;,
+      [&quot;Ų&quot;, &quot;2026-04-13T00:00:00Z&quot;],
+      &quot;&#39;&quot;,
+      [&quot;ᅴ&quot;],
+      &quot;-㽭&quot;,
+      &quot;\u0bfc&quot;
+    ],
+    [&quot;\&quot;&quot;, 555008]
+  ],
+  &quot;gloss&quot;: {
+    &quot;sender&quot;: &quot;Example sender&quot;,
+    &quot;receiver&quot;: &quot;Example receiver&quot;,
+    &quot;act&quot;: &quot;assert&quot;,
+    &quot;notes&quot;: [
+      &quot;This gloss is not authoritative.&quot;,
+      &quot;The canonical array remains authoritative.&quot;
+    ]
+  }
+}</code></pre>
+<h3>Reader Notes</h3>
+<p>When canonical data and gloss both exist:</p>
+<ul>
+<li>canonical data is authoritative</li>
+<li>gloss is non-canonical</li>
+<li>gloss must not override canonical meaning</li>
+</ul>
+<hr />
+<h2>Example 9: Invalid Message Example</h2>
+<h3>Canonical Example</h3>
+<pre><code class="language-json">[
+  &quot;\&quot;&quot;,
+  &quot;⍼&quot;,
+  &quot;⍽&quot;,
+  &quot;$&quot;,
+  [
+    [&quot;Ӵ&quot;, &quot;search-icon&quot;, &quot;ࣜ&quot;, &quot;ᮝ&quot;, &quot;\&quot;&quot;, 0.95]
+  ],
+  [],
+  [
+    &quot;⏟&quot;,
+    [&quot;Ų&quot;, &quot;2026-04-13T00:00:00Z&quot;],
+    &quot;&#39;&quot;,
+    [&quot;ᅴ&quot;],
+    &quot;-㽭&quot;,
+    &quot;\u0bfc&quot;
+  ],
+  [&quot;\&quot;&quot;, 555009]
+]</code></pre>
+<h3>Human Gloss</h3>
+<p>This example is invalid.</p>
+<h3>Reader Notes</h3>
+<p>This message is invalid because a canonical field contains free text <code>search-icon</code> instead of a canonical Radix 63404 ID or canonical typed value. You MUST reject or flag this message. You MUST NOT recover by guessing.</p>
+<hr />
+<h2>Example 10: Minimal Reader Workflow</h2>
+<h3>Reader Procedure</h3>
+<p>When you receive a UAI-1 message, you MUST do the following in order:</p>
+<ol>
+<li>Validate that the outer message has exactly 8 canonical slots.</li>
+<li>Decode all canonical IDs from Radix 63404.</li>
+<li>Resolve all decoded IDs against the authoritative registry.</li>
+<li>Validate the active act and required structure.</li>
+<li>Validate all claims.</li>
+<li>Validate all constraints.</li>
+<li>Validate provenance.</li>
+<li>Preserve canonical values exactly.</li>
+<li>Ignore human gloss for semantics.</li>
+<li>Emit a canonical error if any required element is unsupported or invalid.</li>
+</ol>
+<hr />
+<h2>Registry Reference Values Used in These Examples</h2>
+<p>The following decimal values are used only as explanatory reference for the human reader. The canonical examples above remain authoritative in their Radix 63404 forms.</p>
+<div class="doc-table-wrap">
+<table>
+<thead><tr>
+<th scope="col">Meaning</th>
+<th scope="col">Decimal</th>
+<th scope="col">Radix 63404</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>protocol version 1</td>
+<td>1</td>
+<td><code>&quot;</code></td>
+</tr>
+<tr>
+<td>act assert</td>
+<td>1</td>
+<td><code>&quot;</code></td>
+</tr>
+<tr>
+<td>act query</td>
+<td>2</td>
+<td><code>#</code></td>
+</tr>
+<tr>
+<td>act request</td>
+<td>3</td>
+<td><code>$</code></td>
+</tr>
+<tr>
+<td>act commit</td>
+<td>4</td>
+<td><code>%</code></td>
+</tr>
+<tr>
+<td>act deny</td>
+<td>5</td>
+<td><code>&amp;</code></td>
+</tr>
+<tr>
+<td>act report</td>
+<td>6</td>
+<td><code>&#39;</code></td>
+</tr>
+<tr>
+<td>act propose</td>
+<td>7</td>
+<td><code>(</code></td>
+</tr>
+<tr>
+<td>act revise</td>
+<td>8</td>
+<td><code>)</code></td>
+</tr>
+<tr>
+<td>act acknowledge</td>
+<td>9</td>
+<td><code>*</code></td>
+</tr>
+<tr>
+<td>act error</td>
+<td>10</td>
+<td><code>+</code></td>
+</tr>
+<tr>
+<td>act capability</td>
+<td>11</td>
+<td><code>,</code></td>
+</tr>
+<tr>
+<td>act negotiate</td>
+<td>12</td>
+<td><code>-</code></td>
+</tr>
+<tr>
+<td>type integer</td>
+<td>301</td>
+<td><code>Ű</code></td>
+</tr>
+<tr>
+<td>type timestamp</td>
+<td>303</td>
+<td><code>Ų</code></td>
+</tr>
+<tr>
+<td>relation 501</td>
+<td>501</td>
+<td><code>ȸ</code></td>
+</tr>
+<tr>
+<td>relation 502</td>
+<td>502</td>
+<td><code>ȹ</code></td>
+</tr>
+<tr>
+<td>relation 100</td>
+<td>100</td>
+<td><code>&#167;</code></td>
+</tr>
+<tr>
+<td>subject example</td>
+<td>1201</td>
+<td><code>Ӵ</code></td>
+</tr>
+<tr>
+<td>object example</td>
+<td>2201</td>
+<td><code>ࣜ</code></td>
+</tr>
+<tr>
+<td>policy example</td>
+<td>3001</td>
+<td><code>\u0bfc</code></td>
+</tr>
+<tr>
+<td>evidence example A</td>
+<td>4401</td>
+<td><code>ᅴ</code></td>
+</tr>
+<tr>
+<td>evidence example B</td>
+<td>4402</td>
+<td><code>ᅵ</code></td>
+</tr>
+<tr>
+<td>context example</td>
+<td>7001</td>
+<td><code>ᮝ</code></td>
+</tr>
+<tr>
+<td>sender example</td>
+<td>9001</td>
+<td><code>⍼</code></td>
+</tr>
+<tr>
+<td>receiver example</td>
+<td>9002</td>
+<td><code>⍽</code></td>
+</tr>
+<tr>
+<td>provenance source</td>
+<td>9100</td>
+<td><code>⏟</code></td>
+</tr>
+<tr>
+<td>trace example</td>
+<td>777001</td>
+<td><code>-㽭</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<hr />
+<h2>Final Rule</h2>
+<p>Read structure first. Decode Radix 63404 second. Resolve canonical IDs third. Apply constraints fourth. Use provenance and confidence fifth. Ignore human gloss for semantics. Never substitute English, icon shape, or local habit for canonical meaning.</p>
+                    </div>
+                </article>
+            </section>
+        </main>
+
+        <footer class="site-footer panel reveal">
+            <div>
+                <p class="eyebrow">Protocol5 links</p>
+                <div class="footer-links">
+                    <a href="/">Home</a>
+                    <a href="/Fibonacci">Fibonacci</a>
+                    <a href="/Prime">Prime Numbers</a>
+                    <a href="/UAI">UAI</a>
+                    <a href="/Home/GitHub">GitHub</a>
+                    <a href="/Home/About">About</a>
+                    <a href="/Home/Links">Links</a>
+                    <a href="/Home/Contact">Contact</a>
+                </div>
+            </div>
+            <p class="footer-copy">Protocol5 reference page. <span id="currentYear"></span></p>
+        </footer>
+    </div>
+
+    <script src="/js/home.js"></script>
+</body>
+</html>

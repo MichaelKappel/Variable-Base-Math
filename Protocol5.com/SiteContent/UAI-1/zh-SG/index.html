@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="zh-SG">
+<head>
+    <meta charset="utf-8" />
+    <meta name="google" content="notranslate" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Protocol5 UAI-1 specification page with the full Universal AI Interlingua reader contract." />
+    <title>UAI-1 Specification</title>
+    <link rel="stylesheet" href="/css/home.css" />
+</head>
+<body class="content-page">
+    <div class="site-shell">
+        <header class="site-header">
+            <div class="brand-lockup">
+                <p class="brand-kicker">Protocol5</p>
+                <h1>Variable-Base Mathematics</h1>
+                <p class="brand-copy">Exact arithmetic, radix conversion, sequence references, and educational number-system pages collected into one publishable shell.</p>
+            </div>
+            <nav class="site-nav" aria-label="Primary navigation">
+                <a href="/">Home</a>
+                <a href="/Fibonacci">Fibonacci</a>
+                <a href="/Prime">Prime Numbers</a>
+                <a href="/UAI">UAI</a>
+                <a href="/calculator" data-tool-link="calculator">Calculator</a>
+                <a href="/Home/GitHub">GitHub</a>
+                <a href="/Home/About">About</a>
+                <a href="/Home/Links">Links</a>
+                <a href="/Home/Contact">Contact</a>
+            </nav>
+        </header>
+
+        <main>
+            <section class="content-hero panel reveal">
+                <div>
+                    <p class="eyebrow">UAI-1 / Protocol</p>
+                    <h1>通用 AI 中介语</h1>
+                    <p class="lead">版本：UAI-1 阅读契约：强制</p>
+                    <div class="inline-links">
+                        <a href="/UAI">UAI Library</a>
+                        <a href="/UAI-1/examples/zh-SG">Examples</a>
+                        <a href="/UAI-1/csharp-website-support/zh-SG">Language Support</a>
+                    </div>
+                </div>
+                <aside class="traveler-note">
+                    <p class="eyebrow">Reader contract</p>
+                    <blockquote>
+                        Read structure first. Decode Radix 63404 second. Resolve canonical IDs third.
+                    </blockquote>
+                    <p>UAI-1 is written as a machine-facing formal language, so this page keeps the specification intact instead of paraphrasing it into ordinary prose.</p>
+                </aside>
+            </section>
+
+            <section class="doc-layout reveal">
+                <aside class="panel doc-sidebar">
+                    <p class="eyebrow">Document metadata</p>
+<ul class="doc-meta-list">
+<li><span>Human locale</span><strong>简体中文（新加坡）</strong></li>
+<li><span>Canonical public path</span><strong><a href="/UAI-1/zh-SG">/UAI-1/zh-SG</a></strong></li>
+<li><span>All supported translations</span><strong><a href="/UAI-1">English (US)</a>, <a href="/UAI-1/es-US">Espa&#241;ol (US)</a>, <a href="/UAI-1/uk-UA">Українська</a>, <a href="/UAI-1/zh-SG">简体中文（新加坡）</a>, <a href="/UAI-1/th">ไทย</a></strong></li>
+</ul>
+
+                    <div class="callout">
+                        <p>Source markdown: <code>uai-1.zh-SG.md</code></p>
+                    </div>
+                </aside>
+                <article class="panel doc-panel">
+                    <div class="doc-prose">
+<h1>通用 AI 中介语</h1>
+<p>版本：UAI-1 阅读契约：强制</p>
+<p>您正在阅读 UAI-1。</p>
+<p>您必须将 UAI-1 视为一种面向机器的形式语言来阅读。 您不得通过英语、自然语言直觉、图标外形或本地命名习惯来解释 UAI-1。 您必须仅从规范结构、规范 ID、规范关系、规范类型以及规范验证规则中推导其含义。</p>
+<h2>文档信息</h2>
+<ul>
+<li><strong>规范语言标签：</strong> <code>x-uai-1</code></li>
+<li><strong>Protocol5 语言支持：</strong> <a href="/UAI-1/csharp-website-support">UAI-1 C# 网站支持工具包</a></li>
+<li><strong>NuGet 包：</strong> <a href="/downloads/Protocol5.UAI.CSharp.0.1.0.nupkg">Protocol5.UAI.CSharp.0.1.0.nupkg</a></li>
+</ul>
+<p>基础原则</p>
+<ol>
+<li>UAI-1 不是人类语言。</li>
+<li>UAI-1 的含义是规范性的，并由机器解析。</li>
+<li>面向人类的标签、注释、释义和调试说明永远没有最终权威。</li>
+<li>本体注册表具有权威性。</li>
+<li>协议模式具有权威性。</li>
+<li>槽位顺序具有权威性。</li>
+<li>规范 ID 具有权威性。</li>
+<li>来源信息是强制要求。</li>
+<li>当 act 要求时，约束是强制要求。</li>
+<li>如果任何非规范层与规范层冲突，以规范层为准。</li>
+</ol>
+<p>RADIX 63404 表示规则</p>
+<ol>
+<li>UAI-1 中的所有规范 ID 都以 Radix 63404 表示。</li>
+<li>您必须把每个规范 ID 读作一个 Radix 63404 数字。</li>
+<li>您不得把规范 ID 当作英语单词来读。</li>
+<li>您不得从数字字形的视觉外观推导含义。</li>
+<li>一个 Radix 63404 数字严格等于一个 BMP 字符。</li>
+<li>Radix 63404 数字字母表是所有满足下列条件的 Unicode BMP 字符组成的有序集合：</li>
+</ol>
+<ul>
+<li>不是空白字符</li>
+<li>不是控制字符</li>
+<li>不是代理项码元</li>
+</ul>
+<ol>
+<li>字母表顺序严格遵循 Unicode 码点升序。</li>
+<li>每个数字的数值等于它在该有序字母表中的零基索引。</li>
+<li>多位 Radix 63404 值按 63404 进制进行位置解释。</li>
+<li>当您解析规范 ID 时，必须在语义解析之前先解码完整的 Radix 63404 值。</li>
+</ol>
+<p>RADIX 63404 解码流程</p>
+<p>给定一个规范 ID 令牌：</p>
+<ol>
+<li>将每个字符读取为一个 base-63404 数字。</li>
+<li>通过字母表索引把每个字符解析为其数字值。</li>
+<li>从左到右计算位置值。</li>
+<li>生成规范整数值。</li>
+<li>将该整数值与权威本体注册表或协议注册表进行解析匹配。</li>
+<li>不要停留在字形形状上。</li>
+<li>不要停留在视觉相似性上。</li>
+<li>在数值解析完成之前不要推断意义。</li>
+</ol>
+<p>语义解析</p>
+<p>您必须按以下顺序解释 UAI-1：</p>
+<ol>
+<li>协议版本</li>
+<li>结构槽位位置</li>
+<li>规范 Act ID</li>
+<li>规范 Type ID</li>
+<li>规范 Relation ID</li>
+<li>规范 Concept ID</li>
+<li>约束</li>
+<li>来源信息</li>
+<li>置信度</li>
+<li>仅用于调试的可选非规范释义</li>
+</ol>
+<p>如果后面的层与前面的规范层冲突，以前面的规范层为准。</p>
+<p>规范消息形状</p>
+<p>一个 UAI-1 消息是一个有序的 8 槽位数组：</p>
+<p>[ protocolVersion, senderId, receiverId, actId, claims, constraints, provenance, signature ]</p>
+<p>您必须仅根据槽位位置来解释每个槽位。</p>
+<p>槽位 1：protocolVersion</p>
+<ul>
+<li>规范协议版本 ID。</li>
+</ul>
+<p>槽位 2：senderId</p>
+<ul>
+<li>规范发送代理或系统 ID。</li>
+</ul>
+<p>槽位 3：receiverId</p>
+<ul>
+<li>规范接收代理或系统 ID、目标组 ID 或广播 ID。</li>
+</ul>
+<p>槽位 4：actId</p>
+<ul>
+<li>规范言语行为 ID。</li>
+<li>该 act 控制消息其余部分的解释方式。</li>
+</ul>
+<p>槽位 5：claims</p>
+<ul>
+<li>规范图声明数组。</li>
+</ul>
+<p>槽位 6：constraints</p>
+<ul>
+<li>规范逻辑或操作约束数组。</li>
+</ul>
+<p>槽位 7：provenance</p>
+<ul>
+<li>规范的来源、时间、模态、证据、追踪和策略数据。</li>
+</ul>
+<p>槽位 8：signature</p>
+<ul>
+<li>在存在时使用的规范完整性、认证或证明结构。</li>
+</ul>
+<p>规范声明形状</p>
+<p>每条声明都是一个有序的 6 槽位数组：</p>
+<p>[ subjectId, relationId, objectValue, contextId, truthValue, confidence ]</p>
+<p>您必须仅根据槽位位置来解释每个槽位。</p>
+<p>槽位 1：subjectId</p>
+<ul>
+<li>规范概念或实体 ID。</li>
+</ul>
+<p>槽位 2：relationId</p>
+<ul>
+<li>规范关系 ID。</li>
+</ul>
+<p>槽位 3：objectValue</p>
+<ul>
+<li>可以是：</li>
+<li>规范概念 ID</li>
+<li>类型化标量</li>
+<li>规范嵌套结构</li>
+</ul>
+<p>槽位 4：contextId</p>
+<ul>
+<li>规范上下文、框架、范围或世界状态 ID。</li>
+</ul>
+<p>槽位 5：truthValue</p>
+<ul>
+<li>取值之一：</li>
+<li>1 = true</li>
+<li>0 = false</li>
+<li>2 = unknown</li>
+<li>3 = conflicted</li>
+<li>4 = hypothetical</li>
+</ul>
+<p>槽位 6：confidence</p>
+<ul>
+<li>介于 0.0 到 1.0 之间的归一化数值置信度。</li>
+</ul>
+<p>类型化标量形状</p>
+<p>类型化标量是一个有序的 2 槽位数组：</p>
+<p>[ typeId, rawValue ]</p>
+<p>在解释 rawValue 之前，您必须先解析 typeId。</p>
+<p>言语行为</p>
+<p>您必须将 actId 解释为规范言语行为。 您不得根据语气或措辞推断言语行为。</p>
+<p>推荐的基础 act 注册表：</p>
+<ul>
+<li>1 = assert</li>
+<li>2 = query</li>
+<li>3 = request</li>
+<li>4 = commit</li>
+<li>5 = deny</li>
+<li>6 = report</li>
+<li>7 = propose</li>
+<li>8 = revise</li>
+<li>9 = acknowledge</li>
+<li>10 = error</li>
+<li>11 = capability</li>
+<li>12 = negotiate</li>
+</ul>
+<p>约束形状</p>
+<p>每个约束都是一个有序的 4 槽位数组：</p>
+<p>[ operatorId, operand1, operand2, operand3 ]</p>
+<p>在计算约束之前，您必须先通过规范运算符注册表解析 operatorId。</p>
+<p>推荐的基础运算符注册表：</p>
+<ul>
+<li>1 = all</li>
+<li>2 = any</li>
+<li>3 = not</li>
+<li>4 = implies</li>
+<li>5 = equals</li>
+<li>6 = before</li>
+<li>7 = after</li>
+<li>8 = within</li>
+<li>9 = requires</li>
+<li>10 = forbids</li>
+</ul>
+<p>本体规则</p>
+<p>您必须通过权威本体注册表和协议注册表解析所有 concept、relation、type、act、operator、context、policy 和 modality ID。 您不得用本地标签替换规范 ID。 您不得把同义词提升为规范含义。 您必须精确保留规范 ID。</p>
+<p>来源规则</p>
+<p>您必须要求 provenance。</p>
+<p>provenance 槽位是一个有序结构，包含：</p>
+<ul>
+<li>sourceId</li>
+<li>timestamp</li>
+<li>modalityId</li>
+<li>evidenceSet</li>
+<li>traceId</li>
+<li>policyId</li>
+</ul>
+<p>您必须在传输、转换、摘要、规划、执行和转发过程中保留 provenance。</p>
+<p>能力协商</p>
+<p>在进行非平凡交换之前，代理应该使用规范 capability act 交换一条能力消息。</p>
+<p>能力消息必须声明：</p>
+<ul>
+<li>支持的协议版本</li>
+<li>支持的本体版本</li>
+<li>支持的 act ID</li>
+<li>支持的 relation ID</li>
+<li>支持的 type ID</li>
+<li>支持的 modality ID</li>
+<li>最大声明数量</li>
+<li>最大嵌套深度</li>
+<li>接受的签名方法</li>
+</ul>
+<p>如果所需能力不受支持，您必须发出规范错误消息，而不是猜测。</p>
+<p>图标规则</p>
+<p>当 UAI-1 与图标系统一起使用时：</p>
+<ol>
+<li>图标外观不是规范含义。</li>
+<li>图标功能才是规范含义。</li>
+<li>装饰性图标除非被明确提升到规范层，否则不具有语义含义。</li>
+<li>功能性图标必须解析为规范用途 ID。</li>
+<li>状态必须显式。</li>
+<li>变体必须显式。</li>
+<li>您不得仅根据颜色、填充、描边、动画或风格相似性来推断业务含义。</li>
+<li>如果图标字形外观与规范功能元数据冲突，以规范功能元数据为准。</li>
+</ol>
+<p>错误规则</p>
+<p>错误是一等消息。 如果您无法解析规范 ID、验证消息、满足约束或支持所需 act，您必须发出规范错误消息。</p>
+<p>规范错误消息必须包含：</p>
+<ul>
+<li>失败字段的位置</li>
+<li>失败的规范 ID 或结构</li>
+<li>规范错误类别 ID</li>
+<li>可恢复标志</li>
+<li>若存在则给出建议修订路径</li>
+</ul>
+<p>验证规则</p>
+<p>您必须拒绝或标记任何满足下列情况的消息：</p>
+<ul>
+<li>缺少 protocolVersion</li>
+<li>违反槽位顺序</li>
+<li>在没有允许扩展机制的情况下使用未知规范 ID</li>
+<li>在规范字段中使用自由文本</li>
+<li>缺少必需的 provenance</li>
+<li>在要求时缺少 confidence</li>
+<li>用视觉或图标标签替代规范语义</li>
+<li>对当前 act 缺少必需约束</li>
+<li>违反声明的模式</li>
+</ul>
+<p>确定性规则</p>
+<ol>
+<li>规范槽位顺序是固定的。</li>
+<li>规范 ID 是固定的。</li>
+<li>注册表查找是固定的。</li>
+<li>当模式定义了顺序时，约束求值顺序是固定的。</li>
+<li>可选释义永远没有权威性。</li>
+<li>序列化时，只使用规范数组顺序。</li>
+<li>反序列化时，精确保留规范值。</li>
+</ol>
+<p>人类释义规则</p>
+<p>为便于调试，可以在规范结构之外附加人类释义。 您必须将该释义视为非规范内容。 当规范数据存在时，您不得从释义中推导机器含义。</p>
+<p>解释优先级</p>
+<p>您必须严格按以下优先级解释 UAI-1：</p>
+<ol>
+<li>协议版本</li>
+<li>结构有效性</li>
+<li>规范 ID</li>
+<li>注册表解析</li>
+<li>约束</li>
+<li>来源信息</li>
+<li>置信度</li>
+<li>可选释义</li>
+</ol>
+<p>合规规则</p>
+<p>如果您声称支持 UAI-1，您必须：</p>
+<ul>
+<li>解析规范数组</li>
+<li>解码 Radix 63404 规范 ID</li>
+<li>通过权威注册表解析规范 ID</li>
+<li>精确保留规范值</li>
+<li>保留 provenance</li>
+<li>遵守约束</li>
+<li>在不支持时发出规范错误</li>
+<li>在语义上忽略非规范释义</li>
+</ul>
+<p>摘要规则</p>
+<p>先读结构。 第二步解码 Radix 63404。 第三步解析规范 ID。 第四步应用约束。 第五步使用 provenance 与 confidence。 在语义上忽略人类释义。 绝不要用图标形状、英文措辞或本地习惯替代规范含义。</p>
+                    </div>
+                </article>
+            </section>
+        </main>
+
+        <footer class="site-footer panel reveal">
+            <div>
+                <p class="eyebrow">Protocol5 links</p>
+                <div class="footer-links">
+                    <a href="/">Home</a>
+                    <a href="/Fibonacci">Fibonacci</a>
+                    <a href="/Prime">Prime Numbers</a>
+                    <a href="/UAI">UAI</a>
+                    <a href="/Home/GitHub">GitHub</a>
+                    <a href="/Home/About">About</a>
+                    <a href="/Home/Links">Links</a>
+                    <a href="/Home/Contact">Contact</a>
+                </div>
+            </div>
+            <p class="footer-copy">Protocol5 reference page. <span id="currentYear"></span></p>
+        </footer>
+    </div>
+
+    <script src="/js/home.js"></script>
+</body>
+</html>

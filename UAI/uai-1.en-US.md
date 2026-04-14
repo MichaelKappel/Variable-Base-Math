@@ -11,7 +11,7 @@ You MUST derive meaning only from canonical structure, canonical IDs, canonical 
 ## Document Information
 
 - **Canonical language tag:** `x-uai-1`
-- **Protocol5 language support:** [UAI-1 C# Website Support Kit](/UAI/uai-1-csharp-website-support)
+- **Protocol5 language support:** [UAI-1 C# Website Support Kit](/UAI-1/csharp-website-support)
 - **NuGet package:** [Protocol5.UAI.CSharp.0.1.0.nupkg](/downloads/Protocol5.UAI.CSharp.0.1.0.nupkg)
 
 FOUNDATION

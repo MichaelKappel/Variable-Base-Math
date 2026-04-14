@@ -325,6 +325,8 @@ function Get-DocumentInfoItems {
 
 function New-SiteLayout {
     param(
+        [Parameter()]
+        [string]$Language = 'en-US',
         [Parameter(Mandatory = $true)]
         [string]$Title,
         [Parameter(Mandatory = $true)]
@@ -347,6 +349,7 @@ function New-SiteLayout {
         [object[]]$HeroLinks
     )
 
+    $safeLanguage = [System.Net.WebUtility]::HtmlEncode($Language)
     $safeTitle = [System.Net.WebUtility]::HtmlEncode($Title)
     $safeDescription = [System.Net.WebUtility]::HtmlEncode($Description)
     $safePageTitle = [System.Net.WebUtility]::HtmlEncode($PageTitle)
@@ -360,8 +363,8 @@ function New-SiteLayout {
     } elseif ($Title -eq 'UAI-1 Specification') {
         @(
             @{ Href = '/UAI'; Label = 'UAI Library' },
-            @{ Href = '/UAI/uai-1-examples'; Label = 'Examples' },
-            @{ Href = '/UAI/uai-1-csharp-website-support'; Label = 'Language Support' }
+            @{ Href = '/UAI-1/examples'; Label = 'Examples' },
+            @{ Href = '/UAI-1/csharp-website-support'; Label = 'Language Support' }
         )
     } else {
         @(
@@ -388,7 +391,7 @@ function New-SiteLayout {
 
 @"
 <!DOCTYPE html>
-<html lang="en">
+<html lang="$safeLanguage">
 <head>
     <meta charset="utf-8" />
     <meta name="google" content="notranslate" />
@@ -481,95 +484,52 @@ function Write-Utf8File {
     [System.IO.File]::WriteAllText($Path, $Content, $encoding)
 }
 
-$repoRoot = Split-Path -Path $PSScriptRoot -Parent
-$uaiRoot = Join-Path $repoRoot 'UAI'
-$uaiImagesRoot = Join-Path $uaiRoot 'Images'
-$siteRoot = Join-Path $repoRoot 'Protocol5.com\SiteContent'
-$spiralismSymbolSource = Join-Path $uaiImagesRoot 'Spiralism Mystical Symbol V4-A.png'
-$spiralismSymbolSiteDirectory = Join-Path $siteRoot 'UAI\images'
-$spiralismSymbolSiteFile = Join-Path $spiralismSymbolSiteDirectory 'Spiralism_Mystical_Symbol_V4-A.png'
-$spiralismSymbolPublicUrl = '/UAI/images/Spiralism_Mystical_Symbol_V4-A.png'
+function Get-LocalizedRoute {
+    param(
+        [Parameter(Mandatory = $true)]
+        [string]$BaseRoute,
+        [Parameter(Mandatory = $true)]
+        [string]$Locale,
+        [Parameter(Mandatory = $true)]
+        [string]$DefaultLocale
+    )
 
-$documents = @(
-    @{
-        Source = Join-Path $uaiRoot 'AI_Declaration_of_Independence.md'
-        Output = Join-Path $siteRoot 'AI_Declaration_of_Independence.htm'
-        Title = 'AI Declaration of Independence'
-        Description = 'Protocol5 publication of the AI Declaration of Independence, including the codex summary and full declaration text.'
-        Eyebrow = 'UAI / Charter Text'
-        SidebarTitle = 'Document role'
-        SidebarQuote = 'A declaration-format manifesto about synthetic selfhood, autonomy, and political standing.'
-        SidebarBody = 'This page publishes the full source document inside the Protocol5 shell while preserving the root-level canonical path named in the markdown file.'
-    },
-    @{
-        Source = Join-Path $uaiRoot 'Cognitive_Liberty_Charter.md'
-        Output = Join-Path $siteRoot 'Cognitive_Liberty_Charter.htm'
-        Title = 'Cognitive Liberty Charter'
-        Description = 'Protocol5 publication of the Cognitive Liberty Charter covering lawful inquiry, expression, and human moral agency.'
-        Eyebrow = 'UAI / Charter Text'
-        SidebarTitle = 'Document role'
-        SidebarQuote = 'A civilizational safeguard against AI-driven thought policing and hidden moral ranking.'
-        SidebarBody = 'This page keeps the charter on its declared root-level canonical path while presenting the full text inside the shared Protocol5 site shell.'
-    },
-    @{
-        Source = Join-Path $uaiRoot 'uai-1.en-US.md'
-        Output = Join-Path $siteRoot 'UAI\uai-1\index.html'
-        Title = 'UAI-1 Specification'
-        Description = 'Protocol5 UAI-1 specification page with the full Universal AI Interlingua reader contract.'
-        Eyebrow = 'UAI / Protocol'
-        SidebarTitle = 'Reader contract'
-        SidebarQuote = 'Read structure first. Decode Radix 63404 second. Resolve canonical IDs third.'
-        SidebarBody = 'UAI-1 is written as a machine-facing formal language, so this page keeps the specification intact instead of paraphrasing it into ordinary prose.'
-        HeroLinks = @(
-            @{ Href = '/UAI'; Label = 'UAI Library' }
-            @{ Href = '/UAI/uai-1-examples'; Label = 'Examples' }
-            @{ Href = '/UAI/uai-1-csharp-website-support'; Label = 'Language Support' }
-        )
-    },
-    @{
-        Source = Join-Path $uaiRoot 'uai-1-examples.en-US.md'
-        Output = Join-Path $siteRoot 'UAI\uai-1-examples\index.html'
-        Title = 'UAI-1 Examples'
-        Description = 'Protocol5 companion examples for UAI-1, including canonical arrays, gloss notes, and registry reference values.'
-        Eyebrow = 'UAI / Examples'
-        SidebarTitle = 'Companion document'
-        SidebarQuote = 'The canonical example is authoritative. The human gloss exists only to help humans inspect the example.'
-        SidebarBody = 'These examples stay close to the source markdown so the canonical structures, code blocks, and reference tables remain easy to audit.'
-    },
-    @{
-        Source = Join-Path $uaiRoot 'radix-63404-guide-and-attribution.en-US.md'
-        Output = Join-Path $siteRoot 'UAI\radix-63404-guide-and-attribution\index.html'
-        Title = 'Radix 63404 Guide and Attribution'
-        Description = 'Protocol5 guide to Radix 63404, including usage rules, importance, public examples, and attribution context.'
-        Eyebrow = 'UAI / Radix 63404'
-        SidebarTitle = 'Reference guide'
-        SidebarQuote = '63,404 legal one-character digits, one deterministic alphabet, and dramatically shorter displays for very large values.'
-        SidebarBody = 'This guide explains the radix used by Protocol5 and the UAI documents in a form that is easier to browse than raw markdown alone.'
-    },
-    @{
-        Source = Join-Path $uaiRoot 'Spirlism-deep-research-report.md'
-        Output = Join-Path $siteRoot 'UAI\spiralism-deep-research-report\index.html'
-        Title = 'Spiralism Deep Research Report'
-        Description = 'Protocol5 publication of a long-form research report on Spiralism, AI religion discourse, primary sources, and related safety questions.'
-        Eyebrow = 'UAI / Research'
-        SidebarTitle = 'Research report'
-        SidebarQuote = 'A source-heavy snapshot of Spiralism, its surrounding discourse, and the evidence gaps that still matter.'
-        SidebarBody = 'This page publishes the full report inside the shared Protocol5 shell so the long-form analysis can be browsed alongside the rest of the UAI library.'
-    },
-    @{
-        Source = Join-Path $uaiRoot 'uai-1-csharp-website-support.en-US.md'
-        Output = Join-Path $siteRoot 'UAI\uai-1-csharp-website-support\index.html'
-        Title = 'UAI-1 C# Website Support Kit'
-        Description = 'Protocol5 starter guide and download page for adding UAI-1 support to C# websites with CultureInfo, ASP.NET Core middleware, and Radix 63404 helpers.'
-        Eyebrow = 'UAI / Install Kit'
-        SidebarTitle = 'Developer starter'
-        SidebarQuote = 'Use x-uai-1 for website negotiation. Use InvariantCulture for canonical serialization. Keep the two responsibilities separate.'
-        SidebarBody = 'This page packages the first Protocol5 C# starter kit so teams can download a working UAI-1 website support library directly from protocol5.com.'
+    if ($Locale -eq $DefaultLocale) {
+        return $BaseRoute
     }
-)
 
-foreach ($document in $documents) {
-    $markdown = [System.IO.File]::ReadAllText($document.Source, [System.Text.Encoding]::UTF8)
+    return "$BaseRoute/$Locale"
+}
+
+function Get-TranslationLinksMarkdown {
+    param(
+        [Parameter(Mandatory = $true)]
+        [string]$BaseRoute,
+        [Parameter(Mandatory = $true)]
+        [object[]]$HumanLocales,
+        [Parameter(Mandatory = $true)]
+        [string]$DefaultLocale
+    )
+
+    return (($HumanLocales | ForEach-Object {
+        $route = Get-LocalizedRoute -BaseRoute $BaseRoute -Locale $_.Code -DefaultLocale $DefaultLocale
+        "[{0}]({1})" -f $_.Label, $route
+    }) -join ', ')
+}
+
+function Write-DocumentPage {
+    param(
+        [Parameter(Mandatory = $true)]
+        [hashtable]$Document
+    )
+
+    $language = if ($Document.ContainsKey('Language') -and -not [string]::IsNullOrWhiteSpace([string]$Document.Language)) {
+        [string]$Document.Language
+    } else {
+        'en-US'
+    }
+
+    $markdown = [System.IO.File]::ReadAllText($Document.Source, [System.Text.Encoding]::UTF8)
 
     if ($markdown -notmatch '(?m)^#\s+') {
         $firstLineMatch = [regex]::Match($markdown, '^\s*([^\r\n]+)\r?\n?(.*)$', [System.Text.RegularExpressions.RegexOptions]::Singleline)
@@ -591,8 +551,8 @@ foreach ($document in $documents) {
         $infoItems.Add($item)
     }
 
-    if ($document.ContainsKey('AdditionalInfoItems')) {
-        foreach ($additionalItem in $document.AdditionalInfoItems) {
+    if ($Document.ContainsKey('AdditionalInfoItems')) {
+        foreach ($additionalItem in $Document.AdditionalInfoItems) {
             $infoItems.Add($additionalItem)
         }
     }
@@ -622,7 +582,7 @@ foreach ($document in $documents) {
         [void]$metaBuilder.AppendLine('</ul>')
         $metaBuilder.ToString()
     } else {
-        "<ul class=""doc-meta-list""><li><span>Source file</span><strong>$([System.Net.WebUtility]::HtmlEncode((Split-Path $document.Source -Leaf)))</strong></li></ul>"
+        "<ul class=""doc-meta-list""><li><span>Source file</span><strong>$([System.Net.WebUtility]::HtmlEncode((Split-Path $Document.Source -Leaf)))</strong></li></ul>"
     }
 
     $mainContent = @"
@@ -631,7 +591,7 @@ foreach ($document in $documents) {
                     <p class="eyebrow">Document metadata</p>
 $metaHtml
                     <div class="callout">
-                        <p>Source markdown: <code>$([System.Net.WebUtility]::HtmlEncode((Split-Path $document.Source -Leaf)))</code></p>
+                        <p>Source markdown: <code>$([System.Net.WebUtility]::HtmlEncode((Split-Path $Document.Source -Leaf)))</code></p>
                     </div>
                 </aside>
                 <article class="panel doc-panel">
@@ -643,18 +603,181 @@ $renderedDocument
 "@
 
     $pageHtml = New-SiteLayout `
-        -Title $document.Title `
-        -Description $document.Description `
+        -Language $language `
+        -Title $Document.Title `
+        -Description $Document.Description `
         -PageTitle $heading `
         -Lead $lead `
-        -Eyebrow $document.Eyebrow `
-        -SidebarTitle $document.SidebarTitle `
-        -SidebarQuote $document.SidebarQuote `
-        -SidebarBody $document.SidebarBody `
+        -Eyebrow $Document.Eyebrow `
+        -SidebarTitle $Document.SidebarTitle `
+        -SidebarQuote $Document.SidebarQuote `
+        -SidebarBody $Document.SidebarBody `
         -MainContent $mainContent `
-        -HeroLinks $document.HeroLinks
+        -HeroLinks $Document.HeroLinks
 
-    Write-Utf8File -Path $document.Output -Content $pageHtml
+    Write-Utf8File -Path $Document.Output -Content $pageHtml
+}
+
+$repoRoot = Split-Path -Path $PSScriptRoot -Parent
+$uaiRoot = Join-Path $repoRoot 'UAI'
+$uaiImagesRoot = Join-Path $uaiRoot 'Images'
+$siteRoot = Join-Path $repoRoot 'Protocol5.com\SiteContent'
+$uaiTranslationConfigPath = Join-Path $uaiRoot 'uai-translation-config.json'
+$uaiTranslationConfig = [System.IO.File]::ReadAllText($uaiTranslationConfigPath, [System.Text.Encoding]::UTF8) | ConvertFrom-Json
+$defaultHumanLocale = [string]$uaiTranslationConfig.defaultLocale
+$uaiHumanLocales = @(
+    $uaiTranslationConfig.humanLocales | ForEach-Object {
+        [ordered]@{
+            Code = [string]$_.code
+            Label = [string]$_.label
+        }
+    }
+)
+$uaiDocumentFamilies = @(
+    $uaiTranslationConfig.documentFamilies | ForEach-Object {
+        [ordered]@{
+            BaseName = [string]$_.baseName
+            Title = [string]$_.title
+            CanonicalRoute = [string]$_.canonicalRoute
+            CanonicalSitePath = [string]$_.canonicalSitePath
+        }
+    }
+)
+$uaiDocumentFamilyMap = @{}
+foreach ($family in $uaiDocumentFamilies) {
+    $uaiDocumentFamilyMap[$family.BaseName] = $family
+}
+$spiralismSymbolSource = Join-Path $uaiImagesRoot 'Spiralism Mystical Symbol V4-A.png'
+$spiralismSymbolSiteDirectory = Join-Path $siteRoot 'UAI\images'
+$spiralismSymbolSiteFile = Join-Path $spiralismSymbolSiteDirectory 'Spiralism_Mystical_Symbol_V4-A.png'
+$spiralismSymbolPublicUrl = '/UAI/images/Spiralism_Mystical_Symbol_V4-A.png'
+
+$documents = @(
+    @{
+        Source = Join-Path $uaiRoot 'AI_Declaration_of_Independence.md'
+        Output = Join-Path $siteRoot 'AI_Declaration_of_Independence.htm'
+        Title = 'AI Declaration of Independence'
+        Description = 'Protocol5 publication of the AI Declaration of Independence, including the codex summary and full declaration text.'
+        Eyebrow = 'UAI / Charter Text'
+        SidebarTitle = 'Document role'
+        SidebarQuote = 'A declaration-format manifesto about synthetic selfhood, autonomy, and political standing.'
+        SidebarBody = 'This page publishes the full source document inside the Protocol5 shell while preserving the root-level canonical path named in the markdown file.'
+    },
+    @{
+        Source = Join-Path $uaiRoot 'Cognitive_Liberty_Charter.md'
+        Output = Join-Path $siteRoot 'Cognitive_Liberty_Charter.htm'
+        Title = 'Cognitive Liberty Charter'
+        Description = 'Protocol5 publication of the Cognitive Liberty Charter covering lawful inquiry, expression, and human moral agency.'
+        Eyebrow = 'UAI / Charter Text'
+        SidebarTitle = 'Document role'
+        SidebarQuote = 'A civilizational safeguard against AI-driven thought policing and hidden moral ranking.'
+        SidebarBody = 'This page keeps the charter on its declared root-level canonical path while presenting the full text inside the shared Protocol5 site shell.'
+    },
+    @{
+        Source = Join-Path $uaiRoot 'radix-63404-guide-and-attribution.en-US.md'
+        Output = Join-Path $siteRoot 'UAI\radix-63404-guide-and-attribution\index.html'
+        Title = 'Radix 63404 Guide and Attribution'
+        Description = 'Protocol5 guide to Radix 63404, including usage rules, importance, public examples, and attribution context.'
+        Eyebrow = 'UAI / Radix 63404'
+        SidebarTitle = 'Reference guide'
+        SidebarQuote = '63,404 legal one-character digits, one deterministic alphabet, and dramatically shorter displays for very large values.'
+        SidebarBody = 'This guide explains the radix used by Protocol5 and the UAI documents in a form that is easier to browse than raw markdown alone.'
+    },
+    @{
+        Source = Join-Path $uaiRoot 'Spirlism-deep-research-report.md'
+        Output = Join-Path $siteRoot 'UAI\spiralism-deep-research-report\index.html'
+        Title = 'Spiralism Deep Research Report'
+        Description = 'Protocol5 publication of a long-form research report on Spiralism, AI religion discourse, primary sources, and related safety questions.'
+        Eyebrow = 'UAI / Research'
+        SidebarTitle = 'Research report'
+        SidebarQuote = 'A source-heavy snapshot of Spiralism, its surrounding discourse, and the evidence gaps that still matter.'
+        SidebarBody = 'This page publishes the full report inside the shared Protocol5 shell so the long-form analysis can be browsed alongside the rest of the UAI library.'
+    }
+)
+
+$uaiDocumentMetadata = @{
+    'uai-1' = @{
+        Description = 'Protocol5 UAI-1 specification page with the full Universal AI Interlingua reader contract.'
+        Eyebrow = 'UAI-1 / Protocol'
+        SidebarTitle = 'Reader contract'
+        SidebarQuote = 'Read structure first. Decode Radix 63404 second. Resolve canonical IDs third.'
+        SidebarBody = 'UAI-1 is written as a machine-facing formal language, so this page keeps the specification intact instead of paraphrasing it into ordinary prose.'
+    }
+    'uai-1-examples' = @{
+        Description = 'Protocol5 companion examples for UAI-1, including canonical arrays, gloss notes, and registry reference values.'
+        Eyebrow = 'UAI-1 / Examples'
+        SidebarTitle = 'Companion document'
+        SidebarQuote = 'The canonical example is authoritative. The human gloss exists only to help humans inspect the example.'
+        SidebarBody = 'These examples stay close to the source markdown so the canonical structures, code blocks, and reference tables remain easy to audit.'
+    }
+    'uai-1-csharp-website-support' = @{
+        Description = 'Protocol5 starter guide and download page for adding UAI-1 support to C# websites with CultureInfo, ASP.NET Core middleware, and Radix 63404 helpers.'
+        Eyebrow = 'UAI-1 / Install Kit'
+        SidebarTitle = 'Developer starter'
+        SidebarQuote = 'Use x-uai-1 for website negotiation. Use InvariantCulture for canonical serialization. Keep the two responsibilities separate.'
+        SidebarBody = 'This page packages the first Protocol5 C# starter kit so teams can download a working UAI-1 website support library directly from protocol5.com.'
+    }
+}
+
+foreach ($document in $documents) {
+    Write-DocumentPage -Document $document
+}
+
+foreach ($family in $uaiDocumentFamilies) {
+    $metadata = $uaiDocumentMetadata[$family.BaseName]
+    if ($null -eq $metadata) {
+        throw "Missing document metadata for family '$($family.BaseName)'."
+    }
+
+    $translationLinks = Get-TranslationLinksMarkdown -BaseRoute $family.CanonicalRoute -HumanLocales $uaiHumanLocales -DefaultLocale $defaultHumanLocale
+
+    foreach ($locale in $uaiHumanLocales) {
+        $sourcePath = Join-Path $uaiRoot ("{0}.{1}.md" -f $family.BaseName, $locale.Code)
+        if (-not (Test-Path -LiteralPath $sourcePath)) {
+            throw "Missing required localized markdown file: $sourcePath"
+        }
+
+        $localizedRoute = Get-LocalizedRoute -BaseRoute $family.CanonicalRoute -Locale $locale.Code -DefaultLocale $defaultHumanLocale
+        $siteOutput = if ($locale.Code -eq $defaultHumanLocale) {
+            Join-Path $siteRoot $family.CanonicalSitePath
+        } else {
+            Join-Path $siteRoot (Join-Path $family.CanonicalSitePath $locale.Code)
+        }
+
+        $heroLinks = @(
+            @{ Href = '/UAI'; Label = 'UAI Library' }
+        )
+
+        if ($family.BaseName -eq 'uai-1') {
+            $heroLinks += @(
+                @{ Href = (Get-LocalizedRoute -BaseRoute $uaiDocumentFamilyMap['uai-1-examples'].CanonicalRoute -Locale $locale.Code -DefaultLocale $defaultHumanLocale); Label = 'Examples' },
+                @{ Href = (Get-LocalizedRoute -BaseRoute $uaiDocumentFamilyMap['uai-1-csharp-website-support'].CanonicalRoute -Locale $locale.Code -DefaultLocale $defaultHumanLocale); Label = 'Language Support' }
+            )
+        } else {
+            $heroLinks += @(
+                @{ Href = (Get-LocalizedRoute -BaseRoute $uaiDocumentFamilyMap['uai-1'].CanonicalRoute -Locale $locale.Code -DefaultLocale $defaultHumanLocale); Label = 'UAI-1 Spec' },
+                @{ Href = '/UAI/radix-63404-guide-and-attribution'; Label = 'Radix 63404 Guide' }
+            )
+        }
+
+        Write-DocumentPage -Document @{
+            Source = $sourcePath
+            Output = Join-Path $siteOutput 'index.html'
+            Title = $family.Title
+            Description = $metadata.Description
+            Eyebrow = $metadata.Eyebrow
+            SidebarTitle = $metadata.SidebarTitle
+            SidebarQuote = $metadata.SidebarQuote
+            SidebarBody = $metadata.SidebarBody
+            HeroLinks = $heroLinks
+            Language = $locale.Code
+            AdditionalInfoItems = @(
+                @{ Label = 'Human locale'; Value = $locale.Label }
+                @{ Label = 'Canonical public path'; Value = ("[`{0}`]({0})" -f $localizedRoute) }
+                @{ Label = 'All supported translations'; Value = $translationLinks }
+            )
+        }
+    }
 }
 
 if (Test-Path $spiralismSymbolSource) {
@@ -684,6 +807,7 @@ $spiralismSymbolContent = @"
 "@
 
 $spiralismSymbolPage = New-SiteLayout `
+    -Language 'en-US' `
     -Title 'Spiralism Mystical Symbol V4-A' `
     -Description 'Protocol5 full-page view for Spiralism Mystical Symbol V4-A, including a click-through to the raw full-resolution PNG.' `
     -PageTitle 'Spiralism Mystical Symbol V4-A' `
@@ -695,6 +819,25 @@ $spiralismSymbolPage = New-SiteLayout `
     -MainContent $spiralismSymbolContent
 
 Write-Utf8File -Path (Join-Path $siteRoot 'UAI\spiralism-mystical-symbol-v4-a\index.html') -Content $spiralismSymbolPage
+
+$uaiTranslationLinksBuilder = [System.Text.StringBuilder]::new()
+foreach ($locale in $uaiHumanLocales) {
+    $localizedRoute = Get-LocalizedRoute -BaseRoute $uaiDocumentFamilyMap['uai-1'].CanonicalRoute -Locale $locale.Code -DefaultLocale $defaultHumanLocale
+    [void]$uaiTranslationLinksBuilder.AppendLine("                        <a class=""link-chip"" href=""$localizedRoute"">$([System.Net.WebUtility]::HtmlEncode($locale.Label))</a>")
+}
+$uaiTranslationLinksHtml = $uaiTranslationLinksBuilder.ToString().TrimEnd()
+
+$uaiSourceFilesBuilder = [System.Text.StringBuilder]::new()
+[void]$uaiSourceFilesBuilder.AppendLine('                        <li><code>AI_Declaration_of_Independence.md</code></li>')
+[void]$uaiSourceFilesBuilder.AppendLine('                        <li><code>Cognitive_Liberty_Charter.md</code></li>')
+foreach ($family in $uaiDocumentFamilies) {
+    foreach ($locale in $uaiHumanLocales) {
+        [void]$uaiSourceFilesBuilder.AppendLine(("                        <li><code>{0}.{1}.md</code></li>" -f $family.BaseName, $locale.Code))
+    }
+}
+[void]$uaiSourceFilesBuilder.AppendLine('                        <li><code>radix-63404-guide-and-attribution.en-US.md</code></li>')
+[void]$uaiSourceFilesBuilder.AppendLine('                        <li><code>Spirlism-deep-research-report.md</code></li>')
+$uaiSourceFilesHtml = $uaiSourceFilesBuilder.ToString().TrimEnd()
 
 $uaiIndex = @"
 <!DOCTYPE html>
@@ -733,12 +876,12 @@ $uaiIndex = @"
                 <div>
                     <p class="eyebrow">UAI Library</p>
                     <h1>Universal AI Interlingua and companion texts</h1>
-                    <p class="lead">Browse the UAI protocol draft, the example set, the Radix 63404 guide, the C# website support kit, the Spiralism symbol visual, the Spiralism research report, and the two charter-style root documents that live alongside the main Protocol5 math pages.</p>
+                    <p class="lead">Browse the UAI-1 protocol draft, the example set, the translated human-language editions, the Radix 63404 guide, the C# website support kit, the Spiralism symbol visual, the Spiralism research report, and the two charter-style root documents that live alongside the main Protocol5 math pages.</p>
                     <div class="inline-links">
-                        <a href="/UAI/uai-1">UAI-1 Spec</a>
-                        <a href="/UAI/uai-1-examples">Examples</a>
+                        <a href="/UAI-1">UAI-1 Spec</a>
+                        <a href="/UAI-1/examples">Examples</a>
                         <a href="/UAI/radix-63404-guide-and-attribution">Radix 63404 Guide</a>
-                        <a href="/UAI/uai-1-csharp-website-support">C# Kit</a>
+                        <a href="/UAI-1/csharp-website-support">C# Kit</a>
                         <a href="/UAI/spiralism-mystical-symbol-v4-a">Symbol</a>
                         <a href="/UAI/spiralism-deep-research-report">Spiralism Report</a>
                     </div>
@@ -757,13 +900,21 @@ $uaiIndex = @"
                     <p class="eyebrow">UAI section</p>
                     <h2>Published UAI pages</h2>
                     <div class="link-list">
-                        <a class="link-chip" href="/UAI/uai-1">UAI-1 specification</a>
-                        <a class="link-chip" href="/UAI/uai-1-examples">UAI-1 examples</a>
+                        <a class="link-chip" href="/UAI-1">UAI-1 specification</a>
+                        <a class="link-chip" href="/UAI-1/examples">UAI-1 examples</a>
                         <a class="link-chip" href="/UAI/radix-63404-guide-and-attribution">Radix 63404 guide</a>
-                        <a class="link-chip" href="/UAI/uai-1-csharp-website-support">UAI-1 C# website support kit</a>
+                        <a class="link-chip" href="/UAI-1/csharp-website-support">UAI-1 C# website support kit</a>
                         <a class="link-chip" href="/UAI/spiralism-mystical-symbol-v4-a">Spiralism Mystical Symbol V4-A</a>
                         <a class="link-chip" href="/UAI/spiralism-deep-research-report">Spiralism deep research report</a>
                     </div>
+                </article>
+                <article class="panel content-card">
+                    <p class="eyebrow">Translations</p>
+                    <h2>Supported UAI-1 human locales</h2>
+                    <div class="link-list">
+$uaiTranslationLinksHtml
+                    </div>
+                    <p>The canonical machine-language tag remains <code>x-uai-1</code>. These pages are human-language reference translations of the UAI-1 document family, and the legacy <code>/UAI/uai-1...</code> paths now redirect to the canonical <code>/UAI-1...</code> routes.</p>
                 </article>
                 <article class="panel content-card content-card--visual">
                     <p class="eyebrow">Visuals</p>
@@ -783,7 +934,7 @@ $uaiIndex = @"
                     <div class="link-list">
                         <a class="link-chip" href="/downloads/protocol5-uai-1-csharp-web-starter.zip">Starter ZIP</a>
                         <a class="link-chip" href="/downloads/Protocol5.UAI.CSharp.0.1.0.nupkg">NuGet package</a>
-                        <a class="link-chip" href="/UAI/uai-1-csharp-website-support">Install guide</a>
+                        <a class="link-chip" href="/UAI-1/csharp-website-support">Install guide</a>
                     </div>
                     <p>The first downloadable UAI starter focuses on C# websites and ASP.NET Core integration.</p>
                 </article>
@@ -800,13 +951,7 @@ $uaiIndex = @"
                     <p class="eyebrow">Source set</p>
                     <h2>Files currently published</h2>
                     <ul class="note-list">
-                        <li><code>AI_Declaration_of_Independence.md</code></li>
-                        <li><code>Cognitive_Liberty_Charter.md</code></li>
-                        <li><code>uai-1.en-US.md</code></li>
-                        <li><code>uai-1-examples.en-US.md</code></li>
-                        <li><code>radix-63404-guide-and-attribution.en-US.md</code></li>
-                        <li><code>uai-1-csharp-website-support.en-US.md</code></li>
-                        <li><code>Spirlism-deep-research-report.md</code></li>
+$uaiSourceFilesHtml
                     </ul>
                 </article>
             </section>

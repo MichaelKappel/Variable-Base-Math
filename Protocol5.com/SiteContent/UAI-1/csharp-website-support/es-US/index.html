@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es-US">
+<head>
+    <meta charset="utf-8" />
+    <meta name="google" content="notranslate" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Protocol5 starter guide and download page for adding UAI-1 support to C# websites with CultureInfo, ASP.NET Core middleware, and Radix 63404 helpers." />
+    <title>UAI-1 C# Website Support Kit</title>
+    <link rel="stylesheet" href="/css/home.css" />
+</head>
+<body class="content-page">
+    <div class="site-shell">
+        <header class="site-header">
+            <div class="brand-lockup">
+                <p class="brand-kicker">Protocol5</p>
+                <h1>Variable-Base Mathematics</h1>
+                <p class="brand-copy">Exact arithmetic, radix conversion, sequence references, and educational number-system pages collected into one publishable shell.</p>
+            </div>
+            <nav class="site-nav" aria-label="Primary navigation">
+                <a href="/">Home</a>
+                <a href="/Fibonacci">Fibonacci</a>
+                <a href="/Prime">Prime Numbers</a>
+                <a href="/UAI">UAI</a>
+                <a href="/calculator" data-tool-link="calculator">Calculator</a>
+                <a href="/Home/GitHub">GitHub</a>
+                <a href="/Home/About">About</a>
+                <a href="/Home/Links">Links</a>
+                <a href="/Home/Contact">Contact</a>
+            </nav>
+        </header>
+
+        <main>
+            <section class="content-hero panel reveal">
+                <div>
+                    <p class="eyebrow">UAI-1 / Install Kit</p>
+                    <h1>Kit de soporte web C# para UAI-1</h1>
+                    <p class="lead">Esta p&#225;gina publica la descarga inicial de Protocol5 para agregar compatibilidad con UAI-1 a sitios web de C#, en especial a sitios ASP.NET Core que quieren una ruta pr&#225;ctica de integraci&#243;n con <code>CultureInfo</code> y <code>Accept-Language</code> sin hacer que la sem&#225;ntica can&#243;nica de UAI dependa de reglas locales de formato humano.</p>
+                    <div class="inline-links">
+                        <a href="/UAI">UAI Library</a>
+                        <a href="/UAI-1/es-US">UAI-1 Spec</a>
+                        <a href="/UAI/radix-63404-guide-and-attribution">Radix 63404 Guide</a>
+                    </div>
+                </div>
+                <aside class="traveler-note">
+                    <p class="eyebrow">Developer starter</p>
+                    <blockquote>
+                        Use x-uai-1 for website negotiation. Use InvariantCulture for canonical serialization. Keep the two responsibilities separate.
+                    </blockquote>
+                    <p>This page packages the first Protocol5 C# starter kit so teams can download a working UAI-1 website support library directly from protocol5.com.</p>
+                </aside>
+            </section>
+
+            <section class="doc-layout reveal">
+                <aside class="panel doc-sidebar">
+                    <p class="eyebrow">Document metadata</p>
+<ul class="doc-meta-list">
+<li><span>Human locale</span><strong>Espa&#241;ol (US)</strong></li>
+<li><span>Canonical public path</span><strong><a href="/UAI-1/csharp-website-support/es-US">/UAI-1/csharp-website-support/es-US</a></strong></li>
+<li><span>All supported translations</span><strong><a href="/UAI-1/csharp-website-support">English (US)</a>, <a href="/UAI-1/csharp-website-support/es-US">Espa&#241;ol (US)</a>, <a href="/UAI-1/csharp-website-support/uk-UA">Українська</a>, <a href="/UAI-1/csharp-website-support/zh-SG">简体中文（新加坡）</a>, <a href="/UAI-1/csharp-website-support/th">ไทย</a></strong></li>
+</ul>
+
+                    <div class="callout">
+                        <p>Source markdown: <code>uai-1-csharp-website-support.es-US.md</code></p>
+                    </div>
+                </aside>
+                <article class="panel doc-panel">
+                    <div class="doc-prose">
+<h1>Kit de soporte web C# para UAI-1</h1>
+<p>Esta p&#225;gina publica la descarga inicial de Protocol5 para agregar compatibilidad con UAI-1 a sitios web de C#, en especial a sitios ASP.NET Core que quieren una ruta pr&#225;ctica de integraci&#243;n con <code>CultureInfo</code> y <code>Accept-Language</code> sin hacer que la sem&#225;ntica can&#243;nica de UAI dependa de reglas locales de formato humano.</p>
+<h2>Informaci&#243;n del documento</h2>
+<ul>
+<li><strong>Audiencia:</strong> desarrolladores de sitios web en C# y ASP.NET</li>
+<li><strong>Descarga ZIP:</strong> <a href="/downloads/protocol5-uai-1-csharp-web-starter.zip">protocol5-uai-1-csharp-web-starter.zip</a></li>
+<li><strong>Descarga del paquete NuGet:</strong> <a href="/downloads/Protocol5.UAI.CSharp.0.1.0.nupkg">Protocol5.UAI.CSharp.0.1.0.nupkg</a></li>
+<li><strong>Suma de verificaci&#243;n del ZIP:</strong> <a href="/downloads/protocol5-uai-1-csharp-web-starter.zip.sha256">protocol5-uai-1-csharp-web-starter.zip.sha256</a></li>
+<li><strong>Etiqueta can&#243;nica de idioma:</strong> <code>x-uai-1</code></li>
+<li><strong>Cultura can&#243;nica de serializaci&#243;n:</strong> <code>InvariantCulture</code></li>
+<li><strong>Documentaci&#243;n de Microsoft:</strong> <a href="https://learn.microsoft.com/en-us/dotnet/fundamentals/runtime-libraries/system-globalization-cultureinfo">CultureInfo</a>, <a href="https://learn.microsoft.com/en-us/dotnet/fundamentals/runtime-libraries/system-globalization-cultureinfo-invariantculture">InvariantCulture</a>, <a href="https://learn.microsoft.com/en-us/dotnet/fundamentals/runtime-libraries/system-globalization-cultureandregioninfobuilder">CultureAndRegionInfoBuilder</a></li>
+</ul>
+<h2>Qu&#233; contiene la descarga</h2>
+<ul>
+<li>proyecto fuente <code>Protocol5.UAI.CSharp</code></li>
+<li>un <code>.nupkg</code> empaquetado de <code>Protocol5.UAI.CSharp</code></li>
+<li>utilidades para codificar y decodificar Radix 63404</li>
+<li>middleware de ASP.NET Core que reconoce solicitudes UAI desde query string, cookie o <code>Accept-Language</code></li>
+<li>un readme breve de instalaci&#243;n para equipos que prefieren una descarga directa en lugar de un feed de paquetes</li>
+</ul>
+<h2>Por qu&#233; el starter usa <code>x-uai-1</code></h2>
+<p>Para sitios web, la separaci&#243;n limpia es esta:</p>
+<ul>
+<li>usar <code>x-uai-1</code> para <code>lang</code> en HTML, la negociaci&#243;n de solicitudes y <code>Content-Language</code></li>
+<li>usar <code>CultureInfo.GetCultureInfo(&quot;x-uai-1&quot;)</code> cuando el runtime lo permita</li>
+<li>usar <code>CultureInfo.InvariantCulture</code> al serializar valores can&#243;nicos de UAI</li>
+</ul>
+<p>Esa &#250;ltima regla importa porque UAI-1 est&#225; definido como un lenguaje can&#243;nico para m&#225;quinas. Los separadores decimales, los formatos de fecha y las convenciones locales de presentaci&#243;n nunca deben cambiar el significado serializado de un mensaje UAI.</p>
+<h2>Por qu&#233; esto no es solo un instalador de cultura para Windows</h2>
+<p>La gu&#237;a de globalizaci&#243;n de Microsoft hace una distinci&#243;n importante:</p>
+<ul>
+<li><code>CultureInfo</code> es el punto de entrada normal del runtime para comportamiento sensible a cultura</li>
+<li><code>CultureAndRegionInfoBuilder</code> existe para crear culturas personalizadas, pero ese camino es espec&#237;fico de Windows y no es la opci&#243;n correcta por defecto para una adopci&#243;n web multiplataforma</li>
+</ul>
+<p>Por eso este starter de Protocol5 <strong>no</strong> exige registrar culturas personalizadas a nivel de sistema operativo. Primero ofrece a los sitios web una ruta pr&#225;ctica, y deja el registro de culturas espec&#237;fico por plataforma como un paso avanzado opcional.</p>
+<h2>Inicio r&#225;pido</h2>
+<p>Instale desde el archivo del paquete descargado:</p>
+<pre><code class="language-powershell">dotnet add package Protocol5.UAI.CSharp --source .\downloads</code></pre>
+<p>Luego con&#233;ctelo a un sitio ASP.NET Core:</p>
+<pre><code class="language-csharp">using Protocol5.UAI;
+
+var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddProtocol5UaiWebsiteSupport();
+
+var app = builder.Build();
+app.UseProtocol5UaiWebsiteSupport();
+
+app.MapGet(&quot;/uai-demo&quot;, (HttpContext context) =&gt;
+{
+    var sampleCanonicalId = Radix63404.Encode(5651);
+
+    return Results.Json(new
+    {
+        protocol = UaiCultureInfo.CanonicalVersion,
+        language = context.GetProtocol5HtmlLanguage(),
+        sampleCanonicalId
+    });
+});
+
+app.Run();</code></pre>
+<h2>Recomendaci&#243;n para HTML</h2>
+<p>Si una p&#225;gina debe declarar contenido compatible con UAI de forma directa, use:</p>
+<pre><code class="language-html">&lt;html lang=&quot;x-uai-1&quot;&gt;</code></pre>
+<h2>Regla de formato can&#243;nico</h2>
+<p>Al serializar valores can&#243;nicos de UAI, use siempre <code>InvariantCulture</code>:</p>
+<pre><code class="language-csharp">using Protocol5.UAI;
+
+var confidence = 0.875m.ToString(UaiCultureInfo.CanonicalSerializationCulture);</code></pre>
+<h2>Ejemplos de Radix 63404 incluidos en el kit</h2>
+<pre><code class="language-csharp">Radix63404.Encode(41);        // J
+Radix63404.Encode(5651);      // &#225;™–
+Radix63404.Encode(267914296); // &#225;ƒ„&#231;&#187;&#160;</code></pre>
+<h2>Enlaces de descarga</h2>
+<ul>
+<li><a href="/downloads/protocol5-uai-1-csharp-web-starter.zip">Descargar el ZIP completo del starter</a></li>
+<li><a href="/downloads/Protocol5.UAI.CSharp.0.1.0.nupkg">Descargar el paquete NuGet directamente</a></li>
+<li><a href="/UAI-1">Leer la especificaci&#243;n de UAI-1</a></li>
+<li><a href="/UAI/radix-63404-guide-and-attribution">Leer la gu&#237;a de Radix 63404</a></li>
+</ul>
+                    </div>
+                </article>
+            </section>
+        </main>
+
+        <footer class="site-footer panel reveal">
+            <div>
+                <p class="eyebrow">Protocol5 links</p>
+                <div class="footer-links">
+                    <a href="/">Home</a>
+                    <a href="/Fibonacci">Fibonacci</a>
+                    <a href="/Prime">Prime Numbers</a>
+                    <a href="/UAI">UAI</a>
+                    <a href="/Home/GitHub">GitHub</a>
+                    <a href="/Home/About">About</a>
+                    <a href="/Home/Links">Links</a>
+                    <a href="/Home/Contact">Contact</a>
+                </div>
+            </div>
+            <p class="footer-copy">Protocol5 reference page. <span id="currentYear"></span></p>
+        </footer>
+    </div>
+
+    <script src="/js/home.js"></script>
+</body>
+</html>

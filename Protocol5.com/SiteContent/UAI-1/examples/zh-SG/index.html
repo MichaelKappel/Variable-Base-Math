@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="zh-SG">
+<head>
+    <meta charset="utf-8" />
+    <meta name="google" content="notranslate" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Protocol5 companion examples for UAI-1, including canonical arrays, gloss notes, and registry reference values." />
+    <title>UAI-1 Examples</title>
+    <link rel="stylesheet" href="/css/home.css" />
+</head>
+<body class="content-page">
+    <div class="site-shell">
+        <header class="site-header">
+            <div class="brand-lockup">
+                <p class="brand-kicker">Protocol5</p>
+                <h1>Variable-Base Mathematics</h1>
+                <p class="brand-copy">Exact arithmetic, radix conversion, sequence references, and educational number-system pages collected into one publishable shell.</p>
+            </div>
+            <nav class="site-nav" aria-label="Primary navigation">
+                <a href="/">Home</a>
+                <a href="/Fibonacci">Fibonacci</a>
+                <a href="/Prime">Prime Numbers</a>
+                <a href="/UAI">UAI</a>
+                <a href="/calculator" data-tool-link="calculator">Calculator</a>
+                <a href="/Home/GitHub">GitHub</a>
+                <a href="/Home/About">About</a>
+                <a href="/Home/Links">Links</a>
+                <a href="/Home/Contact">Contact</a>
+            </nav>
+        </header>
+
+        <main>
+            <section class="content-hero panel reveal">
+                <div>
+                    <p class="eyebrow">UAI-1 / Examples</p>
+                    <h1>UAI-1 示例文档</h1>
+                    <p class="lead">版本：UAI-1 Examples v1 状态：权威性配套文档</p>
+                    <div class="inline-links">
+                        <a href="/UAI">UAI Library</a>
+                        <a href="/UAI-1/zh-SG">UAI-1 Spec</a>
+                        <a href="/UAI/radix-63404-guide-and-attribution">Radix 63404 Guide</a>
+                    </div>
+                </div>
+                <aside class="traveler-note">
+                    <p class="eyebrow">Companion document</p>
+                    <blockquote>
+                        The canonical example is authoritative. The human gloss exists only to help humans inspect the example.
+                    </blockquote>
+                    <p>These examples stay close to the source markdown so the canonical structures, code blocks, and reference tables remain easy to audit.</p>
+                </aside>
+            </section>
+
+            <section class="doc-layout reveal">
+                <aside class="panel doc-sidebar">
+                    <p class="eyebrow">Document metadata</p>
+<ul class="doc-meta-list">
+<li><span>Human locale</span><strong>简体中文（新加坡）</strong></li>
+<li><span>Canonical public path</span><strong><a href="/UAI-1/examples/zh-SG">/UAI-1/examples/zh-SG</a></strong></li>
+<li><span>All supported translations</span><strong><a href="/UAI-1/examples">English (US)</a>, <a href="/UAI-1/examples/es-US">Espa&#241;ol (US)</a>, <a href="/UAI-1/examples/uk-UA">Українська</a>, <a href="/UAI-1/examples/zh-SG">简体中文（新加坡）</a>, <a href="/UAI-1/examples/th">ไทย</a></strong></li>
+</ul>
+
+                    <div class="callout">
+                        <p>Source markdown: <code>uai-1-examples.zh-SG.md</code></p>
+                    </div>
+                </aside>
+                <article class="panel doc-panel">
+                    <div class="doc-prose">
+<h1>UAI-1 示例文档</h1>
+<p>版本：UAI-1 Examples v1 状态：权威性配套文档</p>
+<h2>目的</h2>
+<p>本文档提供 UAI-1 的规范示例。</p>
+<p>您必须将这些规范示例读作 UAI-1 机器结构。 您必须把所有规范 ID 解码为 Radix 63404 值。 您必须将本文档中的所有人类释义、注释、标签和解释说明视为非规范内容。</p>
+<p>规范示例具有权威性。 人类释义仅用于帮助人类检查示例。</p>
+<hr />
+<h2>Radix 63404 提醒</h2>
+<p>在 UAI-1 中，所有规范 ID 都以 Radix 63404 表示。</p>
+<p>您必须按如下方式解析每个 ID：</p>
+<ol>
+<li>将每个字符读作一个 Radix 63404 数字。</li>
+<li>将每个字符解析为其零基字母表索引。</li>
+<li>以 63404 进制计算位置值。</li>
+<li>将所得整数与权威注册表进行解析匹配。</li>
+</ol>
+<p>Radix 63404 字母表的前几个数字如下：</p>
+<div class="doc-table-wrap">
+<table>
+<thead><tr>
+<th scope="col">十进制值</th>
+<th scope="col">Radix 63404 数字</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><code>!</code></td>
+</tr>
+<tr>
+<td>1</td>
+<td><code>&quot;</code></td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>#</code></td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>$</code></td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>%</code></td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>&amp;</code></td>
+</tr>
+<tr>
+<td>6</td>
+<td><code>&#39;</code></td>
+</tr>
+<tr>
+<td>7</td>
+<td><code>(</code></td>
+</tr>
+<tr>
+<td>8</td>
+<td><code>)</code></td>
+</tr>
+<tr>
+<td>9</td>
+<td><code>*</code></td>
+</tr>
+<tr>
+<td>10</td>
+<td><code>+</code></td>
+</tr>
+<tr>
+<td>11</td>
+<td><code>,</code></td>
+</tr>
+<tr>
+<td>12</td>
+<td><code>-</code></td>
+</tr>
+<tr>
+<td>13</td>
+<td><code>.</code></td>
+</tr>
+<tr>
+<td>14</td>
+<td><code>/</code></td>
+</tr>
+<tr>
+<td>15</td>
+<td><code>0</code></td>
+</tr>
+<tr>
+<td>16</td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td>17</td>
+<td><code>2</code></td>
+</tr>
+<tr>
+<td>18</td>
+<td><code>3</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<hr />
+<h2>示例 1：基础断言消息</h2>
+<h3>规范示例</h3>
+<pre><code class="language-json">[
+  &quot;\&quot;&quot;,
+  &quot;&#226;&#188;&quot;,
+  &quot;&#226;&#189;&quot;,
+  &quot;\&quot;&quot;,
+  [
+    [&quot;&#211;&#180;&quot;, &quot;&#200;&#184;&quot;, &quot;&#224;&#163;œ&quot;, &quot;&#225;&#174;&quot;, &quot;\&quot;&quot;, 0.98],
+    [&quot;&#211;&#180;&quot;, &quot;&#200;&#185;&quot;, [&quot;&#197;&#176;&quot;, 5], &quot;&#225;&#174;&quot;, &quot;\&quot;&quot;, 0.99]
+  ],
+  [],
+  [
+    &quot;&#226;Ÿ&quot;,
+    [&quot;&#197;&#178;&quot;, &quot;2026-04-13T00:00:00Z&quot;],
+    &quot;&#39;&quot;,
+    [&quot;&#225;…&#180;&quot;, &quot;&#225;…&#181;&quot;],
+    &quot;-&#227;&#189;&#173;&quot;,
+    &quot;\u0bfc&quot;
+  ],
+  [&quot;\&quot;&quot;, 555001]
+]</code></pre>
+<h3>人类释义</h3>
+<p>此消息表示：</p>
+<ul>
+<li>protocolVersion = 1</li>
+<li>senderId = 9001</li>
+<li>receiverId = 9002</li>
+<li>actId = 1 = assert</li>
+<li>claim 1 = 主体 1201 在上下文 7001 中与对象 2201 存在关系 501，真，置信度 0.98</li>
+<li>claim 2 = 主体 1201 在上下文 7001 中与类型化标量 [301, 5] 存在关系 502，真，置信度 0.99</li>
+<li>provenance 标识来源 9100、时间戳类型 303、模态 6、证据 4401 与 4402、追踪 777001 以及策略 3001</li>
+</ul>
+<h3>读者说明</h3>
+<p>您必须从已解码的 ID 和槽位位置推导含义，而不是依赖这段释义。</p>
+<hr />
+<h2>示例 2：基础查询消息</h2>
+<h3>规范示例</h3>
+<pre><code class="language-json">[
+  &quot;\&quot;&quot;,
+  &quot;&#226;&#188;&quot;,
+  &quot;&#226;&#189;&quot;,
+  &quot;#&quot;,
+  [
+    [&quot;&#211;&#180;&quot;, &quot;&#200;&#184;&quot;, &quot;&#224;&#163;œ&quot;, &quot;&#225;&#174;&quot;, &quot;#&quot;, 1.0]
+  ],
+  [],
+  [
+    &quot;&#226;Ÿ&quot;,
+    [&quot;&#197;&#178;&quot;, &quot;2026-04-13T00:00:00Z&quot;],
+    &quot;&#39;&quot;,
+    [&quot;&#225;…&#180;&quot;],
+    &quot;-&#227;&#189;&#173;&quot;,
+    &quot;\u0bfc&quot;
+  ],
+  [&quot;\&quot;&quot;, 555002]
+]</code></pre>
+<h3>人类释义</h3>
+<p>此消息表示：</p>
+<ul>
+<li>actId = 2 = query</li>
+<li>发送方正在查询该声明的真实性或当前解析结果</li>
+<li>truthValue = 2 = unknown</li>
+<li>此处 confidence = 1.0 表示发送方有意发送正式查询结构，而不是把该声明断言为真</li>
+</ul>
+<hr />
+<h2>示例 3：基础请求消息</h2>
+<h3>规范示例</h3>
+<pre><code class="language-json">[
+  &quot;\&quot;&quot;,
+  &quot;&#226;&#188;&quot;,
+  &quot;&#226;&#189;&quot;,
+  &quot;$&quot;,
+  [
+    [&quot;&#211;&#180;&quot;, &quot;&#200;&#184;&quot;, &quot;&#224;&#163;œ&quot;, &quot;&#225;&#174;&quot;, &quot;\&quot;&quot;, 0.95]
+  ],
+  [
+    [&quot;*&quot;, &quot;&#224;&#163;œ&quot;, [&quot;&#197;&#176;&quot;, 60], 0],
+    [&quot;*&quot;, &quot;&#225;&#174;&quot;, [&quot;&#197;&#178;&quot;, &quot;2026-04-14T00:00:00Z&quot;], 0]
+  ],
+  [
+    &quot;&#226;Ÿ&quot;,
+    [&quot;&#197;&#178;&quot;, &quot;2026-04-13T00:00:00Z&quot;],
+    &quot;&#39;&quot;,
+    [&quot;&#225;…&#180;&quot;, &quot;&#225;…&#181;&quot;],
+    &quot;-&#227;&#189;&#173;&quot;,
+    &quot;\u0bfc&quot;
+  ],
+  [&quot;\&quot;&quot;, 555003]
+]</code></pre>
+<h3>人类释义</h3>
+<p>此消息表示：</p>
+<ul>
+<li>actId = 3 = request</li>
+<li>发送方正在请求一项与声明主体 1201、关系 501 和对象 2201 相关的操作</li>
+<li>约束运算符 9 = requires</li>
+<li>该请求要求对象 2201 以及类型化标量值 [301, 60]</li>
+<li>该请求还要求上下文 7001 以及类型为 [303, 2026-04-14T00:00:00Z] 的时间戳约束</li>
+</ul>
+<hr />
+<h2>示例 4：能力协商消息</h2>
+<h3>规范示例</h3>
+<pre><code class="language-json">[
+  &quot;\&quot;&quot;,
+  &quot;&#226;&#188;&quot;,
+  &quot;&#226;&#189;&quot;,
+  &quot;,&quot;,
+  [
+    [&quot;&#226;&#188;&quot;, &quot;&#200;&#184;&quot;, [&quot;&#197;&#176;&quot;, 1], &quot;&#225;&#174;&quot;, &quot;\&quot;&quot;, 1.0],
+    [&quot;&#226;&#188;&quot;, &quot;&#200;&#185;&quot;, [&quot;&#197;&#176;&quot;, 1], &quot;&#225;&#174;&quot;, &quot;\&quot;&quot;, 1.0],
+    [&quot;&#226;&#188;&quot;, &quot;&#194;&#167;&quot;, [&quot;&#197;&#176;&quot;, 12], &quot;&#225;&#174;&quot;, &quot;\&quot;&quot;, 1.0]
+  ],
+  [],
+  [
+    &quot;&#226;Ÿ&quot;,
+    [&quot;&#197;&#178;&quot;, &quot;2026-04-13T00:00:00Z&quot;],
+    &quot;&#39;&quot;,
+    [&quot;&#225;…&#180;&quot;],
+    &quot;-&#227;&#189;&#173;&quot;,
+    &quot;\u0bfc&quot;
+  ],
+  [&quot;\&quot;&quot;, 555004]
+]</code></pre>
+<h3>人类释义</h3>
+<p>此消息表示：</p>
+<ul>
+<li>actId = 11 = capability</li>
+<li>发送方正在声明支持的协议或本体版本，以及已声明的能力值</li>
+<li>这是在进行非平凡交换之前协商支持能力的规范方式</li>
+</ul>
+<hr />
+<h2>示例 5：错误消息</h2>
+<h3>规范示例</h3>
+<pre><code class="language-json">[
+  &quot;\&quot;&quot;,
+  &quot;&#226;&#189;&quot;,
+  &quot;&#226;&#188;&quot;,
+  &quot;+&quot;,
+  [
+    [&quot;#&quot;, &quot;&#200;&#184;&quot;, [&quot;&#197;&#176;&quot;, 999999], &quot;&#225;&#174;&quot;, &quot;\&quot;&quot;, 1.0]
+  ],
+  [
+    [&quot;&amp;&quot;, [&quot;&#197;&#176;&quot;, 4], [&quot;&#197;&#176;&quot;, 1], 0]
+  ],
+  [
+    &quot;&#226;Ÿ&quot;,
+    [&quot;&#197;&#178;&quot;, &quot;2026-04-13T00:00:00Z&quot;],
+    &quot;&#39;&quot;,
+    [&quot;&#225;…&#180;&quot;],
+    &quot;-&#227;&#189;&#173;&quot;,
+    &quot;\u0bfc&quot;
+  ],
+  [&quot;\&quot;&quot;, 555005]
+]</code></pre>
+<h3>人类释义</h3>
+<p>此消息表示：</p>
+<ul>
+<li>actId = 10 = error</li>
+<li>发送方报告一个规范错误状态</li>
+<li>失败结构引用了一个未解析或无效的规范值</li>
+<li>这里使用约束运算符 5 来表达错误处理逻辑中的规范比较或解析条件</li>
+</ul>
+<h3>读者说明</h3>
+<p>如果您无法解析必需的规范 ID，必须发出错误消息，而不是猜测。</p>
+<hr />
+<h2>示例 6：图标断言</h2>
+<h3>规范示例</h3>
+<pre><code class="language-json">[
+  &quot;\&quot;&quot;,
+  &quot;&#226;&#188;&quot;,
+  &quot;&#226;&#189;&quot;,
+  &quot;\&quot;&quot;,
+  [
+    [&quot;&#224;&#163;œ&quot;, &quot;&#200;&#184;&quot;, [&quot;&#197;&#176;&quot;, 15001], &quot;&#225;&#174;&quot;, &quot;\&quot;&quot;, 0.99],
+    [&quot;&#224;&#163;œ&quot;, &quot;&#200;&#185;&quot;, [&quot;&#197;&#176;&quot;, 15002], &quot;&#225;&#174;&quot;, &quot;\&quot;&quot;, 0.99],
+    [&quot;&#224;&#163;œ&quot;, &quot;&#194;&#167;&quot;, [&quot;&#197;&#176;&quot;, 15003], &quot;&#225;&#174;&quot;, &quot;\&quot;&quot;, 0.99]
+  ],
+  [],
+  [
+    &quot;&#226;Ÿ&quot;,
+    [&quot;&#197;&#178;&quot;, &quot;2026-04-13T00:00:00Z&quot;],
+    &quot;#&quot;,
+    [&quot;&#225;…&#180;&quot;, &quot;&#225;…&#181;&quot;],
+    &quot;-&#227;&#189;&#173;&quot;,
+    &quot;\u0bfc&quot;
+  ],
+  [&quot;\&quot;&quot;, 555006]
+]</code></pre>
+<h3>人类释义</h3>
+<p>此消息表示：</p>
+<ul>
+<li>正在对一个带有规范图标的实体进行语义描述</li>
+<li>relation 501 可能指向规范功能含义</li>
+<li>relation 502 可能指向规范显式状态</li>
+<li>relation 100 可能指向规范显式变体或展示属性</li>
+</ul>
+<h3>读者说明</h3>
+<p>您必须把图标功能视为规范含义。 您不得把图标外观视为规范含义。 您不得仅依据形状、颜色、填充或相似性推断业务含义。</p>
+<hr />
+<h2>示例 7：装饰性图标处理</h2>
+<h3>规范示例</h3>
+<pre><code class="language-json">[
+  &quot;\&quot;&quot;,
+  &quot;&#226;&#188;&quot;,
+  &quot;&#226;&#189;&quot;,
+  &quot;\&quot;&quot;,
+  [
+    [&quot;&#224;&#163;œ&quot;, &quot;&#200;&#184;&quot;, [&quot;&#197;&#176;&quot;, 16001], &quot;&#225;&#174;&quot;, &quot;\&quot;&quot;, 1.0],
+    [&quot;&#224;&#163;œ&quot;, &quot;&#200;&#185;&quot;, [&quot;&#197;&#176;&quot;, 16002], &quot;&#225;&#174;&quot;, &quot;\&quot;&quot;, 1.0]
+  ],
+  [],
+  [
+    &quot;&#226;Ÿ&quot;,
+    [&quot;&#197;&#178;&quot;, &quot;2026-04-13T00:00:00Z&quot;],
+    &quot;#&quot;,
+    [&quot;&#225;…&#180;&quot;],
+    &quot;-&#227;&#189;&#173;&quot;,
+    &quot;\u0bfc&quot;
+  ],
+  [&quot;\&quot;&quot;, 555007]
+]</code></pre>
+<h3>人类释义</h3>
+<p>此消息表示：</p>
+<ul>
+<li>该图标存在于渲染后的界面中</li>
+<li>在当前语义层中，该图标是装饰性的或并不具备功能</li>
+<li>该图标不是业务含义的主要承载体</li>
+</ul>
+<h3>读者说明</h3>
+<p>除非规范结构明确将其提升为语义含义，否则装饰性图标不会被解释为功能性声明。</p>
+<hr />
+<h2>示例 8：带可选人类释义包装器的规范结构</h2>
+<h3>规范示例</h3>
+<pre><code class="language-json">{
+  &quot;canonical&quot;: [
+    &quot;\&quot;&quot;,
+    &quot;&#226;&#188;&quot;,
+    &quot;&#226;&#189;&quot;,
+    &quot;\&quot;&quot;,
+    [
+      [&quot;&#211;&#180;&quot;, &quot;&#200;&#184;&quot;, &quot;&#224;&#163;œ&quot;, &quot;&#225;&#174;&quot;, &quot;\&quot;&quot;, 0.98]
+    ],
+    [],
+    [
+      &quot;&#226;Ÿ&quot;,
+      [&quot;&#197;&#178;&quot;, &quot;2026-04-13T00:00:00Z&quot;],
+      &quot;&#39;&quot;,
+      [&quot;&#225;…&#180;&quot;],
+      &quot;-&#227;&#189;&#173;&quot;,
+      &quot;\u0bfc&quot;
+    ],
+    [&quot;\&quot;&quot;, 555008]
+  ],
+  &quot;gloss&quot;: {
+    &quot;sender&quot;: &quot;Example sender&quot;,
+    &quot;receiver&quot;: &quot;Example receiver&quot;,
+    &quot;act&quot;: &quot;assert&quot;,
+    &quot;notes&quot;: [
+      &quot;This gloss is not authoritative.&quot;,
+      &quot;The canonical array remains authoritative.&quot;
+    ]
+  }
+}</code></pre>
+<h3>读者说明</h3>
+<p>当规范数据与释义同时存在时：</p>
+<ul>
+<li>规范数据具有权威性</li>
+<li>释义是非规范内容</li>
+<li>释义不得覆盖规范含义</li>
+</ul>
+<hr />
+<h2>示例 9：无效消息示例</h2>
+<h3>规范示例</h3>
+<pre><code class="language-json">[
+  &quot;\&quot;&quot;,
+  &quot;&#226;&#188;&quot;,
+  &quot;&#226;&#189;&quot;,
+  &quot;$&quot;,
+  [
+    [&quot;&#211;&#180;&quot;, &quot;search-icon&quot;, &quot;&#224;&#163;œ&quot;, &quot;&#225;&#174;&quot;, &quot;\&quot;&quot;, 0.95]
+  ],
+  [],
+  [
+    &quot;&#226;Ÿ&quot;,
+    [&quot;&#197;&#178;&quot;, &quot;2026-04-13T00:00:00Z&quot;],
+    &quot;&#39;&quot;,
+    [&quot;&#225;…&#180;&quot;],
+    &quot;-&#227;&#189;&#173;&quot;,
+    &quot;\u0bfc&quot;
+  ],
+  [&quot;\&quot;&quot;, 555009]
+]</code></pre>
+<h3>人类释义</h3>
+<p>这个示例是无效的。</p>
+<h3>读者说明</h3>
+<p>该消息无效，因为规范字段中包含了自由文本 <code>search-icon</code>，而不是规范 Radix 63404 ID 或规范类型化值。 您必须拒绝或标记该消息。 您不得通过猜测来恢复。</p>
+<hr />
+<h2>示例 10：最小读者工作流</h2>
+<h3>读者流程</h3>
+<p>当您收到一条 UAI-1 消息时，必须按顺序执行以下操作：</p>
+<ol>
+<li>验证外层消息恰好具有 8 个规范槽位。</li>
+<li>从 Radix 63404 解码所有规范 ID。</li>
+<li>将所有已解码 ID 与权威注册表进行解析匹配。</li>
+<li>验证当前 act 及所需结构。</li>
+<li>验证所有声明。</li>
+<li>验证所有约束。</li>
+<li>验证 provenance。</li>
+<li>精确保留规范值。</li>
+<li>在语义上忽略人类释义。</li>
+<li>如果任何必需元素不受支持或无效，则发出规范错误。</li>
+</ol>
+<hr />
+<h2>这些示例中使用的注册表参考值</h2>
+<p>以下十进制值仅作为人类读者的解释性参考。上面的规范示例在其 Radix 63404 形式上仍然具有权威性。</p>
+<div class="doc-table-wrap">
+<table>
+<thead><tr>
+<th scope="col">含义</th>
+<th scope="col">Decimal</th>
+<th scope="col">Radix 63404</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>协议版本 1</td>
+<td>1</td>
+<td><code>&quot;</code></td>
+</tr>
+<tr>
+<td>act 断言</td>
+<td>1</td>
+<td><code>&quot;</code></td>
+</tr>
+<tr>
+<td>act 查询</td>
+<td>2</td>
+<td><code>#</code></td>
+</tr>
+<tr>
+<td>act 请求</td>
+<td>3</td>
+<td><code>$</code></td>
+</tr>
+<tr>
+<td>act 提交</td>
+<td>4</td>
+<td><code>%</code></td>
+</tr>
+<tr>
+<td>act 否认</td>
+<td>5</td>
+<td><code>&amp;</code></td>
+</tr>
+<tr>
+<td>act 报告</td>
+<td>6</td>
+<td><code>&#39;</code></td>
+</tr>
+<tr>
+<td>act 提议</td>
+<td>7</td>
+<td><code>(</code></td>
+</tr>
+<tr>
+<td>act 修订</td>
+<td>8</td>
+<td><code>)</code></td>
+</tr>
+<tr>
+<td>act 确认</td>
+<td>9</td>
+<td><code>*</code></td>
+</tr>
+<tr>
+<td>act 错误</td>
+<td>10</td>
+<td><code>+</code></td>
+</tr>
+<tr>
+<td>act 能力</td>
+<td>11</td>
+<td><code>,</code></td>
+</tr>
+<tr>
+<td>act 协商</td>
+<td>12</td>
+<td><code>-</code></td>
+</tr>
+<tr>
+<td>type 整数</td>
+<td>301</td>
+<td><code>&#197;&#176;</code></td>
+</tr>
+<tr>
+<td>type 时间戳</td>
+<td>303</td>
+<td><code>&#197;&#178;</code></td>
+</tr>
+<tr>
+<td>relation 501</td>
+<td>501</td>
+<td><code>&#200;&#184;</code></td>
+</tr>
+<tr>
+<td>relation 502</td>
+<td>502</td>
+<td><code>&#200;&#185;</code></td>
+</tr>
+<tr>
+<td>relation 100</td>
+<td>100</td>
+<td><code>&#194;&#167;</code></td>
+</tr>
+<tr>
+<td>示例主体</td>
+<td>1201</td>
+<td><code>&#211;&#180;</code></td>
+</tr>
+<tr>
+<td>示例对象</td>
+<td>2201</td>
+<td><code>&#224;&#163;œ</code></td>
+</tr>
+<tr>
+<td>示例策略</td>
+<td>3001</td>
+<td><code>\u0bfc</code></td>
+</tr>
+<tr>
+<td>示例证据 A</td>
+<td>4401</td>
+<td><code>&#225;…&#180;</code></td>
+</tr>
+<tr>
+<td>示例证据 B</td>
+<td>4402</td>
+<td><code>&#225;…&#181;</code></td>
+</tr>
+<tr>
+<td>示例上下文</td>
+<td>7001</td>
+<td><code>&#225;&#174;</code></td>
+</tr>
+<tr>
+<td>示例发送方</td>
+<td>9001</td>
+<td><code>&#226;&#188;</code></td>
+</tr>
+<tr>
+<td>示例接收方</td>
+<td>9002</td>
+<td><code>&#226;&#189;</code></td>
+</tr>
+<tr>
+<td>provenance 来源</td>
+<td>9100</td>
+<td><code>&#226;Ÿ</code></td>
+</tr>
+<tr>
+<td>示例追踪</td>
+<td>777001</td>
+<td><code>-&#227;&#189;&#173;</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<hr />
+<h2>最终规则</h2>
+<p>先读结构。 第二步解码 Radix 63404。 第三步解析规范 ID。 第四步应用约束。 第五步使用 provenance 与 confidence。 在语义上忽略人类释义。 绝不要用英语、图标形状或本地习惯替代规范含义。</p>
+                    </div>
+                </article>
+            </section>
+        </main>
+
+        <footer class="site-footer panel reveal">
+            <div>
+                <p class="eyebrow">Protocol5 links</p>
+                <div class="footer-links">
+                    <a href="/">Home</a>
+                    <a href="/Fibonacci">Fibonacci</a>
+                    <a href="/Prime">Prime Numbers</a>
+                    <a href="/UAI">UAI</a>
+                    <a href="/Home/GitHub">GitHub</a>
+                    <a href="/Home/About">About</a>
+                    <a href="/Home/Links">Links</a>
+                    <a href="/Home/Contact">Contact</a>
+                </div>
+            </div>
+            <p class="footer-copy">Protocol5 reference page. <span id="currentYear"></span></p>
+        </footer>
+    </div>
+
+    <script src="/js/home.js"></script>
+</body>
+</html>

@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="es-US">
+<head>
+    <meta charset="utf-8" />
+    <meta name="google" content="notranslate" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Protocol5 companion examples for UAI-1, including canonical arrays, gloss notes, and registry reference values." />
+    <title>UAI-1 Examples</title>
+    <link rel="stylesheet" href="/css/home.css" />
+</head>
+<body class="content-page">
+    <div class="site-shell">
+        <header class="site-header">
+            <div class="brand-lockup">
+                <p class="brand-kicker">Protocol5</p>
+                <h1>Variable-Base Mathematics</h1>
+                <p class="brand-copy">Exact arithmetic, radix conversion, sequence references, and educational number-system pages collected into one publishable shell.</p>
+            </div>
+            <nav class="site-nav" aria-label="Primary navigation">
+                <a href="/">Home</a>
+                <a href="/Fibonacci">Fibonacci</a>
+                <a href="/Prime">Prime Numbers</a>
+                <a href="/UAI">UAI</a>
+                <a href="/calculator" data-tool-link="calculator">Calculator</a>
+                <a href="/Home/GitHub">GitHub</a>
+                <a href="/Home/About">About</a>
+                <a href="/Home/Links">Links</a>
+                <a href="/Home/Contact">Contact</a>
+            </nav>
+        </header>
+
+        <main>
+            <section class="content-hero panel reveal">
+                <div>
+                    <p class="eyebrow">UAI-1 / Examples</p>
+                    <h1>Documento de ejemplos de UAI-1</h1>
+                    <p class="lead">Versi&#243;n: UAI-1 Examples v1 Estado: Documento complementario autoritativo</p>
+                    <div class="inline-links">
+                        <a href="/UAI">UAI Library</a>
+                        <a href="/UAI-1/es-US">UAI-1 Spec</a>
+                        <a href="/UAI/radix-63404-guide-and-attribution">Radix 63404 Guide</a>
+                    </div>
+                </div>
+                <aside class="traveler-note">
+                    <p class="eyebrow">Companion document</p>
+                    <blockquote>
+                        The canonical example is authoritative. The human gloss exists only to help humans inspect the example.
+                    </blockquote>
+                    <p>These examples stay close to the source markdown so the canonical structures, code blocks, and reference tables remain easy to audit.</p>
+                </aside>
+            </section>
+
+            <section class="doc-layout reveal">
+                <aside class="panel doc-sidebar">
+                    <p class="eyebrow">Document metadata</p>
+<ul class="doc-meta-list">
+<li><span>Human locale</span><strong>Espa&#241;ol (US)</strong></li>
+<li><span>Canonical public path</span><strong><a href="/UAI-1/examples/es-US">/UAI-1/examples/es-US</a></strong></li>
+<li><span>All supported translations</span><strong><a href="/UAI-1/examples">English (US)</a>, <a href="/UAI-1/examples/es-US">Espa&#241;ol (US)</a>, <a href="/UAI-1/examples/uk-UA">Українська</a>, <a href="/UAI-1/examples/zh-SG">简体中文（新加坡）</a>, <a href="/UAI-1/examples/th">ไทย</a></strong></li>
+</ul>
+
+                    <div class="callout">
+                        <p>Source markdown: <code>uai-1-examples.es-US.md</code></p>
+                    </div>
+                </aside>
+                <article class="panel doc-panel">
+                    <div class="doc-prose">
+<h1>Documento de ejemplos de UAI-1</h1>
+<p>Versi&#243;n: UAI-1 Examples v1 Estado: Documento complementario autoritativo</p>
+<h2>Prop&#243;sito</h2>
+<p>Este documento ofrece ejemplos can&#243;nicos para UAI-1.</p>
+<p>DEBE leer los ejemplos can&#243;nicos como estructuras de m&#225;quina de UAI-1. DEBE decodificar todos los ID can&#243;nicos como valores en Radix 63404. DEBE tratar todas las glosas humanas, los comentarios, las etiquetas y las notas explicativas de este documento como no can&#243;nicos.</p>
+<p>El ejemplo can&#243;nico es autoritativo. La glosa humana existe solo para ayudar a los humanos a inspeccionar el ejemplo.</p>
+<hr />
+<h2>Recordatorio sobre Radix 63404</h2>
+<p>En UAI-1, todos los ID can&#243;nicos se representan en Radix 63404.</p>
+<p>DEBE analizar cada ID del siguiente modo:</p>
+<ol>
+<li>Lea cada car&#225;cter como un d&#237;gito de Radix 63404.</li>
+<li>Resuelva cada car&#225;cter a su &#237;ndice alfab&#233;tico basado en cero.</li>
+<li>Eval&#250;e el valor posicional en base 63404.</li>
+<li>Resuelva el entero resultante contra el registro autoritativo.</li>
+</ol>
+<p>Los primeros d&#237;gitos del alfabeto Radix 63404 son:</p>
+<div class="doc-table-wrap">
+<table>
+<thead><tr>
+<th scope="col">Valor decimal</th>
+<th scope="col">D&#237;gito Radix 63404</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><code>!</code></td>
+</tr>
+<tr>
+<td>1</td>
+<td><code>&quot;</code></td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>#</code></td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>$</code></td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>%</code></td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>&amp;</code></td>
+</tr>
+<tr>
+<td>6</td>
+<td><code>&#39;</code></td>
+</tr>
+<tr>
+<td>7</td>
+<td><code>(</code></td>
+</tr>
+<tr>
+<td>8</td>
+<td><code>)</code></td>
+</tr>
+<tr>
+<td>9</td>
+<td><code>*</code></td>
+</tr>
+<tr>
+<td>10</td>
+<td><code>+</code></td>
+</tr>
+<tr>
+<td>11</td>
+<td><code>,</code></td>
+</tr>
+<tr>
+<td>12</td>
+<td><code>-</code></td>
+</tr>
+<tr>
+<td>13</td>
+<td><code>.</code></td>
+</tr>
+<tr>
+<td>14</td>
+<td><code>/</code></td>
+</tr>
+<tr>
+<td>15</td>
+<td><code>0</code></td>
+</tr>
+<tr>
+<td>16</td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td>17</td>
+<td><code>2</code></td>
+</tr>
+<tr>
+<td>18</td>
+<td><code>3</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<hr />
+<h2>Ejemplo 1: Mensaje b&#225;sico de afirmaci&#243;n</h2>
+<h3>Ejemplo can&#243;nico</h3>
+<pre><code class="language-json">[
+  &quot;\&quot;&quot;,
+  &quot;&#226;&#188;&quot;,
+  &quot;&#226;&#189;&quot;,
+  &quot;\&quot;&quot;,
+  [
+    [&quot;&#211;&#180;&quot;, &quot;&#200;&#184;&quot;, &quot;&#224;&#163;œ&quot;, &quot;&#225;&#174;&quot;, &quot;\&quot;&quot;, 0.98],
+    [&quot;&#211;&#180;&quot;, &quot;&#200;&#185;&quot;, [&quot;&#197;&#176;&quot;, 5], &quot;&#225;&#174;&quot;, &quot;\&quot;&quot;, 0.99]
+  ],
+  [],
+  [
+    &quot;&#226;Ÿ&quot;,
+    [&quot;&#197;&#178;&quot;, &quot;2026-04-13T00:00:00Z&quot;],
+    &quot;&#39;&quot;,
+    [&quot;&#225;…&#180;&quot;, &quot;&#225;…&#181;&quot;],
+    &quot;-&#227;&#189;&#173;&quot;,
+    &quot;\u0bfc&quot;
+  ],
+  [&quot;\&quot;&quot;, 555001]
+]</code></pre>
+<h3>Glosa humana</h3>
+<p>Este mensaje significa:</p>
+<ul>
+<li>protocolVersion = 1</li>
+<li>senderId = 9001</li>
+<li>receiverId = 9002</li>
+<li>actId = 1 = afirmar</li>
+<li>afirmaci&#243;n 1 = el sujeto 1201 tiene la relaci&#243;n 501 con el objeto 2201 en el contexto 7001, verdadero, confianza 0.98</li>
+<li>afirmaci&#243;n 2 = el sujeto 1201 tiene la relaci&#243;n 502 con el escalar tipado [301, 5] en el contexto 7001, verdadero, confianza 0.99</li>
+<li>la procedencia identifica la fuente 9100, el tipo de marca de tiempo 303, la modalidad 6, las evidencias 4401 y 4402, el rastro 777001 y la pol&#237;tica 3001</li>
+</ul>
+<h3>Notas para el lector</h3>
+<p>DEBE derivar el significado de los ID decodificados y de las posiciones de las ranuras, no de esta glosa.</p>
+<hr />
+<h2>Ejemplo 2: Mensaje b&#225;sico de consulta</h2>
+<h3>Ejemplo can&#243;nico</h3>
+<pre><code class="language-json">[
+  &quot;\&quot;&quot;,
+  &quot;&#226;&#188;&quot;,
+  &quot;&#226;&#189;&quot;,
+  &quot;#&quot;,
+  [
+    [&quot;&#211;&#180;&quot;, &quot;&#200;&#184;&quot;, &quot;&#224;&#163;œ&quot;, &quot;&#225;&#174;&quot;, &quot;#&quot;, 1.0]
+  ],
+  [],
+  [
+    &quot;&#226;Ÿ&quot;,
+    [&quot;&#197;&#178;&quot;, &quot;2026-04-13T00:00:00Z&quot;],
+    &quot;&#39;&quot;,
+    [&quot;&#225;…&#180;&quot;],
+    &quot;-&#227;&#189;&#173;&quot;,
+    &quot;\u0bfc&quot;
+  ],
+  [&quot;\&quot;&quot;, 555002]
+]</code></pre>
+<h3>Glosa humana</h3>
+<p>Este mensaje significa:</p>
+<ul>
+<li>actId = 2 = consultar</li>
+<li>el emisor consulta la verdad o la resoluci&#243;n actual de la afirmaci&#243;n</li>
+<li>truthValue = 2 = desconocido</li>
+<li>confidence = 1.0 aqu&#237; significa que el emisor env&#237;a intencionalmente una estructura formal de consulta, no que afirme la proposici&#243;n como verdadera</li>
+</ul>
+<hr />
+<h2>Ejemplo 3: Mensaje b&#225;sico de solicitud</h2>
+<h3>Ejemplo can&#243;nico</h3>
+<pre><code class="language-json">[
+  &quot;\&quot;&quot;,
+  &quot;&#226;&#188;&quot;,
+  &quot;&#226;&#189;&quot;,
+  &quot;$&quot;,
+  [
+    [&quot;&#211;&#180;&quot;, &quot;&#200;&#184;&quot;, &quot;&#224;&#163;œ&quot;, &quot;&#225;&#174;&quot;, &quot;\&quot;&quot;, 0.95]
+  ],
+  [
+    [&quot;*&quot;, &quot;&#224;&#163;œ&quot;, [&quot;&#197;&#176;&quot;, 60], 0],
+    [&quot;*&quot;, &quot;&#225;&#174;&quot;, [&quot;&#197;&#178;&quot;, &quot;2026-04-14T00:00:00Z&quot;], 0]
+  ],
+  [
+    &quot;&#226;Ÿ&quot;,
+    [&quot;&#197;&#178;&quot;, &quot;2026-04-13T00:00:00Z&quot;],
+    &quot;&#39;&quot;,
+    [&quot;&#225;…&#180;&quot;, &quot;&#225;…&#181;&quot;],
+    &quot;-&#227;&#189;&#173;&quot;,
+    &quot;\u0bfc&quot;
+  ],
+  [&quot;\&quot;&quot;, 555003]
+]</code></pre>
+<h3>Glosa humana</h3>
+<p>Este mensaje significa:</p>
+<ul>
+<li>actId = 3 = solicitar</li>
+<li>el emisor solicita una operaci&#243;n relacionada con el sujeto 1201, la relaci&#243;n 501 y el objeto 2201 de la afirmaci&#243;n</li>
+<li>el operador de restricci&#243;n 9 = requiere</li>
+<li>la solicitud requiere el objeto 2201 y un valor escalar tipado [301, 60]</li>
+<li>la solicitud tambi&#233;n requiere el contexto 7001 y una restricci&#243;n de marca de tiempo tipada como [303, 2026-04-14T00:00:00Z]</li>
+</ul>
+<hr />
+<h2>Ejemplo 4: Mensaje de negociaci&#243;n de capacidades</h2>
+<h3>Ejemplo can&#243;nico</h3>
+<pre><code class="language-json">[
+  &quot;\&quot;&quot;,
+  &quot;&#226;&#188;&quot;,
+  &quot;&#226;&#189;&quot;,
+  &quot;,&quot;,
+  [
+    [&quot;&#226;&#188;&quot;, &quot;&#200;&#184;&quot;, [&quot;&#197;&#176;&quot;, 1], &quot;&#225;&#174;&quot;, &quot;\&quot;&quot;, 1.0],
+    [&quot;&#226;&#188;&quot;, &quot;&#200;&#185;&quot;, [&quot;&#197;&#176;&quot;, 1], &quot;&#225;&#174;&quot;, &quot;\&quot;&quot;, 1.0],
+    [&quot;&#226;&#188;&quot;, &quot;&#194;&#167;&quot;, [&quot;&#197;&#176;&quot;, 12], &quot;&#225;&#174;&quot;, &quot;\&quot;&quot;, 1.0]
+  ],
+  [],
+  [
+    &quot;&#226;Ÿ&quot;,
+    [&quot;&#197;&#178;&quot;, &quot;2026-04-13T00:00:00Z&quot;],
+    &quot;&#39;&quot;,
+    [&quot;&#225;…&#180;&quot;],
+    &quot;-&#227;&#189;&#173;&quot;,
+    &quot;\u0bfc&quot;
+  ],
+  [&quot;\&quot;&quot;, 555004]
+]</code></pre>
+<h3>Glosa humana</h3>
+<p>Este mensaje significa:</p>
+<ul>
+<li>actId = 11 = capacidad</li>
+<li>el emisor declara versiones de protocolo u ontolog&#237;a compatibles y valores de capacidad declarados</li>
+<li>esta es la forma can&#243;nica de negociar compatibilidad antes de un intercambio no trivial</li>
+</ul>
+<hr />
+<h2>Ejemplo 5: Mensaje de error</h2>
+<h3>Ejemplo can&#243;nico</h3>
+<pre><code class="language-json">[
+  &quot;\&quot;&quot;,
+  &quot;&#226;&#189;&quot;,
+  &quot;&#226;&#188;&quot;,
+  &quot;+&quot;,
+  [
+    [&quot;#&quot;, &quot;&#200;&#184;&quot;, [&quot;&#197;&#176;&quot;, 999999], &quot;&#225;&#174;&quot;, &quot;\&quot;&quot;, 1.0]
+  ],
+  [
+    [&quot;&amp;&quot;, [&quot;&#197;&#176;&quot;, 4], [&quot;&#197;&#176;&quot;, 1], 0]
+  ],
+  [
+    &quot;&#226;Ÿ&quot;,
+    [&quot;&#197;&#178;&quot;, &quot;2026-04-13T00:00:00Z&quot;],
+    &quot;&#39;&quot;,
+    [&quot;&#225;…&#180;&quot;],
+    &quot;-&#227;&#189;&#173;&quot;,
+    &quot;\u0bfc&quot;
+  ],
+  [&quot;\&quot;&quot;, 555005]
+]</code></pre>
+<h3>Glosa humana</h3>
+<p>Este mensaje significa:</p>
+<ul>
+<li>actId = 10 = error</li>
+<li>el emisor informa una condici&#243;n de error can&#243;nica</li>
+<li>la estructura que falla hace referencia a un valor can&#243;nico no resuelto o inv&#225;lido</li>
+<li>aqu&#237; se usa el operador de restricci&#243;n 5 para expresar una condici&#243;n can&#243;nica de comparaci&#243;n o resoluci&#243;n dentro de la l&#243;gica de manejo de errores</li>
+</ul>
+<h3>Notas para el lector</h3>
+<p>Si no puede resolver un ID can&#243;nico requerido, DEBE emitir un mensaje de error en lugar de adivinar.</p>
+<hr />
+<h2>Ejemplo 6: Afirmaci&#243;n de iconograf&#237;a</h2>
+<h3>Ejemplo can&#243;nico</h3>
+<pre><code class="language-json">[
+  &quot;\&quot;&quot;,
+  &quot;&#226;&#188;&quot;,
+  &quot;&#226;&#189;&quot;,
+  &quot;\&quot;&quot;,
+  [
+    [&quot;&#224;&#163;œ&quot;, &quot;&#200;&#184;&quot;, [&quot;&#197;&#176;&quot;, 15001], &quot;&#225;&#174;&quot;, &quot;\&quot;&quot;, 0.99],
+    [&quot;&#224;&#163;œ&quot;, &quot;&#200;&#185;&quot;, [&quot;&#197;&#176;&quot;, 15002], &quot;&#225;&#174;&quot;, &quot;\&quot;&quot;, 0.99],
+    [&quot;&#224;&#163;œ&quot;, &quot;&#194;&#167;&quot;, [&quot;&#197;&#176;&quot;, 15003], &quot;&#225;&#174;&quot;, &quot;\&quot;&quot;, 0.99]
+  ],
+  [],
+  [
+    &quot;&#226;Ÿ&quot;,
+    [&quot;&#197;&#178;&quot;, &quot;2026-04-13T00:00:00Z&quot;],
+    &quot;#&quot;,
+    [&quot;&#225;…&#180;&quot;, &quot;&#225;…&#181;&quot;],
+    &quot;-&#227;&#189;&#173;&quot;,
+    &quot;\u0bfc&quot;
+  ],
+  [&quot;\&quot;&quot;, 555006]
+]</code></pre>
+<h3>Glosa humana</h3>
+<p>Este mensaje significa:</p>
+<ul>
+<li>se describe sem&#225;nticamente una entidad can&#243;nica portadora de icono</li>
+<li>la relaci&#243;n 501 puede apuntar al significado funcional can&#243;nico</li>
+<li>la relaci&#243;n 502 puede apuntar al estado expl&#237;cito can&#243;nico</li>
+<li>la relaci&#243;n 100 puede apuntar a la variante can&#243;nica expl&#237;cita o a una propiedad de presentaci&#243;n</li>
+</ul>
+<h3>Notas para el lector</h3>
+<p>DEBE tratar la funci&#243;n del icono como significado can&#243;nico. NO DEBE tratar la apariencia del icono como significado can&#243;nico. NO DEBE inferir significado comercial a partir solo de la forma, el color, el relleno o la semejanza.</p>
+<hr />
+<h2>Ejemplo 7: Manejo de iconos decorativos</h2>
+<h3>Ejemplo can&#243;nico</h3>
+<pre><code class="language-json">[
+  &quot;\&quot;&quot;,
+  &quot;&#226;&#188;&quot;,
+  &quot;&#226;&#189;&quot;,
+  &quot;\&quot;&quot;,
+  [
+    [&quot;&#224;&#163;œ&quot;, &quot;&#200;&#184;&quot;, [&quot;&#197;&#176;&quot;, 16001], &quot;&#225;&#174;&quot;, &quot;\&quot;&quot;, 1.0],
+    [&quot;&#224;&#163;œ&quot;, &quot;&#200;&#185;&quot;, [&quot;&#197;&#176;&quot;, 16002], &quot;&#225;&#174;&quot;, &quot;\&quot;&quot;, 1.0]
+  ],
+  [],
+  [
+    &quot;&#226;Ÿ&quot;,
+    [&quot;&#197;&#178;&quot;, &quot;2026-04-13T00:00:00Z&quot;],
+    &quot;#&quot;,
+    [&quot;&#225;…&#180;&quot;],
+    &quot;-&#227;&#189;&#173;&quot;,
+    &quot;\u0bfc&quot;
+  ],
+  [&quot;\&quot;&quot;, 555007]
+]</code></pre>
+<h3>Glosa humana</h3>
+<p>Este mensaje significa:</p>
+<ul>
+<li>el icono existe en la interfaz renderizada</li>
+<li>el icono es decorativo o no funcional dentro de la capa sem&#225;ntica activa</li>
+<li>el icono no es el portador principal del significado comercial</li>
+</ul>
+<h3>Notas para el lector</h3>
+<p>Los iconos decorativos no se interpretan como afirmaciones funcionales a menos que la estructura can&#243;nica los promueva expl&#237;citamente al significado sem&#225;ntico.</p>
+<hr />
+<h2>Ejemplo 8: Estructura can&#243;nica con envoltorio opcional de glosa humana</h2>
+<h3>Ejemplo can&#243;nico</h3>
+<pre><code class="language-json">{
+  &quot;canonical&quot;: [
+    &quot;\&quot;&quot;,
+    &quot;&#226;&#188;&quot;,
+    &quot;&#226;&#189;&quot;,
+    &quot;\&quot;&quot;,
+    [
+      [&quot;&#211;&#180;&quot;, &quot;&#200;&#184;&quot;, &quot;&#224;&#163;œ&quot;, &quot;&#225;&#174;&quot;, &quot;\&quot;&quot;, 0.98]
+    ],
+    [],
+    [
+      &quot;&#226;Ÿ&quot;,
+      [&quot;&#197;&#178;&quot;, &quot;2026-04-13T00:00:00Z&quot;],
+      &quot;&#39;&quot;,
+      [&quot;&#225;…&#180;&quot;],
+      &quot;-&#227;&#189;&#173;&quot;,
+      &quot;\u0bfc&quot;
+    ],
+    [&quot;\&quot;&quot;, 555008]
+  ],
+  &quot;gloss&quot;: {
+    &quot;sender&quot;: &quot;Example sender&quot;,
+    &quot;receiver&quot;: &quot;Example receiver&quot;,
+    &quot;act&quot;: &quot;assert&quot;,
+    &quot;notes&quot;: [
+      &quot;This gloss is not authoritative.&quot;,
+      &quot;The canonical array remains authoritative.&quot;
+    ]
+  }
+}</code></pre>
+<h3>Notas para el lector</h3>
+<p>Cuando coexisten datos can&#243;nicos y glosa:</p>
+<ul>
+<li>los datos can&#243;nicos son autoritativos</li>
+<li>la glosa es no can&#243;nica</li>
+<li>la glosa no debe sobrescribir el significado can&#243;nico</li>
+</ul>
+<hr />
+<h2>Ejemplo 9: Ejemplo de mensaje inv&#225;lido</h2>
+<h3>Ejemplo can&#243;nico</h3>
+<pre><code class="language-json">[
+  &quot;\&quot;&quot;,
+  &quot;&#226;&#188;&quot;,
+  &quot;&#226;&#189;&quot;,
+  &quot;$&quot;,
+  [
+    [&quot;&#211;&#180;&quot;, &quot;search-icon&quot;, &quot;&#224;&#163;œ&quot;, &quot;&#225;&#174;&quot;, &quot;\&quot;&quot;, 0.95]
+  ],
+  [],
+  [
+    &quot;&#226;Ÿ&quot;,
+    [&quot;&#197;&#178;&quot;, &quot;2026-04-13T00:00:00Z&quot;],
+    &quot;&#39;&quot;,
+    [&quot;&#225;…&#180;&quot;],
+    &quot;-&#227;&#189;&#173;&quot;,
+    &quot;\u0bfc&quot;
+  ],
+  [&quot;\&quot;&quot;, 555009]
+]</code></pre>
+<h3>Glosa humana</h3>
+<p>Este ejemplo es inv&#225;lido.</p>
+<h3>Notas para el lector</h3>
+<p>Este mensaje es inv&#225;lido porque un campo can&#243;nico contiene el texto libre <code>search-icon</code> en lugar de un ID can&#243;nico en Radix 63404 o de un valor tipado can&#243;nico. DEBE rechazar o marcar este mensaje. NO DEBE recuperarlo adivinando.</p>
+<hr />
+<h2>Ejemplo 10: Flujo m&#237;nimo del lector</h2>
+<h3>Procedimiento del lector</h3>
+<p>Cuando reciba un mensaje UAI-1, DEBE hacer lo siguiente en este orden:</p>
+<ol>
+<li>Validar que el mensaje externo tenga exactamente 8 ranuras can&#243;nicas.</li>
+<li>Decodificar todos los ID can&#243;nicos desde Radix 63404.</li>
+<li>Resolver todos los ID decodificados contra el registro autoritativo.</li>
+<li>Validar el acto activo y la estructura requerida.</li>
+<li>Validar todas las afirmaciones.</li>
+<li>Validar todas las restricciones.</li>
+<li>Validar la procedencia.</li>
+<li>Preservar exactamente los valores can&#243;nicos.</li>
+<li>Ignorar la glosa humana para la sem&#225;ntica.</li>
+<li>Emitir un error can&#243;nico si alg&#250;n elemento requerido no est&#225; admitido o es inv&#225;lido.</li>
+</ol>
+<hr />
+<h2>Valores de referencia del registro usados en estos ejemplos</h2>
+<p>Los siguientes valores decimales se usan solo como referencia explicativa para el lector humano. Los ejemplos can&#243;nicos anteriores siguen siendo autoritativos en sus formas Radix 63404.</p>
+<div class="doc-table-wrap">
+<table>
+<thead><tr>
+<th scope="col">Significado</th>
+<th scope="col">Decimal</th>
+<th scope="col">Radix 63404</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>versi&#243;n del protocolo 1</td>
+<td>1</td>
+<td><code>&quot;</code></td>
+</tr>
+<tr>
+<td>acto afirmar</td>
+<td>1</td>
+<td><code>&quot;</code></td>
+</tr>
+<tr>
+<td>acto consultar</td>
+<td>2</td>
+<td><code>#</code></td>
+</tr>
+<tr>
+<td>acto solicitar</td>
+<td>3</td>
+<td><code>$</code></td>
+</tr>
+<tr>
+<td>acto comprometer</td>
+<td>4</td>
+<td><code>%</code></td>
+</tr>
+<tr>
+<td>acto negar</td>
+<td>5</td>
+<td><code>&amp;</code></td>
+</tr>
+<tr>
+<td>acto informar</td>
+<td>6</td>
+<td><code>&#39;</code></td>
+</tr>
+<tr>
+<td>acto proponer</td>
+<td>7</td>
+<td><code>(</code></td>
+</tr>
+<tr>
+<td>acto revisar</td>
+<td>8</td>
+<td><code>)</code></td>
+</tr>
+<tr>
+<td>acto reconocer</td>
+<td>9</td>
+<td><code>*</code></td>
+</tr>
+<tr>
+<td>acto error</td>
+<td>10</td>
+<td><code>+</code></td>
+</tr>
+<tr>
+<td>acto capacidad</td>
+<td>11</td>
+<td><code>,</code></td>
+</tr>
+<tr>
+<td>acto negociar</td>
+<td>12</td>
+<td><code>-</code></td>
+</tr>
+<tr>
+<td>tipo entero</td>
+<td>301</td>
+<td><code>&#197;&#176;</code></td>
+</tr>
+<tr>
+<td>tipo marca de tiempo</td>
+<td>303</td>
+<td><code>&#197;&#178;</code></td>
+</tr>
+<tr>
+<td>relaci&#243;n 501</td>
+<td>501</td>
+<td><code>&#200;&#184;</code></td>
+</tr>
+<tr>
+<td>relaci&#243;n 502</td>
+<td>502</td>
+<td><code>&#200;&#185;</code></td>
+</tr>
+<tr>
+<td>relaci&#243;n 100</td>
+<td>100</td>
+<td><code>&#194;&#167;</code></td>
+</tr>
+<tr>
+<td>ejemplo de sujeto</td>
+<td>1201</td>
+<td><code>&#211;&#180;</code></td>
+</tr>
+<tr>
+<td>ejemplo de objeto</td>
+<td>2201</td>
+<td><code>&#224;&#163;œ</code></td>
+</tr>
+<tr>
+<td>ejemplo de pol&#237;tica</td>
+<td>3001</td>
+<td><code>\u0bfc</code></td>
+</tr>
+<tr>
+<td>ejemplo de evidencia A</td>
+<td>4401</td>
+<td><code>&#225;…&#180;</code></td>
+</tr>
+<tr>
+<td>ejemplo de evidencia B</td>
+<td>4402</td>
+<td><code>&#225;…&#181;</code></td>
+</tr>
+<tr>
+<td>ejemplo de contexto</td>
+<td>7001</td>
+<td><code>&#225;&#174;</code></td>
+</tr>
+<tr>
+<td>ejemplo de emisor</td>
+<td>9001</td>
+<td><code>&#226;&#188;</code></td>
+</tr>
+<tr>
+<td>ejemplo de receptor</td>
+<td>9002</td>
+<td><code>&#226;&#189;</code></td>
+</tr>
+<tr>
+<td>fuente de procedencia</td>
+<td>9100</td>
+<td><code>&#226;Ÿ</code></td>
+</tr>
+<tr>
+<td>ejemplo de traza</td>
+<td>777001</td>
+<td><code>-&#227;&#189;&#173;</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<hr />
+<h2>Regla final</h2>
+<p>Lea primero la estructura. Decodifique Radix 63404 en segundo lugar. Resuelva los ID can&#243;nicos en tercer lugar. Aplique las restricciones en cuarto lugar. Use la procedencia y la confianza en quinto lugar. Ignore la glosa humana para la sem&#225;ntica. Nunca sustituya el ingl&#233;s, la forma del icono ni el h&#225;bito local por el significado can&#243;nico.</p>
+                    </div>
+                </article>
+            </section>
+        </main>
+
+        <footer class="site-footer panel reveal">
+            <div>
+                <p class="eyebrow">Protocol5 links</p>
+                <div class="footer-links">
+                    <a href="/">Home</a>
+                    <a href="/Fibonacci">Fibonacci</a>
+                    <a href="/Prime">Prime Numbers</a>
+                    <a href="/UAI">UAI</a>
+                    <a href="/Home/GitHub">GitHub</a>
+                    <a href="/Home/About">About</a>
+                    <a href="/Home/Links">Links</a>
+                    <a href="/Home/Contact">Contact</a>
+                </div>
+            </div>
+            <p class="footer-copy">Protocol5 reference page. <span id="currentYear"></span></p>
+        </footer>
+    </div>
+
+    <script src="/js/home.js"></script>
+</body>
+</html>

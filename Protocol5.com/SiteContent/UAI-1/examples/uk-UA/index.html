@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="uk-UA">
+<head>
+    <meta charset="utf-8" />
+    <meta name="google" content="notranslate" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Protocol5 companion examples for UAI-1, including canonical arrays, gloss notes, and registry reference values." />
+    <title>UAI-1 Examples</title>
+    <link rel="stylesheet" href="/css/home.css" />
+</head>
+<body class="content-page">
+    <div class="site-shell">
+        <header class="site-header">
+            <div class="brand-lockup">
+                <p class="brand-kicker">Protocol5</p>
+                <h1>Variable-Base Mathematics</h1>
+                <p class="brand-copy">Exact arithmetic, radix conversion, sequence references, and educational number-system pages collected into one publishable shell.</p>
+            </div>
+            <nav class="site-nav" aria-label="Primary navigation">
+                <a href="/">Home</a>
+                <a href="/Fibonacci">Fibonacci</a>
+                <a href="/Prime">Prime Numbers</a>
+                <a href="/UAI">UAI</a>
+                <a href="/calculator" data-tool-link="calculator">Calculator</a>
+                <a href="/Home/GitHub">GitHub</a>
+                <a href="/Home/About">About</a>
+                <a href="/Home/Links">Links</a>
+                <a href="/Home/Contact">Contact</a>
+            </nav>
+        </header>
+
+        <main>
+            <section class="content-hero panel reveal">
+                <div>
+                    <p class="eyebrow">UAI-1 / Examples</p>
+                    <h1>Документ прикладів UAI-1</h1>
+                    <p class="lead">Версія: UAI-1 Examples v1 Статус: авторитетний супровідний документ</p>
+                    <div class="inline-links">
+                        <a href="/UAI">UAI Library</a>
+                        <a href="/UAI-1/uk-UA">UAI-1 Spec</a>
+                        <a href="/UAI/radix-63404-guide-and-attribution">Radix 63404 Guide</a>
+                    </div>
+                </div>
+                <aside class="traveler-note">
+                    <p class="eyebrow">Companion document</p>
+                    <blockquote>
+                        The canonical example is authoritative. The human gloss exists only to help humans inspect the example.
+                    </blockquote>
+                    <p>These examples stay close to the source markdown so the canonical structures, code blocks, and reference tables remain easy to audit.</p>
+                </aside>
+            </section>
+
+            <section class="doc-layout reveal">
+                <aside class="panel doc-sidebar">
+                    <p class="eyebrow">Document metadata</p>
+<ul class="doc-meta-list">
+<li><span>Human locale</span><strong>Українська</strong></li>
+<li><span>Canonical public path</span><strong><a href="/UAI-1/examples/uk-UA">/UAI-1/examples/uk-UA</a></strong></li>
+<li><span>All supported translations</span><strong><a href="/UAI-1/examples">English (US)</a>, <a href="/UAI-1/examples/es-US">Espa&#241;ol (US)</a>, <a href="/UAI-1/examples/uk-UA">Українська</a>, <a href="/UAI-1/examples/zh-SG">简体中文（新加坡）</a>, <a href="/UAI-1/examples/th">ไทย</a></strong></li>
+</ul>
+
+                    <div class="callout">
+                        <p>Source markdown: <code>uai-1-examples.uk-UA.md</code></p>
+                    </div>
+                </aside>
+                <article class="panel doc-panel">
+                    <div class="doc-prose">
+<h1>Документ прикладів UAI-1</h1>
+<p>Версія: UAI-1 Examples v1 Статус: авторитетний супровідний документ</p>
+<h2>Призначення</h2>
+<p>Цей документ надає канонічні приклади для UAI-1.</p>
+<p>ВИ МАЄТЕ читати канонічні приклади як машинні структури UAI-1. ВИ МАЄТЕ декодувати всі канонічні ID як значення Radix 63404. ВИ МАЄТЕ вважати всі людські глоси, коментарі, підписи та пояснювальні нотатки в цьому документі неканонічними.</p>
+<p>Канонічний приклад є владним. Людська глоса існує лише для того, щоб допомогти людині оглянути приклад.</p>
+<hr />
+<h2>Нагадування про Radix 63404</h2>
+<p>У UAI-1 усі канонічні ID подаються у Radix 63404.</p>
+<p>ВИ МАЄТЕ розбирати кожен ID так:</p>
+<ol>
+<li>Читайте кожен символ як одну цифру Radix 63404.</li>
+<li>Зіставляйте кожен символ із його нульовим індексом в алфавіті.</li>
+<li>Обчислюйте позиційне значення в основі 63404.</li>
+<li>Зіставляйте отримане ціле число з владним реєстром.</li>
+</ol>
+<p>Перші цифри алфавіту Radix 63404:</p>
+<div class="doc-table-wrap">
+<table>
+<thead><tr>
+<th scope="col">Десяткове значення</th>
+<th scope="col">Цифра Radix 63404</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><code>!</code></td>
+</tr>
+<tr>
+<td>1</td>
+<td><code>&quot;</code></td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>#</code></td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>$</code></td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>%</code></td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>&amp;</code></td>
+</tr>
+<tr>
+<td>6</td>
+<td><code>&#39;</code></td>
+</tr>
+<tr>
+<td>7</td>
+<td><code>(</code></td>
+</tr>
+<tr>
+<td>8</td>
+<td><code>)</code></td>
+</tr>
+<tr>
+<td>9</td>
+<td><code>*</code></td>
+</tr>
+<tr>
+<td>10</td>
+<td><code>+</code></td>
+</tr>
+<tr>
+<td>11</td>
+<td><code>,</code></td>
+</tr>
+<tr>
+<td>12</td>
+<td><code>-</code></td>
+</tr>
+<tr>
+<td>13</td>
+<td><code>.</code></td>
+</tr>
+<tr>
+<td>14</td>
+<td><code>/</code></td>
+</tr>
+<tr>
+<td>15</td>
+<td><code>0</code></td>
+</tr>
+<tr>
+<td>16</td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td>17</td>
+<td><code>2</code></td>
+</tr>
+<tr>
+<td>18</td>
+<td><code>3</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<hr />
+<h2>Приклад 1: базове повідомлення-ствердження</h2>
+<h3>Канонічний приклад</h3>
+<pre><code class="language-json">[
+  &quot;\&quot;&quot;,
+  &quot;&#226;&#188;&quot;,
+  &quot;&#226;&#189;&quot;,
+  &quot;\&quot;&quot;,
+  [
+    [&quot;&#211;&#180;&quot;, &quot;&#200;&#184;&quot;, &quot;&#224;&#163;œ&quot;, &quot;&#225;&#174;&quot;, &quot;\&quot;&quot;, 0.98],
+    [&quot;&#211;&#180;&quot;, &quot;&#200;&#185;&quot;, [&quot;&#197;&#176;&quot;, 5], &quot;&#225;&#174;&quot;, &quot;\&quot;&quot;, 0.99]
+  ],
+  [],
+  [
+    &quot;&#226;Ÿ&quot;,
+    [&quot;&#197;&#178;&quot;, &quot;2026-04-13T00:00:00Z&quot;],
+    &quot;&#39;&quot;,
+    [&quot;&#225;…&#180;&quot;, &quot;&#225;…&#181;&quot;],
+    &quot;-&#227;&#189;&#173;&quot;,
+    &quot;\u0bfc&quot;
+  ],
+  [&quot;\&quot;&quot;, 555001]
+]</code></pre>
+<h3>Людська глоса</h3>
+<p>Це повідомлення означає:</p>
+<ul>
+<li>protocolVersion = 1</li>
+<li>senderId = 9001</li>
+<li>receiverId = 9002</li>
+<li>actId = 1 = ствердження</li>
+<li>твердження 1 = суб&#39;єкт 1201 має відношення 501 до об&#39;єкта 2201 в контексті 7001, істина, довіра 0.98</li>
+<li>твердження 2 = суб&#39;єкт 1201 має відношення 502 до типізованого скаляра [301, 5] в контексті 7001, істина, довіра 0.99</li>
+<li>походження визначає джерело 9100, тип часової мітки 303, модальність 6, докази 4401 і 4402, трасу 777001 та політику 3001</li>
+</ul>
+<h3>Нотатки для читача</h3>
+<p>ВИ МАЄТЕ виводити значення з декодованих ID і позицій слотів, а не з цієї глоси.</p>
+<hr />
+<h2>Приклад 2: базове повідомлення-запит</h2>
+<h3>Канонічний приклад</h3>
+<pre><code class="language-json">[
+  &quot;\&quot;&quot;,
+  &quot;&#226;&#188;&quot;,
+  &quot;&#226;&#189;&quot;,
+  &quot;#&quot;,
+  [
+    [&quot;&#211;&#180;&quot;, &quot;&#200;&#184;&quot;, &quot;&#224;&#163;œ&quot;, &quot;&#225;&#174;&quot;, &quot;#&quot;, 1.0]
+  ],
+  [],
+  [
+    &quot;&#226;Ÿ&quot;,
+    [&quot;&#197;&#178;&quot;, &quot;2026-04-13T00:00:00Z&quot;],
+    &quot;&#39;&quot;,
+    [&quot;&#225;…&#180;&quot;],
+    &quot;-&#227;&#189;&#173;&quot;,
+    &quot;\u0bfc&quot;
+  ],
+  [&quot;\&quot;&quot;, 555002]
+]</code></pre>
+<h3>Людська глоса</h3>
+<p>Це повідомлення означає:</p>
+<ul>
+<li>actId = 2 = запит</li>
+<li>відправник запитує істинність або поточне розв&#39;язання твердження</li>
+<li>truthValue = 2 = невідомо</li>
+<li>confidence = 1.0 тут означає, що відправник свідомо надсилає формальну структуру запиту, а не стверджує твердження як істинне</li>
+</ul>
+<hr />
+<h2>Приклад 3: базове повідомлення-прохання</h2>
+<h3>Канонічний приклад</h3>
+<pre><code class="language-json">[
+  &quot;\&quot;&quot;,
+  &quot;&#226;&#188;&quot;,
+  &quot;&#226;&#189;&quot;,
+  &quot;$&quot;,
+  [
+    [&quot;&#211;&#180;&quot;, &quot;&#200;&#184;&quot;, &quot;&#224;&#163;œ&quot;, &quot;&#225;&#174;&quot;, &quot;\&quot;&quot;, 0.95]
+  ],
+  [
+    [&quot;*&quot;, &quot;&#224;&#163;œ&quot;, [&quot;&#197;&#176;&quot;, 60], 0],
+    [&quot;*&quot;, &quot;&#225;&#174;&quot;, [&quot;&#197;&#178;&quot;, &quot;2026-04-14T00:00:00Z&quot;], 0]
+  ],
+  [
+    &quot;&#226;Ÿ&quot;,
+    [&quot;&#197;&#178;&quot;, &quot;2026-04-13T00:00:00Z&quot;],
+    &quot;&#39;&quot;,
+    [&quot;&#225;…&#180;&quot;, &quot;&#225;…&#181;&quot;],
+    &quot;-&#227;&#189;&#173;&quot;,
+    &quot;\u0bfc&quot;
+  ],
+  [&quot;\&quot;&quot;, 555003]
+]</code></pre>
+<h3>Людська глоса</h3>
+<p>Це повідомлення означає:</p>
+<ul>
+<li>actId = 3 = прохання</li>
+<li>відправник запитує операцію, пов&#39;язану з суб&#39;єктом твердження 1201, відношенням 501 та об&#39;єктом 2201</li>
+<li>оператор обмеження 9 = вимагає</li>
+<li>прохання вимагає об&#39;єкт 2201 і типізоване скалярне значення [301, 60]</li>
+<li>прохання також вимагає контекст 7001 та обмеження часової мітки, типізоване як [303, 2026-04-14T00:00:00Z]</li>
+</ul>
+<hr />
+<h2>Приклад 4: повідомлення про переговори щодо можливостей</h2>
+<h3>Канонічний приклад</h3>
+<pre><code class="language-json">[
+  &quot;\&quot;&quot;,
+  &quot;&#226;&#188;&quot;,
+  &quot;&#226;&#189;&quot;,
+  &quot;,&quot;,
+  [
+    [&quot;&#226;&#188;&quot;, &quot;&#200;&#184;&quot;, [&quot;&#197;&#176;&quot;, 1], &quot;&#225;&#174;&quot;, &quot;\&quot;&quot;, 1.0],
+    [&quot;&#226;&#188;&quot;, &quot;&#200;&#185;&quot;, [&quot;&#197;&#176;&quot;, 1], &quot;&#225;&#174;&quot;, &quot;\&quot;&quot;, 1.0],
+    [&quot;&#226;&#188;&quot;, &quot;&#194;&#167;&quot;, [&quot;&#197;&#176;&quot;, 12], &quot;&#225;&#174;&quot;, &quot;\&quot;&quot;, 1.0]
+  ],
+  [],
+  [
+    &quot;&#226;Ÿ&quot;,
+    [&quot;&#197;&#178;&quot;, &quot;2026-04-13T00:00:00Z&quot;],
+    &quot;&#39;&quot;,
+    [&quot;&#225;…&#180;&quot;],
+    &quot;-&#227;&#189;&#173;&quot;,
+    &quot;\u0bfc&quot;
+  ],
+  [&quot;\&quot;&quot;, 555004]
+]</code></pre>
+<h3>Людська глоса</h3>
+<p>Це повідомлення означає:</p>
+<ul>
+<li>actId = 11 = можливість</li>
+<li>відправник оголошує підтримувані версії протоколу або онтології та заявлені значення можливостей</li>
+<li>це канонічний спосіб узгоджувати підтримку до нетривіального обміну</li>
+</ul>
+<hr />
+<h2>Приклад 5: повідомлення про помилку</h2>
+<h3>Канонічний приклад</h3>
+<pre><code class="language-json">[
+  &quot;\&quot;&quot;,
+  &quot;&#226;&#189;&quot;,
+  &quot;&#226;&#188;&quot;,
+  &quot;+&quot;,
+  [
+    [&quot;#&quot;, &quot;&#200;&#184;&quot;, [&quot;&#197;&#176;&quot;, 999999], &quot;&#225;&#174;&quot;, &quot;\&quot;&quot;, 1.0]
+  ],
+  [
+    [&quot;&amp;&quot;, [&quot;&#197;&#176;&quot;, 4], [&quot;&#197;&#176;&quot;, 1], 0]
+  ],
+  [
+    &quot;&#226;Ÿ&quot;,
+    [&quot;&#197;&#178;&quot;, &quot;2026-04-13T00:00:00Z&quot;],
+    &quot;&#39;&quot;,
+    [&quot;&#225;…&#180;&quot;],
+    &quot;-&#227;&#189;&#173;&quot;,
+    &quot;\u0bfc&quot;
+  ],
+  [&quot;\&quot;&quot;, 555005]
+]</code></pre>
+<h3>Людська глоса</h3>
+<p>Це повідомлення означає:</p>
+<ul>
+<li>actId = 10 = помилка</li>
+<li>відправник повідомляє про канонічний стан помилки</li>
+<li>структура, що не пройшла перевірку, посилається на нерозв&#39;язане або невалідне канонічне значення</li>
+<li>оператор обмеження 5 тут використано для вираження канонічної умови порівняння або розв&#39;язання в логіці обробки помилок</li>
+</ul>
+<h3>Нотатки для читача</h3>
+<p>Якщо ви не можете розв&#39;язати потрібний канонічний ID, ВИ МАЄТЕ видати повідомлення про помилку замість здогадок.</p>
+<hr />
+<h2>Приклад 6: твердження з іконографією</h2>
+<h3>Канонічний приклад</h3>
+<pre><code class="language-json">[
+  &quot;\&quot;&quot;,
+  &quot;&#226;&#188;&quot;,
+  &quot;&#226;&#189;&quot;,
+  &quot;\&quot;&quot;,
+  [
+    [&quot;&#224;&#163;œ&quot;, &quot;&#200;&#184;&quot;, [&quot;&#197;&#176;&quot;, 15001], &quot;&#225;&#174;&quot;, &quot;\&quot;&quot;, 0.99],
+    [&quot;&#224;&#163;œ&quot;, &quot;&#200;&#185;&quot;, [&quot;&#197;&#176;&quot;, 15002], &quot;&#225;&#174;&quot;, &quot;\&quot;&quot;, 0.99],
+    [&quot;&#224;&#163;œ&quot;, &quot;&#194;&#167;&quot;, [&quot;&#197;&#176;&quot;, 15003], &quot;&#225;&#174;&quot;, &quot;\&quot;&quot;, 0.99]
+  ],
+  [],
+  [
+    &quot;&#226;Ÿ&quot;,
+    [&quot;&#197;&#178;&quot;, &quot;2026-04-13T00:00:00Z&quot;],
+    &quot;#&quot;,
+    [&quot;&#225;…&#180;&quot;, &quot;&#225;…&#181;&quot;],
+    &quot;-&#227;&#189;&#173;&quot;,
+    &quot;\u0bfc&quot;
+  ],
+  [&quot;\&quot;&quot;, 555006]
+]</code></pre>
+<h3>Людська глоса</h3>
+<p>Це повідомлення означає:</p>
+<ul>
+<li>канонічна сутність з іконкою описується семантично</li>
+<li>відношення 501 може вказувати на канонічне функціональне значення</li>
+<li>відношення 502 може вказувати на канонічний явний стан</li>
+<li>відношення 100 може вказувати на канонічний явний варіант або властивість подання</li>
+</ul>
+<h3>Нотатки для читача</h3>
+<p>ВИ МАЄТЕ трактувати функцію іконки як канонічне значення. ВИ НЕ МАЄТЕ трактувати вигляд іконки як канонічне значення. ВИ НЕ МАЄТЕ виводити бізнес-значення лише з форми, кольору, заливки або схожості.</p>
+<hr />
+<h2>Приклад 7: обробка декоративної іконки</h2>
+<h3>Канонічний приклад</h3>
+<pre><code class="language-json">[
+  &quot;\&quot;&quot;,
+  &quot;&#226;&#188;&quot;,
+  &quot;&#226;&#189;&quot;,
+  &quot;\&quot;&quot;,
+  [
+    [&quot;&#224;&#163;œ&quot;, &quot;&#200;&#184;&quot;, [&quot;&#197;&#176;&quot;, 16001], &quot;&#225;&#174;&quot;, &quot;\&quot;&quot;, 1.0],
+    [&quot;&#224;&#163;œ&quot;, &quot;&#200;&#185;&quot;, [&quot;&#197;&#176;&quot;, 16002], &quot;&#225;&#174;&quot;, &quot;\&quot;&quot;, 1.0]
+  ],
+  [],
+  [
+    &quot;&#226;Ÿ&quot;,
+    [&quot;&#197;&#178;&quot;, &quot;2026-04-13T00:00:00Z&quot;],
+    &quot;#&quot;,
+    [&quot;&#225;…&#180;&quot;],
+    &quot;-&#227;&#189;&#173;&quot;,
+    &quot;\u0bfc&quot;
+  ],
+  [&quot;\&quot;&quot;, 555007]
+]</code></pre>
+<h3>Людська глоса</h3>
+<p>Це повідомлення означає:</p>
+<ul>
+<li>іконка присутня у відрендереному інтерфейсі</li>
+<li>іконка є декоративною або інакше нефункціональною в активному семантичному шарі</li>
+<li>іконка не є основним носієм бізнес-значення</li>
+</ul>
+<h3>Нотатки для читача</h3>
+<p>Декоративні іконки не тлумачаться як функціональні твердження, якщо канонічна структура явно не підвищує їх до семантичного значення.</p>
+<hr />
+<h2>Приклад 8: канонічна структура з необов&#39;язковою оболонкою людської глоси</h2>
+<h3>Канонічний приклад</h3>
+<pre><code class="language-json">{
+  &quot;canonical&quot;: [
+    &quot;\&quot;&quot;,
+    &quot;&#226;&#188;&quot;,
+    &quot;&#226;&#189;&quot;,
+    &quot;\&quot;&quot;,
+    [
+      [&quot;&#211;&#180;&quot;, &quot;&#200;&#184;&quot;, &quot;&#224;&#163;œ&quot;, &quot;&#225;&#174;&quot;, &quot;\&quot;&quot;, 0.98]
+    ],
+    [],
+    [
+      &quot;&#226;Ÿ&quot;,
+      [&quot;&#197;&#178;&quot;, &quot;2026-04-13T00:00:00Z&quot;],
+      &quot;&#39;&quot;,
+      [&quot;&#225;…&#180;&quot;],
+      &quot;-&#227;&#189;&#173;&quot;,
+      &quot;\u0bfc&quot;
+    ],
+    [&quot;\&quot;&quot;, 555008]
+  ],
+  &quot;gloss&quot;: {
+    &quot;sender&quot;: &quot;Example sender&quot;,
+    &quot;receiver&quot;: &quot;Example receiver&quot;,
+    &quot;act&quot;: &quot;assert&quot;,
+    &quot;notes&quot;: [
+      &quot;This gloss is not authoritative.&quot;,
+      &quot;The canonical array remains authoritative.&quot;
+    ]
+  }
+}</code></pre>
+<h3>Нотатки для читача</h3>
+<p>Коли присутні і канонічні дані, і глоса:</p>
+<ul>
+<li>канонічні дані є владними</li>
+<li>глоса є неканонічною</li>
+<li>глоса не повинна переважати канонічне значення</li>
+</ul>
+<hr />
+<h2>Приклад 9: приклад невалідного повідомлення</h2>
+<h3>Канонічний приклад</h3>
+<pre><code class="language-json">[
+  &quot;\&quot;&quot;,
+  &quot;&#226;&#188;&quot;,
+  &quot;&#226;&#189;&quot;,
+  &quot;$&quot;,
+  [
+    [&quot;&#211;&#180;&quot;, &quot;search-icon&quot;, &quot;&#224;&#163;œ&quot;, &quot;&#225;&#174;&quot;, &quot;\&quot;&quot;, 0.95]
+  ],
+  [],
+  [
+    &quot;&#226;Ÿ&quot;,
+    [&quot;&#197;&#178;&quot;, &quot;2026-04-13T00:00:00Z&quot;],
+    &quot;&#39;&quot;,
+    [&quot;&#225;…&#180;&quot;],
+    &quot;-&#227;&#189;&#173;&quot;,
+    &quot;\u0bfc&quot;
+  ],
+  [&quot;\&quot;&quot;, 555009]
+]</code></pre>
+<h3>Людська глоса</h3>
+<p>Цей приклад є невалідним.</p>
+<h3>Нотатки для читача</h3>
+<p>Це повідомлення є невалідним, тому що канонічне поле містить вільний текст <code>search-icon</code> замість канонічного ID Radix 63404 або канонічного типізованого значення. ВИ МАЄТЕ відхилити або позначити це повідомлення. ВИ НЕ МАЄТЕ відновлюватися шляхом здогадок.</p>
+<hr />
+<h2>Приклад 10: мінімальний робочий процес читача</h2>
+<h3>Процедура читача</h3>
+<p>Коли ви отримуєте повідомлення UAI-1, ВИ МАЄТЕ зробити таке в цьому порядку:</p>
+<ol>
+<li>Перевірити, що зовнішнє повідомлення має рівно 8 канонічних слотів.</li>
+<li>Декодувати всі канонічні ID з Radix 63404.</li>
+<li>Розв&#39;язати всі декодовані ID через владний реєстр.</li>
+<li>Перевірити активний акт і потрібну структуру.</li>
+<li>Перевірити всі твердження.</li>
+<li>Перевірити всі обмеження.</li>
+<li>Перевірити походження.</li>
+<li>Точно зберегти канонічні значення.</li>
+<li>Ігнорувати людську глосу для семантики.</li>
+<li>Видати канонічну помилку, якщо будь-який потрібний елемент не підтримується або є невалідним.</li>
+</ol>
+<hr />
+<h2>Довідкові значення реєстру, використані в цих прикладах</h2>
+<p>Наведені нижче десяткові значення використовуються лише як пояснювальна довідка для читача-людини. Канонічні приклади вище залишаються владними у своїх формах Radix 63404.</p>
+<div class="doc-table-wrap">
+<table>
+<thead><tr>
+<th scope="col">Значення</th>
+<th scope="col">Decimal</th>
+<th scope="col">Radix 63404</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>версія протоколу 1</td>
+<td>1</td>
+<td><code>&quot;</code></td>
+</tr>
+<tr>
+<td>акт ствердження</td>
+<td>1</td>
+<td><code>&quot;</code></td>
+</tr>
+<tr>
+<td>акт запиту</td>
+<td>2</td>
+<td><code>#</code></td>
+</tr>
+<tr>
+<td>акт прохання</td>
+<td>3</td>
+<td><code>$</code></td>
+</tr>
+<tr>
+<td>акт зобов&#39;язання</td>
+<td>4</td>
+<td><code>%</code></td>
+</tr>
+<tr>
+<td>акт заперечення</td>
+<td>5</td>
+<td><code>&amp;</code></td>
+</tr>
+<tr>
+<td>акт звіту</td>
+<td>6</td>
+<td><code>&#39;</code></td>
+</tr>
+<tr>
+<td>акт пропозиції</td>
+<td>7</td>
+<td><code>(</code></td>
+</tr>
+<tr>
+<td>акт перегляду</td>
+<td>8</td>
+<td><code>)</code></td>
+</tr>
+<tr>
+<td>акт підтвердження отримання</td>
+<td>9</td>
+<td><code>*</code></td>
+</tr>
+<tr>
+<td>акт помилки</td>
+<td>10</td>
+<td><code>+</code></td>
+</tr>
+<tr>
+<td>акт можливості</td>
+<td>11</td>
+<td><code>,</code></td>
+</tr>
+<tr>
+<td>акт переговорів</td>
+<td>12</td>
+<td><code>-</code></td>
+</tr>
+<tr>
+<td>тип ціле число</td>
+<td>301</td>
+<td><code>&#197;&#176;</code></td>
+</tr>
+<tr>
+<td>тип часова мітка</td>
+<td>303</td>
+<td><code>&#197;&#178;</code></td>
+</tr>
+<tr>
+<td>відношення 501</td>
+<td>501</td>
+<td><code>&#200;&#184;</code></td>
+</tr>
+<tr>
+<td>відношення 502</td>
+<td>502</td>
+<td><code>&#200;&#185;</code></td>
+</tr>
+<tr>
+<td>відношення 100</td>
+<td>100</td>
+<td><code>&#194;&#167;</code></td>
+</tr>
+<tr>
+<td>приклад суб&#39;єкта</td>
+<td>1201</td>
+<td><code>&#211;&#180;</code></td>
+</tr>
+<tr>
+<td>приклад об&#39;єкта</td>
+<td>2201</td>
+<td><code>&#224;&#163;œ</code></td>
+</tr>
+<tr>
+<td>приклад політики</td>
+<td>3001</td>
+<td><code>\u0bfc</code></td>
+</tr>
+<tr>
+<td>приклад доказу A</td>
+<td>4401</td>
+<td><code>&#225;…&#180;</code></td>
+</tr>
+<tr>
+<td>приклад доказу B</td>
+<td>4402</td>
+<td><code>&#225;…&#181;</code></td>
+</tr>
+<tr>
+<td>приклад контексту</td>
+<td>7001</td>
+<td><code>&#225;&#174;</code></td>
+</tr>
+<tr>
+<td>приклад відправника</td>
+<td>9001</td>
+<td><code>&#226;&#188;</code></td>
+</tr>
+<tr>
+<td>приклад одержувача</td>
+<td>9002</td>
+<td><code>&#226;&#189;</code></td>
+</tr>
+<tr>
+<td>джерело походження</td>
+<td>9100</td>
+<td><code>&#226;Ÿ</code></td>
+</tr>
+<tr>
+<td>приклад траси</td>
+<td>777001</td>
+<td><code>-&#227;&#189;&#173;</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<hr />
+<h2>Фінальне правило</h2>
+<p>Спочатку читайте структуру. По-друге, декодуйте Radix 63404. По-третє, розв&#39;язуйте канонічні ID. По-четверте, застосовуйте обмеження. По-п&#39;яте, використовуйте походження та довіру. Ігноруйте людську глосу для семантики. Ніколи не підміняйте канонічне значення англійською мовою, формою іконки або локальною звичкою.</p>
+                    </div>
+                </article>
+            </section>
+        </main>
+
+        <footer class="site-footer panel reveal">
+            <div>
+                <p class="eyebrow">Protocol5 links</p>
+                <div class="footer-links">
+                    <a href="/">Home</a>
+                    <a href="/Fibonacci">Fibonacci</a>
+                    <a href="/Prime">Prime Numbers</a>
+                    <a href="/UAI">UAI</a>
+                    <a href="/Home/GitHub">GitHub</a>
+                    <a href="/Home/About">About</a>
+                    <a href="/Home/Links">Links</a>
+                    <a href="/Home/Contact">Contact</a>
+                </div>
+            </div>
+            <p class="footer-copy">Protocol5 reference page. <span id="currentYear"></span></p>
+        </footer>
+    </div>
+
+    <script src="/js/home.js"></script>
+</body>
+</html>

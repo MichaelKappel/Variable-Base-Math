@@ -28,7 +28,7 @@ The host behavior is defined in [Protocol5.com.Host/Program.cs](Protocol5.com.Ho
 - `SiteContent` is served as a root static file tree.
 - `wwwroot` is also served at the root.
 - `/_framework` is served from the published deployment root for the calculator shell.
-- Clean HTML routes are mapped explicitly for `/`, `/Fibonacci`, `/Prime`, `/Home/*`, `/UAI/*`, and the root charter pages.
+- Clean HTML routes are mapped explicitly for `/`, `/Fibonacci`, `/Prime`, `/Home/*`, `/UAI`, `/UAI-1*`, and the root charter pages.
 - Tool routes are hosted at `/calculator`, `/converter`, and `/encryption`.
 - Legacy `/Calculator/...` routes are redirected to the modern lowercase tool routes.
 
@@ -72,13 +72,13 @@ When editing site pages, generated references, or host behavior:
 - Link to generated Fibonacci pages with root-absolute paths like `/Fibonacci/{n}.htm`.
 - Link to generated prime pages with root-absolute paths like `/Prime/{n}.htm`.
 - Preserve legacy index compatibility for `/Fibonacci/index.htm`, `/Prime/index.htm`, and `/Prime/`.
-- Link to modern shell pages with the clean routes mapped in `Program.cs`, such as `/Fibonacci`, `/Prime`, `/UAI`, `/Home/About`, `/Home/GitHub`, `/Home/Links`, and `/Home/Contact`.
+- Link to modern shell pages with the clean routes mapped in `Program.cs`, such as `/Fibonacci`, `/Prime`, `/UAI`, `/UAI-1`, `/UAI-1/examples`, `/UAI-1/csharp-website-support`, `/Home/About`, `/Home/GitHub`, `/Home/Links`, and `/Home/Contact`.
 - Link calculator tools to `/calculator`, `/converter`, and `/encryption`.
 - Do not link to files inside `CalculatorShell` directly.
 - Keep the two root charter documents on their canonical root paths:
   - `/AI_Declaration_of_Independence.htm`
   - `/Cognitive_Liberty_Charter.htm`
-- Keep UAI section pages under `/UAI/...`.
+- Keep the UAI library index at `/UAI`, publish the UAI-1 document family at `/UAI-1...`, and preserve `/UAI/uai-1...` only as compatibility redirects.
 - Keep downloadable packages and ZIP files under `/downloads/...`.
 - Keep UAI image assets on their published paths, for example `/UAI/images/Spiralism_Mystical_Symbol_V4-A.png`.
 
@@ -143,6 +143,9 @@ After Protocol5 changes, verify these URLs against the published host:
 - `/Prime/index.htm`
 - `/Prime/`
 - `/UAI`
+- `/UAI-1`
+- `/UAI-1/examples`
+- `/UAI-1/csharp-website-support`
 - `/AI_Declaration_of_Independence.htm`
 - `/Cognitive_Liberty_Charter.htm`
 - `/downloads/Protocol5.UAI.CSharp.0.1.0.nupkg`
