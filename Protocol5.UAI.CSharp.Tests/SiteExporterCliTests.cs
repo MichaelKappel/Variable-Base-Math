@@ -63,6 +63,60 @@ public sealed class SiteExporterCliTests
             }
         }
     }
+    [TestMethod]
+    public void SiteExporterCli_WithoutGeneratedAt_UsesStableSourceFileTimestamp()
+    {
+        var tempRoot = Path.Combine(Path.GetTempPath(), "Protocol5.UAI.SiteExporter.Tests", Guid.NewGuid().ToString("N"));
+        var inputRoot = Path.Combine(tempRoot, "input");
+        var manifestRoot = Path.Combine(tempRoot, "manifests");
+        var outputRoot = Path.Combine(tempRoot, "output");
+        Directory.CreateDirectory(inputRoot);
+        Directory.CreateDirectory(manifestRoot);
+
+        var htmlPath = Path.Combine(inputRoot, "hello.html");
+        var manifestPath = Path.Combine(manifestRoot, "export.json");
+        var outputPath = Path.Combine(outputRoot, "hello.uai.json");
+        var stableTimestamp = new DateTimeOffset(2026, 04, 13, 00, 00, 00, TimeSpan.Zero);
+
+        File.WriteAllText(htmlPath, "<html lang=\"en\"><body><h1>Hello CLI</h1><p>Export me.</p></body></html>", Encoding.UTF8);
+        File.SetLastWriteTimeUtc(htmlPath, stableTimestamp.UtcDateTime);
+        File.WriteAllText(manifestPath, """
+{
+  "pages": [
+    {
+      "inputHtmlPath": "../input/hello.html",
+      "outputJsonPath": "../output/hello.uai.json",
+      "sourceUri": "https://example.org/cli-export-stable",
+      "documentId": "cli-export-stable",
+      "pageType": "article",
+      "language": "en",
+      "siteName": "Example Site"
+    }
+  ]
+}
+""", Encoding.UTF8);
+
+        try
+        {
+            var first = RunSiteExporter($"\"{manifestPath}\"");
+            Assert.AreEqual(0, first.ExitCode, first.Output);
+            var firstDocument = new UaiDocumentParser().Parse(File.ReadAllText(outputPath));
+
+            var second = RunSiteExporter($"\"{manifestPath}\"");
+            Assert.AreEqual(0, second.ExitCode, second.Output);
+            var secondDocument = new UaiDocumentParser().Parse(File.ReadAllText(outputPath));
+
+            Assert.AreEqual(stableTimestamp.ToString("O"), firstDocument.Source.RetrievedAt);
+            Assert.AreEqual(firstDocument.Source.RetrievedAt, secondDocument.Source.RetrievedAt);
+        }
+        finally
+        {
+            if (Directory.Exists(tempRoot))
+            {
+                Directory.Delete(tempRoot, recursive: true);
+            }
+        }
+    }
 
     [TestMethod]
     public void SiteExporterCli_InvalidManifest_ReturnsFailure()

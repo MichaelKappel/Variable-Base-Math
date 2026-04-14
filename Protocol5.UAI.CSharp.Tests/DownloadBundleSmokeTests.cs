@@ -24,14 +24,18 @@ public sealed class DownloadBundleSmokeTests
                 repoRoot);
             Assert.AreEqual(0, result.ExitCode, result.Output);
 
-            var zipPath = Path.Combine(outputRoot, "protocol5-uai-1-csharp-web-starter.zip");
+            var legacyZipPath = Path.Combine(outputRoot, "protocol5-uai-1-csharp-web-starter.zip");
+            var canonicalZipPath = Path.Combine(outputRoot, "UAI-1-Package.zip");
             var packagePath = Path.Combine(outputRoot, "Protocol5.UAI.CSharp.1.0.0.nupkg");
-            Assert.IsTrue(File.Exists(zipPath), "The starter ZIP was not produced.");
+            Assert.IsTrue(File.Exists(legacyZipPath), "The legacy starter ZIP compatibility copy was not produced.");
+            Assert.IsTrue(File.Exists(canonicalZipPath), "The canonical package ZIP was not produced.");
             Assert.IsTrue(File.Exists(packagePath), "The NuGet package was not produced.");
-            Assert.IsTrue(File.Exists(zipPath + ".sha256"), "The starter ZIP checksum was not produced.");
+            Assert.IsTrue(File.Exists(legacyZipPath + ".sha256"), "The legacy starter ZIP checksum was not produced.");
+            Assert.IsTrue(File.Exists(canonicalZipPath + ".sha256"), "The canonical package ZIP checksum was not produced.");
             Assert.IsTrue(File.Exists(packagePath + ".sha256"), "The NuGet package checksum was not produced.");
+            CollectionAssert.AreEqual(File.ReadAllBytes(canonicalZipPath), File.ReadAllBytes(legacyZipPath));
 
-            using var zip = ZipFile.OpenRead(zipPath);
+            using var zip = ZipFile.OpenRead(canonicalZipPath);
             var entryNames = zip.Entries.Select(entry => entry.FullName).ToArray();
             CollectionAssert.Contains(entryNames, "downloads\\Protocol5.UAI.CSharp.1.0.0.nupkg");
             CollectionAssert.Contains(entryNames, "tools\\Protocol5.UAI.SiteExporter\\Program.cs");

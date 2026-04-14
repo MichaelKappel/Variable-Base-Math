@@ -488,6 +488,13 @@ function Write-Utf8File {
         [System.IO.Directory]::CreateDirectory($directory) | Out-Null
     }
 
+    if (Test-Path -LiteralPath $Path) {
+        $existingContent = [System.IO.File]::ReadAllText($Path, [System.Text.Encoding]::UTF8)
+        if ([string]::Equals($existingContent, $Content, [System.StringComparison]::Ordinal)) {
+            return
+        }
+    }
+
     $encoding = [System.Text.UTF8Encoding]::new($false)
     [System.IO.File]::WriteAllText($Path, $Content, $encoding)
 }
@@ -739,10 +746,13 @@ $siteSchemaRoot = Join-Path $siteRoot 'UAI-1\schema'
 $siteRegistryRoot = Join-Path $siteRoot 'UAI-1\registry'
 $canonicalMachineSpecPublicPath = '/UAI-1.json'
 $canonicalExamplesIndexPublicPath = '/UAI-1-examples.json'
+$canonicalExamplesRegistryPublicPath = '/registry/uai-1-examples.json'
 $canonicalRegistryPublicPath = '/UAI-1/registry/uai-1.registry.json'
 $canonicalSchemaPublicPath = '/UAI-1/schema/uai-1.schema.json'
 $canonicalTypesPublicPath = '/UAI-1/schema/uai-1.types.ts'
 $canonicalExamplesPublicPath = '/UAI-1/examples'
+$canonicalPackageZipPublicPath = '/downloads/UAI-1-Package.zip'
+$legacyPackageZipPublicPath = '/downloads/protocol5-uai-1-csharp-web-starter.zip'
 $publishedMachinePages = [System.Collections.Generic.List[hashtable]]::new()
 $uaiTranslationConfigPath = Join-Path $uaiRoot 'uai-translation-config.json'
 $uaiTranslationConfig = [System.IO.File]::ReadAllText($uaiTranslationConfigPath, [System.Text.Encoding]::UTF8) | ConvertFrom-Json
@@ -1028,17 +1038,17 @@ $uaiIndex = @"
                 <div>
                     <p class="eyebrow">UAI Library</p>
                     <h1>Universal AI Interlingua and companion texts</h1>
-                    <p class="lead">Browse the UAI-1 protocol draft, the example set, the translated human-language editions, the Radix 63404 guide, the C# website support kit, the Spiralism symbol visual, the Spiralism research report, and the two charter-style root documents that live alongside the main Protocol5 math pages.</p>
+                    <p class="lead">Protocol5 publishes the canonical machine-readable UAI surface first, with the human-readable pages collected here as companion material. Start from the schema, registries, examples, and developer package downloads below, then use the translated pages as secondary reading aids.</p>
                     <div class="inline-links">
                         <a href="/UAI-1">UAI-1 Spec</a>
                         <a href="/UAI-1/examples">Examples</a>
                         <a href="$(Get-UaiEndpointPublicPath -HumanRoute '/UAI')">Library JSON</a>
                         <a href="/UAI-1.json">Machine Entry</a>
+                        <a href="$canonicalExamplesRegistryPublicPath">Examples Registry</a>
                         <a href="/registry/uai-1.json">Registry</a>
-                        <a href="/UAI/radix-63404-guide-and-attribution">Radix 63404 Guide</a>
-                        <a href="/UAI-1/csharp-website-support">C# Kit</a>
-                        <a href="/UAI/spiralism-mystical-symbol-v4-a">Symbol</a>
-                        <a href="/UAI/spiralism-deep-research-report">Spiralism Report</a>
+                        <a href="/schema/uai-1.schema.json">Schema</a>
+                        <a href="$canonicalPackageZipPublicPath">Starter ZIP</a>
+                        <a href="/UAI-1/csharp-website-support">Install Guide</a>
                     </div>
                 </div>
                 <aside class="traveler-note">
@@ -1046,7 +1056,7 @@ $uaiIndex = @"
                     <blockquote>
                         These pages stay close to the source files so the formal language and long-form texts are browseable without losing fidelity.
                     </blockquote>
-                    <p>The root-level declaration and charter keep their explicit canonical file paths, while the protocol documents live under the UAI section for easier discovery.</p>
+                    <p>The root-level declaration and charter keep their explicit canonical file paths, while the machine schema, registries, examples, and downloads stay on stable asset URLs so clients do not need to scrape the human pages.</p>
                 </aside>
             </section>
 
@@ -1066,16 +1076,20 @@ $uaiIndex = @"
                     </div>
                 </article>
                 <article class="panel content-card">
-                    <p class="eyebrow">Canonical machine artifacts</p>
-                    <h2>Machine endpoints</h2>
+                    <p class="eyebrow">Machine access</p>
+                    <h2>Canonical machine endpoints</h2>
                     <div class="link-list">
                         <a class="link-chip" href="/UAI-1.json">/UAI-1.json</a>
                         <a class="link-chip" href="/UAI-1-examples.json">/UAI-1-examples.json</a>
+                        <a class="link-chip" href="$canonicalExamplesRegistryPublicPath">$canonicalExamplesRegistryPublicPath</a>
                         <a class="link-chip" href="/registry/uai-1.json">/registry/uai-1.json</a>
                         <a class="link-chip" href="/registry/symbols.json">/registry/symbols.json</a>
                         <a class="link-chip" href="/schema/uai-1.schema.json">/schema/uai-1.schema.json</a>
+                        <a class="link-chip" href="/UAI-1/examples">/UAI-1/examples</a>
+                        <a class="link-chip" href="$canonicalPackageZipPublicPath">$canonicalPackageZipPublicPath</a>
+                        <a class="link-chip" href="/UAI-1/csharp-website-support">Package install guide</a>
                     </div>
-                    <p>These direct JSON endpoints bridge the human-readable UAI library and the protocol layer. They point clients to the canonical registry, schema, symbols, and example corpus without requiring page scraping.</p>
+                    <p>These stable URLs are the canonical machine-first entrypoints for schema resolution, registry discovery, example lookup, and developer downloads. The human-readable UAI pages remain browseable companion material, but machine clients should start here.</p>
                 </article>
                 <article class="panel content-card">
                     <p class="eyebrow">Translations</p>
@@ -1101,11 +1115,12 @@ $uaiTranslationLinksHtml
                     <p class="eyebrow">Developer downloads</p>
                     <h2>Starter assets</h2>
                     <div class="link-list">
-                        <a class="link-chip" href="/downloads/protocol5-uai-1-csharp-web-starter.zip">Starter ZIP</a>
+                        <a class="link-chip" href="$canonicalPackageZipPublicPath">UAI-1-Package.zip</a>
+                        <a class="link-chip" href="$legacyPackageZipPublicPath">Legacy starter ZIP</a>
                         <a class="link-chip" href="/downloads/Protocol5.UAI.CSharp.1.0.0.nupkg">NuGet package</a>
                         <a class="link-chip" href="/UAI-1/csharp-website-support">Install guide</a>
                     </div>
-                    <p>The first downloadable UAI starter focuses on C# websites and ASP.NET Core integration.</p>
+                    <p><code>UAI-1-Package.zip</code> is the stable Protocol5 download URL for the C# reference bundle. The older starter ZIP name remains published as a compatibility alias, and the package install guide walks through package restore, example loading, validation, and canonical JSON emission.</p>
                 </article>
                 <article class="panel content-card">
                     <p class="eyebrow">Root documents</p>
@@ -1174,11 +1189,11 @@ Copy-Item -LiteralPath (Join-Path $uaiRegistryRoot 'uai-1.registry.json') -Desti
 Copy-Item -LiteralPath (Join-Path $uaiRegistryRoot 'symbols.json') -Destination (Join-Path $sitePublicRegistryRoot 'symbols.json') -Force
 Copy-Item -LiteralPath (Join-Path $uaiDiscoveryRoot 'uai-1.json') -Destination (Join-Path $siteRoot 'UAI-1.json') -Force
 Copy-Item -LiteralPath (Join-Path $uaiDiscoveryRoot 'uai-1-examples.json') -Destination (Join-Path $siteRoot 'UAI-1-examples.json') -Force
+Copy-Item -LiteralPath (Join-Path $uaiDiscoveryRoot 'uai-1-examples.json') -Destination (Join-Path $sitePublicRegistryRoot 'uai-1-examples.json') -Force
 
 $siteExporterProject = Join-Path $repoRoot 'tools\Protocol5.UAI.SiteExporter\Protocol5.UAI.SiteExporter.csproj'
 $siteExporterManifestPath = Join-Path ([System.IO.Path]::GetTempPath()) ("Protocol5.UAI.SiteExporter.{0}.json" -f [Guid]::NewGuid().ToString('N'))
 $siteExporterManifest = [ordered]@{
-    generatedAt = [DateTimeOffset]::UtcNow.ToString('O')
     pages = @($publishedMachinePages)
 }
 

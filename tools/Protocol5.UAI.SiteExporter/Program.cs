@@ -34,7 +34,6 @@ try
     var manifestDirectory = Path.GetDirectoryName(manifestPath)
         ?? throw new InvalidOperationException($"Manifest path did not have a parent directory: {manifestPath}");
     var exporter = new UaiHtmlExporter();
-    var generatedAt = manifest.GeneratedAt ?? DateTimeOffset.UtcNow;
 
     foreach (var page in manifest.Pages)
     {
@@ -43,11 +42,13 @@ try
         var inputHtmlPath = ResolveManifestRelativePath(manifestDirectory, page.InputHtmlPath);
         var outputJsonPath = ResolveManifestRelativePath(manifestDirectory, page.OutputJsonPath);
 
+        var retrievedAt = manifest.GeneratedAt ?? new DateTimeOffset(File.GetLastWriteTimeUtc(inputHtmlPath), TimeSpan.Zero);
+
         exporter.ExportToFile(inputHtmlPath, outputJsonPath, new UaiHtmlTranslationOptions
         {
             SourceUri = page.SourceUri,
             DocumentId = page.DocumentId,
-            RetrievedAt = generatedAt,
+            RetrievedAt = retrievedAt,
             Language = page.Language,
             SiteName = page.SiteName ?? "Protocol5",
             PageType = page.PageType,

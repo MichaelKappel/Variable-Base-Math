@@ -1,6 +1,6 @@
 # Protocol5 UAI-1 C# Download
 
-This download packages the reference .NET implementation for getting a working UAI endpoint onto a website quickly.
+This download packages the reference .NET implementation for getting a working UAI endpoint onto a website quickly. The stable Protocol5 bundle URL is `/downloads/UAI-1-Package.zip`, while the older starter ZIP name remains available as a compatibility alias.
 
 Contents:
 

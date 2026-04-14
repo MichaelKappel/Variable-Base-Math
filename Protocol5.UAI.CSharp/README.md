@@ -1,6 +1,6 @@
 # Protocol5.UAI.CSharp
 
-`Protocol5.UAI.CSharp` is the reference .NET implementation for installing UAI-1 on a website, validating exported documents, routing canonical machine endpoints, and rendering or testing the results.
+`Protocol5.UAI.CSharp` is the reference .NET implementation for installing UAI-1 on a website, loading canonical Protocol5 artifacts, validating documents, exporting `.uai.json`, and routing machine endpoints.
 
 ## Reference Contracts
 
@@ -45,20 +45,31 @@ app.Run();
 
 That gives you:
 
-- canonical discovery endpoints like `/UAI-1.json` and `/UAI-1/schema/uai-1.schema.json`
+- canonical discovery endpoints like `/UAI-1.json`, `/registry/uai-1-examples.json`, and `/UAI-1/schema/uai-1.schema.json`
 - a working page endpoint at `/docs/hello/index.uai.json`
 - `application/uai+json`, `X-UAI-1`, `Vary`, and `Link` headers
 - validation on every exported endpoint response
 
-## Validate
+## Load And Validate Canonical Examples
 
 ```csharp
-var document = new UaiDocumentParser().Parse(json);
+var loader = new UaiCanonicalAssetLoader();
+var exampleJson = loader.LoadExampleText("homepage.uai.json");
+
+var canonicalValidation = new UaiSchemaValidator().ValidateCanonicalJson(exampleJson);
+if (!canonicalValidation.IsValid)
+{
+    throw new InvalidOperationException("Canonical validation failed.");
+}
+
+var document = loader.LoadExampleDocument("homepage.uai.json");
 var validation = new UaiDocumentValidator().Validate(document);
 if (!validation.IsValid)
 {
     throw new InvalidOperationException("UAI validation failed.");
 }
+
+var canonicalJson = UaiDocumentSerializer.Serialize(document);
 ```
 
 ## Export
@@ -88,13 +99,9 @@ exporter.ExportToFile("Pages/hello.html", "wwwroot/docs/hello/index.uai.json", n
 
 ## Site Exporter CLI Sample
 
-The repository includes a console exporter for manifest-driven file generation:
-
 ```powershell
 dotnet run --project tools\Protocol5.UAI.SiteExporter\Protocol5.UAI.SiteExporter.csproj -- tools\Protocol5.UAI.SiteExporter\samples\export-manifest.sample.json
 ```
-
-That sample manifest generates `tools\Protocol5.UAI.SiteExporter\samples\output\hello.uai.json` using paths relative to the manifest file, which makes the tool safe to run from any working directory.
 
 ## Render
 
@@ -102,23 +109,7 @@ That sample manifest generates `tools\Protocol5.UAI.SiteExporter\samples\output\
 var renderedHtml = new UaiHtmlRenderer().Render(export.Document);
 ```
 
-## Test
-
-```csharp
-var json = await client.GetStringAsync("/docs/hello/index.uai.json");
-var document = new UaiDocumentParser().Parse(json);
-Assert.IsTrue(new UaiDocumentValidator().Validate(document).IsValid);
-```
-
 ## Validator CLI Sample
-
-The repository includes a console validator built on top of the package:
-
-```powershell
-dotnet run --project tools\Protocol5.UAI.Validator\Protocol5.UAI.Validator.csproj -- examples\homepage.uai.json
-```
-
-Validate the embedded canonical examples and force round-trip checks:
 
 ```powershell
 dotnet run --project tools\Protocol5.UAI.Validator\Protocol5.UAI.Validator.csproj -- --embedded-examples --roundtrip
@@ -134,6 +125,10 @@ var symbolRegistryJson = UaiConstants.GetEmbeddedSymbolRegistryText();
 var schemaJson = UaiConstants.GetEmbeddedSchemaText();
 var typesText = UaiConstants.GetEmbeddedTypesText();
 var exampleNames = UaiConstants.GetEmbeddedExampleFileNames();
+
+var loader = new UaiCanonicalAssetLoader();
+var homepageExample = loader.LoadExampleDocument("homepage.uai.json");
+var canonicalValidation = new UaiSchemaValidator().ValidateCanonical(homepageExample);
 ```
 
 ## HTTP Conventions

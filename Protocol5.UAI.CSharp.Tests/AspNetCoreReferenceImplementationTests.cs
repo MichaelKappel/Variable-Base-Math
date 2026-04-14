@@ -48,6 +48,11 @@ public sealed class AspNetCoreReferenceImplementationTests
             var discoveryJson = await discoveryResponse.Content.ReadAsStringAsync();
             StringAssert.Contains(discoveryJson, "machineEndpoints");
 
+            var examplesAliasResponse = await client.GetAsync(UaiConstants.CanonicalExamplesRegistryPublicPath);
+            Assert.AreEqual(HttpStatusCode.OK, examplesAliasResponse.StatusCode);
+            var examplesAliasJson = await examplesAliasResponse.Content.ReadAsStringAsync();
+            StringAssert.Contains(examplesAliasJson, "examples");
+
             var endpointRequest = new HttpRequestMessage(HttpMethod.Get, "/demo/index.uai.json");
             endpointRequest.Headers.Accept.ParseAdd(UaiConstants.MediaType);
             var endpointResponse = await client.SendAsync(endpointRequest);

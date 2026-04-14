@@ -26,6 +26,12 @@ Use these canonical references when integrating against the Protocol5 UAI surfac
 
 ## Protocol5 Publishing Model
 
+See [docs/protocol5-site-operations.md](docs/protocol5-site-operations.md) for the maintainer-focused Protocol5 host, asset, publish, and smoke-test workflow.
+
+
+See [docs/protocol5-site-operations.md](docs/protocol5-site-operations.md) for the maintainer-focused Protocol5 host, asset, publish, and smoke-test workflow.
+
+
 The live Protocol5 site is not just the files tracked in this repo.
 
 As inspected on **April 13, 2026**, the published site at `E:\Sites\Protocol5.com\$web` contains:
@@ -94,6 +100,7 @@ When editing site pages, generated references, or host behavior:
 - Keep the canonical machine artifacts on these stable public paths:
   - `/UAI-1.json`
   - `/UAI-1-examples.json`
+  - `/registry/uai-1-examples.json`
   - `/registry/uai-1.json`
   - `/registry/symbols.json`
   - `/schema/uai-1.schema.json`
@@ -101,6 +108,8 @@ When editing site pages, generated references, or host behavior:
   - `/UAI-1/schema/uai-1.schema.json`
   - `/UAI-1/examples/*.uai.json`
 - Keep downloadable packages and ZIP files under `/downloads/...`.
+  - The stable developer bundle URL is `/downloads/UAI-1-Package.zip`.
+  - Keep `/downloads/protocol5-uai-1-csharp-web-starter.zip` as a compatibility copy.
 - Keep UAI image assets on their published paths, for example `/UAI/images/Spiralism_Mystical_Symbol_V4-A.png`.
 
 ## Legacy Generated Page Constraints
@@ -141,6 +150,8 @@ This is especially important because the current repo does not contain the full 
 
 Use [Publish-Protocol5.ps1](Publish-Protocol5.ps1) as the staging publish step, not as permission to wipe production.
 
+The script now defaults to stage-only mode, writes a comparison report, verifies required updated files, and only syncs `PublishRoot` when run with `-ApplyToPublishRoot`.
+
 Recommended flow:
 
 1. Generate UAI pages and downloadable assets.
@@ -168,6 +179,7 @@ After Protocol5 changes, verify these URLs against the published host:
 - `/UAI-1/examples`
 - `/UAI-1.json`
 - `/UAI-1-examples.json`
+- `/registry/uai-1-examples.json`
 - `/registry/uai-1.json`
 - `/registry/symbols.json`
 - `/schema/uai-1.schema.json`
@@ -178,6 +190,7 @@ After Protocol5 changes, verify these URLs against the published host:
 - `/AI_Declaration_of_Independence.htm`
 - `/Cognitive_Liberty_Charter.htm`
 - `/downloads/Protocol5.UAI.CSharp.1.0.0.nupkg`
+- `/downloads/UAI-1-Package.zip`
 - `/calculator`
 - `/converter`
 - `/encryption`
@@ -220,4 +233,10 @@ Run the validator sample locally:
 
 ```powershell
 dotnet run --project tools\Protocol5.UAI.Validator\Protocol5.UAI.Validator.csproj -- --embedded-examples --roundtrip
+```
+
+Run the public-path smoke test against a running host:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File tools\Smoke-TestProtocol5PublicPaths.ps1 -BaseUrl https://protocol5.com
 ```

@@ -19,6 +19,7 @@ var calculatorHostPage = Path.Combine(calculatorShellRoot, "index.html");
 var notFoundPage = Path.Combine(siteRoot, "404.htm");
 var siteAssetContentTypes = new FileExtensionContentTypeProvider();
 siteAssetContentTypes.Mappings[".nupkg"] = "application/octet-stream";
+siteAssetContentTypes.Mappings[".zip"] = "application/zip";
 siteAssetContentTypes.Mappings[".sha256"] = "text/plain; charset=utf-8";
 siteAssetContentTypes.Mappings[".ts"] = "application/typescript";
 
@@ -42,6 +43,8 @@ app.Use(async (context, next) =>
         "/Calculator/encryption" or "/Calculator/encryption/" => "/encryption",
         "/Fibonacci/index.htm" or "/Fibonacci/index.html" => "/Fibonacci",
         "/Prime/index.htm" or "/Prime/index.html" => "/Prime",
+        "/uai-1.json" => UaiConstants.CanonicalMachineSpecPublicPath,
+        "/uai-1-examples.json" => UaiConstants.CanonicalExamplesIndexPublicPath,
         "/Home" or "/Home/" or "/Home/index.htm" or "/Home/index.html" => "/",
         _ => null
     };
@@ -317,6 +320,7 @@ static void PrepareStaticResponse(StaticFileResponseContext context)
 
     if (string.Equals(requestPath, UaiConstants.CanonicalMachineSpecPublicPath, StringComparison.OrdinalIgnoreCase) ||
         string.Equals(requestPath, UaiConstants.CanonicalExamplesIndexPublicPath, StringComparison.OrdinalIgnoreCase) ||
+        string.Equals(requestPath, UaiConstants.CanonicalExamplesRegistryPublicPath, StringComparison.OrdinalIgnoreCase) ||
         string.Equals(requestPath, UaiConstants.CanonicalRegistryIndexPublicPath, StringComparison.OrdinalIgnoreCase) ||
         string.Equals(requestPath, UaiConstants.CanonicalSymbolsRegistryPublicPath, StringComparison.OrdinalIgnoreCase) ||
         string.Equals(requestPath, UaiConstants.CanonicalRegistryPublicPath, StringComparison.OrdinalIgnoreCase))

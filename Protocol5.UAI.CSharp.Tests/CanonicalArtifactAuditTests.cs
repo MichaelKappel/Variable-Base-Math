@@ -239,6 +239,26 @@ public sealed class CanonicalArtifactAuditTests
         }
     }
 
+    [TestMethod]
+    public void PublishedSiteDownloadAliases_IncludeCanonicalAndLegacyBundleNames()
+    {
+        var siteRoot = TestPaths.GetSiteContentDirectory();
+        var canonicalZipPath = Path.Combine(siteRoot, "downloads", "UAI-1-Package.zip");
+        var legacyZipPath = Path.Combine(siteRoot, "downloads", "protocol5-uai-1-csharp-web-starter.zip");
+
+        Assert.IsTrue(File.Exists(canonicalZipPath), "The canonical UAI package ZIP is missing from SiteContent/downloads.");
+        Assert.IsTrue(File.Exists(legacyZipPath), "The legacy starter ZIP compatibility copy is missing from SiteContent/downloads.");
+        Assert.AreEqual(
+            GetFileHash(canonicalZipPath),
+            GetFileHash(legacyZipPath),
+            "The canonical and legacy ZIP downloads should publish the same bundle bytes.");
+    }
+
+    private static string GetFileHash(string path)
+    {
+        return Convert.ToHexString(System.Security.Cryptography.SHA256.HashData(File.ReadAllBytes(path)));
+    }
+
     private static RegistryExample ParseRegistryExample(JsonObject example)
     {
         return new RegistryExample(

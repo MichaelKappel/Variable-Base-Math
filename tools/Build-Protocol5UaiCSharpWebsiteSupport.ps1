@@ -96,20 +96,29 @@ Copy-Item -LiteralPath $packageFile.FullName -Destination $archiveDownloadRoot -
 Copy-Item -LiteralPath $licenseFile -Destination (Join-Path $archiveRoot 'LICENSE') -Force
 Copy-Item -LiteralPath $downloadReadme -Destination (Join-Path $archiveRoot 'README.md') -Force
 
-$zipPath = Join-Path $siteDownloadRoot 'protocol5-uai-1-csharp-web-starter.zip'
-if (Test-Path $zipPath) {
-    Remove-Item -LiteralPath $zipPath -Force
+$canonicalZipPath = Join-Path $siteDownloadRoot 'UAI-1-Package.zip'
+$legacyZipPath = Join-Path $siteDownloadRoot 'protocol5-uai-1-csharp-web-starter.zip'
+foreach ($zipOutputPath in @($canonicalZipPath, $legacyZipPath)) {
+    if (Test-Path $zipOutputPath) {
+        Remove-Item -LiteralPath $zipOutputPath -Force
+    }
+
+    if (Test-Path "$zipOutputPath.sha256") {
+        Remove-Item -LiteralPath "$zipOutputPath.sha256" -Force
+    }
 }
 
-Compress-Archive -Path (Join-Path $archiveRoot '*') -DestinationPath $zipPath -CompressionLevel Optimal
+Compress-Archive -Path (Join-Path $archiveRoot '*') -DestinationPath $canonicalZipPath -CompressionLevel Optimal
+Copy-Item -LiteralPath $canonicalZipPath -Destination $legacyZipPath -Force
 
 $packageDestination = Join-Path $siteDownloadRoot $packageFile.Name
 Get-ChildItem -Path $siteDownloadRoot -Filter 'Protocol5.UAI.CSharp.*.nupkg' | Remove-Item -Force -ErrorAction SilentlyContinue
 Get-ChildItem -Path $siteDownloadRoot -Filter 'Protocol5.UAI.CSharp.*.nupkg.sha256' | Remove-Item -Force -ErrorAction SilentlyContinue
 Copy-Item -LiteralPath $packageFile.FullName -Destination $packageDestination -Force
 
-$zipHash = (Get-FileHash -Algorithm SHA256 -Path $zipPath).Hash.ToLowerInvariant()
+$zipHash = (Get-FileHash -Algorithm SHA256 -Path $canonicalZipPath).Hash.ToLowerInvariant()
 $packageHash = (Get-FileHash -Algorithm SHA256 -Path $packageDestination).Hash.ToLowerInvariant()
 
-Write-Utf8File -Path "$zipPath.sha256" -Content "$zipHash  $(Split-Path $zipPath -Leaf)`n"
+Write-Utf8File -Path "$canonicalZipPath.sha256" -Content "$zipHash  $(Split-Path $canonicalZipPath -Leaf)`n"
+Write-Utf8File -Path "$legacyZipPath.sha256" -Content "$zipHash  $(Split-Path $legacyZipPath -Leaf)`n"
 Write-Utf8File -Path "$packageDestination.sha256" -Content "$packageHash  $(Split-Path $packageDestination -Leaf)`n"

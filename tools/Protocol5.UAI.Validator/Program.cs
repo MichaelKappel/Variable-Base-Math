@@ -92,6 +92,14 @@ static IEnumerable<string> ExpandInputPaths(IEnumerable<string> inputPaths)
 
 static bool ValidateJson(string label, string json, bool roundTrip, List<string> failures)
 {
+    var schemaValidator = new UaiSchemaValidator();
+    var schemaValidation = schemaValidator.ValidateJson(json);
+    if (!schemaValidation.IsValid)
+    {
+        failures.Add($"{label}: {string.Join("; ", schemaValidation.Errors.Select(error => $"{error.Keyword}:{error.InstanceLocation} {error.Message}"))}");
+        return false;
+    }
+
     var parser = new UaiDocumentParser();
     if (!parser.TryParse(json, out var document, out var validation) || document is null)
     {
@@ -102,6 +110,13 @@ static bool ValidateJson(string label, string json, bool roundTrip, List<string>
     if (roundTrip)
     {
         var serialized = UaiDocumentSerializer.Serialize(document);
+        var roundTripSchemaValidation = schemaValidator.ValidateJson(serialized);
+        if (!roundTripSchemaValidation.IsValid)
+        {
+            failures.Add($"{label}: round-trip schema validation failed: {string.Join("; ", roundTripSchemaValidation.Errors.Select(error => $"{error.Keyword}:{error.InstanceLocation} {error.Message}"))}");
+            return false;
+        }
+
         if (!parser.TryParse(serialized, out var roundTripped, out var roundTripValidation) || roundTripped is null)
         {
             failures.Add($"{label}: round-trip failed: {string.Join("; ", roundTripValidation.Errors.Select(error => $"{error.Code}:{error.Path} {error.Message}"))}");

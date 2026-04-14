@@ -1,13 +1,15 @@
 # UAI-1 C# Website Support Kit
 
-This page publishes the Protocol5 NuGet package and starter ZIP for getting a working UAI endpoint onto a C# website in minutes. The package is now the reference implementation path for install, validate, export, route, render, and test.
+This page publishes the Protocol5 NuGet package and starter ZIP for getting a working UAI endpoint onto a C# website in minutes. The package is the reference implementation path for install, load, validate, export, route, render, and test.
 
 ## Document Information
 
 - **Audience:** C# and ASP.NET website developers
-- **Download ZIP:** [protocol5-uai-1-csharp-web-starter.zip](/downloads/protocol5-uai-1-csharp-web-starter.zip)
+- **Canonical download ZIP:** [UAI-1-Package.zip](/downloads/UAI-1-Package.zip)
+- **Legacy compatibility ZIP:** [protocol5-uai-1-csharp-web-starter.zip](/downloads/protocol5-uai-1-csharp-web-starter.zip)
 - **Download NuGet package:** [Protocol5.UAI.CSharp.1.0.0.nupkg](/downloads/Protocol5.UAI.CSharp.1.0.0.nupkg)
-- **Download ZIP checksum:** [protocol5-uai-1-csharp-web-starter.zip.sha256](/downloads/protocol5-uai-1-csharp-web-starter.zip.sha256)
+- **Canonical download ZIP checksum:** [UAI-1-Package.zip.sha256](/downloads/UAI-1-Package.zip.sha256)
+- **Legacy ZIP checksum:** [protocol5-uai-1-csharp-web-starter.zip.sha256](/downloads/protocol5-uai-1-csharp-web-starter.zip.sha256)
 - **Canonical language tag:** `x-uai-1`
 - **Canonical serialization culture:** `InvariantCulture`
 - **Reference package API:** `AddProtocol5UaiWebsiteSupport`, `MapProtocol5UaiCanonicalArtifacts`, `MapProtocol5UaiHtmlEndpoint`
@@ -16,7 +18,8 @@ This page publishes the Protocol5 NuGet package and starter ZIP for getting a wo
 ## What the package now covers
 
 - Install the package into an ASP.NET Core site
-- Validate UAI-1 documents with the reference validator
+- Load canonical examples and discovery assets from the package
+- Validate UAI-1 JSON against the canonical schema and reference validator
 - Export HTML into canonical `.uai.json`
 - Route canonical machine artifacts such as `/UAI-1.json` and `/schema/uai-1.schema.json`
 - Route page-specific UAI endpoints such as `/docs/hello/index.uai.json`
@@ -67,6 +70,22 @@ if (!validation.IsValid)
 {
     throw new InvalidOperationException("UAI validation failed.");
 }
+```
+
+## Load, validate, and emit canonical JSON
+
+```csharp
+var loader = new UaiCanonicalAssetLoader();
+var exampleJson = loader.LoadExampleText("homepage.uai.json");
+var schemaValidation = new UaiSchemaValidator().ValidateCanonicalJson(exampleJson);
+if (!schemaValidation.IsValid)
+{
+    throw new InvalidOperationException("Canonical validation failed.");
+}
+
+var example = loader.LoadExampleDocument("homepage.uai.json");
+var validation = new UaiDocumentValidator().Validate(example);
+var canonicalJson = UaiDocumentSerializer.Serialize(example);
 ```
 
 ## Export
@@ -129,7 +148,8 @@ Radix63404.Encode(267914296); // sample three-glyph id
 
 ## Download links
 
-- [Download the full starter ZIP](/downloads/protocol5-uai-1-csharp-web-starter.zip)
+- [Download the canonical Protocol5 bundle](/downloads/UAI-1-Package.zip)
+- [Download the legacy starter ZIP alias](/downloads/protocol5-uai-1-csharp-web-starter.zip)
 - [Download the NuGet package directly](/downloads/Protocol5.UAI.CSharp.1.0.0.nupkg)
 - [Read the UAI-1 specification](/UAI-1)
 - [Browse the UAI library](/UAI)

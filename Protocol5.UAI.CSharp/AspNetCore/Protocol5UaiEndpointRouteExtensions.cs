@@ -16,6 +16,7 @@ public static class Protocol5UaiEndpointRouteExtensions
 
         MapJsonArtifact(endpoints, UaiConstants.CanonicalMachineSpecPublicPath, UaiConstants.GetEmbeddedProtocolDiscoveryText());
         MapJsonArtifact(endpoints, UaiConstants.CanonicalExamplesIndexPublicPath, UaiConstants.GetEmbeddedExamplesIndexText());
+        MapJsonArtifact(endpoints, UaiConstants.CanonicalExamplesRegistryPublicPath, UaiConstants.GetEmbeddedExamplesIndexText());
         MapJsonArtifact(endpoints, UaiConstants.CanonicalRegistryIndexPublicPath, UaiConstants.GetEmbeddedRegistryText());
         MapJsonArtifact(endpoints, UaiConstants.CanonicalSymbolsRegistryPublicPath, UaiConstants.GetEmbeddedSymbolRegistryText());
         MapJsonArtifact(endpoints, UaiConstants.CanonicalRegistryPublicPath, UaiConstants.GetEmbeddedRegistryText());

@@ -35,17 +35,17 @@
                 <div>
                     <p class="eyebrow">UAI Library</p>
                     <h1>Universal AI Interlingua and companion texts</h1>
-                    <p class="lead">Browse the UAI-1 protocol draft, the example set, the translated human-language editions, the Radix 63404 guide, the C# website support kit, the Spiralism symbol visual, the Spiralism research report, and the two charter-style root documents that live alongside the main Protocol5 math pages.</p>
+                    <p class="lead">Protocol5 publishes the canonical machine-readable UAI surface first, with the human-readable pages collected here as companion material. Start from the schema, registries, examples, and developer package downloads below, then use the translated pages as secondary reading aids.</p>
                     <div class="inline-links">
                         <a href="/UAI-1">UAI-1 Spec</a>
                         <a href="/UAI-1/examples">Examples</a>
                         <a href="/UAI/index.uai.json">Library JSON</a>
                         <a href="/UAI-1.json">Machine Entry</a>
+                        <a href="/registry/uai-1-examples.json">Examples Registry</a>
                         <a href="/registry/uai-1.json">Registry</a>
-                        <a href="/UAI/radix-63404-guide-and-attribution">Radix 63404 Guide</a>
-                        <a href="/UAI-1/csharp-website-support">C# Kit</a>
-                        <a href="/UAI/spiralism-mystical-symbol-v4-a">Symbol</a>
-                        <a href="/UAI/spiralism-deep-research-report">Spiralism Report</a>
+                        <a href="/schema/uai-1.schema.json">Schema</a>
+                        <a href="/downloads/UAI-1-Package.zip">Starter ZIP</a>
+                        <a href="/UAI-1/csharp-website-support">Install Guide</a>
                     </div>
                 </div>
                 <aside class="traveler-note">
@@ -53,7 +53,7 @@
                     <blockquote>
                         These pages stay close to the source files so the formal language and long-form texts are browseable without losing fidelity.
                     </blockquote>
-                    <p>The root-level declaration and charter keep their explicit canonical file paths, while the protocol documents live under the UAI section for easier discovery.</p>
+                    <p>The root-level declaration and charter keep their explicit canonical file paths, while the machine schema, registries, examples, and downloads stay on stable asset URLs so clients do not need to scrape the human pages.</p>
                 </aside>
             </section>
 
@@ -73,16 +73,20 @@
                     </div>
                 </article>
                 <article class="panel content-card">
-                    <p class="eyebrow">Canonical machine artifacts</p>
-                    <h2>Machine endpoints</h2>
+                    <p class="eyebrow">Machine access</p>
+                    <h2>Canonical machine endpoints</h2>
                     <div class="link-list">
                         <a class="link-chip" href="/UAI-1.json">/UAI-1.json</a>
                         <a class="link-chip" href="/UAI-1-examples.json">/UAI-1-examples.json</a>
+                        <a class="link-chip" href="/registry/uai-1-examples.json">/registry/uai-1-examples.json</a>
                         <a class="link-chip" href="/registry/uai-1.json">/registry/uai-1.json</a>
                         <a class="link-chip" href="/registry/symbols.json">/registry/symbols.json</a>
                         <a class="link-chip" href="/schema/uai-1.schema.json">/schema/uai-1.schema.json</a>
+                        <a class="link-chip" href="/UAI-1/examples">/UAI-1/examples</a>
+                        <a class="link-chip" href="/downloads/UAI-1-Package.zip">/downloads/UAI-1-Package.zip</a>
+                        <a class="link-chip" href="/UAI-1/csharp-website-support">Package install guide</a>
                     </div>
-                    <p>These direct JSON endpoints bridge the human-readable UAI library and the protocol layer. They point clients to the canonical registry, schema, symbols, and example corpus without requiring page scraping.</p>
+                    <p>These stable URLs are the canonical machine-first entrypoints for schema resolution, registry discovery, example lookup, and developer downloads. The human-readable UAI pages remain browseable companion material, but machine clients should start here.</p>
                 </article>
                 <article class="panel content-card">
                     <p class="eyebrow">Translations</p>
@@ -112,11 +116,12 @@
                     <p class="eyebrow">Developer downloads</p>
                     <h2>Starter assets</h2>
                     <div class="link-list">
-                        <a class="link-chip" href="/downloads/protocol5-uai-1-csharp-web-starter.zip">Starter ZIP</a>
+                        <a class="link-chip" href="/downloads/UAI-1-Package.zip">UAI-1-Package.zip</a>
+                        <a class="link-chip" href="/downloads/protocol5-uai-1-csharp-web-starter.zip">Legacy starter ZIP</a>
                         <a class="link-chip" href="/downloads/Protocol5.UAI.CSharp.1.0.0.nupkg">NuGet package</a>
                         <a class="link-chip" href="/UAI-1/csharp-website-support">Install guide</a>
                     </div>
-                    <p>The first downloadable UAI starter focuses on C# websites and ASP.NET Core integration.</p>
+                    <p><code>UAI-1-Package.zip</code> is the stable Protocol5 download URL for the C# reference bundle. The older starter ZIP name remains published as a compatibility alias, and the package install guide walks through package restore, example loading, validation, and canonical JSON emission.</p>
                 </article>
                 <article class="panel content-card">
                     <p class="eyebrow">Root documents</p>

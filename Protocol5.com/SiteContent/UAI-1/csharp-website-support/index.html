@@ -35,7 +35,7 @@
                 <div>
                     <p class="eyebrow">UAI-1 / Install Kit</p>
                     <h1>UAI-1 C# Website Support Kit</h1>
-                    <p class="lead">This page publishes the Protocol5 starter download for adding UAI-1 support to C# websites, especially ASP.NET Core sites that want a practical <code>CultureInfo</code> and <code>Accept-Language</code> integration path without making canonical UAI semantics depend on local human-language formatting rules.</p>
+                    <p class="lead">This page publishes the Protocol5 NuGet package and starter ZIP for getting a working UAI endpoint onto a C# website in minutes. The package is the reference implementation path for install, load, validate, export, route, render, and test.</p>
                     <div class="inline-links">
                         <a href="/UAI">UAI Library</a>
                         <a href="/UAI-1">UAI-1 Spec</a>
@@ -56,11 +56,14 @@
                     <p class="eyebrow">Document metadata</p>
 <ul class="doc-meta-list">
 <li><span>Audience</span><strong>C# and ASP.NET website developers</strong></li>
-<li><span>Download ZIP</span><strong><a href="/downloads/protocol5-uai-1-csharp-web-starter.zip">protocol5-uai-1-csharp-web-starter.zip</a></strong></li>
+<li><span>Canonical download ZIP</span><strong><a href="/downloads/UAI-1-Package.zip">UAI-1-Package.zip</a></strong></li>
+<li><span>Legacy compatibility ZIP</span><strong><a href="/downloads/protocol5-uai-1-csharp-web-starter.zip">protocol5-uai-1-csharp-web-starter.zip</a></strong></li>
 <li><span>Download NuGet package</span><strong><a href="/downloads/Protocol5.UAI.CSharp.1.0.0.nupkg">Protocol5.UAI.CSharp.1.0.0.nupkg</a></strong></li>
-<li><span>Download ZIP checksum</span><strong><a href="/downloads/protocol5-uai-1-csharp-web-starter.zip.sha256">protocol5-uai-1-csharp-web-starter.zip.sha256</a></strong></li>
+<li><span>Canonical download ZIP checksum</span><strong><a href="/downloads/UAI-1-Package.zip.sha256">UAI-1-Package.zip.sha256</a></strong></li>
+<li><span>Legacy ZIP checksum</span><strong><a href="/downloads/protocol5-uai-1-csharp-web-starter.zip.sha256">protocol5-uai-1-csharp-web-starter.zip.sha256</a></strong></li>
 <li><span>Canonical language tag</span><strong><code>x-uai-1</code></strong></li>
 <li><span>Canonical serialization culture</span><strong><code>InvariantCulture</code></strong></li>
+<li><span>Reference package API</span><strong><code>AddProtocol5UaiWebsiteSupport</code>, <code>MapProtocol5UaiCanonicalArtifacts</code>, <code>MapProtocol5UaiHtmlEndpoint</code></strong></li>
 <li><span>Microsoft docs</span><strong><a href="https://learn.microsoft.com/en-us/dotnet/fundamentals/runtime-libraries/system-globalization-cultureinfo">CultureInfo</a>, <a href="https://learn.microsoft.com/en-us/dotnet/fundamentals/runtime-libraries/system-globalization-cultureinfo-invariantculture">InvariantCulture</a>, <a href="https://learn.microsoft.com/en-us/dotnet/fundamentals/runtime-libraries/system-globalization-cultureandregioninfobuilder">CultureAndRegionInfoBuilder</a></strong></li>
 <li><span>Human locale</span><strong>English (US)</strong></li>
 <li><span>Canonical public path</span><strong><a href="/UAI-1/csharp-website-support">/UAI-1/csharp-website-support</a></strong></li>
@@ -81,43 +84,34 @@
                 <article class="panel doc-panel">
                     <div class="doc-prose">
 <h1>UAI-1 C# Website Support Kit</h1>
-<p>This page publishes the Protocol5 starter download for adding UAI-1 support to C# websites, especially ASP.NET Core sites that want a practical <code>CultureInfo</code> and <code>Accept-Language</code> integration path without making canonical UAI semantics depend on local human-language formatting rules.</p>
+<p>This page publishes the Protocol5 NuGet package and starter ZIP for getting a working UAI endpoint onto a C# website in minutes. The package is the reference implementation path for install, load, validate, export, route, render, and test.</p>
 <h2>Document Information</h2>
 <ul>
 <li><strong>Audience:</strong> C# and ASP.NET website developers</li>
-<li><strong>Download ZIP:</strong> <a href="/downloads/protocol5-uai-1-csharp-web-starter.zip">protocol5-uai-1-csharp-web-starter.zip</a></li>
+<li><strong>Canonical download ZIP:</strong> <a href="/downloads/UAI-1-Package.zip">UAI-1-Package.zip</a></li>
+<li><strong>Legacy compatibility ZIP:</strong> <a href="/downloads/protocol5-uai-1-csharp-web-starter.zip">protocol5-uai-1-csharp-web-starter.zip</a></li>
 <li><strong>Download NuGet package:</strong> <a href="/downloads/Protocol5.UAI.CSharp.1.0.0.nupkg">Protocol5.UAI.CSharp.1.0.0.nupkg</a></li>
-<li><strong>Download ZIP checksum:</strong> <a href="/downloads/protocol5-uai-1-csharp-web-starter.zip.sha256">protocol5-uai-1-csharp-web-starter.zip.sha256</a></li>
+<li><strong>Canonical download ZIP checksum:</strong> <a href="/downloads/UAI-1-Package.zip.sha256">UAI-1-Package.zip.sha256</a></li>
+<li><strong>Legacy ZIP checksum:</strong> <a href="/downloads/protocol5-uai-1-csharp-web-starter.zip.sha256">protocol5-uai-1-csharp-web-starter.zip.sha256</a></li>
 <li><strong>Canonical language tag:</strong> <code>x-uai-1</code></li>
 <li><strong>Canonical serialization culture:</strong> <code>InvariantCulture</code></li>
+<li><strong>Reference package API:</strong> <code>AddProtocol5UaiWebsiteSupport</code>, <code>MapProtocol5UaiCanonicalArtifacts</code>, <code>MapProtocol5UaiHtmlEndpoint</code></li>
 <li><strong>Microsoft docs:</strong> <a href="https://learn.microsoft.com/en-us/dotnet/fundamentals/runtime-libraries/system-globalization-cultureinfo">CultureInfo</a>, <a href="https://learn.microsoft.com/en-us/dotnet/fundamentals/runtime-libraries/system-globalization-cultureinfo-invariantculture">InvariantCulture</a>, <a href="https://learn.microsoft.com/en-us/dotnet/fundamentals/runtime-libraries/system-globalization-cultureandregioninfobuilder">CultureAndRegionInfoBuilder</a></li>
 </ul>
-<h2>What the download contains</h2>
+<h2>What the package now covers</h2>
 <ul>
-<li><code>Protocol5.UAI.CSharp</code> source project</li>
-<li>A packed <code>Protocol5.UAI.CSharp</code> <code>.nupkg</code></li>
-<li>Radix 63404 encode/decode helpers</li>
-<li>ASP.NET Core middleware that recognizes UAI requests from query string, cookie, or <code>Accept-Language</code></li>
-<li>A small install readme for teams that prefer a direct download over a package feed</li>
+<li>Install the package into an ASP.NET Core site</li>
+<li>Load canonical examples and discovery assets from the package</li>
+<li>Validate UAI-1 JSON against the canonical schema and reference validator</li>
+<li>Export HTML into canonical <code>.uai.json</code></li>
+<li>Route canonical machine artifacts such as <code>/UAI-1.json</code> and <code>/schema/uai-1.schema.json</code></li>
+<li>Route page-specific UAI endpoints such as <code>/docs/hello/index.uai.json</code></li>
+<li>Render UAI-1 back to HTML</li>
+<li>Test endpoint output with the same parser and validator used by the package</li>
 </ul>
-<h2>Why the starter uses <code>x-uai-1</code></h2>
-<p>For websites, the clean split is:</p>
-<ul>
-<li>Use <code>x-uai-1</code> for HTML <code>lang</code>, request negotiation, and <code>Content-Language</code></li>
-<li>Use <code>CultureInfo.GetCultureInfo(&quot;x-uai-1&quot;)</code> when the runtime supports it</li>
-<li>Use <code>CultureInfo.InvariantCulture</code> when serializing canonical UAI values</li>
-</ul>
-<p>That last rule matters because UAI-1 is defined as a canonical machine language. Decimal separators, date formats, and local display conventions should never change the serialized meaning of a UAI message.</p>
-<h2>Why this is not just a Windows culture installer</h2>
-<p>Microsoft&#39;s globalization guidance makes an important distinction:</p>
-<ul>
-<li><code>CultureInfo</code> is the normal runtime entry point for culture-aware behavior</li>
-<li><code>CultureAndRegionInfoBuilder</code> exists for creating custom cultures, but that path is Windows-specific and not the right default for cross-platform website adoption</li>
-</ul>
-<p>Because of that, this Protocol5 starter does <strong>not</strong> require OS-level custom-culture registration. It gives websites a practical path first, and leaves platform-specific culture registration as an optional advanced step.</p>
 <h2>Quick start</h2>
-<p>Install from the downloaded package file:</p>
-<pre><code class="language-powershell">dotnet add package Protocol5.UAI.CSharp --source .\downloads</code></pre>
+<p>Install from NuGet:</p>
+<pre><code class="language-powershell">dotnet add package Protocol5.UAI.CSharp</code></pre>
 <p>Then wire it into an ASP.NET Core site:</p>
 <pre><code class="language-csharp">using Protocol5.UAI;
 
@@ -126,37 +120,74 @@ builder.Services.AddProtocol5UaiWebsiteSupport();
 
 var app = builder.Build();
 app.UseProtocol5UaiWebsiteSupport();
-
-app.MapGet(&quot;/uai-demo&quot;, (HttpContext context) =&gt;
-{
-    var sampleCanonicalId = Radix63404.Encode(5651);
-
-    return Results.Json(new
+app.MapProtocol5UaiCanonicalArtifacts();
+app.MapProtocol5UaiHtmlEndpoint(
+    &quot;/docs/hello/index.uai.json&quot;,
+    static () =&gt; &quot;&lt;html lang=\&quot;en\&quot;&gt;&lt;body&gt;&lt;h1&gt;Hello UAI&lt;/h1&gt;&lt;p&gt;Ready in minutes.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;&quot;,
+    new UaiHtmlTranslationOptions
     {
-        protocol = UaiCultureInfo.CanonicalVersion,
-        language = context.GetProtocol5HtmlLanguage(),
-        sampleCanonicalId
+        SourceUri = &quot;https://example.org/docs/hello&quot;,
+        DocumentId = &quot;docs-hello&quot;,
+        PageType = &quot;article&quot;,
+        SiteName = &quot;Example&quot;
     });
-});
 
 app.Run();</code></pre>
+<p>That setup gives you a working page endpoint plus the canonical embedded machine artifacts exposed by the package.</p>
+<h2>Validate</h2>
+<pre><code class="language-csharp">var document = new UaiDocumentParser().Parse(json);
+var validation = new UaiDocumentValidator().Validate(document);
+if (!validation.IsValid)
+{
+    throw new InvalidOperationException(&quot;UAI validation failed.&quot;);
+}</code></pre>
+<h2>Load, validate, and emit canonical JSON</h2>
+<pre><code class="language-csharp">var loader = new UaiCanonicalAssetLoader();
+var exampleJson = loader.LoadExampleText(&quot;homepage.uai.json&quot;);
+var schemaValidation = new UaiSchemaValidator().ValidateCanonicalJson(exampleJson);
+if (!schemaValidation.IsValid)
+{
+    throw new InvalidOperationException(&quot;Canonical validation failed.&quot;);
+}
+
+var example = loader.LoadExampleDocument(&quot;homepage.uai.json&quot;);
+var validation = new UaiDocumentValidator().Validate(example);
+var canonicalJson = UaiDocumentSerializer.Serialize(example);</code></pre>
+<h2>Export</h2>
+<pre><code class="language-csharp">var exporter = new UaiHtmlExporter();
+var export = exporter.ExportToFile(&quot;Pages/hello.html&quot;, &quot;wwwroot/docs/hello/index.uai.json&quot;, new UaiHtmlTranslationOptions
+{
+    SourceUri = &quot;https://example.org/docs/hello&quot;,
+    DocumentId = &quot;docs-hello&quot;,
+    PageType = &quot;article&quot;
+});</code></pre>
+<h2>Render</h2>
+<pre><code class="language-csharp">var renderedHtml = new UaiHtmlRenderer().Render(export.Document);</code></pre>
+<h2>Test</h2>
+<pre><code class="language-csharp">var json = await client.GetStringAsync(&quot;/docs/hello/index.uai.json&quot;);
+var document = new UaiDocumentParser().Parse(json);
+Assert.IsTrue(new UaiDocumentValidator().Validate(document).IsValid);</code></pre>
 <h2>HTML recommendation</h2>
 <p>If a page is meant to declare UAI-aware content directly, use:</p>
 <pre><code class="language-html">&lt;html lang=&quot;x-uai-1&quot;&gt;</code></pre>
+<p>And pair the human page with the machine endpoint:</p>
+<pre><code class="language-html">&lt;link rel=&quot;alternate&quot; type=&quot;application/uai+json&quot; href=&quot;/docs/hello/index.uai.json&quot;&gt;</code></pre>
 <h2>Canonical formatting rule</h2>
 <p>When serializing canonical UAI values, always use <code>InvariantCulture</code>:</p>
 <pre><code class="language-csharp">using Protocol5.UAI;
 
 var confidence = 0.875m.ToString(UaiCultureInfo.CanonicalSerializationCulture);</code></pre>
 <h2>Radix 63404 examples included in the kit</h2>
-<pre><code class="language-csharp">Radix63404.Encode(41);        // J
-Radix63404.Encode(5651);      // &#225;™–
-Radix63404.Encode(267914296); // &#225;ƒ„&#231;&#187;&#160;</code></pre>
+<pre><code class="language-csharp">Radix63404.Encode(41);        // simple single-glyph id
+Radix63404.Encode(5651);      // sample two-glyph id
+Radix63404.Encode(267914296); // sample three-glyph id</code></pre>
 <h2>Download links</h2>
 <ul>
-<li><a href="/downloads/protocol5-uai-1-csharp-web-starter.zip">Download the full starter ZIP</a></li>
+<li><a href="/downloads/UAI-1-Package.zip">Download the canonical Protocol5 bundle</a></li>
+<li><a href="/downloads/protocol5-uai-1-csharp-web-starter.zip">Download the legacy starter ZIP alias</a></li>
 <li><a href="/downloads/Protocol5.UAI.CSharp.1.0.0.nupkg">Download the NuGet package directly</a></li>
 <li><a href="/UAI-1">Read the UAI-1 specification</a></li>
+<li><a href="/UAI">Browse the UAI library</a></li>
 <li><a href="/UAI/radix-63404-guide-and-attribution">Read the Radix 63404 guide</a></li>
 </ul>
                     </div>

@@ -22,6 +22,7 @@ public static class UaiConstants
     public const string CanonicalMachineSpecPublicPath = "/UAI-1.json";
     public const string CanonicalExamplesIndexPublicPath = "/UAI-1-examples.json";
     public const string CanonicalRegistryIndexPublicPath = "/registry/uai-1.json";
+    public const string CanonicalExamplesRegistryPublicPath = "/registry/uai-1-examples.json";
     public const string CanonicalSymbolsRegistryPublicPath = "/registry/symbols.json";
     public const string CanonicalSchemaIndexPublicPath = "/schema/uai-1.schema.json";
     public const string CanonicalRegistryPublicPath = "/UAI-1/registry/uai-1.registry.json";

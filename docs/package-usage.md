@@ -4,9 +4,10 @@ Package id: `Protocol5.UAI.CSharp`
 
 Current package version: `1.0.0`
 
-The package is now the reference developer on-ramp for:
+The package is the reference developer on-ramp for:
 
 - install
+- load canonical assets
 - validate
 - export
 - route
@@ -56,10 +57,11 @@ app.MapProtocol5UaiHtmlEndpoint(
 app.Run();
 ```
 
-What that one setup gives you:
+What that setup gives you:
 
 - `/UAI-1.json`
 - `/UAI-1-examples.json`
+- `/registry/uai-1-examples.json`
 - `/registry/uai-1.json`
 - `/registry/symbols.json`
 - `/schema/uai-1.schema.json`
@@ -69,31 +71,30 @@ What that one setup gives you:
 - `/UAI-1/examples/*.uai.json`
 - your own routed page endpoint, such as `/docs/hello/index.uai.json`
 
-The mapped page endpoint automatically exports HTML to UAI-1, validates the document, serializes canonical JSON, and emits the standard `application/uai+json`, `X-UAI-1`, `Vary`, and `Link` headers.
-
-For the paired human page, add the standard alternate link:
-
-```html
-<link rel="alternate" type="application/uai+json" href="/docs/hello/index.uai.json">
-```
-
 ## Validate
 
 ```csharp
+var loader = new UaiCanonicalAssetLoader();
+var exampleJson = loader.LoadExampleText("homepage.uai.json");
+var canonicalValidation = new UaiSchemaValidator().ValidateCanonicalJson(exampleJson);
+if (!canonicalValidation.IsValid)
+{
+    throw new InvalidOperationException("Document failed canonical schema validation.");
+}
+
 var parser = new UaiDocumentParser();
 var validator = new UaiDocumentValidator();
-
-var document = parser.Parse(json);
+var document = parser.Parse(exampleJson);
 var validation = validator.Validate(document);
 if (!validation.IsValid)
 {
     throw new InvalidOperationException("Document failed validation.");
 }
+
+var canonicalJson = UaiDocumentSerializer.Serialize(document);
 ```
 
 ## Export
-
-Translate HTML directly:
 
 ```csharp
 var exporter = new UaiHtmlExporter();
@@ -121,13 +122,9 @@ exporter.ExportToFile("Pages/page.html", "wwwroot/page/index.uai.json", new UaiH
 
 ## Site Exporter CLI Sample
 
-The repository also includes a sample exporter CLI built on the package:
-
 ```powershell
 dotnet run --project tools\Protocol5.UAI.SiteExporter\Protocol5.UAI.SiteExporter.csproj -- tools\Protocol5.UAI.SiteExporter\samples\export-manifest.sample.json
 ```
-
-That sample manifest writes `tools\Protocol5.UAI.SiteExporter\samples\output\hello.uai.json` and demonstrates manifest-relative input and output paths.
 
 ## Render
 
@@ -136,8 +133,6 @@ var renderedHtml = new UaiHtmlRenderer().Render(document);
 ```
 
 ## Test
-
-A basic integration assertion can stay very small:
 
 ```csharp
 var json = await client.GetStringAsync("/docs/hello/index.uai.json");
@@ -148,31 +143,11 @@ Assert.IsTrue(validation.IsValid);
 
 ## Validator CLI Sample
 
-The repository also includes a sample console validator built on the package:
-
-```powershell
-dotnet run --project tools\Protocol5.UAI.Validator\Protocol5.UAI.Validator.csproj -- examples\homepage.uai.json
-```
-
-To validate the embedded canonical example corpus and force round-trip checks:
-
 ```powershell
 dotnet run --project tools\Protocol5.UAI.Validator\Protocol5.UAI.Validator.csproj -- --embedded-examples --roundtrip
 ```
 
 ## Embedded Artifacts
-
-The package embeds:
-
-- the machine discovery entrypoint
-- the machine examples index
-- the canonical registry manifest
-- the symbols registry
-- the canonical JSON Schema
-- the canonical example `.uai.json` files
-- the TypeScript reference types
-
-Example:
 
 ```csharp
 var discoveryJson = UaiConstants.GetEmbeddedProtocolDiscoveryText();
@@ -183,6 +158,10 @@ var schemaJson = UaiConstants.GetEmbeddedSchemaText();
 var typesText = UaiConstants.GetEmbeddedTypesText();
 var homepageExample = UaiConstants.GetEmbeddedExampleText("homepage.uai.json");
 var exampleNames = UaiConstants.GetEmbeddedExampleFileNames();
+
+var loader = new UaiCanonicalAssetLoader();
+var homepageDocument = loader.LoadExampleDocument("homepage.uai.json");
+var canonicalValidation = new UaiSchemaValidator().ValidateCanonical(homepageDocument);
 ```
 
 ## Compatibility

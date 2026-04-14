@@ -8,6 +8,7 @@
     "specPage": "/UAI-1",
     "machineSpecFile": "/UAI-1.json",
     "machineExamplesFile": "/UAI-1-examples.json",
+    "machineExamplesAliasFile": "/registry/uai-1-examples.json",
     "examplesDirectory": "/UAI-1/examples",
     "registryAliasFile": "/registry/uai-1.json",
     "symbolRegistryFile": "/registry/symbols.json",
@@ -27,6 +28,12 @@
       "repoPath": "spec/discovery/uai-1-examples.json",
       "publicPath": "/UAI-1-examples.json",
       "role": "machine-examples-index",
+      "mediaType": "application/json"
+    },
+    "machineExamplesAlias": {
+      "repoPath": "spec/discovery/uai-1-examples.json",
+      "publicPath": "/registry/uai-1-examples.json",
+      "role": "machine-examples-index-alias",
       "mediaType": "application/json"
     },
     "spec": {
