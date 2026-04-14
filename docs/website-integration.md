@@ -105,6 +105,12 @@ Round-trip render:
 var html = new UaiHtmlRenderer().Render(export.Document);
 ```
 
+Manifest-driven CLI export:
+
+```powershell
+dotnet run --project tools\Protocol5.UAI.SiteExporter\Protocol5.UAI.SiteExporter.csproj -- tools\Protocol5.UAI.SiteExporter\samples\export-manifest.sample.json
+```
+
 ## ASP.NET Core notes
 
 `Protocol5.UAI.CSharp` includes:

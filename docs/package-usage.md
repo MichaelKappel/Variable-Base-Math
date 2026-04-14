@@ -119,6 +119,16 @@ exporter.ExportToFile("Pages/page.html", "wwwroot/page/index.uai.json", new UaiH
 });
 ```
 
+## Site Exporter CLI Sample
+
+The repository also includes a sample exporter CLI built on the package:
+
+```powershell
+dotnet run --project tools\Protocol5.UAI.SiteExporter\Protocol5.UAI.SiteExporter.csproj -- tools\Protocol5.UAI.SiteExporter\samples\export-manifest.sample.json
+```
+
+That sample manifest writes `tools\Protocol5.UAI.SiteExporter\samples\output\hello.uai.json` and demonstrates manifest-relative input and output paths.
+
 ## Render
 
 ```csharp

@@ -1,4 +1,4 @@
-﻿################################################################################
+################################################################################
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
@@ -93,3 +93,6 @@
 !Protocol5.com/SiteContent/UAI-1/registry/*.json
 !Protocol5.com/SiteContent/schema/*.json
 !Protocol5.com/SiteContent/registry/*.json
+
+# Protocol5 UAI exporter sample output
+tools/Protocol5.UAI.SiteExporter/samples/output/

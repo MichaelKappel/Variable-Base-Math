@@ -1,5 +1,6 @@
 param(
-    [string]$Configuration = "Release"
+    [string]$Configuration = "Release",
+    [string]$OutputRoot = ""
 )
 
 $ErrorActionPreference = "Stop"
@@ -35,7 +36,12 @@ $licenseFile = Join-Path $repoRoot 'LICENSE'
 $specRoot = Join-Path $repoRoot 'spec'
 $docsRoot = Join-Path $repoRoot 'docs'
 $examplesRoot = Join-Path $repoRoot 'examples'
-$siteDownloadRoot = Join-Path $repoRoot 'Protocol5.com\SiteContent\downloads'
+$siteDownloadRoot = if ([string]::IsNullOrWhiteSpace($OutputRoot)) {
+    Join-Path $repoRoot 'Protocol5.com\SiteContent\downloads'
+}
+else {
+    [System.IO.Path]::GetFullPath($OutputRoot)
+}
 
 $tempRoot = Join-Path ([System.IO.Path]::GetTempPath()) 'Protocol5.UAI.CSharp.WebStarter'
 $packageOutputRoot = Join-Path $tempRoot 'nupkg'

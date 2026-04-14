@@ -68,7 +68,11 @@ catch (Exception exception) when (exception is IOException or UnauthorizedAccess
 
 static string ResolveManifestRelativePath(string manifestDirectory, string path)
 {
-    Guard.NotNull(path, nameof(path));
+    if (string.IsNullOrWhiteSpace(path))
+    {
+        throw new ArgumentException("Path values cannot be null or whitespace.", nameof(path));
+    }
+
     return Path.IsPathRooted(path)
         ? Path.GetFullPath(path)
         : Path.GetFullPath(Path.Combine(manifestDirectory, path));
