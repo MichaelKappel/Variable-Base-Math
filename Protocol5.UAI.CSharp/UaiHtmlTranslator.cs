@@ -530,7 +530,7 @@ public sealed class UaiHtmlTranslator
         {
             Type = "link",
             Id = context.NextId("link"),
-            Text = BuildText(node, context),
+            Text = BuildInteractiveText(node, context),
             Href = node.GetAttributeValue("href", string.Empty),
             Rel = node.GetAttributeValue("rel", null),
             Target = node.GetAttributeValue("target", null),
@@ -552,7 +552,7 @@ public sealed class UaiHtmlTranslator
         {
             Type = "button",
             Id = context.NextId("button"),
-            Text = BuildText(node, context),
+            Text = BuildInteractiveText(node, context),
             Action = new UaiAction
             {
                 Kind = actionKind,
@@ -791,6 +791,29 @@ public sealed class UaiHtmlTranslator
         {
             Literal = literal,
             Normalized = UaiDocumentNormalizer.NormalizeLiteralText(literal),
+            Language = context.Document.Metadata.Language
+        };
+    }
+
+    private static UaiTextValue BuildInteractiveText(HtmlNode node, TranslationContext context)
+    {
+        var text = BuildText(node, context);
+        if (!string.IsNullOrWhiteSpace(text.Literal))
+        {
+            return text;
+        }
+
+        var fallback = node.GetAttributeValue("aria-label", null) ??
+            node.GetAttributeValue("title", null) ??
+            node.Descendants("img")
+                .Select(image => image.GetAttributeValue("alt", null))
+                .FirstOrDefault(value => !string.IsNullOrWhiteSpace(value));
+
+        fallback = NormalizeText(fallback ?? string.Empty);
+        return new UaiTextValue
+        {
+            Literal = fallback,
+            Normalized = UaiDocumentNormalizer.NormalizeLiteralText(fallback),
             Language = context.Document.Metadata.Language
         };
     }

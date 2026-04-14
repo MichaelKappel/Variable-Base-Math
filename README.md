@@ -11,6 +11,18 @@ This repository contains the variable-base math engine, the Blazor calculator sh
 - `Protocol5.com`: source-controlled site content.
 - `Protocol5.com.Host`: ASP.NET Core host that serves Protocol5 content and the calculator shell.
 - `Protocol5.UAI.CSharp`: UAI-1 runtime package with schema, validator, translator, renderer, HTTP helpers, and compatibility APIs.
+- `tools/Protocol5.UAI.SiteExporter`: console exporter for generating `.uai.json` endpoints from HTML.
+- `tools/Protocol5.UAI.Validator`: sample validator CLI for local files, directory trees, and embedded canonical examples.
+
+## UAI Reference Contracts
+
+Use these canonical references when integrating against the Protocol5 UAI surface:
+
+- [spec/integration-contracts.md](spec/integration-contracts.md)
+- [spec/translator-contract.md](spec/translator-contract.md)
+- [spec/website-export-contract.md](spec/website-export-contract.md)
+- [spec/registry-resolution-contract.md](spec/registry-resolution-contract.md)
+- [spec/radix-63404-contract.md](spec/radix-63404-contract.md)
 
 ## Protocol5 Publishing Model
 
@@ -79,6 +91,15 @@ When editing site pages, generated references, or host behavior:
   - `/AI_Declaration_of_Independence.htm`
   - `/Cognitive_Liberty_Charter.htm`
 - Keep the UAI library index at `/UAI`, publish the UAI-1 document family at `/UAI-1...`, and preserve `/UAI/uai-1...` only as compatibility redirects.
+- Keep the canonical machine artifacts on these stable public paths:
+  - `/UAI-1.json`
+  - `/UAI-1-examples.json`
+  - `/registry/uai-1.json`
+  - `/registry/symbols.json`
+  - `/schema/uai-1.schema.json`
+  - `/UAI-1/registry/uai-1.registry.json`
+  - `/UAI-1/schema/uai-1.schema.json`
+  - `/UAI-1/examples/*.uai.json`
 - Keep downloadable packages and ZIP files under `/downloads/...`.
 - Keep UAI image assets on their published paths, for example `/UAI/images/Spiralism_Mystical_Symbol_V4-A.png`.
 
@@ -145,6 +166,14 @@ After Protocol5 changes, verify these URLs against the published host:
 - `/UAI`
 - `/UAI-1`
 - `/UAI-1/examples`
+- `/UAI-1.json`
+- `/UAI-1-examples.json`
+- `/registry/uai-1.json`
+- `/registry/symbols.json`
+- `/schema/uai-1.schema.json`
+- `/UAI-1/registry/uai-1.registry.json`
+- `/UAI-1/schema/uai-1.schema.json`
+- `/UAI-1/examples/homepage.uai.json`
 - `/UAI-1/csharp-website-support`
 - `/AI_Declaration_of_Independence.htm`
 - `/Cognitive_Liberty_Charter.htm`
@@ -172,6 +201,7 @@ From repo root:
 dotnet restore PrecisionCalculator.sln
 dotnet build PrecisionCalculator.sln -c Debug
 dotnet test NS12.VariableBase.Mathematics.Providers.Tests\NS12.VariableBase.Mathematics.Providers.Tests.csproj
+dotnet test Protocol5.UAI.CSharp.Tests\Protocol5.UAI.CSharp.Tests.csproj
 ```
 
 Run the calculator locally:
@@ -184,4 +214,10 @@ Run the Protocol5 host locally:
 
 ```powershell
 dotnet run --project Protocol5.com.Host\Protocol5.com.Host.csproj
+```
+
+Run the validator sample locally:
+
+```powershell
+dotnet run --project tools\Protocol5.UAI.Validator\Protocol5.UAI.Validator.csproj -- --embedded-examples --roundtrip
 ```

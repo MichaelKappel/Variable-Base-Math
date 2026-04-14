@@ -1,0 +1,2286 @@
+{
+  "spec": "UAI-1",
+  "version": "1.0.0",
+  "schemaVersion": "1.0.0",
+  "documentId": "protocol5-uai-1-csharp-website-support-zh-sg",
+  "source": {
+    "uri": "https://protocol5.com/UAI-1/csharp-website-support/zh-SG",
+    "title": "UAI-1 C# Website Support",
+    "retrievedAt": "2026-04-14T04:15:32.5696547+00:00",
+    "contentHash": "sha256:BB4328E3F78FD9283B70A2E8D5D94B7A223374D0C0CF38C3B5D24F4444EB749B",
+    "mimeType": "text/html",
+    "htmlLanguage": "zh-SG",
+    "canonicalUri": "https://protocol5.com/UAI-1/csharp-website-support/zh-SG"
+  },
+  "metadata": {
+    "title": "UAI-1 C# Website Support",
+    "description": "Protocol5 starter guide and download page for adding UAI-1 support to C# websites with CultureInfo, ASP.NET Core middleware, and Radix 63404 helpers.",
+    "language": "zh-SG",
+    "siteName": "Protocol5",
+    "pageType": "reference"
+  },
+  "structure": [
+    {
+      "type": "document",
+      "id": "protocol5-uai-1-csharp-website-support-zh-sg",
+      "label": "UAI-1 C# Website Support",
+      "children": [
+        {
+          "type": "header",
+          "id": "protocol5-uai-1-csharp-website-support-zh-sg.header.1",
+          "children": [
+            {
+              "type": "section",
+              "id": "protocol5-uai-1-csharp-website-support-zh-sg.section.1",
+              "children": [
+                {
+                  "type": "paragraph",
+                  "id": "protocol5-uai-1-csharp-website-support-zh-sg.paragraph.1",
+                  "text": {
+                    "literal": "Protocol5",
+                    "normalized": "Protocol5",
+                    "language": "zh-SG"
+                  },
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/header[0]/div[0]/p[0]",
+                    "htmlFragment": "<p class=\"brand-kicker\">Protocol5</p>"
+                  }
+                },
+                {
+                  "type": "heading",
+                  "id": "protocol5-uai-1-csharp-website-support-zh-sg.heading.1",
+                  "level": 1,
+                  "text": {
+                    "literal": "Variable-Base Mathematics",
+                    "normalized": "Variable-Base Mathematics",
+                    "language": "zh-SG"
+                  },
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/header[0]/div[0]/h1[0]",
+                    "htmlFragment": "<h1>Variable-Base Mathematics</h1>"
+                  }
+                },
+                {
+                  "type": "paragraph",
+                  "id": "protocol5-uai-1-csharp-website-support-zh-sg.paragraph.2",
+                  "text": {
+                    "literal": "Exact arithmetic, radix conversion, sequence references, and educational number-system pages collected into one publishable shell.",
+                    "normalized": "Exact arithmetic, radix conversion, sequence references, and educational number-system pages collected into one publishable shell.",
+                    "language": "zh-SG"
+                  },
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/header[0]/div[0]/p[1]",
+                    "htmlFragment": "<p class=\"brand-copy\">Exact arithmetic, radix conversion, sequence references, and educational number-system pages collected into one publishable shell.</p>"
+                  }
+                }
+              ],
+              "sectionKind": "generic",
+              "sourceRef": {
+                "domPath": "/html[0]/body[0]/div[0]/header[0]/div[0]",
+                "htmlFragment": "<div class=\"brand-lockup\">\n                <p class=\"brand-kicker\">Protocol5</p>\n                <h1>Variable-Base Mathematics</h1>\n                <p class=\"brand-copy\">Exact arithmetic, radix conversion, sequence references, and educational number-system pages collected into one publishable shell.</p>\n            </div>"
+              }
+            },
+            {
+              "type": "navigation",
+              "id": "protocol5-uai-1-csharp-website-support-zh-sg.navigation.1",
+              "label": "Primary navigation",
+              "children": [
+                {
+                  "type": "link",
+                  "id": "protocol5-uai-1-csharp-website-support-zh-sg.link.1",
+                  "text": {
+                    "literal": "Home",
+                    "normalized": "Home",
+                    "language": "zh-SG"
+                  },
+                  "href": "/",
+                  "linkPurpose": "navigation",
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/header[0]/nav[0]/a[0]",
+                    "htmlFragment": "<a href=\"/\">Home</a>"
+                  }
+                },
+                {
+                  "type": "link",
+                  "id": "protocol5-uai-1-csharp-website-support-zh-sg.link.2",
+                  "text": {
+                    "literal": "Fibonacci",
+                    "normalized": "Fibonacci",
+                    "language": "zh-SG"
+                  },
+                  "href": "/Fibonacci",
+                  "linkPurpose": "navigation",
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/header[0]/nav[0]/a[1]",
+                    "htmlFragment": "<a href=\"/Fibonacci\">Fibonacci</a>"
+                  }
+                },
+                {
+                  "type": "link",
+                  "id": "protocol5-uai-1-csharp-website-support-zh-sg.link.3",
+                  "text": {
+                    "literal": "Prime Numbers",
+                    "normalized": "Prime Numbers",
+                    "language": "zh-SG"
+                  },
+                  "href": "/Prime",
+                  "linkPurpose": "navigation",
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/header[0]/nav[0]/a[2]",
+                    "htmlFragment": "<a href=\"/Prime\">Prime Numbers</a>"
+                  }
+                },
+                {
+                  "type": "link",
+                  "id": "protocol5-uai-1-csharp-website-support-zh-sg.link.4",
+                  "text": {
+                    "literal": "UAI",
+                    "normalized": "UAI",
+                    "language": "zh-SG"
+                  },
+                  "href": "/UAI",
+                  "linkPurpose": "navigation",
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/header[0]/nav[0]/a[3]",
+                    "htmlFragment": "<a href=\"/UAI\">UAI</a>"
+                  }
+                },
+                {
+                  "type": "link",
+                  "id": "protocol5-uai-1-csharp-website-support-zh-sg.link.5",
+                  "text": {
+                    "literal": "Calculator",
+                    "normalized": "Calculator",
+                    "language": "zh-SG"
+                  },
+                  "href": "/calculator",
+                  "linkPurpose": "navigation",
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/header[0]/nav[0]/a[4]",
+                    "htmlFragment": "<a href=\"/calculator\" data-tool-link=\"calculator\">Calculator</a>"
+                  }
+                },
+                {
+                  "type": "link",
+                  "id": "protocol5-uai-1-csharp-website-support-zh-sg.link.6",
+                  "text": {
+                    "literal": "GitHub",
+                    "normalized": "GitHub",
+                    "language": "zh-SG"
+                  },
+                  "href": "/Home/GitHub",
+                  "linkPurpose": "navigation",
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/header[0]/nav[0]/a[5]",
+                    "htmlFragment": "<a href=\"/Home/GitHub\">GitHub</a>"
+                  }
+                },
+                {
+                  "type": "link",
+                  "id": "protocol5-uai-1-csharp-website-support-zh-sg.link.7",
+                  "text": {
+                    "literal": "About",
+                    "normalized": "About",
+                    "language": "zh-SG"
+                  },
+                  "href": "/Home/About",
+                  "linkPurpose": "navigation",
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/header[0]/nav[0]/a[6]",
+                    "htmlFragment": "<a href=\"/Home/About\">About</a>"
+                  }
+                },
+                {
+                  "type": "link",
+                  "id": "protocol5-uai-1-csharp-website-support-zh-sg.link.8",
+                  "text": {
+                    "literal": "Links",
+                    "normalized": "Links",
+                    "language": "zh-SG"
+                  },
+                  "href": "/Home/Links",
+                  "linkPurpose": "navigation",
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/header[0]/nav[0]/a[7]",
+                    "htmlFragment": "<a href=\"/Home/Links\">Links</a>"
+                  }
+                },
+                {
+                  "type": "link",
+                  "id": "protocol5-uai-1-csharp-website-support-zh-sg.link.9",
+                  "text": {
+                    "literal": "Contact",
+                    "normalized": "Contact",
+                    "language": "zh-SG"
+                  },
+                  "href": "/Home/Contact",
+                  "linkPurpose": "navigation",
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/header[0]/nav[0]/a[8]",
+                    "htmlFragment": "<a href=\"/Home/Contact\">Contact</a>"
+                  }
+                }
+              ],
+              "sourceRef": {
+                "domPath": "/html[0]/body[0]/div[0]/header[0]/nav[0]",
+                "htmlFragment": "<nav class=\"site-nav\" aria-label=\"Primary navigation\">\n                <a href=\"/\">Home</a>\n                <a href=\"/Fibonacci\">Fibonacci</a>\n                <a href=\"/Prime\">Prime Numbers</a>\n                <a href=\"/UAI\">UAI</a>\n                <a href=\"/calculator\" data-tool-link=\"calculator\">Calculator</a>\n                <a href=\"/Home/GitHub\">GitHub</a>\n                <a href=\"/Home/About\">About</a>\n                <a href=\"/Home/Links\">Links</a>\n                <a href=\"/Home/Contact\">Contact</a>\n            </nav>"
+              }
+            }
+          ],
+          "sourceRef": {
+            "domPath": "/html[0]/body[0]/div[0]/header[0]",
+            "htmlFragment": "<header class=\"site-header\">\n            <div class=\"brand-lockup\">\n                <p class=\"brand-kicker\">Protocol5</p>\n                <h1>Variable-Base Mathematics</h1>\n                <p class=\"brand-copy\">Exact arithmetic, radix conversion, sequence references, and educational number-system pages collected into one publishable shell.</p>\n            </div>\n            <nav class=\"site-nav\" aria-label=\"Primary navigation\">\n                <a href=\"/\">Home</a>\n                <a href=\"/Fibonacci\">Fibonacci</a>\n                <a href=\"/Prime\">Prime Numbers</a>\n                <a href=\"/UAI\">UAI</a>\n                <a href=\"/calculator\" data-tool-link=\"calculator\">Calculator</a>\n                <a href=\"/Home/GitHub\">GitHub</a>\n                <a href=\"/Home/About\">About</a>\n                <a href=\"/Home/Links\">Links</a>\n                <a href=\"/Home/Contact\">Contact</a>\n            </nav>\n        </header>"
+          }
+        },
+        {
+          "type": "section",
+          "id": "protocol5-uai-1-csharp-website-support-zh-sg.section.5",
+          "children": [
+            {
+              "type": "section",
+              "id": "protocol5-uai-1-csharp-website-support-zh-sg.section.3",
+              "children": [
+                {
+                  "type": "paragraph",
+                  "id": "protocol5-uai-1-csharp-website-support-zh-sg.paragraph.3",
+                  "text": {
+                    "literal": "UAI-1 / Install Kit",
+                    "normalized": "UAI-1 / Install Kit",
+                    "language": "zh-SG"
+                  },
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/main[0]/section[0]/div[0]/p[0]",
+                    "htmlFragment": "<p class=\"eyebrow\">UAI-1 / Install Kit</p>"
+                  }
+                },
+                {
+                  "type": "heading",
+                  "id": "protocol5-uai-1-csharp-website-support-zh-sg.heading.2",
+                  "level": 1,
+                  "text": {
+                    "literal": "UAI-1 C# ç½‘ç«™æ”¯æŒ\u0081å·¥å…·åŒ…",
+                    "normalized": "UAI-1 C# ç½‘ç«™æ”¯æŒ\u0081å·¥å…·åŒ…",
+                    "language": "zh-SG"
+                  },
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/main[0]/section[0]/div[0]/h1[0]",
+                    "htmlFragment": "<h1>UAI-1 C# &#231;&#189;‘&#231;&#171;™&#230;”&#175;&#230;Œ\u0081&#229;&#183;&#165;&#229;…&#183;&#229;Œ…</h1>"
+                  }
+                },
+                {
+                  "type": "paragraph",
+                  "id": "protocol5-uai-1-csharp-website-support-zh-sg.paragraph.4",
+                  "text": {
+                    "literal": "æœ¬é¡µå\u008F‘å¸ƒ Protocol5 çš„å…¥é—¨ä¸‹è½½åŒ…ï¼Œç”¨äºŽä¸º C# ç½‘ç«™æ·»åŠ UAI-1 æ”¯æŒ\u0081ï¼Œå°¤å…¶é€‚å\u0090ˆå¸Œæœ›åœ¨ä¸\u008Dè®©è§„èŒƒ UAI è¯­ä¹‰ä¾\u009Dèµ–æœ¬åœ°äººç±»è¯­è¨€æ ¼å¼\u008Fè§„åˆ™çš„å‰\u008Dæ\u008F\u0090ä¸‹ï¼ŒèŽ·å¾— CultureInfo ä¸Ž Accept-Language å®žç”¨é›†æˆ\u0090è·¯å¾„çš„ ASP.NET Core ç«™ç‚¹ã€‚",
+                    "normalized": "æœ¬é¡µå\u008F‘å¸ƒ Protocol5 çš„å…¥é—¨ä¸‹è½½åŒ…ï¼Œç”¨äºŽä¸º C# ç½‘ç«™æ·»åŠ UAI-1 æ”¯æŒ\u0081ï¼Œå°¤å…¶é€‚å\u0090ˆå¸Œæœ›åœ¨ä¸\u008Dè®©è§„èŒƒ UAI è¯­ä¹‰ä¾\u009Dèµ–æœ¬åœ°äººç±»è¯­è¨€æ ¼å¼\u008Fè§„åˆ™çš„å‰\u008Dæ\u008F\u0090ä¸‹ï¼ŒèŽ·å¾— CultureInfo ä¸Ž Accept-Language å®žç”¨é›†æˆ\u0090è·¯å¾„çš„ ASP.NET Core ç«™ç‚¹ã€‚",
+                    "language": "zh-SG"
+                  },
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/main[0]/section[0]/div[0]/p[1]",
+                    "htmlFragment": "<p class=\"lead\">&#230;œ&#172;&#233;&#161;&#181;&#229;\u008F‘&#229;&#184;ƒ Protocol5 &#231;š„&#229;…&#165;&#233;—&#168;&#228;&#184;‹&#232;&#189;&#189;&#229;Œ…&#239;&#188;Œ&#231;”&#168;&#228;&#186;Ž&#228;&#184;&#186; C# &#231;&#189;‘&#231;&#171;™&#230;&#183;&#187;&#229;Š UAI-1 &#230;”&#175;&#230;Œ\u0081&#239;&#188;Œ&#229;&#176;&#164;&#229;…&#182;&#233;€‚&#229;\u0090ˆ&#229;&#184;Œ&#230;œ›&#229;œ&#168;&#228;&#184;\u008D&#232;&#174;&#169;&#232;&#167;„&#232;Œƒ UAI &#232;&#175;&#173;&#228;&#185;‰&#228;&#190;\u009D&#232;&#181;–&#230;œ&#172;&#229;œ&#176;&#228;&#186;&#186;&#231;&#177;&#187;&#232;&#175;&#173;&#232;&#168;€&#230; &#188;&#229;&#188;\u008F&#232;&#167;„&#229;ˆ™&#231;š„&#229;‰\u008D&#230;\u008F\u0090&#228;&#184;‹&#239;&#188;Œ&#232;Ž&#183;&#229;&#190;— <code>CultureInfo</code> &#228;&#184;Ž <code>Accept-Language</code> &#229;&#174;ž&#231;”&#168;&#233;›†&#230;ˆ\u0090&#232;&#183;&#175;&#229;&#190;„&#231;š„ ASP.NET Core &#231;&#171;™&#231;‚&#185;&#227;€‚</p>"
+                  }
+                },
+                {
+                  "type": "section",
+                  "id": "protocol5-uai-1-csharp-website-support-zh-sg.section.2",
+                  "children": [
+                    {
+                      "type": "link",
+                      "id": "protocol5-uai-1-csharp-website-support-zh-sg.link.10",
+                      "text": {
+                        "literal": "UAI Library",
+                        "normalized": "UAI Library",
+                        "language": "zh-SG"
+                      },
+                      "href": "/UAI",
+                      "linkPurpose": "navigation",
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[0]/div[0]/div[0]/a[0]",
+                        "htmlFragment": "<a href=\"/UAI\">UAI Library</a>"
+                      }
+                    },
+                    {
+                      "type": "link",
+                      "id": "protocol5-uai-1-csharp-website-support-zh-sg.link.11",
+                      "text": {
+                        "literal": "UAI-1 Spec",
+                        "normalized": "UAI-1 Spec",
+                        "language": "zh-SG"
+                      },
+                      "href": "/UAI-1/zh-SG",
+                      "linkPurpose": "navigation",
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[0]/div[0]/div[0]/a[1]",
+                        "htmlFragment": "<a href=\"/UAI-1/zh-SG\">UAI-1 Spec</a>"
+                      }
+                    },
+                    {
+                      "type": "link",
+                      "id": "protocol5-uai-1-csharp-website-support-zh-sg.link.12",
+                      "text": {
+                        "literal": "Radix 63404 Guide",
+                        "normalized": "Radix 63404 Guide",
+                        "language": "zh-SG"
+                      },
+                      "href": "/UAI/radix-63404-guide-and-attribution",
+                      "linkPurpose": "navigation",
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[0]/div[0]/div[0]/a[2]",
+                        "htmlFragment": "<a href=\"/UAI/radix-63404-guide-and-attribution\">Radix 63404 Guide</a>"
+                      }
+                    }
+                  ],
+                  "sectionKind": "generic",
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/main[0]/section[0]/div[0]/div[0]",
+                    "htmlFragment": "<div class=\"inline-links\">\n                        <a href=\"/UAI\">UAI Library</a>\r\n                        <a href=\"/UAI-1/zh-SG\">UAI-1 Spec</a>\r\n                        <a href=\"/UAI/radix-63404-guide-and-attribution\">Radix 63404 Guide</a>\n                    </div>"
+                  }
+                }
+              ],
+              "sectionKind": "generic",
+              "sourceRef": {
+                "domPath": "/html[0]/body[0]/div[0]/main[0]/section[0]/div[0]",
+                "htmlFragment": "<div>\n                    <p class=\"eyebrow\">UAI-1 / Install Kit</p>\n                    <h1>UAI-1 C# &#231;&#189;‘&#231;&#171;™&#230;”&#175;&#230;Œ\u0081&#229;&#183;&#165;&#229;…&#183;&#229;Œ…</h1>\n                    <p class=\"lead\">&#230;œ&#172;&#233;&#161;&#181;&#229;\u008F‘&#229;&#184;ƒ Protocol5 &#231;š„&#229;…&#165;&#233;—&#168;&#228;&#184;‹&#232;&#189;&#189;&#229;Œ…&#239;&#188;Œ&#231;”&#168;&#228;&#186;Ž&#228;&#184;&#186; C# &#231;&#189;‘&#231;&#171;™&#230;&#183;&#187;&#229;Š UAI-1 &#230;”&#175;&#230;Œ\u0081&#239;&#188;Œ&#229;&#176;&#164;&#229;…&#182;&#233;€‚&#229;\u0090ˆ&#229;&#184;Œ&#230;œ›&#229;œ&#168;&#228;&#184;\u008D&#232;&#174;&#169;&#232;&#167;„&#232;Œƒ UAI &#232;&#175;&#173;&#228;&#185;‰&#228;&#190;\u009D&#232;&#181;–&#230;œ&#172;&#229;œ&#176;&#228;&#186;&#186;&#231;&#177;&#187;&#232;&#175;&#173;&#232;&#168;€&#230; &#188;&#229;&#188;\u008F&#232;&#167;„&#229;ˆ™&#231;š„&#229;‰\u008D&#230;\u008F\u0090&#228;&#184;‹&#239;&#188;Œ&#232;Ž&#183;&#229;&#190;— <code>CultureInfo</code> &#228;&#184;Ž <code>Accept-Language</code> &#229;&#174;ž&#231;”&#168;&#233;›†&#230;ˆ\u0090&#232;&#183;&#175;&#229;&#190;„&#231;š„ ASP.NET Core &#231;&#171;™&#231;‚&#185;&#227;€‚</p>\n                    <div class=\"inline-links\">\n                        <a href=\"/UAI\">UAI Library</a>\r\n                        <a href=\"/UAI-1/zh-SG\">UAI-1 Spec</a>\r\n                        <a href=\"/UAI/radix-63404-guide-and-attribution\">Radix 63404 Guide</a>\n                    </div>\n                </div>"
+              }
+            },
+            {
+              "type": "section",
+              "id": "protocol5-uai-1-csharp-website-support-zh-sg.section.4",
+              "children": [
+                {
+                  "type": "paragraph",
+                  "id": "protocol5-uai-1-csharp-website-support-zh-sg.paragraph.5",
+                  "text": {
+                    "literal": "Developer starter",
+                    "normalized": "Developer starter",
+                    "language": "zh-SG"
+                  },
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/main[0]/section[0]/aside[0]/p[0]",
+                    "htmlFragment": "<p class=\"eyebrow\">Developer starter</p>"
+                  }
+                },
+                {
+                  "type": "quote",
+                  "id": "protocol5-uai-1-csharp-website-support-zh-sg.quote.1",
+                  "text": {
+                    "literal": "Use x-uai-1 for website negotiation. Use InvariantCulture for canonical serialization. Keep the two responsibilities separate.",
+                    "normalized": "Use x-uai-1 for website negotiation. Use InvariantCulture for canonical serialization. Keep the two responsibilities separate.",
+                    "language": "zh-SG"
+                  },
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/main[0]/section[0]/aside[0]/blockquote[0]",
+                    "htmlFragment": "<blockquote>\n                        Use x-uai-1 for website negotiation. Use InvariantCulture for canonical serialization. Keep the two responsibilities separate.\n                    </blockquote>"
+                  }
+                },
+                {
+                  "type": "paragraph",
+                  "id": "protocol5-uai-1-csharp-website-support-zh-sg.paragraph.6",
+                  "text": {
+                    "literal": "This page packages the first Protocol5 C# starter kit so teams can download a working UAI-1 website support library directly from protocol5.com.",
+                    "normalized": "This page packages the first Protocol5 C# starter kit so teams can download a working UAI-1 website support library directly from protocol5.com.",
+                    "language": "zh-SG"
+                  },
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/main[0]/section[0]/aside[0]/p[1]",
+                    "htmlFragment": "<p>This page packages the first Protocol5 C# starter kit so teams can download a working UAI-1 website support library directly from protocol5.com.</p>"
+                  }
+                }
+              ],
+              "sectionKind": "generic",
+              "sourceRef": {
+                "domPath": "/html[0]/body[0]/div[0]/main[0]/section[0]/aside[0]",
+                "htmlFragment": "<aside class=\"traveler-note\">\n                    <p class=\"eyebrow\">Developer starter</p>\n                    <blockquote>\n                        Use x-uai-1 for website negotiation. Use InvariantCulture for canonical serialization. Keep the two responsibilities separate.\n                    </blockquote>\n                    <p>This page packages the first Protocol5 C# starter kit so teams can download a working UAI-1 website support library directly from protocol5.com.</p>\n                </aside>"
+              }
+            }
+          ],
+          "sectionKind": "generic",
+          "sourceRef": {
+            "domPath": "/html[0]/body[0]/div[0]/main[0]/section[0]",
+            "htmlFragment": "<section class=\"content-hero panel reveal\">\n                <div>\n                    <p class=\"eyebrow\">UAI-1 / Install Kit</p>\n                    <h1>UAI-1 C# &#231;&#189;‘&#231;&#171;™&#230;”&#175;&#230;Œ\u0081&#229;&#183;&#165;&#229;…&#183;&#229;Œ…</h1>\n                    <p class=\"lead\">&#230;œ&#172;&#233;&#161;&#181;&#229;\u008F‘&#229;&#184;ƒ Protocol5 &#231;š„&#229;…&#165;&#233;—&#168;&#228;&#184;‹&#232;&#189;&#189;&#229;Œ…&#239;&#188;Œ&#231;”&#168;&#228;&#186;Ž&#228;&#184;&#186; C# &#231;&#189;‘&#231;&#171;™&#230;&#183;&#187;&#229;Š UAI-1 &#230;”&#175;&#230;Œ\u0081&#239;&#188;Œ&#229;&#176;&#164;&#229;…&#182;&#233;€‚&#229;\u0090ˆ&#229;&#184;Œ&#230;œ›&#229;œ&#168;&#228;&#184;\u008D&#232;&#174;&#169;&#232;&#167;„&#232;Œƒ UAI &#232;&#175;&#173;&#228;&#185;‰&#228;&#190;\u009D&#232;&#181;–&#230;œ&#172;&#229;œ&#176;&#228;&#186;&#186;&#231;&#177;&#187;&#232;&#175;&#173;&#232;&#168;€&#230; &#188;&#229;&#188;\u008F&#232;&#167;„&#229;ˆ™&#231;š„&#229;‰\u008D&#230;\u008F\u0090&#228;&#184;‹&#239;&#188;Œ&#232;Ž&#183;&#229;&#190;— <code>CultureInfo</code> &#228;&#184;Ž <code>Accept-Language</code> &#229;&#174;ž&#231;”&#168;&#233;›†&#230;ˆ\u0090&#232;&#183;&#175;&#229;&#190;„&#231;š„ ASP.NET Core &#231;&#171;™&#231;‚&#185;&#227;€‚</p>\n                    <div class=\"inline-links\">\n                        <a href=\"/UAI\">UAI Library</a>\r\n                        <a href=\"/UAI-1/zh-SG\">UAI-1 Spec</a>\r\n                        <a href=\"/UAI/radix-63404-guide-and-attribution\">Radix 63404 Guide</a>\n                    </div>\n                </div>\n                <aside class=\"traveler-note\">\n                    <p class=\"eyebrow\">Developer starter</p>\n                    <blockquote>\n                        Use x-uai-1 for website negotiation. Use InvariantCulture for canonical serialization. Keep the two responsibilities separate.\n                    </blockquote>\n                    <p>This page packages the first Protocol5 C# starter kit so teams can download a working UAI-1 website support library directly from protocol5.com.</p>\n                </aside>\n            </section>"
+          }
+        },
+        {
+          "type": "section",
+          "id": "protocol5-uai-1-csharp-website-support-zh-sg.section.8",
+          "children": [
+            {
+              "type": "section",
+              "id": "protocol5-uai-1-csharp-website-support-zh-sg.section.6",
+              "children": [
+                {
+                  "type": "paragraph",
+                  "id": "protocol5-uai-1-csharp-website-support-zh-sg.paragraph.7",
+                  "text": {
+                    "literal": "Document metadata",
+                    "normalized": "Document metadata",
+                    "language": "zh-SG"
+                  },
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/aside[0]/p[0]",
+                    "htmlFragment": "<p class=\"eyebrow\">Document metadata</p>"
+                  }
+                },
+                {
+                  "type": "list",
+                  "id": "protocol5-uai-1-csharp-website-support-zh-sg.list.1",
+                  "children": [
+                    {
+                      "type": "listItem",
+                      "id": "protocol5-uai-1-csharp-website-support-zh-sg.listItem.1",
+                      "text": {
+                        "literal": "Human locale简体中文（新加坡）",
+                        "normalized": "Human locale简体中文（新加坡）",
+                        "language": "zh-SG"
+                      },
+                      "children": [
+                        {
+                          "type": "unknown",
+                          "id": "protocol5-uai-1-csharp-website-support-zh-sg.unknown.1",
+                          "rawContent": "<span>Human locale</span>",
+                          "reason": "unsupported-span",
+                          "sourceFragment": "<span>Human locale</span>",
+                          "sourceRef": {
+                            "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/aside[0]/ul[0]/li[0]/span[0]",
+                            "htmlFragment": "<span>Human locale</span>"
+                          }
+                        },
+                        {
+                          "type": "unknown",
+                          "id": "protocol5-uai-1-csharp-website-support-zh-sg.unknown.2",
+                          "rawContent": "<strong>简体中文（新加坡）</strong>",
+                          "reason": "unsupported-strong",
+                          "sourceFragment": "<strong>简体中文（新加坡）</strong>",
+                          "sourceRef": {
+                            "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/aside[0]/ul[0]/li[0]/strong[0]",
+                            "htmlFragment": "<strong>简体中文（新加坡）</strong>"
+                          }
+                        }
+                      ],
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/aside[0]/ul[0]/li[0]",
+                        "htmlFragment": "<li><span>Human locale</span><strong>简体中文（新加坡）</strong></li>"
+                      }
+                    },
+                    {
+                      "type": "listItem",
+                      "id": "protocol5-uai-1-csharp-website-support-zh-sg.listItem.2",
+                      "text": {
+                        "literal": "Canonical public path/UAI-1/csharp-website-support/zh-SG",
+                        "normalized": "Canonical public path/UAI-1/csharp-website-support/zh-SG",
+                        "language": "zh-SG"
+                      },
+                      "children": [
+                        {
+                          "type": "unknown",
+                          "id": "protocol5-uai-1-csharp-website-support-zh-sg.unknown.3",
+                          "rawContent": "<span>Canonical public path</span>",
+                          "reason": "unsupported-span",
+                          "sourceFragment": "<span>Canonical public path</span>",
+                          "sourceRef": {
+                            "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/aside[0]/ul[0]/li[1]/span[0]",
+                            "htmlFragment": "<span>Canonical public path</span>"
+                          }
+                        },
+                        {
+                          "type": "unknown",
+                          "id": "protocol5-uai-1-csharp-website-support-zh-sg.unknown.4",
+                          "rawContent": "<strong><a href=\"/UAI-1/csharp-website-support/zh-SG\">/UAI-1/csharp-website-support/zh-SG</a></strong>",
+                          "reason": "unsupported-strong",
+                          "sourceFragment": "<strong><a href=\"/UAI-1/csharp-website-support/zh-SG\">/UAI-1/csharp-website-support/zh-SG</a></strong>",
+                          "sourceRef": {
+                            "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/aside[0]/ul[0]/li[1]/strong[0]",
+                            "htmlFragment": "<strong><a href=\"/UAI-1/csharp-website-support/zh-SG\">/UAI-1/csharp-website-support/zh-SG</a></strong>"
+                          }
+                        }
+                      ],
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/aside[0]/ul[0]/li[1]",
+                        "htmlFragment": "<li><span>Canonical public path</span><strong><a href=\"/UAI-1/csharp-website-support/zh-SG\">/UAI-1/csharp-website-support/zh-SG</a></strong></li>"
+                      }
+                    },
+                    {
+                      "type": "listItem",
+                      "id": "protocol5-uai-1-csharp-website-support-zh-sg.listItem.3",
+                      "text": {
+                        "literal": "Machine endpoint/UAI-1/csharp-website-support/zh-SG/index.uai.json",
+                        "normalized": "Machine endpoint/UAI-1/csharp-website-support/zh-SG/index.uai.json",
+                        "language": "zh-SG"
+                      },
+                      "children": [
+                        {
+                          "type": "unknown",
+                          "id": "protocol5-uai-1-csharp-website-support-zh-sg.unknown.5",
+                          "rawContent": "<span>Machine endpoint</span>",
+                          "reason": "unsupported-span",
+                          "sourceFragment": "<span>Machine endpoint</span>",
+                          "sourceRef": {
+                            "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/aside[0]/ul[0]/li[2]/span[0]",
+                            "htmlFragment": "<span>Machine endpoint</span>"
+                          }
+                        },
+                        {
+                          "type": "unknown",
+                          "id": "protocol5-uai-1-csharp-website-support-zh-sg.unknown.6",
+                          "rawContent": "<strong><a href=\"/UAI-1/csharp-website-support/zh-SG/index.uai.json\">/UAI-1/csharp-website-support/zh-SG/index.uai.json</a></strong>",
+                          "reason": "unsupported-strong",
+                          "sourceFragment": "<strong><a href=\"/UAI-1/csharp-website-support/zh-SG/index.uai.json\">/UAI-1/csharp-website-support/zh-SG/index.uai.json</a></strong>",
+                          "sourceRef": {
+                            "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/aside[0]/ul[0]/li[2]/strong[0]",
+                            "htmlFragment": "<strong><a href=\"/UAI-1/csharp-website-support/zh-SG/index.uai.json\">/UAI-1/csharp-website-support/zh-SG/index.uai.json</a></strong>"
+                          }
+                        }
+                      ],
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/aside[0]/ul[0]/li[2]",
+                        "htmlFragment": "<li><span>Machine endpoint</span><strong><a href=\"/UAI-1/csharp-website-support/zh-SG/index.uai.json\">/UAI-1/csharp-website-support/zh-SG/index.uai.json</a></strong></li>"
+                      }
+                    },
+                    {
+                      "type": "listItem",
+                      "id": "protocol5-uai-1-csharp-website-support-zh-sg.listItem.4",
+                      "text": {
+                        "literal": "Machine discovery/UAI-1.json",
+                        "normalized": "Machine discovery/UAI-1.json",
+                        "language": "zh-SG"
+                      },
+                      "children": [
+                        {
+                          "type": "unknown",
+                          "id": "protocol5-uai-1-csharp-website-support-zh-sg.unknown.7",
+                          "rawContent": "<span>Machine discovery</span>",
+                          "reason": "unsupported-span",
+                          "sourceFragment": "<span>Machine discovery</span>",
+                          "sourceRef": {
+                            "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/aside[0]/ul[0]/li[3]/span[0]",
+                            "htmlFragment": "<span>Machine discovery</span>"
+                          }
+                        },
+                        {
+                          "type": "unknown",
+                          "id": "protocol5-uai-1-csharp-website-support-zh-sg.unknown.8",
+                          "rawContent": "<strong><a href=\"/UAI-1.json\">/UAI-1.json</a></strong>",
+                          "reason": "unsupported-strong",
+                          "sourceFragment": "<strong><a href=\"/UAI-1.json\">/UAI-1.json</a></strong>",
+                          "sourceRef": {
+                            "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/aside[0]/ul[0]/li[3]/strong[0]",
+                            "htmlFragment": "<strong><a href=\"/UAI-1.json\">/UAI-1.json</a></strong>"
+                          }
+                        }
+                      ],
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/aside[0]/ul[0]/li[3]",
+                        "htmlFragment": "<li><span>Machine discovery</span><strong><a href=\"/UAI-1.json\">/UAI-1.json</a></strong></li>"
+                      }
+                    },
+                    {
+                      "type": "listItem",
+                      "id": "protocol5-uai-1-csharp-website-support-zh-sg.listItem.5",
+                      "text": {
+                        "literal": "Examples index/UAI-1-examples.json",
+                        "normalized": "Examples index/UAI-1-examples.json",
+                        "language": "zh-SG"
+                      },
+                      "children": [
+                        {
+                          "type": "unknown",
+                          "id": "protocol5-uai-1-csharp-website-support-zh-sg.unknown.9",
+                          "rawContent": "<span>Examples index</span>",
+                          "reason": "unsupported-span",
+                          "sourceFragment": "<span>Examples index</span>",
+                          "sourceRef": {
+                            "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/aside[0]/ul[0]/li[4]/span[0]",
+                            "htmlFragment": "<span>Examples index</span>"
+                          }
+                        },
+                        {
+                          "type": "unknown",
+                          "id": "protocol5-uai-1-csharp-website-support-zh-sg.unknown.10",
+                          "rawContent": "<strong><a href=\"/UAI-1-examples.json\">/UAI-1-examples.json</a></strong>",
+                          "reason": "unsupported-strong",
+                          "sourceFragment": "<strong><a href=\"/UAI-1-examples.json\">/UAI-1-examples.json</a></strong>",
+                          "sourceRef": {
+                            "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/aside[0]/ul[0]/li[4]/strong[0]",
+                            "htmlFragment": "<strong><a href=\"/UAI-1-examples.json\">/UAI-1-examples.json</a></strong>"
+                          }
+                        }
+                      ],
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/aside[0]/ul[0]/li[4]",
+                        "htmlFragment": "<li><span>Examples index</span><strong><a href=\"/UAI-1-examples.json\">/UAI-1-examples.json</a></strong></li>"
+                      }
+                    },
+                    {
+                      "type": "listItem",
+                      "id": "protocol5-uai-1-csharp-website-support-zh-sg.listItem.6",
+                      "text": {
+                        "literal": "Canonical registry/UAI-1/registry/uai-1.registry.json",
+                        "normalized": "Canonical registry/UAI-1/registry/uai-1.registry.json",
+                        "language": "zh-SG"
+                      },
+                      "children": [
+                        {
+                          "type": "unknown",
+                          "id": "protocol5-uai-1-csharp-website-support-zh-sg.unknown.11",
+                          "rawContent": "<span>Canonical registry</span>",
+                          "reason": "unsupported-span",
+                          "sourceFragment": "<span>Canonical registry</span>",
+                          "sourceRef": {
+                            "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/aside[0]/ul[0]/li[5]/span[0]",
+                            "htmlFragment": "<span>Canonical registry</span>"
+                          }
+                        },
+                        {
+                          "type": "unknown",
+                          "id": "protocol5-uai-1-csharp-website-support-zh-sg.unknown.12",
+                          "rawContent": "<strong><a href=\"/UAI-1/registry/uai-1.registry.json\">/UAI-1/registry/uai-1.registry.json</a></strong>",
+                          "reason": "unsupported-strong",
+                          "sourceFragment": "<strong><a href=\"/UAI-1/registry/uai-1.registry.json\">/UAI-1/registry/uai-1.registry.json</a></strong>",
+                          "sourceRef": {
+                            "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/aside[0]/ul[0]/li[5]/strong[0]",
+                            "htmlFragment": "<strong><a href=\"/UAI-1/registry/uai-1.registry.json\">/UAI-1/registry/uai-1.registry.json</a></strong>"
+                          }
+                        }
+                      ],
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/aside[0]/ul[0]/li[5]",
+                        "htmlFragment": "<li><span>Canonical registry</span><strong><a href=\"/UAI-1/registry/uai-1.registry.json\">/UAI-1/registry/uai-1.registry.json</a></strong></li>"
+                      }
+                    },
+                    {
+                      "type": "listItem",
+                      "id": "protocol5-uai-1-csharp-website-support-zh-sg.listItem.7",
+                      "text": {
+                        "literal": "Canonical schema/UAI-1/schema/uai-1.schema.json",
+                        "normalized": "Canonical schema/UAI-1/schema/uai-1.schema.json",
+                        "language": "zh-SG"
+                      },
+                      "children": [
+                        {
+                          "type": "unknown",
+                          "id": "protocol5-uai-1-csharp-website-support-zh-sg.unknown.13",
+                          "rawContent": "<span>Canonical schema</span>",
+                          "reason": "unsupported-span",
+                          "sourceFragment": "<span>Canonical schema</span>",
+                          "sourceRef": {
+                            "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/aside[0]/ul[0]/li[6]/span[0]",
+                            "htmlFragment": "<span>Canonical schema</span>"
+                          }
+                        },
+                        {
+                          "type": "unknown",
+                          "id": "protocol5-uai-1-csharp-website-support-zh-sg.unknown.14",
+                          "rawContent": "<strong><a href=\"/UAI-1/schema/uai-1.schema.json\">/UAI-1/schema/uai-1.schema.json</a></strong>",
+                          "reason": "unsupported-strong",
+                          "sourceFragment": "<strong><a href=\"/UAI-1/schema/uai-1.schema.json\">/UAI-1/schema/uai-1.schema.json</a></strong>",
+                          "sourceRef": {
+                            "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/aside[0]/ul[0]/li[6]/strong[0]",
+                            "htmlFragment": "<strong><a href=\"/UAI-1/schema/uai-1.schema.json\">/UAI-1/schema/uai-1.schema.json</a></strong>"
+                          }
+                        }
+                      ],
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/aside[0]/ul[0]/li[6]",
+                        "htmlFragment": "<li><span>Canonical schema</span><strong><a href=\"/UAI-1/schema/uai-1.schema.json\">/UAI-1/schema/uai-1.schema.json</a></strong></li>"
+                      }
+                    },
+                    {
+                      "type": "listItem",
+                      "id": "protocol5-uai-1-csharp-website-support-zh-sg.listItem.8",
+                      "text": {
+                        "literal": "Canonical types/UAI-1/schema/uai-1.types.ts",
+                        "normalized": "Canonical types/UAI-1/schema/uai-1.types.ts",
+                        "language": "zh-SG"
+                      },
+                      "children": [
+                        {
+                          "type": "unknown",
+                          "id": "protocol5-uai-1-csharp-website-support-zh-sg.unknown.15",
+                          "rawContent": "<span>Canonical types</span>",
+                          "reason": "unsupported-span",
+                          "sourceFragment": "<span>Canonical types</span>",
+                          "sourceRef": {
+                            "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/aside[0]/ul[0]/li[7]/span[0]",
+                            "htmlFragment": "<span>Canonical types</span>"
+                          }
+                        },
+                        {
+                          "type": "unknown",
+                          "id": "protocol5-uai-1-csharp-website-support-zh-sg.unknown.16",
+                          "rawContent": "<strong><a href=\"/UAI-1/schema/uai-1.types.ts\">/UAI-1/schema/uai-1.types.ts</a></strong>",
+                          "reason": "unsupported-strong",
+                          "sourceFragment": "<strong><a href=\"/UAI-1/schema/uai-1.types.ts\">/UAI-1/schema/uai-1.types.ts</a></strong>",
+                          "sourceRef": {
+                            "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/aside[0]/ul[0]/li[7]/strong[0]",
+                            "htmlFragment": "<strong><a href=\"/UAI-1/schema/uai-1.types.ts\">/UAI-1/schema/uai-1.types.ts</a></strong>"
+                          }
+                        }
+                      ],
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/aside[0]/ul[0]/li[7]",
+                        "htmlFragment": "<li><span>Canonical types</span><strong><a href=\"/UAI-1/schema/uai-1.types.ts\">/UAI-1/schema/uai-1.types.ts</a></strong></li>"
+                      }
+                    },
+                    {
+                      "type": "listItem",
+                      "id": "protocol5-uai-1-csharp-website-support-zh-sg.listItem.9",
+                      "text": {
+                        "literal": "Canonical examples/UAI-1/examples",
+                        "normalized": "Canonical examples/UAI-1/examples",
+                        "language": "zh-SG"
+                      },
+                      "children": [
+                        {
+                          "type": "unknown",
+                          "id": "protocol5-uai-1-csharp-website-support-zh-sg.unknown.17",
+                          "rawContent": "<span>Canonical examples</span>",
+                          "reason": "unsupported-span",
+                          "sourceFragment": "<span>Canonical examples</span>",
+                          "sourceRef": {
+                            "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/aside[0]/ul[0]/li[8]/span[0]",
+                            "htmlFragment": "<span>Canonical examples</span>"
+                          }
+                        },
+                        {
+                          "type": "unknown",
+                          "id": "protocol5-uai-1-csharp-website-support-zh-sg.unknown.18",
+                          "rawContent": "<strong><a href=\"/UAI-1/examples\">/UAI-1/examples</a></strong>",
+                          "reason": "unsupported-strong",
+                          "sourceFragment": "<strong><a href=\"/UAI-1/examples\">/UAI-1/examples</a></strong>",
+                          "sourceRef": {
+                            "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/aside[0]/ul[0]/li[8]/strong[0]",
+                            "htmlFragment": "<strong><a href=\"/UAI-1/examples\">/UAI-1/examples</a></strong>"
+                          }
+                        }
+                      ],
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/aside[0]/ul[0]/li[8]",
+                        "htmlFragment": "<li><span>Canonical examples</span><strong><a href=\"/UAI-1/examples\">/UAI-1/examples</a></strong></li>"
+                      }
+                    },
+                    {
+                      "type": "listItem",
+                      "id": "protocol5-uai-1-csharp-website-support-zh-sg.listItem.10",
+                      "text": {
+                        "literal": "All supported translationsEnglish (US), Español (US), Українська, 简体中文（新加坡）, ไทย",
+                        "normalized": "All supported translationsEnglish (US), Español (US), Українська, 简体中文（新加坡）, ไทย",
+                        "language": "zh-SG"
+                      },
+                      "children": [
+                        {
+                          "type": "unknown",
+                          "id": "protocol5-uai-1-csharp-website-support-zh-sg.unknown.19",
+                          "rawContent": "<span>All supported translations</span>",
+                          "reason": "unsupported-span",
+                          "sourceFragment": "<span>All supported translations</span>",
+                          "sourceRef": {
+                            "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/aside[0]/ul[0]/li[9]/span[0]",
+                            "htmlFragment": "<span>All supported translations</span>"
+                          }
+                        },
+                        {
+                          "type": "unknown",
+                          "id": "protocol5-uai-1-csharp-website-support-zh-sg.unknown.20",
+                          "rawContent": "<strong><a href=\"/UAI-1/csharp-website-support\">English (US)</a>, <a href=\"/UAI-1/csharp-website-support/es-US\">Espa&#241;ol (US)</a>, <a href=\"/UAI-1/csharp-website-support/uk-UA\">Українська</a>, <a href=\"/UAI-1/csharp-website-support/zh-SG\">简体中文（新加坡）</a>, <a href=\"/UAI-1/csharp-website-support/th\">ไทย</a></strong>",
+                          "reason": "unsupported-strong",
+                          "sourceFragment": "<strong><a href=\"/UAI-1/csharp-website-support\">English (US)</a>, <a href=\"/UAI-1/csharp-website-support/es-US\">Espa&#241;ol (US)</a>, <a href=\"/UAI-1/csharp-website-support/uk-UA\">Українська</a>, <a href=\"/UAI-1/csharp-website-support/zh-SG\">简体中文（新加坡）</a>, <a href=\"/UAI-1/csharp-website-support/th\">ไทย</a></strong>",
+                          "sourceRef": {
+                            "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/aside[0]/ul[0]/li[9]/strong[0]",
+                            "htmlFragment": "<strong><a href=\"/UAI-1/csharp-website-support\">English (US)</a>, <a href=\"/UAI-1/csharp-website-support/es-US\">Espa&#241;ol (US)</a>, <a href=\"/UAI-1/csharp-website-support/uk-UA\">Українська</a>, <a href=\"/UAI-1/csharp-website-support/zh-SG\">简体中文（新加坡）</a>, <a href=\"/UAI-1/csharp-website-support/th\">ไทย</a></strong>"
+                          }
+                        }
+                      ],
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/aside[0]/ul[0]/li[9]",
+                        "htmlFragment": "<li><span>All supported translations</span><strong><a href=\"/UAI-1/csharp-website-support\">English (US)</a>, <a href=\"/UAI-1/csharp-website-support/es-US\">Espa&#241;ol (US)</a>, <a href=\"/UAI-1/csharp-website-support/uk-UA\">Українська</a>, <a href=\"/UAI-1/csharp-website-support/zh-SG\">简体中文（新加坡）</a>, <a href=\"/UAI-1/csharp-website-support/th\">ไทย</a></strong></li>"
+                      }
+                    }
+                  ],
+                  "ordered": false,
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/aside[0]/ul[0]",
+                    "htmlFragment": "<ul class=\"doc-meta-list\">\r\n<li><span>Human locale</span><strong>简体中文（新加坡）</strong></li>\r\n<li><span>Canonical public path</span><strong><a href=\"/UAI-1/csharp-website-support/zh-SG\">/UAI-1/csharp-website-support/zh-SG</a></strong></li>\r\n<li><span>Machine endpoint</span><strong><a href=\"/UAI-1/csharp-website-support/zh-SG/index.uai.json\">/UAI-1/csharp-website-support/zh-SG/index.uai.json</a></strong></li>\r\n<li><span>Machine discovery</span><strong><a href=\"/UAI-1.json\">/UAI-1.json</a></strong></li>\r\n<li><span>Examples index</span><strong><a href=\"/UAI-1-examples.json\">/UAI-1-examples.json</a></strong></li>\r\n<li><span>Canonical registry</span><strong><a href=\"/UAI-1/registry/uai-1.registry.json\">/UAI-1/registry/uai-1.registry.json</a></strong></li>\r\n<li><span>Canonical schema</span><strong><a href=\"/UAI-1/schema/uai-1.schema.json\">/UAI-1/schema/uai-1.schema.json</a></strong></li>\r\n<li><span>Canonical types</span><strong><a href=\"/UAI-1/schema/uai-1.types.ts\">/UAI-1/schema/uai-1.types.ts</a></strong></li>\r\n<li><span>Canonical examples</span><strong><a href=\"/UAI-1/examples\">/UAI-1/examples</a></strong></li>\r\n<li><span>All supported translations</span><strong><a href=\"/UAI-1/csharp-website-support\">English (US)</a>, <a href=\"/UAI-1/csharp-website-support/es-US\">Espa&#241;ol (US)</a>, <a href=\"/UAI-1/csharp-website-support/uk-UA\">Українська</a>, <a href=\"/UAI-1/csharp-website-support/zh-SG\">简体中文（新加坡）</a>, <a href=\"/UAI-1/csharp-website-support/th\">ไทย</a></strong></li>\r\n</ul>"
+                  }
+                },
+                {
+                  "type": "callout",
+                  "id": "protocol5-uai-1-csharp-website-support-zh-sg.callout.1",
+                  "children": [
+                    {
+                      "type": "paragraph",
+                      "id": "protocol5-uai-1-csharp-website-support-zh-sg.paragraph.8",
+                      "text": {
+                        "literal": "Source markdown: uai-1-csharp-website-support.zh-SG.md",
+                        "normalized": "Source markdown: uai-1-csharp-website-support.zh-SG.md",
+                        "language": "zh-SG"
+                      },
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/aside[0]/div[0]/p[0]",
+                        "htmlFragment": "<p>Source markdown: <code>uai-1-csharp-website-support.zh-SG.md</code></p>"
+                      }
+                    }
+                  ],
+                  "calloutType": "info",
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/aside[0]/div[0]",
+                    "htmlFragment": "<div class=\"callout\">\n                        <p>Source markdown: <code>uai-1-csharp-website-support.zh-SG.md</code></p>\n                    </div>"
+                  }
+                }
+              ],
+              "sectionKind": "generic",
+              "sourceRef": {
+                "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/aside[0]",
+                "htmlFragment": "<aside class=\"panel doc-sidebar\">\n                    <p class=\"eyebrow\">Document metadata</p>\n<ul class=\"doc-meta-list\">\r\n<li><span>Human locale</span><strong>简体中文（新加坡）</strong></li>\r\n<li><span>Canonical public path</span><strong><a href=\"/UAI-1/csharp-website-support/zh-SG\">/UAI-1/csharp-website-support/zh-SG</a></strong></li>\r\n<li><span>Machine endpoint</span><strong><a href=\"/UAI-1/csharp-website-support/zh-SG/index.uai.json\">/UAI-1/csharp-website-support/zh-SG/index.uai.json</a></strong></li>\r\n<li><span>Machine discovery</span><strong><a href=\"/UAI-1.json\">/UAI-1.json</a></strong></li>\r\n<li><span>Examples index</span><strong><a href=\"/UAI-1-examples.json\">/UAI-1-examples.json</a></strong></li>\r\n<li><span>Canonical registry</span><strong><a href=\"/UAI-1/registry/uai-1.registry.json\">/UAI-1/registry/uai-1.registry.json</a></strong></li>\r\n<li><span>Canonical schema</span><strong><a href=\"/UAI-1/schema/uai-1.schema.json\">/UAI-1/schema/uai-1.schema.json</a></strong></li>\r\n<li><span>Canonical types</span><strong><a href=\"/UAI-1/schema/uai-1.types.ts\">/UAI-1/schema/uai-1.types.ts</a></strong></li>\r\n<li><span>Canonical examples</span><strong><a href=\"/UAI-1/examples\">/UAI-1/examples</a></strong></li>\r\n<li><span>All supported translations</span><strong><a href=\"/UAI-1/csharp-website-support\">English (US)</a>, <a href=\"/UAI-1/csharp-website-support/es-US\">Espa&#241;ol (US)</a>, <a href=\"/UAI-1/csharp-website-support/uk-UA\">Українська</a>, <a href=\"/UAI-1/csharp-website-support/zh-SG\">简体中文（新加坡）</a>, <a href=\"/UAI-1/csharp-website-support/th\">ไทย</a></strong></li>\r\n</ul>\r\n\n                    <div class=\"callout\">\n                        <p>Source markdown: <code>uai-1-csharp-website-support.zh-SG.md</code></p>\n                    </div>\n                </aside>"
+              }
+            },
+            {
+              "type": "section",
+              "id": "protocol5-uai-1-csharp-website-support-zh-sg.section.7",
+              "children": [
+                {
+                  "type": "heading",
+                  "id": "protocol5-uai-1-csharp-website-support-zh-sg.heading.3",
+                  "level": 1,
+                  "text": {
+                    "literal": "UAI-1 C# ç½‘ç«™æ”¯æŒ\u0081å·¥å…·åŒ…",
+                    "normalized": "UAI-1 C# ç½‘ç«™æ”¯æŒ\u0081å·¥å…·åŒ…",
+                    "language": "zh-SG"
+                  },
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]/h1[0]",
+                    "htmlFragment": "<h1>UAI-1 C# &#231;&#189;‘&#231;&#171;™&#230;”&#175;&#230;Œ\u0081&#229;&#183;&#165;&#229;…&#183;&#229;Œ…</h1>"
+                  }
+                },
+                {
+                  "type": "paragraph",
+                  "id": "protocol5-uai-1-csharp-website-support-zh-sg.paragraph.9",
+                  "text": {
+                    "literal": "æœ¬é¡µå\u008F‘å¸ƒ Protocol5 çš„å…¥é—¨ä¸‹è½½åŒ…ï¼Œç”¨äºŽä¸º C# ç½‘ç«™æ·»åŠ\u00A0 UAI-1 æ”¯æŒ\u0081ï¼Œå°¤å…¶é€‚å\u0090ˆå¸Œæœ›åœ¨ä¸\u008Dè®©è§„èŒƒ UAI è¯­ä¹‰ä¾\u009Dèµ–æœ¬åœ°äººç±»è¯­è¨€æ\u00A0¼å¼\u008Fè§„åˆ™çš„å‰\u008Dæ\u008F\u0090ä¸‹ï¼ŒèŽ·å¾— CultureInfo ä¸Ž Accept-Language å®žç”¨é›†æˆ\u0090è·¯å¾„çš„ ASP.NET Core ç«™ç‚¹ã€‚",
+                    "normalized": "æœ¬é¡µå\u008F‘å¸ƒ Protocol5 çš„å…¥é—¨ä¸‹è½½åŒ…ï¼Œç”¨äºŽä¸º C# ç½‘ç«™æ·»åŠ UAI-1 æ”¯æŒ\u0081ï¼Œå°¤å…¶é€‚å\u0090ˆå¸Œæœ›åœ¨ä¸\u008Dè®©è§„èŒƒ UAI è¯­ä¹‰ä¾\u009Dèµ–æœ¬åœ°äººç±»è¯­è¨€æ ¼å¼\u008Fè§„åˆ™çš„å‰\u008Dæ\u008F\u0090ä¸‹ï¼ŒèŽ·å¾— CultureInfo ä¸Ž Accept-Language å®žç”¨é›†æˆ\u0090è·¯å¾„çš„ ASP.NET Core ç«™ç‚¹ã€‚",
+                    "language": "zh-SG"
+                  },
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]/p[0]",
+                    "htmlFragment": "<p>&#230;œ&#172;&#233;&#161;&#181;&#229;\u008F‘&#229;&#184;ƒ Protocol5 &#231;š„&#229;…&#165;&#233;—&#168;&#228;&#184;‹&#232;&#189;&#189;&#229;Œ…&#239;&#188;Œ&#231;”&#168;&#228;&#186;Ž&#228;&#184;&#186; C# &#231;&#189;‘&#231;&#171;™&#230;&#183;&#187;&#229;Š&#160; UAI-1 &#230;”&#175;&#230;Œ\u0081&#239;&#188;Œ&#229;&#176;&#164;&#229;…&#182;&#233;€‚&#229;\u0090ˆ&#229;&#184;Œ&#230;œ›&#229;œ&#168;&#228;&#184;\u008D&#232;&#174;&#169;&#232;&#167;„&#232;Œƒ UAI &#232;&#175;&#173;&#228;&#185;‰&#228;&#190;\u009D&#232;&#181;–&#230;œ&#172;&#229;œ&#176;&#228;&#186;&#186;&#231;&#177;&#187;&#232;&#175;&#173;&#232;&#168;€&#230;&#160;&#188;&#229;&#188;\u008F&#232;&#167;„&#229;ˆ™&#231;š„&#229;‰\u008D&#230;\u008F\u0090&#228;&#184;‹&#239;&#188;Œ&#232;Ž&#183;&#229;&#190;— <code>CultureInfo</code> &#228;&#184;Ž <code>Accept-Language</code> &#229;&#174;ž&#231;”&#168;&#233;›†&#230;ˆ\u0090&#232;&#183;&#175;&#229;&#190;„&#231;š„ ASP.NET Core &#231;&#171;™&#231;‚&#185;&#227;€‚</p>"
+                  }
+                },
+                {
+                  "type": "heading",
+                  "id": "protocol5-uai-1-csharp-website-support-zh-sg.heading.4",
+                  "level": 2,
+                  "text": {
+                    "literal": "æ–‡æ¡£ä¿¡æ\u0081¯",
+                    "normalized": "æ–‡æ¡£ä¿¡æ\u0081¯",
+                    "language": "zh-SG"
+                  },
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]/h2[0]",
+                    "htmlFragment": "<h2>&#230;–‡&#230;&#161;&#163;&#228;&#191;&#161;&#230;\u0081&#175;</h2>"
+                  }
+                },
+                {
+                  "type": "list",
+                  "id": "protocol5-uai-1-csharp-website-support-zh-sg.list.2",
+                  "children": [
+                    {
+                      "type": "listItem",
+                      "id": "protocol5-uai-1-csharp-website-support-zh-sg.listItem.11",
+                      "text": {
+                        "literal": "ç›®æ\u00A0‡è¯»è€…ï¼š C# ä¸Ž ASP.NET ç½‘ç«™å¼€å\u008F‘è€…",
+                        "normalized": "ç›®æ ‡è¯»è€…ï¼š C# ä¸Ž ASP.NET ç½‘ç«™å¼€å\u008F‘è€…",
+                        "language": "zh-SG"
+                      },
+                      "children": [
+                        {
+                          "type": "unknown",
+                          "id": "protocol5-uai-1-csharp-website-support-zh-sg.unknown.21",
+                          "rawContent": "<strong>&#231;›&#174;&#230;&#160;‡&#232;&#175;&#187;&#232;€…&#239;&#188;š</strong>",
+                          "reason": "unsupported-strong",
+                          "sourceFragment": "<strong>&#231;›&#174;&#230;&#160;‡&#232;&#175;&#187;&#232;€…&#239;&#188;š</strong>",
+                          "sourceRef": {
+                            "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]/ul[0]/li[0]/strong[0]",
+                            "htmlFragment": "<strong>&#231;›&#174;&#230;&#160;‡&#232;&#175;&#187;&#232;€…&#239;&#188;š</strong>"
+                          }
+                        },
+                        {
+                          "type": "unknown",
+                          "id": "protocol5-uai-1-csharp-website-support-zh-sg.unknown.22",
+                          "rawContent": "C# &#228;&#184;Ž ASP.NET &#231;&#189;‘&#231;&#171;™&#229;&#188;€&#229;\u008F‘&#232;€…",
+                          "reason": "unsupported-#text",
+                          "sourceFragment": "C# &#228;&#184;Ž ASP.NET &#231;&#189;‘&#231;&#171;™&#229;&#188;€&#229;\u008F‘&#232;€…",
+                          "sourceRef": {
+                            "domPath": "/",
+                            "htmlFragment": "C# &#228;&#184;Ž ASP.NET &#231;&#189;‘&#231;&#171;™&#229;&#188;€&#229;\u008F‘&#232;€…"
+                          }
+                        }
+                      ],
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]/ul[0]/li[0]",
+                        "htmlFragment": "<li><strong>&#231;›&#174;&#230;&#160;‡&#232;&#175;&#187;&#232;€…&#239;&#188;š</strong> C# &#228;&#184;Ž ASP.NET &#231;&#189;‘&#231;&#171;™&#229;&#188;€&#229;\u008F‘&#232;€…</li>"
+                      }
+                    },
+                    {
+                      "type": "listItem",
+                      "id": "protocol5-uai-1-csharp-website-support-zh-sg.listItem.12",
+                      "text": {
+                        "literal": "ZIP ä¸‹è½½ï¼š protocol5-uai-1-csharp-web-starter.zip",
+                        "normalized": "ZIP ä¸‹è½½ï¼š protocol5-uai-1-csharp-web-starter.zip",
+                        "language": "zh-SG"
+                      },
+                      "children": [
+                        {
+                          "type": "unknown",
+                          "id": "protocol5-uai-1-csharp-website-support-zh-sg.unknown.23",
+                          "rawContent": "<strong>ZIP &#228;&#184;‹&#232;&#189;&#189;&#239;&#188;š</strong>",
+                          "reason": "unsupported-strong",
+                          "sourceFragment": "<strong>ZIP &#228;&#184;‹&#232;&#189;&#189;&#239;&#188;š</strong>",
+                          "sourceRef": {
+                            "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]/ul[0]/li[1]/strong[0]",
+                            "htmlFragment": "<strong>ZIP &#228;&#184;‹&#232;&#189;&#189;&#239;&#188;š</strong>"
+                          }
+                        },
+                        {
+                          "type": "link",
+                          "id": "protocol5-uai-1-csharp-website-support-zh-sg.link.13",
+                          "text": {
+                            "literal": "protocol5-uai-1-csharp-web-starter.zip",
+                            "normalized": "protocol5-uai-1-csharp-web-starter.zip",
+                            "language": "zh-SG"
+                          },
+                          "href": "/downloads/protocol5-uai-1-csharp-web-starter.zip",
+                          "linkPurpose": "navigation",
+                          "sourceRef": {
+                            "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]/ul[0]/li[1]/a[0]",
+                            "htmlFragment": "<a href=\"/downloads/protocol5-uai-1-csharp-web-starter.zip\">protocol5-uai-1-csharp-web-starter.zip</a>"
+                          }
+                        }
+                      ],
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]/ul[0]/li[1]",
+                        "htmlFragment": "<li><strong>ZIP &#228;&#184;‹&#232;&#189;&#189;&#239;&#188;š</strong> <a href=\"/downloads/protocol5-uai-1-csharp-web-starter.zip\">protocol5-uai-1-csharp-web-starter.zip</a></li>"
+                      }
+                    },
+                    {
+                      "type": "listItem",
+                      "id": "protocol5-uai-1-csharp-website-support-zh-sg.listItem.13",
+                      "text": {
+                        "literal": "NuGet åŒ…ä¸‹è½½ï¼š Protocol5.UAI.CSharp.1.0.0.nupkg",
+                        "normalized": "NuGet åŒ…ä¸‹è½½ï¼š Protocol5.UAI.CSharp.1.0.0.nupkg",
+                        "language": "zh-SG"
+                      },
+                      "children": [
+                        {
+                          "type": "unknown",
+                          "id": "protocol5-uai-1-csharp-website-support-zh-sg.unknown.24",
+                          "rawContent": "<strong>NuGet &#229;Œ…&#228;&#184;‹&#232;&#189;&#189;&#239;&#188;š</strong>",
+                          "reason": "unsupported-strong",
+                          "sourceFragment": "<strong>NuGet &#229;Œ…&#228;&#184;‹&#232;&#189;&#189;&#239;&#188;š</strong>",
+                          "sourceRef": {
+                            "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]/ul[0]/li[2]/strong[0]",
+                            "htmlFragment": "<strong>NuGet &#229;Œ…&#228;&#184;‹&#232;&#189;&#189;&#239;&#188;š</strong>"
+                          }
+                        },
+                        {
+                          "type": "link",
+                          "id": "protocol5-uai-1-csharp-website-support-zh-sg.link.14",
+                          "text": {
+                            "literal": "Protocol5.UAI.CSharp.1.0.0.nupkg",
+                            "normalized": "Protocol5.UAI.CSharp.1.0.0.nupkg",
+                            "language": "zh-SG"
+                          },
+                          "href": "/downloads/Protocol5.UAI.CSharp.1.0.0.nupkg",
+                          "linkPurpose": "navigation",
+                          "sourceRef": {
+                            "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]/ul[0]/li[2]/a[0]",
+                            "htmlFragment": "<a href=\"/downloads/Protocol5.UAI.CSharp.1.0.0.nupkg\">Protocol5.UAI.CSharp.1.0.0.nupkg</a>"
+                          }
+                        }
+                      ],
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]/ul[0]/li[2]",
+                        "htmlFragment": "<li><strong>NuGet &#229;Œ…&#228;&#184;‹&#232;&#189;&#189;&#239;&#188;š</strong> <a href=\"/downloads/Protocol5.UAI.CSharp.1.0.0.nupkg\">Protocol5.UAI.CSharp.1.0.0.nupkg</a></li>"
+                      }
+                    },
+                    {
+                      "type": "listItem",
+                      "id": "protocol5-uai-1-csharp-website-support-zh-sg.listItem.14",
+                      "text": {
+                        "literal": "ZIP æ\u00A0¡éªŒå’Œï¼š protocol5-uai-1-csharp-web-starter.zip.sha256",
+                        "normalized": "ZIP æ ¡éªŒå’Œï¼š protocol5-uai-1-csharp-web-starter.zip.sha256",
+                        "language": "zh-SG"
+                      },
+                      "children": [
+                        {
+                          "type": "unknown",
+                          "id": "protocol5-uai-1-csharp-website-support-zh-sg.unknown.25",
+                          "rawContent": "<strong>ZIP &#230;&#160;&#161;&#233;&#170;Œ&#229;’Œ&#239;&#188;š</strong>",
+                          "reason": "unsupported-strong",
+                          "sourceFragment": "<strong>ZIP &#230;&#160;&#161;&#233;&#170;Œ&#229;’Œ&#239;&#188;š</strong>",
+                          "sourceRef": {
+                            "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]/ul[0]/li[3]/strong[0]",
+                            "htmlFragment": "<strong>ZIP &#230;&#160;&#161;&#233;&#170;Œ&#229;’Œ&#239;&#188;š</strong>"
+                          }
+                        },
+                        {
+                          "type": "link",
+                          "id": "protocol5-uai-1-csharp-website-support-zh-sg.link.15",
+                          "text": {
+                            "literal": "protocol5-uai-1-csharp-web-starter.zip.sha256",
+                            "normalized": "protocol5-uai-1-csharp-web-starter.zip.sha256",
+                            "language": "zh-SG"
+                          },
+                          "href": "/downloads/protocol5-uai-1-csharp-web-starter.zip.sha256",
+                          "linkPurpose": "navigation",
+                          "sourceRef": {
+                            "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]/ul[0]/li[3]/a[0]",
+                            "htmlFragment": "<a href=\"/downloads/protocol5-uai-1-csharp-web-starter.zip.sha256\">protocol5-uai-1-csharp-web-starter.zip.sha256</a>"
+                          }
+                        }
+                      ],
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]/ul[0]/li[3]",
+                        "htmlFragment": "<li><strong>ZIP &#230;&#160;&#161;&#233;&#170;Œ&#229;’Œ&#239;&#188;š</strong> <a href=\"/downloads/protocol5-uai-1-csharp-web-starter.zip.sha256\">protocol5-uai-1-csharp-web-starter.zip.sha256</a></li>"
+                      }
+                    },
+                    {
+                      "type": "listItem",
+                      "id": "protocol5-uai-1-csharp-website-support-zh-sg.listItem.15",
+                      "text": {
+                        "literal": "è§„èŒƒè¯­è¨€æ\u00A0‡ç­¾ï¼š x-uai-1",
+                        "normalized": "è§„èŒƒè¯­è¨€æ ‡ç­¾ï¼š x-uai-1",
+                        "language": "zh-SG"
+                      },
+                      "children": [
+                        {
+                          "type": "unknown",
+                          "id": "protocol5-uai-1-csharp-website-support-zh-sg.unknown.26",
+                          "rawContent": "<strong>&#232;&#167;„&#232;Œƒ&#232;&#175;&#173;&#232;&#168;€&#230;&#160;‡&#231;&#173;&#190;&#239;&#188;š</strong>",
+                          "reason": "unsupported-strong",
+                          "sourceFragment": "<strong>&#232;&#167;„&#232;Œƒ&#232;&#175;&#173;&#232;&#168;€&#230;&#160;‡&#231;&#173;&#190;&#239;&#188;š</strong>",
+                          "sourceRef": {
+                            "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]/ul[0]/li[4]/strong[0]",
+                            "htmlFragment": "<strong>&#232;&#167;„&#232;Œƒ&#232;&#175;&#173;&#232;&#168;€&#230;&#160;‡&#231;&#173;&#190;&#239;&#188;š</strong>"
+                          }
+                        },
+                        {
+                          "type": "unknown",
+                          "id": "protocol5-uai-1-csharp-website-support-zh-sg.unknown.27",
+                          "rawContent": "<code>x-uai-1</code>",
+                          "reason": "unsupported-code",
+                          "sourceFragment": "<code>x-uai-1</code>",
+                          "sourceRef": {
+                            "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]/ul[0]/li[4]/code[0]",
+                            "htmlFragment": "<code>x-uai-1</code>"
+                          }
+                        }
+                      ],
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]/ul[0]/li[4]",
+                        "htmlFragment": "<li><strong>&#232;&#167;„&#232;Œƒ&#232;&#175;&#173;&#232;&#168;€&#230;&#160;‡&#231;&#173;&#190;&#239;&#188;š</strong> <code>x-uai-1</code></li>"
+                      }
+                    },
+                    {
+                      "type": "listItem",
+                      "id": "protocol5-uai-1-csharp-website-support-zh-sg.listItem.16",
+                      "text": {
+                        "literal": "è§„èŒƒåº\u008Fåˆ—åŒ–æ–‡åŒ–ï¼š InvariantCulture",
+                        "normalized": "è§„èŒƒåº\u008Fåˆ—åŒ–æ–‡åŒ–ï¼š InvariantCulture",
+                        "language": "zh-SG"
+                      },
+                      "children": [
+                        {
+                          "type": "unknown",
+                          "id": "protocol5-uai-1-csharp-website-support-zh-sg.unknown.28",
+                          "rawContent": "<strong>&#232;&#167;„&#232;Œƒ&#229;&#186;\u008F&#229;ˆ—&#229;Œ–&#230;–‡&#229;Œ–&#239;&#188;š</strong>",
+                          "reason": "unsupported-strong",
+                          "sourceFragment": "<strong>&#232;&#167;„&#232;Œƒ&#229;&#186;\u008F&#229;ˆ—&#229;Œ–&#230;–‡&#229;Œ–&#239;&#188;š</strong>",
+                          "sourceRef": {
+                            "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]/ul[0]/li[5]/strong[0]",
+                            "htmlFragment": "<strong>&#232;&#167;„&#232;Œƒ&#229;&#186;\u008F&#229;ˆ—&#229;Œ–&#230;–‡&#229;Œ–&#239;&#188;š</strong>"
+                          }
+                        },
+                        {
+                          "type": "unknown",
+                          "id": "protocol5-uai-1-csharp-website-support-zh-sg.unknown.29",
+                          "rawContent": "<code>InvariantCulture</code>",
+                          "reason": "unsupported-code",
+                          "sourceFragment": "<code>InvariantCulture</code>",
+                          "sourceRef": {
+                            "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]/ul[0]/li[5]/code[0]",
+                            "htmlFragment": "<code>InvariantCulture</code>"
+                          }
+                        }
+                      ],
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]/ul[0]/li[5]",
+                        "htmlFragment": "<li><strong>&#232;&#167;„&#232;Œƒ&#229;&#186;\u008F&#229;ˆ—&#229;Œ–&#230;–‡&#229;Œ–&#239;&#188;š</strong> <code>InvariantCulture</code></li>"
+                      }
+                    },
+                    {
+                      "type": "listItem",
+                      "id": "protocol5-uai-1-csharp-website-support-zh-sg.listItem.17",
+                      "text": {
+                        "literal": "Microsoft æ–‡æ¡£ï¼š CultureInfo, InvariantCulture, CultureAndRegionInfoBuilder",
+                        "normalized": "Microsoft æ–‡æ¡£ï¼š CultureInfo, InvariantCulture, CultureAndRegionInfoBuilder",
+                        "language": "zh-SG"
+                      },
+                      "children": [
+                        {
+                          "type": "unknown",
+                          "id": "protocol5-uai-1-csharp-website-support-zh-sg.unknown.30",
+                          "rawContent": "<strong>Microsoft &#230;–‡&#230;&#161;&#163;&#239;&#188;š</strong>",
+                          "reason": "unsupported-strong",
+                          "sourceFragment": "<strong>Microsoft &#230;–‡&#230;&#161;&#163;&#239;&#188;š</strong>",
+                          "sourceRef": {
+                            "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]/ul[0]/li[6]/strong[0]",
+                            "htmlFragment": "<strong>Microsoft &#230;–‡&#230;&#161;&#163;&#239;&#188;š</strong>"
+                          }
+                        },
+                        {
+                          "type": "link",
+                          "id": "protocol5-uai-1-csharp-website-support-zh-sg.link.16",
+                          "text": {
+                            "literal": "CultureInfo",
+                            "normalized": "CultureInfo",
+                            "language": "zh-SG"
+                          },
+                          "href": "https://learn.microsoft.com/en-us/dotnet/fundamentals/runtime-libraries/system-globalization-cultureinfo",
+                          "linkPurpose": "navigation",
+                          "sourceRef": {
+                            "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]/ul[0]/li[6]/a[0]",
+                            "htmlFragment": "<a href=\"https://learn.microsoft.com/en-us/dotnet/fundamentals/runtime-libraries/system-globalization-cultureinfo\">CultureInfo</a>"
+                          }
+                        },
+                        {
+                          "type": "unknown",
+                          "id": "protocol5-uai-1-csharp-website-support-zh-sg.unknown.31",
+                          "rawContent": ",",
+                          "reason": "unsupported-#text",
+                          "sourceFragment": ",",
+                          "sourceRef": {
+                            "domPath": "/",
+                            "htmlFragment": ","
+                          }
+                        },
+                        {
+                          "type": "link",
+                          "id": "protocol5-uai-1-csharp-website-support-zh-sg.link.17",
+                          "text": {
+                            "literal": "InvariantCulture",
+                            "normalized": "InvariantCulture",
+                            "language": "zh-SG"
+                          },
+                          "href": "https://learn.microsoft.com/en-us/dotnet/fundamentals/runtime-libraries/system-globalization-cultureinfo-invariantculture",
+                          "linkPurpose": "navigation",
+                          "sourceRef": {
+                            "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]/ul[0]/li[6]/a[1]",
+                            "htmlFragment": "<a href=\"https://learn.microsoft.com/en-us/dotnet/fundamentals/runtime-libraries/system-globalization-cultureinfo-invariantculture\">InvariantCulture</a>"
+                          }
+                        },
+                        {
+                          "type": "unknown",
+                          "id": "protocol5-uai-1-csharp-website-support-zh-sg.unknown.32",
+                          "rawContent": ",",
+                          "reason": "unsupported-#text",
+                          "sourceFragment": ",",
+                          "sourceRef": {
+                            "domPath": "/",
+                            "htmlFragment": ","
+                          }
+                        },
+                        {
+                          "type": "link",
+                          "id": "protocol5-uai-1-csharp-website-support-zh-sg.link.18",
+                          "text": {
+                            "literal": "CultureAndRegionInfoBuilder",
+                            "normalized": "CultureAndRegionInfoBuilder",
+                            "language": "zh-SG"
+                          },
+                          "href": "https://learn.microsoft.com/en-us/dotnet/fundamentals/runtime-libraries/system-globalization-cultureandregioninfobuilder",
+                          "linkPurpose": "navigation",
+                          "sourceRef": {
+                            "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]/ul[0]/li[6]/a[2]",
+                            "htmlFragment": "<a href=\"https://learn.microsoft.com/en-us/dotnet/fundamentals/runtime-libraries/system-globalization-cultureandregioninfobuilder\">CultureAndRegionInfoBuilder</a>"
+                          }
+                        }
+                      ],
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]/ul[0]/li[6]",
+                        "htmlFragment": "<li><strong>Microsoft &#230;–‡&#230;&#161;&#163;&#239;&#188;š</strong> <a href=\"https://learn.microsoft.com/en-us/dotnet/fundamentals/runtime-libraries/system-globalization-cultureinfo\">CultureInfo</a>, <a href=\"https://learn.microsoft.com/en-us/dotnet/fundamentals/runtime-libraries/system-globalization-cultureinfo-invariantculture\">InvariantCulture</a>, <a href=\"https://learn.microsoft.com/en-us/dotnet/fundamentals/runtime-libraries/system-globalization-cultureandregioninfobuilder\">CultureAndRegionInfoBuilder</a></li>"
+                      }
+                    }
+                  ],
+                  "ordered": false,
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]/ul[0]",
+                    "htmlFragment": "<ul>\r\n<li><strong>&#231;›&#174;&#230;&#160;‡&#232;&#175;&#187;&#232;€…&#239;&#188;š</strong> C# &#228;&#184;Ž ASP.NET &#231;&#189;‘&#231;&#171;™&#229;&#188;€&#229;\u008F‘&#232;€…</li>\r\n<li><strong>ZIP &#228;&#184;‹&#232;&#189;&#189;&#239;&#188;š</strong> <a href=\"/downloads/protocol5-uai-1-csharp-web-starter.zip\">protocol5-uai-1-csharp-web-starter.zip</a></li>\r\n<li><strong>NuGet &#229;Œ…&#228;&#184;‹&#232;&#189;&#189;&#239;&#188;š</strong> <a href=\"/downloads/Protocol5.UAI.CSharp.1.0.0.nupkg\">Protocol5.UAI.CSharp.1.0.0.nupkg</a></li>\r\n<li><strong>ZIP &#230;&#160;&#161;&#233;&#170;Œ&#229;’Œ&#239;&#188;š</strong> <a href=\"/downloads/protocol5-uai-1-csharp-web-starter.zip.sha256\">protocol5-uai-1-csharp-web-starter.zip.sha256</a></li>\r\n<li><strong>&#232;&#167;„&#232;Œƒ&#232;&#175;&#173;&#232;&#168;€&#230;&#160;‡&#231;&#173;&#190;&#239;&#188;š</strong> <code>x-uai-1</code></li>\r\n<li><strong>&#232;&#167;„&#232;Œƒ&#229;&#186;\u008F&#229;ˆ—&#229;Œ–&#230;–‡&#229;Œ–&#239;&#188;š</strong> <code>InvariantCulture</code></li>\r\n<li><strong>Microsoft &#230;–‡&#230;&#161;&#163;&#239;&#188;š</strong> <a href=\"https://learn.microsoft.com/en-us/dotnet/fundamentals/runtime-libraries/system-globalization-cultureinfo\">CultureInfo</a>, <a href=\"https://learn.microsoft.com/en-us/dotnet/fundamentals/runtime-libraries/system-globalization-cultureinfo-invariantculture\">InvariantCulture</a>, <a href=\"https://learn.microsoft.com/en-us/dotnet/fundamentals/runtime-libraries/system-globalization-cultureandregioninfobuilder\">CultureAndRegionInfoBuilder</a></li>\r\n</ul>"
+                  }
+                },
+                {
+                  "type": "heading",
+                  "id": "protocol5-uai-1-csharp-website-support-zh-sg.heading.5",
+                  "level": 2,
+                  "text": {
+                    "literal": "ä¸‹è½½åŒ…åŒ…å\u0090«çš„å†…å®¹",
+                    "normalized": "ä¸‹è½½åŒ…åŒ…å\u0090«çš„å†…å®¹",
+                    "language": "zh-SG"
+                  },
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]/h2[1]",
+                    "htmlFragment": "<h2>&#228;&#184;‹&#232;&#189;&#189;&#229;Œ…&#229;Œ…&#229;\u0090&#171;&#231;š„&#229;†…&#229;&#174;&#185;</h2>"
+                  }
+                },
+                {
+                  "type": "list",
+                  "id": "protocol5-uai-1-csharp-website-support-zh-sg.list.3",
+                  "children": [
+                    {
+                      "type": "listItem",
+                      "id": "protocol5-uai-1-csharp-website-support-zh-sg.listItem.18",
+                      "text": {
+                        "literal": "Protocol5.UAI.CSharp æº\u0090é¡¹ç›®",
+                        "normalized": "Protocol5.UAI.CSharp æº\u0090é¡¹ç›®",
+                        "language": "zh-SG"
+                      },
+                      "children": [
+                        {
+                          "type": "unknown",
+                          "id": "protocol5-uai-1-csharp-website-support-zh-sg.unknown.33",
+                          "rawContent": "<code>Protocol5.UAI.CSharp</code>",
+                          "reason": "unsupported-code",
+                          "sourceFragment": "<code>Protocol5.UAI.CSharp</code>",
+                          "sourceRef": {
+                            "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]/ul[1]/li[0]/code[0]",
+                            "htmlFragment": "<code>Protocol5.UAI.CSharp</code>"
+                          }
+                        },
+                        {
+                          "type": "unknown",
+                          "id": "protocol5-uai-1-csharp-website-support-zh-sg.unknown.34",
+                          "rawContent": "&#230;&#186;\u0090&#233;&#161;&#185;&#231;›&#174;",
+                          "reason": "unsupported-#text",
+                          "sourceFragment": "&#230;&#186;\u0090&#233;&#161;&#185;&#231;›&#174;",
+                          "sourceRef": {
+                            "domPath": "/",
+                            "htmlFragment": "&#230;&#186;\u0090&#233;&#161;&#185;&#231;›&#174;"
+                          }
+                        }
+                      ],
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]/ul[1]/li[0]",
+                        "htmlFragment": "<li><code>Protocol5.UAI.CSharp</code> &#230;&#186;\u0090&#233;&#161;&#185;&#231;›&#174;</li>"
+                      }
+                    },
+                    {
+                      "type": "listItem",
+                      "id": "protocol5-uai-1-csharp-website-support-zh-sg.listItem.19",
+                      "text": {
+                        "literal": "æ‰“åŒ…å¥½çš„ Protocol5.UAI.CSharp .nupkg",
+                        "normalized": "æ‰“åŒ…å¥½çš„ Protocol5.UAI.CSharp .nupkg",
+                        "language": "zh-SG"
+                      },
+                      "children": [
+                        {
+                          "type": "unknown",
+                          "id": "protocol5-uai-1-csharp-website-support-zh-sg.unknown.35",
+                          "rawContent": "&#230;‰“&#229;Œ…&#229;&#165;&#189;&#231;š„",
+                          "reason": "unsupported-#text",
+                          "sourceFragment": "&#230;‰“&#229;Œ…&#229;&#165;&#189;&#231;š„",
+                          "sourceRef": {
+                            "domPath": "/",
+                            "htmlFragment": "&#230;‰“&#229;Œ…&#229;&#165;&#189;&#231;š„"
+                          }
+                        },
+                        {
+                          "type": "unknown",
+                          "id": "protocol5-uai-1-csharp-website-support-zh-sg.unknown.36",
+                          "rawContent": "<code>Protocol5.UAI.CSharp</code>",
+                          "reason": "unsupported-code",
+                          "sourceFragment": "<code>Protocol5.UAI.CSharp</code>",
+                          "sourceRef": {
+                            "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]/ul[1]/li[1]/code[0]",
+                            "htmlFragment": "<code>Protocol5.UAI.CSharp</code>"
+                          }
+                        },
+                        {
+                          "type": "unknown",
+                          "id": "protocol5-uai-1-csharp-website-support-zh-sg.unknown.37",
+                          "rawContent": "<code>.nupkg</code>",
+                          "reason": "unsupported-code",
+                          "sourceFragment": "<code>.nupkg</code>",
+                          "sourceRef": {
+                            "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]/ul[1]/li[1]/code[1]",
+                            "htmlFragment": "<code>.nupkg</code>"
+                          }
+                        }
+                      ],
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]/ul[1]/li[1]",
+                        "htmlFragment": "<li>&#230;‰“&#229;Œ…&#229;&#165;&#189;&#231;š„ <code>Protocol5.UAI.CSharp</code> <code>.nupkg</code></li>"
+                      }
+                    },
+                    {
+                      "type": "listItem",
+                      "id": "protocol5-uai-1-csharp-website-support-zh-sg.listItem.20",
+                      "text": {
+                        "literal": "Radix 63404 ç¼–ç\u00A0\u0081ä¸Žè§£ç\u00A0\u0081è¾…åŠ©å·¥å…·",
+                        "normalized": "Radix 63404 ç¼–ç \u0081ä¸Žè§£ç \u0081è¾…åŠ©å·¥å…·",
+                        "language": "zh-SG"
+                      },
+                      "children": [
+                        {
+                          "type": "unknown",
+                          "id": "protocol5-uai-1-csharp-website-support-zh-sg.unknown.38",
+                          "rawContent": "Radix 63404 &#231;&#188;–&#231;&#160;\u0081&#228;&#184;Ž&#232;&#167;&#163;&#231;&#160;\u0081&#232;&#190;…&#229;Š&#169;&#229;&#183;&#165;&#229;…&#183;",
+                          "reason": "unsupported-#text",
+                          "sourceFragment": "Radix 63404 &#231;&#188;–&#231;&#160;\u0081&#228;&#184;Ž&#232;&#167;&#163;&#231;&#160;\u0081&#232;&#190;…&#229;Š&#169;&#229;&#183;&#165;&#229;…&#183;",
+                          "sourceRef": {
+                            "domPath": "/",
+                            "htmlFragment": "Radix 63404 &#231;&#188;–&#231;&#160;\u0081&#228;&#184;Ž&#232;&#167;&#163;&#231;&#160;\u0081&#232;&#190;…&#229;Š&#169;&#229;&#183;&#165;&#229;…&#183;"
+                          }
+                        }
+                      ],
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]/ul[1]/li[2]",
+                        "htmlFragment": "<li>Radix 63404 &#231;&#188;–&#231;&#160;\u0081&#228;&#184;Ž&#232;&#167;&#163;&#231;&#160;\u0081&#232;&#190;…&#229;Š&#169;&#229;&#183;&#165;&#229;…&#183;</li>"
+                      }
+                    },
+                    {
+                      "type": "listItem",
+                      "id": "protocol5-uai-1-csharp-website-support-zh-sg.listItem.21",
+                      "text": {
+                        "literal": "èƒ½å¤Ÿä»Ž query stringã€\u0081cookie æˆ– Accept-Language è¯†åˆ« UAI è¯·æ±‚çš„ ASP.NET Core ä¸­é—´ä»¶",
+                        "normalized": "èƒ½å¤Ÿä»Ž query stringã€\u0081cookie æˆ– Accept-Language è¯†åˆ« UAI è¯·æ±‚çš„ ASP.NET Core ä¸­é—´ä»¶",
+                        "language": "zh-SG"
+                      },
+                      "children": [
+                        {
+                          "type": "unknown",
+                          "id": "protocol5-uai-1-csharp-website-support-zh-sg.unknown.39",
+                          "rawContent": "&#232;ƒ&#189;&#229;&#164;Ÿ&#228;&#187;Ž query string&#227;€\u0081cookie &#230;ˆ–",
+                          "reason": "unsupported-#text",
+                          "sourceFragment": "&#232;ƒ&#189;&#229;&#164;Ÿ&#228;&#187;Ž query string&#227;€\u0081cookie &#230;ˆ–",
+                          "sourceRef": {
+                            "domPath": "/",
+                            "htmlFragment": "&#232;ƒ&#189;&#229;&#164;Ÿ&#228;&#187;Ž query string&#227;€\u0081cookie &#230;ˆ–"
+                          }
+                        },
+                        {
+                          "type": "unknown",
+                          "id": "protocol5-uai-1-csharp-website-support-zh-sg.unknown.40",
+                          "rawContent": "<code>Accept-Language</code>",
+                          "reason": "unsupported-code",
+                          "sourceFragment": "<code>Accept-Language</code>",
+                          "sourceRef": {
+                            "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]/ul[1]/li[3]/code[0]",
+                            "htmlFragment": "<code>Accept-Language</code>"
+                          }
+                        },
+                        {
+                          "type": "unknown",
+                          "id": "protocol5-uai-1-csharp-website-support-zh-sg.unknown.41",
+                          "rawContent": "&#232;&#175;†&#229;ˆ&#171; UAI &#232;&#175;&#183;&#230;&#177;‚&#231;š„ ASP.NET Core &#228;&#184;&#173;&#233;—&#180;&#228;&#187;&#182;",
+                          "reason": "unsupported-#text",
+                          "sourceFragment": "&#232;&#175;†&#229;ˆ&#171; UAI &#232;&#175;&#183;&#230;&#177;‚&#231;š„ ASP.NET Core &#228;&#184;&#173;&#233;—&#180;&#228;&#187;&#182;",
+                          "sourceRef": {
+                            "domPath": "/",
+                            "htmlFragment": "&#232;&#175;†&#229;ˆ&#171; UAI &#232;&#175;&#183;&#230;&#177;‚&#231;š„ ASP.NET Core &#228;&#184;&#173;&#233;—&#180;&#228;&#187;&#182;"
+                          }
+                        }
+                      ],
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]/ul[1]/li[3]",
+                        "htmlFragment": "<li>&#232;ƒ&#189;&#229;&#164;Ÿ&#228;&#187;Ž query string&#227;€\u0081cookie &#230;ˆ– <code>Accept-Language</code> &#232;&#175;†&#229;ˆ&#171; UAI &#232;&#175;&#183;&#230;&#177;‚&#231;š„ ASP.NET Core &#228;&#184;&#173;&#233;—&#180;&#228;&#187;&#182;</li>"
+                      }
+                    },
+                    {
+                      "type": "listItem",
+                      "id": "protocol5-uai-1-csharp-website-support-zh-sg.listItem.22",
+                      "text": {
+                        "literal": "ä¸€ä¸ªç®€çŸ­å®‰è£…è¯´æ˜Žï¼Œä¾›å\u0081\u008Få¥½ç›´æŽ¥ä¸‹è½½è€Œä¸\u008Dæ˜¯åŒ…æº\u0090çš„å›¢é˜Ÿä½¿ç”¨",
+                        "normalized": "ä¸€ä¸ªç®€çŸ­å®‰è£…è¯´æ˜Žï¼Œä¾›å\u0081\u008Få¥½ç›´æŽ¥ä¸‹è½½è€Œä¸\u008Dæ˜¯åŒ…æº\u0090çš„å›¢é˜Ÿä½¿ç”¨",
+                        "language": "zh-SG"
+                      },
+                      "children": [
+                        {
+                          "type": "unknown",
+                          "id": "protocol5-uai-1-csharp-website-support-zh-sg.unknown.42",
+                          "rawContent": "&#228;&#184;€&#228;&#184;&#170;&#231;&#174;€&#231;Ÿ&#173;&#229;&#174;‰&#232;&#163;…&#232;&#175;&#180;&#230;˜Ž&#239;&#188;Œ&#228;&#190;›&#229;\u0081\u008F&#229;&#165;&#189;&#231;›&#180;&#230;Ž&#165;&#228;&#184;‹&#232;&#189;&#189;&#232;€Œ&#228;&#184;\u008D&#230;˜&#175;&#229;Œ…&#230;&#186;\u0090&#231;š„&#229;›&#162;&#233;˜Ÿ&#228;&#189;&#191;&#231;”&#168;",
+                          "reason": "unsupported-#text",
+                          "sourceFragment": "&#228;&#184;€&#228;&#184;&#170;&#231;&#174;€&#231;Ÿ&#173;&#229;&#174;‰&#232;&#163;…&#232;&#175;&#180;&#230;˜Ž&#239;&#188;Œ&#228;&#190;›&#229;\u0081\u008F&#229;&#165;&#189;&#231;›&#180;&#230;Ž&#165;&#228;&#184;‹&#232;&#189;&#189;&#232;€Œ&#228;&#184;\u008D&#230;˜&#175;&#229;Œ…&#230;&#186;\u0090&#231;š„&#229;›&#162;&#233;˜Ÿ&#228;&#189;&#191;&#231;”&#168;",
+                          "sourceRef": {
+                            "domPath": "/",
+                            "htmlFragment": "&#228;&#184;€&#228;&#184;&#170;&#231;&#174;€&#231;Ÿ&#173;&#229;&#174;‰&#232;&#163;…&#232;&#175;&#180;&#230;˜Ž&#239;&#188;Œ&#228;&#190;›&#229;\u0081\u008F&#229;&#165;&#189;&#231;›&#180;&#230;Ž&#165;&#228;&#184;‹&#232;&#189;&#189;&#232;€Œ&#228;&#184;\u008D&#230;˜&#175;&#229;Œ…&#230;&#186;\u0090&#231;š„&#229;›&#162;&#233;˜Ÿ&#228;&#189;&#191;&#231;”&#168;"
+                          }
+                        }
+                      ],
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]/ul[1]/li[4]",
+                        "htmlFragment": "<li>&#228;&#184;€&#228;&#184;&#170;&#231;&#174;€&#231;Ÿ&#173;&#229;&#174;‰&#232;&#163;…&#232;&#175;&#180;&#230;˜Ž&#239;&#188;Œ&#228;&#190;›&#229;\u0081\u008F&#229;&#165;&#189;&#231;›&#180;&#230;Ž&#165;&#228;&#184;‹&#232;&#189;&#189;&#232;€Œ&#228;&#184;\u008D&#230;˜&#175;&#229;Œ…&#230;&#186;\u0090&#231;š„&#229;›&#162;&#233;˜Ÿ&#228;&#189;&#191;&#231;”&#168;</li>"
+                      }
+                    }
+                  ],
+                  "ordered": false,
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]/ul[1]",
+                    "htmlFragment": "<ul>\r\n<li><code>Protocol5.UAI.CSharp</code> &#230;&#186;\u0090&#233;&#161;&#185;&#231;›&#174;</li>\r\n<li>&#230;‰“&#229;Œ…&#229;&#165;&#189;&#231;š„ <code>Protocol5.UAI.CSharp</code> <code>.nupkg</code></li>\r\n<li>Radix 63404 &#231;&#188;–&#231;&#160;\u0081&#228;&#184;Ž&#232;&#167;&#163;&#231;&#160;\u0081&#232;&#190;…&#229;Š&#169;&#229;&#183;&#165;&#229;…&#183;</li>\r\n<li>&#232;ƒ&#189;&#229;&#164;Ÿ&#228;&#187;Ž query string&#227;€\u0081cookie &#230;ˆ– <code>Accept-Language</code> &#232;&#175;†&#229;ˆ&#171; UAI &#232;&#175;&#183;&#230;&#177;‚&#231;š„ ASP.NET Core &#228;&#184;&#173;&#233;—&#180;&#228;&#187;&#182;</li>\r\n<li>&#228;&#184;€&#228;&#184;&#170;&#231;&#174;€&#231;Ÿ&#173;&#229;&#174;‰&#232;&#163;…&#232;&#175;&#180;&#230;˜Ž&#239;&#188;Œ&#228;&#190;›&#229;\u0081\u008F&#229;&#165;&#189;&#231;›&#180;&#230;Ž&#165;&#228;&#184;‹&#232;&#189;&#189;&#232;€Œ&#228;&#184;\u008D&#230;˜&#175;&#229;Œ…&#230;&#186;\u0090&#231;š„&#229;›&#162;&#233;˜Ÿ&#228;&#189;&#191;&#231;”&#168;</li>\r\n</ul>"
+                  }
+                },
+                {
+                  "type": "heading",
+                  "id": "protocol5-uai-1-csharp-website-support-zh-sg.heading.6",
+                  "level": 2,
+                  "text": {
+                    "literal": "ä¸ºä»€ä¹ˆ starter ä½¿ç”¨ x-uai-1",
+                    "normalized": "ä¸ºä»€ä¹ˆ starter ä½¿ç”¨ x-uai-1",
+                    "language": "zh-SG"
+                  },
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]/h2[2]",
+                    "htmlFragment": "<h2>&#228;&#184;&#186;&#228;&#187;€&#228;&#185;ˆ starter &#228;&#189;&#191;&#231;”&#168; <code>x-uai-1</code></h2>"
+                  }
+                },
+                {
+                  "type": "paragraph",
+                  "id": "protocol5-uai-1-csharp-website-support-zh-sg.paragraph.10",
+                  "text": {
+                    "literal": "å¯¹ç½‘ç«™è€Œè¨€ï¼Œæ¸…æ™°çš„è\u0081Œè´£æ‹†åˆ†å¦‚ä¸‹ï¼š",
+                    "normalized": "å¯¹ç½‘ç«™è€Œè¨€ï¼Œæ¸…æ™°çš„è\u0081Œè´£æ‹†åˆ†å¦‚ä¸‹ï¼š",
+                    "language": "zh-SG"
+                  },
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]/p[1]",
+                    "htmlFragment": "<p>&#229;&#175;&#185;&#231;&#189;‘&#231;&#171;™&#232;€Œ&#232;&#168;€&#239;&#188;Œ&#230;&#184;…&#230;™&#176;&#231;š„&#232;\u0081Œ&#232;&#180;&#163;&#230;‹†&#229;ˆ†&#229;&#166;‚&#228;&#184;‹&#239;&#188;š</p>"
+                  }
+                },
+                {
+                  "type": "list",
+                  "id": "protocol5-uai-1-csharp-website-support-zh-sg.list.4",
+                  "children": [
+                    {
+                      "type": "listItem",
+                      "id": "protocol5-uai-1-csharp-website-support-zh-sg.listItem.23",
+                      "text": {
+                        "literal": "ç”¨ x-uai-1 å¤„ç\u0090† HTML langã€\u0081è¯·æ±‚å\u008D\u008Få•†ä»¥å\u008FŠ Content-Language",
+                        "normalized": "ç”¨ x-uai-1 å¤„ç\u0090† HTML langã€\u0081è¯·æ±‚å\u008D\u008Få•†ä»¥å\u008FŠ Content-Language",
+                        "language": "zh-SG"
+                      },
+                      "children": [
+                        {
+                          "type": "unknown",
+                          "id": "protocol5-uai-1-csharp-website-support-zh-sg.unknown.43",
+                          "rawContent": "&#231;”&#168;",
+                          "reason": "unsupported-#text",
+                          "sourceFragment": "&#231;”&#168;",
+                          "sourceRef": {
+                            "domPath": "/",
+                            "htmlFragment": "&#231;”&#168;"
+                          }
+                        },
+                        {
+                          "type": "unknown",
+                          "id": "protocol5-uai-1-csharp-website-support-zh-sg.unknown.44",
+                          "rawContent": "<code>x-uai-1</code>",
+                          "reason": "unsupported-code",
+                          "sourceFragment": "<code>x-uai-1</code>",
+                          "sourceRef": {
+                            "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]/ul[2]/li[0]/code[0]",
+                            "htmlFragment": "<code>x-uai-1</code>"
+                          }
+                        },
+                        {
+                          "type": "unknown",
+                          "id": "protocol5-uai-1-csharp-website-support-zh-sg.unknown.45",
+                          "rawContent": "&#229;&#164;„&#231;\u0090† HTML",
+                          "reason": "unsupported-#text",
+                          "sourceFragment": "&#229;&#164;„&#231;\u0090† HTML",
+                          "sourceRef": {
+                            "domPath": "/",
+                            "htmlFragment": "&#229;&#164;„&#231;\u0090† HTML"
+                          }
+                        },
+                        {
+                          "type": "unknown",
+                          "id": "protocol5-uai-1-csharp-website-support-zh-sg.unknown.46",
+                          "rawContent": "<code>lang</code>",
+                          "reason": "unsupported-code",
+                          "sourceFragment": "<code>lang</code>",
+                          "sourceRef": {
+                            "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]/ul[2]/li[0]/code[1]",
+                            "htmlFragment": "<code>lang</code>"
+                          }
+                        },
+                        {
+                          "type": "unknown",
+                          "id": "protocol5-uai-1-csharp-website-support-zh-sg.unknown.47",
+                          "rawContent": "&#227;€\u0081&#232;&#175;&#183;&#230;&#177;‚&#229;\u008D\u008F&#229;•†&#228;&#187;&#165;&#229;\u008FŠ",
+                          "reason": "unsupported-#text",
+                          "sourceFragment": "&#227;€\u0081&#232;&#175;&#183;&#230;&#177;‚&#229;\u008D\u008F&#229;•†&#228;&#187;&#165;&#229;\u008FŠ",
+                          "sourceRef": {
+                            "domPath": "/",
+                            "htmlFragment": "&#227;€\u0081&#232;&#175;&#183;&#230;&#177;‚&#229;\u008D\u008F&#229;•†&#228;&#187;&#165;&#229;\u008FŠ"
+                          }
+                        },
+                        {
+                          "type": "unknown",
+                          "id": "protocol5-uai-1-csharp-website-support-zh-sg.unknown.48",
+                          "rawContent": "<code>Content-Language</code>",
+                          "reason": "unsupported-code",
+                          "sourceFragment": "<code>Content-Language</code>",
+                          "sourceRef": {
+                            "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]/ul[2]/li[0]/code[2]",
+                            "htmlFragment": "<code>Content-Language</code>"
+                          }
+                        }
+                      ],
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]/ul[2]/li[0]",
+                        "htmlFragment": "<li>&#231;”&#168; <code>x-uai-1</code> &#229;&#164;„&#231;\u0090† HTML <code>lang</code>&#227;€\u0081&#232;&#175;&#183;&#230;&#177;‚&#229;\u008D\u008F&#229;•†&#228;&#187;&#165;&#229;\u008FŠ <code>Content-Language</code></li>"
+                      }
+                    },
+                    {
+                      "type": "listItem",
+                      "id": "protocol5-uai-1-csharp-website-support-zh-sg.listItem.24",
+                      "text": {
+                        "literal": "å½“è¿\u0090è¡Œæ—¶æ”¯æŒ\u0081æ—¶ï¼Œä½¿ç”¨ CultureInfo.GetCultureInfo(\"x-uai-1\")",
+                        "normalized": "å½“è¿\u0090è¡Œæ—¶æ”¯æŒ\u0081æ—¶ï¼Œä½¿ç”¨ CultureInfo.GetCultureInfo(\"x-uai-1\")",
+                        "language": "zh-SG"
+                      },
+                      "children": [
+                        {
+                          "type": "unknown",
+                          "id": "protocol5-uai-1-csharp-website-support-zh-sg.unknown.49",
+                          "rawContent": "&#229;&#189;“&#232;&#191;\u0090&#232;&#161;Œ&#230;—&#182;&#230;”&#175;&#230;Œ\u0081&#230;—&#182;&#239;&#188;Œ&#228;&#189;&#191;&#231;”&#168;",
+                          "reason": "unsupported-#text",
+                          "sourceFragment": "&#229;&#189;“&#232;&#191;\u0090&#232;&#161;Œ&#230;—&#182;&#230;”&#175;&#230;Œ\u0081&#230;—&#182;&#239;&#188;Œ&#228;&#189;&#191;&#231;”&#168;",
+                          "sourceRef": {
+                            "domPath": "/",
+                            "htmlFragment": "&#229;&#189;“&#232;&#191;\u0090&#232;&#161;Œ&#230;—&#182;&#230;”&#175;&#230;Œ\u0081&#230;—&#182;&#239;&#188;Œ&#228;&#189;&#191;&#231;”&#168;"
+                          }
+                        },
+                        {
+                          "type": "unknown",
+                          "id": "protocol5-uai-1-csharp-website-support-zh-sg.unknown.50",
+                          "rawContent": "<code>CultureInfo.GetCultureInfo(&quot;x-uai-1&quot;)</code>",
+                          "reason": "unsupported-code",
+                          "sourceFragment": "<code>CultureInfo.GetCultureInfo(&quot;x-uai-1&quot;)</code>",
+                          "sourceRef": {
+                            "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]/ul[2]/li[1]/code[0]",
+                            "htmlFragment": "<code>CultureInfo.GetCultureInfo(&quot;x-uai-1&quot;)</code>"
+                          }
+                        }
+                      ],
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]/ul[2]/li[1]",
+                        "htmlFragment": "<li>&#229;&#189;“&#232;&#191;\u0090&#232;&#161;Œ&#230;—&#182;&#230;”&#175;&#230;Œ\u0081&#230;—&#182;&#239;&#188;Œ&#228;&#189;&#191;&#231;”&#168; <code>CultureInfo.GetCultureInfo(&quot;x-uai-1&quot;)</code></li>"
+                      }
+                    },
+                    {
+                      "type": "listItem",
+                      "id": "protocol5-uai-1-csharp-website-support-zh-sg.listItem.25",
+                      "text": {
+                        "literal": "åœ¨åº\u008Fåˆ—åŒ–è§„èŒƒ UAI å€¼æ—¶ï¼Œä½¿ç”¨ CultureInfo.InvariantCulture",
+                        "normalized": "åœ¨åº\u008Fåˆ—åŒ–è§„èŒƒ UAI å€¼æ—¶ï¼Œä½¿ç”¨ CultureInfo.InvariantCulture",
+                        "language": "zh-SG"
+                      },
+                      "children": [
+                        {
+                          "type": "unknown",
+                          "id": "protocol5-uai-1-csharp-website-support-zh-sg.unknown.51",
+                          "rawContent": "&#229;œ&#168;&#229;&#186;\u008F&#229;ˆ—&#229;Œ–&#232;&#167;„&#232;Œƒ UAI &#229;€&#188;&#230;—&#182;&#239;&#188;Œ&#228;&#189;&#191;&#231;”&#168;",
+                          "reason": "unsupported-#text",
+                          "sourceFragment": "&#229;œ&#168;&#229;&#186;\u008F&#229;ˆ—&#229;Œ–&#232;&#167;„&#232;Œƒ UAI &#229;€&#188;&#230;—&#182;&#239;&#188;Œ&#228;&#189;&#191;&#231;”&#168;",
+                          "sourceRef": {
+                            "domPath": "/",
+                            "htmlFragment": "&#229;œ&#168;&#229;&#186;\u008F&#229;ˆ—&#229;Œ–&#232;&#167;„&#232;Œƒ UAI &#229;€&#188;&#230;—&#182;&#239;&#188;Œ&#228;&#189;&#191;&#231;”&#168;"
+                          }
+                        },
+                        {
+                          "type": "unknown",
+                          "id": "protocol5-uai-1-csharp-website-support-zh-sg.unknown.52",
+                          "rawContent": "<code>CultureInfo.InvariantCulture</code>",
+                          "reason": "unsupported-code",
+                          "sourceFragment": "<code>CultureInfo.InvariantCulture</code>",
+                          "sourceRef": {
+                            "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]/ul[2]/li[2]/code[0]",
+                            "htmlFragment": "<code>CultureInfo.InvariantCulture</code>"
+                          }
+                        }
+                      ],
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]/ul[2]/li[2]",
+                        "htmlFragment": "<li>&#229;œ&#168;&#229;&#186;\u008F&#229;ˆ—&#229;Œ–&#232;&#167;„&#232;Œƒ UAI &#229;€&#188;&#230;—&#182;&#239;&#188;Œ&#228;&#189;&#191;&#231;”&#168; <code>CultureInfo.InvariantCulture</code></li>"
+                      }
+                    }
+                  ],
+                  "ordered": false,
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]/ul[2]",
+                    "htmlFragment": "<ul>\r\n<li>&#231;”&#168; <code>x-uai-1</code> &#229;&#164;„&#231;\u0090† HTML <code>lang</code>&#227;€\u0081&#232;&#175;&#183;&#230;&#177;‚&#229;\u008D\u008F&#229;•†&#228;&#187;&#165;&#229;\u008FŠ <code>Content-Language</code></li>\r\n<li>&#229;&#189;“&#232;&#191;\u0090&#232;&#161;Œ&#230;—&#182;&#230;”&#175;&#230;Œ\u0081&#230;—&#182;&#239;&#188;Œ&#228;&#189;&#191;&#231;”&#168; <code>CultureInfo.GetCultureInfo(&quot;x-uai-1&quot;)</code></li>\r\n<li>&#229;œ&#168;&#229;&#186;\u008F&#229;ˆ—&#229;Œ–&#232;&#167;„&#232;Œƒ UAI &#229;€&#188;&#230;—&#182;&#239;&#188;Œ&#228;&#189;&#191;&#231;”&#168; <code>CultureInfo.InvariantCulture</code></li>\r\n</ul>"
+                  }
+                },
+                {
+                  "type": "paragraph",
+                  "id": "protocol5-uai-1-csharp-website-support-zh-sg.paragraph.11",
+                  "text": {
+                    "literal": "æœ€å\u0090Žè¿™æ\u009D¡è§„åˆ™é\u009Džå¸¸é‡\u008Dè¦\u0081ï¼Œå›\u00A0ä¸º UAI-1 è¢«å®šä¹‰ä¸ºä¸€ç§\u008Dè§„èŒƒæœºå™¨è¯­è¨€ã€‚å°\u008Fæ•°åˆ†éš”ç¬¦ã€\u0081æ—¥æœŸæ\u00A0¼å¼\u008Få’Œæœ¬åœ°æ˜¾ç¤ºçº¦å®šç»\u009Dä¸\u008Dåº”æ”¹å\u008F˜ UAI æ¶ˆæ\u0081¯åº\u008Fåˆ—åŒ–å\u0090Žçš„å\u0090«ä¹‰ã€‚",
+                    "normalized": "æœ€å\u0090Žè¿™æ\u009D¡è§„åˆ™é\u009Džå¸¸é‡\u008Dè¦\u0081ï¼Œå› ä¸º UAI-1 è¢«å®šä¹‰ä¸ºä¸€ç§\u008Dè§„èŒƒæœºå™¨è¯­è¨€ã€‚å°\u008Fæ•°åˆ†éš”ç¬¦ã€\u0081æ—¥æœŸæ ¼å¼\u008Få’Œæœ¬åœ°æ˜¾ç¤ºçº¦å®šç»\u009Dä¸\u008Dåº”æ”¹å\u008F˜ UAI æ¶ˆæ\u0081¯åº\u008Fåˆ—åŒ–å\u0090Žçš„å\u0090«ä¹‰ã€‚",
+                    "language": "zh-SG"
+                  },
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]/p[2]",
+                    "htmlFragment": "<p>&#230;œ€&#229;\u0090Ž&#232;&#191;™&#230;\u009D&#161;&#232;&#167;„&#229;ˆ™&#233;\u009Dž&#229;&#184;&#184;&#233;‡\u008D&#232;&#166;\u0081&#239;&#188;Œ&#229;›&#160;&#228;&#184;&#186; UAI-1 &#232;&#162;&#171;&#229;&#174;š&#228;&#185;‰&#228;&#184;&#186;&#228;&#184;€&#231;&#167;\u008D&#232;&#167;„&#232;Œƒ&#230;œ&#186;&#229;™&#168;&#232;&#175;&#173;&#232;&#168;€&#227;€‚&#229;&#176;\u008F&#230;•&#176;&#229;ˆ†&#233;š”&#231;&#172;&#166;&#227;€\u0081&#230;—&#165;&#230;œŸ&#230;&#160;&#188;&#229;&#188;\u008F&#229;’Œ&#230;œ&#172;&#229;œ&#176;&#230;˜&#190;&#231;&#164;&#186;&#231;&#186;&#166;&#229;&#174;š&#231;&#187;\u009D&#228;&#184;\u008D&#229;&#186;”&#230;”&#185;&#229;\u008F˜ UAI &#230;&#182;ˆ&#230;\u0081&#175;&#229;&#186;\u008F&#229;ˆ—&#229;Œ–&#229;\u0090Ž&#231;š„&#229;\u0090&#171;&#228;&#185;‰&#227;€‚</p>"
+                  }
+                },
+                {
+                  "type": "heading",
+                  "id": "protocol5-uai-1-csharp-website-support-zh-sg.heading.7",
+                  "level": 2,
+                  "text": {
+                    "literal": "ä¸ºä»€ä¹ˆè¿™ä¸\u008Dä»…ä»…æ˜¯ä¸€ä¸ª Windows æ–‡åŒ–å®‰è£…å™¨",
+                    "normalized": "ä¸ºä»€ä¹ˆè¿™ä¸\u008Dä»…ä»…æ˜¯ä¸€ä¸ª Windows æ–‡åŒ–å®‰è£…å™¨",
+                    "language": "zh-SG"
+                  },
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]/h2[3]",
+                    "htmlFragment": "<h2>&#228;&#184;&#186;&#228;&#187;€&#228;&#185;ˆ&#232;&#191;™&#228;&#184;\u008D&#228;&#187;…&#228;&#187;…&#230;˜&#175;&#228;&#184;€&#228;&#184;&#170; Windows &#230;–‡&#229;Œ–&#229;&#174;‰&#232;&#163;…&#229;™&#168;</h2>"
+                  }
+                },
+                {
+                  "type": "paragraph",
+                  "id": "protocol5-uai-1-csharp-website-support-zh-sg.paragraph.12",
+                  "text": {
+                    "literal": "Microsoft çš„å…¨ç\u0090ƒåŒ–æŒ‡å\u008D—å\u0081šäº†ä¸€ä¸ªé‡\u008Dè¦\u0081åŒºåˆ†ï¼š",
+                    "normalized": "Microsoft çš„å…¨ç\u0090ƒåŒ–æŒ‡å\u008D—å\u0081šäº†ä¸€ä¸ªé‡\u008Dè¦\u0081åŒºåˆ†ï¼š",
+                    "language": "zh-SG"
+                  },
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]/p[3]",
+                    "htmlFragment": "<p>Microsoft &#231;š„&#229;…&#168;&#231;\u0090ƒ&#229;Œ–&#230;Œ‡&#229;\u008D—&#229;\u0081š&#228;&#186;†&#228;&#184;€&#228;&#184;&#170;&#233;‡\u008D&#232;&#166;\u0081&#229;Œ&#186;&#229;ˆ†&#239;&#188;š</p>"
+                  }
+                },
+                {
+                  "type": "list",
+                  "id": "protocol5-uai-1-csharp-website-support-zh-sg.list.5",
+                  "children": [
+                    {
+                      "type": "listItem",
+                      "id": "protocol5-uai-1-csharp-website-support-zh-sg.listItem.26",
+                      "text": {
+                        "literal": "CultureInfo æ˜¯è¿\u0090è¡Œæ—¶å¤„ç\u0090†ä¸­ç«‹æ–‡åŒ–è¡Œä¸ºçš„æ­£å¸¸å…¥å\u008F£ç‚¹",
+                        "normalized": "CultureInfo æ˜¯è¿\u0090è¡Œæ—¶å¤„ç\u0090†ä¸­ç«‹æ–‡åŒ–è¡Œä¸ºçš„æ­£å¸¸å…¥å\u008F£ç‚¹",
+                        "language": "zh-SG"
+                      },
+                      "children": [
+                        {
+                          "type": "unknown",
+                          "id": "protocol5-uai-1-csharp-website-support-zh-sg.unknown.53",
+                          "rawContent": "<code>CultureInfo</code>",
+                          "reason": "unsupported-code",
+                          "sourceFragment": "<code>CultureInfo</code>",
+                          "sourceRef": {
+                            "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]/ul[3]/li[0]/code[0]",
+                            "htmlFragment": "<code>CultureInfo</code>"
+                          }
+                        },
+                        {
+                          "type": "unknown",
+                          "id": "protocol5-uai-1-csharp-website-support-zh-sg.unknown.54",
+                          "rawContent": "&#230;˜&#175;&#232;&#191;\u0090&#232;&#161;Œ&#230;—&#182;&#229;&#164;„&#231;\u0090†&#228;&#184;&#173;&#231;&#171;‹&#230;–‡&#229;Œ–&#232;&#161;Œ&#228;&#184;&#186;&#231;š„&#230;&#173;&#163;&#229;&#184;&#184;&#229;…&#165;&#229;\u008F&#163;&#231;‚&#185;",
+                          "reason": "unsupported-#text",
+                          "sourceFragment": "&#230;˜&#175;&#232;&#191;\u0090&#232;&#161;Œ&#230;—&#182;&#229;&#164;„&#231;\u0090†&#228;&#184;&#173;&#231;&#171;‹&#230;–‡&#229;Œ–&#232;&#161;Œ&#228;&#184;&#186;&#231;š„&#230;&#173;&#163;&#229;&#184;&#184;&#229;…&#165;&#229;\u008F&#163;&#231;‚&#185;",
+                          "sourceRef": {
+                            "domPath": "/",
+                            "htmlFragment": "&#230;˜&#175;&#232;&#191;\u0090&#232;&#161;Œ&#230;—&#182;&#229;&#164;„&#231;\u0090†&#228;&#184;&#173;&#231;&#171;‹&#230;–‡&#229;Œ–&#232;&#161;Œ&#228;&#184;&#186;&#231;š„&#230;&#173;&#163;&#229;&#184;&#184;&#229;…&#165;&#229;\u008F&#163;&#231;‚&#185;"
+                          }
+                        }
+                      ],
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]/ul[3]/li[0]",
+                        "htmlFragment": "<li><code>CultureInfo</code> &#230;˜&#175;&#232;&#191;\u0090&#232;&#161;Œ&#230;—&#182;&#229;&#164;„&#231;\u0090†&#228;&#184;&#173;&#231;&#171;‹&#230;–‡&#229;Œ–&#232;&#161;Œ&#228;&#184;&#186;&#231;š„&#230;&#173;&#163;&#229;&#184;&#184;&#229;…&#165;&#229;\u008F&#163;&#231;‚&#185;</li>"
+                      }
+                    },
+                    {
+                      "type": "listItem",
+                      "id": "protocol5-uai-1-csharp-website-support-zh-sg.listItem.27",
+                      "text": {
+                        "literal": "CultureAndRegionInfoBuilder å\u008F¯ç”¨äºŽåˆ›å»ºè‡ªå®šä¹‰æ–‡åŒ–ï¼Œä½†é‚£æ\u009D¡è·¯å¾„æ˜¯ Windows ä¸“ç”¨çš„ï¼Œå¹¶ä¸\u008Dæ˜¯è·¨å¹³å\u008F°ç½‘ç«™é‡‡ç”¨æ—¶çš„é»˜è®¤æ­£ç¡®å\u0081šæ³•",
+                        "normalized": "CultureAndRegionInfoBuilder å\u008F¯ç”¨äºŽåˆ›å»ºè‡ªå®šä¹‰æ–‡åŒ–ï¼Œä½†é‚£æ\u009D¡è·¯å¾„æ˜¯ Windows ä¸“ç”¨çš„ï¼Œå¹¶ä¸\u008Dæ˜¯è·¨å¹³å\u008F°ç½‘ç«™é‡‡ç”¨æ—¶çš„é»˜è®¤æ­£ç¡®å\u0081šæ³•",
+                        "language": "zh-SG"
+                      },
+                      "children": [
+                        {
+                          "type": "unknown",
+                          "id": "protocol5-uai-1-csharp-website-support-zh-sg.unknown.55",
+                          "rawContent": "<code>CultureAndRegionInfoBuilder</code>",
+                          "reason": "unsupported-code",
+                          "sourceFragment": "<code>CultureAndRegionInfoBuilder</code>",
+                          "sourceRef": {
+                            "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]/ul[3]/li[1]/code[0]",
+                            "htmlFragment": "<code>CultureAndRegionInfoBuilder</code>"
+                          }
+                        },
+                        {
+                          "type": "unknown",
+                          "id": "protocol5-uai-1-csharp-website-support-zh-sg.unknown.56",
+                          "rawContent": "&#229;\u008F&#175;&#231;”&#168;&#228;&#186;Ž&#229;ˆ›&#229;&#187;&#186;&#232;‡&#170;&#229;&#174;š&#228;&#185;‰&#230;–‡&#229;Œ–&#239;&#188;Œ&#228;&#189;†&#233;‚&#163;&#230;\u009D&#161;&#232;&#183;&#175;&#229;&#190;„&#230;˜&#175; Windows &#228;&#184;“&#231;”&#168;&#231;š„&#239;&#188;Œ&#229;&#185;&#182;&#228;&#184;\u008D&#230;˜&#175;&#232;&#183;&#168;&#229;&#185;&#179;&#229;\u008F&#176;&#231;&#189;‘&#231;&#171;™&#233;‡‡&#231;”&#168;&#230;—&#182;&#231;š„&#233;&#187;˜&#232;&#174;&#164;&#230;&#173;&#163;&#231;&#161;&#174;&#229;\u0081š&#230;&#179;•",
+                          "reason": "unsupported-#text",
+                          "sourceFragment": "&#229;\u008F&#175;&#231;”&#168;&#228;&#186;Ž&#229;ˆ›&#229;&#187;&#186;&#232;‡&#170;&#229;&#174;š&#228;&#185;‰&#230;–‡&#229;Œ–&#239;&#188;Œ&#228;&#189;†&#233;‚&#163;&#230;\u009D&#161;&#232;&#183;&#175;&#229;&#190;„&#230;˜&#175; Windows &#228;&#184;“&#231;”&#168;&#231;š„&#239;&#188;Œ&#229;&#185;&#182;&#228;&#184;\u008D&#230;˜&#175;&#232;&#183;&#168;&#229;&#185;&#179;&#229;\u008F&#176;&#231;&#189;‘&#231;&#171;™&#233;‡‡&#231;”&#168;&#230;—&#182;&#231;š„&#233;&#187;˜&#232;&#174;&#164;&#230;&#173;&#163;&#231;&#161;&#174;&#229;\u0081š&#230;&#179;•",
+                          "sourceRef": {
+                            "domPath": "/",
+                            "htmlFragment": "&#229;\u008F&#175;&#231;”&#168;&#228;&#186;Ž&#229;ˆ›&#229;&#187;&#186;&#232;‡&#170;&#229;&#174;š&#228;&#185;‰&#230;–‡&#229;Œ–&#239;&#188;Œ&#228;&#189;†&#233;‚&#163;&#230;\u009D&#161;&#232;&#183;&#175;&#229;&#190;„&#230;˜&#175; Windows &#228;&#184;“&#231;”&#168;&#231;š„&#239;&#188;Œ&#229;&#185;&#182;&#228;&#184;\u008D&#230;˜&#175;&#232;&#183;&#168;&#229;&#185;&#179;&#229;\u008F&#176;&#231;&#189;‘&#231;&#171;™&#233;‡‡&#231;”&#168;&#230;—&#182;&#231;š„&#233;&#187;˜&#232;&#174;&#164;&#230;&#173;&#163;&#231;&#161;&#174;&#229;\u0081š&#230;&#179;•"
+                          }
+                        }
+                      ],
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]/ul[3]/li[1]",
+                        "htmlFragment": "<li><code>CultureAndRegionInfoBuilder</code> &#229;\u008F&#175;&#231;”&#168;&#228;&#186;Ž&#229;ˆ›&#229;&#187;&#186;&#232;‡&#170;&#229;&#174;š&#228;&#185;‰&#230;–‡&#229;Œ–&#239;&#188;Œ&#228;&#189;†&#233;‚&#163;&#230;\u009D&#161;&#232;&#183;&#175;&#229;&#190;„&#230;˜&#175; Windows &#228;&#184;“&#231;”&#168;&#231;š„&#239;&#188;Œ&#229;&#185;&#182;&#228;&#184;\u008D&#230;˜&#175;&#232;&#183;&#168;&#229;&#185;&#179;&#229;\u008F&#176;&#231;&#189;‘&#231;&#171;™&#233;‡‡&#231;”&#168;&#230;—&#182;&#231;š„&#233;&#187;˜&#232;&#174;&#164;&#230;&#173;&#163;&#231;&#161;&#174;&#229;\u0081š&#230;&#179;•</li>"
+                      }
+                    }
+                  ],
+                  "ordered": false,
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]/ul[3]",
+                    "htmlFragment": "<ul>\r\n<li><code>CultureInfo</code> &#230;˜&#175;&#232;&#191;\u0090&#232;&#161;Œ&#230;—&#182;&#229;&#164;„&#231;\u0090†&#228;&#184;&#173;&#231;&#171;‹&#230;–‡&#229;Œ–&#232;&#161;Œ&#228;&#184;&#186;&#231;š„&#230;&#173;&#163;&#229;&#184;&#184;&#229;…&#165;&#229;\u008F&#163;&#231;‚&#185;</li>\r\n<li><code>CultureAndRegionInfoBuilder</code> &#229;\u008F&#175;&#231;”&#168;&#228;&#186;Ž&#229;ˆ›&#229;&#187;&#186;&#232;‡&#170;&#229;&#174;š&#228;&#185;‰&#230;–‡&#229;Œ–&#239;&#188;Œ&#228;&#189;†&#233;‚&#163;&#230;\u009D&#161;&#232;&#183;&#175;&#229;&#190;„&#230;˜&#175; Windows &#228;&#184;“&#231;”&#168;&#231;š„&#239;&#188;Œ&#229;&#185;&#182;&#228;&#184;\u008D&#230;˜&#175;&#232;&#183;&#168;&#229;&#185;&#179;&#229;\u008F&#176;&#231;&#189;‘&#231;&#171;™&#233;‡‡&#231;”&#168;&#230;—&#182;&#231;š„&#233;&#187;˜&#232;&#174;&#164;&#230;&#173;&#163;&#231;&#161;&#174;&#229;\u0081š&#230;&#179;•</li>\r\n</ul>"
+                  }
+                },
+                {
+                  "type": "paragraph",
+                  "id": "protocol5-uai-1-csharp-website-support-zh-sg.paragraph.13",
+                  "text": {
+                    "literal": "å›\u00A0æ­¤ï¼Œè¿™ä¸ª Protocol5 starter ä¸\u008Dè¦\u0081æ±‚åœ¨æ“\u008Dä½œç³»ç»Ÿçº§åˆ«æ³¨å†Œè‡ªå®šä¹‰æ–‡åŒ–ã€‚å®ƒé¦–å…ˆä¸ºç½‘ç«™æ\u008F\u0090ä¾›ä¸€æ\u009D¡å®žç”¨è·¯å¾„ï¼Œè€ŒæŠŠå¹³å\u008F°ç‰¹å®šçš„æ–‡åŒ–æ³¨å†Œç•™ä½œå\u008F¯é€‰çš„é«˜çº§æ­¥éª¤ã€‚",
+                    "normalized": "å› æ­¤ï¼Œè¿™ä¸ª Protocol5 starter ä¸\u008Dè¦\u0081æ±‚åœ¨æ“\u008Dä½œç³»ç»Ÿçº§åˆ«æ³¨å†Œè‡ªå®šä¹‰æ–‡åŒ–ã€‚å®ƒé¦–å…ˆä¸ºç½‘ç«™æ\u008F\u0090ä¾›ä¸€æ\u009D¡å®žç”¨è·¯å¾„ï¼Œè€ŒæŠŠå¹³å\u008F°ç‰¹å®šçš„æ–‡åŒ–æ³¨å†Œç•™ä½œå\u008F¯é€‰çš„é«˜çº§æ­¥éª¤ã€‚",
+                    "language": "zh-SG"
+                  },
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]/p[4]",
+                    "htmlFragment": "<p>&#229;›&#160;&#230;&#173;&#164;&#239;&#188;Œ&#232;&#191;™&#228;&#184;&#170; Protocol5 starter <strong>&#228;&#184;\u008D</strong>&#232;&#166;\u0081&#230;&#177;‚&#229;œ&#168;&#230;“\u008D&#228;&#189;œ&#231;&#179;&#187;&#231;&#187;Ÿ&#231;&#186;&#167;&#229;ˆ&#171;&#230;&#179;&#168;&#229;†Œ&#232;‡&#170;&#229;&#174;š&#228;&#185;‰&#230;–‡&#229;Œ–&#227;€‚&#229;&#174;ƒ&#233;&#166;–&#229;…ˆ&#228;&#184;&#186;&#231;&#189;‘&#231;&#171;™&#230;\u008F\u0090&#228;&#190;›&#228;&#184;€&#230;\u009D&#161;&#229;&#174;ž&#231;”&#168;&#232;&#183;&#175;&#229;&#190;„&#239;&#188;Œ&#232;€Œ&#230;ŠŠ&#229;&#185;&#179;&#229;\u008F&#176;&#231;‰&#185;&#229;&#174;š&#231;š„&#230;–‡&#229;Œ–&#230;&#179;&#168;&#229;†Œ&#231;•™&#228;&#189;œ&#229;\u008F&#175;&#233;€‰&#231;š„&#233;&#171;˜&#231;&#186;&#167;&#230;&#173;&#165;&#233;&#170;&#164;&#227;€‚</p>"
+                  }
+                },
+                {
+                  "type": "heading",
+                  "id": "protocol5-uai-1-csharp-website-support-zh-sg.heading.8",
+                  "level": 2,
+                  "text": {
+                    "literal": "å¿«é€Ÿå¼€å§‹",
+                    "normalized": "å¿«é€Ÿå¼€å§‹",
+                    "language": "zh-SG"
+                  },
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]/h2[4]",
+                    "htmlFragment": "<h2>&#229;&#191;&#171;&#233;€Ÿ&#229;&#188;€&#229;&#167;‹</h2>"
+                  }
+                },
+                {
+                  "type": "paragraph",
+                  "id": "protocol5-uai-1-csharp-website-support-zh-sg.paragraph.14",
+                  "text": {
+                    "literal": "ä»Žä¸‹è½½çš„åŒ…æ–‡ä»¶è¿›è¡Œå®‰è£…ï¼š",
+                    "normalized": "ä»Žä¸‹è½½çš„åŒ…æ–‡ä»¶è¿›è¡Œå®‰è£…ï¼š",
+                    "language": "zh-SG"
+                  },
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]/p[5]",
+                    "htmlFragment": "<p>&#228;&#187;Ž&#228;&#184;‹&#232;&#189;&#189;&#231;š„&#229;Œ…&#230;–‡&#228;&#187;&#182;&#232;&#191;›&#232;&#161;Œ&#229;&#174;‰&#232;&#163;…&#239;&#188;š</p>"
+                  }
+                },
+                {
+                  "type": "unknown",
+                  "id": "protocol5-uai-1-csharp-website-support-zh-sg.unknown.57",
+                  "rawContent": "<pre><code class=\"language-powershell\">dotnet add package Protocol5.UAI.CSharp --source .\\downloads</code></pre>",
+                  "reason": "unsupported-pre",
+                  "sourceFragment": "<pre><code class=\"language-powershell\">dotnet add package Protocol5.UAI.CSharp --source .\\downloads</code></pre>",
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]/pre[0]",
+                    "htmlFragment": "<pre><code class=\"language-powershell\">dotnet add package Protocol5.UAI.CSharp --source .\\downloads</code></pre>"
+                  }
+                },
+                {
+                  "type": "paragraph",
+                  "id": "protocol5-uai-1-csharp-website-support-zh-sg.paragraph.15",
+                  "text": {
+                    "literal": "ç„¶å\u0090ŽæŠŠå®ƒæŽ¥å…¥ ASP.NET Core ç½‘ç«™ï¼š",
+                    "normalized": "ç„¶å\u0090ŽæŠŠå®ƒæŽ¥å…¥ ASP.NET Core ç½‘ç«™ï¼š",
+                    "language": "zh-SG"
+                  },
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]/p[6]",
+                    "htmlFragment": "<p>&#231;„&#182;&#229;\u0090Ž&#230;ŠŠ&#229;&#174;ƒ&#230;Ž&#165;&#229;…&#165; ASP.NET Core &#231;&#189;‘&#231;&#171;™&#239;&#188;š</p>"
+                  }
+                },
+                {
+                  "type": "unknown",
+                  "id": "protocol5-uai-1-csharp-website-support-zh-sg.unknown.58",
+                  "rawContent": "<pre><code class=\"language-csharp\">using Protocol5.UAI;\nvar builder = WebApplication.CreateBuilder(args);\nbuilder.Services.AddProtocol5UaiWebsiteSupport();\nvar app = builder.Build();\napp.UseProtocol5UaiWebsiteSupport();\napp.MapGet(&quot;/uai-demo&quot;, (HttpContext context) =&gt;\n{\nvar sampleCanonicalId = Radix63404.Encode(5651);\nreturn Results.Json(new\n{\nprotocol = UaiCultureInfo.CanonicalVersion,\nlanguage = context.GetProtocol5HtmlLanguage(),\nsampleCanonicalId\n});\n});\napp.Run();</code></pre>",
+                  "reason": "unsupported-pre",
+                  "sourceFragment": "<pre><code class=\"language-csharp\">using Protocol5.UAI;\n\nvar builder = WebApplication.CreateBuilder(args);\nbuilder.Services.AddProtocol5UaiWebsiteSupport();\n\nvar app = builder.Build();\napp.UseProtocol5UaiWebsiteSupport();\n\napp.MapGet(&quot;/uai-demo&quot;, (HttpContext context) =&gt;\n{\n    var sampleCanonicalId = Radix63404.Encode(5651);\n\n    return Results.Json(new\n    {\n        protocol = UaiCultureInfo.CanonicalVersion,\n        language = context.GetProtocol5HtmlLanguage(),\n        sampleCanonicalId\n    });\n});\n\napp.Run();</code></pre>",
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]/pre[1]",
+                    "htmlFragment": "<pre><code class=\"language-csharp\">using Protocol5.UAI;\n\nvar builder = WebApplication.CreateBuilder(args);\nbuilder.Services.AddProtocol5UaiWebsiteSupport();\n\nvar app = builder.Build();\napp.UseProtocol5UaiWebsiteSupport();\n\napp.MapGet(&quot;/uai-demo&quot;, (HttpContext context) =&gt;\n{\n    var sampleCanonicalId = Radix63404.Encode(5651);\n\n    return Results.Json(new\n    {\n        protocol = UaiCultureInfo.CanonicalVersion,\n        language = context.GetProtocol5HtmlLanguage(),\n        sampleCanonicalId\n    });\n});\n\napp.Run();</code></pre>"
+                  }
+                },
+                {
+                  "type": "heading",
+                  "id": "protocol5-uai-1-csharp-website-support-zh-sg.heading.9",
+                  "level": 2,
+                  "text": {
+                    "literal": "HTML å»ºè®®",
+                    "normalized": "HTML å»ºè®®",
+                    "language": "zh-SG"
+                  },
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]/h2[5]",
+                    "htmlFragment": "<h2>HTML &#229;&#187;&#186;&#232;&#174;&#174;</h2>"
+                  }
+                },
+                {
+                  "type": "paragraph",
+                  "id": "protocol5-uai-1-csharp-website-support-zh-sg.paragraph.16",
+                  "text": {
+                    "literal": "å¦‚æžœæŸ\u0090ä¸ªé¡µé\u009D¢è¦\u0081ç›´æŽ¥å£°æ˜Žå…¶å†…å®¹é\u009D¢å\u0090‘ UAIï¼Œåˆ™ä½¿ç”¨ï¼š",
+                    "normalized": "å¦‚æžœæŸ\u0090ä¸ªé¡µé\u009D¢è¦\u0081ç›´æŽ¥å£°æ˜Žå…¶å†…å®¹é\u009D¢å\u0090‘ UAIï¼Œåˆ™ä½¿ç”¨ï¼š",
+                    "language": "zh-SG"
+                  },
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]/p[7]",
+                    "htmlFragment": "<p>&#229;&#166;‚&#230;žœ&#230;Ÿ\u0090&#228;&#184;&#170;&#233;&#161;&#181;&#233;\u009D&#162;&#232;&#166;\u0081&#231;›&#180;&#230;Ž&#165;&#229;&#163;&#176;&#230;˜Ž&#229;…&#182;&#229;†…&#229;&#174;&#185;&#233;\u009D&#162;&#229;\u0090‘ UAI&#239;&#188;Œ&#229;ˆ™&#228;&#189;&#191;&#231;”&#168;&#239;&#188;š</p>"
+                  }
+                },
+                {
+                  "type": "unknown",
+                  "id": "protocol5-uai-1-csharp-website-support-zh-sg.unknown.59",
+                  "rawContent": "<pre><code class=\"language-html\">&lt;html lang=&quot;x-uai-1&quot;&gt;</code></pre>",
+                  "reason": "unsupported-pre",
+                  "sourceFragment": "<pre><code class=\"language-html\">&lt;html lang=&quot;x-uai-1&quot;&gt;</code></pre>",
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]/pre[2]",
+                    "htmlFragment": "<pre><code class=\"language-html\">&lt;html lang=&quot;x-uai-1&quot;&gt;</code></pre>"
+                  }
+                },
+                {
+                  "type": "heading",
+                  "id": "protocol5-uai-1-csharp-website-support-zh-sg.heading.10",
+                  "level": 2,
+                  "text": {
+                    "literal": "è§„èŒƒæ\u00A0¼å¼\u008FåŒ–è§„åˆ™",
+                    "normalized": "è§„èŒƒæ ¼å¼\u008FåŒ–è§„åˆ™",
+                    "language": "zh-SG"
+                  },
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]/h2[6]",
+                    "htmlFragment": "<h2>&#232;&#167;„&#232;Œƒ&#230;&#160;&#188;&#229;&#188;\u008F&#229;Œ–&#232;&#167;„&#229;ˆ™</h2>"
+                  }
+                },
+                {
+                  "type": "paragraph",
+                  "id": "protocol5-uai-1-csharp-website-support-zh-sg.paragraph.17",
+                  "text": {
+                    "literal": "åœ¨åº\u008Fåˆ—åŒ–è§„èŒƒ UAI å€¼æ—¶ï¼Œå§‹ç»ˆä½¿ç”¨ InvariantCultureï¼š",
+                    "normalized": "åœ¨åº\u008Fåˆ—åŒ–è§„èŒƒ UAI å€¼æ—¶ï¼Œå§‹ç»ˆä½¿ç”¨ InvariantCultureï¼š",
+                    "language": "zh-SG"
+                  },
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]/p[8]",
+                    "htmlFragment": "<p>&#229;œ&#168;&#229;&#186;\u008F&#229;ˆ—&#229;Œ–&#232;&#167;„&#232;Œƒ UAI &#229;€&#188;&#230;—&#182;&#239;&#188;Œ&#229;&#167;‹&#231;&#187;ˆ&#228;&#189;&#191;&#231;”&#168; <code>InvariantCulture</code>&#239;&#188;š</p>"
+                  }
+                },
+                {
+                  "type": "unknown",
+                  "id": "protocol5-uai-1-csharp-website-support-zh-sg.unknown.60",
+                  "rawContent": "<pre><code class=\"language-csharp\">using Protocol5.UAI;\nvar confidence = 0.875m.ToString(UaiCultureInfo.CanonicalSerializationCulture);</code></pre>",
+                  "reason": "unsupported-pre",
+                  "sourceFragment": "<pre><code class=\"language-csharp\">using Protocol5.UAI;\n\nvar confidence = 0.875m.ToString(UaiCultureInfo.CanonicalSerializationCulture);</code></pre>",
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]/pre[3]",
+                    "htmlFragment": "<pre><code class=\"language-csharp\">using Protocol5.UAI;\n\nvar confidence = 0.875m.ToString(UaiCultureInfo.CanonicalSerializationCulture);</code></pre>"
+                  }
+                },
+                {
+                  "type": "heading",
+                  "id": "protocol5-uai-1-csharp-website-support-zh-sg.heading.11",
+                  "level": 2,
+                  "text": {
+                    "literal": "å·¥å…·åŒ…ä¸­åŒ…å\u0090«çš„ Radix 63404 ç¤ºä¾‹",
+                    "normalized": "å·¥å…·åŒ…ä¸­åŒ…å\u0090«çš„ Radix 63404 ç¤ºä¾‹",
+                    "language": "zh-SG"
+                  },
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]/h2[7]",
+                    "htmlFragment": "<h2>&#229;&#183;&#165;&#229;…&#183;&#229;Œ…&#228;&#184;&#173;&#229;Œ…&#229;\u0090&#171;&#231;š„ Radix 63404 &#231;&#164;&#186;&#228;&#190;‹</h2>"
+                  }
+                },
+                {
+                  "type": "unknown",
+                  "id": "protocol5-uai-1-csharp-website-support-zh-sg.unknown.61",
+                  "rawContent": "<pre><code class=\"language-csharp\">Radix63404.Encode(41); // J\nRadix63404.Encode(5651); // &#195;&#161;&#226;„&#162;&#226;€“\nRadix63404.Encode(267914296); // &#195;&#161;&#198;’&#226;€ž&#195;&#167;&#194;&#187;&#194;&#160;</code></pre>",
+                  "reason": "unsupported-pre",
+                  "sourceFragment": "<pre><code class=\"language-csharp\">Radix63404.Encode(41);        // J\nRadix63404.Encode(5651);      // &#195;&#161;&#226;„&#162;&#226;€“\nRadix63404.Encode(267914296); // &#195;&#161;&#198;’&#226;€ž&#195;&#167;&#194;&#187;&#194;&#160;</code></pre>",
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]/pre[4]",
+                    "htmlFragment": "<pre><code class=\"language-csharp\">Radix63404.Encode(41);        // J\nRadix63404.Encode(5651);      // &#195;&#161;&#226;„&#162;&#226;€“\nRadix63404.Encode(267914296); // &#195;&#161;&#198;’&#226;€ž&#195;&#167;&#194;&#187;&#194;&#160;</code></pre>"
+                  }
+                },
+                {
+                  "type": "heading",
+                  "id": "protocol5-uai-1-csharp-website-support-zh-sg.heading.12",
+                  "level": 2,
+                  "text": {
+                    "literal": "ä¸‹è½½é“¾æŽ¥",
+                    "normalized": "ä¸‹è½½é“¾æŽ¥",
+                    "language": "zh-SG"
+                  },
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]/h2[8]",
+                    "htmlFragment": "<h2>&#228;&#184;‹&#232;&#189;&#189;&#233;“&#190;&#230;Ž&#165;</h2>"
+                  }
+                },
+                {
+                  "type": "list",
+                  "id": "protocol5-uai-1-csharp-website-support-zh-sg.list.6",
+                  "children": [
+                    {
+                      "type": "listItem",
+                      "id": "protocol5-uai-1-csharp-website-support-zh-sg.listItem.28",
+                      "text": {
+                        "literal": "ä¸‹è½½å®Œæ•´ starter ZIP",
+                        "normalized": "ä¸‹è½½å®Œæ•´ starter ZIP",
+                        "language": "zh-SG"
+                      },
+                      "children": [
+                        {
+                          "type": "link",
+                          "id": "protocol5-uai-1-csharp-website-support-zh-sg.link.19",
+                          "text": {
+                            "literal": "ä¸‹è½½å®Œæ•´ starter ZIP",
+                            "normalized": "ä¸‹è½½å®Œæ•´ starter ZIP",
+                            "language": "zh-SG"
+                          },
+                          "href": "/downloads/protocol5-uai-1-csharp-web-starter.zip",
+                          "linkPurpose": "navigation",
+                          "sourceRef": {
+                            "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]/ul[4]/li[0]/a[0]",
+                            "htmlFragment": "<a href=\"/downloads/protocol5-uai-1-csharp-web-starter.zip\">&#228;&#184;‹&#232;&#189;&#189;&#229;&#174;Œ&#230;•&#180; starter ZIP</a>"
+                          }
+                        }
+                      ],
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]/ul[4]/li[0]",
+                        "htmlFragment": "<li><a href=\"/downloads/protocol5-uai-1-csharp-web-starter.zip\">&#228;&#184;‹&#232;&#189;&#189;&#229;&#174;Œ&#230;•&#180; starter ZIP</a></li>"
+                      }
+                    },
+                    {
+                      "type": "listItem",
+                      "id": "protocol5-uai-1-csharp-website-support-zh-sg.listItem.29",
+                      "text": {
+                        "literal": "ç›´æŽ¥ä¸‹è½½ NuGet åŒ…",
+                        "normalized": "ç›´æŽ¥ä¸‹è½½ NuGet åŒ…",
+                        "language": "zh-SG"
+                      },
+                      "children": [
+                        {
+                          "type": "link",
+                          "id": "protocol5-uai-1-csharp-website-support-zh-sg.link.20",
+                          "text": {
+                            "literal": "ç›´æŽ¥ä¸‹è½½ NuGet åŒ…",
+                            "normalized": "ç›´æŽ¥ä¸‹è½½ NuGet åŒ…",
+                            "language": "zh-SG"
+                          },
+                          "href": "/downloads/Protocol5.UAI.CSharp.1.0.0.nupkg",
+                          "linkPurpose": "navigation",
+                          "sourceRef": {
+                            "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]/ul[4]/li[1]/a[0]",
+                            "htmlFragment": "<a href=\"/downloads/Protocol5.UAI.CSharp.1.0.0.nupkg\">&#231;›&#180;&#230;Ž&#165;&#228;&#184;‹&#232;&#189;&#189; NuGet &#229;Œ…</a>"
+                          }
+                        }
+                      ],
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]/ul[4]/li[1]",
+                        "htmlFragment": "<li><a href=\"/downloads/Protocol5.UAI.CSharp.1.0.0.nupkg\">&#231;›&#180;&#230;Ž&#165;&#228;&#184;‹&#232;&#189;&#189; NuGet &#229;Œ…</a></li>"
+                      }
+                    },
+                    {
+                      "type": "listItem",
+                      "id": "protocol5-uai-1-csharp-website-support-zh-sg.listItem.30",
+                      "text": {
+                        "literal": "é˜…è¯» UAI-1 è§„èŒƒ",
+                        "normalized": "é˜…è¯» UAI-1 è§„èŒƒ",
+                        "language": "zh-SG"
+                      },
+                      "children": [
+                        {
+                          "type": "link",
+                          "id": "protocol5-uai-1-csharp-website-support-zh-sg.link.21",
+                          "text": {
+                            "literal": "é˜…è¯» UAI-1 è§„èŒƒ",
+                            "normalized": "é˜…è¯» UAI-1 è§„èŒƒ",
+                            "language": "zh-SG"
+                          },
+                          "href": "/UAI-1",
+                          "linkPurpose": "navigation",
+                          "sourceRef": {
+                            "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]/ul[4]/li[2]/a[0]",
+                            "htmlFragment": "<a href=\"/UAI-1\">&#233;˜…&#232;&#175;&#187; UAI-1 &#232;&#167;„&#232;Œƒ</a>"
+                          }
+                        }
+                      ],
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]/ul[4]/li[2]",
+                        "htmlFragment": "<li><a href=\"/UAI-1\">&#233;˜…&#232;&#175;&#187; UAI-1 &#232;&#167;„&#232;Œƒ</a></li>"
+                      }
+                    },
+                    {
+                      "type": "listItem",
+                      "id": "protocol5-uai-1-csharp-website-support-zh-sg.listItem.31",
+                      "text": {
+                        "literal": "é˜…è¯» Radix 63404 æŒ‡å\u008D—",
+                        "normalized": "é˜…è¯» Radix 63404 æŒ‡å\u008D—",
+                        "language": "zh-SG"
+                      },
+                      "children": [
+                        {
+                          "type": "link",
+                          "id": "protocol5-uai-1-csharp-website-support-zh-sg.link.22",
+                          "text": {
+                            "literal": "é˜…è¯» Radix 63404 æŒ‡å\u008D—",
+                            "normalized": "é˜…è¯» Radix 63404 æŒ‡å\u008D—",
+                            "language": "zh-SG"
+                          },
+                          "href": "/UAI/radix-63404-guide-and-attribution",
+                          "linkPurpose": "navigation",
+                          "sourceRef": {
+                            "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]/ul[4]/li[3]/a[0]",
+                            "htmlFragment": "<a href=\"/UAI/radix-63404-guide-and-attribution\">&#233;˜…&#232;&#175;&#187; Radix 63404 &#230;Œ‡&#229;\u008D—</a>"
+                          }
+                        }
+                      ],
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]/ul[4]/li[3]",
+                        "htmlFragment": "<li><a href=\"/UAI/radix-63404-guide-and-attribution\">&#233;˜…&#232;&#175;&#187; Radix 63404 &#230;Œ‡&#229;\u008D—</a></li>"
+                      }
+                    }
+                  ],
+                  "ordered": false,
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]/ul[4]",
+                    "htmlFragment": "<ul>\r\n<li><a href=\"/downloads/protocol5-uai-1-csharp-web-starter.zip\">&#228;&#184;‹&#232;&#189;&#189;&#229;&#174;Œ&#230;•&#180; starter ZIP</a></li>\r\n<li><a href=\"/downloads/Protocol5.UAI.CSharp.1.0.0.nupkg\">&#231;›&#180;&#230;Ž&#165;&#228;&#184;‹&#232;&#189;&#189; NuGet &#229;Œ…</a></li>\r\n<li><a href=\"/UAI-1\">&#233;˜…&#232;&#175;&#187; UAI-1 &#232;&#167;„&#232;Œƒ</a></li>\r\n<li><a href=\"/UAI/radix-63404-guide-and-attribution\">&#233;˜…&#232;&#175;&#187; Radix 63404 &#230;Œ‡&#229;\u008D—</a></li>\r\n</ul>"
+                  }
+                }
+              ],
+              "sectionKind": "generic",
+              "sourceRef": {
+                "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]",
+                "htmlFragment": "<article class=\"panel doc-panel\">\n                    <div class=\"doc-prose\">\n<h1>UAI-1 C# &#231;&#189;‘&#231;&#171;™&#230;”&#175;&#230;Œ\u0081&#229;&#183;&#165;&#229;…&#183;&#229;Œ…</h1>\r\n<p>&#230;œ&#172;&#233;&#161;&#181;&#229;\u008F‘&#229;&#184;ƒ Protocol5 &#231;š„&#229;…&#165;&#233;—&#168;&#228;&#184;‹&#232;&#189;&#189;&#229;Œ…&#239;&#188;Œ&#231;”&#168;&#228;&#186;Ž&#228;&#184;&#186; C# &#231;&#189;‘&#231;&#171;™&#230;&#183;&#187;&#229;Š&#160; UAI-1 &#230;”&#175;&#230;Œ\u0081&#239;&#188;Œ&#229;&#176;&#164;&#229;…&#182;&#233;€‚&#229;\u0090ˆ&#229;&#184;Œ&#230;œ›&#229;œ&#168;&#228;&#184;\u008D&#232;&#174;&#169;&#232;&#167;„&#232;Œƒ UAI &#232;&#175;&#173;&#228;&#185;‰&#228;&#190;\u009D&#232;&#181;–&#230;œ&#172;&#229;œ&#176;&#228;&#186;&#186;&#231;&#177;&#187;&#232;&#175;&#173;&#232;&#168;€&#230;&#160;&#188;&#229;&#188;\u008F&#232;&#167;„&#229;ˆ™&#231;š„&#229;‰\u008D&#230;\u008F\u0090&#228;&#184;‹&#239;&#188;Œ&#232;Ž&#183;&#229;&#190;— <code>CultureInfo</code> &#228;&#184;Ž <code>Accept-Language</code> &#229;&#174;ž&#231;”&#168;&#233;›†&#230;ˆ\u0090&#232;&#183;&#175;&#229;&#190;„&#231;š„ ASP.NET Core &#231;&#171;™&#231;‚&#185;&#227;€‚</p>\r\n<h2>&#230;–‡&#230;&#161;&#163;&#228;&#191;&#161;&#230;\u0081&#175;</h2>\r\n<ul>\r\n<li><strong>&#231;›&#174;&#230;&#160;‡&#232;&#175;&#187;&#232;€…&#239;&#188;š</strong> C# &#228;&#184;Ž ASP.NET &#231;&#189;‘&#231;&#171;™&#229;&#188;€&#229;\u008F‘&#232;€…</li>\r\n<li><strong>ZIP &#228;&#184;‹&#232;&#189;&#189;&#239;&#188;š</strong> <a href=\"/downloads/protocol5-uai-1-csharp-web-starter.zip\">protocol5-uai-1-csharp-web-starter.zip</a></li>\r\n<li><strong>NuGet &#229;Œ…&#228;&#184;‹&#232;&#189;&#189;&#239;&#188;š</strong> <a href=\"/downloads/Protocol5.UAI.CSharp.1.0.0.nupkg\">Protocol5.UAI.CSharp.1.0.0.nupkg</a></li>\r\n<li><strong>ZIP &#230;&#160;&#161;&#233;&#170;Œ&#229;’Œ&#239;&#188;š</strong> <a href=\"/downloads/protocol5-uai-1-csharp-web-starter.zip.sha256\">protocol5-uai-1-csharp-web-starter.zip.sha256</a></li>\r\n<li><strong>&#232;&#167;„&#232;Œƒ&#232;&#175;&#173;&#232;&#168;€&#230;&#160;‡&#231;&#173;&#190;&#239;&#188;š</strong> <code>x-uai-1</code></li>\r\n<li><strong>&#232;&#167;„&#232;Œƒ&#229;&#186;\u008F&#229;ˆ—&#229;Œ–&#230;–‡&#229;Œ–&#239;&#188;š</strong> <code>InvariantCulture</code></li>\r\n<li><strong>Microsoft &#230;–‡&#230;&#161;&#163;&#239;&#188;š</strong> <a href=\"https://learn.microsoft.com/en-us/dotnet/fundamentals/runtime-libraries/system-globalization-cultureinfo\">CultureInfo</a>, <a href=\"https://learn.microsoft.com/en-us/dotnet/fundamentals/runtime-libraries/system-globalization-cultureinfo-invariantculture\">InvariantCulture</a>, <a href=\"https://learn.microsoft.com/en-us/dotnet/fundamentals/runtime-libraries/system-globalization-cultureandregioninfobuilder\">CultureAndRegionInfoBuilder</a></li>\r\n</ul>\r\n<h2>&#228;&#184;‹&#232;&#189;&#189;&#229;Œ…&#229;Œ…&#229;\u0090&#171;&#231;š„&#229;†…&#229;&#174;&#185;</h2>\r\n<ul>\r\n<li><code>Protocol5.UAI.CSharp</code> &#230;&#186;\u0090&#233;&#161;&#185;&#231;›&#174;</li>\r\n<li>&#230;‰“&#229;Œ…&#229;&#165;&#189;&#231;š„ <code>Protocol5.UAI.CSharp</code> <code>.nupkg</code></li>\r\n<li>Radix 63404 &#231;&#188;–&#231;&#160;\u0081&#228;&#184;Ž&#232;&#167;&#163;&#231;&#160;\u0081&#232;&#190;…&#229;Š&#169;&#229;&#183;&#165;&#229;…&#183;</li>\r\n<li>&#232;ƒ&#189;&#229;&#164;Ÿ&#228;&#187;Ž query string&#227;€\u0081cookie &#230;ˆ– <code>Accept-Language</code> &#232;&#175;†&#229;ˆ&#171; UAI &#232;&#175;&#183;&#230;&#177;‚&#231;š„ ASP.NET Core &#228;&#184;&#173;&#233;—&#180;&#228;&#187;&#182;</li>\r\n<li>&#228;&#184;€&#228;&#184;&#170;&#231;&#174;€&#231;Ÿ&#173;&#229;&#174;‰&#232;&#163;…&#232;&#175;&#180;&#230;˜Ž&#239;&#188;Œ&#228;&#190;›&#229;\u0081\u008F&#229;&#165;&#189;&#231;›&#180;&#230;Ž&#165;&#228;&#184;‹&#232;&#189;&#189;&#232;€Œ&#228;&#184;\u008D&#230;˜&#175;&#229;Œ…&#230;&#186;\u0090&#231;š„&#229;›&#162;&#233;˜Ÿ&#228;&#189;&#191;&#231;”&#168;</li>\r\n</ul>\r\n<h2>&#228;&#184;&#186;&#228;&#187;€&#228;&#185;ˆ starter &#228;&#189;&#191;&#231;”&#168; <code>x-uai-1</code></h2>\r\n<p>&#229;&#175;&#185;&#231;&#189;‘&#231;&#171;™&#232;€Œ&#232;&#168;€&#239;&#188;Œ&#230;&#184;…&#230;™&#176;&#231;š„&#232;\u0081Œ&#232;&#180;&#163;&#230;‹†&#229;ˆ†&#229;&#166;‚&#228;&#184;‹&#239;&#188;š</p>\r\n<ul>\r\n<li>&#231;”&#168; <code>x-uai-1</code> &#229;&#164;„&#231;\u0090† HTML <code>lang</code>&#227;€\u0081&#232;&#175;&#183;&#230;&#177;‚&#229;\u008D\u008F&#229;•†&#228;&#187;&#165;&#229;\u008FŠ <code>Content-Language</code></li>\r\n<li>&#229;&#189;“&#232;&#191;\u0090&#232;&#161;Œ&#230;—&#182;&#230;”&#175;&#230;Œ\u0081&#230;—&#182;&#239;&#188;Œ&#228;&#189;&#191;&#231;”&#168; <code>CultureInfo.GetCultureInfo(&quot;x-uai-1&quot;)</code></li>\r\n<li>&#229;œ&#168;&#229;&#186;\u008F&#229;ˆ—&#229;Œ–&#232;&#167;„&#232;Œƒ UAI &#229;€&#188;&#230;—&#182;&#239;&#188;Œ&#228;&#189;&#191;&#231;”&#168; <code>CultureInfo.InvariantCulture</code></li>\r\n</ul>\r\n<p>&#230;œ€&#229;\u0090Ž&#232;&#191;™&#230;\u009D&#161;&#232;&#167;„&#229;ˆ™&#233;\u009Dž&#229;&#184;&#184;&#233;‡\u008D&#232;&#166;\u0081&#239;&#188;Œ&#229;›&#160;&#228;&#184;&#186; UAI-1 &#232;&#162;&#171;&#229;&#174;š&#228;&#185;‰&#228;&#184;&#186;&#228;&#184;€&#231;&#167;\u008D&#232;&#167;„&#232;Œƒ&#230;œ&#186;&#229;™&#168;&#232;&#175;&#173;&#232;&#168;€&#227;€‚&#229;&#176;\u008F&#230;•&#176;&#229;ˆ†&#233;š”&#231;&#172;&#166;&#227;€\u0081&#230;—&#165;&#230;œŸ&#230;&#160;&#188;&#229;&#188;\u008F&#229;’Œ&#230;œ&#172;&#229;œ&#176;&#230;˜&#190;&#231;&#164;&#186;&#231;&#186;&#166;&#229;&#174;š&#231;&#187;\u009D&#228;&#184;\u008D&#229;&#186;”&#230;”&#185;&#229;\u008F˜ UAI &#230;&#182;ˆ&#230;\u0081&#175;&#229;&#186;\u008F&#229;ˆ—&#229;Œ–&#229;\u0090Ž&#231;š„&#229;\u0090&#171;&#228;&#185;‰&#227;€‚</p>\r\n<h2>&#228;&#184;&#186;&#228;&#187;€&#228;&#185;ˆ&#232;&#191;™&#228;&#184;\u008D&#228;&#187;…&#228;&#187;…&#230;˜&#175;&#228;&#184;€&#228;&#184;&#170; Windows &#230;–‡&#229;Œ–&#229;&#174;‰&#232;&#163;…&#229;™&#168;</h2>\r\n<p>Microsoft &#231;š„&#229;…&#168;&#231;\u0090ƒ&#229;Œ–&#230;Œ‡&#229;\u008D—&#229;\u0081š&#228;&#186;†&#228;&#184;€&#228;&#184;&#170;&#233;‡\u008D&#232;&#166;\u0081&#229;Œ&#186;&#229;ˆ†&#239;&#188;š</p>\r\n<ul>\r\n<li><code>CultureInfo</code> &#230;˜&#175;&#232;&#191;\u0090&#232;&#161;Œ&#230;—&#182;&#229;&#164;„&#231;\u0090†&#228;&#184;&#173;&#231;&#171;‹&#230;–‡&#229;Œ–&#232;&#161;Œ&#228;&#184;&#186;&#231;š„&#230;&#173;&#163;&#229;&#184;&#184;&#229;…&#165;&#229;\u008F&#163;&#231;‚&#185;</li>\r\n<li><code>CultureAndRegionInfoBuilder</code> &#229;\u008F&#175;&#231;”&#168;&#228;&#186;Ž&#229;ˆ›&#229;&#187;&#186;&#232;‡&#170;&#229;&#174;š&#228;&#185;‰&#230;–‡&#229;Œ–&#239;&#188;Œ&#228;&#189;†&#233;‚&#163;&#230;\u009D&#161;&#232;&#183;&#175;&#229;&#190;„&#230;˜&#175; Windows &#228;&#184;“&#231;”&#168;&#231;š„&#239;&#188;Œ&#229;&#185;&#182;&#228;&#184;\u008D&#230;˜&#175;&#232;&#183;&#168;&#229;&#185;&#179;&#229;\u008F&#176;&#231;&#189;‘&#231;&#171;™&#233;‡‡&#231;”&#168;&#230;—&#182;&#231;š„&#233;&#187;˜&#232;&#174;&#164;&#230;&#173;&#163;&#231;&#161;&#174;&#229;\u0081š&#230;&#179;•</li>\r\n</ul>\r\n<p>&#229;›&#160;&#230;&#173;&#164;&#239;&#188;Œ&#232;&#191;™&#228;&#184;&#170; Protocol5 starter <strong>&#228;&#184;\u008D</strong>&#232;&#166;\u0081&#230;&#177;‚&#229;œ&#168;&#230;“\u008D&#228;&#189;œ&#231;&#179;&#187;&#231;&#187;Ÿ&#231;&#186;&#167;&#229;ˆ&#171;&#230;&#179;&#168;&#229;†Œ&#232;‡&#170;&#229;&#174;š&#228;&#185;‰&#230;–‡&#229;Œ–&#227;€‚&#229;&#174;ƒ&#233;&#166;–&#229;…ˆ&#228;&#184;&#186;&#231;&#189;‘&#231;&#171;™&#230;\u008F\u0090&#228;&#190;›&#228;&#184;€&#230;\u009D&#161;&#229;&#174;ž&#231;”&#168;&#232;&#183;&#175;&#229;&#190;„&#239;&#188;Œ&#232;€Œ&#230;ŠŠ&#229;&#185;&#179;&#229;\u008F&#176;&#231;‰&#185;&#229;&#174;š&#231;š„&#230;–‡&#229;Œ–&#230;&#179;&#168;&#229;†Œ&#231;•™&#228;&#189;œ&#229;\u008F&#175;&#233;€‰&#231;š„&#233;&#171;˜&#231;&#186;&#167;&#230;&#173;&#165;&#233;&#170;&#164;&#227;€‚</p>\r\n<h2>&#229;&#191;&#171;&#233;€Ÿ&#229;&#188;€&#229;&#167;‹</h2>\r\n<p>&#228;&#187;Ž&#228;&#184;‹&#232;&#189;&#189;&#231;š„&#229;Œ…&#230;–‡&#228;&#187;&#182;&#232;&#191;›&#232;&#161;Œ&#229;&#174;‰&#232;&#163;…&#239;&#188;š</p>\r\n<pre><code class=\"language-powershell\">dotnet add package Protocol5.UAI.CSharp --source .\\downloads</code></pre>\r\n<p>&#231;„&#182;&#229;\u0090Ž&#230;ŠŠ&#229;&#174;ƒ&#230;Ž&#165;&#229;…&#165; ASP.NET Core &#231;&#189;‘&#231;&#171;™&#239;&#188;š</p>\r\n<pre><code class=\"language-csharp\">using Protocol5.UAI;\n\nvar builder = WebApplication.CreateBuilder(args);\nbuilder.Services.AddProtocol5UaiWebsiteSupport();\n\nvar app = builder.Build();\napp.UseProtocol5UaiWebsiteSupport();\n\napp.MapGet(&quot;/uai-demo&quot;, (HttpContext context) =&gt;\n{\n    var sampleCanonicalId = Radix63404.Encode(5651);\n\n    return Results.Json(new\n    {\n        protocol = UaiCultureInfo.CanonicalVersion,\n        language = context.GetProtocol5HtmlLanguage(),\n        sampleCanonicalId\n    });\n});\n\napp.Run();</code></pre>\r\n<h2>HTML &#229;&#187;&#186;&#232;&#174;&#174;</h2>\r\n<p>&#229;&#166;‚&#230;žœ&#230;Ÿ\u0090&#228;&#184;&#170;&#233;&#161;&#181;&#233;\u009D&#162;&#232;&#166;\u0081&#231;›&#180;&#230;Ž&#165;&#229;&#163;&#176;&#230;˜Ž&#229;…&#182;&#229;†…&#229;&#174;&#185;&#233;\u009D&#162;&#229;\u0090‘ UAI&#239;&#188;Œ&#229;ˆ™&#228;&#189;&#191;&#231;”&#168;&#239;&#188;š</p>\r\n<pre><code class=\"language-html\">&lt;html lang=&quot;x-uai-1&quot;&gt;</code></pre>\r\n<h2>&#232;&#167;„&#232;Œƒ&#230;&#160;&#188;&#229;&#188;\u008F&#229;Œ–&#232;&#167;„&#229;ˆ™</h2>\r\n<p>&#229;œ&#168;&#229;&#186;\u008F&#229;ˆ—&#229;Œ–&#232;&#167;„&#232;Œƒ UAI &#229;€&#188;&#230;—&#182;&#239;&#188;Œ&#229;&#167;‹&#231;&#187;ˆ&#228;&#189;&#191;&#231;”&#168; <code>InvariantCulture</code>&#239;&#188;š</p>\r\n<pre><code class=\"language-csharp\">using Protocol5.UAI;\n\nvar confidence = 0.875m.ToString(UaiCultureInfo.CanonicalSerializationCulture);</code></pre>\r\n<h2>&#229;&#183;&#165;&#229;…&#183;&#229;Œ…&#228;&#184;&#173;&#229;Œ…&#229;\u0090&#171;&#231;š„ Radix 63404 &#231;&#164;&#186;&#228;&#190;‹</h2>\r\n<pre><code class=\"language-csharp\">Radix63404.Encode(41);        // J\nRadix63404.Encode(5651);      // &#195;&#161;&#226;„&#162;&#226;€“\nRadix63404.Encode(267914296); // &#195;&#161;&#198;’&#226;€ž&#195;&#167;&#194;&#187;&#194;&#160;</code></pre>\r\n<h2>&#228;&#184;‹&#232;&#189;&#189;&#233;“&#190;&#230;Ž&#165;</h2>\r\n<ul>\r\n<li><a href=\"/downloads/protocol5-uai-1-csharp-web-starter.zip\">&#228;&#184;‹&#232;&#189;&#189;&#229;&#174;Œ&#230;•&#180; starter ZIP</a></li>\r\n<li><a href=\"/downloads/Protocol5.UAI.CSharp.1.0.0.nupkg\">&#231;›&#180;&#230;Ž&#165;&#228;&#184;‹&#232;&#189;&#189; NuGet &#229;Œ…</a></li>\r\n<li><a href=\"/UAI-1\">&#233;˜…&#232;&#175;&#187; UAI-1 &#232;&#167;„&#232;Œƒ</a></li>\r\n<li><a href=\"/UAI/radix-63404-guide-and-attribution\">&#233;˜…&#232;&#175;&#187; Radix 63404 &#230;Œ‡&#229;\u008D—</a></li>\r\n</ul>\n                    </div>\n                </article>"
+              }
+            }
+          ],
+          "sectionKind": "generic",
+          "sourceRef": {
+            "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]",
+            "htmlFragment": "<section class=\"doc-layout reveal\">\n                <aside class=\"panel doc-sidebar\">\n                    <p class=\"eyebrow\">Document metadata</p>\n<ul class=\"doc-meta-list\">\r\n<li><span>Human locale</span><strong>简体中文（新加坡）</strong></li>\r\n<li><span>Canonical public path</span><strong><a href=\"/UAI-1/csharp-website-support/zh-SG\">/UAI-1/csharp-website-support/zh-SG</a></strong></li>\r\n<li><span>Machine endpoint</span><strong><a href=\"/UAI-1/csharp-website-support/zh-SG/index.uai.json\">/UAI-1/csharp-website-support/zh-SG/index.uai.json</a></strong></li>\r\n<li><span>Machine discovery</span><strong><a href=\"/UAI-1.json\">/UAI-1.json</a></strong></li>\r\n<li><span>Examples index</span><strong><a href=\"/UAI-1-examples.json\">/UAI-1-examples.json</a></strong></li>\r\n<li><span>Canonical registry</span><strong><a href=\"/UAI-1/registry/uai-1.registry.json\">/UAI-1/registry/uai-1.registry.json</a></strong></li>\r\n<li><span>Canonical schema</span><strong><a href=\"/UAI-1/schema/uai-1.schema.json\">/UAI-1/schema/uai-1.schema.json</a></strong></li>\r\n<li><span>Canonical types</span><strong><a href=\"/UAI-1/schema/uai-1.types.ts\">/UAI-1/schema/uai-1.types.ts</a></strong></li>\r\n<li><span>Canonical examples</span><strong><a href=\"/UAI-1/examples\">/UAI-1/examples</a></strong></li>\r\n<li><span>All supported translations</span><strong><a href=\"/UAI-1/csharp-website-support\">English (US)</a>, <a href=\"/UAI-1/csharp-website-support/es-US\">Espa&#241;ol (US)</a>, <a href=\"/UAI-1/csharp-website-support/uk-UA\">Українська</a>, <a href=\"/UAI-1/csharp-website-support/zh-SG\">简体中文（新加坡）</a>, <a href=\"/UAI-1/csharp-website-support/th\">ไทย</a></strong></li>\r\n</ul>\r\n\n                    <div class=\"callout\">\n                        <p>Source markdown: <code>uai-1-csharp-website-support.zh-SG.md</code></p>\n                    </div>\n                </aside>\n                <article class=\"panel doc-panel\">\n                    <div class=\"doc-prose\">\n<h1>UAI-1 C# &#231;&#189;‘&#231;&#171;™&#230;”&#175;&#230;Œ\u0081&#229;&#183;&#165;&#229;…&#183;&#229;Œ…</h1>\r\n<p>&#230;œ&#172;&#233;&#161;&#181;&#229;\u008F‘&#229;&#184;ƒ Protocol5 &#231;š„&#229;…&#165;&#233;—&#168;&#228;&#184;‹&#232;&#189;&#189;&#229;Œ…&#239;&#188;Œ&#231;”&#168;&#228;&#186;Ž&#228;&#184;&#186; C# &#231;&#189;‘&#231;&#171;™&#230;&#183;&#187;&#229;Š&#160; UAI-1 &#230;”&#175;&#230;Œ\u0081&#239;&#188;Œ&#229;&#176;&#164;&#229;…&#182;&#233;€‚&#229;\u0090ˆ&#229;&#184;Œ&#230;œ›&#229;œ&#168;&#228;&#184;\u008D&#232;&#174;&#169;&#232;&#167;„&#232;Œƒ UAI &#232;&#175;&#173;&#228;&#185;‰&#228;&#190;\u009D&#232;&#181;–&#230;œ&#172;&#229;œ&#176;&#228;&#186;&#186;&#231;&#177;&#187;&#232;&#175;&#173;&#232;&#168;€&#230;&#160;&#188;&#229;&#188;\u008F&#232;&#167;„&#229;ˆ™&#231;š„&#229;‰\u008D&#230;\u008F\u0090&#228;&#184;‹&#239;&#188;Œ&#232;Ž&#183;&#229;&#190;— <code>CultureInfo</code> &#228;&#184;Ž <code>Accept-Language</code> &#229;&#174;ž&#231;”&#168;&#233;›†&#230;ˆ\u0090&#232;&#183;&#175;&#229;&#190;„&#231;š„ ASP.NET Core &#231;&#171;™&#231;‚&#185;&#227;€‚</p>\r\n<h2>&#230;–‡&#230;&#161;&#163;&#228;&#191;&#161;&#230;\u0081&#175;</h2>\r\n<ul>\r\n<li><strong>&#231;›&#174;&#230;&#160;‡&#232;&#175;&#187;&#232;€…&#239;&#188;š</strong> C# &#228;&#184;Ž ASP.NET &#231;&#189;‘&#231;&#171;™&#229;&#188;€&#229;\u008F‘&#232;€…</li>\r\n<li><strong>ZIP &#228;&#184;‹&#232;&#189;&#189;&#239;&#188;š</strong> <a href=\"/downloads/protocol5-uai-1-csharp-web-starter.zip\">protocol5-uai-1-csharp-web-starter.zip</a></li>\r\n<li><strong>NuGet &#229;Œ…&#228;&#184;‹&#232;&#189;&#189;&#239;&#188;š</strong> <a href=\"/downloads/Protocol5.UAI.CSharp.1.0.0.nupkg\">Protocol5.UAI.CSharp.1.0.0.nupkg</a></li>\r\n<li><strong>ZIP &#230;&#160;&#161;&#233;&#170;Œ&#229;’Œ&#239;&#188;š</strong> <a href=\"/downloads/protocol5-uai-1-csharp-web-starter.zip.sha256\">protocol5-uai-1-csharp-web-starter.zip.sha256</a></li>\r\n<li><strong>&#232;&#167;„&#232;Œƒ&#232;&#175;&#173;&#232;&#168;€&#230;&#160;‡&#231;&#173;&#190;&#239;&#188;š</strong> <code>x-uai-1</code></li>\r\n<li><strong>&#232;&#167;„&#232;Œƒ&#229;&#186;\u008F&#229;ˆ—&#229;Œ–&#230;–‡&#229;Œ–&#239;&#188;š</strong> <code>InvariantCulture</code></li>\r\n<li><strong>Microsoft &#230;–‡&#230;&#161;&#163;&#239;&#188;š</strong> <a href=\"https://learn.microsoft.com/en-us/dotnet/fundamentals/runtime-libraries/system-globalization-cultureinfo\">CultureInfo</a>, <a href=\"https://learn.microsoft.com/en-us/dotnet/fundamentals/runtime-libraries/system-globalization-cultureinfo-invariantculture\">InvariantCulture</a>, <a href=\"https://learn.microsoft.com/en-us/dotnet/fundamentals/runtime-libraries/system-globalization-cultureandregioninfobuilder\">CultureAndRegionInfoBuilder</a></li>\r\n</ul>\r\n<h2>&#228;&#184;‹&#232;&#189;&#189;&#229;Œ…&#229;Œ…&#229;\u0090&#171;&#231;š„&#229;†…&#229;&#174;&#185;</h2>\r\n<ul>\r\n<li><code>Protocol5.UAI.CSharp</code> &#230;&#186;\u0090&#233;&#161;&#185;&#231;›&#174;</li>\r\n<li>&#230;‰“&#229;Œ…&#229;&#165;&#189;&#231;š„ <code>Protocol5.UAI.CSharp</code> <code>.nupkg</code></li>\r\n<li>Radix 63404 &#231;&#188;–&#231;&#160;\u0081&#228;&#184;Ž&#232;&#167;&#163;&#231;&#160;\u0081&#232;&#190;…&#229;Š&#169;&#229;&#183;&#165;&#229;…&#183;</li>\r\n<li>&#232;ƒ&#189;&#229;&#164;Ÿ&#228;&#187;Ž query string&#227;€\u0081cookie &#230;ˆ– <code>Accept-Language</code> &#232;&#175;†&#229;ˆ&#171; UAI &#232;&#175;&#183;&#230;&#177;‚&#231;š„ ASP.NET Core &#228;&#184;&#173;&#233;—&#180;&#228;&#187;&#182;</li>\r\n<li>&#228;&#184;€&#228;&#184;&#170;&#231;&#174;€&#231;Ÿ&#173;&#229;&#174;‰&#232;&#163;…&#232;&#175;&#180;&#230;˜Ž&#239;&#188;Œ&#228;&#190;›&#229;\u0081\u008F&#229;&#165;&#189;&#231;›&#180;&#230;Ž&#165;&#228;&#184;‹&#232;&#189;&#189;&#232;€Œ&#228;&#184;\u008D&#230;˜&#175;&#229;Œ…&#230;&#186;\u0090&#231;š„&#229;›&#162;&#233;˜Ÿ&#228;&#189;&#191;&#231;”&#168;</li>\r\n</ul>\r\n<h2>&#228;&#184;&#186;&#228;&#187;€&#228;&#185;ˆ starter &#228;&#189;&#191;&#231;”&#168; <code>x-uai-1</code></h2>\r\n<p>&#229;&#175;&#185;&#231;&#189;‘&#231;&#171;™&#232;€Œ&#232;&#168;€&#239;&#188;Œ&#230;&#184;…&#230;™&#176;&#231;š„&#232;\u0081Œ&#232;&#180;&#163;&#230;‹†&#229;ˆ†&#229;&#166;‚&#228;&#184;‹&#239;&#188;š</p>\r\n<ul>\r\n<li>&#231;”&#168; <code>x-uai-1</code> &#229;&#164;„&#231;\u0090† HTML <code>lang</code>&#227;€\u0081&#232;&#175;&#183;&#230;&#177;‚&#229;\u008D\u008F&#229;•†&#228;&#187;&#165;&#229;\u008FŠ <code>Content-Language</code></li>\r\n<li>&#229;&#189;“&#232;&#191;\u0090&#232;&#161;Œ&#230;—&#182;&#230;”&#175;&#230;Œ\u0081&#230;—&#182;&#239;&#188;Œ&#228;&#189;&#191;&#231;”&#168; <code>CultureInfo.GetCultureInfo(&quot;x-uai-1&quot;)</code></li>\r\n<li>&#229;œ&#168;&#229;&#186;\u008F&#229;ˆ—&#229;Œ–&#232;&#167;„&#232;Œƒ UAI &#229;€&#188;&#230;—&#182;&#239;&#188;Œ&#228;&#189;&#191;&#231;”&#168; <code>CultureInfo.InvariantCulture</code></li>\r\n</ul>\r\n<p>&#230;œ€&#229;\u0090Ž&#232;&#191;™&#230;\u009D&#161;&#232;&#167;„&#229;ˆ™&#233;\u009Dž&#229;&#184;&#184;&#233;‡\u008D&#232;&#166;\u0081&#239;&#188;Œ&#229;›&#160;&#228;&#184;&#186; UAI-1 &#232;&#162;&#171;&#229;&#174;š&#228;&#185;‰&#228;&#184;&#186;&#228;&#184;€&#231;&#167;\u008D&#232;&#167;„&#232;Œƒ&#230;œ&#186;&#229;™&#168;&#232;&#175;&#173;&#232;&#168;€&#227;€‚&#229;&#176;\u008F&#230;•&#176;&#229;ˆ†&#233;š”&#231;&#172;&#166;&#227;€\u0081&#230;—&#165;&#230;œŸ&#230;&#160;&#188;&#229;&#188;\u008F&#229;’Œ&#230;œ&#172;&#229;œ&#176;&#230;˜&#190;&#231;&#164;&#186;&#231;&#186;&#166;&#229;&#174;š&#231;&#187;\u009D&#228;&#184;\u008D&#229;&#186;”&#230;”&#185;&#229;\u008F˜ UAI &#230;&#182;ˆ&#230;\u0081&#175;&#229;&#186;\u008F&#229;ˆ—&#229;Œ–&#229;\u0090Ž&#231;š„&#229;\u0090&#171;&#228;&#185;‰&#227;€‚</p>\r\n<h2>&#228;&#184;&#186;&#228;&#187;€&#228;&#185;ˆ&#232;&#191;™&#228;&#184;\u008D&#228;&#187;…&#228;&#187;…&#230;˜&#175;&#228;&#184;€&#228;&#184;&#170; Windows &#230;–‡&#229;Œ–&#229;&#174;‰&#232;&#163;…&#229;™&#168;</h2>\r\n<p>Microsoft &#231;š„&#229;…&#168;&#231;\u0090ƒ&#229;Œ–&#230;Œ‡&#229;\u008D—&#229;\u0081š&#228;&#186;†&#228;&#184;€&#228;&#184;&#170;&#233;‡\u008D&#232;&#166;\u0081&#229;Œ&#186;&#229;ˆ†&#239;&#188;š</p>\r\n<ul>\r\n<li><code>CultureInfo</code> &#230;˜&#175;&#232;&#191;\u0090&#232;&#161;Œ&#230;—&#182;&#229;&#164;„&#231;\u0090†&#228;&#184;&#173;&#231;&#171;‹&#230;–‡&#229;Œ–&#232;&#161;Œ&#228;&#184;&#186;&#231;š„&#230;&#173;&#163;&#229;&#184;&#184;&#229;…&#165;&#229;\u008F&#163;&#231;‚&#185;</li>\r\n<li><code>CultureAndRegionInfoBuilder</code> &#229;\u008F&#175;&#231;”&#168;&#228;&#186;Ž&#229;ˆ›&#229;&#187;&#186;&#232;‡&#170;&#229;&#174;š&#228;&#185;‰&#230;–‡&#229;Œ–&#239;&#188;Œ&#228;&#189;†&#233;‚&#163;&#230;\u009D&#161;&#232;&#183;&#175;&#229;&#190;„&#230;˜&#175; Windows &#228;&#184;“&#231;”&#168;&#231;š„&#239;&#188;Œ&#229;&#185;&#182;&#228;&#184;\u008D&#230;˜&#175;&#232;&#183;&#168;&#229;&#185;&#179;&#229;\u008F&#176;&#231;&#189;‘&#231;&#171;™&#233;‡‡&#231;”&#168;&#230;—&#182;&#231;š„&#233;&#187;˜&#232;&#174;&#164;&#230;&#173;&#163;&#231;&#161;&#174;&#229;\u0081š&#230;&#179;•</li>\r\n</ul>\r\n<p>&#229;›&#160;&#230;&#173;&#164;&#239;&#188;Œ&#232;&#191;™&#228;&#184;&#170; Protocol5 starter <strong>&#228;&#184;\u008D</strong>&#232;&#166;\u0081&#230;&#177;‚&#229;œ&#168;&#230;“\u008D&#228;&#189;œ&#231;&#179;&#187;&#231;&#187;Ÿ&#231;&#186;&#167;&#229;ˆ&#171;&#230;&#179;&#168;&#229;†Œ&#232;‡&#170;&#229;&#174;š&#228;&#185;‰&#230;–‡&#229;Œ–&#227;€‚&#229;&#174;ƒ&#233;&#166;–&#229;…ˆ&#228;&#184;&#186;&#231;&#189;‘&#231;&#171;™&#230;\u008F\u0090&#228;&#190;›&#228;&#184;€&#230;\u009D&#161;&#229;&#174;ž&#231;”&#168;&#232;&#183;&#175;&#229;&#190;„&#239;&#188;Œ&#232;€Œ&#230;ŠŠ&#229;&#185;&#179;&#229;\u008F&#176;&#231;‰&#185;&#229;&#174;š&#231;š„&#230;–‡&#229;Œ–&#230;&#179;&#168;&#229;†Œ&#231;•™&#228;&#189;œ&#229;\u008F&#175;&#233;€‰&#231;š„&#233;&#171;˜&#231;&#186;&#167;&#230;&#173;&#165;&#233;&#170;&#164;&#227;€‚</p>\r\n<h2>&#229;&#191;&#171;&#233;€Ÿ&#229;&#188;€&#229;&#167;‹</h2>\r\n<p>&#228;&#187;Ž&#228;&#184;‹&#232;&#189;&#189;&#231;š„&#229;Œ…&#230;–‡&#228;&#187;&#182;&#232;&#191;›&#232;&#161;Œ&#229;&#174;‰&#232;&#163;…&#239;&#188;š</p>\r\n<pre><code class=\"language-powershell\">dotnet add package Protocol5.UAI.CSharp --source .\\downloads</code></pre>\r\n<p>&#231;„&#182;&#229;\u0090Ž&#230;ŠŠ&#229;&#174;ƒ&#230;Ž&#165;&#229;…&#165; ASP.NET Core &#231;&#189;‘&#231;&#171;™&#239;&#188;š</p>\r\n<pre><code class=\"language-csharp\">using Protocol5.UAI;\n\nvar builder = WebApplication.CreateBuilder(args);\nbuilder.Services.AddProtocol5UaiWebsiteSupport();\n\nvar app = builder.Build();\napp.UseProtocol5UaiWebsiteSupport();\n\napp.MapGet(&quot;/uai-demo&quot;, (HttpContext context) =&gt;\n{\n    var sampleCanonicalId = Radix63404.Encode(5651);\n\n    return Results.Json(new\n    {\n        protocol = UaiCultureInfo.CanonicalVersion,\n        language = context.GetProtocol5HtmlLanguage(),\n        sampleCanonicalId\n    });\n});\n\napp.Run();</code></pre>\r\n<h2>HTML &#229;&#187;&#186;&#232;&#174;&#174;</h2>\r\n<p>&#229;&#166;‚&#230;žœ&#230;Ÿ\u0090&#228;&#184;&#170;&#233;&#161;&#181;&#233;\u009D&#162;&#232;&#166;\u0081&#231;›&#180;&#230;Ž&#165;&#229;&#163;&#176;&#230;˜Ž&#229;…&#182;&#229;†…&#229;&#174;&#185;&#233;\u009D&#162;&#229;\u0090‘ UAI&#239;&#188;Œ&#229;ˆ™&#228;&#189;&#191;&#231;”&#168;&#239;&#188;š</p>\r\n<pre><code class=\"language-html\">&lt;html lang=&quot;x-uai-1&quot;&gt;</code></pre>\r\n<h2>&#232;&#167;„&#232;Œƒ&#230;&#160;&#188;&#229;&#188;\u008F&#229;Œ–&#232;&#167;„&#229;ˆ™</h2>\r\n<p>&#229;œ&#168;&#229;&#186;\u008F&#229;ˆ—&#229;Œ–&#232;&#167;„&#232;Œƒ UAI &#229;€&#188;&#230;—&#182;&#239;&#188;Œ&#229;&#167;‹&#231;&#187;ˆ&#228;&#189;&#191;&#231;”&#168; <code>InvariantCulture</code>&#239;&#188;š</p>\r\n<pre><code class=\"language-csharp\">using Protocol5.UAI;\n\nvar confidence = 0.875m.ToString(UaiCultureInfo.CanonicalSerializationCulture);</code></pre>\r\n<h2>&#229;&#183;&#165;&#229;…&#183;&#229;Œ…&#228;&#184;&#173;&#229;Œ…&#229;\u0090&#171;&#231;š„ Radix 63404 &#231;&#164;&#186;&#228;&#190;‹</h2>\r\n<pre><code class=\"language-csharp\">Radix63404.Encode(41);        // J\nRadix63404.Encode(5651);      // &#195;&#161;&#226;„&#162;&#226;€“\nRadix63404.Encode(267914296); // &#195;&#161;&#198;’&#226;€ž&#195;&#167;&#194;&#187;&#194;&#160;</code></pre>\r\n<h2>&#228;&#184;‹&#232;&#189;&#189;&#233;“&#190;&#230;Ž&#165;</h2>\r\n<ul>\r\n<li><a href=\"/downloads/protocol5-uai-1-csharp-web-starter.zip\">&#228;&#184;‹&#232;&#189;&#189;&#229;&#174;Œ&#230;•&#180; starter ZIP</a></li>\r\n<li><a href=\"/downloads/Protocol5.UAI.CSharp.1.0.0.nupkg\">&#231;›&#180;&#230;Ž&#165;&#228;&#184;‹&#232;&#189;&#189; NuGet &#229;Œ…</a></li>\r\n<li><a href=\"/UAI-1\">&#233;˜…&#232;&#175;&#187; UAI-1 &#232;&#167;„&#232;Œƒ</a></li>\r\n<li><a href=\"/UAI/radix-63404-guide-and-attribution\">&#233;˜…&#232;&#175;&#187; Radix 63404 &#230;Œ‡&#229;\u008D—</a></li>\r\n</ul>\n                    </div>\n                </article>\n            </section>"
+          }
+        },
+        {
+          "type": "footer",
+          "id": "protocol5-uai-1-csharp-website-support-zh-sg.footer.1",
+          "children": [
+            {
+              "type": "section",
+              "id": "protocol5-uai-1-csharp-website-support-zh-sg.section.10",
+              "children": [
+                {
+                  "type": "paragraph",
+                  "id": "protocol5-uai-1-csharp-website-support-zh-sg.paragraph.18",
+                  "text": {
+                    "literal": "Protocol5 links",
+                    "normalized": "Protocol5 links",
+                    "language": "zh-SG"
+                  },
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/footer[0]/div[0]/p[0]",
+                    "htmlFragment": "<p class=\"eyebrow\">Protocol5 links</p>"
+                  }
+                },
+                {
+                  "type": "section",
+                  "id": "protocol5-uai-1-csharp-website-support-zh-sg.section.9",
+                  "children": [
+                    {
+                      "type": "link",
+                      "id": "protocol5-uai-1-csharp-website-support-zh-sg.link.23",
+                      "text": {
+                        "literal": "Home",
+                        "normalized": "Home",
+                        "language": "zh-SG"
+                      },
+                      "href": "/",
+                      "linkPurpose": "navigation",
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/footer[0]/div[0]/div[0]/a[0]",
+                        "htmlFragment": "<a href=\"/\">Home</a>"
+                      }
+                    },
+                    {
+                      "type": "link",
+                      "id": "protocol5-uai-1-csharp-website-support-zh-sg.link.24",
+                      "text": {
+                        "literal": "Fibonacci",
+                        "normalized": "Fibonacci",
+                        "language": "zh-SG"
+                      },
+                      "href": "/Fibonacci",
+                      "linkPurpose": "navigation",
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/footer[0]/div[0]/div[0]/a[1]",
+                        "htmlFragment": "<a href=\"/Fibonacci\">Fibonacci</a>"
+                      }
+                    },
+                    {
+                      "type": "link",
+                      "id": "protocol5-uai-1-csharp-website-support-zh-sg.link.25",
+                      "text": {
+                        "literal": "Prime Numbers",
+                        "normalized": "Prime Numbers",
+                        "language": "zh-SG"
+                      },
+                      "href": "/Prime",
+                      "linkPurpose": "navigation",
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/footer[0]/div[0]/div[0]/a[2]",
+                        "htmlFragment": "<a href=\"/Prime\">Prime Numbers</a>"
+                      }
+                    },
+                    {
+                      "type": "link",
+                      "id": "protocol5-uai-1-csharp-website-support-zh-sg.link.26",
+                      "text": {
+                        "literal": "UAI",
+                        "normalized": "UAI",
+                        "language": "zh-SG"
+                      },
+                      "href": "/UAI",
+                      "linkPurpose": "navigation",
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/footer[0]/div[0]/div[0]/a[3]",
+                        "htmlFragment": "<a href=\"/UAI\">UAI</a>"
+                      }
+                    },
+                    {
+                      "type": "link",
+                      "id": "protocol5-uai-1-csharp-website-support-zh-sg.link.27",
+                      "text": {
+                        "literal": "GitHub",
+                        "normalized": "GitHub",
+                        "language": "zh-SG"
+                      },
+                      "href": "/Home/GitHub",
+                      "linkPurpose": "navigation",
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/footer[0]/div[0]/div[0]/a[4]",
+                        "htmlFragment": "<a href=\"/Home/GitHub\">GitHub</a>"
+                      }
+                    },
+                    {
+                      "type": "link",
+                      "id": "protocol5-uai-1-csharp-website-support-zh-sg.link.28",
+                      "text": {
+                        "literal": "About",
+                        "normalized": "About",
+                        "language": "zh-SG"
+                      },
+                      "href": "/Home/About",
+                      "linkPurpose": "navigation",
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/footer[0]/div[0]/div[0]/a[5]",
+                        "htmlFragment": "<a href=\"/Home/About\">About</a>"
+                      }
+                    },
+                    {
+                      "type": "link",
+                      "id": "protocol5-uai-1-csharp-website-support-zh-sg.link.29",
+                      "text": {
+                        "literal": "Links",
+                        "normalized": "Links",
+                        "language": "zh-SG"
+                      },
+                      "href": "/Home/Links",
+                      "linkPurpose": "navigation",
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/footer[0]/div[0]/div[0]/a[6]",
+                        "htmlFragment": "<a href=\"/Home/Links\">Links</a>"
+                      }
+                    },
+                    {
+                      "type": "link",
+                      "id": "protocol5-uai-1-csharp-website-support-zh-sg.link.30",
+                      "text": {
+                        "literal": "Contact",
+                        "normalized": "Contact",
+                        "language": "zh-SG"
+                      },
+                      "href": "/Home/Contact",
+                      "linkPurpose": "navigation",
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/footer[0]/div[0]/div[0]/a[7]",
+                        "htmlFragment": "<a href=\"/Home/Contact\">Contact</a>"
+                      }
+                    }
+                  ],
+                  "sectionKind": "generic",
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/footer[0]/div[0]/div[0]",
+                    "htmlFragment": "<div class=\"footer-links\">\n                    <a href=\"/\">Home</a>\n                    <a href=\"/Fibonacci\">Fibonacci</a>\n                    <a href=\"/Prime\">Prime Numbers</a>\n                    <a href=\"/UAI\">UAI</a>\n                    <a href=\"/Home/GitHub\">GitHub</a>\n                    <a href=\"/Home/About\">About</a>\n                    <a href=\"/Home/Links\">Links</a>\n                    <a href=\"/Home/Contact\">Contact</a>\n                </div>"
+                  }
+                }
+              ],
+              "sectionKind": "generic",
+              "sourceRef": {
+                "domPath": "/html[0]/body[0]/div[0]/footer[0]/div[0]",
+                "htmlFragment": "<div>\n                <p class=\"eyebrow\">Protocol5 links</p>\n                <div class=\"footer-links\">\n                    <a href=\"/\">Home</a>\n                    <a href=\"/Fibonacci\">Fibonacci</a>\n                    <a href=\"/Prime\">Prime Numbers</a>\n                    <a href=\"/UAI\">UAI</a>\n                    <a href=\"/Home/GitHub\">GitHub</a>\n                    <a href=\"/Home/About\">About</a>\n                    <a href=\"/Home/Links\">Links</a>\n                    <a href=\"/Home/Contact\">Contact</a>\n                </div>\n            </div>"
+              }
+            },
+            {
+              "type": "paragraph",
+              "id": "protocol5-uai-1-csharp-website-support-zh-sg.paragraph.19",
+              "text": {
+                "literal": "Protocol5 reference page.",
+                "normalized": "Protocol5 reference page.",
+                "language": "zh-SG"
+              },
+              "sourceRef": {
+                "domPath": "/html[0]/body[0]/div[0]/footer[0]/p[0]",
+                "htmlFragment": "<p class=\"footer-copy\">Protocol5 reference page. <span id=\"currentYear\"></span></p>"
+              }
+            }
+          ],
+          "sourceRef": {
+            "domPath": "/html[0]/body[0]/div[0]/footer[0]",
+            "htmlFragment": "<footer class=\"site-footer panel reveal\">\n            <div>\n                <p class=\"eyebrow\">Protocol5 links</p>\n                <div class=\"footer-links\">\n                    <a href=\"/\">Home</a>\n                    <a href=\"/Fibonacci\">Fibonacci</a>\n                    <a href=\"/Prime\">Prime Numbers</a>\n                    <a href=\"/UAI\">UAI</a>\n                    <a href=\"/Home/GitHub\">GitHub</a>\n                    <a href=\"/Home/About\">About</a>\n                    <a href=\"/Home/Links\">Links</a>\n                    <a href=\"/Home/Contact\">Contact</a>\n                </div>\n            </div>\n            <p class=\"footer-copy\">Protocol5 reference page. <span id=\"currentYear\"></span></p>\n        </footer>"
+          }
+        }
+      ]
+    }
+  ],
+  "semantics": [],
+  "symbols": [],
+  "assets": [],
+  "relationships": [],
+  "annotations": [],
+  "provenance": {
+    "generatedAt": "2026-04-14T04:15:32.5696547+00:00",
+    "generator": {
+      "name": "Protocol5.UAI.CSharp",
+      "version": "1.0.0"
+    },
+    "translator": {
+      "contractVersion": "1.0.0",
+      "mode": "deterministic-html",
+      "name": "Protocol5.UAI.CSharp",
+      "version": "1.0.0"
+    },
+    "capture": {
+      "method": "html-dom-translation",
+      "notes": "Published machine endpoint generated from the paired Protocol5 human page."
+    }
+  },
+  "extensions": {}
+}

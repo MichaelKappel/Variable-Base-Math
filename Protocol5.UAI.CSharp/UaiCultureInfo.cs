@@ -4,8 +4,8 @@ namespace Protocol5.UAI;
 
 public static class UaiCultureInfo
 {
-    public const string CanonicalVersion = "UAI-1";
-    public const string CanonicalLanguageTag = "x-uai-1";
+    public const string CanonicalVersion = UaiConstants.SpecName;
+    public const string CanonicalLanguageTag = UaiConstants.LegacyLanguageTag;
 
     private static readonly string[] SupportedTags =
     {

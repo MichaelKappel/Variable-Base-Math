@@ -4,6 +4,8 @@ Version: `1.0.0`
 
 Status: normative
 
+See also: [`integration-contracts.md`](integration-contracts.md)
+
 This document defines how a translator converts websites, HTML fragments, and WordPress exports into valid UAI-1 without hidden interpretation drift.
 
 ## 1. Output obligations

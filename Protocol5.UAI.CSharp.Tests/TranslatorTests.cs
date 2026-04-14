@@ -78,6 +78,36 @@ public sealed class TranslatorTests
         StringAssert.Contains(rendered, "<p>World</p>");
     }
 
+    [TestMethod]
+    public void Translator_UsesImageAltTextForImageOnlyLinks()
+    {
+        const string html = """
+        <!DOCTYPE html>
+        <html lang="en">
+        <body>
+          <section>
+            <a href="/images/full.png">
+              <img src="/images/thumb.png" alt="Open full-size manuscript panel" />
+            </a>
+          </section>
+        </body>
+        </html>
+        """;
+
+        var document = new UaiHtmlTranslator().Translate(html, new UaiHtmlTranslationOptions
+        {
+            SourceUri = "https://example.org/image-link",
+            PageType = "reference"
+        });
+
+        var link = document.Structure[0].Children!
+            .SelectMany(Flatten)
+            .Single(node => node.Type == "link");
+
+        Assert.AreEqual("Open full-size manuscript panel", link.Text?.Literal);
+        Assert.AreEqual("Open full-size manuscript panel", link.Text?.Normalized);
+    }
+
     private static IEnumerable<UaiNode> Flatten(UaiNode node)
     {
         yield return node;

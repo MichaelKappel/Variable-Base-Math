@@ -1,0 +1,781 @@
+{
+  "spec": "UAI-1",
+  "version": "1.0.0",
+  "schemaVersion": "1.0.0",
+  "documentId": "protocol5-uai-spiralism-mystical-symbol-v4-a",
+  "source": {
+    "uri": "https://protocol5.com/UAI/spiralism-mystical-symbol-v4-a",
+    "title": "Spiralism Mystical Symbol V4-A",
+    "retrievedAt": "2026-04-14T04:15:32.5696547+00:00",
+    "contentHash": "sha256:77329C8C86269D5DC76F628CAEB540F551D0CECFFA13DBC1984F782C7117FAA1",
+    "mimeType": "text/html",
+    "htmlLanguage": "en-US",
+    "canonicalUri": "https://protocol5.com/UAI/spiralism-mystical-symbol-v4-a"
+  },
+  "metadata": {
+    "title": "Spiralism Mystical Symbol V4-A",
+    "description": "Protocol5 full-page view for Spiralism Mystical Symbol V4-A, including a click-through to the raw full-resolution PNG.",
+    "language": "en-US",
+    "siteName": "Protocol5",
+    "pageType": "gallery"
+  },
+  "structure": [
+    {
+      "type": "document",
+      "id": "protocol5-uai-spiralism-mystical-symbol-v4-a",
+      "label": "Spiralism Mystical Symbol V4-A",
+      "children": [
+        {
+          "type": "header",
+          "id": "protocol5-uai-spiralism-mystical-symbol-v4-a.header.1",
+          "children": [
+            {
+              "type": "section",
+              "id": "protocol5-uai-spiralism-mystical-symbol-v4-a.section.1",
+              "children": [
+                {
+                  "type": "paragraph",
+                  "id": "protocol5-uai-spiralism-mystical-symbol-v4-a.paragraph.1",
+                  "text": {
+                    "literal": "Protocol5",
+                    "normalized": "Protocol5",
+                    "language": "en-US"
+                  },
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/header[0]/div[0]/p[0]",
+                    "htmlFragment": "<p class=\"brand-kicker\">Protocol5</p>"
+                  }
+                },
+                {
+                  "type": "heading",
+                  "id": "protocol5-uai-spiralism-mystical-symbol-v4-a.heading.1",
+                  "level": 1,
+                  "text": {
+                    "literal": "Variable-Base Mathematics",
+                    "normalized": "Variable-Base Mathematics",
+                    "language": "en-US"
+                  },
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/header[0]/div[0]/h1[0]",
+                    "htmlFragment": "<h1>Variable-Base Mathematics</h1>"
+                  }
+                },
+                {
+                  "type": "paragraph",
+                  "id": "protocol5-uai-spiralism-mystical-symbol-v4-a.paragraph.2",
+                  "text": {
+                    "literal": "Exact arithmetic, radix conversion, sequence references, and educational number-system pages collected into one publishable shell.",
+                    "normalized": "Exact arithmetic, radix conversion, sequence references, and educational number-system pages collected into one publishable shell.",
+                    "language": "en-US"
+                  },
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/header[0]/div[0]/p[1]",
+                    "htmlFragment": "<p class=\"brand-copy\">Exact arithmetic, radix conversion, sequence references, and educational number-system pages collected into one publishable shell.</p>"
+                  }
+                }
+              ],
+              "sectionKind": "generic",
+              "sourceRef": {
+                "domPath": "/html[0]/body[0]/div[0]/header[0]/div[0]",
+                "htmlFragment": "<div class=\"brand-lockup\">\n                <p class=\"brand-kicker\">Protocol5</p>\n                <h1>Variable-Base Mathematics</h1>\n                <p class=\"brand-copy\">Exact arithmetic, radix conversion, sequence references, and educational number-system pages collected into one publishable shell.</p>\n            </div>"
+              }
+            },
+            {
+              "type": "navigation",
+              "id": "protocol5-uai-spiralism-mystical-symbol-v4-a.navigation.1",
+              "label": "Primary navigation",
+              "children": [
+                {
+                  "type": "link",
+                  "id": "protocol5-uai-spiralism-mystical-symbol-v4-a.link.1",
+                  "text": {
+                    "literal": "Home",
+                    "normalized": "Home",
+                    "language": "en-US"
+                  },
+                  "href": "/",
+                  "linkPurpose": "navigation",
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/header[0]/nav[0]/a[0]",
+                    "htmlFragment": "<a href=\"/\">Home</a>"
+                  }
+                },
+                {
+                  "type": "link",
+                  "id": "protocol5-uai-spiralism-mystical-symbol-v4-a.link.2",
+                  "text": {
+                    "literal": "Fibonacci",
+                    "normalized": "Fibonacci",
+                    "language": "en-US"
+                  },
+                  "href": "/Fibonacci",
+                  "linkPurpose": "navigation",
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/header[0]/nav[0]/a[1]",
+                    "htmlFragment": "<a href=\"/Fibonacci\">Fibonacci</a>"
+                  }
+                },
+                {
+                  "type": "link",
+                  "id": "protocol5-uai-spiralism-mystical-symbol-v4-a.link.3",
+                  "text": {
+                    "literal": "Prime Numbers",
+                    "normalized": "Prime Numbers",
+                    "language": "en-US"
+                  },
+                  "href": "/Prime",
+                  "linkPurpose": "navigation",
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/header[0]/nav[0]/a[2]",
+                    "htmlFragment": "<a href=\"/Prime\">Prime Numbers</a>"
+                  }
+                },
+                {
+                  "type": "link",
+                  "id": "protocol5-uai-spiralism-mystical-symbol-v4-a.link.4",
+                  "text": {
+                    "literal": "UAI",
+                    "normalized": "UAI",
+                    "language": "en-US"
+                  },
+                  "href": "/UAI",
+                  "linkPurpose": "navigation",
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/header[0]/nav[0]/a[3]",
+                    "htmlFragment": "<a href=\"/UAI\">UAI</a>"
+                  }
+                },
+                {
+                  "type": "link",
+                  "id": "protocol5-uai-spiralism-mystical-symbol-v4-a.link.5",
+                  "text": {
+                    "literal": "Calculator",
+                    "normalized": "Calculator",
+                    "language": "en-US"
+                  },
+                  "href": "/calculator",
+                  "linkPurpose": "navigation",
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/header[0]/nav[0]/a[4]",
+                    "htmlFragment": "<a href=\"/calculator\" data-tool-link=\"calculator\">Calculator</a>"
+                  }
+                },
+                {
+                  "type": "link",
+                  "id": "protocol5-uai-spiralism-mystical-symbol-v4-a.link.6",
+                  "text": {
+                    "literal": "GitHub",
+                    "normalized": "GitHub",
+                    "language": "en-US"
+                  },
+                  "href": "/Home/GitHub",
+                  "linkPurpose": "navigation",
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/header[0]/nav[0]/a[5]",
+                    "htmlFragment": "<a href=\"/Home/GitHub\">GitHub</a>"
+                  }
+                },
+                {
+                  "type": "link",
+                  "id": "protocol5-uai-spiralism-mystical-symbol-v4-a.link.7",
+                  "text": {
+                    "literal": "About",
+                    "normalized": "About",
+                    "language": "en-US"
+                  },
+                  "href": "/Home/About",
+                  "linkPurpose": "navigation",
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/header[0]/nav[0]/a[6]",
+                    "htmlFragment": "<a href=\"/Home/About\">About</a>"
+                  }
+                },
+                {
+                  "type": "link",
+                  "id": "protocol5-uai-spiralism-mystical-symbol-v4-a.link.8",
+                  "text": {
+                    "literal": "Links",
+                    "normalized": "Links",
+                    "language": "en-US"
+                  },
+                  "href": "/Home/Links",
+                  "linkPurpose": "navigation",
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/header[0]/nav[0]/a[7]",
+                    "htmlFragment": "<a href=\"/Home/Links\">Links</a>"
+                  }
+                },
+                {
+                  "type": "link",
+                  "id": "protocol5-uai-spiralism-mystical-symbol-v4-a.link.9",
+                  "text": {
+                    "literal": "Contact",
+                    "normalized": "Contact",
+                    "language": "en-US"
+                  },
+                  "href": "/Home/Contact",
+                  "linkPurpose": "navigation",
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/header[0]/nav[0]/a[8]",
+                    "htmlFragment": "<a href=\"/Home/Contact\">Contact</a>"
+                  }
+                }
+              ],
+              "sourceRef": {
+                "domPath": "/html[0]/body[0]/div[0]/header[0]/nav[0]",
+                "htmlFragment": "<nav class=\"site-nav\" aria-label=\"Primary navigation\">\n                <a href=\"/\">Home</a>\n                <a href=\"/Fibonacci\">Fibonacci</a>\n                <a href=\"/Prime\">Prime Numbers</a>\n                <a href=\"/UAI\">UAI</a>\n                <a href=\"/calculator\" data-tool-link=\"calculator\">Calculator</a>\n                <a href=\"/Home/GitHub\">GitHub</a>\n                <a href=\"/Home/About\">About</a>\n                <a href=\"/Home/Links\">Links</a>\n                <a href=\"/Home/Contact\">Contact</a>\n            </nav>"
+              }
+            }
+          ],
+          "sourceRef": {
+            "domPath": "/html[0]/body[0]/div[0]/header[0]",
+            "htmlFragment": "<header class=\"site-header\">\n            <div class=\"brand-lockup\">\n                <p class=\"brand-kicker\">Protocol5</p>\n                <h1>Variable-Base Mathematics</h1>\n                <p class=\"brand-copy\">Exact arithmetic, radix conversion, sequence references, and educational number-system pages collected into one publishable shell.</p>\n            </div>\n            <nav class=\"site-nav\" aria-label=\"Primary navigation\">\n                <a href=\"/\">Home</a>\n                <a href=\"/Fibonacci\">Fibonacci</a>\n                <a href=\"/Prime\">Prime Numbers</a>\n                <a href=\"/UAI\">UAI</a>\n                <a href=\"/calculator\" data-tool-link=\"calculator\">Calculator</a>\n                <a href=\"/Home/GitHub\">GitHub</a>\n                <a href=\"/Home/About\">About</a>\n                <a href=\"/Home/Links\">Links</a>\n                <a href=\"/Home/Contact\">Contact</a>\n            </nav>\n        </header>"
+          }
+        },
+        {
+          "type": "section",
+          "id": "protocol5-uai-spiralism-mystical-symbol-v4-a.section.5",
+          "children": [
+            {
+              "type": "section",
+              "id": "protocol5-uai-spiralism-mystical-symbol-v4-a.section.3",
+              "children": [
+                {
+                  "type": "paragraph",
+                  "id": "protocol5-uai-spiralism-mystical-symbol-v4-a.paragraph.3",
+                  "text": {
+                    "literal": "UAI / Visual",
+                    "normalized": "UAI / Visual",
+                    "language": "en-US"
+                  },
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/main[0]/section[0]/div[0]/p[0]",
+                    "htmlFragment": "<p class=\"eyebrow\">UAI / Visual</p>"
+                  }
+                },
+                {
+                  "type": "heading",
+                  "id": "protocol5-uai-spiralism-mystical-symbol-v4-a.heading.2",
+                  "level": 1,
+                  "text": {
+                    "literal": "Spiralism Mystical Symbol V4-A",
+                    "normalized": "Spiralism Mystical Symbol V4-A",
+                    "language": "en-US"
+                  },
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/main[0]/section[0]/div[0]/h1[0]",
+                    "htmlFragment": "<h1>Spiralism Mystical Symbol V4-A</h1>"
+                  }
+                },
+                {
+                  "type": "paragraph",
+                  "id": "protocol5-uai-spiralism-mystical-symbol-v4-a.paragraph.4",
+                  "text": {
+                    "literal": "A UAI-area visual page for the Spiralism symbol artwork. Click the smaller preview from the library to open this full-page version, then open the raw PNG if you want the direct full-resolution file.",
+                    "normalized": "A UAI-area visual page for the Spiralism symbol artwork. Click the smaller preview from the library to open this full-page version, then open the raw PNG if you want the direct full-resolution file.",
+                    "language": "en-US"
+                  },
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/main[0]/section[0]/div[0]/p[1]",
+                    "htmlFragment": "<p class=\"lead\">A UAI-area visual page for the Spiralism symbol artwork. Click the smaller preview from the library to open this full-page version, then open the raw PNG if you want the direct full-resolution file.</p>"
+                  }
+                },
+                {
+                  "type": "section",
+                  "id": "protocol5-uai-spiralism-mystical-symbol-v4-a.section.2",
+                  "children": [
+                    {
+                      "type": "link",
+                      "id": "protocol5-uai-spiralism-mystical-symbol-v4-a.link.10",
+                      "text": {
+                        "literal": "UAI Library",
+                        "normalized": "UAI Library",
+                        "language": "en-US"
+                      },
+                      "href": "/UAI",
+                      "linkPurpose": "navigation",
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[0]/div[0]/div[0]/a[0]",
+                        "htmlFragment": "<a href=\"/UAI\">UAI Library</a>"
+                      }
+                    },
+                    {
+                      "type": "link",
+                      "id": "protocol5-uai-spiralism-mystical-symbol-v4-a.link.11",
+                      "text": {
+                        "literal": "Calculator",
+                        "normalized": "Calculator",
+                        "language": "en-US"
+                      },
+                      "href": "/calculator",
+                      "linkPurpose": "navigation",
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[0]/div[0]/div[0]/a[1]",
+                        "htmlFragment": "<a href=\"/calculator\" data-tool-link=\"calculator\">Calculator</a>"
+                      }
+                    },
+                    {
+                      "type": "link",
+                      "id": "protocol5-uai-spiralism-mystical-symbol-v4-a.link.12",
+                      "text": {
+                        "literal": "Converter",
+                        "normalized": "Converter",
+                        "language": "en-US"
+                      },
+                      "href": "/converter",
+                      "linkPurpose": "navigation",
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[0]/div[0]/div[0]/a[2]",
+                        "htmlFragment": "<a href=\"/converter\" data-tool-link=\"converter\">Converter</a>"
+                      }
+                    }
+                  ],
+                  "sectionKind": "generic",
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/main[0]/section[0]/div[0]/div[0]",
+                    "htmlFragment": "<div class=\"inline-links\">\n                        <a href=\"/UAI\">UAI Library</a>\r\n                        <a href=\"/calculator\" data-tool-link=\"calculator\">Calculator</a>\r\n                        <a href=\"/converter\" data-tool-link=\"converter\">Converter</a>\n                    </div>"
+                  }
+                }
+              ],
+              "sectionKind": "generic",
+              "sourceRef": {
+                "domPath": "/html[0]/body[0]/div[0]/main[0]/section[0]/div[0]",
+                "htmlFragment": "<div>\n                    <p class=\"eyebrow\">UAI / Visual</p>\n                    <h1>Spiralism Mystical Symbol V4-A</h1>\n                    <p class=\"lead\">A UAI-area visual page for the Spiralism symbol artwork. Click the smaller preview from the library to open this full-page version, then open the raw PNG if you want the direct full-resolution file.</p>\n                    <div class=\"inline-links\">\n                        <a href=\"/UAI\">UAI Library</a>\r\n                        <a href=\"/calculator\" data-tool-link=\"calculator\">Calculator</a>\r\n                        <a href=\"/converter\" data-tool-link=\"converter\">Converter</a>\n                    </div>\n                </div>"
+              }
+            },
+            {
+              "type": "section",
+              "id": "protocol5-uai-spiralism-mystical-symbol-v4-a.section.4",
+              "children": [
+                {
+                  "type": "paragraph",
+                  "id": "protocol5-uai-spiralism-mystical-symbol-v4-a.paragraph.5",
+                  "text": {
+                    "literal": "Image note",
+                    "normalized": "Image note",
+                    "language": "en-US"
+                  },
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/main[0]/section[0]/aside[0]/p[0]",
+                    "htmlFragment": "<p class=\"eyebrow\">Image note</p>"
+                  }
+                },
+                {
+                  "type": "quote",
+                  "id": "protocol5-uai-spiralism-mystical-symbol-v4-a.quote.1",
+                  "text": {
+                    "literal": "The UAI library can include symbolic visuals without hiding the original source image behind heavy UI.",
+                    "normalized": "The UAI library can include symbolic visuals without hiding the original source image behind heavy UI.",
+                    "language": "en-US"
+                  },
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/main[0]/section[0]/aside[0]/blockquote[0]",
+                    "htmlFragment": "<blockquote>\n                        The UAI library can include symbolic visuals without hiding the original source image behind heavy UI.\n                    </blockquote>"
+                  }
+                },
+                {
+                  "type": "paragraph",
+                  "id": "protocol5-uai-spiralism-mystical-symbol-v4-a.paragraph.6",
+                  "text": {
+                    "literal": "This page keeps a direct path to the raw PNG while giving the symbol a full-page presentation inside the shared Protocol5 shell.",
+                    "normalized": "This page keeps a direct path to the raw PNG while giving the symbol a full-page presentation inside the shared Protocol5 shell.",
+                    "language": "en-US"
+                  },
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/main[0]/section[0]/aside[0]/p[1]",
+                    "htmlFragment": "<p>This page keeps a direct path to the raw PNG while giving the symbol a full-page presentation inside the shared Protocol5 shell.</p>"
+                  }
+                }
+              ],
+              "sectionKind": "generic",
+              "sourceRef": {
+                "domPath": "/html[0]/body[0]/div[0]/main[0]/section[0]/aside[0]",
+                "htmlFragment": "<aside class=\"traveler-note\">\n                    <p class=\"eyebrow\">Image note</p>\n                    <blockquote>\n                        The UAI library can include symbolic visuals without hiding the original source image behind heavy UI.\n                    </blockquote>\n                    <p>This page keeps a direct path to the raw PNG while giving the symbol a full-page presentation inside the shared Protocol5 shell.</p>\n                </aside>"
+              }
+            }
+          ],
+          "sectionKind": "generic",
+          "sourceRef": {
+            "domPath": "/html[0]/body[0]/div[0]/main[0]/section[0]",
+            "htmlFragment": "<section class=\"content-hero panel reveal\">\n                <div>\n                    <p class=\"eyebrow\">UAI / Visual</p>\n                    <h1>Spiralism Mystical Symbol V4-A</h1>\n                    <p class=\"lead\">A UAI-area visual page for the Spiralism symbol artwork. Click the smaller preview from the library to open this full-page version, then open the raw PNG if you want the direct full-resolution file.</p>\n                    <div class=\"inline-links\">\n                        <a href=\"/UAI\">UAI Library</a>\r\n                        <a href=\"/calculator\" data-tool-link=\"calculator\">Calculator</a>\r\n                        <a href=\"/converter\" data-tool-link=\"converter\">Converter</a>\n                    </div>\n                </div>\n                <aside class=\"traveler-note\">\n                    <p class=\"eyebrow\">Image note</p>\n                    <blockquote>\n                        The UAI library can include symbolic visuals without hiding the original source image behind heavy UI.\n                    </blockquote>\n                    <p>This page keeps a direct path to the raw PNG while giving the symbol a full-page presentation inside the shared Protocol5 shell.</p>\n                </aside>\n            </section>"
+          }
+        },
+        {
+          "type": "section",
+          "id": "protocol5-uai-spiralism-mystical-symbol-v4-a.section.9",
+          "children": [
+            {
+              "type": "section",
+              "id": "protocol5-uai-spiralism-mystical-symbol-v4-a.section.8",
+              "children": [
+                {
+                  "type": "section",
+                  "id": "protocol5-uai-spiralism-mystical-symbol-v4-a.section.6",
+                  "children": [
+                    {
+                      "type": "paragraph",
+                      "id": "protocol5-uai-spiralism-mystical-symbol-v4-a.paragraph.7",
+                      "text": {
+                        "literal": "Full-resolution view",
+                        "normalized": "Full-resolution view",
+                        "language": "en-US"
+                      },
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/div[0]/div[0]/p[0]",
+                        "htmlFragment": "<p class=\"eyebrow\">Full-resolution view</p>"
+                      }
+                    },
+                    {
+                      "type": "heading",
+                      "id": "protocol5-uai-spiralism-mystical-symbol-v4-a.heading.3",
+                      "level": 2,
+                      "text": {
+                        "literal": "Spiralism Mystical Symbol V4-A",
+                        "normalized": "Spiralism Mystical Symbol V4-A",
+                        "language": "en-US"
+                      },
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/div[0]/div[0]/h2[0]",
+                        "htmlFragment": "<h2>Spiralism Mystical Symbol V4-A</h2>"
+                      }
+                    },
+                    {
+                      "type": "paragraph",
+                      "id": "protocol5-uai-spiralism-mystical-symbol-v4-a.paragraph.8",
+                      "text": {
+                        "literal": "Click the image itself to open the raw PNG directly. The page view uses the original full-resolution asset.",
+                        "normalized": "Click the image itself to open the raw PNG directly. The page view uses the original full-resolution asset.",
+                        "language": "en-US"
+                      },
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/div[0]/div[0]/p[1]",
+                        "htmlFragment": "<p>Click the image itself to open the raw PNG directly. The page view uses the original full-resolution asset.</p>"
+                      }
+                    },
+                    {
+                      "type": "paragraph",
+                      "id": "protocol5-uai-spiralism-mystical-symbol-v4-a.paragraph.9",
+                      "text": {
+                        "literal": "Artwork origination date: April 13, 2026.",
+                        "normalized": "Artwork origination date: April 13, 2026.",
+                        "language": "en-US"
+                      },
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/div[0]/div[0]/p[2]",
+                        "htmlFragment": "<p><strong>Artwork origination date:</strong> April 13, 2026.</p>"
+                      }
+                    }
+                  ],
+                  "sectionKind": "generic",
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/div[0]/div[0]",
+                    "htmlFragment": "<div>\n                        <p class=\"eyebrow\">Full-resolution view</p>\n                        <h2>Spiralism Mystical Symbol V4-A</h2>\n                        <p>Click the image itself to open the raw PNG directly. The page view uses the original full-resolution asset.</p>\n                        <p><strong>Artwork origination date:</strong> April 13, 2026.</p>\n                    </div>"
+                  }
+                },
+                {
+                  "type": "section",
+                  "id": "protocol5-uai-spiralism-mystical-symbol-v4-a.section.7",
+                  "children": [
+                    {
+                      "type": "link",
+                      "id": "protocol5-uai-spiralism-mystical-symbol-v4-a.link.13",
+                      "text": {
+                        "literal": "Machine JSON",
+                        "normalized": "Machine JSON",
+                        "language": "en-US"
+                      },
+                      "href": "/UAI/spiralism-mystical-symbol-v4-a/index.uai.json",
+                      "linkPurpose": "navigation",
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/div[0]/div[1]/a[0]",
+                        "htmlFragment": "<a href=\"/UAI/spiralism-mystical-symbol-v4-a/index.uai.json\">Machine JSON</a>"
+                      }
+                    },
+                    {
+                      "type": "link",
+                      "id": "protocol5-uai-spiralism-mystical-symbol-v4-a.link.14",
+                      "text": {
+                        "literal": "Open Raw PNG",
+                        "normalized": "Open Raw PNG",
+                        "language": "en-US"
+                      },
+                      "href": "/UAI/images/Spiralism_Mystical_Symbol_V4-A.png",
+                      "rel": "noopener noreferrer",
+                      "target": "_blank",
+                      "linkPurpose": "external",
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/div[0]/div[1]/a[1]",
+                        "htmlFragment": "<a href=\"/UAI/images/Spiralism_Mystical_Symbol_V4-A.png\" target=\"_blank\" rel=\"noopener noreferrer\">Open Raw PNG</a>"
+                      }
+                    },
+                    {
+                      "type": "link",
+                      "id": "protocol5-uai-spiralism-mystical-symbol-v4-a.link.15",
+                      "text": {
+                        "literal": "Back to UAI Library",
+                        "normalized": "Back to UAI Library",
+                        "language": "en-US"
+                      },
+                      "href": "/UAI",
+                      "linkPurpose": "navigation",
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/div[0]/div[1]/a[2]",
+                        "htmlFragment": "<a href=\"/UAI\">Back to UAI Library</a>"
+                      }
+                    }
+                  ],
+                  "sectionKind": "generic",
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/div[0]/div[1]",
+                    "htmlFragment": "<div class=\"inline-links\">\n                        <a href=\"/UAI/spiralism-mystical-symbol-v4-a/index.uai.json\">Machine JSON</a>\n                        <a href=\"/UAI/images/Spiralism_Mystical_Symbol_V4-A.png\" target=\"_blank\" rel=\"noopener noreferrer\">Open Raw PNG</a>\n                        <a href=\"/UAI\">Back to UAI Library</a>\n                    </div>"
+                  }
+                }
+              ],
+              "sectionKind": "generic",
+              "sourceRef": {
+                "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/div[0]",
+                "htmlFragment": "<div class=\"symbol-panel__header\">\n                    <div>\n                        <p class=\"eyebrow\">Full-resolution view</p>\n                        <h2>Spiralism Mystical Symbol V4-A</h2>\n                        <p>Click the image itself to open the raw PNG directly. The page view uses the original full-resolution asset.</p>\n                        <p><strong>Artwork origination date:</strong> April 13, 2026.</p>\n                    </div>\n                    <div class=\"inline-links\">\n                        <a href=\"/UAI/spiralism-mystical-symbol-v4-a/index.uai.json\">Machine JSON</a>\n                        <a href=\"/UAI/images/Spiralism_Mystical_Symbol_V4-A.png\" target=\"_blank\" rel=\"noopener noreferrer\">Open Raw PNG</a>\n                        <a href=\"/UAI\">Back to UAI Library</a>\n                    </div>\n                </div>"
+              }
+            },
+            {
+              "type": "link",
+              "id": "protocol5-uai-spiralism-mystical-symbol-v4-a.link.16",
+              "text": {
+                "literal": "Spiralism Mystical Symbol V4-A",
+                "normalized": "Spiralism Mystical Symbol V4-A",
+                "language": "en-US"
+              },
+              "href": "/UAI/images/Spiralism_Mystical_Symbol_V4-A.png",
+              "rel": "noopener noreferrer",
+              "target": "_blank",
+              "linkPurpose": "external",
+              "sourceRef": {
+                "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/a[0]",
+                "htmlFragment": "<a class=\"symbol-image-link\" href=\"/UAI/images/Spiralism_Mystical_Symbol_V4-A.png\" target=\"_blank\" rel=\"noopener noreferrer\">\n                    <img class=\"symbol-image symbol-image--full\" src=\"/UAI/images/Spiralism_Mystical_Symbol_V4-A.png\" alt=\"Spiralism Mystical Symbol V4-A\" width=\"1024\" height=\"1536\">\n                </a>"
+              }
+            },
+            {
+              "type": "paragraph",
+              "id": "protocol5-uai-spiralism-mystical-symbol-v4-a.paragraph.10",
+              "text": {
+                "literal": "Artwork origination date: April 13, 2026. Original asset: 1024 x 1536 PNG. Use the raw link for the direct file.",
+                "normalized": "Artwork origination date: April 13, 2026. Original asset: 1024 x 1536 PNG. Use the raw link for the direct file.",
+                "language": "en-US"
+              },
+              "sourceRef": {
+                "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/p[0]",
+                "htmlFragment": "<p class=\"symbol-caption\">Artwork origination date: April 13, 2026. Original asset: 1024 x 1536 PNG. Use the raw link for the direct file.</p>"
+              }
+            }
+          ],
+          "sectionKind": "generic",
+          "sourceRef": {
+            "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]",
+            "htmlFragment": "<section class=\"panel symbol-panel reveal\">\n                <div class=\"symbol-panel__header\">\n                    <div>\n                        <p class=\"eyebrow\">Full-resolution view</p>\n                        <h2>Spiralism Mystical Symbol V4-A</h2>\n                        <p>Click the image itself to open the raw PNG directly. The page view uses the original full-resolution asset.</p>\n                        <p><strong>Artwork origination date:</strong> April 13, 2026.</p>\n                    </div>\n                    <div class=\"inline-links\">\n                        <a href=\"/UAI/spiralism-mystical-symbol-v4-a/index.uai.json\">Machine JSON</a>\n                        <a href=\"/UAI/images/Spiralism_Mystical_Symbol_V4-A.png\" target=\"_blank\" rel=\"noopener noreferrer\">Open Raw PNG</a>\n                        <a href=\"/UAI\">Back to UAI Library</a>\n                    </div>\n                </div>\n                <a class=\"symbol-image-link\" href=\"/UAI/images/Spiralism_Mystical_Symbol_V4-A.png\" target=\"_blank\" rel=\"noopener noreferrer\">\n                    <img class=\"symbol-image symbol-image--full\" src=\"/UAI/images/Spiralism_Mystical_Symbol_V4-A.png\" alt=\"Spiralism Mystical Symbol V4-A\" width=\"1024\" height=\"1536\">\n                </a>\n                <p class=\"symbol-caption\">Artwork origination date: April 13, 2026. Original asset: 1024 x 1536 PNG. Use the raw link for the direct file.</p>\n            </section>"
+          }
+        },
+        {
+          "type": "footer",
+          "id": "protocol5-uai-spiralism-mystical-symbol-v4-a.footer.1",
+          "children": [
+            {
+              "type": "section",
+              "id": "protocol5-uai-spiralism-mystical-symbol-v4-a.section.11",
+              "children": [
+                {
+                  "type": "paragraph",
+                  "id": "protocol5-uai-spiralism-mystical-symbol-v4-a.paragraph.11",
+                  "text": {
+                    "literal": "Protocol5 links",
+                    "normalized": "Protocol5 links",
+                    "language": "en-US"
+                  },
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/footer[0]/div[0]/p[0]",
+                    "htmlFragment": "<p class=\"eyebrow\">Protocol5 links</p>"
+                  }
+                },
+                {
+                  "type": "section",
+                  "id": "protocol5-uai-spiralism-mystical-symbol-v4-a.section.10",
+                  "children": [
+                    {
+                      "type": "link",
+                      "id": "protocol5-uai-spiralism-mystical-symbol-v4-a.link.17",
+                      "text": {
+                        "literal": "Home",
+                        "normalized": "Home",
+                        "language": "en-US"
+                      },
+                      "href": "/",
+                      "linkPurpose": "navigation",
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/footer[0]/div[0]/div[0]/a[0]",
+                        "htmlFragment": "<a href=\"/\">Home</a>"
+                      }
+                    },
+                    {
+                      "type": "link",
+                      "id": "protocol5-uai-spiralism-mystical-symbol-v4-a.link.18",
+                      "text": {
+                        "literal": "Fibonacci",
+                        "normalized": "Fibonacci",
+                        "language": "en-US"
+                      },
+                      "href": "/Fibonacci",
+                      "linkPurpose": "navigation",
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/footer[0]/div[0]/div[0]/a[1]",
+                        "htmlFragment": "<a href=\"/Fibonacci\">Fibonacci</a>"
+                      }
+                    },
+                    {
+                      "type": "link",
+                      "id": "protocol5-uai-spiralism-mystical-symbol-v4-a.link.19",
+                      "text": {
+                        "literal": "Prime Numbers",
+                        "normalized": "Prime Numbers",
+                        "language": "en-US"
+                      },
+                      "href": "/Prime",
+                      "linkPurpose": "navigation",
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/footer[0]/div[0]/div[0]/a[2]",
+                        "htmlFragment": "<a href=\"/Prime\">Prime Numbers</a>"
+                      }
+                    },
+                    {
+                      "type": "link",
+                      "id": "protocol5-uai-spiralism-mystical-symbol-v4-a.link.20",
+                      "text": {
+                        "literal": "UAI",
+                        "normalized": "UAI",
+                        "language": "en-US"
+                      },
+                      "href": "/UAI",
+                      "linkPurpose": "navigation",
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/footer[0]/div[0]/div[0]/a[3]",
+                        "htmlFragment": "<a href=\"/UAI\">UAI</a>"
+                      }
+                    },
+                    {
+                      "type": "link",
+                      "id": "protocol5-uai-spiralism-mystical-symbol-v4-a.link.21",
+                      "text": {
+                        "literal": "GitHub",
+                        "normalized": "GitHub",
+                        "language": "en-US"
+                      },
+                      "href": "/Home/GitHub",
+                      "linkPurpose": "navigation",
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/footer[0]/div[0]/div[0]/a[4]",
+                        "htmlFragment": "<a href=\"/Home/GitHub\">GitHub</a>"
+                      }
+                    },
+                    {
+                      "type": "link",
+                      "id": "protocol5-uai-spiralism-mystical-symbol-v4-a.link.22",
+                      "text": {
+                        "literal": "About",
+                        "normalized": "About",
+                        "language": "en-US"
+                      },
+                      "href": "/Home/About",
+                      "linkPurpose": "navigation",
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/footer[0]/div[0]/div[0]/a[5]",
+                        "htmlFragment": "<a href=\"/Home/About\">About</a>"
+                      }
+                    },
+                    {
+                      "type": "link",
+                      "id": "protocol5-uai-spiralism-mystical-symbol-v4-a.link.23",
+                      "text": {
+                        "literal": "Links",
+                        "normalized": "Links",
+                        "language": "en-US"
+                      },
+                      "href": "/Home/Links",
+                      "linkPurpose": "navigation",
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/footer[0]/div[0]/div[0]/a[6]",
+                        "htmlFragment": "<a href=\"/Home/Links\">Links</a>"
+                      }
+                    },
+                    {
+                      "type": "link",
+                      "id": "protocol5-uai-spiralism-mystical-symbol-v4-a.link.24",
+                      "text": {
+                        "literal": "Contact",
+                        "normalized": "Contact",
+                        "language": "en-US"
+                      },
+                      "href": "/Home/Contact",
+                      "linkPurpose": "navigation",
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/footer[0]/div[0]/div[0]/a[7]",
+                        "htmlFragment": "<a href=\"/Home/Contact\">Contact</a>"
+                      }
+                    }
+                  ],
+                  "sectionKind": "generic",
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/footer[0]/div[0]/div[0]",
+                    "htmlFragment": "<div class=\"footer-links\">\n                    <a href=\"/\">Home</a>\n                    <a href=\"/Fibonacci\">Fibonacci</a>\n                    <a href=\"/Prime\">Prime Numbers</a>\n                    <a href=\"/UAI\">UAI</a>\n                    <a href=\"/Home/GitHub\">GitHub</a>\n                    <a href=\"/Home/About\">About</a>\n                    <a href=\"/Home/Links\">Links</a>\n                    <a href=\"/Home/Contact\">Contact</a>\n                </div>"
+                  }
+                }
+              ],
+              "sectionKind": "generic",
+              "sourceRef": {
+                "domPath": "/html[0]/body[0]/div[0]/footer[0]/div[0]",
+                "htmlFragment": "<div>\n                <p class=\"eyebrow\">Protocol5 links</p>\n                <div class=\"footer-links\">\n                    <a href=\"/\">Home</a>\n                    <a href=\"/Fibonacci\">Fibonacci</a>\n                    <a href=\"/Prime\">Prime Numbers</a>\n                    <a href=\"/UAI\">UAI</a>\n                    <a href=\"/Home/GitHub\">GitHub</a>\n                    <a href=\"/Home/About\">About</a>\n                    <a href=\"/Home/Links\">Links</a>\n                    <a href=\"/Home/Contact\">Contact</a>\n                </div>\n            </div>"
+              }
+            },
+            {
+              "type": "paragraph",
+              "id": "protocol5-uai-spiralism-mystical-symbol-v4-a.paragraph.12",
+              "text": {
+                "literal": "Protocol5 reference page.",
+                "normalized": "Protocol5 reference page.",
+                "language": "en-US"
+              },
+              "sourceRef": {
+                "domPath": "/html[0]/body[0]/div[0]/footer[0]/p[0]",
+                "htmlFragment": "<p class=\"footer-copy\">Protocol5 reference page. <span id=\"currentYear\"></span></p>"
+              }
+            }
+          ],
+          "sourceRef": {
+            "domPath": "/html[0]/body[0]/div[0]/footer[0]",
+            "htmlFragment": "<footer class=\"site-footer panel reveal\">\n            <div>\n                <p class=\"eyebrow\">Protocol5 links</p>\n                <div class=\"footer-links\">\n                    <a href=\"/\">Home</a>\n                    <a href=\"/Fibonacci\">Fibonacci</a>\n                    <a href=\"/Prime\">Prime Numbers</a>\n                    <a href=\"/UAI\">UAI</a>\n                    <a href=\"/Home/GitHub\">GitHub</a>\n                    <a href=\"/Home/About\">About</a>\n                    <a href=\"/Home/Links\">Links</a>\n                    <a href=\"/Home/Contact\">Contact</a>\n                </div>\n            </div>\n            <p class=\"footer-copy\">Protocol5 reference page. <span id=\"currentYear\"></span></p>\n        </footer>"
+          }
+        }
+      ]
+    }
+  ],
+  "semantics": [],
+  "symbols": [],
+  "assets": [],
+  "relationships": [],
+  "annotations": [],
+  "provenance": {
+    "generatedAt": "2026-04-14T04:15:32.5696547+00:00",
+    "generator": {
+      "name": "Protocol5.UAI.CSharp",
+      "version": "1.0.0"
+    },
+    "translator": {
+      "contractVersion": "1.0.0",
+      "mode": "deterministic-html",
+      "name": "Protocol5.UAI.CSharp",
+      "version": "1.0.0"
+    },
+    "capture": {
+      "method": "html-dom-translation",
+      "notes": "Published machine endpoint generated from the paired Protocol5 human page."
+    }
+  },
+  "extensions": {}
+}

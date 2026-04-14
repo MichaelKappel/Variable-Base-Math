@@ -27,6 +27,7 @@ function Write-Utf8File {
 
 $repoRoot = Split-Path -Path $PSScriptRoot -Parent
 $projectRoot = Join-Path $repoRoot 'Protocol5.UAI.CSharp'
+$validatorToolRoot = Join-Path $repoRoot 'tools\Protocol5.UAI.Validator'
 $projectFile = Join-Path $projectRoot 'Protocol5.UAI.CSharp.csproj'
 $downloadReadme = Join-Path $projectRoot 'PROTOCOL5-DOWNLOAD.md'
 $licenseFile = Join-Path $repoRoot 'LICENSE'
@@ -41,6 +42,8 @@ $archiveRoot = Join-Path $tempRoot 'archive'
 $archiveDownloadRoot = Join-Path $archiveRoot 'downloads'
 $archiveSourceRoot = Join-Path $archiveRoot 'src'
 $archiveProjectRoot = Join-Path $archiveSourceRoot 'Protocol5.UAI.CSharp'
+$archiveToolsRoot = Join-Path $archiveRoot 'tools'
+$archiveValidatorRoot = Join-Path $archiveToolsRoot 'Protocol5.UAI.Validator'
 $archiveSpecRoot = Join-Path $archiveRoot 'spec'
 $archiveDocsRoot = Join-Path $archiveRoot 'docs'
 $archiveExamplesRoot = Join-Path $archiveRoot 'examples'
@@ -52,6 +55,7 @@ if (Test-Path $tempRoot) {
 Ensure-Directory -Path $packageOutputRoot
 Ensure-Directory -Path $archiveDownloadRoot
 Ensure-Directory -Path $archiveSourceRoot
+Ensure-Directory -Path $archiveToolsRoot
 Ensure-Directory -Path $archiveSpecRoot
 Ensure-Directory -Path $archiveDocsRoot
 Ensure-Directory -Path $archiveExamplesRoot
@@ -68,11 +72,14 @@ if (-not $packageFile) {
 }
 
 Copy-Item -LiteralPath $projectRoot -Destination $archiveSourceRoot -Recurse -Force
+Copy-Item -LiteralPath $validatorToolRoot -Destination $archiveToolsRoot -Recurse -Force
 Copy-Item -LiteralPath $specRoot -Destination $archiveRoot -Recurse -Force
 Copy-Item -LiteralPath $docsRoot -Destination $archiveRoot -Recurse -Force
 Copy-Item -LiteralPath $examplesRoot -Destination $archiveRoot -Recurse -Force
 Remove-Item -LiteralPath (Join-Path $archiveProjectRoot 'bin') -Recurse -Force -ErrorAction SilentlyContinue
 Remove-Item -LiteralPath (Join-Path $archiveProjectRoot 'obj') -Recurse -Force -ErrorAction SilentlyContinue
+Remove-Item -LiteralPath (Join-Path $archiveValidatorRoot 'bin') -Recurse -Force -ErrorAction SilentlyContinue
+Remove-Item -LiteralPath (Join-Path $archiveValidatorRoot 'obj') -Recurse -Force -ErrorAction SilentlyContinue
 
 Copy-Item -LiteralPath $packageFile.FullName -Destination $archiveDownloadRoot -Force
 Copy-Item -LiteralPath $licenseFile -Destination (Join-Path $archiveRoot 'LICENSE') -Force

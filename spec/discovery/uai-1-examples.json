@@ -1,0 +1,81 @@
+{
+  "spec": "UAI-1",
+  "kind": "examples-index",
+  "version": "1.0.0",
+  "status": "authoritative",
+  "humanPage": "/UAI-1/examples",
+  "machineEndpoint": "/UAI-1-examples.json",
+  "registry": "/UAI-1/registry/uai-1.registry.json",
+  "examples": [
+    {
+      "id": "homepage",
+      "title": "Example Home",
+      "pageType": "homepage",
+      "publicPath": "/UAI-1/examples/homepage.uai.json",
+      "mediaType": "application/uai+json"
+    },
+    {
+      "id": "article-page",
+      "title": "Introducing UAI",
+      "pageType": "article",
+      "publicPath": "/UAI-1/examples/article-page.uai.json",
+      "mediaType": "application/uai+json"
+    },
+    {
+      "id": "landing-page",
+      "title": "Launch Product",
+      "pageType": "landing-page",
+      "publicPath": "/UAI-1/examples/landing-page.uai.json",
+      "mediaType": "application/uai+json"
+    },
+    {
+      "id": "navigation-menu",
+      "title": "Menu",
+      "pageType": "navigation",
+      "publicPath": "/UAI-1/examples/navigation-menu.uai.json",
+      "mediaType": "application/uai+json"
+    },
+    {
+      "id": "wordpress-page",
+      "title": "About Us",
+      "pageType": "wordpress-page",
+      "publicPath": "/UAI-1/examples/wordpress-page.uai.json",
+      "mediaType": "application/uai+json"
+    },
+    {
+      "id": "images-and-captions",
+      "title": "Gallery",
+      "pageType": "gallery",
+      "publicPath": "/UAI-1/examples/images-and-captions.uai.json",
+      "mediaType": "application/uai+json"
+    },
+    {
+      "id": "glossary-page",
+      "title": "Glossary",
+      "pageType": "glossary",
+      "publicPath": "/UAI-1/examples/glossary-page.uai.json",
+      "mediaType": "application/uai+json"
+    },
+    {
+      "id": "glyph-definitions",
+      "title": "Glyph Definitions",
+      "pageType": "reference",
+      "publicPath": "/UAI-1/examples/glyph-definitions.uai.json",
+      "mediaType": "application/uai+json"
+    },
+    {
+      "id": "structured-metadata-page",
+      "title": "Reference Page",
+      "pageType": "reference",
+      "publicPath": "/UAI-1/examples/structured-metadata-page.uai.json",
+      "mediaType": "application/uai+json"
+    },
+    {
+      "id": "symbolic-manuscript-page",
+      "title": "Manuscript Folio 1",
+      "pageType": "symbolic-manuscript",
+      "publicPath": "/UAI-1/examples/symbolic-manuscript-page.uai.json",
+      "mediaType": "application/uai+json"
+    }
+  ]
+}

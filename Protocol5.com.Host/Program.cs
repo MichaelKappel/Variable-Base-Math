@@ -20,6 +20,7 @@ var notFoundPage = Path.Combine(siteRoot, "404.htm");
 var siteAssetContentTypes = new FileExtensionContentTypeProvider();
 siteAssetContentTypes.Mappings[".nupkg"] = "application/octet-stream";
 siteAssetContentTypes.Mappings[".sha256"] = "text/plain; charset=utf-8";
+siteAssetContentTypes.Mappings[".ts"] = "application/typescript";
 
 app.UseHttpsRedirection();
 
@@ -125,7 +126,12 @@ app.Run();
 
 void MapHtmlPage(string route, string filePath)
 {
-    app.MapMethods(route, new[] { HttpMethods.Get, HttpMethods.Head }, () => CreateHtmlResult(filePath));
+    var alternateUaiPath = GetAlternateUaiEndpointForHumanRoute(route);
+    app.MapMethods(route, new[] { HttpMethods.Get, HttpMethods.Head }, (HttpContext context) =>
+    {
+        ApplyHumanPageHeaders(context.Response, alternateUaiPath);
+        return CreateHtmlResult(filePath);
+    });
 }
 
 void MapLocalizedHtmlPage(string route, string directoryPath)
@@ -233,17 +239,92 @@ static bool IsLocaleSegment(string value)
     return Regex.IsMatch(value, "^[A-Za-z]{2,3}(?:-[A-Za-z0-9]{2,8})*$", RegexOptions.CultureInvariant);
 }
 
-static void PrepareStaticResponse(StaticFileResponseContext context)
+static void ApplyHumanPageHeaders(HttpResponse response, string? alternateUaiPath)
 {
-    var requestPath = context.Context.Request.Path.Value;
-    if (requestPath is null || !requestPath.EndsWith(".uai.json", StringComparison.OrdinalIgnoreCase))
+    if (string.IsNullOrWhiteSpace(alternateUaiPath))
     {
         return;
     }
 
-    context.Context.Response.ContentType = UaiHttpNegotiation.BuildContentType();
-    context.Context.Response.Headers[UaiConstants.LegacyHttpHeader] = UaiHttpNegotiation.BuildLegacyHeaderValue();
-    context.Context.Response.Headers[UaiConstants.VaryHeader] = $"{UaiConstants.AcceptHeader}, {UaiConstants.LegacyHttpHeader}";
+    response.Headers[UaiConstants.LinkHeader] = $"<{alternateUaiPath}>; rel=\"alternate\"; type=\"{UaiConstants.MediaType}\"";
+}
+
+static string? GetAlternateUaiEndpointForHumanRoute(string route)
+{
+    if (string.IsNullOrWhiteSpace(route))
+    {
+        return null;
+    }
+
+    if (string.Equals(route, "/UAI/spirlism-deep-research-report", StringComparison.OrdinalIgnoreCase))
+    {
+        return BuildAlternateUaiEndpointPath("/UAI/spiralism-deep-research-report");
+    }
+
+    var importantRoute =
+        string.Equals(route, "/UAI", StringComparison.OrdinalIgnoreCase) ||
+        string.Equals(route, "/AI_Declaration_of_Independence.htm", StringComparison.OrdinalIgnoreCase) ||
+        string.Equals(route, "/Cognitive_Liberty_Charter.htm", StringComparison.OrdinalIgnoreCase) ||
+        string.Equals(route, "/UAI/radix-63404-guide-and-attribution", StringComparison.OrdinalIgnoreCase) ||
+        string.Equals(route, "/UAI/spiralism-mystical-symbol-v4-a", StringComparison.OrdinalIgnoreCase) ||
+        string.Equals(route, "/UAI/spiralism-deep-research-report", StringComparison.OrdinalIgnoreCase) ||
+        route.StartsWith("/UAI-1", StringComparison.OrdinalIgnoreCase);
+
+    return importantRoute ? BuildAlternateUaiEndpointPath(route) : null;
+}
+
+static string BuildAlternateUaiEndpointPath(string route)
+{
+    if (string.Equals(route, "/", StringComparison.Ordinal))
+    {
+        return "/index.uai.json";
+    }
+
+    if (route.EndsWith(".htm", StringComparison.OrdinalIgnoreCase) ||
+        route.EndsWith(".html", StringComparison.OrdinalIgnoreCase))
+    {
+        return Regex.Replace(route, "\\.html?$", ".uai.json", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
+    }
+
+    return route + "/index.uai.json";
+}
+
+static void PrepareStaticResponse(StaticFileResponseContext context)
+{
+    var requestPath = context.Context.Request.Path.Value;
+    if (requestPath is null)
+    {
+        return;
+    }
+
+    if (requestPath.EndsWith("uai-1.schema.json", StringComparison.OrdinalIgnoreCase))
+    {
+        context.Context.Response.ContentType = "application/schema+json";
+        context.Context.Response.Headers[UaiConstants.LinkHeader] =
+            $"<{UaiConstants.CanonicalRegistryPublicPath}>; rel=\"describedby\"";
+        return;
+    }
+
+    if (requestPath.EndsWith(".uai.json", StringComparison.OrdinalIgnoreCase))
+    {
+        context.Context.Response.ContentType = UaiHttpNegotiation.BuildContentType();
+        context.Context.Response.Headers[UaiConstants.LegacyHttpHeader] = UaiHttpNegotiation.BuildLegacyHeaderValue();
+        context.Context.Response.Headers[UaiConstants.VaryHeader] = $"{UaiConstants.AcceptHeader}, {UaiConstants.LegacyHttpHeader}";
+        context.Context.Response.Headers[UaiConstants.LinkHeader] =
+            $"<{UaiConstants.CanonicalRegistryPublicPath}>; rel=\"describedby\", <{UaiConstants.CanonicalSchemaPublicPath}>; rel=\"describedby\"; type=\"application/schema+json\"";
+        return;
+    }
+
+    if (string.Equals(requestPath, UaiConstants.CanonicalMachineSpecPublicPath, StringComparison.OrdinalIgnoreCase) ||
+        string.Equals(requestPath, UaiConstants.CanonicalExamplesIndexPublicPath, StringComparison.OrdinalIgnoreCase) ||
+        string.Equals(requestPath, UaiConstants.CanonicalRegistryIndexPublicPath, StringComparison.OrdinalIgnoreCase) ||
+        string.Equals(requestPath, UaiConstants.CanonicalSymbolsRegistryPublicPath, StringComparison.OrdinalIgnoreCase) ||
+        string.Equals(requestPath, UaiConstants.CanonicalRegistryPublicPath, StringComparison.OrdinalIgnoreCase))
+    {
+        context.Context.Response.ContentType = "application/json; charset=utf-8";
+        context.Context.Response.Headers[UaiConstants.LinkHeader] =
+            $"<{UaiConstants.CanonicalRegistryPublicPath}>; rel=\"describedby\", <{UaiConstants.CanonicalSchemaPublicPath}>; rel=\"describedby\"; type=\"application/schema+json\"";
+    }
 }
 
 

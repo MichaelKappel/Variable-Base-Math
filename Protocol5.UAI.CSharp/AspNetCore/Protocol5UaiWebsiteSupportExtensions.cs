@@ -4,6 +4,7 @@ using System.Globalization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace Protocol5.UAI;
 
@@ -19,6 +20,12 @@ public static class Protocol5UaiWebsiteSupportExtensions
         {
             services.Configure(configure);
         }
+
+        services.TryAddSingleton<UaiDocumentParser>();
+        services.TryAddSingleton<UaiDocumentValidator>();
+        services.TryAddSingleton<UaiHtmlExporter>();
+        services.TryAddSingleton<UaiHtmlRenderer>();
+        services.TryAddSingleton<UaiHtmlTranslator>();
 
         return services;
     }

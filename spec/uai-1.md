@@ -6,9 +6,14 @@ Status: normative
 
 Authoritative machine artifacts:
 
+- Canonical registry: [`registry/uai-1.registry.json`](registry/uai-1.registry.json)
 - JSON Schema: [`schema/uai-1.schema.json`](schema/uai-1.schema.json)
 - Type definitions: [`schema/uai-1.types.ts`](schema/uai-1.types.ts)
 - Translator contract: [`translator-contract.md`](translator-contract.md)
+- Integration contracts: [`integration-contracts.md`](integration-contracts.md)
+- Website export contract: [`website-export-contract.md`](website-export-contract.md)
+- Registry resolution contract: [`registry-resolution-contract.md`](registry-resolution-contract.md)
+- Radix 63404 contract: [`radix-63404-contract.md`](radix-63404-contract.md)
 - Canonical examples: [`../examples/`](../examples)
 
 ## 1. Purpose
@@ -407,7 +412,7 @@ Canonical response headers:
 
 Compatibility header:
 
-- `X-UAI-1: version=1.0.0`
+- `X-UAI-1: 1.0`
 
 `X-UAI-1` is a legacy compatibility signal only.
 
@@ -415,6 +420,13 @@ It is NOT the canonical media type and it is NOT a language tag.
 
 Discovery mechanisms:
 
+- machine discovery endpoint `/UAI-1.json`
+- machine examples endpoint `/UAI-1-examples.json`
+- machine registry endpoint `/registry/uai-1.json`
+- machine symbols endpoint `/registry/symbols.json`
+- machine schema endpoint `/schema/uai-1.schema.json`
+- canonical registry file `/UAI-1/registry/uai-1.registry.json`
+- canonical schema file `/UAI-1/schema/uai-1.schema.json`
 - `<link rel="alternate" type="application/uai+json" href="/page.uai.json">`
 - API endpoints that serve `application/uai+json`
 - response header `Link: </page.uai.json>; rel="alternate"; type="application/uai+json"`

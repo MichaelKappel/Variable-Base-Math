@@ -51,7 +51,7 @@ public static class UaiHttpNegotiation
 
     public static string BuildLegacyHeaderValue(string? version = null)
     {
-        return $"version={version ?? UaiConstants.CurrentDocumentVersion}";
+        return version ?? UaiConstants.LegacyCompatibilityVersion;
     }
 
     public static string BuildContentType(string? version = null)

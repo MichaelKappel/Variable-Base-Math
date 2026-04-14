@@ -43,7 +43,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="..\spec\discovery\**\*" Link="EmbeddedSpec\%(RecursiveDir)%(Filename)%(Extension)" />
     <EmbeddedResource Include="..\spec\schema\**\*" Link="EmbeddedSpec\%(RecursiveDir)%(Filename)%(Extension)" />
+    <EmbeddedResource Include="..\spec\registry\**\*" Link="EmbeddedSpec\%(RecursiveDir)%(Filename)%(Extension)" />
     <EmbeddedResource Include="..\examples\**\*.uai.json" Link="EmbeddedExamples\%(RecursiveDir)%(Filename)%(Extension)" />
   </ItemGroup>
 </Project>

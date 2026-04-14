@@ -19,4 +19,10 @@ public sealed class HttpNegotiationTests
         Assert.AreEqual("1.0.0", UaiHttpNegotiation.TryParseLegacyVersion("1.0"));
         Assert.IsNull(UaiHttpNegotiation.TryParseLegacyVersion("off"));
     }
+
+    [TestMethod]
+    public void LegacyHeader_UsesCompatibilityVersionWhenEmitted()
+    {
+        Assert.AreEqual("1.0", UaiHttpNegotiation.BuildLegacyHeaderValue());
+    }
 }

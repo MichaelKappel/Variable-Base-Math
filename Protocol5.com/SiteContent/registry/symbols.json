@@ -1,0 +1,73 @@
+{
+  "registryId": "uai-1.symbols",
+  "spec": "UAI-1",
+  "version": "1.0.0",
+  "status": "authoritative",
+  "scope": "source-backed symbol definitions published by the canonical UAI-1 example corpus",
+  "registry": "/UAI-1/registry/uai-1.registry.json",
+  "symbols": [
+    {
+      "id": "symbol.flow-spiral",
+      "label": "Flow Spiral",
+      "visualForm": "single clockwise open spiral",
+      "geometry": {
+        "primitives": [
+          "curve"
+        ],
+        "symmetry": "radial-asymmetric",
+        "closure": "open"
+      },
+      "strokeLogic": [
+        "begin at center",
+        "expand outward clockwise"
+      ],
+      "meaning": [],
+      "sourceSystem": "Protocol5 UAI Example Corpus",
+      "sourceEvidence": [
+        {
+          "kind": "exampleDocument",
+          "value": "/UAI-1/examples/glyph-definitions.uai.json"
+        },
+        {
+          "kind": "exampleDocument",
+          "value": "/UAI-1/examples/symbolic-manuscript-page.uai.json"
+        }
+      ],
+      "inference": {
+        "isInferred": false
+      },
+      "variants": [],
+      "relationships": [],
+      "notes": "Meaning intentionally empty because the published sources name the glyph but do not authoritatively define its meaning."
+    },
+    {
+      "id": "symbol.boundary-ring",
+      "label": "Boundary Ring",
+      "visualForm": "single closed ring",
+      "geometry": {
+        "primitives": [
+          "circle"
+        ],
+        "symmetry": "radial-symmetric",
+        "closure": "closed"
+      },
+      "strokeLogic": [
+        "draw a closed circular loop"
+      ],
+      "meaning": [],
+      "sourceSystem": "Protocol5 UAI Example Corpus",
+      "sourceEvidence": [
+        {
+          "kind": "exampleDocument",
+          "value": "/UAI-1/examples/glyph-definitions.uai.json"
+        }
+      ],
+      "inference": {
+        "isInferred": false
+      },
+      "variants": [],
+      "relationships": [],
+      "notes": "Meaning intentionally empty because the published source only names the glyph."
+    }
+  ]
+}

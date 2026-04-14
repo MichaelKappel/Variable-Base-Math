@@ -9,19 +9,7 @@ public sealed class UaiDocumentValidator
     private static readonly Regex ExtensionKeyRegex = new(@"^[a-z0-9]+(?:\.[a-z0-9-]+)+$", RegexOptions.Compiled | RegexOptions.CultureInvariant);
     private static readonly Regex HashRegex = new(@"^[a-z0-9-]+:[A-Fa-f0-9]+$", RegexOptions.Compiled | RegexOptions.CultureInvariant);
 
-    private static readonly HashSet<string> AllowedPageTypes = new(StringComparer.Ordinal)
-    {
-        "generic",
-        "homepage",
-        "article",
-        "landing-page",
-        "navigation",
-        "symbolic-manuscript",
-        "wordpress-page",
-        "gallery",
-        "glossary",
-        "reference"
-    };
+    private static readonly HashSet<string> AllowedPageTypes = new(UaiConstants.PageTypes, StringComparer.Ordinal);
 
     private static readonly IReadOnlyDictionary<string, HashSet<string>> AllowedChildren = new Dictionary<string, HashSet<string>>(StringComparer.Ordinal)
     {

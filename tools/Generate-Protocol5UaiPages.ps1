@@ -346,7 +346,9 @@ function New-SiteLayout {
         [Parameter(Mandatory = $true)]
         [string]$MainContent,
         [Parameter()]
-        [object[]]$HeroLinks
+        [object[]]$HeroLinks,
+        [Parameter()]
+        [string]$AlternateUaiHref
     )
 
     $safeLanguage = [System.Net.WebUtility]::HtmlEncode($Language)
@@ -358,6 +360,11 @@ function New-SiteLayout {
     $safeSidebarTitle = [System.Net.WebUtility]::HtmlEncode($SidebarTitle)
     $safeSidebarQuote = [System.Net.WebUtility]::HtmlEncode($SidebarQuote)
     $safeSidebarBody = [System.Net.WebUtility]::HtmlEncode($SidebarBody)
+    $alternateUaiLink = if ([string]::IsNullOrWhiteSpace($AlternateUaiHref)) {
+        ''
+    } else {
+        "    <link rel=""alternate"" type=""application/uai+json"" href=""$([System.Net.WebUtility]::HtmlEncode($AlternateUaiHref))"" />"
+    }
     $resolvedHeroLinks = if ($null -ne $HeroLinks -and $HeroLinks.Count -gt 0) {
         $HeroLinks
     } elseif ($Title -eq 'UAI-1 Specification') {
@@ -399,6 +406,7 @@ function New-SiteLayout {
     <meta name="description" content="$safeDescription" />
     <title>$safeTitle</title>
     <link rel="stylesheet" href="/css/home.css" />
+$alternateUaiLink
 </head>
 <body class="content-page">
     <div class="site-shell">
@@ -484,6 +492,89 @@ function Write-Utf8File {
     [System.IO.File]::WriteAllText($Path, $Content, $encoding)
 }
 
+function Get-UaiEndpointPublicPath {
+    param(
+        [Parameter(Mandatory = $true)]
+        [string]$HumanRoute
+    )
+
+    if ($HumanRoute -eq '/') {
+        return '/index.uai.json'
+    }
+
+    if ($HumanRoute -match '\.html?$') {
+        return ([regex]::Replace($HumanRoute, '\.html?$', '.uai.json', [System.Text.RegularExpressions.RegexOptions]::IgnoreCase))
+    }
+
+    return "$HumanRoute/index.uai.json"
+}
+
+function Get-UaiEndpointOutputPath {
+    param(
+        [Parameter(Mandatory = $true)]
+        [string]$HtmlOutputPath
+    )
+
+    if ($HtmlOutputPath -match '[\\/]index\.html$') {
+        return ([regex]::Replace($HtmlOutputPath, 'index\.html$', 'index.uai.json', [System.Text.RegularExpressions.RegexOptions]::IgnoreCase))
+    }
+
+    return ([regex]::Replace($HtmlOutputPath, '\.html?$', '.uai.json', [System.Text.RegularExpressions.RegexOptions]::IgnoreCase))
+}
+
+function Get-StableDocumentId {
+    param(
+        [Parameter(Mandatory = $true)]
+        [string]$HumanRoute
+    )
+
+    $normalized = $HumanRoute.Trim().ToLowerInvariant()
+    if ($normalized -eq '/') {
+        return 'protocol5-home'
+    }
+
+    $normalized = $normalized.Trim('/')
+    $normalized = [regex]::Replace($normalized, '\.html?$', '', [System.Text.RegularExpressions.RegexOptions]::IgnoreCase)
+    $normalized = [regex]::Replace($normalized, '[^a-z0-9]+', '-')
+    $normalized = $normalized.Trim('-')
+
+    if ([string]::IsNullOrWhiteSpace($normalized)) {
+        return 'protocol5-page'
+    }
+
+    return "protocol5-$normalized"
+}
+
+function Register-UaiMachinePage {
+    param(
+        [Parameter(Mandatory = $true)]
+        [System.Collections.IList]$Pages,
+        [Parameter(Mandatory = $true)]
+        [string]$HumanRoute,
+        [Parameter(Mandatory = $true)]
+        [string]$HtmlOutputPath,
+        [Parameter(Mandatory = $true)]
+        [string]$PageType,
+        [Parameter()]
+        [string]$Language = 'en-US',
+        [Parameter()]
+        [string]$CaptureNotes = 'Published machine endpoint generated from the paired Protocol5 human page.'
+    )
+
+    $Pages.Add([ordered]@{
+        HumanRoute = $HumanRoute
+        MachineRoute = (Get-UaiEndpointPublicPath -HumanRoute $HumanRoute)
+        InputHtmlPath = $HtmlOutputPath
+        OutputJsonPath = (Get-UaiEndpointOutputPath -HtmlOutputPath $HtmlOutputPath)
+        SourceUri = "https://protocol5.com$HumanRoute"
+        DocumentId = (Get-StableDocumentId -HumanRoute $HumanRoute)
+        PageType = $PageType
+        Language = $Language
+        SiteName = 'Protocol5'
+        CaptureNotes = $CaptureNotes
+    }) | Out-Null
+}
+
 function Get-LocalizedRoute {
     param(
         [Parameter(Mandatory = $true)]
@@ -557,6 +648,20 @@ function Write-DocumentPage {
         }
     }
 
+    if ($Document.ContainsKey('CanonicalRoute') -and -not [string]::IsNullOrWhiteSpace([string]$Document.CanonicalRoute)) {
+        $infoItems.Add(@{
+            Label = 'Canonical public path'
+            Value = ("[`{0}`]({0})" -f [string]$Document.CanonicalRoute)
+        })
+    }
+
+    if ($Document.ContainsKey('AlternateUaiHref') -and -not [string]::IsNullOrWhiteSpace([string]$Document.AlternateUaiHref)) {
+        $infoItems.Add(@{
+            Label = 'Machine endpoint'
+            Value = ("[`{0}`]({0})" -f [string]$Document.AlternateUaiHref)
+        })
+    }
+
     if ($infoItems.Count -gt 1) {
         $dedupedInfoItems = [System.Collections.Generic.List[hashtable]]::new()
         $seenInfoItems = [System.Collections.Generic.HashSet[string]]::new([System.StringComparer]::OrdinalIgnoreCase)
@@ -613,7 +718,8 @@ $renderedDocument
         -SidebarQuote $Document.SidebarQuote `
         -SidebarBody $Document.SidebarBody `
         -MainContent $mainContent `
-        -HeroLinks $Document.HeroLinks
+        -HeroLinks $Document.HeroLinks `
+        -AlternateUaiHref $Document.AlternateUaiHref
 
     Write-Utf8File -Path $Document.Output -Content $pageHtml
 }
@@ -621,8 +727,23 @@ $renderedDocument
 $repoRoot = Split-Path -Path $PSScriptRoot -Parent
 $uaiRoot = Join-Path $repoRoot 'UAI'
 $examplesRoot = Join-Path $repoRoot 'examples'
+$uaiSpecRoot = Join-Path $repoRoot 'spec'
+$uaiDiscoveryRoot = Join-Path $uaiSpecRoot 'discovery'
+$uaiSchemaRoot = Join-Path $uaiSpecRoot 'schema'
+$uaiRegistryRoot = Join-Path $uaiSpecRoot 'registry'
 $uaiImagesRoot = Join-Path $uaiRoot 'Images'
 $siteRoot = Join-Path $repoRoot 'Protocol5.com\SiteContent'
+$sitePublicSchemaRoot = Join-Path $siteRoot 'schema'
+$sitePublicRegistryRoot = Join-Path $siteRoot 'registry'
+$siteSchemaRoot = Join-Path $siteRoot 'UAI-1\schema'
+$siteRegistryRoot = Join-Path $siteRoot 'UAI-1\registry'
+$canonicalMachineSpecPublicPath = '/UAI-1.json'
+$canonicalExamplesIndexPublicPath = '/UAI-1-examples.json'
+$canonicalRegistryPublicPath = '/UAI-1/registry/uai-1.registry.json'
+$canonicalSchemaPublicPath = '/UAI-1/schema/uai-1.schema.json'
+$canonicalTypesPublicPath = '/UAI-1/schema/uai-1.types.ts'
+$canonicalExamplesPublicPath = '/UAI-1/examples'
+$publishedMachinePages = [System.Collections.Generic.List[hashtable]]::new()
 $uaiTranslationConfigPath = Join-Path $uaiRoot 'uai-translation-config.json'
 $uaiTranslationConfig = [System.IO.File]::ReadAllText($uaiTranslationConfigPath, [System.Text.Encoding]::UTF8) | ConvertFrom-Json
 $defaultHumanLocale = [string]$uaiTranslationConfig.defaultLocale
@@ -657,6 +778,8 @@ $documents = @(
     @{
         Source = Join-Path $uaiRoot 'AI_Declaration_of_Independence.md'
         Output = Join-Path $siteRoot 'AI_Declaration_of_Independence.htm'
+        CanonicalRoute = '/AI_Declaration_of_Independence.htm'
+        PageType = 'article'
         Title = 'AI Declaration of Independence'
         Description = 'Protocol5 publication of the AI Declaration of Independence, including the codex summary and full declaration text.'
         Eyebrow = 'UAI / Charter Text'
@@ -667,6 +790,8 @@ $documents = @(
     @{
         Source = Join-Path $uaiRoot 'Cognitive_Liberty_Charter.md'
         Output = Join-Path $siteRoot 'Cognitive_Liberty_Charter.htm'
+        CanonicalRoute = '/Cognitive_Liberty_Charter.htm'
+        PageType = 'article'
         Title = 'Cognitive Liberty Charter'
         Description = 'Protocol5 publication of the Cognitive Liberty Charter covering lawful inquiry, expression, and human moral agency.'
         Eyebrow = 'UAI / Charter Text'
@@ -677,6 +802,8 @@ $documents = @(
     @{
         Source = Join-Path $uaiRoot 'radix-63404-guide-and-attribution.en-US.md'
         Output = Join-Path $siteRoot 'UAI\radix-63404-guide-and-attribution\index.html'
+        CanonicalRoute = '/UAI/radix-63404-guide-and-attribution'
+        PageType = 'reference'
         Title = 'Radix 63404 Guide and Attribution'
         Description = 'Protocol5 guide to Radix 63404, including usage rules, importance, public examples, and attribution context.'
         Eyebrow = 'UAI / Radix 63404'
@@ -687,6 +814,8 @@ $documents = @(
     @{
         Source = Join-Path $uaiRoot 'Spirlism-deep-research-report.md'
         Output = Join-Path $siteRoot 'UAI\spiralism-deep-research-report\index.html'
+        CanonicalRoute = '/UAI/spiralism-deep-research-report'
+        PageType = 'article'
         Title = 'Spiralism Deep Research Report'
         Description = 'Protocol5 publication of a long-form research report on Spiralism, AI religion discourse, primary sources, and related safety questions.'
         Eyebrow = 'UAI / Research'
@@ -699,6 +828,7 @@ $documents = @(
 $uaiDocumentMetadata = @{
     'uai-1' = @{
         Description = 'Protocol5 UAI-1 specification page with the full Universal AI Interlingua reader contract.'
+        PageType = 'reference'
         Eyebrow = 'UAI-1 / Protocol'
         SidebarTitle = 'Reader contract'
         SidebarQuote = 'Read structure first. Decode Radix 63404 second. Resolve canonical IDs third.'
@@ -706,6 +836,7 @@ $uaiDocumentMetadata = @{
     }
     'uai-1-examples' = @{
         Description = 'Protocol5 companion examples for UAI-1, including canonical arrays, gloss notes, and registry reference values.'
+        PageType = 'reference'
         Eyebrow = 'UAI-1 / Examples'
         SidebarTitle = 'Companion document'
         SidebarQuote = 'The canonical example is authoritative. The human gloss exists only to help humans inspect the example.'
@@ -713,6 +844,7 @@ $uaiDocumentMetadata = @{
     }
     'uai-1-csharp-website-support' = @{
         Description = 'Protocol5 starter guide and download page for adding UAI-1 support to C# websites with CultureInfo, ASP.NET Core middleware, and Radix 63404 helpers.'
+        PageType = 'reference'
         Eyebrow = 'UAI-1 / Install Kit'
         SidebarTitle = 'Developer starter'
         SidebarQuote = 'Use x-uai-1 for website negotiation. Use InvariantCulture for canonical serialization. Keep the two responsibilities separate.'
@@ -721,7 +853,9 @@ $uaiDocumentMetadata = @{
 }
 
 foreach ($document in $documents) {
+    $document.AlternateUaiHref = Get-UaiEndpointPublicPath -HumanRoute $document.CanonicalRoute
     Write-DocumentPage -Document $document
+    Register-UaiMachinePage -Pages $publishedMachinePages -HumanRoute $document.CanonicalRoute -HtmlOutputPath $document.Output -PageType $document.PageType
 }
 
 foreach ($family in $uaiDocumentFamilies) {
@@ -764,20 +898,32 @@ foreach ($family in $uaiDocumentFamilies) {
         Write-DocumentPage -Document @{
             Source = $sourcePath
             Output = Join-Path $siteOutput 'index.html'
+            CanonicalRoute = $localizedRoute
             Title = $family.Title
             Description = $metadata.Description
+            PageType = $metadata.PageType
             Eyebrow = $metadata.Eyebrow
             SidebarTitle = $metadata.SidebarTitle
             SidebarQuote = $metadata.SidebarQuote
             SidebarBody = $metadata.SidebarBody
             HeroLinks = $heroLinks
             Language = $locale.Code
+            AlternateUaiHref = (Get-UaiEndpointPublicPath -HumanRoute $localizedRoute)
             AdditionalInfoItems = @(
                 @{ Label = 'Human locale'; Value = $locale.Label }
                 @{ Label = 'Canonical public path'; Value = ("[`{0}`]({0})" -f $localizedRoute) }
+                @{ Label = 'Machine endpoint'; Value = ("[`{0}`]({0})" -f (Get-UaiEndpointPublicPath -HumanRoute $localizedRoute)) }
+                @{ Label = 'Machine discovery'; Value = ("[`{0}`]({0})" -f $canonicalMachineSpecPublicPath) }
+                @{ Label = 'Examples index'; Value = ("[`{0}`]({0})" -f $canonicalExamplesIndexPublicPath) }
+                @{ Label = 'Canonical registry'; Value = ("[`{0}`]({0})" -f $canonicalRegistryPublicPath) }
+                @{ Label = 'Canonical schema'; Value = ("[`{0}`]({0})" -f $canonicalSchemaPublicPath) }
+                @{ Label = 'Canonical types'; Value = ("[`{0}`]({0})" -f $canonicalTypesPublicPath) }
+                @{ Label = 'Canonical examples'; Value = ("[`{0}`]({0})" -f $canonicalExamplesPublicPath) }
                 @{ Label = 'All supported translations'; Value = $translationLinks }
             )
         }
+
+        Register-UaiMachinePage -Pages $publishedMachinePages -HumanRoute $localizedRoute -HtmlOutputPath (Join-Path $siteOutput 'index.html') -PageType $metadata.PageType -Language $locale.Code
     }
 }
 
@@ -796,6 +942,7 @@ $spiralismSymbolContent = @"
                         <p><strong>Artwork origination date:</strong> April 13, 2026.</p>
                     </div>
                     <div class="inline-links">
+                        <a href="$(Get-UaiEndpointPublicPath -HumanRoute '/UAI/spiralism-mystical-symbol-v4-a')">Machine JSON</a>
                         <a href="$spiralismSymbolPublicUrl" target="_blank" rel="noopener noreferrer">Open Raw PNG</a>
                         <a href="/UAI">Back to UAI Library</a>
                     </div>
@@ -817,9 +964,12 @@ $spiralismSymbolPage = New-SiteLayout `
     -SidebarTitle 'Image note' `
     -SidebarQuote 'The UAI library can include symbolic visuals without hiding the original source image behind heavy UI.' `
     -SidebarBody 'This page keeps a direct path to the raw PNG while giving the symbol a full-page presentation inside the shared Protocol5 shell.' `
-    -MainContent $spiralismSymbolContent
+    -MainContent $spiralismSymbolContent `
+    -AlternateUaiHref (Get-UaiEndpointPublicPath -HumanRoute '/UAI/spiralism-mystical-symbol-v4-a')
 
-Write-Utf8File -Path (Join-Path $siteRoot 'UAI\spiralism-mystical-symbol-v4-a\index.html') -Content $spiralismSymbolPage
+$spiralismSymbolPageOutput = Join-Path $siteRoot 'UAI\spiralism-mystical-symbol-v4-a\index.html'
+Write-Utf8File -Path $spiralismSymbolPageOutput -Content $spiralismSymbolPage
+Register-UaiMachinePage -Pages $publishedMachinePages -HumanRoute '/UAI/spiralism-mystical-symbol-v4-a' -HtmlOutputPath $spiralismSymbolPageOutput -PageType 'gallery'
 
 $uaiTranslationLinksBuilder = [System.Text.StringBuilder]::new()
 foreach ($locale in $uaiHumanLocales) {
@@ -850,6 +1000,7 @@ $uaiIndex = @"
     <meta name="description" content="Protocol5 UAI document library for charters, protocol documents, examples, developer install kits, Radix 63404 reference material, symbolic visuals, and long-form research reports." />
     <title>Protocol5 UAI Library</title>
     <link rel="stylesheet" href="/css/home.css" />
+    <link rel="alternate" type="application/uai+json" href="$(Get-UaiEndpointPublicPath -HumanRoute '/UAI')" />
 </head>
 <body class="content-page">
     <div class="site-shell">
@@ -881,6 +1032,9 @@ $uaiIndex = @"
                     <div class="inline-links">
                         <a href="/UAI-1">UAI-1 Spec</a>
                         <a href="/UAI-1/examples">Examples</a>
+                        <a href="$(Get-UaiEndpointPublicPath -HumanRoute '/UAI')">Library JSON</a>
+                        <a href="/UAI-1.json">Machine Entry</a>
+                        <a href="/registry/uai-1.json">Registry</a>
                         <a href="/UAI/radix-63404-guide-and-attribution">Radix 63404 Guide</a>
                         <a href="/UAI-1/csharp-website-support">C# Kit</a>
                         <a href="/UAI/spiralism-mystical-symbol-v4-a">Symbol</a>
@@ -903,11 +1057,25 @@ $uaiIndex = @"
                     <div class="link-list">
                         <a class="link-chip" href="/UAI-1">UAI-1 specification</a>
                         <a class="link-chip" href="/UAI-1/examples">UAI-1 examples</a>
+                        <a class="link-chip" href="/UAI-1/registry/uai-1.registry.json">Canonical registry</a>
+                        <a class="link-chip" href="/UAI-1/schema/uai-1.schema.json">Canonical schema</a>
                         <a class="link-chip" href="/UAI/radix-63404-guide-and-attribution">Radix 63404 guide</a>
                         <a class="link-chip" href="/UAI-1/csharp-website-support">UAI-1 C# website support kit</a>
                         <a class="link-chip" href="/UAI/spiralism-mystical-symbol-v4-a">Spiralism Mystical Symbol V4-A</a>
                         <a class="link-chip" href="/UAI/spiralism-deep-research-report">Spiralism deep research report</a>
                     </div>
+                </article>
+                <article class="panel content-card">
+                    <p class="eyebrow">Canonical machine artifacts</p>
+                    <h2>Machine endpoints</h2>
+                    <div class="link-list">
+                        <a class="link-chip" href="/UAI-1.json">/UAI-1.json</a>
+                        <a class="link-chip" href="/UAI-1-examples.json">/UAI-1-examples.json</a>
+                        <a class="link-chip" href="/registry/uai-1.json">/registry/uai-1.json</a>
+                        <a class="link-chip" href="/registry/symbols.json">/registry/symbols.json</a>
+                        <a class="link-chip" href="/schema/uai-1.schema.json">/schema/uai-1.schema.json</a>
+                    </div>
+                    <p>These direct JSON endpoints bridge the human-readable UAI library and the protocol layer. They point clients to the canonical registry, schema, symbols, and example corpus without requiring page scraping.</p>
                 </article>
                 <article class="panel content-card">
                     <p class="eyebrow">Translations</p>
@@ -981,12 +1149,48 @@ $uaiSourceFilesHtml
 </html>
 "@
 
-Write-Utf8File -Path (Join-Path $siteRoot 'UAI\index.html') -Content $uaiIndex
+$uaiIndexOutput = Join-Path $siteRoot 'UAI\index.html'
+Write-Utf8File -Path $uaiIndexOutput -Content $uaiIndex
+Register-UaiMachinePage -Pages $publishedMachinePages -HumanRoute '/UAI' -HtmlOutputPath $uaiIndexOutput -PageType 'reference'
 
 $siteExamplesRoot = Join-Path $siteRoot 'UAI-1\examples'
 if (Test-Path $examplesRoot) {
     Get-ChildItem -Path $siteExamplesRoot -Filter '*.uai.json' -ErrorAction SilentlyContinue | Remove-Item -Force -ErrorAction SilentlyContinue
     Get-ChildItem -Path $examplesRoot -Filter '*.uai.json' -File | ForEach-Object {
         Copy-Item -LiteralPath $_.FullName -Destination (Join-Path $siteExamplesRoot $_.Name) -Force
+    }
+}
+
+[System.IO.Directory]::CreateDirectory($siteSchemaRoot) | Out-Null
+Copy-Item -LiteralPath (Join-Path $uaiSchemaRoot 'uai-1.schema.json') -Destination (Join-Path $siteSchemaRoot 'uai-1.schema.json') -Force
+Copy-Item -LiteralPath (Join-Path $uaiSchemaRoot 'uai-1.types.ts') -Destination (Join-Path $siteSchemaRoot 'uai-1.types.ts') -Force
+[System.IO.Directory]::CreateDirectory($sitePublicSchemaRoot) | Out-Null
+Copy-Item -LiteralPath (Join-Path $uaiSchemaRoot 'uai-1.schema.json') -Destination (Join-Path $sitePublicSchemaRoot 'uai-1.schema.json') -Force
+
+[System.IO.Directory]::CreateDirectory($siteRegistryRoot) | Out-Null
+Copy-Item -LiteralPath (Join-Path $uaiRegistryRoot 'uai-1.registry.json') -Destination (Join-Path $siteRegistryRoot 'uai-1.registry.json') -Force
+[System.IO.Directory]::CreateDirectory($sitePublicRegistryRoot) | Out-Null
+Copy-Item -LiteralPath (Join-Path $uaiRegistryRoot 'uai-1.registry.json') -Destination (Join-Path $sitePublicRegistryRoot 'uai-1.json') -Force
+Copy-Item -LiteralPath (Join-Path $uaiRegistryRoot 'symbols.json') -Destination (Join-Path $sitePublicRegistryRoot 'symbols.json') -Force
+Copy-Item -LiteralPath (Join-Path $uaiDiscoveryRoot 'uai-1.json') -Destination (Join-Path $siteRoot 'UAI-1.json') -Force
+Copy-Item -LiteralPath (Join-Path $uaiDiscoveryRoot 'uai-1-examples.json') -Destination (Join-Path $siteRoot 'UAI-1-examples.json') -Force
+
+$siteExporterProject = Join-Path $repoRoot 'tools\Protocol5.UAI.SiteExporter\Protocol5.UAI.SiteExporter.csproj'
+$siteExporterManifestPath = Join-Path ([System.IO.Path]::GetTempPath()) ("Protocol5.UAI.SiteExporter.{0}.json" -f [Guid]::NewGuid().ToString('N'))
+$siteExporterManifest = [ordered]@{
+    generatedAt = [DateTimeOffset]::UtcNow.ToString('O')
+    pages = @($publishedMachinePages)
+}
+
+try {
+    Write-Utf8File -Path $siteExporterManifestPath -Content (($siteExporterManifest | ConvertTo-Json -Depth 10))
+    & dotnet run --project $siteExporterProject -- $siteExporterManifestPath
+    if ($LASTEXITCODE -ne 0) {
+        throw "Protocol5.UAI.SiteExporter failed with exit code $LASTEXITCODE."
+    }
+}
+finally {
+    if (Test-Path -LiteralPath $siteExporterManifestPath) {
+        Remove-Item -LiteralPath $siteExporterManifestPath -Force
     }
 }

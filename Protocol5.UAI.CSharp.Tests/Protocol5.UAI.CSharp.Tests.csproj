@@ -15,6 +15,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Protocol5.UAI.CSharp\Protocol5.UAI.CSharp.csproj" />
   </ItemGroup>
 </Project>

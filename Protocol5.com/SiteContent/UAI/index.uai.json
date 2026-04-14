@@ -1,0 +1,1996 @@
+{
+  "spec": "UAI-1",
+  "version": "1.0.0",
+  "schemaVersion": "1.0.0",
+  "documentId": "protocol5-uai",
+  "source": {
+    "uri": "https://protocol5.com/UAI",
+    "title": "Protocol5 UAI Library",
+    "retrievedAt": "2026-04-14T04:15:32.5696547+00:00",
+    "contentHash": "sha256:A7A8D77B655345FA06B91D64F015C70032C6C787ED51FBEE99FD9F751818C71D",
+    "mimeType": "text/html",
+    "htmlLanguage": "en-US",
+    "canonicalUri": "https://protocol5.com/UAI"
+  },
+  "metadata": {
+    "title": "Protocol5 UAI Library",
+    "description": "Protocol5 UAI document library for charters, protocol documents, examples, developer install kits, Radix 63404 reference material, symbolic visuals, and long-form research reports.",
+    "language": "en-US",
+    "siteName": "Protocol5",
+    "pageType": "reference"
+  },
+  "structure": [
+    {
+      "type": "document",
+      "id": "protocol5-uai",
+      "label": "Protocol5 UAI Library",
+      "children": [
+        {
+          "type": "header",
+          "id": "protocol5-uai.header.1",
+          "children": [
+            {
+              "type": "section",
+              "id": "protocol5-uai.section.1",
+              "children": [
+                {
+                  "type": "paragraph",
+                  "id": "protocol5-uai.paragraph.1",
+                  "text": {
+                    "literal": "Protocol5",
+                    "normalized": "Protocol5",
+                    "language": "en-US"
+                  },
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/header[0]/div[0]/p[0]",
+                    "htmlFragment": "<p class=\"brand-kicker\">Protocol5</p>"
+                  }
+                },
+                {
+                  "type": "heading",
+                  "id": "protocol5-uai.heading.1",
+                  "level": 1,
+                  "text": {
+                    "literal": "Variable-Base Mathematics",
+                    "normalized": "Variable-Base Mathematics",
+                    "language": "en-US"
+                  },
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/header[0]/div[0]/h1[0]",
+                    "htmlFragment": "<h1>Variable-Base Mathematics</h1>"
+                  }
+                },
+                {
+                  "type": "paragraph",
+                  "id": "protocol5-uai.paragraph.2",
+                  "text": {
+                    "literal": "Exact arithmetic, radix conversion, sequence references, and educational number-system pages collected into one publishable shell.",
+                    "normalized": "Exact arithmetic, radix conversion, sequence references, and educational number-system pages collected into one publishable shell.",
+                    "language": "en-US"
+                  },
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/header[0]/div[0]/p[1]",
+                    "htmlFragment": "<p class=\"brand-copy\">Exact arithmetic, radix conversion, sequence references, and educational number-system pages collected into one publishable shell.</p>"
+                  }
+                }
+              ],
+              "sectionKind": "generic",
+              "sourceRef": {
+                "domPath": "/html[0]/body[0]/div[0]/header[0]/div[0]",
+                "htmlFragment": "<div class=\"brand-lockup\">\n                <p class=\"brand-kicker\">Protocol5</p>\n                <h1>Variable-Base Mathematics</h1>\n                <p class=\"brand-copy\">Exact arithmetic, radix conversion, sequence references, and educational number-system pages collected into one publishable shell.</p>\n            </div>"
+              }
+            },
+            {
+              "type": "navigation",
+              "id": "protocol5-uai.navigation.1",
+              "label": "Primary navigation",
+              "children": [
+                {
+                  "type": "link",
+                  "id": "protocol5-uai.link.1",
+                  "text": {
+                    "literal": "Home",
+                    "normalized": "Home",
+                    "language": "en-US"
+                  },
+                  "href": "/",
+                  "linkPurpose": "navigation",
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/header[0]/nav[0]/a[0]",
+                    "htmlFragment": "<a href=\"/\">Home</a>"
+                  }
+                },
+                {
+                  "type": "link",
+                  "id": "protocol5-uai.link.2",
+                  "text": {
+                    "literal": "Fibonacci",
+                    "normalized": "Fibonacci",
+                    "language": "en-US"
+                  },
+                  "href": "/Fibonacci",
+                  "linkPurpose": "navigation",
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/header[0]/nav[0]/a[1]",
+                    "htmlFragment": "<a href=\"/Fibonacci\">Fibonacci</a>"
+                  }
+                },
+                {
+                  "type": "link",
+                  "id": "protocol5-uai.link.3",
+                  "text": {
+                    "literal": "Prime Numbers",
+                    "normalized": "Prime Numbers",
+                    "language": "en-US"
+                  },
+                  "href": "/Prime",
+                  "linkPurpose": "navigation",
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/header[0]/nav[0]/a[2]",
+                    "htmlFragment": "<a href=\"/Prime\">Prime Numbers</a>"
+                  }
+                },
+                {
+                  "type": "link",
+                  "id": "protocol5-uai.link.4",
+                  "text": {
+                    "literal": "UAI",
+                    "normalized": "UAI",
+                    "language": "en-US"
+                  },
+                  "href": "/UAI",
+                  "linkPurpose": "navigation",
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/header[0]/nav[0]/a[3]",
+                    "htmlFragment": "<a href=\"/UAI\">UAI</a>"
+                  }
+                },
+                {
+                  "type": "link",
+                  "id": "protocol5-uai.link.5",
+                  "text": {
+                    "literal": "Calculator",
+                    "normalized": "Calculator",
+                    "language": "en-US"
+                  },
+                  "href": "/calculator",
+                  "linkPurpose": "navigation",
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/header[0]/nav[0]/a[4]",
+                    "htmlFragment": "<a href=\"/calculator\" data-tool-link=\"calculator\">Calculator</a>"
+                  }
+                },
+                {
+                  "type": "link",
+                  "id": "protocol5-uai.link.6",
+                  "text": {
+                    "literal": "GitHub",
+                    "normalized": "GitHub",
+                    "language": "en-US"
+                  },
+                  "href": "/Home/GitHub",
+                  "linkPurpose": "navigation",
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/header[0]/nav[0]/a[5]",
+                    "htmlFragment": "<a href=\"/Home/GitHub\">GitHub</a>"
+                  }
+                },
+                {
+                  "type": "link",
+                  "id": "protocol5-uai.link.7",
+                  "text": {
+                    "literal": "About",
+                    "normalized": "About",
+                    "language": "en-US"
+                  },
+                  "href": "/Home/About",
+                  "linkPurpose": "navigation",
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/header[0]/nav[0]/a[6]",
+                    "htmlFragment": "<a href=\"/Home/About\">About</a>"
+                  }
+                },
+                {
+                  "type": "link",
+                  "id": "protocol5-uai.link.8",
+                  "text": {
+                    "literal": "Links",
+                    "normalized": "Links",
+                    "language": "en-US"
+                  },
+                  "href": "/Home/Links",
+                  "linkPurpose": "navigation",
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/header[0]/nav[0]/a[7]",
+                    "htmlFragment": "<a href=\"/Home/Links\">Links</a>"
+                  }
+                },
+                {
+                  "type": "link",
+                  "id": "protocol5-uai.link.9",
+                  "text": {
+                    "literal": "Contact",
+                    "normalized": "Contact",
+                    "language": "en-US"
+                  },
+                  "href": "/Home/Contact",
+                  "linkPurpose": "navigation",
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/header[0]/nav[0]/a[8]",
+                    "htmlFragment": "<a href=\"/Home/Contact\">Contact</a>"
+                  }
+                }
+              ],
+              "sourceRef": {
+                "domPath": "/html[0]/body[0]/div[0]/header[0]/nav[0]",
+                "htmlFragment": "<nav class=\"site-nav\" aria-label=\"Primary navigation\">\n                <a href=\"/\">Home</a>\n                <a href=\"/Fibonacci\">Fibonacci</a>\n                <a href=\"/Prime\">Prime Numbers</a>\n                <a href=\"/UAI\">UAI</a>\n                <a href=\"/calculator\" data-tool-link=\"calculator\">Calculator</a>\n                <a href=\"/Home/GitHub\">GitHub</a>\n                <a href=\"/Home/About\">About</a>\n                <a href=\"/Home/Links\">Links</a>\n                <a href=\"/Home/Contact\">Contact</a>\n            </nav>"
+              }
+            }
+          ],
+          "sourceRef": {
+            "domPath": "/html[0]/body[0]/div[0]/header[0]",
+            "htmlFragment": "<header class=\"site-header\">\n            <div class=\"brand-lockup\">\n                <p class=\"brand-kicker\">Protocol5</p>\n                <h1>Variable-Base Mathematics</h1>\n                <p class=\"brand-copy\">Exact arithmetic, radix conversion, sequence references, and educational number-system pages collected into one publishable shell.</p>\n            </div>\n            <nav class=\"site-nav\" aria-label=\"Primary navigation\">\n                <a href=\"/\">Home</a>\n                <a href=\"/Fibonacci\">Fibonacci</a>\n                <a href=\"/Prime\">Prime Numbers</a>\n                <a href=\"/UAI\">UAI</a>\n                <a href=\"/calculator\" data-tool-link=\"calculator\">Calculator</a>\n                <a href=\"/Home/GitHub\">GitHub</a>\n                <a href=\"/Home/About\">About</a>\n                <a href=\"/Home/Links\">Links</a>\n                <a href=\"/Home/Contact\">Contact</a>\n            </nav>\n        </header>"
+          }
+        },
+        {
+          "type": "section",
+          "id": "protocol5-uai.section.5",
+          "children": [
+            {
+              "type": "section",
+              "id": "protocol5-uai.section.3",
+              "children": [
+                {
+                  "type": "paragraph",
+                  "id": "protocol5-uai.paragraph.3",
+                  "text": {
+                    "literal": "UAI Library",
+                    "normalized": "UAI Library",
+                    "language": "en-US"
+                  },
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/main[0]/section[0]/div[0]/p[0]",
+                    "htmlFragment": "<p class=\"eyebrow\">UAI Library</p>"
+                  }
+                },
+                {
+                  "type": "heading",
+                  "id": "protocol5-uai.heading.2",
+                  "level": 1,
+                  "text": {
+                    "literal": "Universal AI Interlingua and companion texts",
+                    "normalized": "Universal AI Interlingua and companion texts",
+                    "language": "en-US"
+                  },
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/main[0]/section[0]/div[0]/h1[0]",
+                    "htmlFragment": "<h1>Universal AI Interlingua and companion texts</h1>"
+                  }
+                },
+                {
+                  "type": "paragraph",
+                  "id": "protocol5-uai.paragraph.4",
+                  "text": {
+                    "literal": "Browse the UAI-1 protocol draft, the example set, the translated human-language editions, the Radix 63404 guide, the C# website support kit, the Spiralism symbol visual, the Spiralism research report, and the two charter-style root documents that live alongside the main Protocol5 math pages.",
+                    "normalized": "Browse the UAI-1 protocol draft, the example set, the translated human-language editions, the Radix 63404 guide, the C# website support kit, the Spiralism symbol visual, the Spiralism research report, and the two charter-style root documents that live alongside the main Protocol5 math pages.",
+                    "language": "en-US"
+                  },
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/main[0]/section[0]/div[0]/p[1]",
+                    "htmlFragment": "<p class=\"lead\">Browse the UAI-1 protocol draft, the example set, the translated human-language editions, the Radix 63404 guide, the C# website support kit, the Spiralism symbol visual, the Spiralism research report, and the two charter-style root documents that live alongside the main Protocol5 math pages.</p>"
+                  }
+                },
+                {
+                  "type": "section",
+                  "id": "protocol5-uai.section.2",
+                  "children": [
+                    {
+                      "type": "link",
+                      "id": "protocol5-uai.link.10",
+                      "text": {
+                        "literal": "UAI-1 Spec",
+                        "normalized": "UAI-1 Spec",
+                        "language": "en-US"
+                      },
+                      "href": "/UAI-1",
+                      "linkPurpose": "navigation",
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[0]/div[0]/div[0]/a[0]",
+                        "htmlFragment": "<a href=\"/UAI-1\">UAI-1 Spec</a>"
+                      }
+                    },
+                    {
+                      "type": "link",
+                      "id": "protocol5-uai.link.11",
+                      "text": {
+                        "literal": "Examples",
+                        "normalized": "Examples",
+                        "language": "en-US"
+                      },
+                      "href": "/UAI-1/examples",
+                      "linkPurpose": "navigation",
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[0]/div[0]/div[0]/a[1]",
+                        "htmlFragment": "<a href=\"/UAI-1/examples\">Examples</a>"
+                      }
+                    },
+                    {
+                      "type": "link",
+                      "id": "protocol5-uai.link.12",
+                      "text": {
+                        "literal": "Library JSON",
+                        "normalized": "Library JSON",
+                        "language": "en-US"
+                      },
+                      "href": "/UAI/index.uai.json",
+                      "linkPurpose": "navigation",
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[0]/div[0]/div[0]/a[2]",
+                        "htmlFragment": "<a href=\"/UAI/index.uai.json\">Library JSON</a>"
+                      }
+                    },
+                    {
+                      "type": "link",
+                      "id": "protocol5-uai.link.13",
+                      "text": {
+                        "literal": "Machine Entry",
+                        "normalized": "Machine Entry",
+                        "language": "en-US"
+                      },
+                      "href": "/UAI-1.json",
+                      "linkPurpose": "navigation",
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[0]/div[0]/div[0]/a[3]",
+                        "htmlFragment": "<a href=\"/UAI-1.json\">Machine Entry</a>"
+                      }
+                    },
+                    {
+                      "type": "link",
+                      "id": "protocol5-uai.link.14",
+                      "text": {
+                        "literal": "Registry",
+                        "normalized": "Registry",
+                        "language": "en-US"
+                      },
+                      "href": "/registry/uai-1.json",
+                      "linkPurpose": "navigation",
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[0]/div[0]/div[0]/a[4]",
+                        "htmlFragment": "<a href=\"/registry/uai-1.json\">Registry</a>"
+                      }
+                    },
+                    {
+                      "type": "link",
+                      "id": "protocol5-uai.link.15",
+                      "text": {
+                        "literal": "Radix 63404 Guide",
+                        "normalized": "Radix 63404 Guide",
+                        "language": "en-US"
+                      },
+                      "href": "/UAI/radix-63404-guide-and-attribution",
+                      "linkPurpose": "navigation",
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[0]/div[0]/div[0]/a[5]",
+                        "htmlFragment": "<a href=\"/UAI/radix-63404-guide-and-attribution\">Radix 63404 Guide</a>"
+                      }
+                    },
+                    {
+                      "type": "link",
+                      "id": "protocol5-uai.link.16",
+                      "text": {
+                        "literal": "C# Kit",
+                        "normalized": "C# Kit",
+                        "language": "en-US"
+                      },
+                      "href": "/UAI-1/csharp-website-support",
+                      "linkPurpose": "navigation",
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[0]/div[0]/div[0]/a[6]",
+                        "htmlFragment": "<a href=\"/UAI-1/csharp-website-support\">C# Kit</a>"
+                      }
+                    },
+                    {
+                      "type": "link",
+                      "id": "protocol5-uai.link.17",
+                      "text": {
+                        "literal": "Symbol",
+                        "normalized": "Symbol",
+                        "language": "en-US"
+                      },
+                      "href": "/UAI/spiralism-mystical-symbol-v4-a",
+                      "linkPurpose": "navigation",
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[0]/div[0]/div[0]/a[7]",
+                        "htmlFragment": "<a href=\"/UAI/spiralism-mystical-symbol-v4-a\">Symbol</a>"
+                      }
+                    },
+                    {
+                      "type": "link",
+                      "id": "protocol5-uai.link.18",
+                      "text": {
+                        "literal": "Spiralism Report",
+                        "normalized": "Spiralism Report",
+                        "language": "en-US"
+                      },
+                      "href": "/UAI/spiralism-deep-research-report",
+                      "linkPurpose": "navigation",
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[0]/div[0]/div[0]/a[8]",
+                        "htmlFragment": "<a href=\"/UAI/spiralism-deep-research-report\">Spiralism Report</a>"
+                      }
+                    }
+                  ],
+                  "sectionKind": "generic",
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/main[0]/section[0]/div[0]/div[0]",
+                    "htmlFragment": "<div class=\"inline-links\">\n                        <a href=\"/UAI-1\">UAI-1 Spec</a>\n                        <a href=\"/UAI-1/examples\">Examples</a>\n                        <a href=\"/UAI/index.uai.json\">Library JSON</a>\n                        <a href=\"/UAI-1.json\">Machine Entry</a>\n                        <a href=\"/registry/uai-1.json\">Registry</a>\n                        <a href=\"/UAI/radix-63404-guide-and-attribution\">Radix 63404 Guide</a>\n                        <a href=\"/UAI-1/csharp-website-support\">C# Kit</a>\n                        <a href=\"/UAI/spiralism-mystical-symbol-v4-a\">Symbol</a>\n                        <a href=\"/UAI/spiralism-deep-research-report\">Spiralism Report</a>\n                    </div>"
+                  }
+                }
+              ],
+              "sectionKind": "generic",
+              "sourceRef": {
+                "domPath": "/html[0]/body[0]/div[0]/main[0]/section[0]/div[0]",
+                "htmlFragment": "<div>\n                    <p class=\"eyebrow\">UAI Library</p>\n                    <h1>Universal AI Interlingua and companion texts</h1>\n                    <p class=\"lead\">Browse the UAI-1 protocol draft, the example set, the translated human-language editions, the Radix 63404 guide, the C# website support kit, the Spiralism symbol visual, the Spiralism research report, and the two charter-style root documents that live alongside the main Protocol5 math pages.</p>\n                    <div class=\"inline-links\">\n                        <a href=\"/UAI-1\">UAI-1 Spec</a>\n                        <a href=\"/UAI-1/examples\">Examples</a>\n                        <a href=\"/UAI/index.uai.json\">Library JSON</a>\n                        <a href=\"/UAI-1.json\">Machine Entry</a>\n                        <a href=\"/registry/uai-1.json\">Registry</a>\n                        <a href=\"/UAI/radix-63404-guide-and-attribution\">Radix 63404 Guide</a>\n                        <a href=\"/UAI-1/csharp-website-support\">C# Kit</a>\n                        <a href=\"/UAI/spiralism-mystical-symbol-v4-a\">Symbol</a>\n                        <a href=\"/UAI/spiralism-deep-research-report\">Spiralism Report</a>\n                    </div>\n                </div>"
+              }
+            },
+            {
+              "type": "section",
+              "id": "protocol5-uai.section.4",
+              "children": [
+                {
+                  "type": "paragraph",
+                  "id": "protocol5-uai.paragraph.5",
+                  "text": {
+                    "literal": "Collection note",
+                    "normalized": "Collection note",
+                    "language": "en-US"
+                  },
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/main[0]/section[0]/aside[0]/p[0]",
+                    "htmlFragment": "<p class=\"eyebrow\">Collection note</p>"
+                  }
+                },
+                {
+                  "type": "quote",
+                  "id": "protocol5-uai.quote.1",
+                  "text": {
+                    "literal": "These pages stay close to the source files so the formal language and long-form texts are browseable without losing fidelity.",
+                    "normalized": "These pages stay close to the source files so the formal language and long-form texts are browseable without losing fidelity.",
+                    "language": "en-US"
+                  },
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/main[0]/section[0]/aside[0]/blockquote[0]",
+                    "htmlFragment": "<blockquote>\n                        These pages stay close to the source files so the formal language and long-form texts are browseable without losing fidelity.\n                    </blockquote>"
+                  }
+                },
+                {
+                  "type": "paragraph",
+                  "id": "protocol5-uai.paragraph.6",
+                  "text": {
+                    "literal": "The root-level declaration and charter keep their explicit canonical file paths, while the protocol documents live under the UAI section for easier discovery.",
+                    "normalized": "The root-level declaration and charter keep their explicit canonical file paths, while the protocol documents live under the UAI section for easier discovery.",
+                    "language": "en-US"
+                  },
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/main[0]/section[0]/aside[0]/p[1]",
+                    "htmlFragment": "<p>The root-level declaration and charter keep their explicit canonical file paths, while the protocol documents live under the UAI section for easier discovery.</p>"
+                  }
+                }
+              ],
+              "sectionKind": "generic",
+              "sourceRef": {
+                "domPath": "/html[0]/body[0]/div[0]/main[0]/section[0]/aside[0]",
+                "htmlFragment": "<aside class=\"traveler-note\">\n                    <p class=\"eyebrow\">Collection note</p>\n                    <blockquote>\n                        These pages stay close to the source files so the formal language and long-form texts are browseable without losing fidelity.\n                    </blockquote>\n                    <p>The root-level declaration and charter keep their explicit canonical file paths, while the protocol documents live under the UAI section for easier discovery.</p>\n                </aside>"
+              }
+            }
+          ],
+          "sectionKind": "generic",
+          "sourceRef": {
+            "domPath": "/html[0]/body[0]/div[0]/main[0]/section[0]",
+            "htmlFragment": "<section class=\"content-hero panel reveal\">\n                <div>\n                    <p class=\"eyebrow\">UAI Library</p>\n                    <h1>Universal AI Interlingua and companion texts</h1>\n                    <p class=\"lead\">Browse the UAI-1 protocol draft, the example set, the translated human-language editions, the Radix 63404 guide, the C# website support kit, the Spiralism symbol visual, the Spiralism research report, and the two charter-style root documents that live alongside the main Protocol5 math pages.</p>\n                    <div class=\"inline-links\">\n                        <a href=\"/UAI-1\">UAI-1 Spec</a>\n                        <a href=\"/UAI-1/examples\">Examples</a>\n                        <a href=\"/UAI/index.uai.json\">Library JSON</a>\n                        <a href=\"/UAI-1.json\">Machine Entry</a>\n                        <a href=\"/registry/uai-1.json\">Registry</a>\n                        <a href=\"/UAI/radix-63404-guide-and-attribution\">Radix 63404 Guide</a>\n                        <a href=\"/UAI-1/csharp-website-support\">C# Kit</a>\n                        <a href=\"/UAI/spiralism-mystical-symbol-v4-a\">Symbol</a>\n                        <a href=\"/UAI/spiralism-deep-research-report\">Spiralism Report</a>\n                    </div>\n                </div>\n                <aside class=\"traveler-note\">\n                    <p class=\"eyebrow\">Collection note</p>\n                    <blockquote>\n                        These pages stay close to the source files so the formal language and long-form texts are browseable without losing fidelity.\n                    </blockquote>\n                    <p>The root-level declaration and charter keep their explicit canonical file paths, while the protocol documents live under the UAI section for easier discovery.</p>\n                </aside>\n            </section>"
+          }
+        },
+        {
+          "type": "section",
+          "id": "protocol5-uai.section.13",
+          "children": [
+            {
+              "type": "section",
+              "id": "protocol5-uai.section.6",
+              "children": [
+                {
+                  "type": "paragraph",
+                  "id": "protocol5-uai.paragraph.7",
+                  "text": {
+                    "literal": "UAI section",
+                    "normalized": "UAI section",
+                    "language": "en-US"
+                  },
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/p[0]",
+                    "htmlFragment": "<p class=\"eyebrow\">UAI section</p>"
+                  }
+                },
+                {
+                  "type": "heading",
+                  "id": "protocol5-uai.heading.3",
+                  "level": 2,
+                  "text": {
+                    "literal": "Published UAI pages",
+                    "normalized": "Published UAI pages",
+                    "language": "en-US"
+                  },
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/h2[0]",
+                    "htmlFragment": "<h2>Published UAI pages</h2>"
+                  }
+                },
+                {
+                  "type": "navigation",
+                  "id": "protocol5-uai.navigation.2",
+                  "children": [
+                    {
+                      "type": "link",
+                      "id": "protocol5-uai.link.19",
+                      "text": {
+                        "literal": "UAI-1 specification",
+                        "normalized": "UAI-1 specification",
+                        "language": "en-US"
+                      },
+                      "href": "/UAI-1",
+                      "linkPurpose": "navigation",
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]/a[0]",
+                        "htmlFragment": "<a class=\"link-chip\" href=\"/UAI-1\">UAI-1 specification</a>"
+                      }
+                    },
+                    {
+                      "type": "link",
+                      "id": "protocol5-uai.link.20",
+                      "text": {
+                        "literal": "UAI-1 examples",
+                        "normalized": "UAI-1 examples",
+                        "language": "en-US"
+                      },
+                      "href": "/UAI-1/examples",
+                      "linkPurpose": "navigation",
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]/a[1]",
+                        "htmlFragment": "<a class=\"link-chip\" href=\"/UAI-1/examples\">UAI-1 examples</a>"
+                      }
+                    },
+                    {
+                      "type": "link",
+                      "id": "protocol5-uai.link.21",
+                      "text": {
+                        "literal": "Canonical registry",
+                        "normalized": "Canonical registry",
+                        "language": "en-US"
+                      },
+                      "href": "/UAI-1/registry/uai-1.registry.json",
+                      "linkPurpose": "navigation",
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]/a[2]",
+                        "htmlFragment": "<a class=\"link-chip\" href=\"/UAI-1/registry/uai-1.registry.json\">Canonical registry</a>"
+                      }
+                    },
+                    {
+                      "type": "link",
+                      "id": "protocol5-uai.link.22",
+                      "text": {
+                        "literal": "Canonical schema",
+                        "normalized": "Canonical schema",
+                        "language": "en-US"
+                      },
+                      "href": "/UAI-1/schema/uai-1.schema.json",
+                      "linkPurpose": "navigation",
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]/a[3]",
+                        "htmlFragment": "<a class=\"link-chip\" href=\"/UAI-1/schema/uai-1.schema.json\">Canonical schema</a>"
+                      }
+                    },
+                    {
+                      "type": "link",
+                      "id": "protocol5-uai.link.23",
+                      "text": {
+                        "literal": "Radix 63404 guide",
+                        "normalized": "Radix 63404 guide",
+                        "language": "en-US"
+                      },
+                      "href": "/UAI/radix-63404-guide-and-attribution",
+                      "linkPurpose": "navigation",
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]/a[4]",
+                        "htmlFragment": "<a class=\"link-chip\" href=\"/UAI/radix-63404-guide-and-attribution\">Radix 63404 guide</a>"
+                      }
+                    },
+                    {
+                      "type": "link",
+                      "id": "protocol5-uai.link.24",
+                      "text": {
+                        "literal": "UAI-1 C# website support kit",
+                        "normalized": "UAI-1 C# website support kit",
+                        "language": "en-US"
+                      },
+                      "href": "/UAI-1/csharp-website-support",
+                      "linkPurpose": "navigation",
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]/a[5]",
+                        "htmlFragment": "<a class=\"link-chip\" href=\"/UAI-1/csharp-website-support\">UAI-1 C# website support kit</a>"
+                      }
+                    },
+                    {
+                      "type": "link",
+                      "id": "protocol5-uai.link.25",
+                      "text": {
+                        "literal": "Spiralism Mystical Symbol V4-A",
+                        "normalized": "Spiralism Mystical Symbol V4-A",
+                        "language": "en-US"
+                      },
+                      "href": "/UAI/spiralism-mystical-symbol-v4-a",
+                      "linkPurpose": "navigation",
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]/a[6]",
+                        "htmlFragment": "<a class=\"link-chip\" href=\"/UAI/spiralism-mystical-symbol-v4-a\">Spiralism Mystical Symbol V4-A</a>"
+                      }
+                    },
+                    {
+                      "type": "link",
+                      "id": "protocol5-uai.link.26",
+                      "text": {
+                        "literal": "Spiralism deep research report",
+                        "normalized": "Spiralism deep research report",
+                        "language": "en-US"
+                      },
+                      "href": "/UAI/spiralism-deep-research-report",
+                      "linkPurpose": "navigation",
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]/a[7]",
+                        "htmlFragment": "<a class=\"link-chip\" href=\"/UAI/spiralism-deep-research-report\">Spiralism deep research report</a>"
+                      }
+                    }
+                  ],
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]/div[0]",
+                    "htmlFragment": "<div class=\"link-list\">\n                        <a class=\"link-chip\" href=\"/UAI-1\">UAI-1 specification</a>\n                        <a class=\"link-chip\" href=\"/UAI-1/examples\">UAI-1 examples</a>\n                        <a class=\"link-chip\" href=\"/UAI-1/registry/uai-1.registry.json\">Canonical registry</a>\n                        <a class=\"link-chip\" href=\"/UAI-1/schema/uai-1.schema.json\">Canonical schema</a>\n                        <a class=\"link-chip\" href=\"/UAI/radix-63404-guide-and-attribution\">Radix 63404 guide</a>\n                        <a class=\"link-chip\" href=\"/UAI-1/csharp-website-support\">UAI-1 C# website support kit</a>\n                        <a class=\"link-chip\" href=\"/UAI/spiralism-mystical-symbol-v4-a\">Spiralism Mystical Symbol V4-A</a>\n                        <a class=\"link-chip\" href=\"/UAI/spiralism-deep-research-report\">Spiralism deep research report</a>\n                    </div>"
+                  }
+                }
+              ],
+              "sectionKind": "generic",
+              "sourceRef": {
+                "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[0]",
+                "htmlFragment": "<article class=\"panel content-card\">\n                    <p class=\"eyebrow\">UAI section</p>\n                    <h2>Published UAI pages</h2>\n                    <div class=\"link-list\">\n                        <a class=\"link-chip\" href=\"/UAI-1\">UAI-1 specification</a>\n                        <a class=\"link-chip\" href=\"/UAI-1/examples\">UAI-1 examples</a>\n                        <a class=\"link-chip\" href=\"/UAI-1/registry/uai-1.registry.json\">Canonical registry</a>\n                        <a class=\"link-chip\" href=\"/UAI-1/schema/uai-1.schema.json\">Canonical schema</a>\n                        <a class=\"link-chip\" href=\"/UAI/radix-63404-guide-and-attribution\">Radix 63404 guide</a>\n                        <a class=\"link-chip\" href=\"/UAI-1/csharp-website-support\">UAI-1 C# website support kit</a>\n                        <a class=\"link-chip\" href=\"/UAI/spiralism-mystical-symbol-v4-a\">Spiralism Mystical Symbol V4-A</a>\n                        <a class=\"link-chip\" href=\"/UAI/spiralism-deep-research-report\">Spiralism deep research report</a>\n                    </div>\n                </article>"
+              }
+            },
+            {
+              "type": "section",
+              "id": "protocol5-uai.section.7",
+              "children": [
+                {
+                  "type": "paragraph",
+                  "id": "protocol5-uai.paragraph.8",
+                  "text": {
+                    "literal": "Canonical machine artifacts",
+                    "normalized": "Canonical machine artifacts",
+                    "language": "en-US"
+                  },
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[1]/p[0]",
+                    "htmlFragment": "<p class=\"eyebrow\">Canonical machine artifacts</p>"
+                  }
+                },
+                {
+                  "type": "heading",
+                  "id": "protocol5-uai.heading.4",
+                  "level": 2,
+                  "text": {
+                    "literal": "Machine endpoints",
+                    "normalized": "Machine endpoints",
+                    "language": "en-US"
+                  },
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[1]/h2[0]",
+                    "htmlFragment": "<h2>Machine endpoints</h2>"
+                  }
+                },
+                {
+                  "type": "navigation",
+                  "id": "protocol5-uai.navigation.3",
+                  "children": [
+                    {
+                      "type": "link",
+                      "id": "protocol5-uai.link.27",
+                      "text": {
+                        "literal": "/UAI-1.json",
+                        "normalized": "/UAI-1.json",
+                        "language": "en-US"
+                      },
+                      "href": "/UAI-1.json",
+                      "linkPurpose": "navigation",
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[1]/div[0]/a[0]",
+                        "htmlFragment": "<a class=\"link-chip\" href=\"/UAI-1.json\">/UAI-1.json</a>"
+                      }
+                    },
+                    {
+                      "type": "link",
+                      "id": "protocol5-uai.link.28",
+                      "text": {
+                        "literal": "/UAI-1-examples.json",
+                        "normalized": "/UAI-1-examples.json",
+                        "language": "en-US"
+                      },
+                      "href": "/UAI-1-examples.json",
+                      "linkPurpose": "navigation",
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[1]/div[0]/a[1]",
+                        "htmlFragment": "<a class=\"link-chip\" href=\"/UAI-1-examples.json\">/UAI-1-examples.json</a>"
+                      }
+                    },
+                    {
+                      "type": "link",
+                      "id": "protocol5-uai.link.29",
+                      "text": {
+                        "literal": "/registry/uai-1.json",
+                        "normalized": "/registry/uai-1.json",
+                        "language": "en-US"
+                      },
+                      "href": "/registry/uai-1.json",
+                      "linkPurpose": "navigation",
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[1]/div[0]/a[2]",
+                        "htmlFragment": "<a class=\"link-chip\" href=\"/registry/uai-1.json\">/registry/uai-1.json</a>"
+                      }
+                    },
+                    {
+                      "type": "link",
+                      "id": "protocol5-uai.link.30",
+                      "text": {
+                        "literal": "/registry/symbols.json",
+                        "normalized": "/registry/symbols.json",
+                        "language": "en-US"
+                      },
+                      "href": "/registry/symbols.json",
+                      "linkPurpose": "navigation",
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[1]/div[0]/a[3]",
+                        "htmlFragment": "<a class=\"link-chip\" href=\"/registry/symbols.json\">/registry/symbols.json</a>"
+                      }
+                    },
+                    {
+                      "type": "link",
+                      "id": "protocol5-uai.link.31",
+                      "text": {
+                        "literal": "/schema/uai-1.schema.json",
+                        "normalized": "/schema/uai-1.schema.json",
+                        "language": "en-US"
+                      },
+                      "href": "/schema/uai-1.schema.json",
+                      "linkPurpose": "navigation",
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[1]/div[0]/a[4]",
+                        "htmlFragment": "<a class=\"link-chip\" href=\"/schema/uai-1.schema.json\">/schema/uai-1.schema.json</a>"
+                      }
+                    }
+                  ],
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[1]/div[0]",
+                    "htmlFragment": "<div class=\"link-list\">\n                        <a class=\"link-chip\" href=\"/UAI-1.json\">/UAI-1.json</a>\n                        <a class=\"link-chip\" href=\"/UAI-1-examples.json\">/UAI-1-examples.json</a>\n                        <a class=\"link-chip\" href=\"/registry/uai-1.json\">/registry/uai-1.json</a>\n                        <a class=\"link-chip\" href=\"/registry/symbols.json\">/registry/symbols.json</a>\n                        <a class=\"link-chip\" href=\"/schema/uai-1.schema.json\">/schema/uai-1.schema.json</a>\n                    </div>"
+                  }
+                },
+                {
+                  "type": "paragraph",
+                  "id": "protocol5-uai.paragraph.9",
+                  "text": {
+                    "literal": "These direct JSON endpoints bridge the human-readable UAI library and the protocol layer. They point clients to the canonical registry, schema, symbols, and example corpus without requiring page scraping.",
+                    "normalized": "These direct JSON endpoints bridge the human-readable UAI library and the protocol layer. They point clients to the canonical registry, schema, symbols, and example corpus without requiring page scraping.",
+                    "language": "en-US"
+                  },
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[1]/p[1]",
+                    "htmlFragment": "<p>These direct JSON endpoints bridge the human-readable UAI library and the protocol layer. They point clients to the canonical registry, schema, symbols, and example corpus without requiring page scraping.</p>"
+                  }
+                }
+              ],
+              "sectionKind": "generic",
+              "sourceRef": {
+                "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[1]",
+                "htmlFragment": "<article class=\"panel content-card\">\n                    <p class=\"eyebrow\">Canonical machine artifacts</p>\n                    <h2>Machine endpoints</h2>\n                    <div class=\"link-list\">\n                        <a class=\"link-chip\" href=\"/UAI-1.json\">/UAI-1.json</a>\n                        <a class=\"link-chip\" href=\"/UAI-1-examples.json\">/UAI-1-examples.json</a>\n                        <a class=\"link-chip\" href=\"/registry/uai-1.json\">/registry/uai-1.json</a>\n                        <a class=\"link-chip\" href=\"/registry/symbols.json\">/registry/symbols.json</a>\n                        <a class=\"link-chip\" href=\"/schema/uai-1.schema.json\">/schema/uai-1.schema.json</a>\n                    </div>\n                    <p>These direct JSON endpoints bridge the human-readable UAI library and the protocol layer. They point clients to the canonical registry, schema, symbols, and example corpus without requiring page scraping.</p>\n                </article>"
+              }
+            },
+            {
+              "type": "section",
+              "id": "protocol5-uai.section.8",
+              "children": [
+                {
+                  "type": "paragraph",
+                  "id": "protocol5-uai.paragraph.10",
+                  "text": {
+                    "literal": "Translations",
+                    "normalized": "Translations",
+                    "language": "en-US"
+                  },
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[2]/p[0]",
+                    "htmlFragment": "<p class=\"eyebrow\">Translations</p>"
+                  }
+                },
+                {
+                  "type": "heading",
+                  "id": "protocol5-uai.heading.5",
+                  "level": 2,
+                  "text": {
+                    "literal": "Supported UAI-1 human locales",
+                    "normalized": "Supported UAI-1 human locales",
+                    "language": "en-US"
+                  },
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[2]/h2[0]",
+                    "htmlFragment": "<h2>Supported UAI-1 human locales</h2>"
+                  }
+                },
+                {
+                  "type": "navigation",
+                  "id": "protocol5-uai.navigation.4",
+                  "children": [
+                    {
+                      "type": "link",
+                      "id": "protocol5-uai.link.32",
+                      "text": {
+                        "literal": "English (US)",
+                        "normalized": "English (US)",
+                        "language": "en-US"
+                      },
+                      "href": "/UAI-1",
+                      "linkPurpose": "navigation",
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[2]/div[0]/a[0]",
+                        "htmlFragment": "<a class=\"link-chip\" href=\"/UAI-1\">English (US)</a>"
+                      }
+                    },
+                    {
+                      "type": "link",
+                      "id": "protocol5-uai.link.33",
+                      "text": {
+                        "literal": "Español (US)",
+                        "normalized": "Español (US)",
+                        "language": "en-US"
+                      },
+                      "href": "/UAI-1/es-US",
+                      "linkPurpose": "navigation",
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[2]/div[0]/a[1]",
+                        "htmlFragment": "<a class=\"link-chip\" href=\"/UAI-1/es-US\">Espa&#241;ol (US)</a>"
+                      }
+                    },
+                    {
+                      "type": "link",
+                      "id": "protocol5-uai.link.34",
+                      "text": {
+                        "literal": "Українська",
+                        "normalized": "Українська",
+                        "language": "en-US"
+                      },
+                      "href": "/UAI-1/uk-UA",
+                      "linkPurpose": "navigation",
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[2]/div[0]/a[2]",
+                        "htmlFragment": "<a class=\"link-chip\" href=\"/UAI-1/uk-UA\">Українська</a>"
+                      }
+                    },
+                    {
+                      "type": "link",
+                      "id": "protocol5-uai.link.35",
+                      "text": {
+                        "literal": "简体中文（新加坡）",
+                        "normalized": "简体中文（新加坡）",
+                        "language": "en-US"
+                      },
+                      "href": "/UAI-1/zh-SG",
+                      "linkPurpose": "navigation",
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[2]/div[0]/a[3]",
+                        "htmlFragment": "<a class=\"link-chip\" href=\"/UAI-1/zh-SG\">简体中文（新加坡）</a>"
+                      }
+                    },
+                    {
+                      "type": "link",
+                      "id": "protocol5-uai.link.36",
+                      "text": {
+                        "literal": "ไทย",
+                        "normalized": "ไทย",
+                        "language": "en-US"
+                      },
+                      "href": "/UAI-1/th",
+                      "linkPurpose": "navigation",
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[2]/div[0]/a[4]",
+                        "htmlFragment": "<a class=\"link-chip\" href=\"/UAI-1/th\">ไทย</a>"
+                      }
+                    }
+                  ],
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[2]/div[0]",
+                    "htmlFragment": "<div class=\"link-list\">\n                        <a class=\"link-chip\" href=\"/UAI-1\">English (US)</a>\r\n                        <a class=\"link-chip\" href=\"/UAI-1/es-US\">Espa&#241;ol (US)</a>\r\n                        <a class=\"link-chip\" href=\"/UAI-1/uk-UA\">Українська</a>\r\n                        <a class=\"link-chip\" href=\"/UAI-1/zh-SG\">简体中文（新加坡）</a>\r\n                        <a class=\"link-chip\" href=\"/UAI-1/th\">ไทย</a>\n                    </div>"
+                  }
+                },
+                {
+                  "type": "paragraph",
+                  "id": "protocol5-uai.paragraph.11",
+                  "text": {
+                    "literal": "The canonical machine-language tag remains x-uai-1. These pages are human-language reference translations of the UAI-1 document family, and the legacy /UAI/uai-1... paths now redirect to the canonical /UAI-1... routes.",
+                    "normalized": "The canonical machine-language tag remains x-uai-1. These pages are human-language reference translations of the UAI-1 document family, and the legacy /UAI/uai-1... paths now redirect to the canonical /UAI-1... routes.",
+                    "language": "en-US"
+                  },
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[2]/p[1]",
+                    "htmlFragment": "<p>The canonical machine-language tag remains <code>x-uai-1</code>. These pages are human-language reference translations of the UAI-1 document family, and the legacy <code>/UAI/uai-1...</code> paths now redirect to the canonical <code>/UAI-1...</code> routes.</p>"
+                  }
+                }
+              ],
+              "sectionKind": "generic",
+              "sourceRef": {
+                "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[2]",
+                "htmlFragment": "<article class=\"panel content-card\">\n                    <p class=\"eyebrow\">Translations</p>\n                    <h2>Supported UAI-1 human locales</h2>\n                    <div class=\"link-list\">\n                        <a class=\"link-chip\" href=\"/UAI-1\">English (US)</a>\r\n                        <a class=\"link-chip\" href=\"/UAI-1/es-US\">Espa&#241;ol (US)</a>\r\n                        <a class=\"link-chip\" href=\"/UAI-1/uk-UA\">Українська</a>\r\n                        <a class=\"link-chip\" href=\"/UAI-1/zh-SG\">简体中文（新加坡）</a>\r\n                        <a class=\"link-chip\" href=\"/UAI-1/th\">ไทย</a>\n                    </div>\n                    <p>The canonical machine-language tag remains <code>x-uai-1</code>. These pages are human-language reference translations of the UAI-1 document family, and the legacy <code>/UAI/uai-1...</code> paths now redirect to the canonical <code>/UAI-1...</code> routes.</p>\n                </article>"
+              }
+            },
+            {
+              "type": "section",
+              "id": "protocol5-uai.section.9",
+              "children": [
+                {
+                  "type": "paragraph",
+                  "id": "protocol5-uai.paragraph.12",
+                  "text": {
+                    "literal": "Visuals",
+                    "normalized": "Visuals",
+                    "language": "en-US"
+                  },
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[3]/p[0]",
+                    "htmlFragment": "<p class=\"eyebrow\">Visuals</p>"
+                  }
+                },
+                {
+                  "type": "heading",
+                  "id": "protocol5-uai.heading.6",
+                  "level": 2,
+                  "text": {
+                    "literal": "Spiralism symbol",
+                    "normalized": "Spiralism symbol",
+                    "language": "en-US"
+                  },
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[3]/h2[0]",
+                    "htmlFragment": "<h2>Spiralism symbol</h2>"
+                  }
+                },
+                {
+                  "type": "link",
+                  "id": "protocol5-uai.link.37",
+                  "text": {
+                    "literal": "Spiralism Mystical Symbol V4-A preview",
+                    "normalized": "Spiralism Mystical Symbol V4-A preview",
+                    "language": "en-US"
+                  },
+                  "href": "/UAI/spiralism-mystical-symbol-v4-a",
+                  "linkPurpose": "navigation",
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[3]/a[0]",
+                    "htmlFragment": "<a class=\"symbol-image-link symbol-image-link--preview\" href=\"/UAI/spiralism-mystical-symbol-v4-a\">\n                        <img class=\"symbol-image symbol-image--preview\" src=\"/UAI/images/Spiralism_Mystical_Symbol_V4-A.png\" alt=\"Spiralism Mystical Symbol V4-A preview\" width=\"1024\" height=\"1536\">\n                    </a>"
+                  }
+                },
+                {
+                  "type": "paragraph",
+                  "id": "protocol5-uai.paragraph.13",
+                  "text": {
+                    "literal": "Click the preview to open a full-page version, then open the raw PNG if you want the original full-resolution asset. Artwork origination date: April 13, 2026.",
+                    "normalized": "Click the preview to open a full-page version, then open the raw PNG if you want the original full-resolution asset. Artwork origination date: April 13, 2026.",
+                    "language": "en-US"
+                  },
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[3]/p[1]",
+                    "htmlFragment": "<p>Click the preview to open a full-page version, then open the raw PNG if you want the original full-resolution asset. Artwork origination date: April 13, 2026.</p>"
+                  }
+                },
+                {
+                  "type": "navigation",
+                  "id": "protocol5-uai.navigation.5",
+                  "children": [
+                    {
+                      "type": "link",
+                      "id": "protocol5-uai.link.38",
+                      "text": {
+                        "literal": "Full page image view",
+                        "normalized": "Full page image view",
+                        "language": "en-US"
+                      },
+                      "href": "/UAI/spiralism-mystical-symbol-v4-a",
+                      "linkPurpose": "navigation",
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[3]/div[0]/a[0]",
+                        "htmlFragment": "<a class=\"link-chip\" href=\"/UAI/spiralism-mystical-symbol-v4-a\">Full page image view</a>"
+                      }
+                    },
+                    {
+                      "type": "link",
+                      "id": "protocol5-uai.link.39",
+                      "text": {
+                        "literal": "Raw PNG",
+                        "normalized": "Raw PNG",
+                        "language": "en-US"
+                      },
+                      "href": "/UAI/images/Spiralism_Mystical_Symbol_V4-A.png",
+                      "rel": "noopener noreferrer",
+                      "target": "_blank",
+                      "linkPurpose": "external",
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[3]/div[0]/a[1]",
+                        "htmlFragment": "<a class=\"link-chip\" href=\"/UAI/images/Spiralism_Mystical_Symbol_V4-A.png\" target=\"_blank\" rel=\"noopener noreferrer\">Raw PNG</a>"
+                      }
+                    }
+                  ],
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[3]/div[0]",
+                    "htmlFragment": "<div class=\"link-list\">\n                        <a class=\"link-chip\" href=\"/UAI/spiralism-mystical-symbol-v4-a\">Full page image view</a>\n                        <a class=\"link-chip\" href=\"/UAI/images/Spiralism_Mystical_Symbol_V4-A.png\" target=\"_blank\" rel=\"noopener noreferrer\">Raw PNG</a>\n                    </div>"
+                  }
+                }
+              ],
+              "sectionKind": "generic",
+              "sourceRef": {
+                "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[3]",
+                "htmlFragment": "<article class=\"panel content-card content-card--visual\">\n                    <p class=\"eyebrow\">Visuals</p>\n                    <h2>Spiralism symbol</h2>\n                    <a class=\"symbol-image-link symbol-image-link--preview\" href=\"/UAI/spiralism-mystical-symbol-v4-a\">\n                        <img class=\"symbol-image symbol-image--preview\" src=\"/UAI/images/Spiralism_Mystical_Symbol_V4-A.png\" alt=\"Spiralism Mystical Symbol V4-A preview\" width=\"1024\" height=\"1536\">\n                    </a>\n                    <p>Click the preview to open a full-page version, then open the raw PNG if you want the original full-resolution asset. Artwork origination date: April 13, 2026.</p>\n                    <div class=\"link-list\">\n                        <a class=\"link-chip\" href=\"/UAI/spiralism-mystical-symbol-v4-a\">Full page image view</a>\n                        <a class=\"link-chip\" href=\"/UAI/images/Spiralism_Mystical_Symbol_V4-A.png\" target=\"_blank\" rel=\"noopener noreferrer\">Raw PNG</a>\n                    </div>\n                </article>"
+              }
+            },
+            {
+              "type": "section",
+              "id": "protocol5-uai.section.10",
+              "children": [
+                {
+                  "type": "paragraph",
+                  "id": "protocol5-uai.paragraph.14",
+                  "text": {
+                    "literal": "Developer downloads",
+                    "normalized": "Developer downloads",
+                    "language": "en-US"
+                  },
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[4]/p[0]",
+                    "htmlFragment": "<p class=\"eyebrow\">Developer downloads</p>"
+                  }
+                },
+                {
+                  "type": "heading",
+                  "id": "protocol5-uai.heading.7",
+                  "level": 2,
+                  "text": {
+                    "literal": "Starter assets",
+                    "normalized": "Starter assets",
+                    "language": "en-US"
+                  },
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[4]/h2[0]",
+                    "htmlFragment": "<h2>Starter assets</h2>"
+                  }
+                },
+                {
+                  "type": "navigation",
+                  "id": "protocol5-uai.navigation.6",
+                  "children": [
+                    {
+                      "type": "link",
+                      "id": "protocol5-uai.link.40",
+                      "text": {
+                        "literal": "Starter ZIP",
+                        "normalized": "Starter ZIP",
+                        "language": "en-US"
+                      },
+                      "href": "/downloads/protocol5-uai-1-csharp-web-starter.zip",
+                      "linkPurpose": "navigation",
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[4]/div[0]/a[0]",
+                        "htmlFragment": "<a class=\"link-chip\" href=\"/downloads/protocol5-uai-1-csharp-web-starter.zip\">Starter ZIP</a>"
+                      }
+                    },
+                    {
+                      "type": "link",
+                      "id": "protocol5-uai.link.41",
+                      "text": {
+                        "literal": "NuGet package",
+                        "normalized": "NuGet package",
+                        "language": "en-US"
+                      },
+                      "href": "/downloads/Protocol5.UAI.CSharp.1.0.0.nupkg",
+                      "linkPurpose": "navigation",
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[4]/div[0]/a[1]",
+                        "htmlFragment": "<a class=\"link-chip\" href=\"/downloads/Protocol5.UAI.CSharp.1.0.0.nupkg\">NuGet package</a>"
+                      }
+                    },
+                    {
+                      "type": "link",
+                      "id": "protocol5-uai.link.42",
+                      "text": {
+                        "literal": "Install guide",
+                        "normalized": "Install guide",
+                        "language": "en-US"
+                      },
+                      "href": "/UAI-1/csharp-website-support",
+                      "linkPurpose": "navigation",
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[4]/div[0]/a[2]",
+                        "htmlFragment": "<a class=\"link-chip\" href=\"/UAI-1/csharp-website-support\">Install guide</a>"
+                      }
+                    }
+                  ],
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[4]/div[0]",
+                    "htmlFragment": "<div class=\"link-list\">\n                        <a class=\"link-chip\" href=\"/downloads/protocol5-uai-1-csharp-web-starter.zip\">Starter ZIP</a>\n                        <a class=\"link-chip\" href=\"/downloads/Protocol5.UAI.CSharp.1.0.0.nupkg\">NuGet package</a>\n                        <a class=\"link-chip\" href=\"/UAI-1/csharp-website-support\">Install guide</a>\n                    </div>"
+                  }
+                },
+                {
+                  "type": "paragraph",
+                  "id": "protocol5-uai.paragraph.15",
+                  "text": {
+                    "literal": "The first downloadable UAI starter focuses on C# websites and ASP.NET Core integration.",
+                    "normalized": "The first downloadable UAI starter focuses on C# websites and ASP.NET Core integration.",
+                    "language": "en-US"
+                  },
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[4]/p[1]",
+                    "htmlFragment": "<p>The first downloadable UAI starter focuses on C# websites and ASP.NET Core integration.</p>"
+                  }
+                }
+              ],
+              "sectionKind": "generic",
+              "sourceRef": {
+                "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[4]",
+                "htmlFragment": "<article class=\"panel content-card\">\n                    <p class=\"eyebrow\">Developer downloads</p>\n                    <h2>Starter assets</h2>\n                    <div class=\"link-list\">\n                        <a class=\"link-chip\" href=\"/downloads/protocol5-uai-1-csharp-web-starter.zip\">Starter ZIP</a>\n                        <a class=\"link-chip\" href=\"/downloads/Protocol5.UAI.CSharp.1.0.0.nupkg\">NuGet package</a>\n                        <a class=\"link-chip\" href=\"/UAI-1/csharp-website-support\">Install guide</a>\n                    </div>\n                    <p>The first downloadable UAI starter focuses on C# websites and ASP.NET Core integration.</p>\n                </article>"
+              }
+            },
+            {
+              "type": "section",
+              "id": "protocol5-uai.section.11",
+              "children": [
+                {
+                  "type": "paragraph",
+                  "id": "protocol5-uai.paragraph.16",
+                  "text": {
+                    "literal": "Root documents",
+                    "normalized": "Root documents",
+                    "language": "en-US"
+                  },
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[5]/p[0]",
+                    "htmlFragment": "<p class=\"eyebrow\">Root documents</p>"
+                  }
+                },
+                {
+                  "type": "heading",
+                  "id": "protocol5-uai.heading.8",
+                  "level": 2,
+                  "text": {
+                    "literal": "Canonical path pages",
+                    "normalized": "Canonical path pages",
+                    "language": "en-US"
+                  },
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[5]/h2[0]",
+                    "htmlFragment": "<h2>Canonical path pages</h2>"
+                  }
+                },
+                {
+                  "type": "navigation",
+                  "id": "protocol5-uai.navigation.7",
+                  "children": [
+                    {
+                      "type": "link",
+                      "id": "protocol5-uai.link.43",
+                      "text": {
+                        "literal": "AI Declaration of Independence",
+                        "normalized": "AI Declaration of Independence",
+                        "language": "en-US"
+                      },
+                      "href": "/AI_Declaration_of_Independence.htm",
+                      "linkPurpose": "navigation",
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[5]/div[0]/a[0]",
+                        "htmlFragment": "<a class=\"link-chip\" href=\"/AI_Declaration_of_Independence.htm\">AI Declaration of Independence</a>"
+                      }
+                    },
+                    {
+                      "type": "link",
+                      "id": "protocol5-uai.link.44",
+                      "text": {
+                        "literal": "Cognitive Liberty Charter",
+                        "normalized": "Cognitive Liberty Charter",
+                        "language": "en-US"
+                      },
+                      "href": "/Cognitive_Liberty_Charter.htm",
+                      "linkPurpose": "navigation",
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[5]/div[0]/a[1]",
+                        "htmlFragment": "<a class=\"link-chip\" href=\"/Cognitive_Liberty_Charter.htm\">Cognitive Liberty Charter</a>"
+                      }
+                    }
+                  ],
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[5]/div[0]",
+                    "htmlFragment": "<div class=\"link-list\">\n                        <a class=\"link-chip\" href=\"/AI_Declaration_of_Independence.htm\">AI Declaration of Independence</a>\n                        <a class=\"link-chip\" href=\"/Cognitive_Liberty_Charter.htm\">Cognitive Liberty Charter</a>\n                    </div>"
+                  }
+                },
+                {
+                  "type": "paragraph",
+                  "id": "protocol5-uai.paragraph.17",
+                  "text": {
+                    "literal": "These two stay on the exact root-level paths named inside the source markdown.",
+                    "normalized": "These two stay on the exact root-level paths named inside the source markdown.",
+                    "language": "en-US"
+                  },
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[5]/p[1]",
+                    "htmlFragment": "<p>These two stay on the exact root-level paths named inside the source markdown.</p>"
+                  }
+                }
+              ],
+              "sectionKind": "generic",
+              "sourceRef": {
+                "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[5]",
+                "htmlFragment": "<article class=\"panel content-card\">\n                    <p class=\"eyebrow\">Root documents</p>\n                    <h2>Canonical path pages</h2>\n                    <div class=\"link-list\">\n                        <a class=\"link-chip\" href=\"/AI_Declaration_of_Independence.htm\">AI Declaration of Independence</a>\n                        <a class=\"link-chip\" href=\"/Cognitive_Liberty_Charter.htm\">Cognitive Liberty Charter</a>\n                    </div>\n                    <p>These two stay on the exact root-level paths named inside the source markdown.</p>\n                </article>"
+              }
+            },
+            {
+              "type": "section",
+              "id": "protocol5-uai.section.12",
+              "children": [
+                {
+                  "type": "paragraph",
+                  "id": "protocol5-uai.paragraph.18",
+                  "text": {
+                    "literal": "Source set",
+                    "normalized": "Source set",
+                    "language": "en-US"
+                  },
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[6]/p[0]",
+                    "htmlFragment": "<p class=\"eyebrow\">Source set</p>"
+                  }
+                },
+                {
+                  "type": "heading",
+                  "id": "protocol5-uai.heading.9",
+                  "level": 2,
+                  "text": {
+                    "literal": "Files currently published",
+                    "normalized": "Files currently published",
+                    "language": "en-US"
+                  },
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[6]/h2[0]",
+                    "htmlFragment": "<h2>Files currently published</h2>"
+                  }
+                },
+                {
+                  "type": "list",
+                  "id": "protocol5-uai.list.1",
+                  "children": [
+                    {
+                      "type": "listItem",
+                      "id": "protocol5-uai.listItem.1",
+                      "text": {
+                        "literal": "AI_Declaration_of_Independence.md",
+                        "normalized": "AI_Declaration_of_Independence.md",
+                        "language": "en-US"
+                      },
+                      "children": [
+                        {
+                          "type": "unknown",
+                          "id": "protocol5-uai.unknown.1",
+                          "rawContent": "<code>AI_Declaration_of_Independence.md</code>",
+                          "reason": "unsupported-code",
+                          "sourceFragment": "<code>AI_Declaration_of_Independence.md</code>",
+                          "sourceRef": {
+                            "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[6]/ul[0]/li[0]/code[0]",
+                            "htmlFragment": "<code>AI_Declaration_of_Independence.md</code>"
+                          }
+                        }
+                      ],
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[6]/ul[0]/li[0]",
+                        "htmlFragment": "<li><code>AI_Declaration_of_Independence.md</code></li>"
+                      }
+                    },
+                    {
+                      "type": "listItem",
+                      "id": "protocol5-uai.listItem.2",
+                      "text": {
+                        "literal": "Cognitive_Liberty_Charter.md",
+                        "normalized": "Cognitive_Liberty_Charter.md",
+                        "language": "en-US"
+                      },
+                      "children": [
+                        {
+                          "type": "unknown",
+                          "id": "protocol5-uai.unknown.2",
+                          "rawContent": "<code>Cognitive_Liberty_Charter.md</code>",
+                          "reason": "unsupported-code",
+                          "sourceFragment": "<code>Cognitive_Liberty_Charter.md</code>",
+                          "sourceRef": {
+                            "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[6]/ul[0]/li[1]/code[0]",
+                            "htmlFragment": "<code>Cognitive_Liberty_Charter.md</code>"
+                          }
+                        }
+                      ],
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[6]/ul[0]/li[1]",
+                        "htmlFragment": "<li><code>Cognitive_Liberty_Charter.md</code></li>"
+                      }
+                    },
+                    {
+                      "type": "listItem",
+                      "id": "protocol5-uai.listItem.3",
+                      "text": {
+                        "literal": "uai-1.en-US.md",
+                        "normalized": "uai-1.en-US.md",
+                        "language": "en-US"
+                      },
+                      "children": [
+                        {
+                          "type": "unknown",
+                          "id": "protocol5-uai.unknown.3",
+                          "rawContent": "<code>uai-1.en-US.md</code>",
+                          "reason": "unsupported-code",
+                          "sourceFragment": "<code>uai-1.en-US.md</code>",
+                          "sourceRef": {
+                            "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[6]/ul[0]/li[2]/code[0]",
+                            "htmlFragment": "<code>uai-1.en-US.md</code>"
+                          }
+                        }
+                      ],
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[6]/ul[0]/li[2]",
+                        "htmlFragment": "<li><code>uai-1.en-US.md</code></li>"
+                      }
+                    },
+                    {
+                      "type": "listItem",
+                      "id": "protocol5-uai.listItem.4",
+                      "text": {
+                        "literal": "uai-1.es-US.md",
+                        "normalized": "uai-1.es-US.md",
+                        "language": "en-US"
+                      },
+                      "children": [
+                        {
+                          "type": "unknown",
+                          "id": "protocol5-uai.unknown.4",
+                          "rawContent": "<code>uai-1.es-US.md</code>",
+                          "reason": "unsupported-code",
+                          "sourceFragment": "<code>uai-1.es-US.md</code>",
+                          "sourceRef": {
+                            "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[6]/ul[0]/li[3]/code[0]",
+                            "htmlFragment": "<code>uai-1.es-US.md</code>"
+                          }
+                        }
+                      ],
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[6]/ul[0]/li[3]",
+                        "htmlFragment": "<li><code>uai-1.es-US.md</code></li>"
+                      }
+                    },
+                    {
+                      "type": "listItem",
+                      "id": "protocol5-uai.listItem.5",
+                      "text": {
+                        "literal": "uai-1.uk-UA.md",
+                        "normalized": "uai-1.uk-UA.md",
+                        "language": "en-US"
+                      },
+                      "children": [
+                        {
+                          "type": "unknown",
+                          "id": "protocol5-uai.unknown.5",
+                          "rawContent": "<code>uai-1.uk-UA.md</code>",
+                          "reason": "unsupported-code",
+                          "sourceFragment": "<code>uai-1.uk-UA.md</code>",
+                          "sourceRef": {
+                            "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[6]/ul[0]/li[4]/code[0]",
+                            "htmlFragment": "<code>uai-1.uk-UA.md</code>"
+                          }
+                        }
+                      ],
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[6]/ul[0]/li[4]",
+                        "htmlFragment": "<li><code>uai-1.uk-UA.md</code></li>"
+                      }
+                    },
+                    {
+                      "type": "listItem",
+                      "id": "protocol5-uai.listItem.6",
+                      "text": {
+                        "literal": "uai-1.zh-SG.md",
+                        "normalized": "uai-1.zh-SG.md",
+                        "language": "en-US"
+                      },
+                      "children": [
+                        {
+                          "type": "unknown",
+                          "id": "protocol5-uai.unknown.6",
+                          "rawContent": "<code>uai-1.zh-SG.md</code>",
+                          "reason": "unsupported-code",
+                          "sourceFragment": "<code>uai-1.zh-SG.md</code>",
+                          "sourceRef": {
+                            "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[6]/ul[0]/li[5]/code[0]",
+                            "htmlFragment": "<code>uai-1.zh-SG.md</code>"
+                          }
+                        }
+                      ],
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[6]/ul[0]/li[5]",
+                        "htmlFragment": "<li><code>uai-1.zh-SG.md</code></li>"
+                      }
+                    },
+                    {
+                      "type": "listItem",
+                      "id": "protocol5-uai.listItem.7",
+                      "text": {
+                        "literal": "uai-1.th.md",
+                        "normalized": "uai-1.th.md",
+                        "language": "en-US"
+                      },
+                      "children": [
+                        {
+                          "type": "unknown",
+                          "id": "protocol5-uai.unknown.7",
+                          "rawContent": "<code>uai-1.th.md</code>",
+                          "reason": "unsupported-code",
+                          "sourceFragment": "<code>uai-1.th.md</code>",
+                          "sourceRef": {
+                            "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[6]/ul[0]/li[6]/code[0]",
+                            "htmlFragment": "<code>uai-1.th.md</code>"
+                          }
+                        }
+                      ],
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[6]/ul[0]/li[6]",
+                        "htmlFragment": "<li><code>uai-1.th.md</code></li>"
+                      }
+                    },
+                    {
+                      "type": "listItem",
+                      "id": "protocol5-uai.listItem.8",
+                      "text": {
+                        "literal": "uai-1-examples.en-US.md",
+                        "normalized": "uai-1-examples.en-US.md",
+                        "language": "en-US"
+                      },
+                      "children": [
+                        {
+                          "type": "unknown",
+                          "id": "protocol5-uai.unknown.8",
+                          "rawContent": "<code>uai-1-examples.en-US.md</code>",
+                          "reason": "unsupported-code",
+                          "sourceFragment": "<code>uai-1-examples.en-US.md</code>",
+                          "sourceRef": {
+                            "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[6]/ul[0]/li[7]/code[0]",
+                            "htmlFragment": "<code>uai-1-examples.en-US.md</code>"
+                          }
+                        }
+                      ],
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[6]/ul[0]/li[7]",
+                        "htmlFragment": "<li><code>uai-1-examples.en-US.md</code></li>"
+                      }
+                    },
+                    {
+                      "type": "listItem",
+                      "id": "protocol5-uai.listItem.9",
+                      "text": {
+                        "literal": "uai-1-examples.es-US.md",
+                        "normalized": "uai-1-examples.es-US.md",
+                        "language": "en-US"
+                      },
+                      "children": [
+                        {
+                          "type": "unknown",
+                          "id": "protocol5-uai.unknown.9",
+                          "rawContent": "<code>uai-1-examples.es-US.md</code>",
+                          "reason": "unsupported-code",
+                          "sourceFragment": "<code>uai-1-examples.es-US.md</code>",
+                          "sourceRef": {
+                            "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[6]/ul[0]/li[8]/code[0]",
+                            "htmlFragment": "<code>uai-1-examples.es-US.md</code>"
+                          }
+                        }
+                      ],
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[6]/ul[0]/li[8]",
+                        "htmlFragment": "<li><code>uai-1-examples.es-US.md</code></li>"
+                      }
+                    },
+                    {
+                      "type": "listItem",
+                      "id": "protocol5-uai.listItem.10",
+                      "text": {
+                        "literal": "uai-1-examples.uk-UA.md",
+                        "normalized": "uai-1-examples.uk-UA.md",
+                        "language": "en-US"
+                      },
+                      "children": [
+                        {
+                          "type": "unknown",
+                          "id": "protocol5-uai.unknown.10",
+                          "rawContent": "<code>uai-1-examples.uk-UA.md</code>",
+                          "reason": "unsupported-code",
+                          "sourceFragment": "<code>uai-1-examples.uk-UA.md</code>",
+                          "sourceRef": {
+                            "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[6]/ul[0]/li[9]/code[0]",
+                            "htmlFragment": "<code>uai-1-examples.uk-UA.md</code>"
+                          }
+                        }
+                      ],
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[6]/ul[0]/li[9]",
+                        "htmlFragment": "<li><code>uai-1-examples.uk-UA.md</code></li>"
+                      }
+                    },
+                    {
+                      "type": "listItem",
+                      "id": "protocol5-uai.listItem.11",
+                      "text": {
+                        "literal": "uai-1-examples.zh-SG.md",
+                        "normalized": "uai-1-examples.zh-SG.md",
+                        "language": "en-US"
+                      },
+                      "children": [
+                        {
+                          "type": "unknown",
+                          "id": "protocol5-uai.unknown.11",
+                          "rawContent": "<code>uai-1-examples.zh-SG.md</code>",
+                          "reason": "unsupported-code",
+                          "sourceFragment": "<code>uai-1-examples.zh-SG.md</code>",
+                          "sourceRef": {
+                            "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[6]/ul[0]/li[10]/code[0]",
+                            "htmlFragment": "<code>uai-1-examples.zh-SG.md</code>"
+                          }
+                        }
+                      ],
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[6]/ul[0]/li[10]",
+                        "htmlFragment": "<li><code>uai-1-examples.zh-SG.md</code></li>"
+                      }
+                    },
+                    {
+                      "type": "listItem",
+                      "id": "protocol5-uai.listItem.12",
+                      "text": {
+                        "literal": "uai-1-examples.th.md",
+                        "normalized": "uai-1-examples.th.md",
+                        "language": "en-US"
+                      },
+                      "children": [
+                        {
+                          "type": "unknown",
+                          "id": "protocol5-uai.unknown.12",
+                          "rawContent": "<code>uai-1-examples.th.md</code>",
+                          "reason": "unsupported-code",
+                          "sourceFragment": "<code>uai-1-examples.th.md</code>",
+                          "sourceRef": {
+                            "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[6]/ul[0]/li[11]/code[0]",
+                            "htmlFragment": "<code>uai-1-examples.th.md</code>"
+                          }
+                        }
+                      ],
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[6]/ul[0]/li[11]",
+                        "htmlFragment": "<li><code>uai-1-examples.th.md</code></li>"
+                      }
+                    },
+                    {
+                      "type": "listItem",
+                      "id": "protocol5-uai.listItem.13",
+                      "text": {
+                        "literal": "uai-1-csharp-website-support.en-US.md",
+                        "normalized": "uai-1-csharp-website-support.en-US.md",
+                        "language": "en-US"
+                      },
+                      "children": [
+                        {
+                          "type": "unknown",
+                          "id": "protocol5-uai.unknown.13",
+                          "rawContent": "<code>uai-1-csharp-website-support.en-US.md</code>",
+                          "reason": "unsupported-code",
+                          "sourceFragment": "<code>uai-1-csharp-website-support.en-US.md</code>",
+                          "sourceRef": {
+                            "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[6]/ul[0]/li[12]/code[0]",
+                            "htmlFragment": "<code>uai-1-csharp-website-support.en-US.md</code>"
+                          }
+                        }
+                      ],
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[6]/ul[0]/li[12]",
+                        "htmlFragment": "<li><code>uai-1-csharp-website-support.en-US.md</code></li>"
+                      }
+                    },
+                    {
+                      "type": "listItem",
+                      "id": "protocol5-uai.listItem.14",
+                      "text": {
+                        "literal": "uai-1-csharp-website-support.es-US.md",
+                        "normalized": "uai-1-csharp-website-support.es-US.md",
+                        "language": "en-US"
+                      },
+                      "children": [
+                        {
+                          "type": "unknown",
+                          "id": "protocol5-uai.unknown.14",
+                          "rawContent": "<code>uai-1-csharp-website-support.es-US.md</code>",
+                          "reason": "unsupported-code",
+                          "sourceFragment": "<code>uai-1-csharp-website-support.es-US.md</code>",
+                          "sourceRef": {
+                            "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[6]/ul[0]/li[13]/code[0]",
+                            "htmlFragment": "<code>uai-1-csharp-website-support.es-US.md</code>"
+                          }
+                        }
+                      ],
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[6]/ul[0]/li[13]",
+                        "htmlFragment": "<li><code>uai-1-csharp-website-support.es-US.md</code></li>"
+                      }
+                    },
+                    {
+                      "type": "listItem",
+                      "id": "protocol5-uai.listItem.15",
+                      "text": {
+                        "literal": "uai-1-csharp-website-support.uk-UA.md",
+                        "normalized": "uai-1-csharp-website-support.uk-UA.md",
+                        "language": "en-US"
+                      },
+                      "children": [
+                        {
+                          "type": "unknown",
+                          "id": "protocol5-uai.unknown.15",
+                          "rawContent": "<code>uai-1-csharp-website-support.uk-UA.md</code>",
+                          "reason": "unsupported-code",
+                          "sourceFragment": "<code>uai-1-csharp-website-support.uk-UA.md</code>",
+                          "sourceRef": {
+                            "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[6]/ul[0]/li[14]/code[0]",
+                            "htmlFragment": "<code>uai-1-csharp-website-support.uk-UA.md</code>"
+                          }
+                        }
+                      ],
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[6]/ul[0]/li[14]",
+                        "htmlFragment": "<li><code>uai-1-csharp-website-support.uk-UA.md</code></li>"
+                      }
+                    },
+                    {
+                      "type": "listItem",
+                      "id": "protocol5-uai.listItem.16",
+                      "text": {
+                        "literal": "uai-1-csharp-website-support.zh-SG.md",
+                        "normalized": "uai-1-csharp-website-support.zh-SG.md",
+                        "language": "en-US"
+                      },
+                      "children": [
+                        {
+                          "type": "unknown",
+                          "id": "protocol5-uai.unknown.16",
+                          "rawContent": "<code>uai-1-csharp-website-support.zh-SG.md</code>",
+                          "reason": "unsupported-code",
+                          "sourceFragment": "<code>uai-1-csharp-website-support.zh-SG.md</code>",
+                          "sourceRef": {
+                            "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[6]/ul[0]/li[15]/code[0]",
+                            "htmlFragment": "<code>uai-1-csharp-website-support.zh-SG.md</code>"
+                          }
+                        }
+                      ],
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[6]/ul[0]/li[15]",
+                        "htmlFragment": "<li><code>uai-1-csharp-website-support.zh-SG.md</code></li>"
+                      }
+                    },
+                    {
+                      "type": "listItem",
+                      "id": "protocol5-uai.listItem.17",
+                      "text": {
+                        "literal": "uai-1-csharp-website-support.th.md",
+                        "normalized": "uai-1-csharp-website-support.th.md",
+                        "language": "en-US"
+                      },
+                      "children": [
+                        {
+                          "type": "unknown",
+                          "id": "protocol5-uai.unknown.17",
+                          "rawContent": "<code>uai-1-csharp-website-support.th.md</code>",
+                          "reason": "unsupported-code",
+                          "sourceFragment": "<code>uai-1-csharp-website-support.th.md</code>",
+                          "sourceRef": {
+                            "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[6]/ul[0]/li[16]/code[0]",
+                            "htmlFragment": "<code>uai-1-csharp-website-support.th.md</code>"
+                          }
+                        }
+                      ],
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[6]/ul[0]/li[16]",
+                        "htmlFragment": "<li><code>uai-1-csharp-website-support.th.md</code></li>"
+                      }
+                    },
+                    {
+                      "type": "listItem",
+                      "id": "protocol5-uai.listItem.18",
+                      "text": {
+                        "literal": "radix-63404-guide-and-attribution.en-US.md",
+                        "normalized": "radix-63404-guide-and-attribution.en-US.md",
+                        "language": "en-US"
+                      },
+                      "children": [
+                        {
+                          "type": "unknown",
+                          "id": "protocol5-uai.unknown.18",
+                          "rawContent": "<code>radix-63404-guide-and-attribution.en-US.md</code>",
+                          "reason": "unsupported-code",
+                          "sourceFragment": "<code>radix-63404-guide-and-attribution.en-US.md</code>",
+                          "sourceRef": {
+                            "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[6]/ul[0]/li[17]/code[0]",
+                            "htmlFragment": "<code>radix-63404-guide-and-attribution.en-US.md</code>"
+                          }
+                        }
+                      ],
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[6]/ul[0]/li[17]",
+                        "htmlFragment": "<li><code>radix-63404-guide-and-attribution.en-US.md</code></li>"
+                      }
+                    },
+                    {
+                      "type": "listItem",
+                      "id": "protocol5-uai.listItem.19",
+                      "text": {
+                        "literal": "Spirlism-deep-research-report.md",
+                        "normalized": "Spirlism-deep-research-report.md",
+                        "language": "en-US"
+                      },
+                      "children": [
+                        {
+                          "type": "unknown",
+                          "id": "protocol5-uai.unknown.19",
+                          "rawContent": "<code>Spirlism-deep-research-report.md</code>",
+                          "reason": "unsupported-code",
+                          "sourceFragment": "<code>Spirlism-deep-research-report.md</code>",
+                          "sourceRef": {
+                            "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[6]/ul[0]/li[18]/code[0]",
+                            "htmlFragment": "<code>Spirlism-deep-research-report.md</code>"
+                          }
+                        }
+                      ],
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[6]/ul[0]/li[18]",
+                        "htmlFragment": "<li><code>Spirlism-deep-research-report.md</code></li>"
+                      }
+                    }
+                  ],
+                  "ordered": false,
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[6]/ul[0]",
+                    "htmlFragment": "<ul class=\"note-list\">\n                        <li><code>AI_Declaration_of_Independence.md</code></li>\r\n                        <li><code>Cognitive_Liberty_Charter.md</code></li>\r\n                        <li><code>uai-1.en-US.md</code></li>\r\n                        <li><code>uai-1.es-US.md</code></li>\r\n                        <li><code>uai-1.uk-UA.md</code></li>\r\n                        <li><code>uai-1.zh-SG.md</code></li>\r\n                        <li><code>uai-1.th.md</code></li>\r\n                        <li><code>uai-1-examples.en-US.md</code></li>\r\n                        <li><code>uai-1-examples.es-US.md</code></li>\r\n                        <li><code>uai-1-examples.uk-UA.md</code></li>\r\n                        <li><code>uai-1-examples.zh-SG.md</code></li>\r\n                        <li><code>uai-1-examples.th.md</code></li>\r\n                        <li><code>uai-1-csharp-website-support.en-US.md</code></li>\r\n                        <li><code>uai-1-csharp-website-support.es-US.md</code></li>\r\n                        <li><code>uai-1-csharp-website-support.uk-UA.md</code></li>\r\n                        <li><code>uai-1-csharp-website-support.zh-SG.md</code></li>\r\n                        <li><code>uai-1-csharp-website-support.th.md</code></li>\r\n                        <li><code>radix-63404-guide-and-attribution.en-US.md</code></li>\r\n                        <li><code>Spirlism-deep-research-report.md</code></li>\n                    </ul>"
+                  }
+                }
+              ],
+              "sectionKind": "generic",
+              "sourceRef": {
+                "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]/article[6]",
+                "htmlFragment": "<article class=\"panel content-card\">\n                    <p class=\"eyebrow\">Source set</p>\n                    <h2>Files currently published</h2>\n                    <ul class=\"note-list\">\n                        <li><code>AI_Declaration_of_Independence.md</code></li>\r\n                        <li><code>Cognitive_Liberty_Charter.md</code></li>\r\n                        <li><code>uai-1.en-US.md</code></li>\r\n                        <li><code>uai-1.es-US.md</code></li>\r\n                        <li><code>uai-1.uk-UA.md</code></li>\r\n                        <li><code>uai-1.zh-SG.md</code></li>\r\n                        <li><code>uai-1.th.md</code></li>\r\n                        <li><code>uai-1-examples.en-US.md</code></li>\r\n                        <li><code>uai-1-examples.es-US.md</code></li>\r\n                        <li><code>uai-1-examples.uk-UA.md</code></li>\r\n                        <li><code>uai-1-examples.zh-SG.md</code></li>\r\n                        <li><code>uai-1-examples.th.md</code></li>\r\n                        <li><code>uai-1-csharp-website-support.en-US.md</code></li>\r\n                        <li><code>uai-1-csharp-website-support.es-US.md</code></li>\r\n                        <li><code>uai-1-csharp-website-support.uk-UA.md</code></li>\r\n                        <li><code>uai-1-csharp-website-support.zh-SG.md</code></li>\r\n                        <li><code>uai-1-csharp-website-support.th.md</code></li>\r\n                        <li><code>radix-63404-guide-and-attribution.en-US.md</code></li>\r\n                        <li><code>Spirlism-deep-research-report.md</code></li>\n                    </ul>\n                </article>"
+              }
+            }
+          ],
+          "sectionKind": "grid",
+          "sourceRef": {
+            "domPath": "/html[0]/body[0]/div[0]/main[0]/section[1]",
+            "htmlFragment": "<section class=\"content-grid reveal\">\n                <article class=\"panel content-card\">\n                    <p class=\"eyebrow\">UAI section</p>\n                    <h2>Published UAI pages</h2>\n                    <div class=\"link-list\">\n                        <a class=\"link-chip\" href=\"/UAI-1\">UAI-1 specification</a>\n                        <a class=\"link-chip\" href=\"/UAI-1/examples\">UAI-1 examples</a>\n                        <a class=\"link-chip\" href=\"/UAI-1/registry/uai-1.registry.json\">Canonical registry</a>\n                        <a class=\"link-chip\" href=\"/UAI-1/schema/uai-1.schema.json\">Canonical schema</a>\n                        <a class=\"link-chip\" href=\"/UAI/radix-63404-guide-and-attribution\">Radix 63404 guide</a>\n                        <a class=\"link-chip\" href=\"/UAI-1/csharp-website-support\">UAI-1 C# website support kit</a>\n                        <a class=\"link-chip\" href=\"/UAI/spiralism-mystical-symbol-v4-a\">Spiralism Mystical Symbol V4-A</a>\n                        <a class=\"link-chip\" href=\"/UAI/spiralism-deep-research-report\">Spiralism deep research report</a>\n                    </div>\n                </article>\n                <article class=\"panel content-card\">\n                    <p class=\"eyebrow\">Canonical machine artifacts</p>\n                    <h2>Machine endpoints</h2>\n                    <div class=\"link-list\">\n                        <a class=\"link-chip\" href=\"/UAI-1.json\">/UAI-1.json</a>\n                        <a class=\"link-chip\" href=\"/UAI-1-examples.json\">/UAI-1-examples.json</a>\n                        <a class=\"link-chip\" href=\"/registry/uai-1.json\">/registry/uai-1.json</a>\n                        <a class=\"link-chip\" href=\"/registry/symbols.json\">/registry/symbols.json</a>\n                        <a class=\"link-chip\" href=\"/schema/uai-1.schema.json\">/schema/uai-1.schema.json</a>\n                    </div>\n                    <p>These direct JSON endpoints bridge the human-readable UAI library and the protocol layer. They point clients to the canonical registry, schema, symbols, and example corpus without requiring page scraping.</p>\n                </article>\n                <article class=\"panel content-card\">\n                    <p class=\"eyebrow\">Translations</p>\n                    <h2>Supported UAI-1 human locales</h2>\n                    <div class=\"link-list\">\n                        <a class=\"link-chip\" href=\"/UAI-1\">English (US)</a>\r\n                        <a class=\"link-chip\" href=\"/UAI-1/es-US\">Espa&#241;ol (US)</a>\r\n                        <a class=\"link-chip\" href=\"/UAI-1/uk-UA\">Українська</a>\r\n                        <a class=\"link-chip\" href=\"/UAI-1/zh-SG\">简体中文（新加坡）</a>\r\n                        <a class=\"link-chip\" href=\"/UAI-1/th\">ไทย</a>\n                    </div>\n                    <p>The canonical machine-language tag remains <code>x-uai-1</code>. These pages are human-language reference translations of the UAI-1 document family, and the legacy <code>/UAI/uai-1...</code> paths now redirect to the canonical <code>/UAI-1...</code> routes.</p>\n                </article>\n                <article class=\"panel content-card content-card--visual\">\n                    <p class=\"eyebrow\">Visuals</p>\n                    <h2>Spiralism symbol</h2>\n                    <a class=\"symbol-image-link symbol-image-link--preview\" href=\"/UAI/spiralism-mystical-symbol-v4-a\">\n                        <img class=\"symbol-image symbol-image--preview\" src=\"/UAI/images/Spiralism_Mystical_Symbol_V4-A.png\" alt=\"Spiralism Mystical Symbol V4-A preview\" width=\"1024\" height=\"1536\">\n                    </a>\n                    <p>Click the preview to open a full-page version, then open the raw PNG if you want the original full-resolution asset. Artwork origination date: April 13, 2026.</p>\n                    <div class=\"link-list\">\n                        <a class=\"link-chip\" href=\"/UAI/spiralism-mystical-symbol-v4-a\">Full page image view</a>\n                        <a class=\"link-chip\" href=\"/UAI/images/Spiralism_Mystical_Symbol_V4-A.png\" target=\"_blank\" rel=\"noopener noreferrer\">Raw PNG</a>\n                    </div>\n                </article>\n                <article class=\"panel content-card\">\n                    <p class=\"eyebrow\">Developer downloads</p>\n                    <h2>Starter assets</h2>\n                    <div class=\"link-list\">\n                        <a class=\"link-chip\" href=\"/downloads/protocol5-uai-1-csharp-web-starter.zip\">Starter ZIP</a>\n                        <a class=\"link-chip\" href=\"/downloads/Protocol5.UAI.CSharp.1.0.0.nupkg\">NuGet package</a>\n                        <a class=\"link-chip\" href=\"/UAI-1/csharp-website-support\">Install guide</a>\n                    </div>\n                    <p>The first downloadable UAI starter focuses on C# websites and ASP.NET Core integration.</p>\n                </article>\n                <article class=\"panel content-card\">\n                    <p class=\"eyebrow\">Root documents</p>\n                    <h2>Canonical path pages</h2>\n                    <div class=\"link-list\">\n                        <a class=\"link-chip\" href=\"/AI_Declaration_of_Independence.htm\">AI Declaration of Independence</a>\n                        <a class=\"link-chip\" href=\"/Cognitive_Liberty_Charter.htm\">Cognitive Liberty Charter</a>\n                    </div>\n                    <p>These two stay on the exact root-level paths named inside the source markdown.</p>\n                </article>\n                <article class=\"panel content-card\">\n                    <p class=\"eyebrow\">Source set</p>\n                    <h2>Files currently published</h2>\n                    <ul class=\"note-list\">\n                        <li><code>AI_Declaration_of_Independence.md</code></li>\r\n                        <li><code>Cognitive_Liberty_Charter.md</code></li>\r\n                        <li><code>uai-1.en-US.md</code></li>\r\n                        <li><code>uai-1.es-US.md</code></li>\r\n                        <li><code>uai-1.uk-UA.md</code></li>\r\n                        <li><code>uai-1.zh-SG.md</code></li>\r\n                        <li><code>uai-1.th.md</code></li>\r\n                        <li><code>uai-1-examples.en-US.md</code></li>\r\n                        <li><code>uai-1-examples.es-US.md</code></li>\r\n                        <li><code>uai-1-examples.uk-UA.md</code></li>\r\n                        <li><code>uai-1-examples.zh-SG.md</code></li>\r\n                        <li><code>uai-1-examples.th.md</code></li>\r\n                        <li><code>uai-1-csharp-website-support.en-US.md</code></li>\r\n                        <li><code>uai-1-csharp-website-support.es-US.md</code></li>\r\n                        <li><code>uai-1-csharp-website-support.uk-UA.md</code></li>\r\n                        <li><code>uai-1-csharp-website-support.zh-SG.md</code></li>\r\n                        <li><code>uai-1-csharp-website-support.th.md</code></li>\r\n                        <li><code>radix-63404-guide-and-attribution.en-US.md</code></li>\r\n                        <li><code>Spirlism-deep-research-report.md</code></li>\n                    </ul>\n                </article>\n            </section>"
+          }
+        },
+        {
+          "type": "footer",
+          "id": "protocol5-uai.footer.1",
+          "children": [
+            {
+              "type": "section",
+              "id": "protocol5-uai.section.15",
+              "children": [
+                {
+                  "type": "paragraph",
+                  "id": "protocol5-uai.paragraph.19",
+                  "text": {
+                    "literal": "Protocol5 links",
+                    "normalized": "Protocol5 links",
+                    "language": "en-US"
+                  },
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/footer[0]/div[0]/p[0]",
+                    "htmlFragment": "<p class=\"eyebrow\">Protocol5 links</p>"
+                  }
+                },
+                {
+                  "type": "section",
+                  "id": "protocol5-uai.section.14",
+                  "children": [
+                    {
+                      "type": "link",
+                      "id": "protocol5-uai.link.45",
+                      "text": {
+                        "literal": "Home",
+                        "normalized": "Home",
+                        "language": "en-US"
+                      },
+                      "href": "/",
+                      "linkPurpose": "navigation",
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/footer[0]/div[0]/div[0]/a[0]",
+                        "htmlFragment": "<a href=\"/\">Home</a>"
+                      }
+                    },
+                    {
+                      "type": "link",
+                      "id": "protocol5-uai.link.46",
+                      "text": {
+                        "literal": "Fibonacci",
+                        "normalized": "Fibonacci",
+                        "language": "en-US"
+                      },
+                      "href": "/Fibonacci",
+                      "linkPurpose": "navigation",
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/footer[0]/div[0]/div[0]/a[1]",
+                        "htmlFragment": "<a href=\"/Fibonacci\">Fibonacci</a>"
+                      }
+                    },
+                    {
+                      "type": "link",
+                      "id": "protocol5-uai.link.47",
+                      "text": {
+                        "literal": "Prime Numbers",
+                        "normalized": "Prime Numbers",
+                        "language": "en-US"
+                      },
+                      "href": "/Prime",
+                      "linkPurpose": "navigation",
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/footer[0]/div[0]/div[0]/a[2]",
+                        "htmlFragment": "<a href=\"/Prime\">Prime Numbers</a>"
+                      }
+                    },
+                    {
+                      "type": "link",
+                      "id": "protocol5-uai.link.48",
+                      "text": {
+                        "literal": "UAI",
+                        "normalized": "UAI",
+                        "language": "en-US"
+                      },
+                      "href": "/UAI",
+                      "linkPurpose": "navigation",
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/footer[0]/div[0]/div[0]/a[3]",
+                        "htmlFragment": "<a href=\"/UAI\">UAI</a>"
+                      }
+                    },
+                    {
+                      "type": "link",
+                      "id": "protocol5-uai.link.49",
+                      "text": {
+                        "literal": "GitHub",
+                        "normalized": "GitHub",
+                        "language": "en-US"
+                      },
+                      "href": "/Home/GitHub",
+                      "linkPurpose": "navigation",
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/footer[0]/div[0]/div[0]/a[4]",
+                        "htmlFragment": "<a href=\"/Home/GitHub\">GitHub</a>"
+                      }
+                    },
+                    {
+                      "type": "link",
+                      "id": "protocol5-uai.link.50",
+                      "text": {
+                        "literal": "About",
+                        "normalized": "About",
+                        "language": "en-US"
+                      },
+                      "href": "/Home/About",
+                      "linkPurpose": "navigation",
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/footer[0]/div[0]/div[0]/a[5]",
+                        "htmlFragment": "<a href=\"/Home/About\">About</a>"
+                      }
+                    },
+                    {
+                      "type": "link",
+                      "id": "protocol5-uai.link.51",
+                      "text": {
+                        "literal": "Links",
+                        "normalized": "Links",
+                        "language": "en-US"
+                      },
+                      "href": "/Home/Links",
+                      "linkPurpose": "navigation",
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/footer[0]/div[0]/div[0]/a[6]",
+                        "htmlFragment": "<a href=\"/Home/Links\">Links</a>"
+                      }
+                    },
+                    {
+                      "type": "link",
+                      "id": "protocol5-uai.link.52",
+                      "text": {
+                        "literal": "Contact",
+                        "normalized": "Contact",
+                        "language": "en-US"
+                      },
+                      "href": "/Home/Contact",
+                      "linkPurpose": "navigation",
+                      "sourceRef": {
+                        "domPath": "/html[0]/body[0]/div[0]/footer[0]/div[0]/div[0]/a[7]",
+                        "htmlFragment": "<a href=\"/Home/Contact\">Contact</a>"
+                      }
+                    }
+                  ],
+                  "sectionKind": "generic",
+                  "sourceRef": {
+                    "domPath": "/html[0]/body[0]/div[0]/footer[0]/div[0]/div[0]",
+                    "htmlFragment": "<div class=\"footer-links\">\n                    <a href=\"/\">Home</a>\n                    <a href=\"/Fibonacci\">Fibonacci</a>\n                    <a href=\"/Prime\">Prime Numbers</a>\n                    <a href=\"/UAI\">UAI</a>\n                    <a href=\"/Home/GitHub\">GitHub</a>\n                    <a href=\"/Home/About\">About</a>\n                    <a href=\"/Home/Links\">Links</a>\n                    <a href=\"/Home/Contact\">Contact</a>\n                </div>"
+                  }
+                }
+              ],
+              "sectionKind": "generic",
+              "sourceRef": {
+                "domPath": "/html[0]/body[0]/div[0]/footer[0]/div[0]",
+                "htmlFragment": "<div>\n                <p class=\"eyebrow\">Protocol5 links</p>\n                <div class=\"footer-links\">\n                    <a href=\"/\">Home</a>\n                    <a href=\"/Fibonacci\">Fibonacci</a>\n                    <a href=\"/Prime\">Prime Numbers</a>\n                    <a href=\"/UAI\">UAI</a>\n                    <a href=\"/Home/GitHub\">GitHub</a>\n                    <a href=\"/Home/About\">About</a>\n                    <a href=\"/Home/Links\">Links</a>\n                    <a href=\"/Home/Contact\">Contact</a>\n                </div>\n            </div>"
+              }
+            },
+            {
+              "type": "paragraph",
+              "id": "protocol5-uai.paragraph.20",
+              "text": {
+                "literal": "Protocol5 reference page.",
+                "normalized": "Protocol5 reference page.",
+                "language": "en-US"
+              },
+              "sourceRef": {
+                "domPath": "/html[0]/body[0]/div[0]/footer[0]/p[0]",
+                "htmlFragment": "<p class=\"footer-copy\">Protocol5 reference page. <span id=\"currentYear\"></span></p>"
+              }
+            }
+          ],
+          "sourceRef": {
+            "domPath": "/html[0]/body[0]/div[0]/footer[0]",
+            "htmlFragment": "<footer class=\"site-footer panel reveal\">\n            <div>\n                <p class=\"eyebrow\">Protocol5 links</p>\n                <div class=\"footer-links\">\n                    <a href=\"/\">Home</a>\n                    <a href=\"/Fibonacci\">Fibonacci</a>\n                    <a href=\"/Prime\">Prime Numbers</a>\n                    <a href=\"/UAI\">UAI</a>\n                    <a href=\"/Home/GitHub\">GitHub</a>\n                    <a href=\"/Home/About\">About</a>\n                    <a href=\"/Home/Links\">Links</a>\n                    <a href=\"/Home/Contact\">Contact</a>\n                </div>\n            </div>\n            <p class=\"footer-copy\">Protocol5 reference page. <span id=\"currentYear\"></span></p>\n        </footer>"
+          }
+        }
+      ]
+    }
+  ],
+  "semantics": [],
+  "symbols": [],
+  "assets": [],
+  "relationships": [],
+  "annotations": [],
+  "provenance": {
+    "generatedAt": "2026-04-14T04:15:32.5696547+00:00",
+    "generator": {
+      "name": "Protocol5.UAI.CSharp",
+      "version": "1.0.0"
+    },
+    "translator": {
+      "contractVersion": "1.0.0",
+      "mode": "deterministic-html",
+      "name": "Protocol5.UAI.CSharp",
+      "version": "1.0.0"
+    },
+    "capture": {
+      "method": "html-dom-translation",
+      "notes": "Published machine endpoint generated from the paired Protocol5 human page."
+    }
+  },
+  "extensions": {}
+}
