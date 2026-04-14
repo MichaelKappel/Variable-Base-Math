@@ -3,36 +3,78 @@ using System.Text.Json;
 
 using Protocol5.UAI;
 
-if (args.Length != 1)
+try
 {
-    Console.Error.WriteLine("Usage: Protocol5.UAI.SiteExporter <manifest.json>");
-    return 1;
-}
-
-var manifestPath = Path.GetFullPath(args[0]);
-if (!File.Exists(manifestPath))
-{
-    Console.Error.WriteLine($"Manifest file was not found: {manifestPath}");
-    return 1;
-}
-
-var manifest = JsonSerializer.Deserialize<ExportManifest>(
-    File.ReadAllText(manifestPath, Encoding.UTF8),
-    new JsonSerializerOptions
+    if (args.Length != 1)
     {
-        PropertyNameCaseInsensitive = true
-    });
+        Console.Error.WriteLine("Usage: Protocol5.UAI.SiteExporter <manifest.json>");
+        return 1;
+    }
 
-if (manifest is null || manifest.Pages.Count == 0)
+    var manifestPath = Path.GetFullPath(args[0]);
+    if (!File.Exists(manifestPath))
+    {
+        Console.Error.WriteLine($"Manifest file was not found: {manifestPath}");
+        return 1;
+    }
+
+    var manifest = JsonSerializer.Deserialize<ExportManifest>(
+        File.ReadAllText(manifestPath, Encoding.UTF8),
+        new JsonSerializerOptions
+        {
+            PropertyNameCaseInsensitive = true
+        });
+
+    if (manifest is null || manifest.Pages.Count == 0)
+    {
+        Console.Error.WriteLine("Manifest did not contain any pages.");
+        return 1;
+    }
+
+    var manifestDirectory = Path.GetDirectoryName(manifestPath)
+        ?? throw new InvalidOperationException($"Manifest path did not have a parent directory: {manifestPath}");
+    var exporter = new UaiHtmlExporter();
+    var generatedAt = manifest.GeneratedAt ?? DateTimeOffset.UtcNow;
+
+    foreach (var page in manifest.Pages)
+    {
+        ValidatePage(page);
+
+        var inputHtmlPath = ResolveManifestRelativePath(manifestDirectory, page.InputHtmlPath);
+        var outputJsonPath = ResolveManifestRelativePath(manifestDirectory, page.OutputJsonPath);
+
+        exporter.ExportToFile(inputHtmlPath, outputJsonPath, new UaiHtmlTranslationOptions
+        {
+            SourceUri = page.SourceUri,
+            DocumentId = page.DocumentId,
+            RetrievedAt = generatedAt,
+            Language = page.Language,
+            SiteName = page.SiteName ?? "Protocol5",
+            PageType = page.PageType,
+            CaptureNotes = page.CaptureNotes ?? $"Published machine endpoint generated from '{page.SourceUri}'."
+        });
+
+        Console.Out.WriteLine($"{page.SourceUri} -> {outputJsonPath}");
+    }
+
+    Console.Out.WriteLine($"Exported {manifest.Pages.Count} page(s).");
+    return 0;
+}
+catch (Exception exception) when (exception is IOException or UnauthorizedAccessException or InvalidOperationException or ArgumentException or JsonException)
 {
-    Console.Error.WriteLine("Manifest did not contain any pages.");
+    Console.Error.WriteLine(exception.Message);
     return 1;
 }
 
-var exporter = new UaiHtmlExporter();
-var generatedAt = manifest.GeneratedAt ?? DateTimeOffset.UtcNow;
+static string ResolveManifestRelativePath(string manifestDirectory, string path)
+{
+    Guard.NotNull(path, nameof(path));
+    return Path.IsPathRooted(path)
+        ? Path.GetFullPath(path)
+        : Path.GetFullPath(Path.Combine(manifestDirectory, path));
+}
 
-foreach (var page in manifest.Pages)
+static void ValidatePage(ExportPage page)
 {
     if (string.IsNullOrWhiteSpace(page.InputHtmlPath) ||
         string.IsNullOrWhiteSpace(page.OutputJsonPath) ||
@@ -42,20 +84,7 @@ foreach (var page in manifest.Pages)
     {
         throw new InvalidOperationException("Each export page must define inputHtmlPath, outputJsonPath, sourceUri, documentId, and pageType.");
     }
-
-    exporter.ExportToFile(page.InputHtmlPath, page.OutputJsonPath, new UaiHtmlTranslationOptions
-    {
-        SourceUri = page.SourceUri,
-        DocumentId = page.DocumentId,
-        RetrievedAt = generatedAt,
-        Language = page.Language,
-        SiteName = page.SiteName ?? "Protocol5",
-        PageType = page.PageType,
-        CaptureNotes = page.CaptureNotes ?? $"Published machine endpoint generated from '{page.SourceUri}'."
-    });
 }
-
-return 0;
 
 internal sealed class ExportManifest
 {

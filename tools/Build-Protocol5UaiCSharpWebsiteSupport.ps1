@@ -27,6 +27,7 @@ function Write-Utf8File {
 
 $repoRoot = Split-Path -Path $PSScriptRoot -Parent
 $projectRoot = Join-Path $repoRoot 'Protocol5.UAI.CSharp'
+$siteExporterToolRoot = Join-Path $repoRoot 'tools\Protocol5.UAI.SiteExporter'
 $validatorToolRoot = Join-Path $repoRoot 'tools\Protocol5.UAI.Validator'
 $projectFile = Join-Path $projectRoot 'Protocol5.UAI.CSharp.csproj'
 $downloadReadme = Join-Path $projectRoot 'PROTOCOL5-DOWNLOAD.md'
@@ -43,6 +44,7 @@ $archiveDownloadRoot = Join-Path $archiveRoot 'downloads'
 $archiveSourceRoot = Join-Path $archiveRoot 'src'
 $archiveProjectRoot = Join-Path $archiveSourceRoot 'Protocol5.UAI.CSharp'
 $archiveToolsRoot = Join-Path $archiveRoot 'tools'
+$archiveSiteExporterRoot = Join-Path $archiveToolsRoot 'Protocol5.UAI.SiteExporter'
 $archiveValidatorRoot = Join-Path $archiveToolsRoot 'Protocol5.UAI.Validator'
 $archiveSpecRoot = Join-Path $archiveRoot 'spec'
 $archiveDocsRoot = Join-Path $archiveRoot 'docs'
@@ -72,12 +74,15 @@ if (-not $packageFile) {
 }
 
 Copy-Item -LiteralPath $projectRoot -Destination $archiveSourceRoot -Recurse -Force
+Copy-Item -LiteralPath $siteExporterToolRoot -Destination $archiveToolsRoot -Recurse -Force
 Copy-Item -LiteralPath $validatorToolRoot -Destination $archiveToolsRoot -Recurse -Force
 Copy-Item -LiteralPath $specRoot -Destination $archiveRoot -Recurse -Force
 Copy-Item -LiteralPath $docsRoot -Destination $archiveRoot -Recurse -Force
 Copy-Item -LiteralPath $examplesRoot -Destination $archiveRoot -Recurse -Force
 Remove-Item -LiteralPath (Join-Path $archiveProjectRoot 'bin') -Recurse -Force -ErrorAction SilentlyContinue
 Remove-Item -LiteralPath (Join-Path $archiveProjectRoot 'obj') -Recurse -Force -ErrorAction SilentlyContinue
+Remove-Item -LiteralPath (Join-Path $archiveSiteExporterRoot 'bin') -Recurse -Force -ErrorAction SilentlyContinue
+Remove-Item -LiteralPath (Join-Path $archiveSiteExporterRoot 'obj') -Recurse -Force -ErrorAction SilentlyContinue
 Remove-Item -LiteralPath (Join-Path $archiveValidatorRoot 'bin') -Recurse -Force -ErrorAction SilentlyContinue
 Remove-Item -LiteralPath (Join-Path $archiveValidatorRoot 'obj') -Recurse -Force -ErrorAction SilentlyContinue
 

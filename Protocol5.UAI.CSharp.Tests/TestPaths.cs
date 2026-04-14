@@ -54,6 +54,11 @@ internal static class TestPaths
         return Path.Combine(GetRepoRoot(filePath), "Protocol5.UAI.CSharp", "Protocol5.UAI.CSharp.csproj");
     }
 
+    public static string GetSiteExporterProjectPath([CallerFilePath] string filePath = "")
+    {
+        return Path.Combine(GetRepoRoot(filePath), "tools", "Protocol5.UAI.SiteExporter", "Protocol5.UAI.SiteExporter.csproj");
+    }
+
     public static string GetValidatorProjectPath([CallerFilePath] string filePath = "")
     {
         return Path.Combine(GetRepoRoot(filePath), "tools", "Protocol5.UAI.Validator", "Protocol5.UAI.Validator.csproj");

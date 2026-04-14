@@ -86,6 +86,16 @@ exporter.ExportToFile("Pages/hello.html", "wwwroot/docs/hello/index.uai.json", n
 });
 ```
 
+## Site Exporter CLI Sample
+
+The repository includes a console exporter for manifest-driven file generation:
+
+```powershell
+dotnet run --project tools\Protocol5.UAI.SiteExporter\Protocol5.UAI.SiteExporter.csproj -- tools\Protocol5.UAI.SiteExporter\samples\export-manifest.sample.json
+```
+
+That sample manifest generates `tools\Protocol5.UAI.SiteExporter\samples\output\hello.uai.json` using paths relative to the manifest file, which makes the tool safe to run from any working directory.
+
 ## Render
 
 ```csharp

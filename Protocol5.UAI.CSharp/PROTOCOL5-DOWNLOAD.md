@@ -6,6 +6,7 @@ Contents:
 
 - `downloads/Protocol5.UAI.CSharp.1.0.0.nupkg`
 - `src/Protocol5.UAI.CSharp/`
+- `tools/Protocol5.UAI.SiteExporter/`
 - `tools/Protocol5.UAI.Validator/`
 - `LICENSE`
 - `README.md`
@@ -33,6 +34,16 @@ The package now covers the full developer path directly:
 - route per-page UAI endpoints
 - render UAI documents back to HTML
 - test the endpoint output with the same parser and validator
+
+## Site exporter sample app
+
+The starter ZIP now includes a runnable exporter sample:
+
+```powershell
+dotnet run --project .\tools\Protocol5.UAI.SiteExporter\Protocol5.UAI.SiteExporter.csproj -- .\tools\Protocol5.UAI.SiteExporter\samples\export-manifest.sample.json
+```
+
+That command generates `tools\Protocol5.UAI.SiteExporter\samples\output\hello.uai.json`, which you can then validate with the bundled validator.
 
 ## Validator sample app
 
